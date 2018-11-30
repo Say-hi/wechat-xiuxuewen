@@ -1,0 +1,108 @@
+@import "../../common/variable";
+
+page {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+
+  .user-img {
+    width: 80rpx;
+    height: 80rpx;
+    margin-right: 20rpx;
+  }
+
+  .user-name {
+    display: flex;
+    flex-direction: column;
+  }
+
+}
+
+.operation {
+  top: 20rpx;
+  right: 0;
+  .more-operation {
+    bottom: 0;
+    right: 0;
+    transform: translateY(110%);
+    background-color: rgba(212, 49, 77, 0.68);
+    .operation-btn {
+      padding: 10rpx 20rpx;
+      word-break: keep-all;
+      color: #fff;
+    }
+  }
+}
+
+.user-operation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  .iconfont {
+    margin-left: 30rpx;
+    &:before {
+      margin-right: 5rpx;
+    }
+  }
+}
+
+.comment-item {
+  display: flex;
+  .c-i-left {
+    width: 60rpx;
+    height: 60rpx;
+    margin-right: 10rpx;
+  }
+  .c-i-right {
+    flex: 1;
+  }
+}
+
+.show-height {
+  animation: 0.5s showHeight alternate
+}
+
+@keyframes showHeight {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+.reply-mask {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+
+.reply-area {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  .ra-input {
+    flex: 1;
+    padding-left: 20rpx;
+  }
+  .ra-send {
+    background-color: @mainColor;
+    padding: 10rpx 20rpx;
+    border-radius: 70rpx;
+    margin-right: 20rpx;
+  }
+}

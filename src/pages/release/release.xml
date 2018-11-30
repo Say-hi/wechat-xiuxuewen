@@ -1,0 +1,24 @@
+<textarea maxlength="500" bindinput="inputValue" class="bb p20 f26 bt1" placeholder="描述一下您的问题"></textarea>
+
+<view class="up-img p20">
+  <image wx:for="123123" wx:key="*42" class="br20" src="{{ testImg }}"></image>
+  <view class="up-btn br20 bb">+</view>
+</view>
+
+<view class="bottom-wrap p20">
+  <view class="tips c999">
+    <view catchtap="chooseTip"
+          data-index="{{ index }}"
+          class="tips-item br10 f20 {{ item.choose ? 'active' : '' }}"
+          wx:for="{{ tipsArr }}"
+          wx:key="*41">{{ item.t }}</view>
+  </view>
+  <view class="count tar f26">{{ content.length || 0 }}/500字</view>
+</view>
+
+<view class="zw"></view>
+
+<view class="release-btn cfff fw7">{{ options.type || '发布提问' }}</view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

@@ -1,0 +1,127 @@
+{
+//  群信息小程序页面分布
+  "pages": [
+    "pages/index/index", // 首页
+    "pages/nearlearn/nearlearn", // 最近学习
+    "pages/user/user", // 我的
+    "pages/showXiu/showXiu", // 作品秀个人展示
+    "pages/showDetail/showDetail", // 作品秀详情
+    "pages/show/show", // 作品秀
+    "pages/release/release", // 发布作品&发布提问
+    "pages/courseDetail/courseDetail", // 课程详情
+    "pages/courseList/courseList", // 课程列表
+    "pages/course/course" // 课程
+    // Dont remove this comment
+  ],
+  "subPackages": [
+    {
+      "root": "collagePage", // 拼团分包
+      "pages": [
+        "pagesone/collage/collage" // 拼团
+      ]
+    },
+    {
+      "root": "practicePage", // 实操练习分包
+      "pages": [
+        "pagestwo/practice/practice", // 实操练习
+        "pagestwo/practiceDetail/practiceDetail" // 实操练习详情
+      ]
+    },
+    {
+      "root": "answerPage", // 问答分包
+      "pages": [
+        "pagesthree/answer/answer", // 问答列表
+        "pagesthree/answerDetail/answerDetail" // 问答详情
+      ]
+    },
+    {
+      "root": "feedbackPage", // 问答分包
+      "pages": [
+        "pagesfour/feedback/feedback" // 反馈
+      ]
+    },
+    {
+      "root": "orderPage", // 订单分包
+      "pages": [
+        "pagesfive/order/order" // 用户订单
+      ]
+    },
+    {
+      "root": "searchPage", // 搜索分包
+      "pages": [
+        "pagessix/searchHistory/searchHistory"
+      ]
+    },
+    {
+      "root": "reservationPage", // 线下预约分包
+      "pages": [
+        "pagesseven/reservation/reservation", // 预约列表
+        "pagesseven/myReservation/myReservation", // 我的报名
+        "pagesseven/reservationDetail/reservationDetail", // 预约详情
+        "pagesseven/teacherDetail/teacherDetail" // 教师详情
+      ]
+    }
+  ],
+  // Window configuration
+  "window": {
+    // 顶部导航栏
+//    "navigationStyle": "custom",
+    // 类型：HexColor；默认值：#000000
+    // 导航栏背景颜色，如"#000000"
+    "navigationBarBackgroundColor": "#ffffff",
+    // 类型：String；默认值：white
+    // 导航栏标题颜色，仅支持 black/white
+    "navigationBarTextStyle": "black",
+    // 类型：String；默认值：无
+    // 导航栏标题文字内容
+    "navigationBarTitleText": "绣学问",
+    // 类型：HexColor；默认值：#ffffff
+    // 窗口的背景色
+    "backgroundColor": "#eeeeee",
+    // 类型：String；默认值：dark
+    // 下拉背景字体、loading 图的样式，仅支持 dark/light
+    "backgroundTextStyle": "light",
+    // 类型：Boolean；默认值：false
+    // 是否开启下拉刷新，详见页面相关事件处理函数。
+    // https://mp.weixin.qq.com/debug/wxadoc/dev/framework/app-service/page.html?t=1476197491005#页面相关事件处理函数
+    "enablePullDownRefresh": false
+  },
+//  "tabBar": {
+//    "color": "#999999",
+//    "selectedColor": "#dab886",
+//    "borderStyle": "white",
+//    "backgroundColor": "#fff",
+//    "list": [
+//      {
+//        "text": "首页",
+//        "pagePath": "pages/index/index",
+//        "iconPath": "images/index.png",
+//        "selectedIconPath": "images/index_hl.png"
+//      },
+////      {
+////        "text": "点餐",
+////        "pagePath": "pages/menu/menu",
+////        "iconPath": "images/menu.png",
+////        "selectedIconPath": "images/menu_hl.png"
+////      },
+//      {
+//        "text": "活动",
+//        "pagePath": "pages/activityList/activityList",
+//        "iconPath": "images/car.png",
+//        "selectedIconPath": "images/car_hl.png"
+//      },
+//      {
+//        "text": "我的",
+//        "pagePath": "pages/user/user",
+//        "iconPath": "images/user.png",
+//        "selectedIconPath": "images/user_hl.png"
+//      }
+//    ]
+//  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  // Debug log to console
+  "debug": true
+}

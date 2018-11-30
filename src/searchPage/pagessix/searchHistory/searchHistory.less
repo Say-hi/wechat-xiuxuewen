@@ -1,0 +1,66 @@
+@import "../../../common/variable";
+
+page {
+  background-color: #fff;
+}
+
+.search {
+  padding: 16rpx 20rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  input {
+    flex: 1;
+    padding-left: 30rpx;
+    height: 65rpx;
+    line-height: 65rpx;
+    border-radius: 65rpx;
+    background-color: #eee;
+    margin-right: 20rpx;
+  }
+}
+
+// 搜索历史标签
+.search-history {
+  //margin-top: 90rpx;
+}
+.search-operation {
+  display: flex;
+  padding: 10rpx 20rpx;
+  align-items: center;
+  justify-content: space-between;
+  view  {
+    //border: 1rpx solid #eee;
+    border-radius: 10rpx;
+    font-size: 25rpx;
+    &:before {
+      margin-right: 20rpx;
+    }
+  }
+}
+.menu2-comment {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0rpx 10rpx;
+  //padding-bottom: 30rpx;
+  .menu2-comment-item {
+    font-size: 24rpx;
+    padding: 10rpx 14rpx;
+    border-radius: 5rpx;
+    color: #999;
+    border: 1rpx solid #eee;
+    margin: 10rpx;
+    transition: all 0.5s;
+  }
+  .active {
+    border-radius: 30rpx;
+    color: #fff;
+    background-image: linear-gradient(45deg, #ff3b5b 0%, #f8ceff 99%, #ff97a8 100%);
+    //background: linear-gradient(@mainColor, #cdb4a5);
+  }
+}
+
+.icon-remen::before {
+  color: @mainColor;
+}

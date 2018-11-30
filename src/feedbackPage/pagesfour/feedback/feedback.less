@@ -1,0 +1,62 @@
+@import "../../../common/variable";
+page {
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 40rpx;
+}
+textarea {
+  margin-top: 20rpx;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  //border: 1rpx solid #bfbfbf;
+  padding: 10rpx;
+  background-color: #f6f6f6;
+  font-size: 28rpx;
+}
+
+input {
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  margin: 20rpx 0;
+  padding: 10rpx;
+  background-color: #f6f6f6;
+}
+
+.up-img {
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  .u-i-w {
+    margin: 20rpx;
+  }
+  image {
+    width: 111rpx;
+    height: 111rpx;
+  }
+  .close {
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    background-color: #333333;
+    padding: 10rpx;
+    &:before {
+      color: #fff;
+    }
+  }
+  .up {
+    display: inline-block;
+    border: solid 2rpx #dcdcdc;
+    text-align: center;
+    padding: 20rpx 38rpx;
+    font-size: 50rpx;
+    margin-left: 20rpx;
+  }
+}
+
+.fabu {
+  margin-top: 20rpx;
+  background-color: #333;
+  color: @mainTextColor;
+}

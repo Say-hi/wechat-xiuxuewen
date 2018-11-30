@@ -1,0 +1,15 @@
+@import "variable";
+// 左侧柱子形状
+.left-pillar {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 30rpx;
+    transform: translate(0, -50%);
+    width: 4rpx;
+    height: 26rpx;
+    background-color: @mainBackgroundColor;
+  }
+}

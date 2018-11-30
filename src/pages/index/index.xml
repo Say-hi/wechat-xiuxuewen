@@ -1,0 +1,86 @@
+
+<swiper hidden="{{ indexData.slide.length == 0 }}"
+        autoplay
+        indicator-dots
+        circular
+        indicator-color="{{ indicatorColor }}"
+        indicator-active-color="{{ indicatorActiveColor }}"
+        class="banner">
+  <swiper-item  wx:for="testImg"
+                wx:key="*0">
+    <image catchtap="goOther" data-src="{{ testImg }}" data-url="{{ item.path }}" mode="aspectFill" src="{{ testImg }}"></image>
+  </swiper-item>
+</swiper>
+
+<view class="tab-wrap-out">
+    <view class="tab-wrap bgfff br20">
+    <navigator url="{{ item.path }}"
+               wx:for="{{ tabArr }}"
+               wx:key="*1"
+               open-type="{{ item.type }}"
+               hover-class="none"
+               class="tab-item tac f24 c333">
+        <image mode="aspectFit" src="../../images/{{ index * 1 + 1 }}.png"></image>
+        <view class="f32 fw7 c3a">{{ item.title }}</view>
+    </navigator>
+</view>
+
+    <navigator url="/reservationPage/pagesseven/reservation/reservation" class="reservation bgfff p20 f26 br20 mt20">
+        <view>
+            <view class="f42 c393636 fw7">线下手把手教学</view>
+            <view class="f26 cff3757">立即预约 》</view>
+        </view>
+        <view class="iconfont icon-dianpu cff86b1"></view>
+    </navigator>
+
+    <view class="ad-message bgfff p20 f26 br20">
+        <view class="iconfont icon-notice"></view>
+        <view class="ad-m-img"><image mode="aspectFill" class="ad-m-i" src='{{ testImg }}'></image></view>
+        <view class="ad-m-text ell1">这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案</view>
+    </view>
+
+    <view class="container bgfff br20 new p30">
+        <navigator hover-class="none" url="../courseList/courseList?title=最新课程" class="c-top">
+            <view class="c-t-l f36 c393636 fw7">最近上新</view>
+            <view class="c-t-r f24 c393636 arrow">更多</view>
+        </navigator>
+        <view class="new-wrap">
+            <navigator hover-class="none" url="../courseDetail/courseDetail?id=1&free=1" class="c-w-item bb pr mt30" wx:for="1234" wx:key="*2">
+                <!--<view catchtap="collect" data-id="{{ item.id }}" class="c-w-i-collect pa f22 p10">收藏</view>-->
+                <image class="br10" mode="aspectFill" src="{{ testImg }}"></image>
+                <view class="ell1 f32 c393636 fw7 mt5">圆三针手工雾眉操作</view>
+                <view class="f20 c666 mt5">1111人学习</view>
+            </navigator>
+        </view>
+    </view>
+
+    <view class="container bgfff br10 hot p30">
+        <navigator hover-class="none" url="../courseList/courseList?title=热门课程" class="c-top">
+            <view class="c-t-l f36 c393636 fw7">热门课程</view>
+            <view class="c-t-r f24 c393636 arrow">更多</view>
+        </navigator>
+        <navigator hover-class="none" url="../courseDetail/courseDetail?id=1&free=1" class="hot-wrap mt30" wx:for="123" wx:key="*3">
+            <image class="h-w-left br10" mode="aspectFill" src="{{ testImg }}"></image>
+            <view class="h-w-right">
+                <view>
+                    <view class="ell1 f32 c393636 fw7">圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操</view>
+                    <view wx:for="123" wx:key="*4" class="f20 br10 cb670f7 ell2 tag">纹眉</view>
+                </view>
+                <view class="h-w-r-bottom f20 c999 mt10">
+                    <view>8888人已学习</view>
+                    <view class="tac">11节课</view>
+                    <view class="f26 cff3b5b fw7 tar">88.8元</view>
+                </view>
+            </view>
+        </navigator>
+    </view>
+
+    <view class="tac f24 c999 lh80">已经到底部啦</view>
+</view>
+
+<my-login></my-login>
+<my-navigator-tab prop-nav="{{ tabArr2 }}"></my-navigator-tab>
+<my-tip bindds="ds" mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

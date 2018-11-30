@@ -1,0 +1,129 @@
+@import "../../../common/variable";
+page {
+  background-color: #eee;
+}
+
+.answer-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+@width: 80rpx;
+
+.ask-right {
+  background-color: @mainColor;
+  width: @width;
+  height: @width;
+  line-height: @width;
+  position: fixed;
+  top: 140rpx;
+  right: 20rpx;
+  text-align: center;
+  word-break: break-all;
+}
+
+.answer-wrap {
+  padding: 0 20rpx 20rpx;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  .input-wrap {
+    display: flex;
+    align-items: center;
+    padding: 0rpx 20rpx;
+    height: 100%;
+    border-radius: 60rpx;
+    background-color: #efefef;
+    flex: 1;
+  }
+  
+  .search-input {
+    margin-left: 10rpx;
+    border: none;
+    width: 100%;
+    height: 100% !important;
+    &:after, &:before {
+      border: none;
+    }
+  }
+
+  .ask {
+    margin-left: 20rpx;
+    background-color: @mainColor;
+    padding: 0rpx 40rpx;
+    height: 100%;
+    border-radius: 60rpx;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.tab-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  .t-t-item {
+    padding-bottom: 4rpx;
+    transition: all .5s;
+    //flex: 1;
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 14rpx;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      background-color: #fff;
+      transition: all .5s;
+    }
+  }
+  .cff3b5b {
+    &:after {
+      height: 4rpx;
+      width: 100%;
+      background-color: #FF3B5B;
+    }
+  }
+}
+
+.answer-img {
+  display: flex;
+  align-items: center;
+  image {
+    width: 120rpx;
+    height: 120rpx;
+    margin: 10rpx;
+    border-radius: 18rpx;
+  }
+}
+
+.h-i-user {
+  display: flex;
+  align-items: center;
+  .user-img {
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 10rpx;
+  }
+  .user-operation {
+    flex: 1;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .iconfont {
+      margin-right: 20rpx;
+      font-size: 20rpx;
+      &:before {
+        font-size: 30rpx;
+        margin-right: 5rpx;
+      }
+    }
+  }
+}

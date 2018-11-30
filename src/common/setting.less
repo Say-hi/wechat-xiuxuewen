@@ -1,0 +1,29 @@
+.lh(@a) when (@a > 20) {
+  .lh(@a - 1);
+  .lh@{a} {
+    line-height: @a * 1rpx;
+  }
+}
+
+.f(@a) when (@a > 11) {
+  .f(@a - 1);
+  .f@{a} {
+    font-size: @a * 1rpx;
+  }
+}
+
+.br(@a) when (@a >= 5) {
+  .br(@a - 1);
+  .br@{a} {
+    border-radius: @a * 1rpx;
+  }
+}
+
+page {
+  .lh(90);
+  .f(50);
+  .br(25)
+}
+.fw7 {
+  font-weight: 700;
+}

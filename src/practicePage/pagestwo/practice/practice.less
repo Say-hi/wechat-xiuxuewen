@@ -1,0 +1,168 @@
+@import "../../../common/variable";
+
+page {
+  background-color: #eee;
+}
+
+.tab-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100rpx;
+  .t-t-item {
+    padding-bottom: 4rpx;
+    transition: all .5s;
+    //flex: 1;
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 14rpx;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      background-color: #fff;
+      transition: all .5s;
+    }
+  }
+  .cff3b5b {
+    &:after {
+      height: 4rpx;
+      width: 100%;
+      background-color: #FF3B5B;
+    }
+  }
+}
+
+.practice-wrap {
+  padding: 0 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.shicao-title {
+  //background-color: @mainColor;
+  border-radius: 5rpx;
+  padding: 5rpx 7rpx;
+  color: @mainColor;
+  margin-right: 4rpx;
+}
+
+.start-answer {
+  background-color: @mainColor;
+  display: inline-block;
+  border-radius: 60rpx;
+  width: 100%;
+  height: 80rpx;
+  position: relative;
+  padding: 12rpx 0;
+  margin: 70rpx 0rpx;
+  box-shadow: 0rpx 10rpx 10rpx 6rpx rgba(255, 228, 232, 0.8);
+  text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.homework-area {
+  .h-i-user {
+    display: flex;
+    align-items: center;
+    .user-img {
+      width: 60rpx;
+      height: 60rpx;
+      margin-right: 10rpx;
+    }
+    .tar {
+      flex: 1;
+    }
+  }
+  .tips {
+    margin: 0 10rpx;
+    background-color: @mainColor;
+    padding: 1rpx 4rpx;
+  }
+  .h-i-content {
+    .user-work-img {
+      display: flex;
+      flex-wrap: wrap;
+      .u-w-i-img {
+        width: 120rpx;
+        height: 120rpx;
+        margin: 10rpx;
+      }
+    }
+    .user-operation {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      .iconfont {
+        margin-right: 10rpx;
+        &:before {
+          margin-right: 5rpx;
+        }
+      }
+    }
+    .reply {
+      background-color: #f1f1f1;
+      &:before {
+        content: '';
+        position: absolute;
+        top: -10rpx;
+        left: 40rpx;
+        height: 20rpx;
+        width: 20rpx;
+        background-color: #f1f1f1;
+        transform: scaleY(1.4) rotateZ(45deg);
+      }
+    }
+  }
+}
+
+.arrow {
+  margin-right: 10rpx;
+  &:after {
+    right: -14rpx;
+    width: 10rpx;
+    height: 10rpx;
+  }
+}
+
+.container {
+  margin-top: 20rpx;
+  padding: 30rpx;
+  .c-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.new-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  .c-w-item {
+    flex:0 0 50%;
+    &:nth-child(2n) {
+      border-left: 15rpx solid #fff;
+    }
+    &:nth-child(2n + 1) {
+      border-right: 15rpx solid #fff;
+    }
+    image {
+      height: 178rpx;
+      width: 100%;
+    }
+    .c-w-i-collect {
+      top: 0;
+      right: 0;
+    }
+  }
+}

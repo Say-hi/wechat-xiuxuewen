@@ -1,0 +1,67 @@
+@import "../../common/variable";
+page {
+  background-color: #fff;
+}
+
+textarea {
+  width: 100%;
+}
+
+.up-img {
+  @width: 210rpx;
+  image {
+    width: @width;
+    height: @width;
+    margin: 10rpx;
+  }
+  .up-btn {
+    margin-left: 10rpx;
+    font-size: 150rpx;
+    width: @width;
+    height: @width;
+    border: 2rpx dashed #bbb;
+    text-align: center;
+    font-weight: 100;
+  }
+}
+
+.bottom-wrap {
+  display: flex;
+  align-items: center;
+  .count {
+    flex: 1;
+    word-break: keep-all;
+  }
+}
+
+.tips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  .tips-item {
+    margin: 10rpx;
+    margin-left: 0;
+    border: 2rpx solid #999;
+    padding: 4rpx 10rpx;
+    transition: all .5s;
+  }
+  .active {
+    background-color: @mainColor;
+    color: #fff;
+    border-color: @mainColor;
+  }
+}
+
+.release-btn {
+  position: fixed;
+  bottom: 20rpx;
+  left: 50%;
+  width: 80%;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #ff3b5b;
+  transform: translateX(-50%);
+  border-radius: 80rpx;
+  box-shadow: 0rpx 6rpx 10rpx 4rpx rgba(238, 200, 211, 0.7);
+}

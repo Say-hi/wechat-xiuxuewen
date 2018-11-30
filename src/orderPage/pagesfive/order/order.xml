@@ -1,0 +1,61 @@
+<view class="posfix">
+  <view class="tab-top bgfff lh88 bt1 bd1">
+    <view wx:for="{{ videoTab }}"
+          wx:key="*7"
+          catchtap="chooseIndex"
+          data-index="{{ index }}"
+          data-type="top"
+          class="t-t-item f26 tac pr {{ currentIndex == index ? 'cff3b5b' : 'c666' }}">
+      {{ item.t }}
+    </view>
+  </view>
+
+  <view hidden="{{ currentIndex != 2 }}" class="tab-top bgfff lh88 bt1 bd1">
+    <view wx:for="{{ teamOrder }}"
+          wx:key="*71"
+          catchtap="chooseIndex"
+          data-type="team"
+          data-index="{{ index }}"
+          class="t-t-item f26 tac pr {{ currentIndexTwo == index ? 'cff3b5b' : 'c666' }}">
+      {{ item }}
+    </view>
+  </view>
+</view>
+
+<view class="{{ currentIndex == 2 ? 'zw200' : 'zw90' }}"></view>
+
+<view class="p20">
+  <view class="container br10 hot">
+    <block wx:for="123" wx:key="*71">
+      <view class="f30 c3a3a3a tac lh60">10月20日 17:28</view>
+      <view class="bgfff br20 other">
+        <view class="f26 c666 order-num">
+          <view>订单编号：16686868</view>
+          <view class="main-text-color">交易成功</view>
+        </view>
+        <navigator hover-class="none" url="/pages/courseDetail/courseDetail?id=1&free=1" class="mt20 hot-wrap">
+          <image class="h-w-left br10" mode="aspectFill" src="{{ testImg }}"></image>
+          <view class="h-w-right">
+            <view>
+              <view class="ell1 f32 fw7 c393636">圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操</view>
+              <view wx:for="123" wx:key="*4" class="f20 br10 cb670f7 ell2 tag">纹眉</view>
+            </view>
+            <view class="h-w-r-bottom f20 c999 mt10">
+              <!--<view>{{ index * 18888 + 1 }}人已学习</view>-->
+              <view class="tac">11节课</view>
+              <view class="f26 cff3b5b fw7 tar">88.8元</view>
+            </view>
+          </view>
+        </navigator>
+        <view class="order-operation f26 mt20">
+          <view class="c444 cancel">取消订单</view>
+          <view class="cfff pay">立即付款</view>
+          <view class="c444 del">删除订单</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
