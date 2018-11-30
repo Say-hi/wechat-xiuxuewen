@@ -70,3 +70,64 @@
     transform: translate(-50%, -50%);
   }
 }
+
+.mask-comment-show {
+  background-color: rgba(0, 0, 0, .5);
+  .start-answer-sign {
+    background-color: @mainColor;
+    display: inline-block;
+    border-radius: 60rpx;
+    width: 80%;
+    position: absolute;
+    bottom: 140rpx;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 12rpx 0;
+    box-shadow: 0rpx 10rpx 10rpx 6rpx rgba(255, 228, 232, 0.8);
+  }
+}
+
+.mask-comment {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+  .comment-scroll {
+    height: 100%;
+    width: 100%;
+  }
+  .icon-fabu {
+    color: #fff;
+    position: absolute;
+    top: -70rpx;
+    left: 50%;
+    font-size: 60rpx;
+    transform: translate(-50%, 0);
+    z-index: 100;
+  }
+  .rotate-left {
+    animation: 1s rotateLeft forwards;
+  }
+}
+
+.sing-info {
+  display: flex;
+  align-items: center;
+  input {
+    flex: 1;
+    background-color: #eee;
+    border-radius: 60rpx;
+    padding-left: 20rpx;
+    margin-left: 20rpx;
+  }
+}
+
+@keyframes rotateLeft {
+  from {
+    transform: translate(-50%, -100%) rotate(0);
+  }
+  to {
+    transform: translate(-50%, 0%) rotate(405deg);
+  }
+}

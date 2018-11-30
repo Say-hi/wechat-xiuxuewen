@@ -46,6 +46,11 @@ Page({
         t: '意见反馈',
         url: '/feedbackPage/pagesfour/feedback/feedback',
         src: app.data.testImg
+      },
+      {
+        t: '教师入口',
+        url: '/teacherPage/pageseight/teacherAnswer/teacherAnswer',
+        src: app.data.testImg
       }
     ]
   },

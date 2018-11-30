@@ -27,7 +27,7 @@
 
     <navigator url="/reservationPage/pagesseven/reservation/reservation" class="reservation bgfff p20 f26 br20 mt20">
         <view>
-            <view class="f42 c393636 fw7">线下手把手教学</view>
+            <view class="f42 c393636 fw7">线下预约</view>
             <view class="f26 cff3757">立即预约 》</view>
         </view>
         <view class="iconfont icon-dianpu cff86b1"></view>

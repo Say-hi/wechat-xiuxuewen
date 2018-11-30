@@ -5,14 +5,14 @@
            mode="aspectFill"
            src="{{ poster }}"></image>
     <view catchtap="videoPlay" class="video-btn iconfont icon-jinru pa"></view>
-    <view class="video-text pa fw7">可试看一分钟教程</view>
-    <view class="ask-question tac bgfff br10 p20">
-      <view class="f32 fw7">限时答题领取綉币</view>
-      <view class="f28 a-q-bottom mian-text-color">
-        <view catchtap="startAnswer" data-type="open">参与答题</view>
-        <view class="cfff">继续下一集</view>
-      </view>
-    </view>
+    <!--<view class="video-text pa fw7">可试看一分钟教程</view>-->
+    <!--<view class="ask-question tac bgfff br10 p20">-->
+      <!--<view class="f32 fw7">限时答题领取綉币</view>-->
+      <!--<view class="f28 a-q-bottom mian-text-color">-->
+        <!--<view catchtap="startAnswer" data-type="open">参与答题</view>-->
+        <!--<view class="cfff">继续下一集</view>-->
+      <!--</view>-->
+    <!--</view>-->
   </view>
   <video wx:else
          poster="{{ poster }}"
@@ -39,7 +39,7 @@
 
 <!--付费课程-->
 <view hidden="{{ free }}" class="video-buy bb {{ needSmall ? 'toBottom' : '' }}">
-  <navigator hover-class="none" url="/collagePage/pagesone/collage/collage" catchtap="buyOperation" class="f34 cfff tac fw7 video-buy-btn">拼团价: 1.8元</navigator>
+  <!--<navigator hover-class="none" url="/collagePage/pagesone/collage/collage" catchtap="buyOperation" class="f34 cfff tac fw7 video-buy-btn">拼团价: 1.8元</navigator>-->
   <view catchtap="buyOperation" class="f34 cfff tac fw7 video-buy-btn">立即购买</view>
 </view>
 
@@ -148,11 +148,11 @@
               干货满满，老师讲的很有条理，很好懂，请老师帮我看一下作业
             </view>
             <view class="user-work-img">
-              <image wx:for='123333'
-                     wx:key="*13"
-                     class="br10 u-w-i-img"
-                     mode="aspectFill"
-                     src="{{ poster }}"></image>
+              <!--&lt;!&ndash;<image wx:for='123333'&ndash;&gt;-->
+                     <!--wx:key="*13"-->
+                     <!--class="br10 u-w-i-img"-->
+                     <!--mode="aspectFill"-->
+                     <!--src="{{ poster }}"></image>-->
             </view>
             <view class="f20 c999 user-operation">
               <view class="iconfont icon-dianzan">66</view>
@@ -182,57 +182,57 @@
         <text class="iconfont icon-jinru fw7 f30"></text>
       </view>
       <view id="question" class="zw20"></view>
-      <view wx:if="{{ free }}">
-        <view class="f36 c3a3a3a lost-time-out">
-          <view class="fw7">答题领绣币</view>
-        </view>
-        <view class="question-wrap p20 br10 mt20 tac">
-          <view hidden="{{ answerQuestion }}" class="f26 {{ finish ? 'main-text-color' : 'c393636' }} lh60">{{ finish ? '恭喜你，完全答对，已获得288个绣币奖励！！！' : '1分钟答对三道题领取绣币奖励！！！' }}</view>
-          <!--答题区域-->
-          <!--<view hidden="{{ !answerQuestion }}" class="answer-area tal">-->
-          <!--<view wx:for="{{ questionList }}"-->
-          <!--wx:key="*15"-->
-          <!--wx:for-index="oIndex"-->
-          <!--wx:for-item="oItem"-->
-          <!--class="answer-item">-->
-          <!--<view class="f26 c3a3a3a">{{ oIndex + 1 }}.{{ oItem.question }}</view>-->
-          <!--<view wx:for="{{ oItem.answer }}"-->
-          <!--wx:key="*16"-->
-          <!--wx:for-index="iIndex"-->
-          <!--wx:for-item="iItem"-->
-          <!--data-aindex="{{ iIndex }}"-->
-          <!--data-qindex="{{ oIndex }}"-->
-          <!--catchtap="{{ (oItem.userChoose >= 0 || oItem.rightAnswer >= 0) ? '' : 'userChooseAnswer' }}"-->
-          <!--class="iconfont answer-choose f26 {{ (oItem.userChoose >= 0 && oItem.rightAnswer >= 0) ? ((oItem.userChoose == oItem.rightAnswer) && (oItem.userChoose == iIndex)) ? 'icon-zhengque1' : ((oItem.userChoose != oItem.rightAnswer) && (oItem.userChoose == iIndex)) ? 'icon-cuowu' : ((oItem.userChoose != oItem.rightAnswer) && (oItem.rightAnswer == iIndex)) ? 'icon-zhengque1' : 'icon-wxz' : oItem.chooseIndex == iIndex ? 'icon-xuanzeanniu' : 'icon-wxz' }}">-->
-          <!--{{ iItem }}-->
+      <!--<view wx:if="{{ free }}">-->
+        <!--<view class="f36 c3a3a3a lost-time-out">-->
+          <!--<view class="fw7">答题领绣币</view>-->
+        <!--</view>-->
+        <!--<view class="question-wrap p20 br10 mt20 tac">-->
+          <!--<view hidden="{{ answerQuestion }}" class="f26 {{ finish ? 'main-text-color' : 'c393636' }} lh60">{{ finish ? '恭喜你，完全答对，已获得288个绣币奖励！！！' : '1分钟答对三道题领取绣币奖励！！！' }}</view>-->
+          <!--&lt;!&ndash;答题区域&ndash;&gt;-->
+          <!--&lt;!&ndash;<view hidden="{{ !answerQuestion }}" class="answer-area tal">&ndash;&gt;-->
+          <!--&lt;!&ndash;<view wx:for="{{ questionList }}"&ndash;&gt;-->
+          <!--&lt;!&ndash;wx:key="*15"&ndash;&gt;-->
+          <!--&lt;!&ndash;wx:for-index="oIndex"&ndash;&gt;-->
+          <!--&lt;!&ndash;wx:for-item="oItem"&ndash;&gt;-->
+          <!--&lt;!&ndash;class="answer-item">&ndash;&gt;-->
+          <!--&lt;!&ndash;<view class="f26 c3a3a3a">{{ oIndex + 1 }}.{{ oItem.question }}</view>&ndash;&gt;-->
+          <!--&lt;!&ndash;<view wx:for="{{ oItem.answer }}"&ndash;&gt;-->
+          <!--&lt;!&ndash;wx:key="*16"&ndash;&gt;-->
+          <!--&lt;!&ndash;wx:for-index="iIndex"&ndash;&gt;-->
+          <!--&lt;!&ndash;wx:for-item="iItem"&ndash;&gt;-->
+          <!--&lt;!&ndash;data-aindex="{{ iIndex }}"&ndash;&gt;-->
+          <!--&lt;!&ndash;data-qindex="{{ oIndex }}"&ndash;&gt;-->
+          <!--&lt;!&ndash;catchtap="{{ (oItem.userChoose >= 0 || oItem.rightAnswer >= 0) ? '' : 'userChooseAnswer' }}"&ndash;&gt;-->
+          <!--&lt;!&ndash;class="iconfont answer-choose f26 {{ (oItem.userChoose >= 0 && oItem.rightAnswer >= 0) ? ((oItem.userChoose == oItem.rightAnswer) && (oItem.userChoose == iIndex)) ? 'icon-zhengque1' : ((oItem.userChoose != oItem.rightAnswer) && (oItem.userChoose == iIndex)) ? 'icon-cuowu' : ((oItem.userChoose != oItem.rightAnswer) && (oItem.rightAnswer == iIndex)) ? 'icon-zhengque1' : 'icon-wxz' : oItem.chooseIndex == iIndex ? 'icon-xuanzeanniu' : 'icon-wxz' }}">&ndash;&gt;-->
+          <!--&lt;!&ndash;{{ iItem }}&ndash;&gt;-->
+          <!--&lt;!&ndash;</view>&ndash;&gt;-->
+          <!--&lt;!&ndash;</view>&ndash;&gt;-->
+          <!--&lt;!&ndash;</view>&ndash;&gt;-->
+          <!--<view catchtap="startAnswer" data-type="open" class="f34 start-answer cfff fw7 mt20">{{ answerQuestion ? '提交答案' : '开始答题' }}</view>-->
+        <!--</view>-->
+      <!--</view>-->
+      <!--<view wx:else>-->
+        <!--<view class="f36 c3a3a3a lost-time-out">-->
+          <!--<view class="fw7">实操练习</view>-->
+        <!--</view>-->
+        <!--<view class="f22 c3a3a3a lost-time-out">-->
+          <!--<view>做题领取绣币，限时24小时</view>-->
+          <!--<view class="lost-time bb main-text-color f24 tac">-->
+            <!--<view>倒计时:</view>-->
+            <!--<view class="h lost-time-item">{{ lost_h }}</view>-->
+            <!--<view class="c3a3a3a">:</view>-->
+            <!--<view class="m lost-time-item">{{ lost_m }}</view>-->
+            <!--<view class="c3a3a3a">:</view>-->
+            <!--<view class="s lost-time-item">{{ lost_s }}</view>-->
+            <!--<view class="c3a3a3a">:</view>-->
+            <!--<view class="ms lost-time-item">{{ lost_ms }}</view>-->
           <!--</view>-->
-          <!--</view>-->
-          <!--</view>-->
-          <view catchtap="startAnswer" data-type="open" class="f34 start-answer cfff fw7 mt20">{{ answerQuestion ? '提交答案' : '开始答题' }}</view>
-        </view>
-      </view>
-      <view wx:else>
-        <view class="f36 c3a3a3a lost-time-out">
-          <view class="fw7">实操练习</view>
-        </view>
-        <view class="f22 c3a3a3a lost-time-out">
-          <view>做题领取绣币，限时24小时</view>
-          <view class="lost-time bb main-text-color f24 tac">
-            <view>倒计时:</view>
-            <view class="h lost-time-item">{{ lost_h }}</view>
-            <view class="c3a3a3a">:</view>
-            <view class="m lost-time-item">{{ lost_m }}</view>
-            <view class="c3a3a3a">:</view>
-            <view class="s lost-time-item">{{ lost_s }}</view>
-            <view class="c3a3a3a">:</view>
-            <view class="ms lost-time-item">{{ lost_ms }}</view>
-          </view>
-        </view>
-        <view class="question-wrap p30 br10 mt20 tac">
-          <view class="f26 c393636"><text class="f20 shicao-title">实操练习</text>实操练习的题目，实操练习的题目实操练习的题目实操练习的题目实操练习的题目，实操练习的题目实操练习的题目，的题目实操练习的题目，的题目实操练习的题目，的题目实操练习</view>
-          <view catchtap="startAnswer" data-type="practice" class="f34 start-answer cfff fw7 mt20">加入我的练习库</view>
-        </view>
-      </view>
+        <!--</view>-->
+        <!--<view class="question-wrap p30 br10 mt20 tac">-->
+          <!--<view class="f26 c393636"><text class="f20 shicao-title">实操练习</text>实操练习的题目，实操练习的题目实操练习的题目实操练习的题目实操练习的题目，实操练习的题目实操练习的题目，的题目实操练习的题目，的题目实操练习的题目，的题目实操练习</view>-->
+          <!--<view catchtap="startAnswer" data-type="practice" class="f34 start-answer cfff fw7 mt20">加入我的练习库</view>-->
+        <!--</view>-->
+      <!--</view>-->
     </view>
   </view>
   <view class="zw"></view>

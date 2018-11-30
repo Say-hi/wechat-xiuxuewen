@@ -56,9 +56,32 @@
     </scroll-view>
   </view>
   <view class="zw"></view>
-  <view catchtap="startAnswer" data-type="practice" class="f34 start-answer tac cfff fw7 mt20">立刻报名</view>
+  <view catchtap="showMore" data-type="comment" class="f34 start-answer tac cfff fw7 mt20">立刻报名</view>
 </view>
 
+<view catchtap="showMore"
+      data-type="comment"
+      class="mask mask-comment-show {{ showComment ? 'showReply' : 'closeReply' }}">
+<view class="mask-comment p30"
+      catchtap="noUp"
+      style="height: 93%;">
+  <view catchtap="showMore"
+        data-type="comment"
+        class="iconfont icon-fabu {{ showComment ? 'rotate-left' : '' }}"></view>
+  <view class="comment-scroll pr"
+               scroll-y="{{true}}"
+               catchtap="noUp"
+               scroll-with-animation="{{true}}">
+    <view class="sing-info f28 c3a3a3a mt20" wx:for="13213" wx:key="*5423">
+      <view>填写内容</view>
+      <input placeholder="填写内容" />
+    </view>
+
+    <!--<view class="zw80"></view>-->
+    <view catchtap="showMore" data-type="comment" class="f34 start-answer-sign tac cfff fw7 mt20">提交报名信息</view>
+  </view>
+</view>
+</view>
 
 <view class="zw"></view>
 

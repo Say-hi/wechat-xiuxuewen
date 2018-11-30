@@ -10,7 +10,7 @@
     "pages/release/release", // 发布作品&发布提问
     "pages/courseDetail/courseDetail", // 课程详情
     "pages/courseList/courseList", // 课程列表
-    "pages/course/course" // 课程
+    "pages/course/course" // 课程,
     // Dont remove this comment
   ],
   "subPackages": [
@@ -59,6 +59,12 @@
         "pagesseven/myReservation/myReservation", // 我的报名
         "pagesseven/reservationDetail/reservationDetail", // 预约详情
         "pagesseven/teacherDetail/teacherDetail" // 教师详情
+      ]
+    },
+    {
+      "root": "teacherPage", // 教师端
+      "pages": [
+        "pageseight/teacherAnswer/teacherAnswer"
       ]
     }
   ],

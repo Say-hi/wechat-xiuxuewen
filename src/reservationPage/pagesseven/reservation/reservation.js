@@ -10,31 +10,28 @@ Page({
     title: 'reservation',
     testImg: app.data.testImg
   },
-  choose_site (e) {
+  /**
+   * 地址授权
+   * @param e
+   */
+  open_site (e) {
+    console.log('setting')
+    if (e.detail.authSetting['scope.userLocation']) {
+      wx.showToast({
+        title: '授权成功'
+      })
+      this.setData({
+        openType: null
+      })
+      this.Bmap(this)
+    }
+  },
+  choose_site () {
+    console.log('choose')
     let that = this
-    if (this.data.openType) {
-      if (e.detail.authSetting['scope.userLocation']) {
-        wx.showToast({
-          title: '授权成功'
-        })
-        that.setData({
-          openType: ''
-        })
-        wx.chooseLocation({
-          success (res) {
-            console.log(res)
-            that.setData({
-              address: res.address,
-              latitude: res.latitude,
-              longitude: res.longitude
-            }, that.Bmap(that, `${res.longitude},${res.latitude}`))
-          }
-        })
-      }
-    } else {
+    if (!this.data.openType) {
       wx.chooseLocation({
         success (res) {
-          console.log(res)
           that.setData({
             address: res.address,
             latitude: res.latitude,
@@ -62,7 +59,6 @@ Page({
         console.log('fail', data)
       },
       success (data) {
-
         let type = (new Date().getHours() > 18 || new Date().getHours() < 6) ? 'nightPictureUrl' : 'dayPictureUrl'
         that.setData({
           weatherInfo: data.originalData.results[0],
@@ -74,7 +70,6 @@ Page({
     BMap.regeocoding({
       location: site || null,
       success (res) {
-        console.log(res)
         that.setData({
           addressInfo: res
         })

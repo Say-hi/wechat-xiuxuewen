@@ -7,29 +7,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-    testImg: app.data.testImg,
-    reservation_bg: app.data.reservation_bg,
-    indicatorColor: 'rgba(0, 0, 0, 0.4)',
-    indicatorActiveColor: '#ffffff',
-    title: '',
-    teacher: {
-      nodes: []
-    }
+    currentIndex: 0,
+    videoTab: [
+      {
+        t: '未点评作品'
+      },
+      {
+        t: '已点评作品'
+      }
+    ],
+    testImg: app.data.testImg
   },
-  showMore (e) {
-    if (e.currentTarget.dataset.type === 'comment') {
-      return this.setData({
-        showComment: !this.data.showComment
-      })
-    }
+  chooseIndex (e) {
     this.setData({
-      show_more: !this.data.show_more
+      currentIndex: e.currentTarget.dataset.index
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
+    app.getSelf(this)
     // TODO: onLoad
   },
 
