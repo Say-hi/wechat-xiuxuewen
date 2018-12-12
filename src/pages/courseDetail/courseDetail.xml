@@ -25,7 +25,7 @@
   </video>
 </view>
 
-<view class="tab-top bgfff lh88 bt1 bd1">
+<view class="tab-top bgfff lh88 bd1">
   <view wx:for="{{ videoTab }}"
         wx:key="*7"
         data-text="推荐{{index}}"
@@ -55,40 +55,53 @@
              bindtouchstart="toucstart"
              scroll-into-view="{{ scrollToId }}">
   <view class="p20">
-    <view class="p30 br10 bgfff">
+    <view class="p30 br18 bgfff">
       <view class="video-info">
         <view class="v-i-left">
           <view class="f36 fw7">圆三针手工雾眉操作要领操作</view>
-          <view wx:for="123" wx:key="*8" class="f20 br10 cb670f7 ell2 tag">纹眉</view>
+          <!--<view wx:for="123" wx:key="*8" class="f20 br10 cb670f7 ell2 tag">纹眉</view>-->
         </view>
-        <view class="v-i-right c666 tar">
+        <view class="v-i-right c999 tar">
           <view catchtap="collectO" class="iconfont f20 {{ collect ? 'icon-xinheart118 cff3b5b' : 'icon-shoucang' }} ">{{ collect ? '取消收藏' : '收藏' }}</view>
-          <button open-type="share" class="iconfont icon-fenxiang f20 c666">分享</button>
+          <button open-type="share" class="iconfont icon-fenxiang f20 c999">分享</button>
         </view>
       </view>
-      <view class="f20 c393636 v-i-l-bottom mt30">
+      <view class="f26 c999 v-i-l-bottom mt30">
         <view>888人已学习</view>
-        <view class="f26 main-text-color">88元</view>
+        <view class="f26 cff3b5b">88元</view>
       </view>
     </view>
 
-    <view id="s0" class="zw20"></view>
-    <view class="course-list bgfff br10">
-      <view class="f36 fw7 p20 c3a3a3a bd1">课程目录</view>
-      <view wx:for="123456789"
-            data-index="{{ index }}"
-            catchtap="chooseVideoPlay"
-            wx:key="*10"
-            class="f26 {{ index < (!show_more ? 3 : 9999) ? 'p20 bd1' : 'no-height' }} c-l-list {{ index == videoPlayIndex ? 'cff3b5b' : 'c666' }}">{{ index + 1 }}.圆三针手工雾眉操作要领操作圆三针手工雾眉操作要领操作圆三针手工雾眉操作要领操作 <view class="iconfont f40 {{ index == videoPlayIndex ? 'cff3b5b icon-bofang' : 'icon-bofang1'}}"></view>
+    <view id="s1" class="zw20"></view>
+    <!--<view class="course-list bgfff br18">-->
+      <!--<view class="f36 fw7 p20 c3a3a3a bd1">课程目录</view>-->
+      <!--<view wx:for="123456789"-->
+            <!--data-index="{{ index }}"-->
+            <!--catchtap="chooseVideoPlay"-->
+            <!--wx:key="*10"-->
+            <!--class="f26 {{ index < (!show_more ? 3 : 9999) ? 'p20 bd1' : 'no-height' }} c-l-list {{ index == videoPlayIndex ? 'cff3b5b' : 'c666' }}">{{ index + 1 }}.圆三针手工雾眉操作要领操作圆三针手工雾眉操作要领操作圆三针手工雾眉操作要领操作 <view class="iconfont f40 {{ index == videoPlayIndex ? 'cff3b5b icon-bofang' : 'icon-bofang1'}}"></view>-->
+      <!--</view>-->
+      <!--<view catchtap="showMore"-->
+            <!--data-type="list"-->
+            <!--class="tac p20 cff3b5b fw7 f26 c-l-bottom">-->
+        <!--{{ !show_more ? '查看全部课程目录' : '收缩课程目录' }}-->
+        <!--<text class="iconfont icon-jinru fw7 f30 {{ !show_more ? '' : 'iconRotate' }}"></text>-->
+      <!--</view>-->
+    <!--</view>-->
+
+    <view class="course-list bgfff br18 p30">
+      <view class="f36 fw7 c444">线下教室</view>
+      <view class="f36 c3a3a3a shop-info mt20 fw7">
+        <image class="br" src="{{ poster }}"></image>
+        <view>艺苑纹绣</view>
       </view>
-      <view catchtap="showMore"
-            data-type="list"
-            class="tac p20 cff3b5b fw7 f26 c-l-bottom">
-        {{ !show_more ? '查看全部课程目录' : '收缩课程目录' }}
-        <text class="iconfont icon-jinru fw7 f30 {{ !show_more ? '' : 'iconRotate' }}"></text>
+      <view class="f28 c444 mt20">店铺地址：广州市海珠区富力天域大厦B栋2308</view>
+      <view class="tar mt20">
+        <navigator class="f26 cfff go-room">进入教室</navigator>
       </view>
     </view>
-    <view id="s1" class="zw20"></view>
+
+    <view id="s2" class="zw20"></view>
     <view class="course-comment bgfff br10 p30">
       <view class="f36 fw7 c3a3a3a">评价</view>
       <view class="c-c-score">
@@ -109,17 +122,17 @@
         </view>
 
       </view>
-      <view class="video-level mt30 p30 br10" wx:if="{{ !starOperation }}">
-        <view class="f26 cababab">课程难度</view>
-        <view class="v-l-lev f24 c444 mt20">
-          <view wx:for="123"
-                wx:key="*11"
-                catchtap="tagChoose"
-                data-index="{{ index }}"
-                class="v-l-l-tag {{ index == tagIndex ? 'cfff' : '' }}">见到</view>
-        </view>
-        <view class="f26 cababab mt30">课程评分</view>
-        <view class="v-l-star-wrap mt10">
+      <view class="video-level mt30 p30 br18" wx:if="{{ !starOperation }}">
+        <!--<view class="f26 cababab">课程难度</view>-->
+        <!--<view class="v-l-lev f24 c444 mt20">-->
+          <!--<view wx:for="123"-->
+                <!--wx:key="*11"-->
+                <!--catchtap="tagChoose"-->
+                <!--data-index="{{ index }}"-->
+                <!--class="v-l-l-tag {{ index == tagIndex ? 'cfff' : '' }}">见到</view>-->
+        <!--</view>-->
+        <view class="f26 cababab">课程评分</view>
+        <view class="v-l-star-wrap mt20">
           <view wx:for="12345"
                 wx:key="*12"
                 data-index="{{ index }}"
@@ -131,8 +144,11 @@
           </view>
         </view>
       </view>
-      <view class="homework-area mt20">
-        <view class="homework-item">
+      <view class="homework-area mt30">
+        <view class="homework-item {{ index < 1 ? 'bd1' : '' }}"
+              wx:for="12"
+              wx:for-index="cIndex"
+              wx:key="*45">
           <view class="h-i-user">
             <image class="user-img br" src="{{ poster }}"></image>
             <view class="user-name f26 cababab">绣绣学纹眉</view>
@@ -141,7 +157,7 @@
                     wx:key="*12"
                     class="iconfont f30 icon-pingjiaxingxing {{ index < 3 ? 'main-text-color' : 'ce5e5e5' }}"></view>
             </view>
-            <view class="f24 cababab">10-28</view>
+            <view class="f24 c999">3分钟前</view>
           </view>
           <view class="h-i-content">
             <view class="f26 c3a3a3a user-content p200">
@@ -155,93 +171,123 @@
                      <!--src="{{ poster }}"></image>-->
             </view>
             <view class="f20 c999 user-operation">
-              <view class="iconfont icon-dianzan">66</view>
-              <view class="iconfont icon-pinglun">66</view>
+              <!--<view class="iconfont icon-dianzan">66</view>-->
+              <view catchtap="replyOperation" data-name="回复楼主" data-cindex="{{ cIndex }}" class="iconfont icon-pinglun"></view>
             </view>
-            <view class="reply pr mt20 br20 f26 c393636 p30">
-              <view wx:for="123" wx:key="*987" class="mt10">老师回复：感谢同学的认可！</view>
+            <view hidden="{{ commentArr.length <= 0 ? rIndex != cIndex : false }}" class="reply pr mt20 br18 f26 c393636 p30">
+              <view catchtap="replyOperation"
+                    data-type="other"
+                    class="mt10 f26 answer-reply-item"
+                    data-cindex="{{ cIndex }}"
+                    data-name="xxxx{{ index }}"
+                    wx:for='{{ commentArr }}'
+                    wx:key="*908">
+                <text class="reply-name fw7">
+                  <text class="teacher-tag">艺苑绣眉</text>
+                </text>
+                <text>回复</text>
+                <text class="reply-name fw7">
+                  <text>艺苑绣眉</text>
+                </text>
+                <text>：你做的改兰眉加宽部分与之前的</text>
+              </view>
+              <view data-cIndex="{{ cIndex }}"
+                    data-rIndex="{{ rIndex }}"
+                    wx:if="{{ cIndex == rIndex && !showComment }}"
+                    class="reply-input-area">
+                <view>
+                  回复<text class="main-text-color">{{ replyName }}</text>:
+                </view>
+                <input cursor-spacing="40"
+                       focus="{{ replyFocus }}"
+                       confirm-type="send"
+                       bindconfirm="replyConfirm"
+                       bindblur="replyBlur"
+                       placeholder="请输入内容" />
+              </view>
             </view>
           </view>
         </view>
         <view catchtap="showMore"
               data-type="comment"
-              class="tac p30 cff3b5b fw7 f26 c-l-bottom">
+              class="tac cff3b5b fw7 f26 c-l-bottom">
           查看全部评价
           <text class="iconfont icon-jinru fw7 f30"></text>
         </view>
       </view>
     </view>
-    <view id="s2" class="zw20"></view>
-    <view class="course-detail bgfff br10 p30">
-      <view class="f36 fw7 c3a3a3a">课程详情</view>
-      <view class="ell2 c3a3a3a f26 lh40 mt20">纹绣，实际上是一种微创伤性皮肤着色，属于医疗美容。它是将色素植入皮肤组织内形成稳定的色块它是将色素植入皮肤组织内形成稳定的色块它是将色素植入皮肤组织内形成稳定的色块</view>
-      <view catchtap="showMore"
-            data-type="detail"
-            class="tac p20 cff3b5b fw7 f26 c-l-bottom">
-        查看全部课程详情
-        <text class="iconfont icon-jinru fw7 f30"></text>
-      </view>
-      <view id="question" class="zw20"></view>
-      <!--<view wx:if="{{ free }}">-->
-        <!--<view class="f36 c3a3a3a lost-time-out">-->
-          <!--<view class="fw7">答题领绣币</view>-->
-        <!--</view>-->
-        <!--<view class="question-wrap p20 br10 mt20 tac">-->
-          <!--<view hidden="{{ answerQuestion }}" class="f26 {{ finish ? 'main-text-color' : 'c393636' }} lh60">{{ finish ? '恭喜你，完全答对，已获得288个绣币奖励！！！' : '1分钟答对三道题领取绣币奖励！！！' }}</view>-->
-          <!--&lt;!&ndash;答题区域&ndash;&gt;-->
-          <!--&lt;!&ndash;<view hidden="{{ !answerQuestion }}" class="answer-area tal">&ndash;&gt;-->
-          <!--&lt;!&ndash;<view wx:for="{{ questionList }}"&ndash;&gt;-->
-          <!--&lt;!&ndash;wx:key="*15"&ndash;&gt;-->
-          <!--&lt;!&ndash;wx:for-index="oIndex"&ndash;&gt;-->
-          <!--&lt;!&ndash;wx:for-item="oItem"&ndash;&gt;-->
-          <!--&lt;!&ndash;class="answer-item">&ndash;&gt;-->
-          <!--&lt;!&ndash;<view class="f26 c3a3a3a">{{ oIndex + 1 }}.{{ oItem.question }}</view>&ndash;&gt;-->
-          <!--&lt;!&ndash;<view wx:for="{{ oItem.answer }}"&ndash;&gt;-->
-          <!--&lt;!&ndash;wx:key="*16"&ndash;&gt;-->
-          <!--&lt;!&ndash;wx:for-index="iIndex"&ndash;&gt;-->
-          <!--&lt;!&ndash;wx:for-item="iItem"&ndash;&gt;-->
-          <!--&lt;!&ndash;data-aindex="{{ iIndex }}"&ndash;&gt;-->
-          <!--&lt;!&ndash;data-qindex="{{ oIndex }}"&ndash;&gt;-->
-          <!--&lt;!&ndash;catchtap="{{ (oItem.userChoose >= 0 || oItem.rightAnswer >= 0) ? '' : 'userChooseAnswer' }}"&ndash;&gt;-->
-          <!--&lt;!&ndash;class="iconfont answer-choose f26 {{ (oItem.userChoose >= 0 && oItem.rightAnswer >= 0) ? ((oItem.userChoose == oItem.rightAnswer) && (oItem.userChoose == iIndex)) ? 'icon-zhengque1' : ((oItem.userChoose != oItem.rightAnswer) && (oItem.userChoose == iIndex)) ? 'icon-cuowu' : ((oItem.userChoose != oItem.rightAnswer) && (oItem.rightAnswer == iIndex)) ? 'icon-zhengque1' : 'icon-wxz' : oItem.chooseIndex == iIndex ? 'icon-xuanzeanniu' : 'icon-wxz' }}">&ndash;&gt;-->
-          <!--&lt;!&ndash;{{ iItem }}&ndash;&gt;-->
-          <!--&lt;!&ndash;</view>&ndash;&gt;-->
-          <!--&lt;!&ndash;</view>&ndash;&gt;-->
-          <!--&lt;!&ndash;</view>&ndash;&gt;-->
-          <!--<view catchtap="startAnswer" data-type="open" class="f34 start-answer cfff fw7 mt20">{{ answerQuestion ? '提交答案' : '开始答题' }}</view>-->
-        <!--</view>-->
+    <view id="s0" class="zw20"></view>
+    <!--<view class="course-detail bgfff br10 p30">-->
+      <!--<view class="f36 fw7 c3a3a3a">课程详情</view>-->
+      <!--<view class="ell2 c3a3a3a f26 lh40 mt20">纹绣，实际上是一种微创伤性皮肤着色，属于医疗美容。它是将色素植入皮肤组织内形成稳定的色块它是将色素植入皮肤组织内形成稳定的色块它是将色素植入皮肤组织内形成稳定的色块</view>-->
+      <!--<view catchtap="showMore"-->
+            <!--data-type="detail"-->
+            <!--class="tac p20 cff3b5b fw7 f26 c-l-bottom">-->
+        <!--查看全部课程详情-->
+        <!--<text class="iconfont icon-jinru fw7 f30"></text>-->
       <!--</view>-->
-      <!--<view wx:else>-->
-        <!--<view class="f36 c3a3a3a lost-time-out">-->
-          <!--<view class="fw7">实操练习</view>-->
-        <!--</view>-->
-        <!--<view class="f22 c3a3a3a lost-time-out">-->
-          <!--<view>做题领取绣币，限时24小时</view>-->
-          <!--<view class="lost-time bb main-text-color f24 tac">-->
-            <!--<view>倒计时:</view>-->
-            <!--<view class="h lost-time-item">{{ lost_h }}</view>-->
-            <!--<view class="c3a3a3a">:</view>-->
-            <!--<view class="m lost-time-item">{{ lost_m }}</view>-->
-            <!--<view class="c3a3a3a">:</view>-->
-            <!--<view class="s lost-time-item">{{ lost_s }}</view>-->
-            <!--<view class="c3a3a3a">:</view>-->
-            <!--<view class="ms lost-time-item">{{ lost_ms }}</view>-->
-          <!--</view>-->
-        <!--</view>-->
-        <!--<view class="question-wrap p30 br10 mt20 tac">-->
-          <!--<view class="f26 c393636"><text class="f20 shicao-title">实操练习</text>实操练习的题目，实操练习的题目实操练习的题目实操练习的题目实操练习的题目，实操练习的题目实操练习的题目，的题目实操练习的题目，的题目实操练习的题目，的题目实操练习</view>-->
-          <!--<view catchtap="startAnswer" data-type="practice" class="f34 start-answer cfff fw7 mt20">加入我的练习库</view>-->
-        <!--</view>-->
-      <!--</view>-->
-    </view>
+      <!--<view id="question" class="zw20"></view>-->
+      <!--&lt;!&ndash;<view wx:if="{{ free }}">&ndash;&gt;-->
+        <!--&lt;!&ndash;<view class="f36 c3a3a3a lost-time-out">&ndash;&gt;-->
+          <!--&lt;!&ndash;<view class="fw7">答题领绣币</view>&ndash;&gt;-->
+        <!--&lt;!&ndash;</view>&ndash;&gt;-->
+        <!--&lt;!&ndash;<view class="question-wrap p20 br10 mt20 tac">&ndash;&gt;-->
+          <!--&lt;!&ndash;<view hidden="{{ answerQuestion }}" class="f26 {{ finish ? 'main-text-color' : 'c393636' }} lh60">{{ finish ? '恭喜你，完全答对，已获得288个绣币奖励！！！' : '1分钟答对三道题领取绣币奖励！！！' }}</view>&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;答题区域&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;<view hidden="{{ !answerQuestion }}" class="answer-area tal">&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;<view wx:for="{{ questionList }}"&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;wx:key="*15"&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;wx:for-index="oIndex"&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;wx:for-item="oItem"&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;class="answer-item">&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;<view class="f26 c3a3a3a">{{ oIndex + 1 }}.{{ oItem.question }}</view>&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;<view wx:for="{{ oItem.answer }}"&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;wx:key="*16"&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;wx:for-index="iIndex"&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;wx:for-item="iItem"&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;data-aindex="{{ iIndex }}"&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;data-qindex="{{ oIndex }}"&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;catchtap="{{ (oItem.userChoose >= 0 || oItem.rightAnswer >= 0) ? '' : 'userChooseAnswer' }}"&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;class="iconfont answer-choose f26 {{ (oItem.userChoose >= 0 && oItem.rightAnswer >= 0) ? ((oItem.userChoose == oItem.rightAnswer) && (oItem.userChoose == iIndex)) ? 'icon-zhengque1' : ((oItem.userChoose != oItem.rightAnswer) && (oItem.userChoose == iIndex)) ? 'icon-cuowu' : ((oItem.userChoose != oItem.rightAnswer) && (oItem.rightAnswer == iIndex)) ? 'icon-zhengque1' : 'icon-wxz' : oItem.chooseIndex == iIndex ? 'icon-xuanzeanniu' : 'icon-wxz' }}">&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;{{ iItem }}&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;</view>&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;</view>&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;</view>&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;<view catchtap="startAnswer" data-type="open" class="f34 start-answer cfff fw7 mt20">{{ answerQuestion ? '提交答案' : '开始答题' }}</view>&ndash;&gt;-->
+        <!--&lt;!&ndash;</view>&ndash;&gt;-->
+      <!--&lt;!&ndash;</view>&ndash;&gt;-->
+      <!--&lt;!&ndash;<view wx:else>&ndash;&gt;-->
+        <!--&lt;!&ndash;<view class="f36 c3a3a3a lost-time-out">&ndash;&gt;-->
+          <!--&lt;!&ndash;<view class="fw7">实操练习</view>&ndash;&gt;-->
+        <!--&lt;!&ndash;</view>&ndash;&gt;-->
+        <!--&lt;!&ndash;<view class="f22 c3a3a3a lost-time-out">&ndash;&gt;-->
+          <!--&lt;!&ndash;<view>做题领取绣币，限时24小时</view>&ndash;&gt;-->
+          <!--&lt;!&ndash;<view class="lost-time bb main-text-color f24 tac">&ndash;&gt;-->
+            <!--&lt;!&ndash;<view>倒计时:</view>&ndash;&gt;-->
+            <!--&lt;!&ndash;<view class="h lost-time-item">{{ lost_h }}</view>&ndash;&gt;-->
+            <!--&lt;!&ndash;<view class="c3a3a3a">:</view>&ndash;&gt;-->
+            <!--&lt;!&ndash;<view class="m lost-time-item">{{ lost_m }}</view>&ndash;&gt;-->
+            <!--&lt;!&ndash;<view class="c3a3a3a">:</view>&ndash;&gt;-->
+            <!--&lt;!&ndash;<view class="s lost-time-item">{{ lost_s }}</view>&ndash;&gt;-->
+            <!--&lt;!&ndash;<view class="c3a3a3a">:</view>&ndash;&gt;-->
+            <!--&lt;!&ndash;<view class="ms lost-time-item">{{ lost_ms }}</view>&ndash;&gt;-->
+          <!--&lt;!&ndash;</view>&ndash;&gt;-->
+        <!--&lt;!&ndash;</view>&ndash;&gt;-->
+        <!--&lt;!&ndash;<view class="question-wrap p30 br10 mt20 tac">&ndash;&gt;-->
+          <!--&lt;!&ndash;<view class="f26 c393636"><text class="f20 shicao-title">实操练习</text>实操练习的题目，实操练习的题目实操练习的题目实操练习的题目实操练习的题目，实操练习的题目实操练习的题目，的题目实操练习的题目，的题目实操练习的题目，的题目实操练习</view>&ndash;&gt;-->
+          <!--&lt;!&ndash;<view catchtap="startAnswer" data-type="practice" class="f34 start-answer cfff fw7 mt20">加入我的练习库</view>&ndash;&gt;-->
+        <!--&lt;!&ndash;</view>&ndash;&gt;-->
+      <!--&lt;!&ndash;</view>&ndash;&gt;-->
+    <!--</view>-->
   </view>
   <view class="zw"></view>
+  <view hidden="{{ needSmall }}" class="zw"></view>
 </scroll-view>
 
 <view catchtap="showMore"
       data-type="comment"
       class="mask mask-comment-show {{ showComment ? 'showReply' : 'closeReply' }}">
-  <view class="mask-comment p30"
+  <view class="mask-comment {{ showComment ? 'p30' : '' }}"
         catchtap="noUp"
         style="height: {{ needSmall ? 93 : 70 }}%;">
     <view catchtap="showMore"
@@ -264,34 +310,43 @@
                     wx:key="*12"
                     class="iconfont f30 icon-pingjiaxingxing {{ index < 3 ? 'main-text-color' : 'ce5e5e5' }}"></view>
             </view>
-            <view class="f24 cababab">10-28</view>
+            <view class="f24 cababab">30分钟前</view>
           </view>
           <view class="h-i-content">
             <view class="f26 c3a3a3a user-content p200">
               干货满满，老师讲的很有条理，很好懂，请老师帮我看一下作业
             </view>
-            <view class="user-work-img">
-              <image wx:for='123333'
-                     wx:key="*13"
-                     class="br10 u-w-i-img"
-                     mode="aspectFill"
-                     src="{{ poster }}"></image>
-            </view>
+            <!--<view class="user-work-img">-->
+              <!--<image wx:for='123333'-->
+                     <!--wx:key="*13"-->
+                     <!--class="br10 u-w-i-img"-->
+                     <!--mode="aspectFill"-->
+                     <!--src="{{ poster }}"></image>-->
+            <!--</view>-->
             <view class="f20 c999 user-operation">
-              <view class="iconfont icon-dianzan">66</view>
-              <view class="iconfont icon-pinglun">66</view>
+              <!--<view class="iconfont icon-dianzan">66</view>-->
+              <view catchtap="replyOperation" data-name="回复楼主" data-cindex="{{ cIndex }}"  class="iconfont icon-pinglun"></view>
             </view>
-            <view class="reply pr mt20 br20 f26 c393636 p30">
+            <view hidden="{{ commentArr.length <= 0 ? rIndex != cIndex : false }}" class="reply pr mt20 br20 f26 c393636 p30">
               <view catchtap="replyOperation"
                     data-type="other"
-                    class="mt10"
-                    data-name="老师{{ index }}"
+                    class="mt10 f26 answer-reply-item"
                     data-cindex="{{ cIndex }}"
+                    data-name="xxx{{ cIndex }}"
                     wx:for='123'
-                    wx:key="*908">老师回复：感谢同学的认可！</view>
+                    wx:key="*908">
+                <text class="reply-name fw7">
+                  <text class="teacher-tag">艺苑绣眉</text>
+                </text>
+                <text>回复</text>
+                <text class="reply-name fw7">
+                  <text>艺苑绣眉</text>
+                </text>
+                <text>：你做的改兰眉加宽部分与之前的</text>
+              </view>
               <view data-cIndex="{{ cIndex }}"
                     data-rIndex="{{ rIndex }}"
-                    wx:if="{{ cIndex == rIndex }}"
+                    wx:if="{{ cIndex == rIndex && showComment }}"
                     class="reply-input-area">
                 <view>
                   回复<text class="main-text-color">{{ replyName }}</text>:
@@ -361,7 +416,16 @@
   </view>
 </view>
 
-<my-navigator-tab wx:if="{{ !needSmall }}" prop-nav="{{ tabArr2 }}"></my-navigator-tab>
+<!--我要评论-->
+
+<view hidden="{{ !writeComment }}" class="mask write-comment" catchtap="goComment">
+  <view class="w-c p20 f26" catchtap="noUp">
+    <input bindconfirm="writeConfirm" confirm-type="send" cursor-spacing="30" focus="{{ writeComment }}" class="flex1" placeholder="你觉得课程怎么样呢，来说说吧～（至少五个字）" />
+    <view catchtap="writeConfirm" class="send-btn cfff">发送</view>
+  </view>
+</view>
+
+<!--<my-navigator-tab wx:if="{{ !needSmall }}" prop-nav="{{ tabArr2 }}"></my-navigator-tab>-->
 <!--错误弹窗-->
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

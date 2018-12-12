@@ -13,15 +13,15 @@ Component({
         },
         {
           picture: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom2.png',
-          title: '问答',
+          title: '线下教室',
           // path: '/pages/articleCategories/articleCategories'
-          path: '/answerPage/pagesthree/answer/answer'
+          path: '/offlinePage/pagesnine/courseOffline/courseOffline'
         },
-        {
-          picture: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom3.png',
-          title: '作品秀',
-          path: '/pages/show/show'
-        },
+        // {
+        //   picture: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom3.png',
+        //   title: '作品秀',
+        //   path: '/pages/show/show'
+        // },
         {
           picture: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom4.png',
           title: '我的',
@@ -39,14 +39,14 @@ Component({
               },
               {
                 picture: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom2.png',
-                title: '问答',
-                path: '/answerPage/pagesthree/answer/answer'
+                title: '线下教室',
+                path: '/offlinePage/pagesnine/courseOffline/courseOffline'
               },
-              {
-                picture: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom3.png',
-                title: '作品秀',
-                path: '/pages/show/show'
-              },
+              // {
+              //   picture: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom3.png',
+              //   title: '作品秀',
+              //   path: '/pages/show/show'
+              // },
               {
                 picture: 'https://c.jiangwenqiang.com/workProject/payKnowledge/bottom4.png',
                 title: '我的',

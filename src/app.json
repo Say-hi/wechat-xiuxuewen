@@ -31,7 +31,8 @@
       "root": "answerPage", // 问答分包
       "pages": [
         "pagesthree/answer/answer", // 问答列表
-        "pagesthree/answerDetail/answerDetail" // 问答详情
+        "pagesthree/answerDetail/answerDetail", // 问答详情
+        "pagesthree/answerDetail2/answerDetail2" // 问答详情2
       ]
     },
     {
@@ -65,6 +66,12 @@
       "root": "teacherPage", // 教师端
       "pages": [
         "pageseight/teacherAnswer/teacherAnswer"
+      ]
+    },
+    {
+      "root": "offlinePage", // 线下课程
+      "pages": [
+        "pagesnine/courseOffline/courseOffline" // 线下课程首页
       ]
     }
   ],

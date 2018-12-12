@@ -90,15 +90,29 @@ page {
       background-color: #FF3B5B;
     }
   }
+  .showCircle {
+    position: relative;
+    &:before {
+      content: '·';
+      position: absolute;
+      top: -20%;
+      left: 96%;
+      color: #ff3b5b;
+      font-size: 60rpx;
+    }
+  }
 }
 
 .answer-img {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   image {
     width: 120rpx;
     height: 120rpx;
     margin: 10rpx;
+    margin-left: 0;
+    margin-right: 20rpx;
     border-radius: 18rpx;
   }
 }
@@ -118,12 +132,27 @@ page {
     align-items: center;
     justify-content: flex-end;
     .iconfont {
-      margin-right: 20rpx;
+      //margin-right: 20rpx;
       font-size: 20rpx;
+      display: flex;
+      align-items: center;
       &:before {
-        font-size: 30rpx;
-        margin-right: 5rpx;
+        font-size: 26rpx;
+        margin-right: 10rpx;
       }
     }
+  }
+}
+
+.has-reply {
+  overflow: hidden;
+  &:before {
+    content: '';
+    height: 100%;
+    width: 10rpx;
+    background-color: #ff3b5b;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }

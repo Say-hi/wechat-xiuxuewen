@@ -4,53 +4,88 @@
   </view>
 </view>
 
-<view class="p20 out-wrap">
-  <view hidden="{{ currentIndex !== 0 }}" class="container p30 bgfff br20 new">
-    <navigator hover-class="none" url="../courseList/courseList?title=最新课程" class="c-top">
-      <view class="c-t-l f36 c393636 fw7">最近上新</view>
-      <view class="c-t-r f24 c393636 arrow">更多</view>
-    </navigator>
-    <view class="new-wrap">
-      <navigator hover-class="none" url="../courseDetail/courseDetail?id=1&free=1" class="c-w-item bb pr mt30" wx:for="1234" wx:key="*2">
-        <!--<view catchtap="collect" data-id="{{ item.id }}" class="c-w-i-collect pa f22 p10">收藏</view>-->
-        <image class="br10" mode="aspectFill" src="{{ testImg }}"></image>
-        <view class="ell1 f32 fw7 c393636 mt5">圆三针手工雾眉操作要领操作</view>
-        <view class="f20 c666 mt5 n-w-r-bottom">
-          <view>{{ index * 18888 + 1 }}人已学习</view>
-          <view class="tac">11节课</view>
-          <view class="cff3b5b fw7 tar">88.8元</view>
-        </view>
-      </navigator>
-    </view>
-  </view>
+<view wx:if="{{ options.type != 'offline' }}" class="p20 out-wrap">
+  <!--<view hidden="{{ currentIndex !== 0 }}" class="container p30 bgfff br20 new">-->
+    <!--<navigator hover-class="none" url="../courseList/courseList?title=最新课程" class="c-top">-->
+      <!--<view class="c-t-l f36 c393636 fw7">最近上新</view>-->
+      <!--<view class="c-t-r f24 c393636 arrow">更多</view>-->
+    <!--</navigator>-->
+    <!--<view class="new-wrap">-->
+      <!--<navigator hover-class="none" url="../courseDetail/courseDetail?id=1&free=1" class="c-w-item bb pr mt30" wx:for="1234" wx:key="*2">-->
+        <!--&lt;!&ndash;<view catchtap="collect" data-id="{{ item.id }}" class="c-w-i-collect pa f22 p10">收藏</view>&ndash;&gt;-->
+        <!--<image class="br10" mode="aspectFill" src="{{ testImg }}"></image>-->
+        <!--<view class="ell1 f32 fw7 c393636 mt5">圆三针手工雾眉操作要领操作</view>-->
+        <!--<view class="f20 c666 mt5 n-w-r-bottom">-->
+          <!--<view>{{ index * 18888 + 1 }}人已学习</view>-->
+          <!--<view class="tac">11节课</view>-->
+          <!--<view class="cff3b5b fw7 tar">88.8元</view>-->
+        <!--</view>-->
+      <!--</navigator>-->
+    <!--</view>-->
+  <!--</view>-->
 
-  <view class="container {{ currentIndex <= 0 ? 'bgfff p30' : '' }} br10 hot">
-    <navigator hover-class="none" url="../courseList/courseList?title=热门课程"  wx:if="{{ currentIndex == 0 }}" class="c-top">
-      <view class="c-t-l f36 c393636 fw7">热门课程</view>
-      <view class="c-t-r f24 c393636 arrow">更多</view>
-    </navigator>
-    <navigator hover-class="none" url="../courseDetail/courseDetail?id=1&free=1" class="hot-wrap {{ currentIndex > 0 ? 'other bgfff br20' : '' }}" wx:for="123" wx:key="*3">
-      <image class="h-w-left br10" mode="aspectFill" src="{{ testImg }}"></image>
+  <!--<view class="container {{ currentIndex <= 0 ? 'bgfff p30' : '' }} br10 hot">-->
+    <!--<navigator hover-class="none" url="../courseList/courseList?title=热门课程"  wx:if="{{ currentIndex == 0 }}" class="c-top">-->
+      <!--<view class="c-t-l f36 c393636 fw7">热门课程</view>-->
+      <!--<view class="c-t-r f24 c393636 arrow">更多</view>-->
+    <!--</navigator>-->
+    <!--<navigator hover-class="none" url="../courseDetail/courseDetail?id=1&free=1" class="hot-wrap {{ currentIndex > 0 ? 'other bgfff br18' : '' }}" wx:for="123" wx:key="*3">-->
+    <navigator hover-class="none" url="../courseDetail/courseDetail?id=1&free=1" class="hot-wrap p30 other bgfff br18" wx:for="123" wx:key="*3">
+      <image class="h-w-left br8" mode="aspectFill" src="{{ testImg }}"></image>
       <view class="h-w-right">
         <view>
           <view class="ell1 f32 fw7 c393636">圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操</view>
-          <view wx:for="123" wx:key="*4" class="f20 br10 cb670f7 ell2 tag">纹眉</view>
+          <!--<view wx:for="123" wx:key="*4" class="f20 br10 cb670f7 ell2 tag">纹眉</view>-->
+          <view class="f26 c9999 shop-info mt10">
+            <image class="br" src="{{ testImg }}"></image>
+            <view class="flex1">门店名称</view>
+          </view>
         </view>
-        <view class="h-w-r-bottom f20 c999 mt10">
-          <view>{{ index * 18888 + 1 }}人已学习</view>
-          <view class="tac">11节课</view>
-          <view class="f26 cff3b5b tar">88.8元</view>
+        <view class="h-w-r-bottom f26 c999 mt10">
+          <view class="flex1">{{ index * 18888 + 1 }}人已学习</view>
+          <!--<view class="tac">11节课</view>-->
+          <view class="f28 cf7546f tar flex1">88.8元</view>
+        </view>
+      </view>
+    </navigator>
+  <!--</view>-->
+</view>
+
+<view wx:else class="p20 out-wrap">
+  <view wx:for="123"
+        wx:key="*365">
+    <view class="f28 c999 tar">佛山</view>
+    <navigator hover-class="none" url="/pages/courseDetail/courseDetail?id=1&free=1"
+               wx:for="123"
+               wx:key="*366"
+               class="hot-wrap other offline bgfff br18">
+      <image class="h-w-left br18" mode="aspectFill" src="{{ testImg }}"></image>
+      <view class="h-w-right">
+        <view>
+          <view class="ell1 f32 fw7 c393636">圆三针手工雾眉操作要领操作</view>
+          <view class="f26 c999 shop mt10">
+            <view class="shop-info">
+              <image class="br" src="{{ testImg }}"></image>
+              <text class="flex1">门店名称门店名称门店名称门店名称门店名称</text>
+            </view>
+            <view class="keep">800m</view>
+          </view>
+        </view>
+        <view class="h-w-r-bottom f26 c999 mt30">
+          <view>随到随学</view>
+          <view class="cff3b5b">立刻报名 》</view>
+          <!--<view class="f26 cff3b5b fw7 tar">88.8元</view>-->
         </view>
       </view>
     </navigator>
   </view>
-
-  <view class="tac f24 c999 lh80">已经到底部啦</view>
 </view>
 
-<view class="zw"></view>
+<view class="tac f24 c999 lh80">已经到底部啦</view>
 
-<my-navigator-tab prop-nav="{{ tabArr2 }}"></my-navigator-tab>
+<!--<view class="zw"></view>-->
+
+<!--<my-navigator-tab prop-nav="{{ tabArr2 }}"></my-navigator-tab>-->
 <!--错误弹窗-->
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

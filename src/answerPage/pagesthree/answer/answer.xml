@@ -1,7 +1,7 @@
 <view class="answer-top bgfff">
   <view hidden="{{ height < 0 }}" class="f26 search p20 bb bd1" style="opacity: {{ opacity }}; height: {{ height <=0 ? 0 : height }}rpx;">
     <navigator hover-class="none" url="/searchPage/pagessix/searchHistory/searchHistory" class="input-wrap">
-      <view class="iconfont f26 icon-sousuo cababab"></view>
+      <view class="iconfont f32 icon-sousuo cababab"></view>
       <input disabled="{{true}}" placeholder-class="cababab" class="c393636 search-input"  placeholder="输入你想问的问题 例如“眉毛上色”"/>
     </navigator>
     <navigator url="/pages/release/release?type=发布提问" class="cfff ask bb tac">提问</navigator>
@@ -14,7 +14,7 @@
           catchtap="chooseIndex"
           data-id="s{{ index }}"
           data-index="{{ index }}"
-          class="t-t-item f26 tac pr {{ currentIndex == index ? 'cff3b5b' : 'c666' }}">
+          class="t-t-item {{ index == 2 && !hasInfo ? 'showCircle' : '' }} fw7 f26 tac pr {{ currentIndex == index ? 'cff3b5b' : 'c666' }}">
       {{ item.t }}
     </view>
   </view>
@@ -25,23 +25,23 @@
 <view class="zw200"></view>
 
 <view class="answer-wrap p20">
-  <navigator url="../answerDetail/answerDetail?id={{ index }}" wx:for="1321" wx:key="*24" class="bgfff br10 p20 mt20">
+  <navigator url="../answerDetail2/answerDetail2?id={{ index }}" wx:for="1321" wx:key="*24" class="bgfff br18 p30 mt20 {{ index == 0 ? 'has-reply pr' : '' }}">
     <view class="f36 c3a3a3a fw7 {{ currentIndex == 2 ? 'ell2' : '' }}">老师您好,我是第一次真人操作手眉，走了好多遍才上色，为什么全程没有出组织液和血</view>
     <view hidden="{{ currentIndex == 2 }}">
-      <view class="answer-img mt20">
+      <view class="answer-img mt10">
         <image wx:for="123" wx:key="*21" mode="aspectFill" src="{{ testImg }}"></image>
       </view>
-      <view class="f20 c666 mt20">2018年10月28日 09:38:26</view>
-      <view class="teacher mt20">
-        <view class="teacher-reply f3a3a3a f26">
+      <view class="f20 c666 tar">2018年10月28日 09:38:26</view>
+      <view class="teacher mt30">
+        <view class="teacher-reply c3a3a3a f26">
           你做的改兰眉加宽部分与之前的旧眉颜色出现端车，老师回答，你做的改兰眉加宽部分与之前的旧眉颜色……
         </view>
         <view class="h-i-user mt20">
-          <image class="user-img br" src="{{ testImg }}"></image>
-          <view class="user-name f26 cababab">刘老师</view>
+          <!--<image class="user-img br" src="{{ testImg }}"></image>-->
+          <!--<view class="user-name f26 cababab">刘老师</view>-->
           <view class="cababab user-operation">
-            <view class="iconfont icon-dianzan">66</view>
-            <view class="iconfont icon-pinglun">66</view>
+            <!--<view class="iconfont icon-dianzan">66</view>-->
+            <view class="iconfont icon-pinglun c999">23</view>
           </view>
         </view>
       </view>
@@ -49,9 +49,9 @@
   </navigator>
 </view>
 
-<view class="zw"></view>
+<!--<view class="zw"></view>-->
 
-<my-navigator-tab></my-navigator-tab>
+<!--<my-navigator-tab></my-navigator-tab>-->
 <!--错误弹窗-->
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

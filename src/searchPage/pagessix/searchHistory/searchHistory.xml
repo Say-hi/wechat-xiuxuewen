@@ -1,29 +1,38 @@
 <view class="search">
-  <input confirm-type="search" bindconfirm="search" cursor="30" placeholder-class="holder" class="br15 f26" placeholder="请输入搜索内容" />
-  <navigator open-type="navigateBack" class="f28 c333">取消</navigator>
-</view>
-        <!--热门搜索-->
-<view class="search-history" wx:if="{{ keyWord.length > 0 }}">
-  <view class="search-operation c999">
-    <view class="iconfont icon-remen">热门搜索</view>
-    <!--<view class="jwq icon-shanchu" bindtap="cleanHistory"></view>-->
+  <view class="s-wrap">
+    <view class="iconfont f32 icon-sousuo cababab"></view>
+    <input confirm-type="search" bindconfirm="search" cursor="30" placeholder-class="holder" class="br15 f26" placeholder="输入你想问的问题 例如“眉毛上色”" />
   </view>
-  <view class="menu2-comment">
-    <view bindtap="chooseTip" data-content="{{ item }}" data-type="key" data-choose="{{ index }}" class="menu2-comment-item {{ keyWordIndex == index ?  'active' : '' }}" wx:for="{{ keyWord }}" wx:key="unique">
-      {{ item }}
-    </view>
-  </view>
+  <navigator open-type="navigateBack" class="f26 cff3b5b cancel">取消</navigator>
 </view>
 
-        <!--搜索历史-->
-<view class="search-history" wx:if="{{ searchShow }}">
-  <view class="search-operation c999">
-    <view class="iconfont icon-sousuo">最近搜索</view>
-    <view class="iconfont icon-cuowu" bindtap="cleanHistory"></view>
+<view class="p30">
+  <!--热门搜索-->
+  <view class="search-history" wx:if="{{ keyWord.length > 0 }}">
+    <view class="search-operation">
+      <!--<view class="iconfont icon-remen">热门搜索</view>-->
+      <view class="c666 f30 fw7">热门搜索</view>
+      <!--<view class="jwq icon-shanchu" bindtap="cleanHistory"></view>-->
+    </view>
+    <view class="menu2-comment">
+      <view bindtap="chooseTip" data-content="{{ item }}" data-type="key" data-choose="{{ index }}" class="menu2-comment-item mt20 {{ keyWordIndex == index ?  'active' : '' }}" wx:for="{{ keyWord }}" wx:key="unique">
+        {{ item }}
+      </view>
+    </view>
   </view>
-  <view class="menu2-comment">
-    <view bindtap="chooseTip" data-type="history" data-content="{{ item }}" data-choose="{{ index }}" class="menu2-comment-item {{ chooseHistory == index ?  'active' : '' }}" wx:for="{{ history }}" wx:key="unique">
-      {{ item }}
+
+  <!--搜索历史-->
+  <view class="search-history mt60 " wx:if="{{ searchShow }}">
+    <view class="search-operation c999">
+      <!--<view class="iconfont icon-sousuo">历史搜索</view>-->
+      <view class="c666 f30 fw7">历史搜索</view>
+      <view class="iconfont icon-cuowu" bindtap="cleanHistory"></view>
+    </view>
+    <view class="menu2-comment f30 c999">
+      <!--<view bindtap="chooseTip" data-type="history" data-content="{{ item }}" data-choose="{{ index }}" class="history-item mt20 {{ chooseHistory == index ?  'active' : '' }}" wx:for="{{ history }}" wx:key="unique">-->
+      <view bindtap="chooseTip" data-type="history" data-content="{{ item }}" data-choose="{{ index }}" class="history-item mt20" wx:for="{{ history }}" wx:key="unique">
+        {{ item }}
+      </view>
     </view>
   </view>
 </view>

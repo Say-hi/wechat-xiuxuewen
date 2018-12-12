@@ -1,15 +1,16 @@
 <view class="pr user-top">
-  <image class="bg-img" mode="aspectFill" src="{{ testImg }}"></image>
+  <!--<image class="bg-img" mode="aspectFill" src="{{ testImg }}"></image>-->
+  <view class="bg-img"></view>
   <view class="user-info pa">
     <image class="user-img br" src="{{ testImg }}"></image>
     <view class="f26 cfff user-name">
-      <view>绣绣学纹绣</view>
-      <view class="f20">学号：108268</view>
+      <view class="fw7">绣绣学纹绣</view>
+      <view class="f20 mt10">学号：108268</view>
     </view>
   </view>
-  <view class="pa br20 bgfff xiubi p20 fw7">绣币：346枚</view>
+  <!--<view class="pa br20 bgfff xiubi p20 fw7">绣币：346枚</view>-->
 </view>
-<view class="zw40"></view>
+<!--<view class="zw40"></view>-->
 <!--<view class="p20">-->
   <!--<view class="p20 br20 bgfff">-->
     <!--<view class="c999 f26">已经学习课程数  <text class="c333">102节</text></view>-->
@@ -17,7 +18,7 @@
   <!--</view>-->
 <!--</view>-->
 <view class="user-operation p20">
-  <view class="bgfff br10 p20">
+  <view class="bgfff br18 p20">
     <navigator url="{{ item.url }}"
                hover-class="none"
                class="user-o-item f26 c444 mt20"

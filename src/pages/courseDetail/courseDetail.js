@@ -16,13 +16,13 @@ Page({
     starArr: ['差', '还行', '中等', '好', '很好'],
     videoTab: [
       {
-        t: '目录'
-      },
-      {
-        t: '评价(0)'
-      },
-      {
         t: '详情'
+      },
+      {
+        t: '教室'
+      },
+      {
+        t: '评价 (22)'
       }
     ],
     questionList: [
@@ -60,8 +60,19 @@ Page({
         rightAnswer: 1
       }
     ],
+    commentArr: [],
     rIndex: -1
   },
+  goComment () {
+    this.setData({
+      writeComment: !this.data.writeComment
+    })
+  },
+
+  writeConfirm () {
+    this.goComment()
+  },
+
   lostTime (time) {
     if (timer) clearInterval(timer)
     let that = this
@@ -153,8 +164,8 @@ Page({
   },
 
   upStar () {
-    if (typeof this.data.tagIndex === 'undefined') return app.setToast(this, {content: '请选择难度等级'})
-    else if (typeof this.data.starIndex === 'undefined') return app.setToast(this, {content: '请选择星星等级'})
+    // if (typeof this.data.tagIndex === 'undefined') return app.setToast(this, {content: '请选择难度等级'})
+    if (typeof this.data.starIndex === 'undefined') return app.setToast(this, {content: '请选择星星等级'})
     this.setData({
       starOperation: true
     })
@@ -212,7 +223,8 @@ Page({
       replyFocus: true
     })
   },
-  replyBlur () {
+  replyBlur (e) {
+    console.log(e)
     this.setData({
       rIndex: -1,
       replyFocus: false
@@ -225,7 +237,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
+    this.setData({
+      options
+    })
     // TODO: onLoad
   },
 

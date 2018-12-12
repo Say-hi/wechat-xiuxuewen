@@ -1,6 +1,7 @@
 // 获取全局应用程序实例对象
 const app = getApp()
 let timer = null
+const bmap = require('../../utils/bmap-wx')
 // 创建页面实例对象
 Page({
   /**
@@ -17,27 +18,105 @@ Page({
     show: true,
     tabArr: [
       {
-        title: '免费课',
+        title: '教学视频',
         type: 'navigate',
         path: '../course/course'
       },
       {
-        title: '专业课',
+        title: '线下学习',
         type: 'navigate',
         path: '../course/course'
-      },
-      {
-        title: '实操练习',
-        type: 'navigate',
-        path: '/practicePage/pagestwo/practice/practice'
       },
       {
         title: '问答',
         type: 'navigate',
         path: '/answerPage/pagesthree/answer/answer'
+        // path: '/practicePage/pagestwo/practice/practice'
+      },
+      {
+        title: '教室入驻',
+        type: 'navigate',
+        path: '/answerPage/pagesthree/answer/answer'
       }
     ]
   },
+
+  /**
+   * 地址授权
+   * @param e
+   */
+  open_site (e) {
+    console.log('setting')
+    if (e.detail.authSetting['scope.userLocation']) {
+      wx.showToast({
+        title: '授权成功'
+      })
+      this.setData({
+        openType: null
+      })
+      let that = this
+      setTimeout(function () {
+        that.Bmap(that)
+      }, 100)
+    }
+  },
+  choose_site () {
+    console.log('choose')
+    let that = this
+    if (!this.data.openType) {
+      wx.chooseLocation({
+        success (res) {
+          that.setData({
+            address: res.address,
+            latitude: res.latitude,
+            longitude: res.longitude
+          }, that.Bmap(that, `${res.longitude},${res.latitude}`))
+        }
+      })
+    }
+  },
+  /**
+   * 百度地图函数
+   * @param that
+   * @constructor
+   */
+  Bmap (that, site) {
+    // let _this = this
+    let BMap = new bmap.BMapWX({
+      ak: 'RBTsmFCaerZ25VkuGhpSIZa5lyC36BcV'
+    })
+    // BMap.weather({
+    //   fail (data) {
+    //     that.setData({
+    //       openType: 'openSetting'
+    //     })
+    //     console.log('fail', data)
+    //   },
+    //   success (data) {
+    //     let type = (new Date().getHours() > 18 || new Date().getHours() < 6) ? 'nightPictureUrl' : 'dayPictureUrl'
+    //     that.setData({
+    //       weatherInfo: data.originalData.results[0],
+    //       weatherPic: data.originalData.results[0].weather_data[0][type].replace('http://', 'https://')
+    //     })
+    //   },
+    //   location: site || null
+    // }, _this)
+    BMap.regeocoding({
+      location: site || null,
+      success (res) {
+        that.setData({
+          addressInfo: res
+        })
+      },
+      fail (data) {
+        that.setData({
+          openType: 'openSetting'
+        })
+        console.log('fail', data)
+      }
+    })
+  },
+
   // 关闭新人礼包
   close () {
     if (this.data.small) return
@@ -310,6 +389,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
+    this.Bmap(this)
     // app.setBar('发现')
     // app.getSelf(this)
     // this.getIndexData()

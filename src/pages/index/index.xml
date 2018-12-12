@@ -1,4 +1,15 @@
 
+<view class="top-address bgfff bt1">
+    <button open-type="{{ openType }}" bindopensetting="open_site" catchtap="{{ !openType ? 'choose_site' : '' }}" class="fw7 f28 address">
+        <view class="iconfont icon-dizhi f28">{{ openType == 'openSetting' ? '请您授权获位置信息(点击此处授权)' : (addressInfo.originalData.result.addressComponent.city || '获取数据中...') }} {{ addressInfo.originalData.result.addressComponent.district || '' }} </view>
+        <!--<image class="weahter-img" mode="widthFix" src="{{ weatherPic }}"></image>-->
+    </button>
+    <navigator hover-class="none" url="/searchPage/pagessix/searchHistory/searchHistory" class="input-wrap">
+        <view class="iconfont f26 icon-sousuo cababab"></view>
+        <input placeholder-class="cababab" disabled="{{true}}" class="c393636 lh54 f26 search-input"  placeholder="输入你想问的问题"/>
+    </navigator>
+</view>
+
 <swiper hidden="{{ indexData.slide.length == 0 }}"
         autoplay
         indicator-dots
@@ -21,59 +32,67 @@
                hover-class="none"
                class="tab-item tac f24 c333">
         <image mode="aspectFit" src="../../images/{{ index * 1 + 1 }}.png"></image>
-        <view class="f32 fw7 c3a">{{ item.title }}</view>
+        <view class="f32 c3a">{{ item.title }}</view>
     </navigator>
 </view>
 
-    <navigator url="/reservationPage/pagesseven/reservation/reservation" class="reservation bgfff p20 f26 br20 mt20">
-        <view>
-            <view class="f42 c393636 fw7">线下预约</view>
-            <view class="f26 cff3757">立即预约 》</view>
-        </view>
-        <view class="iconfont icon-dianpu cff86b1"></view>
-    </navigator>
+    <!--<navigator url="/reservationPage/pagesseven/reservation/reservation" class="reservation bgfff p20 f26 br20 mt20">-->
+        <!--<view>-->
+            <!--<view class="f42 c393636 fw7">线下预约</view>-->
+            <!--<view class="f26 cff3757">立即预约 》</view>-->
+        <!--</view>-->
+        <!--<view class="iconfont icon-dianpu cff86b1"></view>-->
+    <!--</navigator>-->
 
-    <view class="ad-message bgfff p20 f26 br20">
-        <view class="iconfont icon-notice"></view>
-        <view class="ad-m-img"><image mode="aspectFill" class="ad-m-i" src='{{ testImg }}'></image></view>
-        <view class="ad-m-text ell1">这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案</view>
-    </view>
+    <!--<view class="ad-message bgfff p20 f26 br20">-->
+        <!--<view class="iconfont icon-notice"></view>-->
+        <!--<view class="ad-m-img"><image mode="aspectFill" class="ad-m-i" src='{{ testImg }}'></image></view>-->
+        <!--<view class="ad-m-text ell1">这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案</view>-->
+    <!--</view>-->
+
+    <view class="f34 c666 tac br18 bgfff mt20 ladder">成长阶梯 新手必看</view>
 
     <view class="container bgfff br20 new p30">
-        <navigator hover-class="none" url="../courseList/courseList?title=最新课程" class="c-top">
-            <view class="c-t-l f36 c393636 fw7">最近上新</view>
-            <view class="c-t-r f24 c393636 arrow">更多</view>
+        <navigator hover-class="none" url="../course/course" class="c-top">
+            <view class="c-t-l f36 c393636 fw7">最新教学视频</view>
+            <view class="c-t-r f24 c393636 arrow">查看更多</view>
         </navigator>
         <view class="new-wrap">
             <navigator hover-class="none" url="../courseDetail/courseDetail?id=1&free=1" class="c-w-item bb pr mt30" wx:for="1234" wx:key="*2">
                 <!--<view catchtap="collect" data-id="{{ item.id }}" class="c-w-i-collect pa f22 p10">收藏</view>-->
                 <image class="br10" mode="aspectFill" src="{{ testImg }}"></image>
                 <view class="ell1 f32 c393636 fw7 mt5">圆三针手工雾眉操作</view>
-                <view class="f20 c666 mt5">1111人学习</view>
+                <view class="f26 c999 c-w-i-i-w">
+                    <view class="c-w-i-info mt10">
+                        <image class="br" src="{{ testImg }}"></image>
+                        <view class="shop-name ell1">门店名称</view>
+                    </view>
+                    <view class="cff3b5b fw7 keep">免费</view>
+                </view>
             </navigator>
         </view>
     </view>
 
-    <view class="container bgfff br10 hot p30">
-        <navigator hover-class="none" url="../courseList/courseList?title=热门课程" class="c-top">
-            <view class="c-t-l f36 c393636 fw7">热门课程</view>
-            <view class="c-t-r f24 c393636 arrow">更多</view>
-        </navigator>
-        <navigator hover-class="none" url="../courseDetail/courseDetail?id=1&free=1" class="hot-wrap mt30" wx:for="123" wx:key="*3">
-            <image class="h-w-left br10" mode="aspectFill" src="{{ testImg }}"></image>
-            <view class="h-w-right">
-                <view>
-                    <view class="ell1 f32 c393636 fw7">圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操</view>
-                    <view wx:for="123" wx:key="*4" class="f20 br10 cb670f7 ell2 tag">纹眉</view>
-                </view>
-                <view class="h-w-r-bottom f20 c999 mt10">
-                    <view>8888人已学习</view>
-                    <view class="tac">11节课</view>
-                    <view class="f26 cff3b5b fw7 tar">88.8元</view>
-                </view>
-            </view>
-        </navigator>
-    </view>
+    <!--<view class="container bgfff br10 hot p30">-->
+        <!--<navigator hover-class="none" url="../courseList/courseList?title=热门课程" class="c-top">-->
+            <!--<view class="c-t-l f36 c393636 fw7">热门课程</view>-->
+            <!--<view class="c-t-r f24 c393636 arrow">更多</view>-->
+        <!--</navigator>-->
+        <!--<navigator hover-class="none" url="../courseDetail/courseDetail?id=1&free=1" class="hot-wrap mt30" wx:for="123" wx:key="*3">-->
+            <!--<image class="h-w-left br10" mode="aspectFill" src="{{ testImg }}"></image>-->
+            <!--<view class="h-w-right">-->
+                <!--<view>-->
+                    <!--<view class="ell1 f32 c393636 fw7">圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操</view>-->
+                    <!--<view wx:for="123" wx:key="*4" class="f20 br10 cb670f7 ell2 tag">纹眉</view>-->
+                <!--</view>-->
+                <!--<view class="h-w-r-bottom f20 c999 mt10">-->
+                    <!--<view>8888人已学习</view>-->
+                    <!--<view class="tac">11节课</view>-->
+                    <!--<view class="f26 cff3b5b fw7 tar">88.8元</view>-->
+                <!--</view>-->
+            <!--</view>-->
+        <!--</navigator>-->
+    <!--</view>-->
 
     <view class="tac f24 c999 lh80">已经到底部啦</view>
 </view>

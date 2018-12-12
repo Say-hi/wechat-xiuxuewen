@@ -39,7 +39,7 @@ page {
 }
 
 .out-wrap {
-  margin-top: 78rpx;
+  margin-top: 98rpx;
 }
 
 .container {
@@ -86,7 +86,7 @@ page {
 .hot-wrap {
   display: flex;
   align-items: center;
-  margin-top: 30rpx;
+  //margin-top: 30rpx;
   //border: 2rpx solid #2c332d;
   .h-w-left {
     //flex: 0 0 30%;
@@ -109,12 +109,26 @@ page {
       margin-top: 10rpx;
       color: #D3ABF7;
     }
+    .shop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .shop-info {
+      display: flex;
+      align-items: center;
+      image {
+        width: 30rpx;
+        height: 30rpx;
+        margin-right: 10rpx;
+      }
+    }
   }
   .h-w-r-bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    view {
+    .flex1 {
       flex: 1;
       word-break: keep-all;
     }
@@ -122,8 +136,26 @@ page {
 }
 
 .other {
-  margin-top: 20rpx;
-  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+.offline {
+  padding-right: 30rpx;
+  .h-w-left {
+    width: 260rpx;
+    height: 202rpx;
+    margin-right: 30rpx;
+  }
+  .h-w-r-bottom {
+    justify-content: flex-start;
+    view {
+      margin-right: 10rpx;
+    }
+  }
+  .shop-info {
+    image {
+      margin-right: 10rpx;
+    }
+  }
 }
 
 .arrow {

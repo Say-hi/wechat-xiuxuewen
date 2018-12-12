@@ -1,0 +1,86 @@
+@import "../../../common/variable";
+page {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  .br {
+    width: 60rpx;
+    height: 60rpx;
+    margin-right: 20rpx;
+  }
+}
+
+.answer-img {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  image {
+    width: 120rpx;
+    height: 120rpx;
+    margin: 10rpx;
+    margin-left: 0;
+    margin-right: 20rpx;
+    border-radius: 18rpx;
+  }
+}
+
+.info-time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .icon-pinglun::before {
+    color: #999;
+  }
+}
+
+.reply {
+  background-color: #f1f1f1;
+  padding-top: 20rpx;
+  &:before {
+    content: '';
+    position: absolute;
+    top: -5rpx;
+    left: 40rpx;
+    height: 10rpx;
+    width: 10rpx;
+    background-color: #f1f1f1;
+    transform: scaleY(1.4) rotateZ(45deg);
+  }
+
+  .answer-reply-item {
+    .reply-name {
+      margin-right: 4rpx;
+    }
+    .teacher-tag {
+      position: relative;
+      padding-right: 65rpx;
+    }
+    .teacher-tag::after {
+      content: '老师';
+      font-size: 20rpx;
+      color: #fff;
+      border-radius: 18rpx;
+      padding: 3rpx 10rpx;
+      background-color: #ff3b5b;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(0, -50%);
+    }
+  }
+
+  .reply-input-area {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    input {
+      padding-left: 10rpx;
+      flex: 1;
+      line-height: inherit;
+    }
+  }
+}

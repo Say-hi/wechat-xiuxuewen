@@ -18,24 +18,9 @@ Page({
     testImg: app.data.testImg,
     operationArr: [
       {
-        t: '我的练习',
+        t: '我的预约',
         src: app.data.testImg,
         url: '/practicePage/pagestwo/practice/practice'
-      },
-      {
-        t: '最近学习',
-        src: app.data.testImg,
-        url: '../nearlearn/nearlearn?type=最近学习'
-      },
-      {
-        t: '我的作品',
-        src: app.data.testImg,
-        url: '../showXiu/showXiu'
-      },
-      {
-        t: '课程订单',
-        src: app.data.testImg,
-        url: '/orderPage/pagesfive/order/order'
       },
       {
         t: '收藏',
@@ -44,14 +29,30 @@ Page({
       },
       {
         t: '意见反馈',
-        url: '/feedbackPage/pagesfour/feedback/feedback',
-        src: app.data.testImg
+        src: app.data.testImg,
+        // url: '../showXiu/showXiu'
+        url: '/feedbackPage/pagesfour/feedback/feedback'
       },
       {
-        t: '教师入口',
-        url: '/teacherPage/pageseight/teacherAnswer/teacherAnswer',
-        src: app.data.testImg
+        t: '课程订单',
+        src: app.data.testImg,
+        url: '/orderPage/pagesfive/order/order'
       }
+      // {
+      //   t: '收藏',
+      //   src: app.data.testImg,
+      //   url: '../nearlearn/nearlearn?type=我的收藏'
+      // },
+      // {
+      //   t: '意见反馈',
+      //   url: '/feedbackPage/pagesfour/feedback/feedback',
+      //   src: app.data.testImg
+      // },
+      // {
+      //   t: '教师入口',
+      //   url: '/teacherPage/pageseight/teacherAnswer/teacherAnswer',
+      //   src: app.data.testImg
+      // }
     ]
   },
   // setCanvas () {

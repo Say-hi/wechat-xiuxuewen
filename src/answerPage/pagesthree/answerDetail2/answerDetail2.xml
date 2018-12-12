@@ -1,0 +1,52 @@
+<view class="bgfff br18 p30">
+  <view class="f26 fw7 c999 user-info">
+    <image class="br" src="{{ testImg }}"></image>
+    <view>绣绣学纹绣</view>
+  </view>
+
+  <view class="f36 c3a3a3a fw7 mt20">老师您好,我是第一次真人操作手眉，走了好多遍才上色，为什么全程没有出组织液和血</view>
+
+  <view class="answer-img mt10">
+    <image wx:for="123" wx:key="*21" mode="aspectFill" src="{{ testImg }}"></image>
+  </view>
+
+  <view class="f20 mt20 c666 info-time">
+    <view>2018年10月28日 09:38:26</view>
+    <view catchtap="replyOperation" data-name="题主" data-cindex="1" class="iconfont icon-pinglun"></view>
+  </view>
+
+  <view hidden="{{ commentArr.length <= 0 ? rIndex < 0 : false}}" class="reply pr mt20 br20 f26 c393636 p30">
+    <view catchtap="replyOperation"
+          data-type="other"
+          class="mt10 f26 answer-reply-item"
+          data-cindex="1"
+          data-name="xxx{{ index }}"
+          wx:for='123'
+          wx:key="*908">
+      <text class="reply-name fw7">
+        <text class="teacher-tag">艺苑绣眉</text>
+      </text>
+      <text>回复</text>
+      <text class="reply-name fw7">
+        <text>艺苑绣眉</text>
+      </text>
+      <text>：你做的改兰眉加宽部分与之前的</text>
+    </view>
+
+
+    <view data-cIndex="{{ cIndex }}"
+          data-rIndex="{{ rIndex }}"
+          wx:if="{{ 1 == rIndex }}"
+          class="reply-input-area">
+      <view>
+        回复<text class="main-text-color">{{ replyName }}</text>:
+      </view>
+      <input cursor-spacing="40"
+             focus="{{ replyFocus }}"
+             confirm-type="send"
+             bindconfirm="replyConfirm"
+             bindblur="replyBlur"
+             placeholder="请输入内容" />
+    </view>
+  </view>
+</view>

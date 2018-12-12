@@ -8,6 +8,7 @@ Page({
    */
   data: {
     title: 'searchHistory',
+    keyWord: [1, 23, 4],
     searchShow: true
   },
   getKey () {
@@ -122,7 +123,7 @@ Page({
    */
   onLoad (options) {
     app.setBar('搜索')
-    app.getSelf(this)
+    // app.getSelf(this)
     let history = options.type === 'goods' ? app.gs('goodsHistory') : app.gs('articleHistory')
     if (!history) {
       this.setData({

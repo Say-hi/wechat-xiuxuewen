@@ -7,28 +7,38 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: 'course',
-    testImg: 'https://c.jiangwenqiang.com/api/logo.jpg',
-    currentIndex: 0
+    rIndex: -1,
+    testImg: app.data.testImg,
+    commentArr: []
+  },
+  // 用户回复操作
+  replyOperation (e) {
+    if (this.data.replyFocus) return
+    this.setData({
+      replyName: e.currentTarget.dataset.name,
+      rIndex: e.currentTarget.dataset.cindex,
+      replyFocus: true
+    })
+  },
+  replyBlur (e) {
+    console.log(e)
+    this.setData({
+      rIndex: -1,
+      replyFocus: false
+    })
   },
 
-  chooseIndex (e) {
-    this.setData({
-      currentIndex: e.currentTarget.dataset.index
-    })
-    app.setBar(e.currentTarget.dataset.text)
-    wx.pageScrollTo({
-      scrollTop: 0
-    })
+  onShareAppMessage () {
+    return {
+      title: '分享了一个问答',
+      path: '/answerPage/pagesthree/answerDetail/answerDetail?id=12'
+    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    app.setBar('推荐0')
-    this.setData({
-      options
-    })
+    console.log(options)
     // TODO: onLoad
   },
 
