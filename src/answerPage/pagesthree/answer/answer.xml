@@ -25,7 +25,7 @@
 <view class="zw200"></view>
 
 <view class="answer-wrap p20">
-  <navigator url="../answerDetail2/answerDetail2?id={{ index }}" wx:for="1321" wx:key="*24" class="bgfff br18 p30 mt20 {{ index == 0 ? 'has-reply pr' : '' }}">
+  <navigator url="../answerDetail2/answerDetail2?id={{ index }}" wx:for="1321" wx:key="*24" class="bgfff br18 p30 mt20 {{ !hasReply ? 'has-reply pr' : '' }}">
     <view class="f36 c3a3a3a fw7 {{ currentIndex == 2 ? 'ell2' : '' }}">老师您好,我是第一次真人操作手眉，走了好多遍才上色，为什么全程没有出组织液和血</view>
     <view hidden="{{ currentIndex == 2 }}">
       <view class="answer-img mt10">

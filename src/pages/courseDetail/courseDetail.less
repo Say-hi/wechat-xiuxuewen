@@ -170,6 +170,15 @@ page {
   .shop-info {
     display: flex;
     align-items: center;
+    .shop-name {
+      display: flex;
+      text {
+        margin-right: 20rpx;
+      }
+      navigator {
+        margin-top: 10rpx;
+      }
+    }
     image {
       width: 50rpx;
       height: 50rpx;
@@ -602,5 +611,16 @@ page {
       padding: 10rpx 20rpx;
       background-color: #ff3757;
     }
+  }
+}
+
+.show-img-wrap {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  image {
+    width: 210rpx;
+    height: 210rpx;
+    margin: 5rpx 0;
   }
 }

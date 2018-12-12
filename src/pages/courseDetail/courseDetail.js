@@ -230,6 +230,17 @@ Page({
       replyFocus: false
     })
   },
+
+  showImg (e) {
+    app.showImg(e.currentTarget.dataset.src, [this.data.poster])
+  },
+
+  buyOperation () {
+    // todo 发起支付
+    wx.navigateTo({
+      url: '/offlinePage/pagesnine/offlineApply/offlineApply'
+    })
+  },
   // 分享
   onShareAppMessage () {
 

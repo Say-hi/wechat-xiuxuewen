@@ -1,4 +1,4 @@
-
+<!--顶部视频区域-->
 <view style="height: {{ needSmall ? 7 : 30 }}%;" class="video-area">
   <view wx:if="{{ !play }}" class="video-poster-img pr">
     <image class="video-poster"
@@ -24,7 +24,7 @@
          src="{{ videoSrc }}">
   </video>
 </view>
-
+<!--导航栏-->
 <view class="tab-top bgfff lh88 bd1">
   <view wx:for="{{ videoTab }}"
         wx:key="*7"
@@ -36,13 +36,18 @@
     {{ item.t }}
   </view>
 </view>
-
 <!--付费课程-->
-<view hidden="{{ free }}" class="video-buy bb {{ needSmall ? 'toBottom' : '' }}">
+<view class="video-buy bb {{ needSmall ? 'toBottom' : '' }}">
   <!--<navigator hover-class="none" url="/collagePage/pagesone/collage/collage" catchtap="buyOperation" class="f34 cfff tac fw7 video-buy-btn">拼团价: 1.8元</navigator>-->
-  <view catchtap="buyOperation" class="f34 cfff tac fw7 video-buy-btn">立即购买</view>
+  <view catchtap="buyOperation" class="f34 cfff tac video-buy-btn">
+    <view wx:if="{{ options.type != 'offline' }}" class="fw7">立即购买</view>
+    <view wx:else>
+      <text>报名费¥200</text>
+      <text class="fw7">立即预约报名</text>
+    </view>
+  </view>
 </view>
-
+<!--滚动窗口-->
 <scroll-view bindscrolltoupper="scrollUp"
              style="height: {{ needSmall ? 90 : 63 }}%;"
              bindscroll="scrollOperation"
@@ -55,11 +60,12 @@
              bindtouchstart="toucstart"
              scroll-into-view="{{ scrollToId }}">
   <view class="p20">
+    <!--基本信息栏-->
     <view class="p30 br18 bgfff">
       <view class="video-info">
         <view class="v-i-left">
           <view class="f36 fw7">圆三针手工雾眉操作要领操作</view>
-          <!--<view wx:for="123" wx:key="*8" class="f20 br10 cb670f7 ell2 tag">纹眉</view>-->
+          <view wx:if="{{ options.type == 'offline' }}" class="f26 c999">上课时间：随到随学</view>
         </view>
         <view class="v-i-right c999 tar">
           <view catchtap="collectO" class="iconfont f20 {{ collect ? 'icon-xinheart118 cff3b5b' : 'icon-shoucang' }} ">{{ collect ? '取消收藏' : '收藏' }}</view>
@@ -68,7 +74,7 @@
       </view>
       <view class="f26 c999 v-i-l-bottom mt30">
         <view>888人已学习</view>
-        <view class="f26 cff3b5b">88元</view>
+        <view wx:if="{{ options.type != 'offline' }}" class="f26 cff3b5b">88元</view>
       </view>
     </view>
 
@@ -89,20 +95,49 @@
       <!--</view>-->
     <!--</view>-->
 
+    <!--地址栏-->
     <view class="course-list bgfff br18 p30">
       <view class="f36 fw7 c444">线下教室</view>
       <view class="f36 c3a3a3a shop-info mt20 fw7">
         <image class="br" src="{{ poster }}"></image>
-        <view>艺苑纹绣</view>
+        <view class="shop-name">
+          <text>艺苑纹绣</text>
+          <navigator wx:if="{{ options.type == 'offline' }}" class="cff3b5b f26">进入教室</navigator>
+        </view>
       </view>
-      <view class="f28 c444 mt20">店铺地址：广州市海珠区富力天域大厦B栋2308</view>
+      <view class="f28 c444 mt20">
+        店铺地址：广州市海珠区富力天域大厦B栋2308
+      </view>
       <view class="tar mt20">
         <navigator class="f26 cfff go-room">进入教室</navigator>
       </view>
     </view>
+    <!--报名说明-->
+    <view wx:if="{{ options.type == 'offline' }}" class="course-list bgfff br18 p30 mt20">
+      <view class="f36 fw7 c444">报名费说明</view>
+
+      <view class="f28 c666 mt20">
+        报名费用于预定到店名额，一天只有10个名额，先到先的 关于申请说明，满足下列条件可以退款： 1.按照约定时间到店学习后可以申请退款， 2.如果有事无法如约到店，请提前24小时联系客服申请退款
+      </view>
+    </view>
+
+    <!--往期学员作品绣-->
+    <view wx:if="{{ options.type == 'offline' }}" class="course-list bgfff br18 p30 mt20">
+      <view class="f36 fw7 c444">往期学员作品绣</view>
+
+      <view class="f28 c666 mt20 show-img-wrap">
+        <image wx:for="1134"
+               wx:key="*213"
+               class="br18 show-img"
+               catchtap="showImg"
+               data-src="{{ poster }}"
+               src="{{ poster }}"></image>
+      </view>
+    </view>
 
     <view id="s2" class="zw20"></view>
-    <view class="course-comment bgfff br10 p30">
+    <!--评论区域-->
+    <view wx:if="{{ options.type != 'offline' }}" class="course-comment bgfff br10 p30">
       <view class="f36 fw7 c3a3a3a">评价</view>
       <view class="c-c-score">
         <view class="c-c-s-left">
@@ -283,7 +318,7 @@
   <view class="zw"></view>
   <view hidden="{{ needSmall }}" class="zw"></view>
 </scroll-view>
-
+<!--评论弹窗窗口-->
 <view catchtap="showMore"
       data-type="comment"
       class="mask mask-comment-show {{ showComment ? 'showReply' : 'closeReply' }}">
@@ -372,7 +407,6 @@
     </scroll-view>
   </view>
 </view>
-
 <!--题目-->
 <view hidden="{{ !answerQuestion }}" class="answer-scroll-area showHeight p20 bb pr">
   <view catchtap="startAnswer" data-type="close" class="iconfont icon-cuowu scroll-view-close"></view>
@@ -415,16 +449,13 @@
     <text>提交答案</text>
   </view>
 </view>
-
 <!--我要评论-->
-
 <view hidden="{{ !writeComment }}" class="mask write-comment" catchtap="goComment">
   <view class="w-c p20 f26" catchtap="noUp">
     <input bindconfirm="writeConfirm" confirm-type="send" cursor-spacing="30" focus="{{ writeComment }}" class="flex1" placeholder="你觉得课程怎么样呢，来说说吧～（至少五个字）" />
     <view catchtap="writeConfirm" class="send-btn cfff">发送</view>
   </view>
 </view>
-
 <!--<my-navigator-tab wx:if="{{ !needSmall }}" prop-nav="{{ tabArr2 }}"></my-navigator-tab>-->
 <!--错误弹窗-->
 <import src="/template/template"></import>

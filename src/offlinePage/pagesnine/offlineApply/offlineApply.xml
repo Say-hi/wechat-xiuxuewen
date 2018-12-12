@@ -1,0 +1,165 @@
+<view class="tab-top bgfff lh88 bt1 bd1">
+  <view wx:for="{{ videoTab }}"
+        wx:key="*72"
+        class="t-t-item tac {{ 1 == index ? 'cff3b5b fw7 f34' : 2 == index ? 'f30 c666' : 'fw7 c444 f34' }}">
+    {{ item.t }}
+  </view>
+</view>
+
+<swiper current="{{ swiperIndex }}" bindchange="swiperChange">
+  <swiper-item class="s-i-1 p20 bb">
+    <!--<view class="">-->
+      <view class="br18 bgfff">
+        <view class="choose-gender">
+          <view wx:for='12'
+                wx:key="*this"
+                data-index="{{ index }}"
+                catchtap="userChoose"
+                class="c-g-item"
+                data-type="gender">
+            <image class="br" src="{{ testImg }}"></image>
+            <view class="mt20 f28 c444">{{ index == 1 ? '男生' : '女生' }}</view>
+            <view class="{{ genderIndex == index ? 'gender-active' : '' }} gender-circle br mt10"></view>
+          </view>
+        </view>
+
+        <view class="user-input mt60">
+          <view class="f28 c444 fw7">姓名</view>
+          <input bindinput="inputValue" data-type="name" />
+        </view>
+
+        <view class="user-input">
+          <view class="f28 c444 fw7">手机号</view>
+          <input bindinput="inputValue" data-type="phone" />
+        </view>
+
+        <view class="user-input f28 cff3a5a tac mt120">
+          <view catchtap="nextTick" data-index="1" class="flex1">下一步</view>
+        </view>
+
+        <view class="circle">
+          <view class="cff3a5a">·</view>
+          <view class="cd8d8d8">·</view>
+          <view class="cd8d8d8">·</view>
+        </view>
+
+      </view>
+    <!--</view>-->
+  </swiper-item>
+  <swiper-item class="s-i-2 p20 bb">
+    <view class="br18 bgfff">
+      <view class="choose-gender">
+        <view wx:for='12'
+              wx:key="*this"
+              data-index="{{ index }}"
+              catchtap="userChoose"
+              class="c-g-item"
+              data-type="base">
+          <image class="br" src="{{ testImg }}"></image>
+          <view class="mt20 f28 c444">{{ index == 1 ? '有基础' : '无基础' }}</view>
+          <view class="{{ baseIndex == index ? 'gender-active' : '' }} gender-circle br mt10"></view>
+        </view>
+      </view>
+
+      <view class="user-input mt60">
+        <view class="f28 c444 fw7">微信号</view>
+        <input bindinput="inputValue" data-type="number" />
+      </view>
+
+      <view class="user-input">
+        <view class="f28 c444 fw7">到店时间</view>
+        <picker
+                mode="date"
+                value="{{ date }}"
+                start="{{ date }}"
+                end="2028-09-01"
+                data-type="time"
+                bindchange="userChoose"
+        >
+          <view class="f28 c444 fw7">{{date}}</view>
+        </picker>
+
+        <picker
+                mode="selector"
+                range="{{ amArr }}"
+                value="{{ amIndex }}"
+                data-type="am"
+                class="ml60"
+                bindchange="userChoose"
+        >
+          <view class="f28 c444 fw7">{{ amArr[amIndex] }}</view>
+        </picker>
+      </view>
+
+      <view class="user-input f28 cff3a5a tac mt120">
+        <view catchtap="nextTick" data-index="2" class="flex1">下一步</view>
+      </view>
+
+      <view class="circle">
+        <view class="cff3a5a">·</view>
+        <view class="cff3a5a">·</view>
+        <view class="cd8d8d8">·</view>
+      </view>
+
+    </view>
+  </swiper-item>
+  <swiper-item class="s-i-3 p20 bb">
+    <view class="br18 bgfff">
+      <view hidden="{{ baseIndex == 1 }}" class="choose-gender">
+        <view wx:for='12'
+              wx:key="*this"
+              data-index="{{ index }}"
+              catchtap="userChoose"
+              class="c-g-item"
+              data-type="experience">
+          <image class="br" src="{{ testImg }}"></image>
+          <view class="mt20 f28 c444">{{ index == 0 ? '1-2年纹绣经验' : '2年以上纹绣经验' }}</view>
+          <view class="{{ experienceIndex == index ? 'gender-active' : '' }} gender-circle br mt10"></view>
+        </view>
+      </view>
+
+      <view hidden="{{ baseIndex == 0 }}" class="finish-img tac">
+        <image class="mt20"
+               mode="aspectFill"
+               src="{{ testImg }}"></image>
+      </view>
+
+      <view class="c444 f28 fw7 learn-time">
+        <view>预期学多久</view>
+
+      </view>
+
+      <view class="user-input f28 cff3a5a tac mt60">
+        <view catchtap="nextTick" data-index="3" class="flex1">完成</view>
+      </view>
+
+      <view class="circle">
+        <view class="cff3a5a">·</view>
+        <view class="cff3a5a">·</view>
+        <view class="cff3a5a">·</view>
+      </view>
+
+    </view>
+  </swiper-item>
+  <swiper-item class="s-i-5 p20 bb">
+    <view class="br18 bgfff">
+
+
+      <view class="finish-img tac">
+        <image class="mt20"
+               mode="aspectFill"
+               src="{{ testImg }}"></image>
+      </view>
+      <view class="c444 f48 fw7 tac mt60">
+        恭喜您预约成功！
+      </view>
+      <navigator url="" class="user-input f28 cff3a5a tac mt60">
+        <view class="flex1">查看我的预约</view>
+      </navigator>
+
+    </view>
+  </swiper-item>
+</swiper>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

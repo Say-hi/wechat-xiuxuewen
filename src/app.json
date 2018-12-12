@@ -10,7 +10,7 @@
     "pages/release/release", // 发布作品&发布提问
     "pages/courseDetail/courseDetail", // 课程详情
     "pages/courseList/courseList", // 课程列表
-    "pages/course/course" // 课程,
+    "pages/course/course" // 课程,,
     // Dont remove this comment
   ],
   "subPackages": [
@@ -71,7 +71,8 @@
     {
       "root": "offlinePage", // 线下课程
       "pages": [
-        "pagesnine/courseOffline/courseOffline" // 线下课程首页
+        "pagesnine/courseOffline/courseOffline", // 线下课程首页
+        "pagesnine/offlineApply/offlineApply" // 线下课程报名信息填写页面
       ]
     }
   ],
