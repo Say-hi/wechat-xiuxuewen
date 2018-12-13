@@ -11,6 +11,32 @@
     </view>
   </view>
 </view>
+
+<view class="p20">
+  <navigator hover-class="none" url="/pages/courseDetail/courseDetail?id=1&type=2"
+             class="hot-wrap other bgfff br18"
+             wx:for="123"
+             wx:key="*365">
+    <image data-content="线下课程" class="h-w-left pr br18" mode="aspectFill" src="{{ poster }}"></image>
+    <view class="h-w-right">
+      <view>
+        <view class="ell1 f32 fw7 c393636">圆三针手工雾眉操作要领操作</view>
+        <view class="f26 c999 shop mt10">
+          <view class="shop-info">
+            <image class="br" src="{{ poster }}"></image>
+            <text class="flex1">门店名称门店名称门店名称门店名称门店</text>
+          </view>
+          <!--<view class="keep">800m</view>-->
+        </view>
+      </view>
+      <view class="h-w-r-bottom f26 c999 mt30">
+        <view>随到随学</view>
+        <view class="cff3b5b">立刻报名 》</view>
+        <!--<view class="f26 cff3b5b fw7 tar">88.8元</view>-->
+      </view>
+    </view>
+  </navigator>
+</view>
 <!--错误弹窗-->
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

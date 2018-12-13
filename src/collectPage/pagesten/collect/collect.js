@@ -8,6 +8,7 @@ Page({
    */
   data: {
     currentIndex: 0,
+    poster: app.data.testImg,
     videoTab: [
       {
         t: '未开始'
@@ -20,12 +21,19 @@ Page({
       }
     ]
   },
-
+  chooseIndex (e) {
+    this.setData({
+      currentIndex: e.currentTarget.dataset.index
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
-    app.getSelf(this)
+  onLoad (options) {
+    this.setData({
+      options
+    })
+    app.setBar(options.type == 1 ? '我的预约' : '收藏')
     // TODO: onLoad
   },
 
