@@ -10,6 +10,11 @@ Page({
     testImg: app.data.testImg,
     title: 'courseOffline'
   },
+  showMore (e) {
+    this.setData({
+      canShowIndex: e.currentTarget.dataset.index
+    })
+  },
   /**
    * 地址授权
    * @param e

@@ -66,6 +66,14 @@ page {
       background-color: #FF3B5B;
     }
   }
+  .no-bottom-line {
+    &:after {
+      background-color: #fff;
+    }
+    &.cff3b5b {
+      font-weight: 700;
+    }
+  }
 }
 
 .ask-question {
@@ -419,8 +427,11 @@ page {
   }
 }
 
-
-
+.introduce {
+  image {
+    width: 100%;
+  }
+}
 
 .question-wrap {
   box-shadow: 0rpx 4rpx 10rpx 0rpx rgba(255, 228, 232, 0.7);
@@ -623,4 +634,115 @@ page {
     height: 210rpx;
     margin: 5rpx 0;
   }
+}
+
+//第二屏
+
+.hot-wrap {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+  min-height: 202rpx;
+  //border: 2rpx solid #2c332d;
+  .h-w-left {
+    //flex: 0 0 30%;
+    height: 202rpx;
+    width: 260rpx;
+    margin-right: 30rpx;
+  }
+  .h-w-right {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: inherit;
+    min-height: 150rpx;
+    //padding: 0 10rpx;
+    .tag {
+      display: inline-block;
+      border: 2rpx solid #D3ABF7;
+      padding: 2rpx 10rpx;
+      margin-right: 14rpx;
+      margin-top: 10rpx;
+      color: #D3ABF7;
+    }
+  }
+  .h-w-r-bottom {
+    display: flex;
+    align-items: center;
+    view {
+      margin-right: 10rpx;
+    }
+  }
+
+  .shop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    image {
+      width: 30rpx;
+      height: 30rpx;
+    }
+    .shop-info {
+      display: flex;
+      align-items: center;
+      image {
+        margin-right: 10rpx;
+      }
+    }
+  }
+}
+
+.other {
+  padding-right: 30rpx;
+}
+
+.room {
+  display: flex;
+  .room-left {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20rpx;
+    image {
+      width: 100rpx;
+      height: 100rpx;
+    }
+  }
+  .room-right {
+    flex: 1;
+    .room-people {
+      display: flex;
+      justify-content: space-between;
+    }
+    .room-img {
+      image {
+        width: 170rpx;
+        height: 170rpx;
+        margin: 5rpx 5rpx 0 0;
+      }
+    }
+  }
+  .nav {
+    margin-top: 20rpx;
+    padding: 6rpx 24rpx;
+    border: 2rpx solid #ff3a5a;
+    border-radius: 50rpx;
+    display: inline-block;
+    font-size: 28rpx;
+  }
+  .room-tag {
+    color: #444;
+    border-color: #444;
+    margin-right: 20rpx;
+    padding: 6rpx 18rpx;
+  }
+}
+
+.tips {
+  border-radius: 50rpx;
+  background-color: rgba(0,0,0,0.27);
+  padding: 14rpx 20rpx;
+  position: fixed;
+  top: 480rpx;
+  left: 20rpx;
 }

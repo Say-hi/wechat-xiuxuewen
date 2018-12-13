@@ -20,7 +20,7 @@ Page({
       {
         title: '教学视频',
         type: 'navigate',
-        path: '../course/course'
+        path: '../course/course?type=1'
       },
       {
         title: '线下学习',

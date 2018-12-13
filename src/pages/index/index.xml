@@ -60,7 +60,7 @@
             <view class="c-t-r f24 c393636 arrow">查看更多</view>
         </navigator>
         <view class="new-wrap">
-            <navigator hover-class="none" url="../courseDetail/courseDetail?id=1&free=1" class="c-w-item bb pr mt30" wx:for="1234" wx:key="*2">
+            <navigator hover-class="none" url="../courseDetail/courseDetail?id=1&free=1&type=1" class="c-w-item bb pr mt30" wx:for="1234" wx:key="*2">
                 <!--<view catchtap="collect" data-id="{{ item.id }}" class="c-w-i-collect pa f22 p10">收藏</view>-->
                 <image class="br10" mode="aspectFill" src="{{ testImg }}"></image>
                 <view class="ell1 f32 c393636 fw7 mt5">圆三针手工雾眉操作</view>

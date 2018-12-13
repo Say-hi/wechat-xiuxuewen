@@ -2,16 +2,19 @@
 const app = getApp()
 let timer = null
 let CAN_CHANGE = false
+let NEED_SHOW = [0, 0, 0]
 // 创建页面实例对象
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    latitude: 23.111123,
+    longitude: 113.123432,
     poster: 'https://c.jiangwenqiang.com/api/logo.jpg',
     controls: true,
     videoSrc: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
-    currentIndex: -1,
+    currentIndex: 0,
     centerHeight: 63,
     starArr: ['差', '还行', '中等', '好', '很好'],
     videoTab: [
@@ -122,7 +125,8 @@ Page({
   },
   videoPlay () {
     this.setData({
-      play: !this.data.play
+      play: !this.data.play,
+      needSmall: false
     })
   },
   videoEnd () {
@@ -130,10 +134,16 @@ Page({
     console.log('视频播放结束')
   },
   chooseIndex (e) {
-    this.setData({
-      currentIndex: e.currentTarget.dataset.index,
-      scrollToId: e.currentTarget.dataset.id
-    })
+    if (this.data.options && this.data.options.type * 1 === 3) {
+      this.setData({
+        currentIndex: e.currentTarget.dataset.index
+      })
+    } else {
+      this.setData({
+        currentIndex: e.currentTarget.dataset.index,
+        scrollToId: e.currentTarget.dataset.id
+      })
+    }
   },
 
   chooseVideoPlay (e) {
@@ -190,22 +200,31 @@ Page({
   },
 
   scrollOperation (e) {
+    if (this.data.options && this.data.options.type * 1  === 3) return
     if (!CAN_CHANGE) return
+    let s = e.detail.scrollTop
+    let currentIndex = 0
+    if (s < NEED_SHOW[0]) currentIndex = 0
+    else if (s > NEED_SHOW[0] && s < NEED_SHOW[1]) currentIndex = 1
+    else if (s > NEED_SHOW[1]) currentIndex = 2
+    this.setData({
+      currentIndex
+    })
     let change = e.detail.deltaY
     if (change <= 0) {
       // 下方隐藏，上方缩小
       this.setData({
-        needSmall: true
+        needSmall: this.data.play ? 0 : true
       })
     }
   },
   touchend () {
     CAN_CHANGE = false
   },
-  touchmove (e) {
-    console.log('move', e)
+  touchmove () {
+    // console.log('move', e)
   },
-  toucstart (e) {
+  toucstart () {
     CAN_CHANGE = true
   },
   scrollUp () {
@@ -241,6 +260,31 @@ Page({
       url: '/offlinePage/pagesnine/offlineApply/offlineApply'
     })
   },
+  // 获取滚动高度
+  getScrollInHeight () {
+    const query = wx.createSelectorQuery().in(this)
+    query.selectAll('.need-check').boundingClientRect(function (res) {
+      let i = 0
+      for (let v of res) {
+        NEED_SHOW[i] += v.height
+        if (v.id === 's1') {
+          i = 1
+          NEED_SHOW[i] += NEED_SHOW[i - 1]
+        } else if (v.id === 's2') {
+          i = 2
+          NEED_SHOW[i] += NEED_SHOW[i - 1]
+        }
+      }
+    }).exec()
+  },
+
+  goMapPoint (e) {
+    console.log(e.currentTarget.dataset)
+    wx.openLocation({
+      scale: 10,
+      ...(e.currentTarget.dataset)
+    })
+  },
   // 分享
   onShareAppMessage () {
 
@@ -249,9 +293,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
+    // type 对应规则 1 线上课程 2 线下课程 3 教室
     this.setData({
       options
     })
+    if (options.type * 1 === 2) {
+      this.data.videoTab[2].t = '作品秀'
+      this.setData({
+        videoTab: this.data.videoTab
+      })
+    } else if (options.type * 1 === 3) {
+      this.data.videoTab[1].t = '免费课程'
+      this.data.videoTab[2].t = '驻店课程'
+      this.data.videoTab.push({t: '作品秀'})
+      this.setData({
+        videoTab: this.data.videoTab
+      })
+    }
     // TODO: onLoad
   },
 
@@ -259,6 +317,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady () {
+    this.getScrollInHeight()
     // TODO: onReady
   },
 

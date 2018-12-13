@@ -11,47 +11,16 @@
 
 <view class="zw100"></view>
 
-<navigator wx:if="{{ options.type == 'offline' }}" hover-class="none" url="/pages/course/course?type=offline" class="f36 bgfff c666 get-more p30 bt1">
-  <view class="fw7">推荐线下课程</view>
-  <view class="f24">查看更多</view>
-</navigator>
-
 <view class="p20">
-  <block wx:for="1232"
-         wx:if="{{ options.type == 'offline' }}"
-         wx:key="*368">
-    <view class="f28 c999 tar">佛山</view>
-    <navigator hover-class="none" url="/pages/courseDetail/courseDetail?id=1&type=offline"
-               class="hot-wrap other bgfff br18"
-               wx:for="123"
-               wx:key="*365">
-      <image class="h-w-left br18" mode="aspectFill" src="{{ testImg }}"></image>
-      <view class="h-w-right">
-        <view>
-          <view class="ell1 f32 fw7 c393636">圆三针手工雾眉操作要领操作</view>
-          <view class="f26 c999 shop mt10">
-            <view class="shop-info">
-              <image class="br" src="{{ testImg }}"></image>
-              <text class="flex1">门店名称门店名称门店名称门店名称门店</text>
-            </view>
-            <view class="keep">800m</view>
-          </view>
-        </view>
-        <view class="h-w-r-bottom f26 c999 mt30">
-          <view>随到随学</view>
-          <view class="cff3b5b">立刻报名 》</view>
-          <!--<view class="f26 cff3b5b fw7 tar">88.8元</view>-->
-        </view>
-      </view>
-    </navigator>
-  </block>
   <view class="bgfff br18">
     <view class="f36 c666 bd1 lh88 p030">线下教室</view>
-    <block wx:for="1234" wx:key="*95">
-      <view class="room p30 bd1">
+    <block wx:for="1234"
+           wx:for-index="oIndex"
+           wx:key="*95">
+      <view hover-class="none" url="../courseDetail/courseDetail?id=1&type=room" class="room p30 bd1">
         <view class="f28 cff3a5a room-left">
           <image class="br" src="{{ testImg }}"></image>
-          <navigator class="nav">查看</navigator>
+          <navigator url="../courseDetail/courseDetail?id=1&type=3" class="nav">查看</navigator>
         </view>
         <view class="room-right mt20">
           <view class="f34 c444 room-name fw7">艺悦纹绣</view>
@@ -59,11 +28,20 @@
             <text>8888人已经毕业</text>
             <text>1.5km</text>
           </view>
-          <view wx:for="12qwe3" wx:key="*74" class="room-tag nav">富力天域</view>
+          <view wx:for="12qwe3"
+                wx:key="*74"
+                class="room-tag nav">富力天域</view>
           <view class="room-img mt20">
-            <image wx:for="123412" wx:key="*45" class="br18" src="{{ testImg }}"></image>
+            <image data-oindex="{{ oIndex }}"
+                   data-index="{{ index }}"
+                   wx:for="123123123"
+                   wx:key="*45"
+                   class="br18 {{ canShowIndex == oIndex ? 'showHeight' : index > 2 ? 'hideHeight' : 'showHeight' }}"
+                   src="{{ testImg }}"></image>
           </view>
-          <view class="tac f28 c444">查看更多》</view>
+          <view data-index="{{ oIndex }}"
+                catchtap="showMore"
+                class="tac f28 c444">{{ canShowIndex == oIndex ? '' : '查看更多》' }}</view>
         </view>
       </view>
     </block>

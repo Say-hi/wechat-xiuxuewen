@@ -8,7 +8,7 @@
     "pages/showDetail/showDetail", // 作品秀详情
     "pages/show/show", // 作品秀
     "pages/release/release", // 发布作品&发布提问
-    "pages/courseDetail/courseDetail", // 课程详情
+    "pages/courseDetail/courseDetail", // 课程详情  传入值 type 对应规则 1 线上课程 2 线下课程 3 教室
     "pages/courseList/courseList", // 课程列表
     "pages/courseOffline/courseOffline", // 线下相关
     "pages/course/course" // 课程,,
@@ -103,7 +103,7 @@
   },
   "tabBar": {
     "color": "#999999",
-    "selectedColor": "#dab886",
+    "selectedColor": "#FF617B",
     "borderStyle": "white",
     "backgroundColor": "#fff",
     "list": [
@@ -111,25 +111,19 @@
         "text": "首页",
         "pagePath": "pages/index/index",
         "iconPath": "images/1.png",
-        "selectedIconPath": "images/1.png"
+        "selectedIconPath": "images/index_hl.png"
       },
-//      {
-//        "text": "点餐",
-//        "pagePath": "pages/menu/menu",
-//        "iconPath": "images/menu.png",
-//        "selectedIconPath": "images/menu_hl.png"
-//      },
       {
         "text": "线下教室",
         "pagePath": "pages/courseOffline/courseOffline",
-        "iconPath": "images/2.png",
+        "iconPath": "images/offline.png",
         "selectedIconPath": "images/2.png"
       },
       {
         "text": "我的",
         "pagePath": "pages/user/user",
-        "iconPath": "images/3.png",
-        "selectedIconPath": "images/3.png"
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user_hl.png"
       }
     ]
   },
