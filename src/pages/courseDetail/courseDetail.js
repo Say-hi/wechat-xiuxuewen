@@ -200,7 +200,7 @@ Page({
   },
 
   scrollOperation (e) {
-    if (this.data.options && this.data.options.type * 1  === 3) return
+    if (this.data.options && this.data.options.type * 1 === 3) return
     if (!CAN_CHANGE) return
     let s = e.detail.scrollTop
     let currentIndex = 0
@@ -297,7 +297,7 @@ Page({
     this.setData({
       options
     })
-    if (options.type * 1 === 2) {
+    if (options.type * 1 === 2 || options.type * 1 === 4) {
       this.data.videoTab[2].t = '作品秀'
       this.setData({
         videoTab: this.data.videoTab

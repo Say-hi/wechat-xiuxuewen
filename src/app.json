@@ -8,10 +8,10 @@
     "pages/showDetail/showDetail", // 作品秀详情
     "pages/show/show", // 作品秀
     "pages/release/release", // 发布作品&发布提问
-    "pages/courseDetail/courseDetail", // 课程详情  传入值 type 对应规则 1 线上课程 2 线下课程 3 教室
+    "pages/courseDetail/courseDetail", // 课程详情  传入值 type 对应规则 1 线上课程 2 线下课程 3 教室 4 驻店课程
     "pages/courseList/courseList", // 课程列表
     "pages/courseOffline/courseOffline", // 线下相关
-    "pages/course/course" // 课程,,
+    "pages/course/course" // 课程
     // Dont remove this comment
   ],
   "subPackages": [
@@ -70,10 +70,16 @@
       ]
     },
     {
-      "root": "offlinePage", // 线下课程
+      "root": "offlinePage", // 线下课程分包
       "pages": [
         "pagesnine/courseOffline/courseOffline", // 线下课程首页
         "pagesnine/offlineApply/offlineApply" // 线下课程报名信息填写页面
+      ]
+    },
+    {
+      "root": "collectPage", // 收藏分包
+      "pages": [
+        "pagesten/collect/collect" // 我的收藏&我的预约
       ]
     }
   ],

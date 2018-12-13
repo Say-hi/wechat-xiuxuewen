@@ -1,17 +1,19 @@
-<view class="f36 c333 lh60">问题与意见</view>
-<form bindsubmit="formSubmit">
-  <textarea name="content" placeholder="请输入您的反馈内容"></textarea>
-  <view class="f36 c333 lh60">联系方式(选填)</view>
-  <input name="contact" placeholder="微信/QQ/手机号"/>
-  <view class="up-img">
-    <view wx:for="{{ imgArr }}" wx:key="*11" class="u-i-w pr">
-      <text data-index="{{ index }}" catchtap="del" class="close jwq icon-guanbi br pa"></text>
-      <image catchtap="showImg" data-src="{{ item.url }}" mode="aspectFill" src="{{ item.url }}"></image>
-    </view>
-    <view catchtap="upImg" class="c999 up">+</view>
-  </view>
-  <button formType="submit" class="fabu cfff f36 lh80">提交</button>
-</form>
+
+<view class="p20">
+  <form bindsubmit="formSubmit">
+    <textarea class="br18 p30 bb bgfff" name="content" placeholder="请详细描述你遇到的问题或建议"></textarea>
+
+    <input class="br18 p30 mt20 bgfff" name="contact" placeholder="联系方式：手机号，微信号"/>
+    <!--<view class="up-img">-->
+    <!--<view wx:for="{{ imgArr }}" wx:key="*11" class="u-i-w pr">-->
+    <!--<text data-index="{{ index }}" catchtap="del" class="close jwq icon-guanbi br pa"></text>-->
+    <!--<image catchtap="showImg" data-src="{{ item.url }}" mode="aspectFill" src="{{ item.url }}"></image>-->
+    <!--</view>-->
+    <!--<view catchtap="upImg" class="c999 up">+</view>-->
+    <!--</view>-->
+    <button formType="submit" class="fabu cfff fw7 f34 lh80">提交</button>
+  </form>
+</view>
 <!--错误弹窗-->
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

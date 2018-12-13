@@ -1,0 +1,16 @@
+<view class="">
+  <view class="tab-top bgfff lh88 bd1">
+    <view wx:for="{{ videoTab }}"
+          wx:key="*7"
+          data-text="推荐{{index}}"
+          catchtap="chooseIndex"
+          data-id="s{{ index }}"
+          data-index="{{ index }}"
+          class="t-t-item f26 tac pr {{ currentIndex == index ? 'cff3b5b fw7' : 'c666' }}">
+      {{ item.t }}
+    </view>
+  </view>
+</view>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

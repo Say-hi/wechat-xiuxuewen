@@ -32,7 +32,7 @@
         catchtap="chooseIndex"
         data-id="s{{ index }}"
         data-index="{{ index }}"
-        class="t-t-item f26 tac pr {{ currentIndex == index ? 'cff3b5b' : 'c666' }} {{ options.type == 3 ? 'no-bottom-line' : '' }}">
+        class="t-t-item f26 tac pr {{ currentIndex == index ? 'cff3b5b fw7' : 'c666' }}">
     {{ item.t }}
   </view>
 </view>
@@ -103,20 +103,20 @@
         <view class="f36 c3a3a3a shop-info mt20 fw7">
           <image class="br" src="{{ poster }}"></image>
           <view class="shop-name flex1">
-            <text>艺苑纹绣 <text class="f26 c999 keep">距离您所在位置1.5km</text></text>
-            <navigator wx:if="{{ options.type == 2 }}" class="cff3b5b f26">进入教室</navigator>
+            <text>艺苑纹绣 <text wx:if="{{ options.type == 3 }}" class="f26 c999 keep">距离您所在位置1.5km</text></text>
+            <navigator wx:if="{{ options.type == 2 || options.type == 4 }}" class="cff3b5b f26">进入教室</navigator>
           </view>
         </view>
         <view class="f28 c444 mt20">
           店铺地址：广州市海珠区富力天域大厦B栋2308
         </view>
-        <view wx:if="{{ options.type != 2 }}" class="tar mt20">
+        <view wx:if="{{ options.type == 1 || options.type == 3 }}" class="tar mt20">
           <navigator wx:if="{{ options.type != 3 }}" class="f26 cfff go-room">进入教室</navigator>
           <view catchtap="goMapPoint" data-name="123" data-address="asdfasdfasdf" data-latitude="{{ latitude }}" data-longitude="{{ longitude }}" wx:else class="f26 cfff go-room">导航</view>
         </view>
       </view>
       <!--报名说明-->
-      <view id="check_3" wx:if="{{ options.type == 2 }}" class="need-check course-list bgfff br18 p30 mt20">
+      <view id="check_3" wx:if="{{ options.type == 4 }}" class="need-check course-list bgfff br18 p30 mt20">
         <view class="f36 fw7 c444">报名费说明</view>
 
         <view class="f28 c666 mt20">
@@ -124,20 +124,7 @@
         </view>
       </view>
 
-      <view id="s2" class="zw20 need-check"></view>
-      <!--往期学员作品绣-->
-      <view id="check_4" wx:if="{{ options.type == 2 }}" class="need-check course-list bgfff br18 p30">
-        <view class="f36 fw7 c444">往期学员作品绣</view>
-
-        <view class="f28 c666 mt20 show-img-wrap">
-          <image wx:for="1134"
-                 wx:key="*213"
-                 class="br18 show-img"
-                 catchtap="showImg"
-                 data-src="{{ poster }}"
-                 src="{{ poster }}"></image>
-        </view>
-      </view>
+      <view wx:if="{{ options.type != 4 }}" id="s2" class="zw20 need-check"></view>
       <!--评论区域-->
       <view id="check_5" wx:if="{{ options.type == 1 }}" class="need-check course-comment bgfff br10 p30">
         <view class="f36 fw7 c3a3a3a">评价</view>
@@ -253,9 +240,9 @@
           </view>
         </view>
       </view>
-
-      <view class="bgfff br18 f28 c666 p30 introduce">
-        <view class="f36 c444 fw7">教室介绍</view>
+      <!--教室介绍-->
+      <view wx:if="{{ options.type == 3 || options.type == 4 }}" class="bgfff br18 f28 {{ options.type == 3 ? '' : 'mt20' }} need-check c666 p30 introduce">
+        <view class="f36 c444 fw7">{{ options.type == 4 ? '教室环境' : '教室介绍' }}</view>
         <view class="mt20">报名费用于预定到店名额，一天只有10个名额，先到先的</view>
         <image class="mt20"
                wx:for="123"
@@ -264,8 +251,8 @@
                mode="widthFix"
                src="{{ poster }}"></image>
       </view>
-
-      <view class="bgfff br18 f28 c666 p30 mt20 introduce">
+      <!--老师风采-->
+      <view wx:if="{{ options.type == 3 }}" class="bgfff br18 f28 c666 p30 mt20 introduce">
         <view class="f36 c444 fw7">老师风采</view>
         <image class="mt20"
                lazy-load="{{true}}"
@@ -274,15 +261,30 @@
                mode="widthFix"
                src="{{ poster }}"></image>
       </view>
-      
+      <view wx:if="{{ options.type == 4 }}" id="s2" class="zw20 need-check"></view>
+      <!--往期学员作品绣-->
+      <view id="check_4" wx:if="{{ options.type == 2 || options.type == 4 }}" class="need-check course-list bgfff br18 p30 {{ (options.type == 2 || options.type == 4) ? '' : 'mt20' }}">
+        <view class="f36 fw7 c444">往期学员作品绣</view>
+
+        <view class="f28 c666 mt20 show-img-wrap">
+          <image wx:for="1134"
+                 wx:key="*213"
+                 class="br18 show-img"
+                 catchtap="showImg"
+                 data-src="{{ poster }}"
+                 src="{{ poster }}"></image>
+        </view>
+      </view>
     </view>
     <view wx:if="{{ options.type != 3 }}" class="zw"></view>
     <view wx:if="{{ options.type != 3 }}" hidden="{{ needSmall }}" class="zw"></view>
   </view>
-  <view hidden="{{ options.type == 3 && (currentIndex == 0 || currentIndex == 3) }}">
-    <view class="p20">
+
+  <view wx:if="{{ options.type == 3 }}">
+    <view hidden="{{ options.type == 3 && (currentIndex == 0 || currentIndex == 3) }}">
+      <view class="p20">
         <navigator hover-class="none"
-                   url="/pages/courseDetail/courseDetail?id=1&type=2"
+                   url="/pages/courseDetail/courseDetail?id=1&type={{ currentIndex == 1 ? 2 : 4 }}"
                    class="hot-wrap other bgfff br18"
                    wx:for="123123123123"
                    wx:key="*365">
@@ -295,11 +297,28 @@
             </view>
           </view>
         </navigator>
+      </view>
+    </view>
+    <!--教室详情图集-->
+    <view hidden="{{ options.type == 3 && currentIndex != 3 }}"
+          class="p20">
+      <view class="need-check course-list bgfff br18 p30">
+        <view class="f36 fw7 c444">往期学员作品绣</view>
+        <view class="f28 c666 mt20 show-img-wrap">
+          <image wx:for="1134"
+                 wx:key="*213"
+                 class="br18 show-img"
+                 catchtap="showImg"
+                 data-src="{{ poster }}"
+                 src="{{ poster }}"></image>
+        </view>
+      </view>
     </view>
   </view>
+
 </scroll-view>
 
-<view hidden="{{ options.type == 3 && (currentIndex == 0 || currentIndex == 3) }}"
+<view hidden="{{ options.type == 3 ? options.type == 3 && (currentIndex == 0 || currentIndex == 3) : true }}"
       class="f28 cfff tips">秀秀1小时前预定圆三针手</view>
 <!--评论弹窗窗口-->
 <view catchtap="showMore"

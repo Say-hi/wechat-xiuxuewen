@@ -20,12 +20,13 @@ Page({
       {
         t: '我的预约',
         src: app.data.testImg,
-        url: '/practicePage/pagestwo/practice/practice'
+        url: '/collectPage/pagesten/collect/collect?type=1'
       },
       {
         t: '收藏',
         src: app.data.testImg,
-        url: '../nearlearn/nearlearn?type=我的收藏'
+        url: '/collectPage/pagesten/collect/collect?type=2'
+        // url: '../nearlearn/nearlearn?type=我的收藏'
       },
       {
         t: '意见反馈',

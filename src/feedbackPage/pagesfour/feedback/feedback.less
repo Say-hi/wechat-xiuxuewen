@@ -1,25 +1,18 @@
 @import "../../../common/variable";
-page {
-  background-color: #fff;
-  box-sizing: border-box;
-  padding: 40rpx;
-}
 textarea {
-  margin-top: 20rpx;
   width: 100%;
   box-sizing: border-box;
   border-radius: 10rpx;
   //border: 1rpx solid #bfbfbf;
   padding: 10rpx;
-  background-color: #f6f6f6;
   font-size: 28rpx;
 }
 
 input {
-  border-radius: 10rpx;
-  font-size: 28rpx;
-  margin: 20rpx 0;
-  padding: 10rpx;
+  font-size: 26rpx;
+  //margin: 20rpx 0;
+  //padding: 10rpx;
+  line-height: inherit;
   background-color: #f6f6f6;
 }
 
@@ -57,6 +50,12 @@ input {
 
 .fabu {
   margin-top: 20rpx;
-  background-color: #333;
-  color: @mainTextColor;
+  position: fixed;
+  bottom: 200rpx;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #FF3B5B;
+  box-shadow: 0rpx 10rpx 10rpx 6rpx rgba(255, 228, 232, 0.8);
+  width: 80%;
+  border-radius: 80rpx;
 }
