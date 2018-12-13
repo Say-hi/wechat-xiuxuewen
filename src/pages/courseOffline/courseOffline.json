@@ -1,0 +1,6 @@
+// Window configuration
+{
+  // 导航栏标题文字内容
+  "navigationBarTitleText": "线下手把手教学",
+  "enablePullDownRefresh": false
+}

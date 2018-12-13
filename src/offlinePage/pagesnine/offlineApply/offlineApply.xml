@@ -1,7 +1,7 @@
 <view class="tab-top bgfff lh88 bt1 bd1">
   <view wx:for="{{ videoTab }}"
         wx:key="*72"
-        class="t-t-item tac {{ 1 == index ? 'cff3b5b fw7 f34' : 2 == index ? 'f30 c666' : 'fw7 c444 f34' }}">
+        class="t-t-item tac {{ 1 == index ? 'cff3b5b fw7 f34' : 2 == index ? 'f30 c9a9a9a' : 'fw7 c9a9a9a f34' }}">
     {{ item.t }}
   </view>
 </view>
@@ -66,7 +66,7 @@
         <input bindinput="inputValue" data-type="number" />
       </view>
 
-      <view class="user-input">
+      <view class="user-input iconfont icon-daosanjiao">
         <view class="f28 c444 fw7">到店时间</view>
         <picker
                 mode="date"
@@ -124,9 +124,17 @@
                src="{{ testImg }}"></image>
       </view>
 
-      <view class="c444 f28 fw7 learn-time">
-        <view>预期学多久</view>
-
+      <view class="user-input iconfont icon-daosanjiao">
+        <picker
+                mode="selector"
+                range="{{ expectedArr }}"
+                value="{{ expectedIndex }}"
+                data-type="expected"
+                class="ml0 flex1"
+                bindchange="userChoose"
+        >
+          <view class="f28 c444 fw7">预期学多久　{{ expectedArr[expectedIndex] }}</view>
+        </picker>
       </view>
 
       <view class="user-input f28 cff3a5a tac mt60">

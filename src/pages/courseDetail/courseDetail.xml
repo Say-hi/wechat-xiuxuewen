@@ -108,7 +108,7 @@
       <view class="f28 c444 mt20">
         店铺地址：广州市海珠区富力天域大厦B栋2308
       </view>
-      <view class="tar mt20">
+      <view wx:if="{{ options.type != 'offline' }}" class="tar mt20">
         <navigator class="f26 cfff go-room">进入教室</navigator>
       </view>
     </view>

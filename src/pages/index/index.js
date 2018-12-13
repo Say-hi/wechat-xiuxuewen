@@ -25,7 +25,7 @@ Page({
       {
         title: '线下学习',
         type: 'navigate',
-        path: '../course/course'
+        path: '/offlinePage/pagesnine/courseOffline/courseOffline'
       },
       {
         title: '问答',

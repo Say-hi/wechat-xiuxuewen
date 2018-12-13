@@ -10,6 +10,23 @@ page {
   align-items: center;
   justify-content: space-around;
   height: 7%;
+  .t-t-item {
+    position: relative;
+    &:after {
+      content: '>';
+      color: #9a9a9a;
+      font-size: 40rpx;
+      position: absolute;
+      top: 50%;
+      right: -60rpx;
+      transform: translate(0, -50%);
+    }
+    &:nth-last-child(1) {
+      &:after {
+        content: '';
+      }
+    }
+  }
 }
 
 swiper {
@@ -55,6 +72,18 @@ swiper {
     flex: 1;
     line-height: inherit;
     padding-left: 20rpx;
+  }
+}
+
+.icon-daosanjiao {
+  position: relative;
+  &:before{
+    position: absolute;
+    top: 50%;
+    right: 30rpx;
+    transform: translate(0, -50%);
+    font-size: 24rpx;
+    color: #d8d8d8;
   }
 }
 

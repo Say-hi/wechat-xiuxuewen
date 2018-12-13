@@ -8,7 +8,7 @@ Page({
    */
   data: {
     testImg: app.data.testImg,
-    swiperIndex: 0,
+    swiperIndex: 2,
     videoTab: [
       {
         t: '缴纳报名费'
@@ -23,7 +23,8 @@ Page({
     date: app.momentFormat(new Date(), 'YYYY-MM-DD'),
     amArr: ['上午', '下午'],
     amIndex: 0,
-    title: 'offlineApply'
+    expectedArr: ['一天', '两天', '三天', '四天', '五天', '一个星期'],
+    expectedIndex: 0
   },
   // 轮播切换
   swiperChange (e) {
@@ -37,19 +38,12 @@ Page({
       swiperIndex: this.data.swiperIndex
     })
   },
-  // 选择日期
-  bindDateChange (e) {
-    if (e.currentTarget.dataset.type === 'am') {
-      this.setData({
-        amIndex: e.detail.value
-      })
-    } else {
-      this.setData({
-        date: e.detail.value
-      })
-    }
+  nextTick (e) {
+    this.setData({
+      swiperIndex: e.currentTarget.dataset.index
+    })
   },
-
+  // 用户选择
   userChoose (e) {
     if (e.currentTarget.dataset.type === 'am') {
       this.setData({
@@ -58,6 +52,10 @@ Page({
     } else if (e.currentTarget.dataset.type === 'time') {
       this.setData({
         date: e.detail.value
+      })
+    } else if (e.currentTarget.dataset.type === 'expected') {
+      this.setData({
+        expectedIndex: e.detail.value
       })
     } else if (e.currentTarget.dataset.type === 'gender') {
       this.setData({
@@ -76,8 +74,6 @@ Page({
         learnIndex: e.currentTarget.dataset.index
       })
     }
-
-
   },
   /**
    * 生命周期函数--监听页面加载

@@ -1,5 +1,5 @@
 
-<view class="top-address bgfff bt1">
+<view class="top-address bgfff bt1 bd1">
     <button open-type="{{ openType }}" bindopensetting="open_site" catchtap="{{ !openType ? 'choose_site' : '' }}" class="fw7 f28 address">
         <view class="iconfont icon-dizhi f28">{{ openType == 'openSetting' ? '请您授权获位置信息(点击此处授权)' : (addressInfo.originalData.result.addressComponent.city || '获取数据中...') }} {{ addressInfo.originalData.result.addressComponent.district || '' }} </view>
         <!--<image class="weahter-img" mode="widthFix" src="{{ weatherPic }}"></image>-->
@@ -9,6 +9,8 @@
         <input placeholder-class="cababab" disabled="{{true}}" class="c393636 lh54 f26 search-input"  placeholder="输入你想问的问题"/>
     </navigator>
 </view>
+
+<view class="zw100"></view>
 
 <swiper hidden="{{ indexData.slide.length == 0 }}"
         autoplay
@@ -97,9 +99,9 @@
     <view class="tac f24 c999 lh80">已经到底部啦</view>
 </view>
 
-<view class="zw"></view>
+<!--<view class="zw"></view>-->
 <my-login></my-login>
-<my-navigator-tab prop-nav="{{ tabArr2 }}"></my-navigator-tab>
+<!--<my-navigator-tab prop-nav="{{ tabArr2 }}"></my-navigator-tab>-->
 <my-tip bindds="ds" mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
 <!--错误弹窗-->
 <import src="../template/template"></import>
