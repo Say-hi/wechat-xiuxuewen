@@ -1,4 +1,3 @@
-<my-top-tab></my-top-tab>
 <!--顶部视频区域-->
 <view style="height: {{ needSmall ? 7 : 30 }}%;" class="video-area">
   <view wx:if="{{ !play }}" class="video-poster-img pr">
