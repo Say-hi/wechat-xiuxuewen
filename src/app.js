@@ -3,6 +3,10 @@
 /*eslint-disable*/
 const useUrl = require('./utils/service')
 const wxParse = require('./wxParse/wxParse')
+
+const statusBarHeight = wx.getSystemInfoSync().statusBarHeight
+const HEIGHT = (wx.getSystemInfoSync().screenHeight - wx.getSystemInfoSync().windowHeight)
+
 const zanType = {
   'video': 3,
   'answer': 2,
@@ -61,6 +65,9 @@ Moment.locale('en', {
 // moment.locale('zh-cn')
 App({
   data: {
+    statusBarHeight,
+    HEIGHT,
+    ALL_HEIGHT: statusBarHeight + HEIGHT,
     name: '脑籽知识商城',
     baseDomain: 'https://rtx.24sky.cn',
     // baseDomain: 'https://www.1688rm.com',

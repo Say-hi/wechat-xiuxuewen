@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    ALL_HEIGHT: app.data.ALL_HEIGHT,
     testImg: 'https://c.jiangwenqiang.com/api/logo.jpg',
     page: 0,
     imgDomain: app.data.imgDomain,

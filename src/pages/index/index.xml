@@ -1,5 +1,5 @@
-
-<view class="top-address bgfff bt1 bd1">
+<my-top-tab></my-top-tab>
+<view class="top-address bgfff bt1 bd1" style="top: {{ ALL_HEIGHT }}px;">
     <button open-type="{{ openType }}" bindopensetting="open_site" catchtap="{{ !openType ? 'choose_site' : '' }}" class="fw7 f28 address">
         <view class="iconfont icon-dizhi f28">{{ openType == 'openSetting' ? '请您授权获位置信息(点击此处授权)' : (addressInfo.originalData.result.addressComponent.city || '获取数据中...') }} {{ addressInfo.originalData.result.addressComponent.district || '' }} </view>
         <!--<image class="weahter-img" mode="widthFix" src="{{ weatherPic }}"></image>-->
@@ -10,7 +10,7 @@
     </navigator>
 </view>
 
-<view class="zw100"></view>
+<view class="zw90"></view>
 
 <swiper hidden="{{ indexData.slide.length == 0 }}"
         autoplay

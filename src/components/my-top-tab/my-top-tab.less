@@ -1,0 +1,32 @@
+.top-tab {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #f00;
+  .pr {
+    position: relative;
+  }
+  .top-tab-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    transform: translate(-50%, -50%);
+  }
+  .top-tab-left {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    color: #fff;
+    transform: translate(0, -50%);
+    display: flex;
+    align-items: center;
+    padding-left: 20rpx;
+    font-size: 26rpx;
+    view {
+      margin-right: 20rpx;
+    }
+  }
+}
