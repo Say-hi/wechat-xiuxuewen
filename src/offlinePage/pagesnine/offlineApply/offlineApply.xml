@@ -14,8 +14,8 @@
         <image lazy-load="{{true}}" mode="widthFix" src="/images/add_address1.png"></image>
         <view wx:if="{{ addressInfo }}" class="address-s f26 c3a3a3a">
           <view class="a-s-t">
-            <text class="iconfont icon-dizhi">收货人: {{ addressInfo.userName }}</text>
-            <text>{{ addressInfo.telNumber }}</text>
+            <text class="iconfont icon-dizhi f26">收货人: {{ addressInfo.userName }}</text>
+            <text class="f26">{{ addressInfo.telNumber }}</text>
           </view>
           <view class="ell2">
             收货地址: {{ addressInfo.provinceName }}{{ addressInfo.cityName }}{{ addressInfo.countyName }}{{ addressInfo.detailInfo }}
@@ -153,7 +153,7 @@
     </view>
   </swiper-item>
   <swiper-item class="s-i-3 p20 bb">
-    <view class="br18 bgfff">
+    <view class="br18 bgfff goods">
       <view hidden="{{ baseIndex == 1 }}" class="choose-gender">
         <view wx:for='12'
               wx:key="*this"
