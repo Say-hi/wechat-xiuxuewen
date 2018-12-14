@@ -27,23 +27,24 @@
 <view class="p20">
   <view class="container br10 hot">
     <block wx:for="123" wx:key="*71">
-      <view class="f30 c3a3a3a tac lh60">10月20日 17:28</view>
-      <view class="bgfff br20 other">
+      <view class="f22 c3a3a3a tac lh60">10月20日 17:28</view>
+      <view class="bgfff br18 other p30">
         <view class="f26 c666 order-num">
           <view>订单编号：16686868</view>
-          <view class="main-text-color">交易成功</view>
+          <view class="fw7 cf7546f">交易成功</view>
         </view>
         <navigator hover-class="none" url="/pages/courseDetail/courseDetail?id=1&free=1" class="mt20 hot-wrap">
-          <image class="h-w-left br10" mode="aspectFill" src="{{ testImg }}"></image>
+          <image class="h-w-left br8" mode="aspectFill" src="{{ testImg }}"></image>
           <view class="h-w-right">
             <view>
               <view class="ell1 f32 fw7 c393636">圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操</view>
-              <view wx:for="123" wx:key="*4" class="f20 br10 cb670f7 ell2 tag">纹眉</view>
+              <!--<view wx:for="123" wx:key="*4" class="f20 br10 cb670f7 ell2 tag">纹眉</view>-->
             </view>
-            <view class="h-w-r-bottom f20 c999 mt10">
+            <view class="h-w-r-bottom f26 c999 mt10">
               <!--<view>{{ index * 18888 + 1 }}人已学习</view>-->
-              <view class="tac">11节课</view>
-              <view class="f26 cff3b5b fw7 tar">88.8元</view>
+              <image class="br"
+                     src="{{ testImg }}"></image>
+              <view>门店名称</view>
             </view>
           </view>
         </navigator>

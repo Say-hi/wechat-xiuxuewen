@@ -103,20 +103,36 @@
         <view class="f36 c3a3a3a shop-info mt20 fw7">
           <image class="br" src="{{ poster }}"></image>
           <view class="shop-name flex1">
-            <text>艺苑纹绣 <text wx:if="{{ options.type == 3 }}" class="f26 c999 keep">距离您所在位置1.5km</text></text>
-            <navigator wx:if="{{ options.type == 2 || options.type == 4 }}" class="cff3b5b f26">进入教室</navigator>
+            <text>艺苑纹绣 <text wx:if="{{ options.type == 3 }}"
+                             class="f26 c999 keep">距离您所在位置1.5km</text></text>
+            <navigator wx:if="{{ options.type == 2 || options.type == 4 }}"
+                       open-type="redirect"
+                       url="./courseDetail?id=1&type=3"
+                       class="cff3b5b f26">进入教室</navigator>
           </view>
         </view>
         <view class="f28 c444 mt20">
           店铺地址：广州市海珠区富力天域大厦B栋2308
         </view>
-        <view wx:if="{{ options.type == 1 || options.type == 3 }}" class="tar mt20">
-          <navigator wx:if="{{ options.type != 3 }}" class="f26 cfff go-room">进入教室</navigator>
-          <view catchtap="goMapPoint" data-name="123" data-address="asdfasdfasdf" data-latitude="{{ latitude }}" data-longitude="{{ longitude }}" wx:else class="f26 cfff go-room">导航</view>
+        <view wx:if="{{ options.type == 1 || options.type == 3 }}"
+              class="tar mt20">
+          <navigator open-type="redirect"
+                     url="./courseDetail?id=1&type=3"
+                     wx:if="{{ options.type != 3 }}"
+                     class="f26 cfff go-room">进入教室</navigator>
+          <view catchtap="goMapPoint"
+                data-name="123"
+                data-address="asdfasdfasdf"
+                data-latitude="{{ latitude }}"
+                data-longitude="{{ longitude }}"
+                wx:else
+                class="f26 cfff go-room">导航</view>
         </view>
       </view>
       <!--报名说明-->
-      <view id="check_3" wx:if="{{ options.type == 4 }}" class="need-check course-list bgfff br18 p30 mt20">
+      <view id="check_3"
+            wx:if="{{ options.type == 4 }}"
+            class="need-check course-list bgfff br18 p30 mt20">
         <view class="f36 fw7 c444">报名费说明</view>
 
         <view class="f28 c666 mt20">
@@ -124,9 +140,13 @@
         </view>
       </view>
 
-      <view wx:if="{{ options.type != 4 }}" id="s2" class="zw20 need-check"></view>
+      <view wx:if="{{ options.type != 4 }}"
+            id="s2"
+            class="zw20 need-check"></view>
       <!--评论区域-->
-      <view id="check_5" wx:if="{{ options.type == 1 }}" class="need-check course-comment bgfff br10 p30">
+      <view id="check_5"
+            wx:if="{{ options.type == 1 }}"
+            class="need-check course-comment bgfff br10 p30">
         <view class="f36 fw7 c3a3a3a">评价</view>
         <view class="c-c-score">
           <view class="c-c-s-left">
@@ -146,7 +166,8 @@
           </view>
 
         </view>
-        <view class="video-level mt30 p30 br18" wx:if="{{ !starOperation }}">
+        <view class="video-level mt30 p30 br18"
+              wx:if="{{ !starOperation }}">
           <!--<view class="f26 cababab">课程难度</view>-->
           <!--<view class="v-l-lev f24 c444 mt20">-->
           <!--<view wx:for="123"-->
@@ -241,7 +262,8 @@
         </view>
       </view>
       <!--教室介绍-->
-      <view wx:if="{{ options.type == 3 || options.type == 4 }}" class="bgfff br18 f28 {{ options.type == 3 ? '' : 'mt20' }} need-check c666 p30 introduce">
+      <view wx:if="{{ options.type == 3 || options.type == 4 }}"
+            class="bgfff br18 f28 {{ options.type == 3 ? '' : 'mt20' }} need-check c666 p30 introduce">
         <view class="f36 c444 fw7">{{ options.type == 4 ? '教室环境' : '教室介绍' }}</view>
         <view class="mt20">报名费用于预定到店名额，一天只有10个名额，先到先的</view>
         <image class="mt20"
@@ -284,6 +306,7 @@
     <view hidden="{{ options.type == 3 && (currentIndex == 0 || currentIndex == 3) }}">
       <view class="p20">
         <navigator hover-class="none"
+                   open-type="redirect"
                    url="/pages/courseDetail/courseDetail?id=1&type={{ currentIndex == 1 ? 2 : 4 }}"
                    class="hot-wrap other bgfff br18"
                    wx:for="123123123123"

@@ -7,6 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    testImg: 'https://c.jiangwenqiang.com/api/logo.jpg',
+    latitude: 23.111123,
+    longitude: 113.123432,
     currentIndex: 0,
     poster: app.data.testImg,
     videoTab: [
@@ -21,6 +24,18 @@ Page({
       }
     ]
   },
+  showMore (e) {
+    this.setData({
+      canShowIndex: e.currentTarget.dataset.index
+    })
+  },
+  goMapPoint (e) {
+    console.log(e.currentTarget.dataset)
+    wx.openLocation({
+      scale: 10,
+      ...(e.currentTarget.dataset)
+    })
+  },
   chooseIndex (e) {
     this.setData({
       currentIndex: e.currentTarget.dataset.index
@@ -33,6 +48,24 @@ Page({
     this.setData({
       options
     })
+    if (options.type >= 2) {
+      this.setData({
+        videoTab: [
+          {
+            t: '教学视频'
+          },
+          {
+            t: '教室'
+          },
+          {
+            t: '线下课程'
+          },
+          {
+            t: '问答'
+          }
+        ]
+      })
+    }
     app.setBar(options.type == 1 ? '我的预约' : '收藏')
     // TODO: onLoad
   },

@@ -1,6 +1,11 @@
 @import "../../../common/variable";
 
 .tab-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -32,7 +37,7 @@
 .hot-wrap {
   display: flex;
   align-items: center;
-  margin-bottom: 20rpx;
+  //margin-bottom: 20rpx;
   min-height: 202rpx;
   //border: 2rpx solid #2c332d;
   .h-w-left {
@@ -74,9 +79,6 @@
   .h-w-r-bottom {
     display: flex;
     align-items: center;
-    view {
-      margin-right: 10rpx;
-    }
   }
 
   .shop {
@@ -110,4 +112,113 @@
 
 .other {
   padding-right: 30rpx;
+}
+
+.go-shop {
+  padding: 14rpx 30rpx;
+  background-color: #ff3b5b;
+  border-radius: 50rpx;
+  display: inline-block;
+}
+
+.video {
+  .hot-wrap {
+    min-height: 142rpx;
+  }
+  .h-w-left {
+    height: 142rpx !important;
+  }
+}
+
+.room-wrap {
+  .room {
+    display: flex;
+    .room-left {
+      display: flex;
+      flex-direction: column;
+      margin-right: 20rpx;
+      image {
+        width: 100rpx;
+        height: 100rpx;
+      }
+    }
+    .room-right {
+      flex: 1;
+      .room-people {
+        display: flex;
+        justify-content: space-between;
+      }
+      .room-img {
+        image {
+          transition: all 0.5s;
+          width: 170rpx;
+          padding: 0;
+          height: 170rpx;
+          margin: 5rpx 5rpx 0 0;
+        }
+        .hideHeight {
+          height: 0;
+          margin: 0;
+          width: 0;
+        }
+      }
+    }
+    .nav {
+      margin-top: 20rpx;
+      padding: 6rpx 24rpx;
+      border: 2rpx solid #ff3a5a;
+      border-radius: 50rpx;
+      display: inline-block;
+      font-size: 28rpx;
+    }
+    .room-tag {
+      color: #444;
+      border-color: #444;
+      margin-right: 20rpx;
+      padding: 6rpx 18rpx;
+    }
+  }
+}
+
+.answer {
+  .answer-img {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    image {
+      width: 120rpx;
+      height: 120rpx;
+      margin: 10rpx;
+      margin-left: 0;
+      margin-right: 20rpx;
+      border-radius: 18rpx;
+    }
+  }
+
+  .h-i-user {
+    display: flex;
+    align-items: center;
+    .user-img {
+      width: 40rpx;
+      height: 40rpx;
+      margin-right: 10rpx;
+    }
+    .user-operation {
+      flex: 1;
+      text-align: right;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      .iconfont {
+        //margin-right: 20rpx;
+        font-size: 20rpx;
+        display: flex;
+        align-items: center;
+        &:before {
+          font-size: 26rpx;
+          margin-right: 10rpx;
+        }
+      }
+    }
+  }
 }
