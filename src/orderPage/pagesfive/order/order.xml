@@ -5,24 +5,24 @@
           catchtap="chooseIndex"
           data-index="{{ index }}"
           data-type="top"
-          class="t-t-item f26 tac pr {{ currentIndex == index ? 'cff3b5b' : 'c666' }}">
+          class="t-t-item f30 tac pr {{ currentIndex == index ? 'cff3b5b fw7' : 'c666' }}">
       {{ item.t }}
     </view>
   </view>
 
-  <view hidden="{{ currentIndex != 2 }}" class="tab-top bgfff lh88 bt1 bd1">
-    <view wx:for="{{ teamOrder }}"
-          wx:key="*71"
-          catchtap="chooseIndex"
-          data-type="team"
-          data-index="{{ index }}"
-          class="t-t-item f26 tac pr {{ currentIndexTwo == index ? 'cff3b5b' : 'c666' }}">
-      {{ item }}
-    </view>
-  </view>
+  <!--<view hidden="{{ currentIndex != 2 }}" class="tab-top bgfff lh88 bt1 bd1">-->
+    <!--<view wx:for="{{ teamOrder }}"-->
+          <!--wx:key="*71"-->
+          <!--catchtap="chooseIndex"-->
+          <!--data-type="team"-->
+          <!--data-index="{{ index }}"-->
+          <!--class="t-t-item f26 tac pr {{ currentIndexTwo == index ? 'cff3b5b' : 'c666' }}">-->
+      <!--{{ item }}-->
+    <!--</view>-->
+  <!--</view>-->
 </view>
 
-<view class="{{ currentIndex == 2 ? 'zw200' : 'zw90' }}"></view>
+<view class="zw90"></view>
 
 <view class="p20">
   <view class="container br10 hot">
@@ -31,14 +31,14 @@
       <view class="bgfff br18 other p30">
         <view class="f26 c666 order-num">
           <view>订单编号：16686868</view>
-          <view class="fw7 cf7546f">交易成功</view>
+          <view class="fw7 cf7546f">{{ currentIndex == 2 ? '交易成功' : currentIndex == 1 ? '等待卖家发货' : '等待买家付款' }}</view>
         </view>
         <navigator hover-class="none" url="/pages/courseDetail/courseDetail?id=1&free=1" class="mt20 hot-wrap">
           <image class="h-w-left br8" mode="aspectFill" src="{{ testImg }}"></image>
           <view class="h-w-right">
-            <view>
-              <view class="ell1 f32 fw7 c393636">圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操</view>
-              <!--<view wx:for="123" wx:key="*4" class="f20 br10 cb670f7 ell2 tag">纹眉</view>-->
+            <view class="f32 fw7 c393636 name-money">
+              <view class="ell2 flex1">圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操</view>
+              <view class="f26">¥200</view>
             </view>
             <view class="h-w-r-bottom f26 c999 mt10">
               <!--<view>{{ index * 18888 + 1 }}人已学习</view>-->
@@ -48,10 +48,14 @@
             </view>
           </view>
         </navigator>
+        <view class="f26 c393636 tar mt30">共计一种商品　<text class="cf7546f">合计：20元</text></view>
         <view class="order-operation f26 mt20">
-          <view class="c444 cancel">取消订单</view>
-          <view class="cfff pay">立即付款</view>
-          <view class="c444 del">删除订单</view>
+          <!--<view >咨询</view>-->
+          <button open-type="contact" hidden="{{ currentIndex >= 2 }}" class="c444 cancel">咨询</button>
+          <view hidden="{{ currentIndex >= 1 }}" class="c444 cancel">取消订单</view>
+          <view hidden="{{ currentIndex >= 1 }}" class="cfff pay fw7">去付款</view>
+          <view hidden="{{ currentIndex != 1 }}" class="cfff pay fw7">待发货</view>
+          <view hidden="{{ currentIndex <= 1 }}" class="c444 cancel">删除订单</view>
         </view>
       </view>
     </block>
