@@ -1,6 +1,6 @@
 <!--<view class="login-mask" wx:if="{{ show }}">-->
     <!--<button class="login-btn" open-type="getUserInfo" bindgetuserinfo="MaskGetUserInfo">-->
-        <!--<image class="login-bg" src="{{ login_bg }}"></image>-->
+        <!--<image lazy-load="{{true}}" class="login-bg" src="{{ login_bg }}"></image>-->
         <!--<view class="login-box">-->
             <!--<view class="login-tt">-->
                 <!--请您授权该小程序获取您的信息,点击此处进行授权-->

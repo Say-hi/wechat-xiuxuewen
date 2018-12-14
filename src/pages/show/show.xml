@@ -19,7 +19,7 @@
         catchtap="{{ index >= number.length - 1 ? 'getmore' : '' }}"
         wx:key="*26">
     <view class="show-img">
-      <image wx:for="12"
+      <image lazy-load="{{true}}" wx:for="12"
              wx:key="*25"
              mode="widthFix"
              src="{{ testImg }}"></image>
@@ -32,7 +32,7 @@
         </view>
       </view>
       <view class="h-i-user mt20">
-        <image class="user-img br" src="{{ testImg }}"></image>
+        <image lazy-load="{{true}}" class="user-img br" src="{{ testImg }}"></image>
         <view class="user-name f26 cababab">绣绣学纹眉</view>
       </view>
       <view class="mt20 f20 c999 ell2">

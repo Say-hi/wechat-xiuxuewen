@@ -1,7 +1,7 @@
 <view class="info br10 bgfff p20">
       <view class="user-info pr">
         <navigator hover-class="none" url="../showXiu/showXiu?id=user_id">
-          <image class="br user-img" src="{{ testImg }}"></image>
+          <image lazy-load="{{true}}" class="br user-img" src="{{ testImg }}"></image>
         </navigator>
         <navigator hover-class="none" url="../showXiu/showXiu?id=user_id" class="user-name">
           <view class="f26 c3a3a3a">绣绣学纹绣</view>
@@ -21,7 +21,7 @@
   </view>
 
   <view class="user-up-img mt20">
-    <image mode="widthFix" src="{{ testImg }}"></image>
+    <image lazy-load="{{true}}" mode="widthFix" src="{{ testImg }}"></image>
   </view>
 
   <view class="f20 c999 user-operation mt20">
@@ -38,7 +38,7 @@
         wx:key="*31"
         class="comment-item mt20">
     <navigator url="../showXiu/showXiu?id=user_id" hover-class="none">
-      <image class="br c-i-left" src="{{ testImg }}"></image>
+      <image lazy-load="{{true}}" class="br c-i-left" src="{{ testImg }}"></image>
     </navigator>
     <view class="c-i-right">
       <navigator url="../showXiu/showXiu?id=user_id" hover-class="none" class="c-i-r-user">

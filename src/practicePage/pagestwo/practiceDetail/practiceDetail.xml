@@ -9,7 +9,7 @@
     <view class="tac f20 c3a3a3a lh60">2018年10月28日 09:38:26</view>
     <view class="shicao-reply pr">
       <view class="s-r-c-user {{ index % 2 == 0 ? 'left0' : 'right0' }} pa">
-        <image class="br" src="{{ testImg }}"></image>
+        <image lazy-load="{{true}}" class="br" src="{{ testImg }}"></image>
       </view>
 
       <view class="s-r-center">
@@ -25,7 +25,7 @@
             老师是否需要给学员打分
           </view>
           <view wx:if="{{ index <= 0 }}" class="ask-img">
-            <image wx:for="1231234" wx:key="*32" mode="aspectFill" class="br10" src="{{ testImg }}"></image>
+            <image lazy-load="{{true}}" wx:for="1231234" wx:key="*32" mode="aspectFill" class="br10" src="{{ testImg }}"></image>
           </view>
         </view>
       </view>

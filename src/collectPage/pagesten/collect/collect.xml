@@ -19,13 +19,13 @@
         wx:key="*365">
     <navigator hover-class="none" url="/pages/courseDetail/courseDetail?id=1&type=2"
                class="hot-wrap other bgfff br18 {{ index >= 1 ? 'mt20' : '' }}">
-      <image data-content="线下课程" class="h-w-left pr br18" mode="aspectFill" src="{{ poster }}"></image>
+      <image lazy-load="{{true}}" data-content="线下课程" class="h-w-left pr br18" mode="aspectFill" src="{{ poster }}"></image>
       <view class="h-w-right">
         <view>
           <view class="ell1 f32 fw7 c393636">圆三针手工雾眉操作要领操作</view>
           <view class="f26 c999 shop mt10">
             <view class="shop-info">
-              <image class="br" src="{{ poster }}"></image>
+              <image lazy-load="{{true}}" class="br" src="{{ poster }}"></image>
               <text class="flex1">门店名称门店名称门店名称门店名称门店</text>
             </view>
             <!--<view class="keep">800m</view>-->
@@ -52,7 +52,7 @@
                class="hot-wrap p30 {{ index >= 1 ? 'mt20' : '' }} other bgfff br18"
                wx:for="123"
                wx:key="*3">
-      <image class="h-w-left br8"
+      <image lazy-load="{{true}}" class="h-w-left br8"
              mode="aspectFill"
              src="{{ testImg }}"></image>
       <view class="h-w-right">
@@ -61,7 +61,7 @@
           <!--<view wx:for="123" wx:key="*4" class="f20 br10 cb670f7 ell2 tag">纹眉</view>-->
           <view class="shop">
             <view class="f26 c9999 shop-info mt10">
-              <image class="br" src="{{ testImg }}"></image>
+              <image lazy-load="{{true}}" class="br" src="{{ testImg }}"></image>
               <view class="flex1">门店名称</view>
             </view>
           </view>
@@ -81,7 +81,7 @@
            wx:key="*95">
       <view hover-class="none" url="/pages/courseDetail/courseDetail?id=1&type=room" class="room {{ index >= 1 ? 'mt20' : '' }} bgfff p30 br18">
         <view class="f28 cff3a5a room-left">
-          <image class="br" src="{{ testImg }}"></image>
+          <image lazy-load="{{true}}" class="br" src="{{ testImg }}"></image>
           <navigator url="/pages/courseDetail/courseDetail?id=1&type=3" class="nav">查看</navigator>
         </view>
         <view class="room-right mt20">
@@ -94,7 +94,7 @@
                 wx:key="*74"
                 class="room-tag nav">富力天域</view>
           <view class="room-img mt20">
-            <image data-oindex="{{ oIndex }}"
+            <image lazy-load="{{true}}" data-oindex="{{ oIndex }}"
                    data-index="{{ index }}"
                    wx:for="123123123"
                    wx:key="*45"
@@ -115,13 +115,13 @@
                class="hot-wrap other {{ index >= 1 ? 'mt20' : '' }} bgfff br18"
                wx:for="123"
                wx:key="*365">
-      <image class="h-w-left br18" mode="aspectFill" src="{{ testImg }}"></image>
+      <image lazy-load="{{true}}" class="h-w-left br18" mode="aspectFill" src="{{ testImg }}"></image>
       <view class="h-w-right">
         <view>
           <view class="ell1 f32 fw7 c393636">圆三针手工雾眉操作要领操作</view>
           <view class="f26 c999 shop mt10">
             <view class="shop-info">
-              <image class="br" src="{{ testImg }}"></image>
+              <image lazy-load="{{true}}" class="br" src="{{ testImg }}"></image>
               <text class="flex1">门店名称门店名称门店名称门店名称门店</text>
             </view>
             <view class="keep">800m</view>
@@ -142,7 +142,7 @@
         <view class="f36 c3a3a3a fw7 {{ currentIndex == 2 ? 'ell2' : '' }}">老师您好,我是第一次真人操作手眉，走了好多遍才上色，为什么全程没有出组织液和血</view>
         <view hidden="{{ currentIndex == 2 }}">
           <view class="answer-img mt10">
-            <image wx:for="123" wx:key="*21" mode="aspectFill" src="{{ testImg }}"></image>
+            <image lazy-load="{{true}}" wx:for="123" wx:key="*21" mode="aspectFill" src="{{ testImg }}"></image>
           </view>
           <view class="f20 c666 tar">2018年10月28日 09:38:26</view>
           <view class="teacher mt30">
@@ -150,7 +150,7 @@
               你做的改兰眉加宽部分与之前的旧眉颜色出现端车，老师回答，你做的改兰眉加宽部分与之前的旧眉颜色……
             </view>
             <view class="h-i-user mt20">
-              <!--<image class="user-img br" src="{{ testImg }}"></image>-->
+              <!--<image lazy-load="{{true}}" class="user-img br" src="{{ testImg }}"></image>-->
               <!--<view class="user-name f26 cababab">刘老师</view>-->
               <view class="cababab user-operation">
                 <!--<view class="iconfont icon-dianzan">66</view>-->

@@ -1,4 +1,4 @@
-<image mode="widthFix" class="banner-img" src="{{ testImg }}"></image>
+<image lazy-load="{{true}}" mode="widthFix" class="banner-img" src="{{ testImg }}"></image>
 <view class="p20 collage-wrap">
   <view class="p20 bgfff br10">
     <view class="f36 fw7">圆三针手工雾眉操作要领操作领操作领操</view>
@@ -28,7 +28,7 @@
   <view class="p20 bgfff br10 mt20">
     <view class="fw7 c3a3a3a f40 tac">学习小组同学</view>
     <view class="collage-user">
-      <image wx:for="123" wx:key="*18" class="br" src="{{ testImg }}"></image>
+      <image lazy-load="{{true}}" wx:for="123" wx:key="*18" class="br" src="{{ testImg }}"></image>
     </view>
     <view class="c999 f26 tac mt20">还差2位同学，团成员均可优惠价获取！</view>
     <view class="f34 fw7">
@@ -49,7 +49,7 @@
     <view class="new-wrap">
       <navigator hover-class="none" url="/pages/courseDetail/courseDetail?id=1&free=1" class="c-w-item bb pr" wx:for="1234" wx:key="*2">
         <!--<view catchtap="collect" data-id="{{ item.id }}" class="c-w-i-collect pa f22 p10">收藏</view>-->
-        <image class="br10" mode="aspectFill" src="{{ testImg }}"></image>
+        <image lazy-load="{{true}}" class="br10" mode="aspectFill" src="{{ testImg }}"></image>
         <view class="ell1 f32 c393636 fw7">圆三针手工雾眉操作</view>
         <view class="f20 c666 lh40">1111人学习</view>
       </navigator>

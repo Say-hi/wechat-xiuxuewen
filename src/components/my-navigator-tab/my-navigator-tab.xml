@@ -4,7 +4,7 @@
                wx:key="*5"
                hover-class="none"
                class="tab-item f24 c333">
-        <image mode="widthFix" src="{{ item.picture }}"></image>
+        <image lazy-load="{{true}}" mode="widthFix" src="{{ item.picture }}"></image>
         <view class="f24 c333 {{ item.active ? 'active' : '' }}">{{ item.title }}</view>
     </navigator>
 </view>

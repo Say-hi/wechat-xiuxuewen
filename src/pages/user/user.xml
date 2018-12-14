@@ -1,8 +1,8 @@
 <view class="pr user-top">
-  <!--<image class="bg-img" mode="aspectFill" src="{{ testImg }}"></image>-->
+  <!--<image lazy-load="{{true}}" class="bg-img" mode="aspectFill" src="{{ testImg }}"></image>-->
   <view class="bg-img"></view>
   <view class="user-info pa">
-    <image class="user-img br" src="{{ testImg }}"></image>
+    <image lazy-load="{{true}}" class="user-img br" src="{{ testImg }}"></image>
     <view class="f26 cfff user-name">
       <view class="fw7">绣绣学纹绣</view>
       <view class="f20 mt10">学号：108268</view>
@@ -24,7 +24,7 @@
                class="user-o-item f26 c444 mt20"
                wx:key="*101"
                wx:for="{{ operationArr }}">
-      <image mode="widthFix" src="{{ item.src }}"></image>
+      <image lazy-load="{{true}}" mode="widthFix" src="{{ item.src }}"></image>
       <view class="mt10">{{ item.t }}</view>
     </navigator>
   </view>

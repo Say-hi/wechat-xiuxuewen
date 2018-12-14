@@ -8,7 +8,7 @@
 </template>
 
 <template name="wxParseImg">
-    <image class="{{item.classStr}} wxParse-{{item.tag}}" data-from="{{item.from}}" data-src="https://rtx.24sky.cn{{item.attr.src}}"  data-idx="{{item.imgIndex}}"  src="https://rtx.24sky.cn{{item.attr.src}}" mode="aspectFit" bindload="wxParseImgLoad" bindtap="wxParseImgTap" mode="widthFix" style="width:{{item.width}}px;"   />
+    <image lazy-load="{{true}}" class="{{item.classStr}} wxParse-{{item.tag}}" data-from="{{item.from}}" data-src="https://rtx.24sky.cn{{item.attr.src}}"  data-idx="{{item.imgIndex}}"  src="https://rtx.24sky.cn{{item.attr.src}}" mode="aspectFit" bindload="wxParseImgLoad" bindtap="wxParseImgTap" mode="widthFix" style="width:{{item.width}}px;"   />
 </template>
 
 <template name="WxEmojiView">
@@ -16,7 +16,7 @@
     <block wx:for="{{item.textArray}}" wx:key="">
       <block class="{{item.text == '\\n' ? 'wxParse-hide':''}}" wx:if="{{item.node == 'text'}}">{{item.text}}</block>
       <block wx:elif="{{item.node == 'element'}}">
-        <image class="wxEmoji" src="{{item.baseSrc}}{{item.text}}" />
+        <image lazy-load="{{true}}" class="wxEmoji" src="{{item.baseSrc}}{{item.text}}" />
       </block>
     </block>
   </view>

@@ -7,7 +7,7 @@
     <!--<view class="up-img">-->
     <!--<view wx:for="{{ imgArr }}" wx:key="*11" class="u-i-w pr">-->
     <!--<text data-index="{{ index }}" catchtap="del" class="close jwq icon-guanbi br pa"></text>-->
-    <!--<image catchtap="showImg" data-src="{{ item.url }}" mode="aspectFill" src="{{ item.url }}"></image>-->
+    <!--<image lazy-load="{{true}}" catchtap="showImg" data-src="{{ item.url }}" mode="aspectFill" src="{{ item.url }}"></image>-->
     <!--</view>-->
     <!--<view catchtap="upImg" class="c999 up">+</view>-->
     <!--</view>-->

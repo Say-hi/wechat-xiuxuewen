@@ -1,7 +1,7 @@
 <textarea maxlength="500" bindinput="inputValue" class="bb p20 f26 bt1" placeholder="描述一下您的问题"></textarea>
 
 <view class="up-img p20">
-  <image wx:for="123123" wx:key="*42" class="br20" src="{{ testImg }}"></image>
+  <image lazy-load="{{true}}" wx:for="123123" wx:key="*42" class="br20" src="{{ testImg }}"></image>
   <view class="up-btn br20 bb">+</view>
 </view>
 

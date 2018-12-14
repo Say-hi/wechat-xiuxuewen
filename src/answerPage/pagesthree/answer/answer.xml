@@ -29,7 +29,7 @@
     <view class="f36 c3a3a3a fw7 {{ currentIndex == 2 ? 'ell2' : '' }}">老师您好,我是第一次真人操作手眉，走了好多遍才上色，为什么全程没有出组织液和血</view>
     <view hidden="{{ currentIndex == 2 }}">
       <view class="answer-img mt10">
-        <image wx:for="123" wx:key="*21" mode="aspectFill" src="{{ testImg }}"></image>
+        <image lazy-load="{{true}}" wx:for="123" wx:key="*21" mode="aspectFill" src="{{ testImg }}"></image>
       </view>
       <view class="f20 c666 tar">2018年10月28日 09:38:26</view>
       <view class="teacher mt30">
@@ -37,7 +37,7 @@
           你做的改兰眉加宽部分与之前的旧眉颜色出现端车，老师回答，你做的改兰眉加宽部分与之前的旧眉颜色……
         </view>
         <view class="h-i-user mt20">
-          <!--<image class="user-img br" src="{{ testImg }}"></image>-->
+          <!--<image lazy-load="{{true}}" class="user-img br" src="{{ testImg }}"></image>-->
           <!--<view class="user-name f26 cababab">刘老师</view>-->
           <view class="cababab user-operation">
             <!--<view class="iconfont icon-dianzan">66</view>-->

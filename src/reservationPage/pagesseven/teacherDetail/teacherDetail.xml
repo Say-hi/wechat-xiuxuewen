@@ -2,9 +2,9 @@
 
 <view class="p20">
   <view class="br18 teacher-top pr">
-    <image class="bg-img" src="{{ reservation_bg }}"></image>
+    <image lazy-load="{{true}}" class="bg-img" src="{{ reservation_bg }}"></image>
     <view class="teacher-info pa">
-      <image class="br" src="{{ testImg }}"></image>
+      <image lazy-load="{{true}}" class="br" src="{{ testImg }}"></image>
       <view class="cfff f28">老师名字</view>
     </view>
   </view>
@@ -21,7 +21,7 @@
 
   <view hidden="{{ currentIndex == 1 }}">
     <navigator url="../reservationDetail/reservationDetail?id={{ item.id }}" class="teacher-item mt20 p30" wx:for="121231231233" wx:key="*82">
-      <image mode="aspectFill" src="{{ testImg }}"></image>
+      <image lazy-load="{{true}}" mode="aspectFill" src="{{ testImg }}"></image>
       <view class="teacher-content">
         <view>
           <view class="teacher-name f28 fw7 c3a3a3a">上课时间：2018年6月18日</view>

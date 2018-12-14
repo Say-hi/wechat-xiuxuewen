@@ -11,7 +11,7 @@
     <view class="br18 bgfff goods p30 pr">
 
       <view catchtap="chooseAddress" class="address pr">
-        <image mode="widthFix" src="/images/add_address1.png"></image>
+        <image lazy-load="{{true}}" mode="widthFix" src="/images/add_address1.png"></image>
         <view wx:if="{{ addressInfo }}" class="address-s f26 c3a3a3a">
           <view class="a-s-t">
             <text class="iconfont icon-dizhi">收货人: {{ addressInfo.userName }}</text>
@@ -49,7 +49,7 @@
   <swiper-item class="s-i-1 p20 bb">
     <view class="br18 bgfff goods p30 pr">
 
-      <image src="{{ testImg }}"></image>
+      <image lazy-load="{{true}}" src="{{ testImg }}"></image>
       <view class="success">支付成功</view>
       <view class="user-input f34 cff3a5a tac goods-btn">
         <view catchtap="nextTick" data-index="2" class="flex1 cfff">立即预约到店时间</view>
@@ -66,7 +66,7 @@
                 catchtap="userChoose"
                 class="c-g-item"
                 data-type="gender">
-            <image class="br" src="{{ testImg }}"></image>
+            <image lazy-load="{{true}}" class="br" src="{{ testImg }}"></image>
             <view class="mt20 f28 c444">{{ index == 1 ? '男生' : '女生' }}</view>
             <view class="{{ genderIndex == index ? 'gender-active' : '' }} gender-circle br mt10"></view>
           </view>
@@ -104,7 +104,7 @@
               catchtap="userChoose"
               class="c-g-item"
               data-type="base">
-          <image class="br" src="{{ testImg }}"></image>
+          <image lazy-load="{{true}}" class="br" src="{{ testImg }}"></image>
           <view class="mt20 f28 c444">{{ index == 1 ? '有基础' : '无基础' }}</view>
           <view class="{{ baseIndex == index ? 'gender-active' : '' }} gender-circle br mt10"></view>
         </view>
@@ -161,14 +161,14 @@
               catchtap="userChoose"
               class="c-g-item"
               data-type="experience">
-          <image class="br" src="{{ testImg }}"></image>
+          <image lazy-load="{{true}}" class="br" src="{{ testImg }}"></image>
           <view class="mt20 f28 c444">{{ index == 0 ? '1-2年纹绣经验' : '2年以上纹绣经验' }}</view>
           <view class="{{ experienceIndex == index ? 'gender-active' : '' }} gender-circle br mt10"></view>
         </view>
       </view>
 
       <view hidden="{{ baseIndex == 0 }}" class="finish-img tac">
-        <image class="mt20"
+        <image lazy-load="{{true}}" class="mt20"
                mode="aspectFill"
                src="{{ testImg }}"></image>
       </view>
@@ -203,7 +203,7 @@
 
 
       <view class="finish-img tac">
-        <image class="mt20"
+        <image lazy-load="{{true}}" class="mt20"
                mode="aspectFill"
                src="{{ testImg }}"></image>
       </view>

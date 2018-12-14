@@ -11,7 +11,7 @@
   </view>
 
   <navigator url="../reservationDetail/reservationDetail?id={{ item.id }}" class="teacher-item mt20 p30" wx:for="121231231233" wx:key="*82">
-    <image mode="aspectFill" src="{{ testImg }}"></image>
+    <image lazy-load="{{true}}" mode="aspectFill" src="{{ testImg }}"></image>
     <view class="teacher-content">
       <view>
         <view class="teacher-name f28 fw7 c3a3a3a">
