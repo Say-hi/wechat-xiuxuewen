@@ -116,14 +116,14 @@
       {
         "text": "首页",
         "pagePath": "pages/index/index",
-        "iconPath": "images/1.png",
+        "iconPath": "images/index.png",
         "selectedIconPath": "images/index_hl.png"
       },
       {
         "text": "线下教室",
         "pagePath": "pages/courseOffline/courseOffline",
         "iconPath": "images/offline.png",
-        "selectedIconPath": "images/2.png"
+        "selectedIconPath": "images/offline_hl.png"
       },
       {
         "text": "我的",

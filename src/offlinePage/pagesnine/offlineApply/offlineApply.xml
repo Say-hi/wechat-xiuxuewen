@@ -1,12 +1,61 @@
 <view class="tab-top bgfff lh88 bt1 bd1">
   <view wx:for="{{ videoTab }}"
         wx:key="*72"
-        class="t-t-item tac {{ 1 == index ? 'cff3b5b fw7 f34' : 2 == index ? 'f30 c9a9a9a' : 'fw7 c9a9a9a f34' }}">
+        class="t-t-item tac fw7 f28 {{ showTop == index ? 'cff3a5a' : 'c9a9a9a' }}">
     {{ item.t }}
   </view>
 </view>
 
 <swiper current="{{ swiperIndex }}" bindchange="swiperChange">
+  <swiper-item class="s-i-1 p20 bb">
+    <view class="br18 bgfff goods p30 pr">
+
+      <view catchtap="chooseAddress" class="address pr">
+        <image mode="widthFix" src="/images/add_address1.png"></image>
+        <view wx:if="{{ addressInfo }}" class="address-s f26 c3a3a3a">
+          <view class="a-s-t">
+            <text class="iconfont icon-dizhi">收货人: {{ addressInfo.userName }}</text>
+            <text>{{ addressInfo.telNumber }}</text>
+          </view>
+          <view class="ell2">
+            收货地址: {{ addressInfo.provinceName }}{{ addressInfo.cityName }}{{ addressInfo.countyName }}{{ addressInfo.detailInfo }}
+          </view>
+        </view>
+        <view wx:if="{{ needSetting }}" class="open-setting">
+          <button catchtap="openSetting">开启授权</button>
+        </view>
+      </view>
+
+      <view class="goods-info f28 c444">
+        <text class="fw7">价值300元学习大礼包</text>
+        <text>总计：1份</text>
+      </view>
+
+      <view class="goods-info f28 c444">
+        <text>商品总价</text>
+        <text class="f34 fw7 cff3b5b">¥200.0</text>
+      </view>
+
+      <view class="goods-info f28 c444">
+        <text>运费</text>
+        <text>免邮</text>
+      </view>
+
+      <view class="user-input f34 cff3a5a tac goods-btn">
+        <view catchtap="nextTick" data-index="1" class="flex1 cfff">提交订单</view>
+      </view>
+    </view>
+  </swiper-item>
+  <swiper-item class="s-i-1 p20 bb">
+    <view class="br18 bgfff goods p30 pr">
+
+      <image src="{{ testImg }}"></image>
+      <view class="success">支付成功</view>
+      <view class="user-input f34 cff3a5a tac goods-btn">
+        <view catchtap="nextTick" data-index="2" class="flex1 cfff">立即预约到店时间</view>
+      </view>
+    </view>
+  </swiper-item>
   <swiper-item class="s-i-1 p20 bb">
     <!--<view class="">-->
       <view class="br18 bgfff">
@@ -34,7 +83,7 @@
         </view>
 
         <view class="user-input f28 cff3a5a tac mt120">
-          <view catchtap="nextTick" data-index="1" class="flex1">下一步</view>
+          <view catchtap="nextTick" data-index="3" class="flex1">下一步</view>
         </view>
 
         <view class="circle">
@@ -92,7 +141,7 @@
       </view>
 
       <view class="user-input f28 cff3a5a tac mt120">
-        <view catchtap="nextTick" data-index="2" class="flex1">下一步</view>
+        <view catchtap="nextTick" data-index="4" class="flex1">下一步</view>
       </view>
 
       <view class="circle">
@@ -138,7 +187,7 @@
       </view>
 
       <view class="user-input f28 cff3a5a tac mt60">
-        <view catchtap="nextTick" data-index="3" class="flex1">完成</view>
+        <view catchtap="nextTick" data-index="5" class="flex1">完成</view>
       </view>
 
       <view class="circle">
@@ -161,7 +210,7 @@
       <view class="c444 f48 fw7 tac mt60">
         恭喜您预约成功！
       </view>
-      <navigator url="" class="user-input f28 cff3a5a tac mt60">
+      <navigator url="/collectPage/pagesten/collect/collect?type=1" class="user-input f28 cff3a5a tac mt60">
         <view class="flex1">查看我的预约</view>
       </navigator>
 

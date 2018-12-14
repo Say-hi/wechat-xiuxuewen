@@ -8,7 +8,8 @@ Page({
    */
   data: {
     testImg: app.data.testImg,
-    swiperIndex: 2,
+    swiperIndex: 0,
+    showTop: 0,
     videoTab: [
       {
         t: '缴纳报名费'
@@ -26,21 +27,59 @@ Page({
     expectedArr: ['一天', '两天', '三天', '四天', '五天', '一个星期'],
     expectedIndex: 0
   },
+  // 选择地址
+  chooseAddress () {
+    if (this.data.lostTime) return
+    let that = this
+    wx.chooseAddress({
+      success (res) {
+        if (res.telNumber) { // 获取信息成功
+          wx.setStorageSync('addressInfo', res)
+          that.setData({
+            needSetting: false,
+            addressInfo: res
+          })
+        }
+      },
+      fail () {
+        wx.getSetting({
+          success (res) {
+            if (!res.authSetting['scope.address']) {
+              that.setData({
+                needSetting: true
+              })
+              app.setToast(that, {content: '需授权获取地址信息'})
+            }
+          }
+        })
+      }
+    })
+  },
+  // 获取设置
+  openSetting () {
+    let that = this
+    wx.openSetting({
+      success (res) {
+        // console.log(res)
+        if (res.authSetting['scope.address']) {
+          that.setData({
+            needSetting: false
+          })
+          that.chooseAddress()
+        }
+      }
+    })
+  },
   // 轮播切换
-  swiperChange (e) {
-    if (e.detail.current < this.data.swiperIndex) {
-      this.setData({
-        swiperIndex: e.detail.current
-      })
-      return
-    }
+  swiperChange () {
     this.setData({
       swiperIndex: this.data.swiperIndex
     })
   },
   nextTick (e) {
     this.setData({
-      swiperIndex: e.currentTarget.dataset.index
+      swiperIndex: e.currentTarget.dataset.index,
+      showTop: e.currentTarget.dataset.index >= 2 ? 1 : 0
     })
   },
   // 用户选择

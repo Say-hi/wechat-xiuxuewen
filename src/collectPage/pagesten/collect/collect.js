@@ -66,7 +66,7 @@ Page({
         ]
       })
     }
-    app.setBar(options.type == 1 ? '我的预约' : '收藏')
+    app.setBar(options.type * 1 === 1 ? '我的预约' : '收藏')
     // TODO: onLoad
   },
 
