@@ -116,6 +116,19 @@
         "offline",
         "course"
       ]
+    },
+    "answerPage/pagesthree/answer/answer": {
+      "network": "all",
+      "packages": [
+        "release"
+      ]
+    },
+    "pages/user/user": {
+      "network": "all",
+      "packages": [
+        "order",
+        "collect"
+      ]
     }
   },
   // Window configuration
