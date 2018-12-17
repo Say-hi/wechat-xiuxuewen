@@ -56,12 +56,12 @@
     <view class="f34 c666 tac br18 bgfff mt20 ladder">成长阶梯 新手必看</view>
 
     <view class="container bgfff br20 new p30">
-        <navigator hover-class="none" url="../course/course" class="c-top">
+        <navigator hover-class="none" url="/coursePage/pageszero/course/course" class="c-top">
             <view class="c-t-l f36 c393636 fw7">最新教学视频</view>
             <view class="c-t-r f24 c393636 arrow">查看更多</view>
         </navigator>
         <view class="new-wrap">
-            <navigator hover-class="none" url="../courseDetail/courseDetail?id=1&free=1&type=1" class="c-w-item bb pr mt30" wx:for="1234" wx:key="*2">
+            <navigator hover-class="none" url="/coursePage/pageszero/courseDetail/courseDetail?id=1&free=1&type=1" class="c-w-item bb pr mt30" wx:for="1234" wx:key="*2">
                 <!--<view catchtap="collect" data-id="{{ item.id }}" class="c-w-i-collect pa f22 p10">收藏</view>-->
                 <image lazy-load="{{true}}" class="br10" mode="aspectFill" src="{{ testImg }}"></image>
                 <view class="ell1 f32 c393636 fw7 mt5">圆三针手工雾眉操作</view>

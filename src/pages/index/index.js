@@ -22,7 +22,7 @@ Page({
       {
         title: '教学视频',
         type: 'navigate',
-        path: '../course/course?type=1'
+        path: '/coursePage/pageszero/course/course?type=1'
       },
       {
         title: '线下学习',
@@ -392,6 +392,11 @@ Page({
    */
   onLoad (options) {
     this.Bmap(this)
+    wx.getHCEState({
+      success (res) {
+        console.log(res)
+      }
+    })
     // app.setBar('发现')
     // app.getSelf(this)
     // this.getIndexData()
