@@ -73,7 +73,7 @@ App({
     HEIGHT_TOP,
     MenuButtonBounding,
     ALL_HEIGHT: statusBarHeight + HEIGHT,
-    name: '脑籽知识商城',
+    name: '绣学问小程序',
     baseDomain: 'https://rtx.24sky.cn',
     // baseDomain: 'https://www.1688rm.com',
     testImg: 'https://c.jiangwenqiang.com/api/logo.jpg',
@@ -887,7 +887,7 @@ App({
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
    */
   onLaunch () {
-    this.getFont()
+    // this.getFont()
   },
   /**
    * 生命周期函数--监听小程序显示

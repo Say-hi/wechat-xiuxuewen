@@ -57,8 +57,8 @@
 
     <view class="container bgfff br20 new p30">
         <navigator hover-class="none" url="/coursePage/pageszero/course/course" class="c-top">
-            <view class="c-t-l f36 c393636 fw7">最新教学视频</view>
-            <view class="c-t-r f24 c393636 arrow">查看更多</view>
+            <view class="c-t-l f36 c444 fw7">最新教学视频</view>
+            <view class="c-t-r f24 c444 arrow">查看更多</view>
         </navigator>
         <view class="new-wrap">
             <navigator hover-class="none" url="/coursePage/pageszero/courseDetail/courseDetail?id=1&free=1&type=1" class="c-w-item bb pr mt30" wx:for="1234" wx:key="*2">

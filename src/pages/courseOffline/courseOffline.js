@@ -15,6 +15,9 @@ Page({
       canShowIndex: e.currentTarget.dataset.index
     })
   },
+  showImg (e) {
+    app.showImg(e.currentTarget.dataset.src, [e.currentTarget.dataset.src])
+  },
   /**
    * 地址授权
    * @param e

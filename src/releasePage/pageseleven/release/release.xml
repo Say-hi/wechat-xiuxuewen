@@ -6,13 +6,13 @@
 </view>
 
 <view class="bottom-wrap p20">
-  <view class="tips c999">
-    <view catchtap="chooseTip"
-          data-index="{{ index }}"
-          class="tips-item br10 f20 {{ item.choose ? 'active' : '' }}"
-          wx:for="{{ tipsArr }}"
-          wx:key="*41">{{ item.t }}</view>
-  </view>
+  <!--<view class="tips c999">-->
+    <!--<view catchtap="chooseTip"-->
+          <!--data-index="{{ index }}"-->
+          <!--class="tips-item br10 f20 {{ item.choose ? 'active' : '' }}"-->
+          <!--wx:for="{{ tipsArr }}"-->
+          <!--wx:key="*41">{{ item.t }}</view>-->
+  <!--</view>-->
   <view class="count tar f26">{{ content.length || 0 }}/500字</view>
 </view>
 

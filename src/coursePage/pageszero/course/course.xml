@@ -1,5 +1,9 @@
 <view class="tab-top bgfff lh88 bt1 bd1">
-  <view wx:for="1234" wx:key="*4" data-text="推荐{{index}}" catchtap="chooseIndex" data-index="{{ index }}" class="t-t-item f34 tac pr fw7 {{ currentIndex == index ? 'cff3b5b' : 'c666' }}">
+  <view wx:for="1234" wx:key="*4"
+        data-text="推荐{{index}}"
+        catchtap="chooseIndex"
+        data-index="{{ index }}"
+        class="t-t-item f30 tac pr {{ currentIndex == index ? 'cff3b5b fw7 f34' : 'c666' }}">
     推荐{{index}}
   </view>
 </view>
@@ -44,7 +48,7 @@
         <view class="h-w-r-bottom f26 c999 mt10">
           <view class="flex1">{{ index * 18888 + 1 }}人已学习</view>
           <!--<view class="tac">11节课</view>-->
-          <view class="f28 cf7546f tar flex1">88.8元</view>
+          <view class="f28 cf7546f tar fw7 flex1">88.8元</view>
         </view>
       </view>
     </navigator>

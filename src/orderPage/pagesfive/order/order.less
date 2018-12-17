@@ -32,7 +32,8 @@
     &:after {
       height: 4rpx;
       width: 100%;
-      background-color: #FF3B5B;
+      //background-color: #FF3B5B;
+      background-color: #fff;
     }
   }
 }
@@ -55,6 +56,20 @@
     height: 142rpx;
     width: 260rpx;
     margin-right: 20rpx;
+    &:before {
+      content: attr(data-content);
+      position: absolute;
+      top: 20rpx;
+      left: 0;
+      color: #fff;
+      font-size: 20rpx;
+      font-weight: 700;
+      background: #FF3B5B;
+      opacity: 0.9;
+      border-top-right-radius: 50rpx;
+      border-bottom-right-radius: 50rpx;
+      padding: 6rpx 20rpx;
+    }
   }
   .h-w-right {
     flex: 1;
@@ -99,7 +114,7 @@
   justify-content: flex-end;
   flex-wrap: wrap;
   view {
-    border: 2rpx solid #444;
+    border: 2rpx solid #666;
     border-radius: 60rpx;
     padding: 12rpx 28rpx;
     text-align: center;
@@ -121,4 +136,9 @@ button {
   text-align: center;
   margin-left: 20rpx;
   font-size: 26rpx;
+}
+
+.width202 {
+  width: 240rpx;
+  word-break: break-all;
 }

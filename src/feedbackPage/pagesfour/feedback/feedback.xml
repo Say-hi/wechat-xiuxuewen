@@ -11,7 +11,7 @@
     <!--</view>-->
     <!--<view catchtap="upImg" class="c999 up">+</view>-->
     <!--</view>-->
-    <button formType="submit" class="fabu cfff fw7 f34 lh80">提交</button>
+    <button formType="submit" class="fabu cfff fw7 f34 lh88">提交</button>
   </form>
 </view>
 <!--错误弹窗-->

@@ -26,20 +26,22 @@
         </view>
       </view>
 
-      <view class="goods-info f28 c444">
-        <text class="fw7">价值300元学习大礼包</text>
-        <text>总计：1份</text>
-      </view>
+     <view class="c666 order-info br18 p30">
+       <view class="goods-info f28 ">
+         <text class="fw7">价值300元学习大礼包</text>
+         <text>总计：1份</text>
+       </view>
 
-      <view class="goods-info f28 c444">
-        <text>商品总价</text>
-        <text class="f34 fw7 cff3b5b">¥200.0</text>
-      </view>
+       <view class="goods-info f28 mt30">
+         <text>商品总价</text>
+         <text class="f34 fw7 cff3b5b">¥200.0</text>
+       </view>
 
-      <view class="goods-info f28 c444">
-        <text>运费</text>
-        <text>免邮</text>
-      </view>
+       <view class="goods-info f28">
+         <text>运费</text>
+         <text>免邮</text>
+       </view>
+     </view>
 
       <view class="user-input f34 cff3a5a tac goods-btn">
         <view catchtap="nextTick" data-index="1" class="flex1 cfff">提交订单</view>
@@ -49,16 +51,18 @@
   <swiper-item class="s-i-1 p20 bb">
     <view class="br18 bgfff goods p30 pr">
 
-      <image lazy-load="{{true}}" src="{{ testImg }}"></image>
+      <view class="tac pay-img">
+        <image mode="widthFix" lazy-load="{{true}}" src="/images/pay_success.png"></image>
+      </view>
       <view class="success">支付成功</view>
-      <view class="user-input f34 cff3a5a tac goods-btn">
+      <view class="user-input pay-success-btn f34 cff3a5a tac goods-btn">
         <view catchtap="nextTick" data-index="2" class="flex1 cfff">立即预约到店时间</view>
       </view>
     </view>
   </swiper-item>
   <swiper-item class="s-i-1 p20 bb">
     <!--<view class="">-->
-      <view class="br18 bgfff">
+      <view class="br18 goods bgfff">
         <view class="choose-gender">
           <view wx:for='12'
                 wx:key="*this"
@@ -73,17 +77,21 @@
         </view>
 
         <view class="user-input mt60">
-          <view class="f28 c444 fw7">姓名</view>
-          <input bindinput="inputValue" data-type="name" />
+          <view class="f28 c444 fw7">姓　名</view>
+          <input class="f28" bindinput="inputValue" placeholder="请输入你的名字" placeholder-class="c666" data-type="name" />
         </view>
 
         <view class="user-input">
           <view class="f28 c444 fw7">手机号</view>
-          <input bindinput="inputValue" data-type="phone" />
+          <input class="f28" bindinput="inputValue" placeholder="请输入你的名字" placeholder-class="c666" data-type="phone" />
         </view>
 
-        <view class="user-input f28 cff3a5a tac mt120">
+        <view class="user-input user-time user-step f28 cff3a5a tac mt120">
           <view catchtap="nextTick" data-index="3" class="flex1">下一步</view>
+        </view>
+
+        <view class="user-input user-time user-step back-step f28 cff3a5a tac mt120">
+          <view catchtap="nextTick" data-index="4" class="flex1">上一步</view>
         </view>
 
         <view class="circle">
@@ -96,7 +104,7 @@
     <!--</view>-->
   </swiper-item>
   <swiper-item class="s-i-2 p20 bb">
-    <view class="br18 bgfff">
+    <view class="br18 bgfff goods">
       <view class="choose-gender">
         <view wx:for='12'
               wx:key="*this"
@@ -111,8 +119,8 @@
       </view>
 
       <view class="user-input mt60">
-        <view class="f28 c444 fw7">微信号</view>
-        <input bindinput="inputValue" data-type="number" />
+        <view class="f28 c444 fw7 need-letter">微信号</view>
+        <input class="f28" placeholder="请输入你的微信号" placeholder-class="c666" bindinput="inputValue"/>
       </view>
 
       <view class="user-input iconfont icon-daosanjiao">
@@ -125,7 +133,7 @@
                 data-type="time"
                 bindchange="userChoose"
         >
-          <view class="f28 c444 fw7">{{date}}</view>
+          <view class="f28 c8b8b8b fw7">{{date}}</view>
         </picker>
 
         <picker
@@ -133,15 +141,19 @@
                 range="{{ amArr }}"
                 value="{{ amIndex }}"
                 data-type="am"
-                class="ml60"
+                class="ml30"
                 bindchange="userChoose"
         >
-          <view class="f28 c444 fw7">{{ amArr[amIndex] }}</view>
+          <view class="f28 c8b8b8b fw7">{{ amArr[amIndex] }}</view>
         </picker>
       </view>
 
-      <view class="user-input f28 cff3a5a tac mt120">
+      <view class="user-input user-time user-step f28 cff3a5a tac mt120">
         <view catchtap="nextTick" data-index="4" class="flex1">下一步</view>
+      </view>
+
+      <view class="user-input user-time user-step back-step f28 cff3a5a tac mt120">
+        <view catchtap="nextTick" data-index="4" class="flex1">上一步</view>
       </view>
 
       <view class="circle">
@@ -154,23 +166,23 @@
   </swiper-item>
   <swiper-item class="s-i-3 p20 bb">
     <view class="br18 bgfff goods">
-      <view hidden="{{ baseIndex == 1 }}" class="choose-gender">
-        <view wx:for='12'
-              wx:key="*this"
-              data-index="{{ index }}"
-              catchtap="userChoose"
-              class="c-g-item"
-              data-type="experience">
-          <image lazy-load="{{true}}" class="br" src="{{ testImg }}"></image>
-          <view class="mt20 f28 c444">{{ index == 0 ? '1-2年纹绣经验' : '2年以上纹绣经验' }}</view>
-          <view class="{{ experienceIndex == index ? 'gender-active' : '' }} gender-circle br mt10"></view>
-        </view>
-      </view>
+      <!--<view hidden="{{ baseIndex == 1 }}" class="choose-gender">-->
+        <!--<view wx:for='12'-->
+              <!--wx:key="*this"-->
+              <!--data-index="{{ index }}"-->
+              <!--catchtap="userChoose"-->
+              <!--class="c-g-item"-->
+              <!--data-type="experience">-->
+          <!--<image lazy-load="{{true}}" class="br" src="{{ testImg }}"></image>-->
+          <!--<view class="mt20 f28 c444">{{ index == 0 ? '1-2年纹绣经验' : '2年以上纹绣经验' }}</view>-->
+          <!--<view class="{{ experienceIndex == index ? 'gender-active' : '' }} gender-circle br mt10"></view>-->
+        <!--</view>-->
+      <!--</view>-->
 
       <view hidden="{{ baseIndex == 0 }}" class="finish-img tac">
-        <image lazy-load="{{true}}" class="mt20"
-               mode="aspectFill"
-               src="{{ testImg }}"></image>
+        <image lazy-load="{{true}}"
+               class="apply-last-img"
+               src="/images/apply_time.png"></image>
       </view>
 
       <view class="user-input iconfont icon-daosanjiao">
@@ -181,12 +193,16 @@
                 data-type="expected"
                 class="ml0 flex1"
                 bindchange="userChoose">
-          <view class="f28 c444 fw7">预期学多久　{{ expectedArr[expectedIndex] }}</view>
+          <view class="f28 c8b8b8b fw7"><text  class="f28 c444 fw7 mr60">预期学多久</text>{{ expectedArr[expectedIndex] }}</view>
         </picker>
       </view>
 
-      <view class="user-input f28 cff3a5a tac mt60">
+      <view class="user-input user-time user-step f28 cff3a5a tac mt60">
         <view catchtap="nextTick" data-index="5" class="flex1">完成</view>
+      </view>
+
+      <view class="user-input user-time user-step back-step f28 cff3a5a tac mt120">
+        <view catchtap="nextTick" data-index="4" class="flex1">上一步</view>
       </view>
 
       <view class="circle">
@@ -198,18 +214,16 @@
     </view>
   </swiper-item>
   <swiper-item class="s-i-5 p20 bb">
-    <view class="br18 bgfff">
-
-
-      <view class="finish-img tac">
-        <image lazy-load="{{true}}" class="mt20"
-               mode="aspectFill"
-               src="{{ testImg }}"></image>
+    <view class="br18 bgfff goods">
+      <view class="apply-finish tac">
+        <image lazy-load="{{true}}"
+               mode="widthFix"
+               src="/images/pay_success.png"></image>
       </view>
-      <view class="c444 f48 fw7 tac mt60">
+      <view class="c444 f48 fw7 tac success">
         恭喜您预约成功！
       </view>
-      <navigator url="/collectPage/pagesten/collect/collect?type=1" class="user-input f28 cff3a5a tac mt60">
+      <navigator url="/collectPage/pagesten/collect/collect?type=1" class="user-input user-step user-all-finish user-time f28 cff3a5a tac mt60">
         <view class="flex1">查看我的预约</view>
       </navigator>
 

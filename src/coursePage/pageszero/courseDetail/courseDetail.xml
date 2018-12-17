@@ -32,16 +32,18 @@
         catchtap="chooseIndex"
         data-id="s{{ index }}"
         data-index="{{ index }}"
-        class="t-t-item f26 tac pr {{ currentIndex == index ? 'cff3b5b fw7' : 'c666' }}">
+        class="t-t-item f28 tac pr {{ currentIndex == index ? 'cff3b5b f30 fw7' : 'c666' }}">
     {{ item.t }}
   </view>
 </view>
 <!--付费课程-->
-<view hidden="{{ options.type == 3 }}" class="video-buy bb {{ needSmall ? 'toBottom' : '' }}">
+<!--<view wx:if="{{ options.type == 2 }}" class="video-buy bb {{ needSmall ? 'toBottom' : '' }}">-->
+<view wx:if="{{ options.type == 2 || options.type == 4 }}" class="video-buy bb">
   <!--<navigator hover-class="none" url="/collagePage/pagesone/collage/collage" catchtap="buyOperation" class="f34 cfff tac fw7 video-buy-btn">拼团价: 1.8元</navigator>-->
   <view catchtap="buyOperation" class="f34 cfff tac video-buy-btn">
-    <view wx:if="{{ options.type != 2 }}" class="fw7">立即购买</view>
-    <view wx:else>
+    <!--<view wx:if="{{ options.type != 2 }}" class="fw7">立即购买</view>-->
+    <!--<view wx:else>-->
+    <view >
       <text>报名费¥200</text>
       <text class="fw7">立即预约报名</text>
     </view>
@@ -70,7 +72,7 @@
             <view wx:if="{{ options.type != 1 }}" class="f26 c999">上课时间：随到随学</view>
           </view>
           <view class="v-i-right c999 tar">
-            <view catchtap="collectO" class="iconfont f20 {{ collect ? 'icon-xinheart118 cff3b5b' : 'icon-shoucang' }} ">{{ collect ? '取消收藏' : '收藏' }}</view>
+            <view catchtap="collectO" class="iconfont f20 {{ collect ? 'icon-xinheart118 cff3b5b' : 'icon-shoucang' }} ">{{ collect ? '100' : '99' }}</view>
             <button open-type="share" class="iconfont icon-fenxiang f20 c999">分享</button>
           </view>
         </view>
@@ -104,7 +106,7 @@
           <image lazy-load="{{true}}" class="br" src="{{ poster }}"></image>
           <view class="shop-name flex1">
             <text>艺苑纹绣 <text wx:if="{{ options.type == 3 }}"
-                             class="f26 c999 keep">距离您所在位置1.5km</text></text>
+                             class="f26 c999 keep">离你最近 1.5km</text></text>
             <navigator wx:if="{{ options.type == 2 || options.type == 4 }}"
                        open-type="redirect"
                        url="./courseDetail?id=1&type=3"

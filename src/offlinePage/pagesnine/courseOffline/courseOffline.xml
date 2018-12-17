@@ -11,7 +11,7 @@
 
 <view class="zw100"></view>
 
-<navigator  hover-class="none" url="/pages/course/course?id=2&type=2" class="f36 bgfff c666 get-more p30 bt1">
+<navigator  hover-class="none" url="/coursePage/pageszero/course/course?id=2&type=2" class="f36 bgfff c666 get-more p30 bt1">
   <view class="fw7">推荐线下课程</view>
   <view class="f24">查看更多</view>
 </navigator>
@@ -20,7 +20,7 @@
   <block wx:for="1232"
          wx:key="*368">
     <view class="f28 c999 tar">佛山</view>
-    <navigator hover-class="none" url="/pages/courseDetail/courseDetail?id=1&type=2"
+    <navigator hover-class="none" url="/coursePage/pageszero/courseDetail/courseDetail?id=1&type=2"
                class="hot-wrap other bgfff br18"
                wx:for="123"
                wx:key="*365">

@@ -6,7 +6,7 @@
           catchtap="chooseIndex"
           data-id="s{{ index }}"
           data-index="{{ index }}"
-          class="t-t-item f26 tac pr {{ currentIndex == index ? 'cff3b5b fw7' : 'c666' }}">
+          class="t-t-item f30 tac pr {{ currentIndex == index ? 'cff3b5b fw7 f34' : 'c666' }}">
       {{ item.t }}
     </view>
   </view>
@@ -26,12 +26,12 @@
           <view class="f26 c999 shop mt10">
             <view class="shop-info">
               <image lazy-load="{{true}}" class="br" src="{{ poster }}"></image>
-              <text class="flex1">门店名称门店名称门店名称门店名称门店</text>
+              <view class="flex1 check8">门店名称门店名称</view>
             </view>
             <!--<view class="keep">800m</view>-->
           </view>
         </view>
-        <view class="h-w-r-bottom f26 {{ currentIndex == 0 ? 'cff3b5b' : 'c666' }} mt30">
+        <view class="h-w-r-bottom f26 {{ currentIndex == 0 ? 'cff3b5b' : 'c666' }} mt20">
           <view>时间：2018.12.20 12:30—14:30</view>
           <!--<view class="cff3b5b">立刻报名 》</view>-->
           <!--<view class="f26 cff3b5b fw7 tar">88.8元</view>-->
@@ -62,7 +62,7 @@
           <view class="shop">
             <view class="f26 c9999 shop-info mt10">
               <image lazy-load="{{true}}" class="br" src="{{ testImg }}"></image>
-              <view class="flex1">门店名称</view>
+              <view class="flex1 check8">门店名称</view>
             </view>
           </view>
         </view>
@@ -122,12 +122,12 @@
           <view class="f26 c999 shop mt10">
             <view class="shop-info">
               <image lazy-load="{{true}}" class="br" src="{{ testImg }}"></image>
-              <text class="flex1">门店名称门店名称门店名称门店名称门店</text>
+              <text class="flex1 check8">门店名称门店名称</text>
             </view>
             <view class="keep">800m</view>
           </view>
         </view>
-        <view class="h-w-r-bottom f26 c999 mt30">
+        <view class="h-w-r-bottom f26 c999 mt20">
           <view>随到随学</view>
           <view class="cff3b5b">立刻报名 》</view>
           <!--<view class="f26 cff3b5b fw7 tar">88.8元</view>-->
