@@ -4,7 +4,7 @@
       <view class="iconfont f32 icon-sousuo cababab"></view>
       <input disabled="{{true}}" placeholder-class="cababab" class="c393636 search-input"  placeholder="输入你想问的问题 例如“眉毛上色”"/>
     </navigator>
-    <navigator url="/pages/release/release?type=发布提问" class="cfff ask bb tac">提问</navigator>
+    <navigator url="/releasePage/pageseleven/release/release?type=发布提问" class="cfff ask bb tac">提问</navigator>
   </view>
 
   <view class="tab-top lh88 bt1 bd1">
@@ -20,7 +20,7 @@
   </view>
 </view>
 
-<navigator url="/pages/release/release?type=发布提问" hidden="{{ height > 0 }}" class="ask-right f26 fw7 cfff br">提问</navigator>
+<navigator url="/releasePage/pageseleven/release/release?type=发布提问" hidden="{{ height > 0 }}" class="ask-right f26 fw7 cfff br">提问</navigator>
 
 <view class="zw200"></view>
 
