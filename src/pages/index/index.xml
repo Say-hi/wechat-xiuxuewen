@@ -1,16 +1,18 @@
 <!--<view class="top-address bgfff bt1 bd1" style="top: {{ ALL_HEIGHT }}px;">-->
-<view class="top-address bgfff bt1 bd1">
-    <button open-type="{{ openType }}" bindopensetting="open_site" catchtap="{{ !openType ? 'choose_site' : '' }}" class="fw7 f28 address">
-        <view class="iconfont icon-dizhi f28">{{ openType == 'openSetting' ? '请您授权获位置信息(点击此处授权)' : (addressInfo.originalData.result.addressComponent.city || '获取数据中...') }} {{ addressInfo.originalData.result.addressComponent.district || '' }} </view>
-        <!--<image lazy-load="{{true}}" class="weahter-img" mode="widthFix" src="{{ weatherPic }}"></image>-->
-    </button>
-    <navigator hover-class="none" url="/searchPage/pagessix/searchHistory/searchHistory" class="input-wrap">
-        <view class="iconfont f26 icon-sousuo cababab"></view>
-        <input placeholder-class="cababab" disabled="{{true}}" class="c393636 lh54 f26 search-input"  placeholder="输入你想问的问题"/>
-    </navigator>
-</view>
+<!--<view class="top-address bgfff bt1 bd1">-->
+    <!--<button open-type="{{ openType }}" bindopensetting="open_site" catchtap="{{ !openType ? 'choose_site' : '' }}" class="fw7 f28 address">-->
+        <!--<view class="iconfont icon-dizhi f28">{{ openType == 'openSetting' ? '请您授权获位置信息(点击此处授权)' : (addressInfo.originalData.result.addressComponent.city || '获取数据中...') }} {{ addressInfo.originalData.result.addressComponent.district || '' }} </view>-->
+        <!--&lt;!&ndash;<image lazy-load="{{true}}" class="weahter-img" mode="widthFix" src="{{ weatherPic }}"></image>&ndash;&gt;-->
+    <!--</button>-->
+    <!--<navigator hover-class="none" url="/searchPage/pagessix/searchHistory/searchHistory" class="input-wrap">-->
+        <!--<view class="iconfont f26 icon-sousuo cababab"></view>-->
+        <!--<input placeholder-class="cababab" disabled="{{true}}" class="c393636 lh54 f26 search-input"  placeholder="输入你想问的问题"/>-->
+    <!--</navigator>-->
+<!--</view>-->
 
-<view class="zw90"></view>
+<view style="height: {{ HEIGHT_TOP }}px;background: #ff0;"></view>
+
+<!--<view class="zw90"></view>-->
 
 <swiper hidden="{{ indexData.slide.length == 0 }}"
         autoplay

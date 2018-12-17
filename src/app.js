@@ -7,6 +7,9 @@ const wxParse = require('./wxParse/wxParse')
 const statusBarHeight = wx.getSystemInfoSync().statusBarHeight
 const HEIGHT = (wx.getSystemInfoSync().screenHeight - wx.getSystemInfoSync().windowHeight)
 
+const MenuButtonBounding = wx.getMenuButtonBoundingClientRect()
+const HEIGHT_TOP = MenuButtonBounding.bottom + MenuButtonBounding.top - statusBarHeight
+
 const zanType = {
   'video': 3,
   'answer': 2,
@@ -67,6 +70,8 @@ App({
   data: {
     statusBarHeight,
     HEIGHT,
+    HEIGHT_TOP,
+    MenuButtonBounding,
     ALL_HEIGHT: statusBarHeight + HEIGHT,
     name: '脑籽知识商城',
     baseDomain: 'https://rtx.24sky.cn',
