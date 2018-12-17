@@ -1,0 +1,37 @@
+<view wx:if="{{ options.type == '我的收藏' }}" class="tab-top bgfff lh88 bt1 bd1">
+  <view wx:for="{{ videoTab }}"
+        wx:key="*7"
+        data-text="推荐{{index}}"
+        catchtap="chooseIndex"
+        data-id="s{{ index }}"
+        data-index="{{ index }}"
+        class="t-t-item f26 tac pr {{ currentIndex == index ? 'cff3b5b' : 'c666' }}">
+    {{ item.t }}
+  </view>
+</view>
+
+<view wx:if="{{ options.type == '我的收藏' }}" class="zw90"></view>
+
+<view class="p20">
+  <view class="container hot">
+    <navigator hover-class="none" url="../courseDetail/courseDetail?id=1&free=1" class="hot-wrap other bgfff br20" wx:for="123123123123" wx:key="*3">
+      <image lazy-load="{{true}}" class="h-w-left br10" mode="aspectFill" src="{{ testImg }}"></image>
+      <view class="h-w-right">
+        <view>
+          <view class="ell1 f32 fw7 c393636">圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操圆三针手工雾眉操作要领操作操作操</view>
+          <view wx:for="123" wx:key="*4" class="f20 br10 cb670f7 ell2 tag">纹眉</view>
+        </view>
+        <view class="h-w-r-bottom f20 c999 mt10">
+          <view>{{ index * 18888 + 1 }}人已学习</view>
+          <view class="tac">11节课</view>
+          <view class="f26 cff3b5b fw7 tar">88.8元</view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+
+  <view class="tac f24 c999 lh80">已经到底部啦</view>
+</view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

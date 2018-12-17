@@ -1,0 +1,23 @@
+<view class="user-top pr">
+  <image lazy-load="{{true}}" mode="aspectFill" class="user-bg-img" src="{{ testImg }}"></image>
+  <image lazy-load="{{true}}" class="br user-img pa" src="{{ testImg }}"></image>
+  <view class="user-name f34 pa cfff">绣绣学纹绣</view>
+</view>
+<view class="f26 bgfff c666 user-number lh66">作品 12 获赞 12</view>
+
+<view class="p20 user-show">
+  <navigator wx:for="123123"
+             wx:key="*51"
+             hover-class="none"
+             url="../showDetail/showDetail?id={{ index }}"
+             class="user-show-img br10">
+    <image lazy-load="{{true}}" class="br10" mode="aspectFill" src="{{ testImg }}"></image>
+  </navigator>
+</view>
+
+<navigator hover-class="none" url="../release/release?type=发布提问" class="iconfont icon-fabu cff3b5b"></navigator>
+
+<my-navigator-tab></my-navigator-tab>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

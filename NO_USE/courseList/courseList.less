@@ -1,0 +1,59 @@
+@import "../../common/variable";
+
+page {
+  background-color: #eee;
+}
+
+.container {
+  .c-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.hot-wrap {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+  //border: 2rpx solid #2c332d;
+  .h-w-left {
+    //flex: 0 0 30%;
+    height: 142rpx;
+    width: 260rpx;
+    margin-right: 20rpx;
+  }
+  .h-w-right {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    //padding: 0 10rpx;
+    min-height: 158rpx;
+    .tag {
+      display: inline-block;
+      border: 2rpx solid #D3ABF7;
+      padding: 2rpx 10rpx;
+      margin-right: 14rpx;
+      margin-top: 10rpx;
+      color: #D3ABF7;
+    }
+  }
+  .h-w-r-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    view {
+      flex: 1;
+      word-break: keep-all;
+    }
+  }
+}
+
+.other {
+  margin-top: 20rpx;
+  padding: 30rpx;
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+}

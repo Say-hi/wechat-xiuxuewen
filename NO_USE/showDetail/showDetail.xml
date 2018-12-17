@@ -1,0 +1,75 @@
+<view class="info br10 bgfff p20">
+      <view class="user-info pr">
+        <navigator hover-class="none" url="../showXiu/showXiu?id=user_id">
+          <image lazy-load="{{true}}" class="br user-img" src="{{ testImg }}"></image>
+        </navigator>
+        <navigator hover-class="none" url="../showXiu/showXiu?id=user_id" class="user-name">
+          <view class="f26 c3a3a3a">绣绣学纹绣</view>
+          <view class="f20 c666 mt10">2018年10月28日 09:38:26</view>
+        </navigator>
+        <view class="operation pa f26 c3a3a3a">
+          <view catchtap="showMore">{{ moreOperation ? '收起' : '更多' }}</view>
+          <view class="pa more-operation animated zoomIn br10 f34" wx:if="{{ moreOperation }}">
+            <navigator hover-class="none" class="operation-btn" url="../release/release?type=修改作品" catchtap="fix">修改</navigator>
+            <view class="operation-btn" catchtap="del">删除</view>
+          </view>
+    </view>
+  </view>
+
+  <view class="f26 c3a3a3a mt20">
+    用户上传作品时的配文，用户上传作品时的配文，用户上传作品时的配文，用户上传作品时的配文
+  </view>
+
+  <view class="user-up-img mt20">
+    <image lazy-load="{{true}}" mode="widthFix" src="{{ testImg }}"></image>
+  </view>
+
+  <view class="f20 c999 user-operation mt20">
+    <view class="iconfont icon-zhiboguankanshu">66</view>
+    <view class="iconfont icon-dianzan">66</view>
+    <view catchtap="reply" data-type="self" class="iconfont icon-pinglun">66</view>
+  </view>
+</view>
+
+<view class="comment br10 p20 bgfff mt20">
+  <view class="f26 c666 lh50">8个评论</view>
+
+  <view wx:for="123"
+        wx:key="*31"
+        class="comment-item mt20">
+    <navigator url="../showXiu/showXiu?id=user_id" hover-class="none">
+      <image lazy-load="{{true}}" class="br c-i-left" src="{{ testImg }}"></image>
+    </navigator>
+    <view class="c-i-right">
+      <navigator url="../showXiu/showXiu?id=user_id" hover-class="none" class="c-i-r-user">
+        <view class="f26 c3a3a3a">绣绣学纹绣</view>
+        <view class="f20 c666">2018年10月28日 </view>
+      </navigator>
+      <view catchtap="reply" data-type="other" class="c-i-r-content f26 c3a3a3a mt20">
+        老师您好,我是第一次真人操作手眉，走了走了好多遍才上色，为什么全程没有出组织液和血
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="zw"></view>
+
+<my-navigator-tab></my-navigator-tab>
+
+<view catchtap="reply" data-type="self" hidden="{{ !replyShow }}" class="reply-mask">
+  <view class="reply-area f30 cfff">
+    <input catchinput="inputValue"
+           value="{{ replyText }}"
+           cursor-spacing="20"
+           confirm-type='send'
+           bindconfirm="reply"
+           data-type="send"
+           focus="{{ focus }}"
+           class="ra-input bb c333"
+           placeholder="{{ placeholder }}"/>
+    <view catchtap="reply" data-type="send" class="ra-send">发送</view>
+  </view>
+</view>
+<!--错误弹窗-->
+<import src="../template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

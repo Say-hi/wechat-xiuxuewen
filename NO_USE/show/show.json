@@ -1,0 +1,17 @@
+// Window configuration
+{
+  "usingComponents": {
+    "my-tip": "../../components/my-tip/my-tip",
+    "my-login": "../../components/my-login/my-login",
+    "my-navigator-tab": "../../components/my-navigator-tab/my-navigator-tab"
+  },
+  "backgroundColor": "#eeeeee",
+  // 类型：HexColor；默认值：#000000
+  // 导航栏背景颜色，如"#000000"
+  // 导航栏标题文字内容
+  "navigationBarTitleText": "作品秀",
+  // 类型：HexColor；默认值：#ffffff
+  // 窗口的背景色
+  // 是否开启下拉刷新，详见页面相关事件处理函数。
+  "enablePullDownRefresh": false
+}

@@ -1,0 +1,140 @@
+@import "../../common/variable";
+page {
+  background-color: #eee;
+}
+
+.tab-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  .t-t-item {
+    padding-bottom: 4rpx;
+    transition: all .5s;
+    //flex: 1;
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 14rpx;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      background-color: #fff;
+      transition: all .5s;
+    }
+  }
+  .cff3b5b {
+    &:after {
+      height: 4rpx;
+      width: 100%;
+      background-color: #FF3B5B;
+    }
+  }
+}
+
+.show-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.show-item {
+  box-sizing: border-box;
+  //margin: 4rpx;
+  //break-inside: avoid;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .show-small-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .show-img {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    image {
+      width: 50%;
+      //height: 170rpx;
+      &:nth-child(2) {
+        border-top-right-radius: 10rpx;
+      }
+      &:nth-child(1) {
+        border-top-left-radius: 10rpx;
+      }
+    }
+  }
+  .tag {
+    display: inline-block;
+    border: 2rpx solid #b874f8;
+    padding: 4rpx 7rpx;
+    margin: 2rpx;
+  }
+  .h-i-user {
+    display: flex;
+    align-items: center;
+    .user-img {
+      width: 40rpx;
+      height: 40rpx;
+      margin-right: 10rpx;
+    }
+    .user-star {
+      flex: 1;
+      justify-content: flex-start;
+      margin-left: 10rpx;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .show-item-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .user-operation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .iconfont {
+      margin-right: 10rpx;
+      &:before {
+        margin-right: 5rpx;
+      }
+    }
+  }
+}
+
+.icon-fabu {
+  position: fixed;
+  bottom: 140rpx;
+  left: 50%;
+  transform: translatex(-50%);
+  font-size: 100rpx;
+  animation: 2s change infinite;
+}
+
+@keyframes change {
+  0%{
+    transform: translatex(-50%) scale(1);  /*开始为原始大小*/
+  }
+  25%{
+    transform: translatex(-50%) scale(1.1); /*放大1.1倍*/
+  }
+  50%{
+    transform: translatex(-50%) scale(1);
+  }
+  75%{
+    transform: translatex(-50%) scale(1.1);
+  }
+}
