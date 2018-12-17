@@ -126,8 +126,8 @@
       <file leaf-file-name="offlineApply.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/offlinePage/pagesnine/offlineApply/offlineApply.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="155" column="33" lean-forward="false" selection-start-line="155" selection-start-column="33" selection-end-line="155" selection-end-column="33" />
+            <state relative-caret-position="946">
+              <caret line="182" column="39" lean-forward="false" selection-start-line="182" selection-start-column="39" selection-end-line="182" selection-end-column="39" />
               <folding>
                 <element signature="n#view#1;n#view#0;n#swiper-item#0;n#swiper#0;n#!!top" expanded="false" />
                 <element signature="n#view#2;n#view#0;n#swiper-item#0;n#swiper#0;n#!!top" expanded="false" />
@@ -374,8 +374,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="485" />
-    <option name="y" value="93" />
+    <option name="x" value="498" />
+    <option name="y" value="14" />
     <option name="width" value="1447" />
     <option name="height" value="1045" />
   </component>
@@ -455,46 +455,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="courseDetail" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="offlinePage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagesnine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="offlineApply" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="offlinePage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pagesnine" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -657,15 +617,15 @@
       <workItem from="1543801167913" duration="1374000" />
       <workItem from="1544261384922" duration="527000" />
       <workItem from="1544495878975" duration="33579000" />
-      <workItem from="1544600466062" duration="51727000" />
+      <workItem from="1544600466062" duration="53009000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="410166000" />
+    <option name="totallyTimeSpent" value="411448000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="485" y="93" width="1447" height="1045" extended-state="0" />
+    <frame x="498" y="14" width="1447" height="1045" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1930447" sideWeight="0.494302" order="0" side_tool="false" content_ui="combo" />
@@ -1325,8 +1285,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/offlinePage/pagesnine/offlineApply/offlineApply.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="155" column="33" lean-forward="false" selection-start-line="155" selection-start-column="33" selection-end-line="155" selection-end-column="33" />
+        <state relative-caret-position="946">
+          <caret line="182" column="39" lean-forward="false" selection-start-line="182" selection-start-column="39" selection-end-line="182" selection-end-column="39" />
           <folding>
             <element signature="n#view#1;n#view#0;n#swiper-item#0;n#swiper#0;n#!!top" expanded="false" />
             <element signature="n#view#2;n#view#0;n#swiper-item#0;n#swiper#0;n#!!top" expanded="false" />

@@ -180,8 +180,7 @@
                 value="{{ expectedIndex }}"
                 data-type="expected"
                 class="ml0 flex1"
-                bindchange="userChoose"
-        >
+                bindchange="userChoose">
           <view class="f28 c444 fw7">预期学多久　{{ expectedArr[expectedIndex] }}</view>
         </picker>
       </view>
