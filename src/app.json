@@ -2,14 +2,14 @@
 //  群信息小程序页面分布
   "pages": [
     "pages/index/index", // 首页
-    "pages/nearlearn/nearlearn", // 最近学习
+//    "pages/nearlearn/nearlearn", // 最近学习
     "pages/user/user", // 我的
-    "pages/showXiu/showXiu", // 作品秀个人展示
-    "pages/showDetail/showDetail", // 作品秀详情
-    "pages/show/show", // 作品秀
+//    "pages/showXiu/showXiu", // 作品秀个人展示
+//    "pages/showDetail/showDetail", // 作品秀详情
+//    "pages/show/show", // 作品秀
     "pages/release/release", // 发布作品&发布提问
 //    "pages/courseDetail/courseDetail", // 课程详情  传入值 type 对应规则 1 线上课程 2 线下课程 3 教室 4 驻店课程
-    "pages/courseList/courseList", // 课程列表
+//    "pages/courseList/courseList", // 课程列表
     "pages/courseOffline/courseOffline" // 线下相关
 //    "pages/course/course" // 课程
     // Dont remove this comment

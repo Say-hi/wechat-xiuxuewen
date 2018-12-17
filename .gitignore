@@ -1,5 +1,6 @@
 # Distribution directory
 dist
+NO_USE
 
 # Dependency directories
 node_modules
