@@ -1,6 +1,6 @@
 # Distribution directory
 dist
-
+src/.idea
 # Dependency directories
 node_modules
 

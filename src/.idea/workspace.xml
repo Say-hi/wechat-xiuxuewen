@@ -58,11 +58,9 @@
       <file leaf-file-name="app.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="131" column="5" lean-forward="true" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
+            <state relative-caret-position="211">
+              <caret line="180" column="48" lean-forward="true" selection-start-line="180" selection-start-column="48" selection-end-line="180" selection-end-column="48" />
               <folding>
-                <element signature="n#!!block;n#window#0;n#!!top" expanded="false" />
-                <element signature="n#!!block;n#tabBar#0;n#!!top" expanded="false" />
                 <element signature="n#!!block;n#networkTimeout#0;n#!!top" expanded="false" />
               </folding>
             </state>
@@ -416,12 +414,12 @@
       <workItem from="1543801167913" duration="1374000" />
       <workItem from="1544261384922" duration="527000" />
       <workItem from="1544495878975" duration="33579000" />
-      <workItem from="1544600466062" duration="62527000" />
+      <workItem from="1544600466062" duration="62644000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="420966000" />
+    <option name="totallyTimeSpent" value="421083000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="465" y="7" width="1414" height="1045" extended-state="0" />
@@ -932,11 +930,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="131" column="5" lean-forward="true" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
+        <state relative-caret-position="211">
+          <caret line="180" column="48" lean-forward="true" selection-start-line="180" selection-start-column="48" selection-end-line="180" selection-end-column="48" />
           <folding>
-            <element signature="n#!!block;n#window#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#tabBar#0;n#!!top" expanded="false" />
             <element signature="n#!!block;n#networkTimeout#0;n#!!top" expanded="false" />
           </folding>
         </state>
