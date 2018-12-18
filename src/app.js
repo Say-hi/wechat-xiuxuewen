@@ -581,7 +581,7 @@ App({
   // 信息弹窗
   setToast (that, toast, time) {
     let defaultToast = {
-      image: '../../images/jiong.png',
+      image: '/images/jiong.png',
       show: true,
       bgc: '#fff',
       color: '#000',

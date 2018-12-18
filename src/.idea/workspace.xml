@@ -24,8 +24,8 @@
       <file leaf-file-name="service.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="39" lean-forward="false" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+            <state relative-caret-position="242">
+              <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -43,31 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wxcharts.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/wxcharts.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="131" column="2" lean-forward="false" selection-start-line="131" selection-start-column="2" selection-end-line="164" selection-end-column="4" />
+            <state relative-caret-position="184">
+              <caret line="581" column="31" lean-forward="false" selection-start-line="581" selection-start-column="31" selection-end-line="581" selection-end-column="31" />
               <folding>
                 <element signature="e#1081#1305#0" expanded="false" />
                 <element signature="e#1823#1883#0" expanded="false" />
@@ -88,15 +68,14 @@
                 <element signature="e#15625#15662#0" expanded="false" />
                 <element signature="e#15701#16909#0" expanded="false" />
                 <element signature="e#16946#17029#0" expanded="false" />
-                <element signature="e#17072#17459#0" expanded="false" />
-                <element signature="e#17495#17568#0" expanded="false" />
-                <element signature="e#17593#17744#0" expanded="false" />
-                <element signature="e#17774#17835#0" expanded="false" />
-                <element signature="e#17879#17925#0" expanded="false" />
-                <element signature="e#17951#17974#0" expanded="false" />
-                <element signature="e#17978#17988#0" expanded="false" />
-                <element signature="e#19436#19779#0" expanded="false" />
-                <marker date="1545100841420" expanded="true" signature="1337:20195" ph="{...}" />
+                <element signature="e#17072#17454#0" expanded="false" />
+                <element signature="e#17490#17563#0" expanded="false" />
+                <element signature="e#17588#17739#0" expanded="false" />
+                <element signature="e#17769#17830#0" expanded="false" />
+                <element signature="e#17874#17920#0" expanded="false" />
+                <element signature="e#17946#17969#0" expanded="false" />
+                <element signature="e#17973#17983#0" expanded="false" />
+                <element signature="e#19431#19774#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -112,24 +91,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="release.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="release.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/releasePage/pageseleven/release/release.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="20" column="4" lean-forward="false" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+            <state relative-caret-position="473">
+              <caret line="97" column="40" lean-forward="true" selection-start-line="97" selection-start-column="40" selection-end-line="97" selection-end-column="40" />
               <folding>
-                <element signature="e#105#183#0" expanded="false" />
+                <element signature="e#136#214#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="release.less" pinned="false" current-in-tab="false">
+      <file leaf-file-name="template.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/template/template.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="4" column="110" lean-forward="false" selection-start-line="4" selection-start-column="105" selection-end-line="4" selection-end-column="110" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="answer.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/answerPage/pagesthree/answer/answer.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="27" column="25" lean-forward="true" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="release.less" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/releasePage/pageseleven/release/release.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="23" column="19" lean-forward="false" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-              <folding />
+            <state relative-caret-position="324">
+              <caret line="25" column="14" lean-forward="true" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+              <folding>
+                <element signature="e#173#236#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -137,8 +138,8 @@
       <file leaf-file-name="release.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/releasePage/pageseleven/release/release.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="15" column="67" lean-forward="false" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
+            <state relative-caret-position="352">
+              <caret line="16" column="105" lean-forward="false" selection-start-line="16" selection-start-column="96" selection-end-line="16" selection-end-column="105" />
               <folding />
             </state>
           </provider>
@@ -171,10 +172,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>input-wrap</find>
-      <find>showCircle</find>
-      <find>支付</find>
-      <find>success</find>
       <find>pay-success-btn</find>
       <find>pay-su</find>
       <find>pay-img</find>
@@ -200,6 +197,10 @@
       <find>nam</find>
       <find>order-info</find>
       <find>mt30</find>
+      <find>all</find>
+      <find>setto</find>
+      <find>imgOperation</find>
+      <find>up-progress</find>
       <find>up-btn</find>
     </findStrings>
     <replaceStrings>
@@ -252,7 +253,6 @@
         <option value="$PROJECT_DIR$/pages/index/index.less" />
         <option value="$PROJECT_DIR$/pages/index/index.xml" />
         <option value="$PROJECT_DIR$/offlinePage/pagesnine/courseOffline/courseOffline.less" />
-        <option value="$PROJECT_DIR$/answerPage/pagesthree/answer/answer.less" />
         <option value="$PROJECT_DIR$/answerPage/pagesthree/answer/answer.xml" />
         <option value="$PROJECT_DIR$/common/color.less" />
         <option value="$PROJECT_DIR$/common/common.less" />
@@ -268,11 +268,12 @@
         <option value="$PROJECT_DIR$/offlinePage/pagesnine/offlineApply/offlineApply.xml" />
         <option value="$PROJECT_DIR$/collectPage/pagesten/collect/collect.xml" />
         <option value="$PROJECT_DIR$/pages/index/index.js" />
+        <option value="$PROJECT_DIR$/answerPage/pagesthree/answer/answer.less" />
         <option value="$PROJECT_DIR$/utils/service.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/releasePage/pageseleven/release/release.js" />
-        <option value="$PROJECT_DIR$/releasePage/pageseleven/release/release.less" />
         <option value="$PROJECT_DIR$/releasePage/pageseleven/release/release.xml" />
+        <option value="$PROJECT_DIR$/releasePage/pageseleven/release/release.less" />
       </list>
     </option>
   </component>
@@ -283,9 +284,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="439" />
-    <option name="y" value="7" />
-    <option name="width" value="1440" />
+    <option name="x" value="259" />
+    <option name="y" value="48" />
+    <option name="width" value="1678" />
     <option name="height" value="1045" />
   </component>
   <component name="ProjectView">
@@ -327,6 +328,34 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="releasePage" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -336,6 +365,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="release" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="answerPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pagesthree" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="answerPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pagesthree" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="answer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -466,25 +535,25 @@
       <workItem from="1543801167913" duration="1374000" />
       <workItem from="1544261384922" duration="527000" />
       <workItem from="1544495878975" duration="33579000" />
-      <workItem from="1544600466062" duration="82185000" />
+      <workItem from="1544600466062" duration="94133000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="440624000" />
+    <option name="totallyTimeSpent" value="452572000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="439" y="7" width="1440" height="1045" extended-state="1" />
+    <frame x="259" y="48" width="1678" height="1045" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19400856" sideWeight="0.494302" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16585366" sideWeight="0.494302" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921347" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267544" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34539473" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31798247" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.122386225" sideWeight="0.505698" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -508,14 +577,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pages/user/user.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/practicePage/pagestwo/practice/practice.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -700,14 +761,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/answerPage/pagesthree/answer/answer.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="95" column="14" lean-forward="true" selection-start-line="95" selection-start-column="14" selection-end-line="95" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -928,18 +981,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/answerPage/pagesthree/answer/answer.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="27" column="25" lean-forward="true" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/utils/service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="39" lean-forward="false" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+        <state relative-caret-position="242">
+          <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/template.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="110" lean-forward="false" selection-start-line="4" selection-start-column="105" selection-end-line="4" selection-end-column="110" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="131" column="2" lean-forward="false" selection-start-line="131" selection-start-column="2" selection-end-line="164" selection-end-column="4" />
+        <state relative-caret-position="184">
+          <caret line="581" column="31" lean-forward="false" selection-start-line="581" selection-start-column="31" selection-end-line="581" selection-end-column="31" />
           <folding>
             <element signature="e#1081#1305#0" expanded="false" />
             <element signature="e#1823#1883#0" expanded="false" />
@@ -960,41 +1029,42 @@
             <element signature="e#15625#15662#0" expanded="false" />
             <element signature="e#15701#16909#0" expanded="false" />
             <element signature="e#16946#17029#0" expanded="false" />
-            <element signature="e#17072#17459#0" expanded="false" />
-            <element signature="e#17495#17568#0" expanded="false" />
-            <element signature="e#17593#17744#0" expanded="false" />
-            <element signature="e#17774#17835#0" expanded="false" />
-            <element signature="e#17879#17925#0" expanded="false" />
-            <element signature="e#17951#17974#0" expanded="false" />
-            <element signature="e#17978#17988#0" expanded="false" />
-            <element signature="e#19436#19779#0" expanded="false" />
-            <marker date="1545100841420" expanded="true" signature="1337:20195" ph="{...}" />
+            <element signature="e#17072#17454#0" expanded="false" />
+            <element signature="e#17490#17563#0" expanded="false" />
+            <element signature="e#17588#17739#0" expanded="false" />
+            <element signature="e#17769#17830#0" expanded="false" />
+            <element signature="e#17874#17920#0" expanded="false" />
+            <element signature="e#17946#17969#0" expanded="false" />
+            <element signature="e#17973#17983#0" expanded="false" />
+            <element signature="e#19431#19774#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/releasePage/pageseleven/release/release.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="23" column="19" lean-forward="false" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/releasePage/pageseleven/release/release.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="67" lean-forward="false" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/releasePage/pageseleven/release/release.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="20" column="4" lean-forward="false" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+        <state relative-caret-position="473">
+          <caret line="97" column="40" lean-forward="true" selection-start-line="97" selection-start-column="40" selection-end-line="97" selection-end-column="40" />
           <folding>
-            <element signature="e#105#183#0" expanded="false" />
+            <element signature="e#136#214#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/releasePage/pageseleven/release/release.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" column="105" lean-forward="false" selection-start-line="16" selection-start-column="96" selection-end-line="16" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/releasePage/pageseleven/release/release.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="25" column="14" lean-forward="true" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+          <folding>
+            <element signature="e#173#236#0" expanded="false" />
           </folding>
         </state>
       </provider>

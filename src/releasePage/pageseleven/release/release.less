@@ -19,12 +19,31 @@ textarea {
   .up-btn {
     display: inline-block;
     margin: 10rpx;
-    font-size: 150rpx;
     width: @width;
     height: @width;
     border: 2rpx dashed #bbb;
-    text-align: center;
-    font-weight: 100;
+    position: relative;
+    &:before {
+      font-size: 100rpx;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color: #bbb;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .up-progress {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: @width;
+    height: @width;
+    .tac {
+      padding: 2rpx 6rpx;
+      border-radius: 20rpx;
+      background-color: #eee;
+    }
   }
 }
 

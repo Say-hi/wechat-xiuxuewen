@@ -1,8 +1,20 @@
 <textarea maxlength="500" bindinput="inputValue" class="bb p20 f26 bt1" placeholder="描述一下您的问题"></textarea>
 
 <view class="up-img p20">
-  <image catchtap="imgOperation" data-index="{{ index }}" lazy-load="{{true}}" wx:for="{{ upImgArr }}" wx:key="*42" class="br20" src="{{ item }}"></image>
-  <view wx:if="{{ upImgArr.length < 9 }}" catchtap="wxUploadImg" class="up-btn br20 bb">+</view>
+  <view wx:for="{{ upImgArr }}" wx:key="*42" class="pr up-img-area">
+    <image catchtap="imgOperation"
+           mode="aspectFit"
+           data-index="{{ index }}"
+           lazy-load="{{true}}"
+           class="br20"
+           src="{{ item.temp }}"></image>
+    <view hidden="{{ upImgArrProgress[index] >= 100 }}" class="up-progress pa">
+      <view class="tac f20 cfff ">{{ !upImgArrProgress[index] ? '等待上传' : '上传中' }}</view>
+      <progress border-radius="20"
+                percent="{{ upImgArrProgress[index] || 0 }}"></progress>
+    </view>
+  </view>
+  <view wx:if="{{ upImgArr.length < 9 }}" catchtap="wxUploadImg" class="up-btn br20 bb iconfont icon-fabu"></view>
 </view>
 
 <view class="bottom-wrap p20">

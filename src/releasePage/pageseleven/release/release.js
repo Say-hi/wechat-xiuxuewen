@@ -1,6 +1,7 @@
 // 获取全局应用程序实例对象
 const app = getApp()
-
+let task = {}
+let change = true
 // 创建页面实例对象
 Page({
   /**
@@ -16,7 +17,8 @@ Page({
       }
     ],
     testImg: app.data.testImg,
-    upImgArr: [app.data.testImg, app.data.testImg, app.data.testImg, app.data.testImg, app.data.testImg, app.data.testImg, app.data.testImg, app.data.testImg, app.data.testImg],
+    upImgArr: [],
+    upImgArrProgress: [],
     content: 0
   },
   inputValue (e) {
@@ -31,53 +33,72 @@ Page({
     })
   },
   // 上传图片
-  wxUploadImg () {
-    let _that = this
+  wxUploadImg (index = -1) {
+    let that = this
+    let length = that.data.upImgArr.length || 0
     wx.chooseImage({
-      count: 9 - _that.data.upImgArr.length,
+      count: index >= 0 ? 1 : 9 - length,
       success (res) {
-        console.log(res)
-        wx.showLoading({
-          title: '图片上传中'
+        for (let [i, v] of res.tempFilePaths.entries()) {
+          if (!that.data.upImgArr[index >= 0 ? index : length + i]) {
+            that.data.upImgArr[index >= 0 ? index : length + i] = {
+              temp: null,
+              real: null
+            }
+          }
+          that.data.upImgArr[index >= 0 ? index : length + i]['real'] = ''
+          that.data.upImgArr[index >= 0 ? index : length + i]['temp'] = v
+        }
+        that.setData({
+          upImgArr: that.data.upImgArr
         })
-        for (let v of res.tempFilePaths) {
-          wx.uploadFile({
+        if(index) {}
+        (function upLoad (j) {
+          let v = res.tempFilePaths[j]
+          task = wx.uploadFile({
             url: app.getUrl().upImage,
             filePath: v,
             name: 'file',
             formData: {
-              id: _that.gs('userInfoAll').id || 1,
+              id: app.gs('userInfoAll').id || 10000,
               file: v
             },
-            success (res) {
-              console.log(res)
-              wx.hideLoading()
-              let parseData = JSON.parse(res.data)
-              console.log(parseData)
-              // if (parseData.code === 1) {
-              //   if (cb) {
-              //     cb(parseData.data, v)
-              //   }
-              // }
+            success (res2) {
+              that.data.upImgArr[index >= 0 ? index : length + j].real = JSON.parse(res2.data).data
+              if (j + 1 >= res.tempFilePaths.length) {}
+              else { upLoad(j + 1) }
             }
           })
-        }
+          task.onProgressUpdate(res => {
+            that.data.upImgArrProgress[index >= 0 ? index : length + j] = res.progress
+            that.setData({
+              upImgArrProgress: that.data.upImgArrProgress
+            })
+          })
+        })(0)
       }
     })
   },
   // 图片操作
   imgOperation (e) {
+    if (!this.data.upImgArr[e.currentTarget.dataset.index].real) return app.setToast(this, {content: '请稍后操作'})
     let that = this
+    let itemList = ['查看图片', '替换图片', '删除图片']
+    for (let v of this.data.upImgArr) {
+      if (!v.real) itemList = ['查看图片', '替换图片']
+    }
     wx.showActionSheet({
-      itemList: ['查看图片', '删除图片'],
+      itemList,
       success (res) {
         if (res.tapIndex === 0) {
-          app.showImg()
-        } else if (res.tapIndex === 1) {
+          app.showImg(that.data.upImgArr[e.currentTarget.dataset.index].temp, [that.data.upImgArr[e.currentTarget.dataset.index].temp])
+        } else if (res.tapIndex === 2) {
           that.data.upImgArr.splice(e.currentTarget.dataset.index, 1)
           that.setData({
             upImgArr: that.data.upImgArr
           })
+        } else if (res.tapIndex === 1) {
+          that.wxUploadImg(e.currentTarget.dataset.index)
         }
       }
     })
