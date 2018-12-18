@@ -1,8 +1,8 @@
 <textarea maxlength="500" bindinput="inputValue" class="bb p20 f26 bt1" placeholder="描述一下您的问题"></textarea>
 
 <view class="up-img p20">
-  <image lazy-load="{{true}}" wx:for="123123" wx:key="*42" class="br20" src="{{ testImg }}"></image>
-  <view class="up-btn br20 bb">+</view>
+  <image catchtap="imgOperation" data-index="{{ index }}" lazy-load="{{true}}" wx:for="{{ upImgArr }}" wx:key="*42" class="br20" src="{{ item }}"></image>
+  <view wx:if="{{ upImgArr.length < 9 }}" catchtap="wxUploadImg" class="up-btn br20 bb">+</view>
 </view>
 
 <view class="bottom-wrap p20">

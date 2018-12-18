@@ -16,6 +16,7 @@ Page({
       }
     ],
     testImg: app.data.testImg,
+    upImgArr: [app.data.testImg, app.data.testImg, app.data.testImg, app.data.testImg, app.data.testImg, app.data.testImg, app.data.testImg, app.data.testImg, app.data.testImg],
     content: 0
   },
   inputValue (e) {
@@ -27,6 +28,58 @@ Page({
     this.data.tipsArr[e.currentTarget.dataset.index]['choose'] = !this.data.tipsArr[e.currentTarget.dataset.index]['choose']
     this.setData({
       tipsArr: this.data.tipsArr
+    })
+  },
+  // 上传图片
+  wxUploadImg () {
+    let _that = this
+    wx.chooseImage({
+      count: 9 - _that.data.upImgArr.length,
+      success (res) {
+        console.log(res)
+        wx.showLoading({
+          title: '图片上传中'
+        })
+        for (let v of res.tempFilePaths) {
+          wx.uploadFile({
+            url: app.getUrl().upImage,
+            filePath: v,
+            name: 'file',
+            formData: {
+              id: _that.gs('userInfoAll').id || 1,
+              file: v
+            },
+            success (res) {
+              console.log(res)
+              wx.hideLoading()
+              let parseData = JSON.parse(res.data)
+              console.log(parseData)
+              // if (parseData.code === 1) {
+              //   if (cb) {
+              //     cb(parseData.data, v)
+              //   }
+              // }
+            }
+          })
+        }
+      }
+    })
+  },
+  // 图片操作
+  imgOperation (e) {
+    let that = this
+    wx.showActionSheet({
+      itemList: ['查看图片', '删除图片'],
+      success (res) {
+        if (res.tapIndex === 0) {
+          app.showImg()
+        } else if (res.tapIndex === 1) {
+          that.data.upImgArr.splice(e.currentTarget.dataset.index, 1)
+          that.setData({
+            upImgArr: that.data.upImgArr
+          })
+        }
+      }
     })
   },
   /**
