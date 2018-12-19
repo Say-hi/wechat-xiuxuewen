@@ -93,7 +93,8 @@ Page({
                 upImgArr: that.data.upImgArr
               })
             } else {
-              that.data.upImgArr[index >= 0 ? index : length + j]['real'] = data.headers.Location.replace('http://', 'https://')
+              console.log(data)
+              that.data.upImgArr[index >= 0 ? index : length + j]['real'] = `https://${config.Bucket}.cos.${config.Region}.myqcloud.com/${Key}`
               that.data.upImgArr[index >= 0 ? index : length + j]['Key'] = Key
             }
             if (j + 1 < res.tempFilePaths.length) upLoad(j + 1)
