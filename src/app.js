@@ -54,6 +54,24 @@ App({
     MenuButtonBounding,
     ALL_HEIGHT: statusBarHeight + HEIGHT,
     name: '绣学问小程序',
+    label: [
+      {
+        t: '纹眉',
+        label: 1
+      },
+      {
+        t: '眼线',
+        label: 2
+      },
+      {
+        t: '纹唇',
+        label: 3
+      },
+      {
+        t: '其他',
+        label: 4
+      },
+    ],
     baseDomain: 'https://rtx.24sky.cn',
     // baseDomain: 'https://www.1688rm.com',
     testImg: 'https://c.jiangwenqiang.com/api/logo.jpg',

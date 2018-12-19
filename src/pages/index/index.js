@@ -17,30 +17,30 @@ Page({
     indicatorColor: 'rgba(0, 0, 0, 0.4)',
     indicatorActiveColor: '#ffffff',
     indicatorActiveColorVideo: '#dab866',
-    show: true
-    // tabArr: [
-    //   {
-    //     title: '教学视频',
-    //     type: 'navigate',
-    //     path: '/coursePage/pageszero/course/course?type=1'
-    //   },
-    //   {
-    //     title: '线下学习',
-    //     type: 'navigate',
-    //     path: '/offlinePage/pagesnine/courseOffline/courseOffline'
-    //   },
-    //   {
-    //     title: '问答',
-    //     type: 'navigate',
-    //     path: '/answerPage/pagesthree/answer/answer'
-    //     // path: '/practicePage/pagestwo/practice/practice'
-    //   },
-    //   {
-    //     title: '教室入驻',
-    //     type: 'navigate',
-    //     path: '/answerPage/pagesthree/answer/answer'
-    //   }
-    // ]
+    show: true,
+    tabNav: [
+      {
+        title: '教学视频',
+        type: 'navigate',
+        url: '/coursePage/pageszero/course/course?type=1'
+      },
+      {
+        title: '线下学习',
+        type: 'navigate',
+        url: '/offlinePage/pagesnine/courseOffline/courseOffline'
+      },
+      {
+        title: '问答',
+        type: 'navigate',
+        url: '/answerPage/pagesthree/answer/answer'
+        // path: '/practicePage/pagestwo/practice/practice'
+      },
+      {
+        title: '教室入驻',
+        type: 'navigate',
+        url: '/answerPage/pagesthree/answer/answer'
+      }
+    ]
 
   },
 
@@ -219,21 +219,34 @@ Page({
     app.goOther(e)
   },
 
-  // 获取导航栏设置
   getCourse () {
+    let that = this
     app.wxrequest({
       url: app.getUrl().course,
       data: {
-        style: 1,
-        id: app.gs() || 10000
+        page: 1
       },
       success (res) {
         wx.hideLoading()
-        console.log(res)
+        if (res.data.status === 200) {
+          let list = []
+          for (let v of res.data.data.lists) {
+            list.push({
+              id: v.id,
+              avatar: v.avatar,
+              image: v.image,
+              room_name: v.room_name,
+              title: v.title,
+              price: v.price > 0 ? v.price : '免费'
+            })
+          }
+          that.setData({
+            list
+          })
+        }
       }
     })
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -245,18 +258,18 @@ Page({
         that.setData({
           swiperArr: res.data.data
         })
-      }
-    })
-    app.getNavTab({
-      style: 1,
-      cb (res) {
-        that.setData({
-          tabNav: res.data.data
-        })
+        // app.getNavTab({
+        //   style: 1,
+        //   cb (res) {
+        //     that.setData({
+        //       tabNav: res.data.data
+        //     })
+        //     that.getCourse()
+        //   }
+        // })
       }
     })
     this.Bmap(this)
-    this.getCourse()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
