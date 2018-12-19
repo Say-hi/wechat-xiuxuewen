@@ -6,6 +6,7 @@ const baseDomain = 'https://teach.idwenshi.com/teaching/public/index.php'
 const serviceUrl = {
   style: baseDomain + '/home/page', // 不填默认为1, 1表示中间菜单,2表示底部菜单,3表示广告图
   login: baseDomain + '/api/index/login', // 登陆
+  course: baseDomain + '/course/last', // 课程
   upVideo: baseDomain + '/upload/video', // 视频上传
   upImage: baseDomain + '/upload/image' // 图片上传
 }

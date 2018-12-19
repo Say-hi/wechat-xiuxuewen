@@ -699,11 +699,44 @@ App({
       }
     })
   },
+  // 获取小程序状态栏内容
+  getNavTab ({style = 2, cb = null}) {
+    let that = this
+    this.wxrequest({
+      url: that.getUrl().style,
+      data: {
+        style
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          if (style === 2) {
+            // 底部导航
+            for (let [i, v] of res.data.data.entries()) {
+              wx.setTabBarItem({
+                index: i,
+                text: v.title,
+                iconPath: v.icon,
+                selectedIconPath: v.select_icon
+              })
+            }
+          } else {
+            if (cb && typeof cb === 'function') {
+              cb (res)
+            }
+          }
+        } else {
+          console.log('err', res)
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听小程序初始化
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
    */
   onLaunch () {
+    this.getNavTab({})
     // this.getFont()
   },
   /**

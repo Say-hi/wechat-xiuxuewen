@@ -32,6 +32,7 @@
 
 <view class="release-btn cfff fw7">{{ options.type || '发布提问' }}</view>
 
+
 <!--错误弹窗-->
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

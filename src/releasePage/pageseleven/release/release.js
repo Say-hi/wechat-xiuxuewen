@@ -103,6 +103,7 @@ Page({
       }
     })
   },
+
   // 图片操作
   imgOperation (e) {
     if (!this.data.upImgArr[e.currentTarget.dataset.index].real) return app.setToast(this, {content: '请稍后操作'})

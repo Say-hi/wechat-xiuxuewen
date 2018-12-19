@@ -17,30 +17,31 @@ Page({
     indicatorColor: 'rgba(0, 0, 0, 0.4)',
     indicatorActiveColor: '#ffffff',
     indicatorActiveColorVideo: '#dab866',
-    show: true,
-    tabArr: [
-      {
-        title: '教学视频',
-        type: 'navigate',
-        path: '/coursePage/pageszero/course/course?type=1'
-      },
-      {
-        title: '线下学习',
-        type: 'navigate',
-        path: '/offlinePage/pagesnine/courseOffline/courseOffline'
-      },
-      {
-        title: '问答',
-        type: 'navigate',
-        path: '/answerPage/pagesthree/answer/answer'
-        // path: '/practicePage/pagestwo/practice/practice'
-      },
-      {
-        title: '教室入驻',
-        type: 'navigate',
-        path: '/answerPage/pagesthree/answer/answer'
-      }
-    ]
+    show: true
+    // tabArr: [
+    //   {
+    //     title: '教学视频',
+    //     type: 'navigate',
+    //     path: '/coursePage/pageszero/course/course?type=1'
+    //   },
+    //   {
+    //     title: '线下学习',
+    //     type: 'navigate',
+    //     path: '/offlinePage/pagesnine/courseOffline/courseOffline'
+    //   },
+    //   {
+    //     title: '问答',
+    //     type: 'navigate',
+    //     path: '/answerPage/pagesthree/answer/answer'
+    //     // path: '/practicePage/pagestwo/practice/practice'
+    //   },
+    //   {
+    //     title: '教室入驻',
+    //     type: 'navigate',
+    //     path: '/answerPage/pagesthree/answer/answer'
+    //   }
+    // ]
+
   },
 
   /**
@@ -219,11 +220,12 @@ Page({
   },
 
   // 获取导航栏设置
-  getBarSetting () {
+  getCourse () {
     app.wxrequest({
-      url: app.getUrl().style,
+      url: app.getUrl().course,
       data: {
-        style: 0
+        style: 1,
+        id: app.gs() || 10000
       },
       success (res) {
         wx.hideLoading()
@@ -231,12 +233,30 @@ Page({
       }
     })
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
+    let that = this
+    app.getNavTab({
+      style: 3,
+      cb (res) {
+        that.setData({
+          swiperArr: res.data.data
+        })
+      }
+    })
+    app.getNavTab({
+      style: 1,
+      cb (res) {
+        that.setData({
+          tabNav: res.data.data
+        })
+      }
+    })
     this.Bmap(this)
-    this.getBarSetting()
+    this.getCourse()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

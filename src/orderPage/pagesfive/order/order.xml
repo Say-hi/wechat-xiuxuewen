@@ -24,10 +24,10 @@
 
 <view class="zw90"></view>
 
-<view class="p20">
+<view class="p20 no-top-20">
   <view class="container br10 hot">
     <block wx:for="123" wx:key="*71">
-      <view class="f22 c3a3a3a tac lh60">10月20日 17:28</view>
+      <view class="f22 c3a3a3a tac order-time">10月20日 17:28</view>
       <view class="bgfff br18 other p30">
         <view class="f26 c666 order-num">
           <view>订单编号：16686868</view>

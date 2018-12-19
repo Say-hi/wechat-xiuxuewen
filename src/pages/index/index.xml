@@ -13,28 +13,28 @@
 
 <view class="zw90"></view>
 
-<swiper hidden="{{ indexData.slide.length == 0 }}"
+<swiper hidden="{{ !swiperArr }}"
         autoplay
         indicator-dots
         circular
         indicator-color="{{ indicatorColor }}"
         indicator-active-color="{{ indicatorActiveColor }}"
         class="banner">
-  <swiper-item  wx:for="testImg"
+  <swiper-item  wx:for="{{ swiperArr }}"
                 wx:key="*0">
-    <image lazy-load="{{true}}" catchtap="goOther" data-src="{{ testImg }}" data-url="{{ item.path }}" mode="aspectFill" src="{{ testImg }}"></image>
+    <image lazy-load="{{true}}" catchtap="goOther" data-src="{{ item.icon }}" data-url="{{ item.url }}" mode="aspectFill" src="{{ item.icon }}"></image>
   </swiper-item>
 </swiper>
 
-<view class="tab-wrap-out">
+<view hidden="{{ !tabNav }}" class="tab-wrap-out">
     <view class="tab-wrap bgfff br20">
-    <navigator url="{{ item.path }}"
-               wx:for="{{ tabArr }}"
+    <navigator url="{{ item.url }}"
+               wx:for="{{ tabNav }}"
                wx:key="*1"
-               open-type="{{ item.type }}"
+               open-type="{{ item.type || 'navigate' }}"
                hover-class="none"
                class="tab-item tac f24 c333">
-        <image lazy-load="{{true}}" mode="aspectFit" src="../../images/{{ index * 1 + 1 }}.png"></image>
+        <image lazy-load="{{true}}" mode="aspectFit" src="{{ item.icon }}"></image>
         <view class="f32 c3a">{{ item.title }}</view>
     </navigator>
 </view>
