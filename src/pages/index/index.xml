@@ -100,9 +100,9 @@
     <view class="tac f24 c999 lh80">已经到底部啦</view>
 </view>
 
-<!--<view class="zw"></view>-->
+<view class="zw"></view>
 <my-login></my-login>
-<!--<my-navigator-tab prop-nav="{{ tabArr2 }}"></my-navigator-tab>-->
+<my-navigator-tab prop-nav="{{ tabArr2 }}"></my-navigator-tab>
 <my-tip bindds="ds" mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>
 <!--错误弹窗-->
 <import src="../template/template"></import>

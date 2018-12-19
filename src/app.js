@@ -48,6 +48,7 @@ Moment.locale('en', {
 // moment.locale('zh-cn')
 App({
   data: {
+    bottomTabIndex: 0,
     statusBarHeight,
     HEIGHT,
     HEIGHT_TOP,
@@ -718,7 +719,7 @@ App({
     })
   },
   // 获取小程序状态栏内容
-  getNavTab ({style = 2, cb = null}) {
+  getNavTab ({style = 1, cb = null}) {
     let that = this
     this.wxrequest({
       url: that.getUrl().style,
@@ -728,16 +729,17 @@ App({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
-          if (style === 2) {
+          if (style === 1) {
+            that.su('bottomNav', res.data.data)
             // 底部导航
-            for (let [i, v] of res.data.data.entries()) {
-              wx.setTabBarItem({
-                index: i,
-                text: v.title,
-                iconPath: v.icon,
-                selectedIconPath: v.select_icon
-              })
-            }
+            // for (let [i, v] of res.data.data.entries()) {
+            //   wx.setTabBarItem({
+            //     index: i,
+            //     text: v.title,
+            //     iconPath: v.icon,
+            //     selectedIconPath: v.select_icon
+            //   })
+            // }
           } else {
             if (cb && typeof cb === 'function') {
               cb (res)

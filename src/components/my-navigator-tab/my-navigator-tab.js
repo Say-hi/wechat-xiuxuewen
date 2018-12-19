@@ -59,10 +59,47 @@ Component({
     }
   },
   data: {
+    propNav: null,
     imgDomain: app.data.imgDomain,
     naozai: 'https://c.jiangwenqiang.com/workProject/payKnowledge/naozai.png',
     currentIndex: -1,
     numArr: ['2', '5', '10', '20', '50', '100']
+  },
+  lifetimes: {
+    created () {
+      let propNav = app.gs('bottomTab')
+      if (propNav) {
+        for (let v of propNav) {
+          v['active'] = false
+        }
+        propNav[app.data.bottomTabIndex]['active'] = true
+        this.setData({
+          propNav
+        })
+      } else {
+        let that = this
+        app.wxrequest({
+          url: app.getUrl().style,
+          data: {
+            style: 1
+          },
+          success (res) {
+            wx.hideLoading()
+            app.su('bottomNav', res.data.data)
+            res.data.data[app.data.bottomTabIndex]['active'] = true
+            that.setData({
+              propNav: res.data.data
+            })
+          }
+        })
+      }
+    },
+    attached() {
+      // 在组件实例进入页面节点树时执行
+    },
+    detached() {
+      // 在组件实例被从页面节点树移除时执行
+    },
   },
   methods: {
     _choosePay (e) {

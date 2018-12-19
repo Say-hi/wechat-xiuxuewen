@@ -1,10 +1,10 @@
 <view class="tab-wrap tab-wrap2 bt1 bottom-operation">
-    <navigator open-type="reLaunch" url="{{ item.active ? '': item.path }}"
+    <navigator open-type="navigate" url="{{ item.active ? '': item.url }}"
                wx:for="{{ propNav }}"
                wx:key="*5"
                hover-class="none"
                class="tab-item f24 c333">
-        <image lazy-load="{{true}}" mode="widthFix" src="{{ item.picture }}"></image>
+        <image lazy-load="{{true}}" mode="widthFix" src="{{ item.active ? item.select_icon : item.icon  }}"></image>
         <view class="f24 c333 {{ item.active ? 'active' : '' }}">{{ item.title }}</view>
     </navigator>
 </view>

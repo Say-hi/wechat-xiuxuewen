@@ -33,7 +33,6 @@ Page({
         title: '问答',
         type: 'navigate',
         url: '/answerPage/pagesthree/answer/answer'
-        // path: '/practicePage/pagestwo/practice/practice'
       },
       {
         title: '教室入驻',
@@ -258,15 +257,15 @@ Page({
         that.setData({
           swiperArr: res.data.data
         })
-        // app.getNavTab({
-        //   style: 1,
-        //   cb (res) {
-        //     that.setData({
-        //       tabNav: res.data.data
-        //     })
-        //     that.getCourse()
-        //   }
-        // })
+        app.getNavTab({
+          style: 2,
+          cb (res) {
+            that.setData({
+              tabNav: res.data.data
+            })
+            that.getCourse()
+          }
+        })
       }
     })
     this.Bmap(this)
@@ -305,6 +304,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh () {
+    this.getCourse()
     // this.setData({
     //   page: 0,
     //   answerArr: []

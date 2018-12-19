@@ -156,32 +156,32 @@
     // https://mp.weixin.qq.com/debug/wxadoc/dev/framework/app-service/page.html?t=1476197491005#页面相关事件处理函数
     "enablePullDownRefresh": false
   },
-  "tabBar": {
-    "color": "#999999",
-    "selectedColor": "#FF617B",
-    "borderStyle": "white",
-    "backgroundColor": "#fff",
-    "list": [
-      {
-        "text": "首页",
-        "pagePath": "pages/index/index",
-        "iconPath": "images/index.png",
-        "selectedIconPath": "images/index_hl.png"
-      },
-      {
-        "text": "线下教室",
-        "pagePath": "pages/courseOffline/courseOffline",
-        "iconPath": "images/offline.png",
-        "selectedIconPath": "images/offline_hl.png"
-      },
-      {
-        "text": "我的",
-        "pagePath": "pages/user/user",
-        "iconPath": "images/user.png",
-        "selectedIconPath": "images/user_hl.png"
-      }
-    ]
-  },
+//  "tabBar": {
+//    "color": "#999999",
+//    "selectedColor": "#FF617B",
+//    "borderStyle": "white",
+//    "backgroundColor": "#fff",
+//    "list": [
+//      {
+//        "text": "首页",
+//        "pagePath": "pages/index/index",
+//        "iconPath": "images/index.png",
+//        "selectedIconPath": "images/index_hl.png"
+//      },
+//      {
+//        "text": "线下教室",
+//        "pagePath": "pages/courseOffline/courseOffline",
+//        "iconPath": "images/offline.png",
+//        "selectedIconPath": "images/offline_hl.png"
+//      },
+//      {
+//        "text": "我的",
+//        "pagePath": "pages/user/user",
+//        "iconPath": "images/user.png",
+//        "selectedIconPath": "images/user_hl.png"
+//      }
+//    ]
+//  },
 
   "networkTimeout": {
     "request": 10000,
