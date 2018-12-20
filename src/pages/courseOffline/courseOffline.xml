@@ -51,6 +51,8 @@
 </view>
 
 
+<view class="zw"></view>
+<my-navigator-tab></my-navigator-tab>
 <!--错误弹窗-->
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

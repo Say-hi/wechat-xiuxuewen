@@ -1,5 +1,11 @@
 // Window configuration
 {
+  "usingComponents": {
+    "my-tip": "../../components/my-tip/my-tip",
+    "my-login": "../../components/my-login/my-login",
+    "my-navigator-tab": "../../components/my-navigator-tab/my-navigator-tab",
+    "my-top-tab": "../../components/my-top-tab/my-top-tab"
+  },
   // 导航栏标题文字内容
   "navigationBarTitleText": "线下手把手教学",
   "enablePullDownRefresh": false

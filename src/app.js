@@ -74,11 +74,9 @@ App({
       },
     ],
     baseDomain: 'https://rtx.24sky.cn',
-    // baseDomain: 'https://www.1688rm.com',
     testImg: 'https://c.jiangwenqiang.com/api/logo.jpg',
     reservation_bg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/reservation_bg.png',
     imgDomain: 'https://rtx.24sky.cn'
-    // imgDomain: 'https://www.1688rm.com'
   },
   moment (time) {
     return Moment(time, 'YYYYMMDD HH:mm:ss').fromNow()

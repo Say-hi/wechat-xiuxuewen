@@ -1,5 +1,8 @@
 <view class="tab-wrap tab-wrap2 bt1 bottom-operation">
-    <navigator open-type="navigate" url="{{ item.active ? '': item.url }}"
+    <navigator open-type="reLaunch"
+               catchtap="_goUrl"
+               data-index="{{ index }}"
+               url="{{ item.active ? '': item.url }}"
                wx:for="{{ propNav }}"
                wx:key="*5"
                hover-class="none"
