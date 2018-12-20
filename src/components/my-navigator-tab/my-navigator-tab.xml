@@ -3,7 +3,7 @@
                catchtap="_goUrl"
                data-index="{{ index }}"
                url="{{ item.active ? '': item.url }}"
-               wx:for="{{ propNav }}"
+               wx:for="{{ navData }}"
                wx:key="*5"
                hover-class="none"
                class="tab-item f24 c333">

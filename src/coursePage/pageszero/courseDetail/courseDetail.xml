@@ -357,6 +357,8 @@
     <scroll-view class="comment-scroll"
                  scroll-y="{{true}}"
                  catchtap="noUp"
+                 bindscrolltoupper="onScrollUp"
+                 bindscrolltolower="onreachbottom"
                  scroll-with-animation="{{true}}">
       <view wx:for="123"
             wx:key="*51"

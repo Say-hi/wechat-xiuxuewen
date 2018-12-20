@@ -1,5 +1,6 @@
 // 获取全局应用程序实例对象
 const app = getApp()
+let PAGE = 0
 let timer = null
 let CAN_CHANGE = false
 let NEED_SHOW = [0, 0, 0]
@@ -286,6 +287,38 @@ Page({
       scale: 10,
       ...(e.currentTarget.dataset)
     })
+  },
+  // 获取评论
+  getEvaluate () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().evaluate,
+      data: {
+        id: that.data.options.id,
+        page: ++PAGE
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            commentList: that.data.commentList.concat(res.data.data.lists),
+            more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+  // 评论弹窗触顶
+  onScrollUp () {
+    PAGE = 0
+    this.data.commentList = []
+    this.getList()
+  },
+  // 评论弹窗触底
+  onreachbottom () {
+    if (this.data.more >= 1) this.getList()
   },
   // 分享
   onShareAppMessage () {
