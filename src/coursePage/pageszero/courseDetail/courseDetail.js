@@ -200,16 +200,18 @@ Page({
   },
 
   scrollOperation (e) {
-    if (this.data.options && this.data.options.type * 1 === 3) return
+    // if (this.data.options && this.data.options.type * 1 === 3) return
     if (!CAN_CHANGE) return
-    let s = e.detail.scrollTop
-    let currentIndex = 0
-    if (s < NEED_SHOW[0]) currentIndex = 0
-    else if (s > NEED_SHOW[0] && s < NEED_SHOW[1]) currentIndex = 1
-    else if (s > NEED_SHOW[1]) currentIndex = 2
-    this.setData({
-      currentIndex
-    })
+    if (this.data.options && this.data.options.type * 1 !== 3) {
+      let s = e.detail.scrollTop
+      let currentIndex = 0
+      if (s < NEED_SHOW[0]) currentIndex = 0
+      else if (s > NEED_SHOW[0] && s < NEED_SHOW[1]) currentIndex = 1
+      else if (s > NEED_SHOW[1]) currentIndex = 2
+      this.setData({
+        currentIndex
+      })
+    }
     let change = e.detail.deltaY
     if (change <= 0) {
       // 下方隐藏，上方缩小
