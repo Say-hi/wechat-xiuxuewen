@@ -157,7 +157,7 @@
                 <view class="fw7">5.00</view>
                 <view class="c-c-star pr">
                   <view class="c-c-bg pa" style="width: {{ 5 / 10 * 100}}%"></view>
-                  <image lazy-load="{{true}}" class="c-c-s-star pa" src="/images/star.png"></image>
+                  <image lazy-load="{{true}}" class="c-c-s-star pa" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/star.png"></image>
                 </view>
                 <view class="tar comment-btn-wrap">
                   <text catchtap="goComment" class="f26 cff3b5b comment-btn">我要评论</text>

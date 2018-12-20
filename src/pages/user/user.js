@@ -19,24 +19,24 @@ Page({
     operationArr: [
       {
         t: '我的预约',
-        src: '/images/user_1.png',
+        src: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/user_1.png',
         url: '/collectPage/pagesten/collect/collect?type=1'
       },
       {
         t: '收藏',
-        src: '/images/user_2.png',
+        src: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/user_2.png',
         url: '/collectPage/pagesten/collect/collect?type=2'
         // url: '../nearlearn/nearlearn?type=我的收藏'
       },
       {
         t: '意见反馈',
-        src: '/images/user_3.png',
+        src: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/user_3.png',
         // url: '../showXiu/showXiu'
         url: '/feedbackPage/pagesfour/feedback/feedback'
       },
       {
         t: '课程订单',
-        src: '/images/user_4.png',
+        src: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/user_4.png',
         url: '/orderPage/pagesfive/order/order'
       }
       // {

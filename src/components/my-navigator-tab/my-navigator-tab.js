@@ -41,7 +41,6 @@ Component({
           navData
         })
       } else {
-        console.log(2)
         app.wxrequest({
           url: app.getUrl().style,
           data: {

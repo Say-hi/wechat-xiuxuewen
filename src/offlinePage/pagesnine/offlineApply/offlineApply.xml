@@ -11,7 +11,7 @@
     <view class="br18 bgfff goods p30 pr">
 
       <view catchtap="chooseAddress" class="address pr">
-        <image lazy-load="{{true}}" mode="widthFix" src="/images/add_address1.png"></image>
+        <image lazy-load="{{true}}" mode="widthFix" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/add_address1.png"></image>
         <view wx:if="{{ addressInfo }}" class="address-s f26 c3a3a3a">
           <view class="a-s-t">
             <text class="iconfont icon-dizhi f26">收货人: {{ addressInfo.userName }}</text>
@@ -52,7 +52,7 @@
     <view class="br18 bgfff goods p30 pr">
 
       <view class="tac pay-img">
-        <image mode="widthFix" lazy-load="{{true}}" src="/images/pay_success.png"></image>
+        <image mode="widthFix" lazy-load="{{true}}" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/apply_time.png"></image>
       </view>
       <view class="success">支付成功</view>
       <view class="user-input pay-success-btn f34 cff3a5a tac goods-btn">
@@ -182,7 +182,7 @@
       <view hidden="{{ baseIndex == 0 }}" class="finish-img tac">
         <image lazy-load="{{true}}"
                class="apply-last-img"
-               src="/images/apply_time.png"></image>
+               src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/apply_time.png"></image>
       </view>
 
       <view class="user-input iconfont icon-daosanjiao">
@@ -218,7 +218,7 @@
       <view class="apply-finish tac">
         <image lazy-load="{{true}}"
                mode="widthFix"
-               src="/images/pay_success.png"></image>
+               src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/pay_success.png"></image>
       </view>
       <view class="c444 f48 fw7 tac success">
         恭喜您预约成功！
