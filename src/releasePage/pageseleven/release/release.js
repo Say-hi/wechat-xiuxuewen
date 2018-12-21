@@ -19,6 +19,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    compressd: true,
     tipsArr: [
       {
         t: 'asdf'
@@ -104,6 +105,61 @@ Page({
     })
   },
 
+  compress () {
+    this.setData({
+      compressd: !this.data.compressd
+    })
+  },
+  upVideo () {
+    let that = this
+    this.setData({
+      speed: null,
+      upText: '等待上传',
+      size: 0,
+      duration: 0,
+      time: '等待上传任务结束'
+    })
+    let start = new Date().getTime()
+    wx.chooseVideo({
+      compressed: that.data.compressd,
+      success (res) {
+        console.log('chooseSuccess', res)
+        that.setData({
+          duration: res.duration,
+          size: res.size / 1024 > 1024 ? res.size / 1024 / 1024 + 'M' : res.size / 1024 + 'KB'
+        })
+        let v = res.tempFilePath
+        let Key = `video/10000/${v.substr(v.lastIndexOf('/') + 1)}`
+        cos.postObject({
+          Bucket: config.Bucket,
+          Region: config.Region,
+          Key,
+          FilePath: v,
+          onProgress: function (info) {
+            that.setData({
+              upText: '上传中',
+              speed: info.speed / 1024 > 1024 ? info.speed / 1024 / 1024 + 'M/s' : info.speed / 1024 + 'KB/s'
+            })
+          }
+        }, (err, data) => {
+          that.setData({
+            time: (new Date().getTime() - start) / 1000
+          })
+          if (err) {
+            console.error('upLoadErr', err)
+            that.setData({
+              upText: '失败'
+            })
+          } else {
+            console.log('data', data)
+            that.setData({
+              upText: '成功'
+            })
+          }
+        })
+      }
+    })
+  },
   // 图片操作
   imgOperation (e) {
     if (!this.data.upImgArr[e.currentTarget.dataset.index].real) return app.setToast(this, {content: '请稍后操作'})

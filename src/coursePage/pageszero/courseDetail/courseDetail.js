@@ -155,6 +155,7 @@ Page({
   showMore (e) {
     if (e.currentTarget.dataset.type === 'comment') {
       return this.setData({
+        replyFocus: false,
         showComment: !this.data.showComment
       })
     }
