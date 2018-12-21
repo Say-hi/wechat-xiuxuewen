@@ -4,7 +4,7 @@
     <image lazy-load="{{true}}" class="video-poster"
            mode="aspectFill"
            src="{{ detailInfo.image }}"></image>
-    <view wx:if="{{ options.type == 1 }}" catchtap="videoPlay" class="video-btn iconfont icon-jinru pa"></view>
+    <view wx:if="{{ options.type == 1 }}" catchtap="videoPlay" class="video-btn iconfont icon-bofang1 pa"></view>
     <!--<view class="video-text pa fw7">可试看一分钟教程</view>-->
     <!--<view class="ask-question tac bgfff br10 p20">-->
       <!--<view class="f32 fw7">限时答题领取綉币</view>-->
