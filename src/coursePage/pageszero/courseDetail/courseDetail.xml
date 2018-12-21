@@ -3,7 +3,7 @@
   <view wx:if="{{ !play }}" class="video-poster-img pr">
     <image lazy-load="{{true}}" class="video-poster"
            mode="aspectFill"
-           src="{{ poster }}"></image>
+           src="{{ detailInfo.image }}"></image>
     <view wx:if="{{ options.type == 1 }}" catchtap="videoPlay" class="video-btn iconfont icon-jinru pa"></view>
     <!--<view class="video-text pa fw7">可试看一分钟教程</view>-->
     <!--<view class="ask-question tac bgfff br10 p20">-->
@@ -18,10 +18,10 @@
          poster="{{ poster }}"
          controls="{{ controls }}"
          bindended="videoEnd"
-         objectFit="fill"
+         objectFit="contain"
          autoplay="{{true}}"
          class="video-show"
-         src="{{ videoSrc }}">
+         src="{{ detailInfo.video_url }}">
   </video>
 </view>
 <!--导航栏-->
@@ -68,7 +68,7 @@
       <view id="check_1" class="need-check p30 br18 bgfff">
         <view class="video-info">
           <view class="v-i-left">
-            <view class="f36 fw7">圆三针手工雾眉操作要领操作</view>
+            <view class="f36 fw7">{{ detailInfo.title }}</view>
             <view wx:if="{{ options.type != 1 }}" class="f26 c999">上课时间：随到随学</view>
           </view>
           <view class="v-i-right c999 tar">
@@ -77,8 +77,8 @@
           </view>
         </view>
         <view class="f26 c999 v-i-l-bottom mt30">
-          <view>888人已学习</view>
-          <view wx:if="{{ options.type == 1 }}" class="f26 cff3b5b">88元</view>
+          <view>{{ detailInfo.learn_base * 1 + detailInfo.learn_count * 1 }}人已学习</view>
+          <view wx:if="{{ options.type == 1 }}" class="f26 cff3b5b">{{ detailInfo.price > 0 ? detailInfo.price + '元' : '免费' }}</view>
         </view>
       </view>
 
@@ -159,7 +159,7 @@
                   <view class="c-c-bg pa" style="width: {{ 5 / 10 * 100}}%"></view>
                   <image lazy-load="{{true}}" class="c-c-s-star pa" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/star.png"></image>
                 </view>
-                <view class="tar comment-btn-wrap">
+                <view wx:if="{{ commentArr.length }}" class="tar comment-btn-wrap">
                   <text catchtap="goComment" class="f26 cff3b5b comment-btn">我要评论</text>
                 </view>
               </view>
@@ -193,22 +193,24 @@
         </view>
         <view class="homework-area mt30">
           <view class="homework-item {{ index < 1 ? 'bd1' : '' }}"
-                wx:for="12"
+                wx:for="{{ commentArr }}"
+                wx:if="{{ cIndex < 2 }}"
                 wx:for-index="cIndex"
+                wx:for-item="cItem"
                 wx:key="*45">
             <view class="h-i-user">
-              <image lazy-load="{{true}}" class="user-img br" src="{{ poster }}"></image>
-              <view class="user-name f26 cababab">绣绣学纹眉</view>
+              <image lazy-load="{{true}}" class="user-img br" src="{{ cItem.avatar }}"></image>
+              <view class="user-name f26 cababab">{{ cItem.nickname }}</view>
               <view class="user-star">
                 <view wx:for="12345"
                       wx:key="*12"
-                      class="iconfont f30 icon-pingjiaxingxing {{ index < 3 ? 'main-text-color' : 'ce5e5e5' }}"></view>
+                      class="iconfont f30 icon-pingjiaxingxing {{ index < cItem.star ? 'main-text-color' : 'ce5e5e5' }}"></view>
               </view>
-              <view class="f24 c999">3分钟前</view>
+              <view class="f24 c999">{{ cItem.create_time }}</view>
             </view>
             <view class="h-i-content">
               <view class="f26 c3a3a3a user-content p200">
-                干货满满，老师讲的很有条理，很好懂，请老师帮我看一下作业
+                {{ cItem.content }}
               </view>
               <view class="user-work-img">
                 <!--&lt;!&ndash;<image lazy-load="{{true}}" wx:for='123333'&ndash;&gt;-->
@@ -221,13 +223,13 @@
                 <!--<view class="iconfont icon-dianzan">66</view>-->
                 <view catchtap="replyOperation" data-name="回复楼主" data-cindex="{{ cIndex }}" class="iconfont icon-pinglun"></view>
               </view>
-              <view hidden="{{ commentArr.length <= 0 ? rIndex != cIndex : false }}" class="reply pr mt20 br18 f26 c393636 p30">
+              <view hidden="{{ cItem.replyArr.length <= 0 ? rIndex != cIndex : false }}" class="reply pr mt20 br18 f26 c393636 p30">
                 <view catchtap="replyOperation"
                       data-type="other"
                       class="mt10 f26 answer-reply-item"
                       data-cindex="{{ cIndex }}"
                       data-name="xxxx{{ index }}"
-                      wx:for='{{ commentArr }}'
+                      wx:for='{{ cItem.replyArr }}'
                       wx:key="*908">
                   <text class="reply-name fw7">
                     <text class="teacher-tag">艺苑绣眉</text>
@@ -256,10 +258,14 @@
             </view>
           </view>
           <view catchtap="showMore"
+                hidden="{{ !commentArr.length }}"
                 data-type="comment"
                 class="tac cff3b5b fw7 f26 c-l-bottom">
             查看全部评价
             <text class="iconfont icon-jinru fw7 f30"></text>
+          </view>
+          <view wx:if="{{ !commentArr.length }}" class="tac comment-btn-wrap ">
+            <text catchtap="goComment" class="f26 cff3b5b comment-btn">快来抢占沙发吧~</text>
           </view>
         </view>
       </view>
@@ -360,24 +366,25 @@
                  bindscrolltoupper="onScrollUp"
                  bindscrolltolower="onreachbottom"
                  scroll-with-animation="{{true}}">
-      <view wx:for="123"
+      <view wx:for="{{ commentArr }}"
             wx:key="*51"
             wx:for-index="cIndex"
+            wx:for-item="cItem"
             class="homework-area mt20">
         <view class="homework-item">
           <view class="h-i-user">
-            <image lazy-load="{{true}}" class="user-img br" src="{{ poster }}"></image>
-            <view class="user-name f26 cababab">绣绣学纹眉</view>
+            <image lazy-load="{{true}}" class="user-img br" src="{{ cItem.avatar }}"></image>
+            <view class="user-name f26 cababab">{{ cItem.nickname }}</view>
             <view class="user-star">
               <view wx:for="12345"
                     wx:key="*12"
-                    class="iconfont f30 icon-pingjiaxingxing {{ index < 3 ? 'main-text-color' : 'ce5e5e5' }}"></view>
+                    class="iconfont f30 icon-pingjiaxingxing {{ index < cItem.star ? 'main-text-color' : 'ce5e5e5' }}"></view>
             </view>
-            <view class="f24 cababab">30分钟前</view>
+            <view class="f24 cababab">{{ cItem.create_time }}</view>
           </view>
           <view class="h-i-content">
             <view class="f26 c3a3a3a user-content p200">
-              干货满满，老师讲的很有条理，很好懂，请老师帮我看一下作业
+              {{ cItem.content }}
             </view>
             <!--<view class="user-work-img">-->
               <!--<image lazy-load="{{true}}" wx:for='123333'-->
@@ -390,13 +397,13 @@
               <!--<view class="iconfont icon-dianzan">66</view>-->
               <view catchtap="replyOperation" data-name="回复楼主" data-cindex="{{ cIndex }}"  class="iconfont icon-pinglun"></view>
             </view>
-            <view hidden="{{ commentArr.length <= 0 ? rIndex != cIndex : false }}" class="reply pr mt20 br20 f26 c393636 p30">
+            <view hidden="{{ cItem.replyArr.length <= 0 ? rIndex != cIndex : false }}" class="reply pr mt20 br20 f26 c393636 p30">
               <view catchtap="replyOperation"
                     data-type="other"
                     class="mt10 f26 answer-reply-item"
                     data-cindex="{{ cIndex }}"
                     data-name="xxx{{ cIndex }}"
-                    wx:for='123'
+                    wx:for='{{ cItem.replyArr }}'
                     wx:key="*908">
                 <text class="reply-name fw7">
                   <text class="teacher-tag">艺苑绣眉</text>
@@ -424,13 +431,8 @@
             </view>
           </view>
         </view>
-        <!--<view catchtap="showMore"-->
-              <!--data-type="comment"-->
-              <!--class="tac p20 cff3b5b fw7 f26 c-l-bottom">-->
-          <!--查看全部评价-->
-          <!--<text class="iconfont icon-jinru fw7 f30"></text>-->
-        <!--</view>-->
       </view>
+      <view class="tac f24 c999">{{ commentArr.length > 0 ? !more ? '已经到底部啦' : '上拉获取更多精彩' : '暂无相关内容哦~~' }}</view>
       <view class="zw"></view>
     </scroll-view>
   </view>
@@ -479,10 +481,20 @@
 </view>
 <!--我要评论-->
 <view hidden="{{ !writeComment }}" class="mask write-comment" catchtap="goComment">
-  <view class="w-c p20 f26" catchtap="noUp">
-    <input bindconfirm="writeConfirm" confirm-type="send" cursor-spacing="30" focus="{{ writeComment }}" class="flex1" placeholder="你觉得课程怎么样呢，来说说吧～（至少五个字）" />
-    <view catchtap="writeConfirm" class="send-btn cfff">发送</view>
-  </view>
+  <form bindsubmit="writeConfirm">
+    <view class="w-c p20 f26" catchtap="noUp">
+      <input bindconfirm="writeConfirm"
+             name="content"
+             confirm-type="send"
+             cursor-spacing="30"
+             focus="{{ writeComment }}"
+             value="{{ inputValue }}"
+             class="flex1"
+             placeholder="你觉得课程怎么样呢，来说说吧～（至少五个字）" />
+      <button form-type="submit"
+              class="send-btn cfff">发送</button>
+    </view>
+  </form>
 </view>
 <!--<my-navigator-tab wx:if="{{ !needSmall }}" prop-nav="{{ tabArr2 }}"></my-navigator-tab>-->
 <!--错误弹窗-->

@@ -598,7 +598,7 @@ App({
   // 信息弹窗
   setToast (that, toast, time) {
     let defaultToast = {
-      image: '/images/jiong.png',
+      image: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/jiong.png',
       show: true,
       bgc: '#fff',
       color: '#000',

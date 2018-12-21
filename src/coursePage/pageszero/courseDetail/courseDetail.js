@@ -73,10 +73,6 @@ Page({
     })
   },
 
-  writeConfirm () {
-    this.goComment()
-  },
-
   lostTime (time) {
     if (timer) clearInterval(timer)
     let that = this
@@ -295,14 +291,14 @@ Page({
     app.wxrequest({
       url: app.getUrl().evaluate,
       data: {
-        id: that.data.options.id,
+        course_id: that.data.options.id,
         page: ++PAGE
       },
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
           that.setData({
-            commentList: that.data.commentList.concat(res.data.data.lists),
+            commentArr: that.data.commentArr.concat(res.data.data.lists),
             more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
           })
         } else {
@@ -314,16 +310,53 @@ Page({
   // 评论弹窗触顶
   onScrollUp () {
     PAGE = 0
-    this.data.commentList = []
-    this.getList()
+    this.data.commentArr = []
+    this.getEvaluate()
   },
   // 评论弹窗触底
   onreachbottom () {
-    if (this.data.more >= 1) this.getList()
+    if (this.data.more >= 1) this.getEvaluate()
   },
   // 分享
   onShareAppMessage () {
 
+  },
+  // 获取详情
+  getDetail () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().courseDetail,
+      data: {
+        course_id: that.data.options.id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            detailInfo: res.data.data
+          }, that.getEvaluate)
+          app.setBar(res.data.data.title)
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+  // 发布直接评论
+  writeConfirm (e) {
+    this.data.commentArr.unshift({
+      avatar: this.data.poster,
+      nickname: '测试发布评论',
+      star: Math.floor(Math.random() * 5),
+      create_time: '刚刚',
+      replyArr: [],
+      content: typeof e.detail.value === 'string' ? e.detail.value : e.detail.value.content
+    })
+    this.goComment()
+    this.setData({
+      inputValue: '',
+      commentArr: this.data.commentArr
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -332,7 +365,7 @@ Page({
     // type 对应规则 1 线上课程 2 线下课程 3 教室
     this.setData({
       options
-    })
+    }, this.getDetail)
     if (options.type * 1 === 2 || options.type * 1 === 4) {
       this.data.videoTab[2].t = '作品秀'
       this.setData({
