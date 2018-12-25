@@ -1,18 +1,10 @@
 <!--顶部视频区域-->
-<view style="height: {{ needSmall ? 7 : 30 }}%;" class="video-area">
+<view hidden="{{ options.type == 3 }}" style="height: {{ needSmall ? 7 : 30 }}%;" class="video-area">
   <view wx:if="{{ !play }}" class="video-poster-img pr">
     <image lazy-load="{{true}}" class="video-poster"
            mode="aspectFill"
            src="{{ detailInfo.image }}"></image>
     <view wx:if="{{ options.type == 1 }}" catchtap="videoPlay" class="video-btn iconfont icon-bofang1 pa"></view>
-    <!--<view class="video-text pa fw7">可试看一分钟教程</view>-->
-    <!--<view class="ask-question tac bgfff br10 p20">-->
-      <!--<view class="f32 fw7">限时答题领取綉币</view>-->
-      <!--<view class="f28 a-q-bottom mian-text-color">-->
-        <!--<view catchtap="startAnswer" data-type="open">参与答题</view>-->
-        <!--<view class="cfff">继续下一集</view>-->
-      <!--</view>-->
-    <!--</view>-->
   </view>
   <video wx:else
          poster="{{ poster }}"
@@ -24,6 +16,22 @@
          src="{{ detailInfo.video_url }}">
   </video>
 </view>
+<view class="pr"
+      style="height: {{ needSmall ? 7 : 30 }}%;"
+      hidden="{{ options.type != 3 }}">
+<swiper autoplay
+        circular
+        bindchange="swiperChange"
+        style="height: 100%;"
+        class="banner">
+  <swiper-item  wx:for="{{ swiperArr }}"
+                wx:key="*0">
+    <image style="width: 100%; height: 100%;" lazy-load="{{true}}" catchtap="goOther" data-src="{{ item }}" data-url="{{ item }}" mode="aspectFill" src="{{ item }}"></image>
+  </swiper-item>
+</swiper>
+<view class="swiper-tag f24 cfff">{{ swiperIndex }}/{{ swiperArr.length }}</view>
+</view>
+
 <!--导航栏-->
 <view class="tab-top bgfff lh88 bd1">
   <view wx:for="{{ videoTab }}"
@@ -37,12 +45,8 @@
   </view>
 </view>
 <!--付费课程-->
-<!--<view wx:if="{{ options.type == 2 }}" class="video-buy bb {{ needSmall ? 'toBottom' : '' }}">-->
 <view wx:if="{{ options.type == 2 || options.type == 4 }}" class="video-buy bb">
-  <!--<navigator hover-class="none" url="/collagePage/pagesone/collage/collage" catchtap="buyOperation" class="f34 cfff tac fw7 video-buy-btn">拼团价: 1.8元</navigator>-->
   <view catchtap="buyOperation" class="f34 cfff tac video-buy-btn">
-    <!--<view wx:if="{{ options.type != 2 }}" class="fw7">立即购买</view>-->
-    <!--<view wx:else>-->
     <view >
       <text>报名费¥200</text>
       <text class="fw7">立即预约报名</text>
@@ -81,24 +85,7 @@
           <view wx:if="{{ options.type == 1 }}" class="f26 cff3b5b">{{ detailInfo.price > 0 ? detailInfo.price + '元' : '免费' }}</view>
         </view>
       </view>
-
       <view id="s1" class="zw20 need-check"></view>
-      <!--<view class="course-list bgfff br18">-->
-      <!--<view class="f36 fw7 p20 c3a3a3a bd1">课程目录</view>-->
-      <!--<view wx:for="123456789"-->
-      <!--data-index="{{ index }}"-->
-      <!--catchtap="chooseVideoPlay"-->
-      <!--wx:key="*10"-->
-      <!--class="f26 {{ index < (!show_more ? 3 : 9999) ? 'p20 bd1' : 'no-height' }} c-l-list {{ index == videoPlayIndex ? 'cff3b5b' : 'c666' }}">{{ index + 1 }}.圆三针手工雾眉操作要领操作圆三针手工雾眉操作要领操作圆三针手工雾眉操作要领操作 <view class="iconfont f40 {{ index == videoPlayIndex ? 'cff3b5b icon-bofang' : 'icon-bofang1'}}"></view>-->
-      <!--</view>-->
-      <!--<view catchtap="showMore"-->
-      <!--data-type="list"-->
-      <!--class="tac p20 cff3b5b fw7 f26 c-l-bottom">-->
-      <!--{{ !show_more ? '查看全部课程目录' : '收缩课程目录' }}-->
-      <!--<text class="iconfont icon-jinru fw7 f30 {{ !show_more ? '' : 'iconRotate' }}"></text>-->
-      <!--</view>-->
-      <!--</view>-->
-
       <!--地址栏-->
       <view id="check_2" class="need-check course-list bgfff br18 p30">
         <view class="f36 fw7 c444">线下教室</view>
@@ -136,12 +123,10 @@
             wx:if="{{ options.type == 4 }}"
             class="need-check course-list bgfff br18 p30 mt20">
         <view class="f36 fw7 c444">报名费说明</view>
-
         <view class="f28 c666 mt20">
           报名费用于预定到店名额，一天只有10个名额，先到先的 关于申请说明，满足下列条件可以退款： 1.按照约定时间到店学习后可以申请退款， 2.如果有事无法如约到店，请提前24小时联系客服申请退款
         </view>
       </view>
-
       <view wx:if="{{ options.type != 4 }}"
             id="s2"
             class="zw20 need-check"></view>
@@ -170,14 +155,6 @@
         </view>
         <view class="video-level mt30 p30 br18"
               wx:if="{{ !starOperation }}">
-          <!--<view class="f26 cababab">课程难度</view>-->
-          <!--<view class="v-l-lev f24 c444 mt20">-->
-          <!--<view wx:for="123"-->
-          <!--wx:key="*11"-->
-          <!--catchtap="tagChoose"-->
-          <!--data-index="{{ index }}"-->
-          <!--class="v-l-l-tag {{ index == tagIndex ? 'cfff' : '' }}">见到</view>-->
-          <!--</view>-->
           <view class="f26 cababab">课程评分</view>
           <view class="v-l-star-wrap mt20">
             <view wx:for="12345"
@@ -308,7 +285,6 @@
     <view wx:if="{{ options.type != 3 }}" class="zw"></view>
     <view wx:if="{{ options.type != 3 }}" hidden="{{ needSmall }}" class="zw"></view>
   </view>
-
   <view wx:if="{{ options.type == 3 }}">
     <view hidden="{{ options.type == 3 && (currentIndex == 0 || currentIndex == 3) }}">
       <view class="p20">
@@ -345,7 +321,6 @@
       </view>
     </view>
   </view>
-
 </scroll-view>
 
 <view hidden="{{ options.type == 3 ? options.type == 3 && (currentIndex == 0 || currentIndex == 3) : true }}"

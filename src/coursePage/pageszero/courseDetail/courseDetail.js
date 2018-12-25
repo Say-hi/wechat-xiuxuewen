@@ -10,6 +10,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    swiperIndex: 1,
+    swiperArr: [app.data.testImg, app.data.testImg],
     latitude: 23.111123,
     longitude: 113.123432,
     poster: 'https://c.jiangwenqiang.com/api/logo.jpg',
@@ -67,6 +69,12 @@ Page({
     commentArr: [],
     rIndex: -1
   },
+  swiperChange (e) {
+    this.setData({
+      swiperIndex: e.detail.current * 1 + 1
+    })
+  },
+
   goComment () {
     this.setData({
       writeComment: !this.data.writeComment
