@@ -9,6 +9,70 @@ Page({
   data: {
     testImg: app.data.testImg,
     swiperIndex: 0,
+    genderText: '女',
+    experienceText: '零基础',
+    teacherText: '无师自通',
+    teacherArr: ['无师自通', '师从哪位'],
+    questionArr: [
+      {
+        t: '发红'
+      },
+      {
+        t: '发蓝'
+      },
+      {
+        t: '不稳定'
+      },
+      {
+        t: '不上色'
+      },
+      {
+        t: '留色少'
+      },
+      {
+        t: '掉色快'
+      },
+      {
+        t: '上色慢'
+      }
+    ],
+    questionText: '发红，上色慢',
+    personArr: [
+      {
+        t: '技能'
+      },
+      {
+        t: '形象'
+      },
+      {
+        t: '沟通'
+      },
+      {
+        t: '设计'
+      },
+      {
+        t: '配色'
+      },
+      {
+        t: '修护'
+      },
+      {
+        t: '并发症处理'
+      },
+      {
+        t: '拓店'
+      },
+      {
+        t: '管理'
+      },
+      {
+        t: '并发症处理'
+      },
+      {
+        t: '营销'
+      }
+    ],
+    personText: '技能，形象，并发症处理',
     showTop: 0,
     videoTab: [
       {
@@ -22,10 +86,87 @@ Page({
       }
     ],
     date: app.momentFormat(new Date(), 'YYYY-MM-DD'),
+    endDate: app.momentAdd('3', 'M', new Date()),
     amArr: ['上午', '下午'],
     amIndex: 0,
     expectedArr: ['一天', '两天', '三天', '四天', '五天', '一个星期'],
     expectedIndex: 0
+  },
+  showBottomScorll (e) {
+    let type = e.currentTarget.dataset.type
+    let that = this
+    if (type === 'gender') {
+      wx.showActionSheet({
+        itemList: ['女', '男'],
+        success (res) {
+          that.setData({
+            genderText: res.tapIndex === 1 ? '男' : '女'
+          })
+        }
+      })
+    } else if (type === 'experience') {
+      wx.showActionSheet({
+        itemList: ['零基础', '有基础'],
+        success (res) {
+          that.setData({
+            experienceText: res.tapIndex === 1 ? '有基础' : '零基础'
+          })
+        }
+      })
+    } else {
+      this.setData({
+        chooseArr: type === 'teacher' ? this.data.teacherArr : type === 'question' ? this.data.questionArr : type === 'person' ? this.data.personArr : '',
+        maskType: type
+      }, this.maskChange)
+    }
+  },
+  maskChange () {
+    this.setData({
+      maskShow: !this.data.maskShow
+    })
+  },
+  maskChoose (e) {
+    if (this.data.maskType === 'question' || this.data.maskType === 'person') {
+      this.data.chooseArr[e.currentTarget.dataset.index]['choose'] = !this.data.chooseArr[e.currentTarget.dataset.index]['choose']
+      this.setData({
+        chooseArr: this.data.chooseArr
+      })
+    } else {
+      this.setData({
+        maskIndex: e.currentTarget.dataset.index
+      })
+    }
+  },
+  maskConfirm () {
+    if (this.data.maskType === 'teacher') {
+      if (this.data.maskIndex === 0) {
+        this.setData({
+          teacherText: '无师自通'
+        })
+      }
+    } else {
+      let tempArr = []
+      for (let v of this.data.chooseArr) {
+        if (v.choose) {
+          tempArr.push(v.t)
+        }
+      }
+      if (this.data.maskType === 'question') {
+        this.setData({
+          questionArr: this.data.chooseArr,
+          questionText: tempArr.join('，')
+        })
+      } else {
+        this.setData({
+          personArr: this.data.chooseArr,
+          personText: tempArr.join('，')
+        })
+      }
+    }
+    this.maskChange()
+  },
+  inputValue (e) {
+    app.inputValue(e, this)
   },
   // 选择地址
   chooseAddress () {

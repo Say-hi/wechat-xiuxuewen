@@ -78,6 +78,13 @@ App({
     reservation_bg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/reservation_bg.png',
     imgDomain: 'https://rtx.24sky.cn'
   },
+  momentAdd (number, type, time) {
+    if (time) {
+      return Moment(time).add(number, type)
+    } else {
+      return  Moment().add(number, type)
+    }
+  },
   moment (time) {
     return Moment(time, 'YYYYMMDD HH:mm:ss').fromNow()
   },
@@ -537,35 +544,21 @@ App({
   inputValue (e, that, cb) {
     let value = e.detail.value
     let type = e.currentTarget.dataset.type
-    if (type === 'loginInput') {
+    if (type === 'teacher') {
       that.setData({
-        loginInput: value // 登录输入
+        teacherText: value
       })
-    } else if (type === 'pwd') {
-      that.setData({
-        pwd: value // 密码输入
-      })
-      if (cb) {
-        cb(that)
-      }
-    } else if (type === 'money') {
-      that.setData({
-        money: value
-      })
-      if (cb) {
-        cb(that)
-      }
     } else if (type === 'name') {
       that.setData({
-        name: value // 姓名
+        nameText: value // 姓名
       })
     } else if (type === 'phone') {
       that.setData({
-        phone: value // 手机号码
+        phoneText: value // 手机号码
       })
-    } else if (type === 'idCard') {
+    } else if (type === 'brand') {
       that.setData({
-        idCard: value // 身份证号码
+        brandText: value // 品牌
       })
     } else if (type === 'contentTwo') {
       that.setData({
