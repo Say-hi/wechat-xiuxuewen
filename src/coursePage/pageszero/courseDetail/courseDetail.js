@@ -16,7 +16,6 @@ Page({
     longitude: 113.123432,
     poster: 'https://c.jiangwenqiang.com/api/logo.jpg',
     controls: true,
-    videoSrc: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
     currentIndex: 0,
     centerHeight: 63,
     starArr: ['差', '还行', '中等', '好', '很好'],
@@ -29,41 +28,6 @@ Page({
       },
       {
         t: '评价 (22)'
-      }
-    ],
-    questionList: [
-      {
-        question: '2.圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个',
-        answer: ['wdfasdf', 'asdfasdfsd', 'asdfasdfasdf'],
-        chooseIndex: null
-      },
-      {
-        question: '2.圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个',
-        answer: ['圆三针手工雾眉操作要领操', '圆三针手工雾眉操作要领操', '圆三针手工雾眉操作要领操'],
-        chooseIndex: null,
-        userChoose: 0,
-        rightAnswer: 1
-      },
-      {
-        question: '2.圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个',
-        answer: ['圆三针手工雾眉操作要领操', 'asdfasdfsd', '圆三针手工雾眉操作要领操'],
-        chooseIndex: null,
-        userChoose: 1,
-        rightAnswer: 1
-      },
-      {
-        question: '2.圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个',
-        answer: ['圆三针手工雾眉操作要领操', 'asdfasdfsd', '圆三针手工雾眉操作要领操'],
-        chooseIndex: null,
-        userChoose: 1,
-        rightAnswer: 1
-      },
-      {
-        question: '2.圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个',
-        answer: ['圆三针手工雾眉操作要领操', 'asdfasdfsd', '圆三针手工雾眉操作要领操'],
-        chooseIndex: null,
-        userChoose: 1,
-        rightAnswer: 1
       }
     ],
     commentArr: [],
@@ -81,47 +45,6 @@ Page({
     })
   },
 
-  lostTime (time) {
-    if (timer) clearInterval(timer)
-    let that = this
-    let h = null
-    let m = null
-    let s = null
-    let ms = null
-    let msTime = time * 1000
-    ms = Math.floor(msTime % 1000)
-    s = Math.floor(msTime / 1000 % 60)
-    m = Math.floor(msTime / 1000 / 60 % 60)
-    h = Math.floor(msTime / 1000 / 60 / 60 % 24)
-    that.setData({
-      lost_h: h >= 10 ? h : '0' + h,
-      lost_m: m >= 10 ? m : '0' + m,
-      lost_s: s >= 10 ? s : '0' + s,
-      lost_ms: ms >= 100 ? ms : ms >= 10 ? '0' + ms : '00' + ms
-    })
-    timer = setInterval(() => {
-      if (msTime <= 0) {
-        that.setData({
-          lost_h: '已',
-          lost_m: '经',
-          lost_s: '结',
-          lost_ms: '束'
-        })
-        return clearInterval(timer)
-      }
-      ms = Math.floor(msTime % 1000)
-      s = Math.floor(msTime / 1000 % 60)
-      m = Math.floor(msTime / 1000 / 60 % 60)
-      h = Math.floor(msTime / 1000 / 60 / 60 % 24)
-      that.setData({
-        lost_h: h >= 10 ? h : '0' + h,
-        lost_m: m >= 10 ? m : '0' + m,
-        lost_s: s >= 10 ? s : '0' + s,
-        lost_ms: ms >= 100 ? ms : ms >= 10 ? '0' + ms : '00' + ms
-      })
-      msTime -= 21
-    }, 21)
-  },
   userChooseAnswer (e) {
     this.data.questionList[e.currentTarget.dataset.qindex]['chooseIndex'] = e.currentTarget.dataset.aindex
     this.setData({
@@ -187,11 +110,12 @@ Page({
       data: {
         course_id: that.data.options.id,
         user_id: app.gs('userInfoAll').id,
-        socre: that.data.starIndex * 1 + 1
+        score: that.data.starIndex * 1 + 1
       },
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
+          that.data.detailInfo.star = that.data.starIndex * 1 + 1
           that.setData({
             starOperation: true
           })
@@ -266,13 +190,36 @@ Page({
     })
   },
   replyBlur (e) {
-    console.log(e)
     this.setData({
       rIndex: -1,
       replyFocus: false
     })
   },
-
+  replyConfirm (e) {
+    if (!e.detail.value.length) return app.setToast(that, {content: '请输入您的回复内容'})
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().courseDiscussSub,
+      data: {
+        evaluate_id: that.data.commentArr[that.data.rIndex].evaluate_id,
+        evaluate_user_id: that.data.commentArr[that.data.rIndex].user_id,
+        reply_user_id: app.gs('userInfoAll').id,
+        course_id: that.data.detailInfo.id,
+        dis_comment: e.detail.value,
+        answer_user_id: ''
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.data.commentArr[that.data.rIndex].push({
+            nickname: '我的名字'
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   showImg (e) {
     app.showImg(e.currentTarget.dataset.src, [this.data.poster])
   },
@@ -372,8 +319,7 @@ Page({
   // 发布直接评论
   writeConfirm (e) {
     let that = this
-    console.log(e)
-    if (e.detail.value.content.length <= 0) return app.setToast(that, {content: '请输入您的评论内容'})
+    if (e.detail.value.content.length <= 4) return app.setToast(that, {content: '评论内容需大于5个字'})
     app.wxrequest({
       url: app.getUrl().courseEvaluateSub,
       data: {
@@ -388,7 +334,7 @@ Page({
           that.data.commentArr.unshift({
             avatar_url: that.data.poster,
             nickname: '测试发布评论',
-            star_num: Math.floor(Math.random() * 5),
+            star_num: that.data.detailInfo.star,
             create_time: '刚刚',
             replyArr: [],
             comment: e.detail.value.content

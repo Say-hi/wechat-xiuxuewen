@@ -25,13 +25,21 @@
 <view class="zw200"></view>
 
 <view class="answer-wrap p20">
-  <navigator url="../answerDetail2/answerDetail2?id={{ index }}" wx:for="1321" wx:key="*24" class="bgfff br18 p30 mt20 {{ currentIndex == 2 ? 'has-reply pr' : '' }}">
-    <view class="f36 c3a3a3a fw7 {{ currentIndex == 2 ? 'ell2' : '' }}">老师您好,我是第一次真人操作手眉，走了好多遍才上色，为什么全程没有出组织液和血</view>
+  <navigator url="../answerDetail2/answerDetail2?id={{ item.id }}"
+             wx:for="{{ lists }}"
+             wx:key="*24"
+             class="bgfff br18 p30 mt20 {{ currentIndex == 2 ? 'has-reply pr' : '' }}">
+    <view class="f36 c3a3a3a fw7 {{ currentIndex == 2 ? 'ell2' : '' }}">{{ item.context }}</view>
     <view hidden="{{ currentIndex == 2 }}">
       <view class="answer-img mt10">
-        <image lazy-load="{{true}}" wx:for="123" wx:key="*21" mode="aspectFill" src="{{ testImg }}"></image>
+        <image lazy-load="{{true}}"
+               wx:for="{{ item.images }}"
+               wx:for-item="iitem"
+               wx:key="*21"
+               mode="aspectFill"
+               src="{{ iitem }}"></image>
       </view>
-      <view class="f20 c666 tar">2018年10月28日 09:38:26</view>
+      <view class="f20 c666 tar">{{ item.create_time }}</view>
       <view class="teacher mt30">
         <view class="teacher-reply c3a3a3a f26">
           你做的改兰眉加宽部分与之前的旧眉颜色出现端车，老师回答，你做的改兰眉加宽部分与之前的旧眉颜色……
@@ -41,12 +49,13 @@
           <!--<view class="user-name f26 cababab">刘老师</view>-->
           <view class="cababab user-operation">
             <!--<view class="iconfont icon-dianzan">66</view>-->
-            <view class="iconfont icon-pinglun c999">23</view>
+            <view class="iconfont icon-pinglun c999">{{ item.answer_count }}</view>
           </view>
         </view>
       </view>
     </view>
   </navigator>
+  <view wx:if="{{ !lists.length }}" class="tac f28 c999">暂无相关内容</view>
 </view>
 
 <!--<view class="zw"></view>-->
