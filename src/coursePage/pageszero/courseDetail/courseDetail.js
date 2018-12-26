@@ -180,10 +180,25 @@ Page({
   },
 
   upStar () {
-    // if (typeof this.data.tagIndex === 'undefined') return app.setToast(this, {content: '请选择难度等级'})
     if (typeof this.data.starIndex === 'undefined') return app.setToast(this, {content: '请选择星星等级'})
-    this.setData({
-      starOperation: true
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().courseStar,
+      data: {
+        course_id: that.data.options.id,
+        user_id: app.gs('userInfoAll').id,
+        socre: that.data.starIndex * 1 + 1
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            starOperation: true
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
     })
   },
 
@@ -305,6 +320,9 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
+          for (let v of res.data.data.lists) {
+            v.create_time = app.moment(v.create_time * 1000)
+          }
           that.setData({
             commentArr: that.data.commentArr.concat(res.data.data.lists),
             more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
@@ -335,7 +353,8 @@ Page({
     app.wxrequest({
       url: app.getUrl().courseDetail,
       data: {
-        course_id: that.data.options.id
+        course_id: that.data.options.id,
+        user_id: app.gs('userInfoAll').id
       },
       success (res) {
         wx.hideLoading()
@@ -352,18 +371,36 @@ Page({
   },
   // 发布直接评论
   writeConfirm (e) {
-    this.data.commentArr.unshift({
-      avatar: this.data.poster,
-      nickname: '测试发布评论',
-      star: Math.floor(Math.random() * 5),
-      create_time: '刚刚',
-      replyArr: [],
-      content: typeof e.detail.value === 'string' ? e.detail.value : e.detail.value.content
-    })
-    this.goComment()
-    this.setData({
-      inputValue: '',
-      commentArr: this.data.commentArr
+    let that = this
+    console.log(e)
+    if (e.detail.value.content.length <= 0) return app.setToast(that, {content: '请输入您的评论内容'})
+    app.wxrequest({
+      url: app.getUrl().courseEvaluateSub,
+      data: {
+        course_id: that.data.options.id,
+        user_id: app.gs('userInfoAll').id,
+        comment: e.detail.value.content,
+        course_user_id: that.data.detailInfo.user_id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.data.commentArr.unshift({
+            avatar_url: that.data.poster,
+            nickname: '测试发布评论',
+            star_num: Math.floor(Math.random() * 5),
+            create_time: '刚刚',
+            replyArr: [],
+            comment: e.detail.value.content
+          })
+          that.setData({
+            inputValue: '',
+            commentArr: that.data.commentArr
+          }, that.goComment)
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
     })
   },
   /**
@@ -416,6 +453,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload () {
+    PAGE = 0
     // TODO: onUnload
   },
 

@@ -176,31 +176,27 @@
                 wx:for-item="cItem"
                 wx:key="*45">
             <view class="h-i-user">
-              <image lazy-load="{{true}}" class="user-img br" src="{{ cItem.avatar }}"></image>
+              <image lazy-load="{{true}}" class="user-img br" src="{{ cItem.avatar_url }}"></image>
               <view class="user-name f26 cababab">{{ cItem.nickname }}</view>
               <view class="user-star">
                 <view wx:for="12345"
                       wx:key="*12"
-                      class="iconfont f30 icon-pingjiaxingxing {{ index < cItem.star ? 'main-text-color' : 'ce5e5e5' }}"></view>
+                      class="iconfont f30 icon-pingjiaxingxing {{ index < cItem.star_num ? 'main-text-color' : 'ce5e5e5' }}"></view>
               </view>
               <view class="f24 c999">{{ cItem.create_time }}</view>
             </view>
             <view class="h-i-content">
               <view class="f26 c3a3a3a user-content p200">
-                {{ cItem.content }}
+                {{ cItem.comment }}
               </view>
               <view class="user-work-img">
-                <!--&lt;!&ndash;<image lazy-load="{{true}}" wx:for='123333'&ndash;&gt;-->
-                <!--wx:key="*13"-->
-                <!--class="br10 u-w-i-img"-->
-                <!--mode="aspectFill"-->
-                <!--src="{{ poster }}"></image>-->
               </view>
               <view class="f20 c999 user-operation">
                 <!--<view class="iconfont icon-dianzan">66</view>-->
                 <view catchtap="replyOperation" data-name="回复楼主" data-cindex="{{ cIndex }}" class="iconfont icon-pinglun"></view>
               </view>
-              <view hidden="{{ cItem.replyArr.length <= 0 ? rIndex != cIndex : false }}" class="reply pr mt20 br18 f26 c393636 p30">
+              <view hidden="{{ cItem.replyArr.length <= 0 ? rIndex != cIndex : false }}"
+                    class="reply pr mt20 br18 f26 c393636 p30">
                 <view catchtap="replyOperation"
                       data-type="other"
                       class="mt10 f26 answer-reply-item"
@@ -348,18 +344,18 @@
             class="homework-area mt20">
         <view class="homework-item">
           <view class="h-i-user">
-            <image lazy-load="{{true}}" class="user-img br" src="{{ cItem.avatar }}"></image>
+            <image lazy-load="{{true}}" class="user-img br" src="{{ cItem.avatar_url }}"></image>
             <view class="user-name f26 cababab">{{ cItem.nickname }}</view>
             <view class="user-star">
               <view wx:for="12345"
                     wx:key="*12"
-                    class="iconfont f30 icon-pingjiaxingxing {{ index < cItem.star ? 'main-text-color' : 'ce5e5e5' }}"></view>
+                    class="iconfont f30 icon-pingjiaxingxing {{ index < cItem.star_num ? 'main-text-color' : 'ce5e5e5' }}"></view>
             </view>
             <view class="f24 cababab">{{ cItem.create_time }}</view>
           </view>
           <view class="h-i-content">
             <view class="f26 c3a3a3a user-content p200">
-              {{ cItem.content }}
+              {{ cItem.comment }}
             </view>
             <!--<view class="user-work-img">-->
               <!--<image lazy-load="{{true}}" wx:for='123333'-->

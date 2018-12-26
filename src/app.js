@@ -85,9 +85,6 @@ App({
       return  Moment().add(number, type)
     }
   },
-  moment (time) {
-    return Moment(time, 'YYYYMMDD HH:mm:ss').fromNow()
-  },
   momentDay (time) {
     return Moment().day(time)
   },
@@ -105,7 +102,7 @@ App({
   },
   // 解析时间
   moment (time) {
-    return Moment(time, 'YYYYMMDD HH:mm:ss').fromNow()
+    return Moment(time).fromNow()
   },
   // 发起微信支付
   wxpay (obj) {
@@ -748,6 +745,7 @@ App({
    */
   onLaunch () {
     this.getNavTab({})
+    this.su('userInfoAll', {id:1})
     // this.getFont()
   },
   /**

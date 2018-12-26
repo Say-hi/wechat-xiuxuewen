@@ -8,6 +8,9 @@ const serviceUrl = {
   login: baseDomain + '/api/index/login', // 登陆
   course: baseDomain + '/course/last', // 课程
   courseDetail: baseDomain + '/course/detail', // 课程详情
+  courseStar: baseDomain + '/course/star', // 给课程评分
+  courseEvaluateSub: baseDomain + '/course/evaluate_sub', // 提交课程评论
+  courseDiscussSub: baseDomain + '/course/discuss_sub', // 提交评论的评论
   evaluate: baseDomain + '/course/evaluate', // 课程评论
   upVideo: baseDomain + '/upload/video', // 视频上传
   upImage: baseDomain + '/upload/image' // 图片上传
