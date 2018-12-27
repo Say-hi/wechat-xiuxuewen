@@ -1,0 +1,7 @@
+// Window configuration
+{
+  // 类型：HexColor；默认值：#000000
+  // 导航栏背景颜色，如"#000000"
+  // 是否开启下拉刷新，详见页面相关事件处理函数。
+  "enablePullDownRefresh": false
+}

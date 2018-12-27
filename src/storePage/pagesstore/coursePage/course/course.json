@@ -1,0 +1,11 @@
+// Window configuration
+{
+  "usingComponents": {
+    "my-tip": "/components/my-tip/my-tip",
+    "my-login": "/components/my-login/my-login",
+    "my-navigator-tab": "/components/my-navigator-tab/my-navigator-tab"
+  },
+  // 类型：Boolean；默认值：false
+  // 是否开启下拉刷新，详见页面相关事件处理函数。
+  "enablePullDownRefresh": true
+}

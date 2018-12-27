@@ -32,6 +32,13 @@ Component({
     _getData () {
       let that = this
       let navData = app.gs('bottomNav')
+      let currentPage = getCurrentPages()
+      let store = false
+      if (currentPage[currentPage.length - 1].route.indexOf('storePage') >= 0) {
+        store = true
+        navData = app.gs('storeBottomNav')
+        app.data.bottomTabIndex = currentPage[currentPage.length - 1].route.indexOf('index') >= 0 ? 0 : 1
+      }
       if (navData) {
         for (let v of navData) {
           v['active'] = false
@@ -44,11 +51,11 @@ Component({
         app.wxrequest({
           url: app.getUrl().style,
           data: {
-            style: 1
+            style: store ? 4 : 1
           },
           success (res) {
             wx.hideLoading()
-            app.su('bottomNav', res.data.data)
+            app.su(store ? 'storeBottomNav' : 'bottomNav', res.data.data)
             res.data.data[app.data.bottomTabIndex]['active'] = true
             that.setData({
               navData: res.data.data

@@ -1,0 +1,39 @@
+<!--<view class="p020">-->
+  <!--<block wx:for="123" wx:key="*54">-->
+    <!--<view class="f22 c3a3a3a tac mt30">2018年10月20日 17:28</view>-->
+    <!--<view class="p30 bgfff br18 mt10">-->
+      <!--<text class="f28 cfff tag">视频课程</text>-->
+      <!--<view class="f26 c444 mt20">-->
+        <!--《圆三针课程》收到<text class="fw7">秀秀学纹绣</text>的评论-->
+      <!--</view>-->
+      <!--<view class="f34 c393636 mt20 fw7">-->
+        <!--“ 在那里可以跟这个老师学习呀，这种操作手法要在那里学习呢 ”-->
+      <!--</view>-->
+      <!--<view class="f24 c444 mt20">查看详情</view>-->
+    <!--</view>-->
+  <!--</block>-->
+<!--</view>-->
+<!--<view class="p20 system bb">-->
+  <!--<view class="br18 bgfff p30 system bb">-->
+    <!--<view class="f34 c393636 fw7 tac">欢迎加入绣学问平台</view>-->
+    <!--<view class="mt20 f22 tac c3a3a3a">2018年10月20日 17:28</view>-->
+    <!--<view class="f28 c444 mt30">-->
+      <!--欢迎加入绣学问这个平台欢迎加入绣学问这个平台欢迎加入绣学问这个平台欢迎加入绣学问这个平台欢迎加入绣学问这个平台欢迎加入绣学问这个平台欢迎加入绣学问这个平台欢迎加入绣学问这个平-->
+    <!--</view>-->
+  <!--</view>-->
+<!--</view>-->
+<view class="p20">
+  <view wx:for="123"
+        wx:key="*123"
+        class="p30 br18 bgfff message c444 f28 mt1">
+    <image class="br" src="{{ testImg }}"></image>
+    <view class="f28 flex1">
+      <text class="ce9ab86">用户昵称 </text>
+      <text class="c666">收藏了你的视频</text>
+      <text class="ce9ab86">《视屏教程名字》</text>
+    </view>
+  </view>
+</view>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

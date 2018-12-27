@@ -106,6 +106,22 @@
       "pages": [
         "pageseleven/release/release" // 我的收藏&我的预约
       ]
+    },
+    {
+      "root": "storePage", // 门店分包
+      "name": "store",
+      "pages": [
+        "pagesstore/index/index", // 首页
+        "pagesstore/user/user", // 我的
+        "pagesstore/coursePage/course/course", // 我的
+        "pagesstore/coursePage/courseDetail/courseDetail", //
+        "pagesstore/coursePage/courseDetail2/courseDetail", // 我的
+        "pagesstore/incomePage/income/income", // 我的
+        "pagesstore/messagePage/message/message", // 我的
+        "pagesstore/messagePage/messageDetail/messageDetail", // 我的
+        "pagesstore/releasePage/release/release", // 我的
+        "pagesstore/releasePage/releaseCourse/releaseCourse" // 我的
+      ]
     }
   ],
   "preloadRule": {

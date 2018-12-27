@@ -38,11 +38,6 @@ Page({
         t: '课程订单',
         src: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/user_4.png',
         url: '/orderPage/pagesfive/order/order'
-      },
-      {
-        t: '我的门店',
-        src: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/user_4.png',
-        url: '/storePage/pagesstore/index/index'
       }
       // {
       //   t: '收藏',

@@ -10,6 +10,7 @@ module.exports = {
     Page: true,
     getApp: true,
 	Component: true,
+	getCurrentPages: true,
     wx: true
   }
 };

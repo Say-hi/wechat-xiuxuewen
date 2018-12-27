@@ -109,6 +109,10 @@ Page({
       }
     })
   },
+  onReachBottom () {
+    if (this.data.more > 0) this.getNear()
+    else app.setToast(this, {content: '没有更多门店啦'})
+  },
   /**
    * 生命周期函数--监听页面加载
    */

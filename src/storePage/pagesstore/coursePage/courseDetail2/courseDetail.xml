@@ -1,0 +1,83 @@
+<!--顶部视频区域-->
+<view style="height: {{ needSmall ? 7 : 30 }}%;" class="video-area">
+  <view wx:if="{{ !play }}" class="video-poster-img pr">
+    <image lazy-load="{{true}}" class="video-poster"
+           mode="aspectFill"
+           src="{{ detailInfo.image }}"></image>
+    <view wx:if="{{ options.type == 1 }}" catchtap="videoPlay" class="video-btn jwqfont jwq-bofang1 pa"></view>
+  </view>
+  <video wx:else
+         poster="{{ poster }}"
+         controls="{{ controls }}"
+         bindended="videoEnd"
+         objectFit="contain"
+         autoplay="{{true}}"
+         class="video-show"
+         src="{{ detailInfo.video_url }}">
+  </video>
+</view>
+<!--滚动窗口-->
+
+<view class="p20">
+ <!--基本信息栏-->
+  <view class="need-check p30 br18 bgfff">
+    <view class="video-info">
+      <view class="v-i-left">
+        <view class="f36 fw7 c3a3a3a">{{ detailInfo.title }}</view>
+        <view wx:if="{{ options.type != 1 }}" class="f26 c999">上课时间：随到随学</view>
+      </view>
+      <view class="v-i-right c999 tar">
+        <view class="jwqfont f20 {{ collect ? 'jwq-xinheart118 cff3b5b' : 'jwq-shoucang' }} ">{{ collect ? '100' : '99' }}</view>
+        <button hover-class="none" class="jwqfont jwq-fenxiang f20 c999">分享</button>
+      </view>
+    </view>
+    <view class="f26 c999 v-i-l-bottom mt30">
+      <view>{{ detailInfo.learn_base * 1 + detailInfo.learn_count * 1 }}人已学习</view>
+      <view wx:if="{{ options.type == 1 }}" class="f26 cff3b5b">{{ detailInfo.price > 0 ? detailInfo.price + '元' : '免费' }}</view>
+    </view>
+  </view>
+  <!--课程详情-->
+  <view hidden="{{ options.type != 1 }}" class="need-check course-list bgfff br18 p30 mt20">
+    <view class="f36 fw7 c3a3a3a">课程详情</view>
+    <view class="mt30 detail-img-w">
+      <image lazy-load mode="widthFix" wx:for="12" class="detail-img" wx:key="*43" src="{{ poster }}"></image>
+    </view>
+  </view>
+  <!--上课时间-->
+  <view hidden="{{ options.type == 1 }}" class="need-check course-list bgfff br18 p30 mt20">
+    <view class="f36 fw7 c3a3a3a">上课时间</view>
+    <view class="f28 c444 mt20">
+      <view>报名即可参加学习</view>
+      <view>活动有效期：2018.08.20—2018.11.20</view>
+    </view>
+  </view>
+  <!--教室介绍-->
+  <view hidden="{{ options.type != 4 }}" class="bgfff br18 f28 mt20 need-check c666 p30 introduce">
+    <view class="f36 c3a3a3a fw7">教室介绍</view>
+    <image lazy-load="{{true}}" class="mt20"
+           wx:for="123"
+           wx:key="*987"
+           mode="widthFix"
+           src="{{ poster }}"></image>
+  </view>
+  <!--往期学员作品绣-->
+  <view hidden="{{ options.type == 1 }}" id="check_4" class="need-check course-list bgfff br18 p30 mt20">
+    <view class="f36 fw7 c3a3a3a">往期学员作品绣</view>
+
+    <view class="f28 c666 mt20 show-img-wrap">
+      <image lazy-load="{{true}}" wx:for="1134"
+             wx:key="*213"
+             class="br18 show-img"
+             catchtap="showImg"
+             data-src="{{ poster }}"
+             src="{{ poster }}"></image>
+    </view>
+  </view>
+</view>
+<view class="zw mt10"></view>
+<navigator open-type="navigateBack" class="bottom-btn bb">
+  <view class="f34 cfff fw7 lh88 tac">编辑信息</view>
+</navigator>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

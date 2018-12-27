@@ -1,0 +1,5 @@
+// Window configuration
+{
+  "backgroundColor": "#ffffff",
+  "enablePullDownRefresh": false
+}

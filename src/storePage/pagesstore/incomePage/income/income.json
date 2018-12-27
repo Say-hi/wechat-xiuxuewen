@@ -1,0 +1,13 @@
+// Window configuration
+{
+  "usingComponents": {
+    "my-tip": "/components/my-tip/my-tip",
+    "my-login": "/components/my-login/my-login",
+    "my-navigator-tab": "/components/my-navigator-tab/my-navigator-tab"
+  },
+  "navigationBarTitleText": "我的收益",
+  // 类型：HexColor；默认值：#ffffff
+  // 窗口的背景色
+  "backgroundColor": "#eeeeee",
+  "enablePullDownRefresh": false
+}

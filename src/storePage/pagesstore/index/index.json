@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "my-navigator-tab": "/components/my-navigator-tab/my-navigator-tab"
+  },
+  "backgroundColor": "#eee",
+  "enablePullDownRefresh": true
+}

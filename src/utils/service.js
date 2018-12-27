@@ -20,6 +20,8 @@ const serviceUrl = {
   questionProblemSub: baseDomain + '/question/problem_sub', // 提问
   upVideo: baseDomain + '/upload/video', // 视频上传
   dotNearby: baseDomain + '/dot/nearby', // 附近门店
+  dotDetail: baseDomain + '/dot/detail', // 门店详情
+  dotRelease: baseDomain + '/dot/release', // 门店课程
   activeNearby: baseDomain + '/active/nearby', // 附近课程
   upImage: baseDomain + '/upload/image' // 图片上传
 }

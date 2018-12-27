@@ -16,6 +16,7 @@ Page({
     longitude: 113.123432,
     poster: 'https://c.jiangwenqiang.com/api/logo.jpg',
     controls: true,
+    videoSrc: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
     currentIndex: 0,
     centerHeight: 63,
     starArr: ['差', '还行', '中等', '好', '很好'],
@@ -27,7 +28,42 @@ Page({
         t: '教室'
       },
       {
-        t: '评价'
+        t: '评价 (22)'
+      }
+    ],
+    questionList: [
+      {
+        question: '2.圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个',
+        answer: ['wdfasdf', 'asdfasdfsd', 'asdfasdfasdf'],
+        chooseIndex: null
+      },
+      {
+        question: '2.圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个',
+        answer: ['圆三针手工雾眉操作要领操', '圆三针手工雾眉操作要领操', '圆三针手工雾眉操作要领操'],
+        chooseIndex: null,
+        userChoose: 0,
+        rightAnswer: 1
+      },
+      {
+        question: '2.圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个',
+        answer: ['圆三针手工雾眉操作要领操', 'asdfasdfsd', '圆三针手工雾眉操作要领操'],
+        chooseIndex: null,
+        userChoose: 1,
+        rightAnswer: 1
+      },
+      {
+        question: '2.圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个',
+        answer: ['圆三针手工雾眉操作要领操', 'asdfasdfsd', '圆三针手工雾眉操作要领操'],
+        chooseIndex: null,
+        userChoose: 1,
+        rightAnswer: 1
+      },
+      {
+        question: '2.圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个',
+        answer: ['圆三针手工雾眉操作要领操', 'asdfasdfsd', '圆三针手工雾眉操作要领操'],
+        chooseIndex: null,
+        userChoose: 1,
+        rightAnswer: 1
       }
     ],
     commentArr: [],
@@ -38,13 +74,53 @@ Page({
       swiperIndex: e.detail.current * 1 + 1
     })
   },
-
   goComment () {
     this.setData({
       writeComment: !this.data.writeComment
     })
   },
 
+  lostTime (time) {
+    if (timer) clearInterval(timer)
+    let that = this
+    let h = null
+    let m = null
+    let s = null
+    let ms = null
+    let msTime = time * 1000
+    ms = Math.floor(msTime % 1000)
+    s = Math.floor(msTime / 1000 % 60)
+    m = Math.floor(msTime / 1000 / 60 % 60)
+    h = Math.floor(msTime / 1000 / 60 / 60 % 24)
+    that.setData({
+      lost_h: h >= 10 ? h : '0' + h,
+      lost_m: m >= 10 ? m : '0' + m,
+      lost_s: s >= 10 ? s : '0' + s,
+      lost_ms: ms >= 100 ? ms : ms >= 10 ? '0' + ms : '00' + ms
+    })
+    timer = setInterval(() => {
+      if (msTime <= 0) {
+        that.setData({
+          lost_h: '已',
+          lost_m: '经',
+          lost_s: '结',
+          lost_ms: '束'
+        })
+        return clearInterval(timer)
+      }
+      ms = Math.floor(msTime % 1000)
+      s = Math.floor(msTime / 1000 % 60)
+      m = Math.floor(msTime / 1000 / 60 % 60)
+      h = Math.floor(msTime / 1000 / 60 / 60 % 24)
+      that.setData({
+        lost_h: h >= 10 ? h : '0' + h,
+        lost_m: m >= 10 ? m : '0' + m,
+        lost_s: s >= 10 ? s : '0' + s,
+        lost_ms: ms >= 100 ? ms : ms >= 10 ? '0' + ms : '00' + ms
+      })
+      msTime -= 21
+    }, 21)
+  },
   userChooseAnswer (e) {
     this.data.questionList[e.currentTarget.dataset.qindex]['chooseIndex'] = e.currentTarget.dataset.aindex
     this.setData({
@@ -62,16 +138,10 @@ Page({
     console.log('视频播放结束')
   },
   chooseIndex (e) {
-    if (this.data.options && this.data.options.type * 1 === 3) {
-      this.setData({
-        currentIndex: e.currentTarget.dataset.index
-      })
-    } else {
-      this.setData({
-        currentIndex: e.currentTarget.dataset.index,
-        scrollToId: e.currentTarget.dataset.id
-      })
-    }
+    this.setData({
+      currentIndex: e.currentTarget.dataset.index,
+      scrollToId: e.currentTarget.dataset.id
+    })
   },
 
   chooseVideoPlay (e) {
@@ -103,34 +173,16 @@ Page({
   },
 
   upStar () {
+    // if (typeof this.data.tagIndex === 'undefined') return app.setToast(this, {content: '请选择难度等级'})
     if (typeof this.data.starIndex === 'undefined') return app.setToast(this, {content: '请选择星星等级'})
-    let that = this
-    app.wxrequest({
-      url: app.getUrl().courseStar,
-      data: {
-        course_id: that.data.options.id,
-        user_id: app.gs('userInfoAll').id,
-        score: that.data.starIndex * 1 + 1
-      },
-      success (res) {
-        wx.hideLoading()
-        if (res.data.status === 200) {
-          that.data.detailInfo.star = that.data.starIndex * 1 + 1
-          that.setData({
-            starOperation: true
-          })
-        } else {
-          app.setToast(that, {content: res.data.desc})
-        }
-      }
+    this.setData({
+      starOperation: true
     })
   },
 
   collectO () {
-    this.data.collect ? --this.data.detailInfo.collect_count : ++this.data.detailInfo.collect_count
     this.setData({
-      collect: !this.data.collect,
-      detailInfo: this.data.detailInfo
+      collect: !this.data.collect
     })
   },
 
@@ -184,60 +236,21 @@ Page({
   },
   // 用户回复操作
   replyOperation (e) {
-    console.log(e)
     if (this.data.replyFocus) return
-    if (e.currentTarget.dataset.id === app.gs('userInfoAll').id) return app.setToast(this, {content: '不能回复自己哦'})
     this.setData({
       replyName: e.currentTarget.dataset.name,
       rIndex: e.currentTarget.dataset.cindex,
-      answer_user_id: e.currentTarget.dataset.name === '回复楼主' ? 0 : e.currentTarget.dataset.id || 0,
-      answer_is_teach: e.currentTarget.dataset.teach || 0,
       replyFocus: true
     })
   },
-  replyBlur () {
-    setTimeout(() => {
-      this.setData({
-        rIndex: -1,
-        replyFocus: false
-      })
-    }, 200)
-  },
-  replyConfirm (e) {
-    if (!e.detail.value.length) return app.setToast(that, {content: '请输入您的回复内容'})
-    let that = this
-    let index = that.data.rIndex
-    app.wxrequest({
-      url: app.getUrl().courseDiscussSub,
-      data: {
-        evaluate_id: that.data.commentArr[index].evaluate_id,
-        evaluate_user_id: that.data.commentArr[index].user_id,
-        reply_user_id: app.gs('userInfoAll').id,
-        course_id: that.data.detailInfo.id,
-        dis_comment: e.detail.value,
-        answer_user_id: that.data.answer_user_id || ''
-      },
-      success (res) {
-        wx.hideLoading()
-        if (res.data.status === 200) {
-          that.data.commentArr[index].next.push({
-            reply_user_id: app.gs('userInfoAll').id,
-            reply_nickname: app.gs('userInfoAll').nickname || '默认用户',
-            reply_is_teach: app.gs('userInfoAll').is_teach || 0,
-            dis_comment: e.detail.value,
-            answer_nickname: that.data.replyName,
-            answer_user_id: that.data.answer_user_id,
-            answer_is_teach: that.data.answer_is_teach || 0
-          })
-          that.setData({
-            commentArr: that.data.commentArr
-          })
-        } else {
-          app.setToast(that, {content: res.data.desc})
-        }
-      }
+  replyBlur (e) {
+    console.log(e)
+    this.setData({
+      rIndex: -1,
+      replyFocus: false
     })
   },
+
   showImg (e) {
     app.showImg(e.currentTarget.dataset.src, [this.data.poster])
   },
@@ -285,13 +298,7 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
-          for (let v of res.data.data.lists) {
-            v.create_time = app.moment(v.create_time * 1000)
-            v['page'] = 1
-            v['more'] = v.next.length < 10 ? 0 : 1
-          }
           that.setData({
-            total: res.data.data.total,
             commentArr: that.data.commentArr.concat(res.data.data.lists),
             more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
           })
@@ -301,31 +308,6 @@ Page({
       }
     })
   },
-  // 获取更多的评论
-  getMoreNext (e) {
-    let that = this
-    app.wxrequest({
-      url: app.getUrl().courseDiscuss,
-      data: {
-        evaluate_id: that.data.commentArr[e.currentTarget.dataset.index].evaluate_id,
-        page: ++e.currentTarget.dataset.page
-      },
-      success (res) {
-        wx.hideLoading()
-        if (res.data.status === 200) {
-          ++that.data.commentArr[e.currentTarget.dataset.index].page
-          that.data.commentArr[e.currentTarget.dataset.index].next = that.data.commentArr[e.currentTarget.dataset.index].next.concat(res.data.data.lists)
-          that.data.commentArr[e.currentTarget.dataset.index].more = res.data.data.lists.length < res.data.data.pre_page ? 0 : 1
-          that.setData({
-            commentArr: that.data.commentArr
-          })
-        } else {
-          app.setToast(that, {content: res.data.desc})
-        }
-      }
-    })
-  },
-
   // 评论弹窗触顶
   onScrollUp () {
     PAGE = 0
@@ -342,18 +324,15 @@ Page({
   },
   // 获取详情
   getDetail () {
-    if (this.data.options.type * 1 === 3) return this.getStoreDetail()
     let that = this
     app.wxrequest({
       url: app.getUrl().courseDetail,
       data: {
-        course_id: that.data.options.id,
-        user_id: app.gs('userInfoAll').id
+        course_id: that.data.options.id || 1
       },
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
-          res.data.data['collect_count'] >= 0 ? res.data.data.collect_count = res.data.data.collect_count * 1 + res.data.data.collect_base : res.data.data['collect_count'] = 0
           that.setData({
             detailInfo: res.data.data
           }, that.getEvaluate)
@@ -364,67 +343,20 @@ Page({
       }
     })
   },
-  getStoreDetail () {
-    let that = this
-    app.wxrequest({
-      url: app.getUrl().dotDetail,
-      data: {
-        active_id: that.data.options.id
-      },
-      success (res) {
-        wx.hideLoading()
-        if (res.data.status === 200) {
-          res.data.data['collect_count'] >= 0 ? res.data.data.collect_count = res.data.data.collect_count * 1 + res.data.data.collect_base : res.data.data['collect_count'] = 0
-          that.setData({
-            detailInfo: res.data.data
-          })
-          wx.getLocation({
-            success (res2) {
-              if (res2.latitude) {
-                let d = app.distance(res2.latitude, res2.longitude, res.data.data.latitude, res.data.data.longitude)
-                that.setData({
-                  storeDistance: d > 1000 ? '离你最近' + Math.floor(d / 1000) + 'km' : '离你最近' + d + 'm'
-                })
-              }
-            }
-          })
-        } else {
-          app.setToast(that, {content: res.data.desc})
-        }
-      }
-    })
-  },
   // 发布直接评论
   writeConfirm (e) {
-    let that = this
-    if (e.detail.value.content.length <= 4) return app.setToast(that, {content: '评论内容需大于5个字'})
-    app.wxrequest({
-      url: app.getUrl().courseEvaluateSub,
-      data: {
-        course_id: that.data.options.id,
-        user_id: app.gs('userInfoAll').id,
-        comment: e.detail.value.content,
-        course_user_id: that.data.detailInfo.user_id
-      },
-      success (res) {
-        wx.hideLoading()
-        if (res.data.status === 200) {
-          that.data.commentArr.unshift({
-            avatar_url: that.data.poster,
-            nickname: '测试发布评论',
-            star_num: that.data.detailInfo.star,
-            create_time: '刚刚',
-            replyArr: [],
-            comment: e.detail.value.content
-          })
-          that.setData({
-            inputValue: '',
-            commentArr: that.data.commentArr
-          }, that.goComment)
-        } else {
-          app.setToast(that, {content: res.data.desc})
-        }
-      }
+    this.data.commentArr.unshift({
+      avatar: this.data.poster,
+      nickname: '测试发布评论',
+      star: Math.floor(Math.random() * 5),
+      create_time: '刚刚',
+      replyArr: [],
+      content: typeof e.detail.value === 'string' ? e.detail.value : e.detail.value.content
+    })
+    this.goComment()
+    this.setData({
+      inputValue: '',
+      commentArr: this.data.commentArr
     })
   },
   /**
@@ -441,9 +373,8 @@ Page({
         videoTab: this.data.videoTab
       })
     } else if (options.type * 1 === 3) {
-      this.data.videoTab[1].t = '免费课程'
-      this.data.videoTab[2].t = '驻店课程'
-      this.data.videoTab.push({t: '作品秀'})
+      this.data.videoTab[1].t = '老师风采'
+      this.data.videoTab[2].t = '作品秀'
       this.setData({
         videoTab: this.data.videoTab
       })
@@ -477,7 +408,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload () {
-    PAGE = 0
     // TODO: onUnload
   },
 

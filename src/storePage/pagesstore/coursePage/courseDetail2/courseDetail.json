@@ -1,0 +1,10 @@
+// Window configuration
+{
+  "usingComponents": {
+    "my-tip": "/components/my-tip/my-tip",
+    "my-login": "/components/my-login/my-login",
+    "my-top-tab": "/components/my-top-tab/my-top-tab",
+    "my-navigator-tab": "/components/my-navigator-tab/my-navigator-tab"
+  },
+  "enablePullDownRefresh": false
+}

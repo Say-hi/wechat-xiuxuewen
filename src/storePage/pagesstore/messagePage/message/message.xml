@@ -1,0 +1,15 @@
+<view class="p20">
+  <navigator hover-class="none"
+             wx:for="{{ messageArr }}"
+             wx:key="*6787"
+             url="../messageDetail/messageDetail"
+             class="p30 br18 bgfff message c444 f28 mt1">
+    <view class="message-info">
+      <text>{{ item.t }}</text>
+      <text wx:if="{{ item.n > 0 }}" class="cfff">{{ item.n }}</text>
+    </view>
+  </navigator>
+</view>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

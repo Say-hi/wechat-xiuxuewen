@@ -1,0 +1,29 @@
+<view class="p20">
+  <!--顶部导航-->
+  <view class="bgfff br18 top-wrap">
+    <navigator  hover-class="none"
+                url="{{ item.url }}"
+                wx:for="{{ tabNav }}"
+                wx:key="*1"
+                class="t-w-item tac">
+      <image class="br" src="{{ item.img }}"></image>
+      <view class="c444 f28 ">{{ item.t }}</view>
+    </navigator>
+  </view>
+  <!--消息通知-->
+  <view class="p30 br18 bgfff message c444 mt20">
+    <text class="f28 fw7">消息通知</text>
+    <text class="f28 m-center flex1">恭喜你线下驻店课程审核通过</text>
+    <text class="f22 c666">30分钟前</text>
+  </view>
+
+  <navigator url="../releasePage/release/release" class="p30 br18 bgfff message c444 f28 mt20">
+    <view class="jwqfont jwq-shezhi">教室信息设置</view>
+  </navigator>
+  <button open-type="contact" class="p30 br18 bgfff message c444 f28 mt1">
+    <view class="jwqfont jwq-kefu">联系客服</view>
+  </button>
+</view>
+<my-navigator-tab></my-navigator-tab>
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

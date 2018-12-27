@@ -740,6 +740,17 @@ App({
       }
     })
   },
+  // 地址计算
+  distance (lat1, lng1, lat2, lng2) {
+    console.log(lat1, lng1, lat2, lng2)
+    let radLat1 = lat1 * Math.PI / 180.0
+    let radLat2 = lat2 * Math.PI / 180.0
+    let a = radLat1 - radLat2
+    let b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0
+    let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)))
+    s = s * 6378.137
+    return s = Math.round(s * 10000) / 10
+  },
   /**
    * 生命周期函数--监听小程序初始化
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
