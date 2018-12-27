@@ -8,6 +8,7 @@ Page({
    */
   data: {
     testImg: app.data.testImg,
+    page: 0,
     title: 'courseOffline'
   },
   showMore (e) {
@@ -16,7 +17,7 @@ Page({
     })
   },
   showImg (e) {
-    app.showImg(e.currentTarget.dataset.src, [e.currentTarget.dataset.src])
+    app.showImg(this.data.lists[e.currentTarget.dataset.oindex].room_images[e.currentTarget.dataset.index], this.data.lists[e.currentTarget.dataset.oindex].room_images)
   },
   /**
    * 地址授权
@@ -58,38 +59,53 @@ Page({
    * @constructor
    */
   Bmap (that, site) {
-    // let _this = this
     let BMap = new bmap.BMapWX({
       ak: 'RBTsmFCaerZ25VkuGhpSIZa5lyC36BcV'
     })
-    // BMap.weather({
-    //   fail (data) {
-    //     that.setData({
-    //       openType: 'openSetting'
-    //     })
-    //     console.log('fail', data)
-    //   },
-    //   success (data) {
-    //     let type = (new Date().getHours() > 18 || new Date().getHours() < 6) ? 'nightPictureUrl' : 'dayPictureUrl'
-    //     that.setData({
-    //       weatherInfo: data.originalData.results[0],
-    //       weatherPic: data.originalData.results[0].weather_data[0][type].replace('http://', 'https://')
-    //     })
-    //   },
-    //   location: site || null
-    // }, _this)
     BMap.regeocoding({
       location: site || null,
       success (res) {
         that.setData({
           addressInfo: res
-        })
+        }, that.getNear)
       },
       fail (data) {
         that.setData({
           openType: 'openSetting'
         })
         console.log('fail', data)
+      }
+    })
+  },
+  getNear () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().dotNearby,
+      data: {
+        code: that.data.addressInfo.originalData.result.addressComponent.adcode,
+        longitude: that.data.addressInfo.originalData.result.location.lng,
+        latitude: that.data.addressInfo.originalData.result.location.lat,
+        parent_code: that.data.parent_code || 0,
+        page: ++that.data.page
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          if (res.data.data.total < 1 && !that.data.parent_code) {
+            that.data.parent_code = 1
+            that.getNear()
+          } else {
+            for (let v of res.data.data) {
+              v.room_images = v.room_images.split(',')
+              v.distance = v.distance < 1 ? v.distance * 100 + 'm' : v.distance + 'km'
+            }
+            that.setData({
+              lists: res.data.data
+            })
+          }
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
       }
     })
   },
