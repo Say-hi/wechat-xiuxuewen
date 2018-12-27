@@ -182,37 +182,53 @@ Page({
   },
   // 用户回复操作
   replyOperation (e) {
+    console.log(e)
     if (this.data.replyFocus) return
+    if (e.currentTarget.dataset.id === app.gs('userInfoAll').id) return app.setToast(this, {content: '不能回复自己哦'})
     this.setData({
       replyName: e.currentTarget.dataset.name,
       rIndex: e.currentTarget.dataset.cindex,
+      answer_user_id: e.currentTarget.dataset.name === '回复楼主' ? 0 : e.currentTarget.dataset.id || 0,
+      answer_is_teach: e.currentTarget.dataset.teach || 0,
       replyFocus: true
     })
   },
-  replyBlur (e) {
-    this.setData({
-      rIndex: -1,
-      replyFocus: false
-    })
+  replyBlur () {
+    setTimeout(() => {
+      this.setData({
+        rIndex: -1,
+        replyFocus: false
+      })
+    }, 200)
   },
   replyConfirm (e) {
     if (!e.detail.value.length) return app.setToast(that, {content: '请输入您的回复内容'})
     let that = this
+    let index = that.data.rIndex
     app.wxrequest({
       url: app.getUrl().courseDiscussSub,
       data: {
-        evaluate_id: that.data.commentArr[that.data.rIndex].evaluate_id,
-        evaluate_user_id: that.data.commentArr[that.data.rIndex].user_id,
+        evaluate_id: that.data.commentArr[index].evaluate_id,
+        evaluate_user_id: that.data.commentArr[index].user_id,
         reply_user_id: app.gs('userInfoAll').id,
         course_id: that.data.detailInfo.id,
         dis_comment: e.detail.value,
-        answer_user_id: ''
+        answer_user_id: that.data.answer_user_id || ''
       },
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
-          that.data.commentArr[that.data.rIndex].push({
-            nickname: '我的名字'
+          that.data.commentArr[index].next.push({
+            reply_user_id: app.gs('userInfoAll').id,
+            reply_nickname: app.gs('userInfoAll').nickname || '默认用户',
+            reply_is_teach: app.gs('userInfoAll').is_teach || 0,
+            dis_comment: e.detail.value,
+            answer_nickname: that.data.replyName,
+            answer_user_id: that.data.answer_user_id,
+            answer_is_teach: that.data.answer_is_teach || 0
+          })
+          that.setData({
+            commentArr: that.data.commentArr
           })
         } else {
           app.setToast(that, {content: res.data.desc})
@@ -269,6 +285,8 @@ Page({
         if (res.data.status === 200) {
           for (let v of res.data.data.lists) {
             v.create_time = app.moment(v.create_time * 1000)
+            v['page'] = 1
+            v['more'] = v.next.length < 10 ? 0 : 1
           }
           that.setData({
             commentArr: that.data.commentArr.concat(res.data.data.lists),
@@ -280,6 +298,31 @@ Page({
       }
     })
   },
+  // 获取更多的评论
+  getMoreNext (e) {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().courseDiscuss,
+      data: {
+        evaluate_id: that.data.commentArr[e.currentTarget.dataset.index].evaluate_id,
+        page: ++e.currentTarget.dataset.page
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          ++that.data.commentArr[e.currentTarget.dataset.index].page
+          that.data.commentArr[e.currentTarget.dataset.index].next = that.data.commentArr[e.currentTarget.dataset.index].next.concat(res.data.data.lists)
+          that.data.commentArr[e.currentTarget.dataset.index].more = res.data.data.lists.length < res.data.data.pre_page ? 0 : 1
+          that.setData({
+            commentArr: that.data.commentArr
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+
   // 评论弹窗触顶
   onScrollUp () {
     PAGE = 0

@@ -745,7 +745,8 @@ App({
    */
   onLaunch () {
     this.getNavTab({})
-    this.su('userInfoAll', {id:1})
+    // this.su('userInfoAll', {id:1, nickname: 'Edward'})
+    this.su('userInfoAll', {id:2, nickname: 'Edward2'})
     // this.getFont()
   },
   /**

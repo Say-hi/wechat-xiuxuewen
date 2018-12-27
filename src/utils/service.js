@@ -11,6 +11,7 @@ const serviceUrl = {
   courseStar: baseDomain + '/course/star', // 给课程评分
   courseEvaluateSub: baseDomain + '/course/evaluate_sub', // 提交课程评论
   courseDiscussSub: baseDomain + '/course/discuss_sub', // 提交评论的评论
+  courseDiscuss: baseDomain + '/course/discuss', // 获取评论的评论
   evaluate: baseDomain + '/course/evaluate', // 课程评论
   question: baseDomain + '/question/problem', // 问答
   upVideo: baseDomain + '/upload/video', // 视频上传
