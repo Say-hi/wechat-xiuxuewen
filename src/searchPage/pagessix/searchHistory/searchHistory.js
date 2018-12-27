@@ -12,24 +12,24 @@ Page({
     searchShow: true
   },
   getKey () {
-    let that = this
-    app.wxrequest({
-      url: app.getUrl().keywords,
-      data: {
-        key: app.gs(),
-        type: that.data.options.type === 'goods' ? 1 : 0
-      },
-      success (res) {
-        wx.hideLoading()
-        if (res.data.code === 1) {
-          that.setData({
-            keyWord: res.data.data
-          })
-        } else {
-          app.setToast(that, {content: res.data.msg})
-        }
-      }
-    })
+    // let that = this
+    // app.wxrequest({
+    //   url: app.getUrl().keywords,
+    //   data: {
+    //     key: app.gs(),
+    //     type: that.data.options.type === 'goods' ? 1 : 0
+    //   },
+    //   success (res) {
+    //     wx.hideLoading()
+    //     if (res.data.code === 1) {
+    //       that.setData({
+    //         keyWord: res.data.data
+    //       })
+    //     } else {
+    //       app.setToast(that, {content: res.data.msg})
+    //     }
+    //   }
+    // })
   },
   cleanHistory () {
     this.setData({
@@ -62,17 +62,16 @@ Page({
     if (content.detail) searcheText = content.detail.value
     else searcheText = content
     app.wxrequest({
-      url: that.data.options.type === 'goods' ? app.getUrl().goods : app.getUrl().articles,
+      url: that.data.options.type === 'question' ? app.getUrl().question : app.getUrl().articles,
       data: {
-        key: app.gs(),
-        keyword: searcheText
+        page: 1,
+        ask: searcheText
       },
       success (res) {
         wx.hideLoading()
-        if (res.data.code === 1 && res.data.data.total > 0) {
-          wx.redirectTo({
-            url: that.data.options.type === 'goods' ? `/pages/goodsList/goodsList?content=${searcheText}` : `/pages/articleList/articleList?content=${searcheText}`
-          })
+        if (res.data.status === 200 && res.data.data.total > 0) {
+          app.data.searchText = searcheText
+          wx.navigateBack()
         } else {
           app.setToast(that, {content: '未搜索到相关内容'})
         }

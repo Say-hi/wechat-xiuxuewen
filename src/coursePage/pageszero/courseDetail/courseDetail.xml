@@ -41,7 +41,7 @@
         data-id="s{{ index }}"
         data-index="{{ index }}"
         class="t-t-item f28 tac pr {{ currentIndex == index ? 'cff3b5b f30 fw7' : 'c666' }}">
-    {{ item.t }}
+    {{ item.t }}{{ index == 2 ? '（' + (total || 0) + '）' : '' }}
   </view>
 </view>
 <!--付费课程-->

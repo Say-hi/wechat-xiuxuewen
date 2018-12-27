@@ -1,6 +1,6 @@
 <view class="answer-top bgfff">
   <view hidden="{{ height < 0 }}" class="f26 search p20 bb bd1" style="opacity: {{ opacity }}; height: {{ height <=0 ? 0 : height }}rpx;">
-    <navigator hover-class="none" url="/searchPage/pagessix/searchHistory/searchHistory" class="input-wrap">
+    <navigator hover-class="none" url="/searchPage/pagessix/searchHistory/searchHistory?type=question" class="input-wrap">
       <view class="iconfont f32 icon-sousuo cababab"></view>
       <input disabled="{{true}}" placeholder-class="cababab" class="c393636 search-input"  placeholder="输入你想问的问题 例如“眉毛上色”"/>
     </navigator>

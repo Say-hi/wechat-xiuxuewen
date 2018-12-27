@@ -15,11 +15,33 @@ Page({
       path: '/answerPage/pagesthree/answerDetail/answerDetail?id=12'
     }
   },
+  getDetail () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().questionDetail,
+      data: {
+        question_id: that.data.options.id
+      },
+      success (res) {
+        console.log(res)
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            info: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    console.log(options)
+    this.setData({
+      options
+    }, this.getDetail)
     // TODO: onLoad
   },
 

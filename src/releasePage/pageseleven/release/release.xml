@@ -28,19 +28,19 @@
   <view class="count tar f26">{{ content.length || 0 }}/500字</view>
 </view>
 
-<view catchtap="compress">是否开启视频压缩: {{ compressd ? '压缩' : '不压缩' }}</view>
+<!--<view catchtap="compress">是否开启视频压缩: {{ compressd ? '压缩' : '不压缩' }}</view>-->
 
-<view catchtap="upVideo">视频上传测试</view>
+<!--<view catchtap="upVideo">视频上传测试</view>-->
 
-<view>{{ speed || '未开始上传' }}</view>
-<view>视频大小:{{ size }}</view>
-<view>时长: {{ duration }}秒</view>
-<view>上传结果: {{ upText || '未开始上传' }}</view>
-<view>用时：{{ time }} 秒</view>
+<!--<view>{{ speed || '未开始上传' }}</view>-->
+<!--<view>视频大小:{{ size }}</view>-->
+<!--<view>时长: {{ duration }}秒</view>-->
+<!--<view>上传结果: {{ upText || '未开始上传' }}</view>-->
+<!--<view>用时：{{ time }} 秒</view>-->
 
 <view class="zw"></view>
 
-<view class="release-btn cfff fw7">{{ options.type || '发布提问' }}</view>
+<view catchtap="release" class="release-btn cfff fw7">{{ options.type || '发布提问' }}</view>
 
 
 <!--错误弹窗-->

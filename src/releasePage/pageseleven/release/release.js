@@ -190,7 +190,36 @@ Page({
       }
     })
   },
-
+  release () {
+    let that = this
+    if (!this.data.content) return app.setToast(this, {content: '请输入您的提问内容'})
+    let images = []
+    for (let v of this.data.upImgArr) {
+      images.push(v.real)
+    }
+    app.wxrequest({
+      url: app.getUrl().questionProblemSub,
+      data: {
+        user_id: app.gs('userInfoAll').id,
+        context: that.data.content,
+        images: images.join(',')
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          wx.showToast({
+            title: '发布成功',
+            mask: true
+          })
+          setTimeout(() => {
+            wx.navigateBack({})
+          }, 1000)
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

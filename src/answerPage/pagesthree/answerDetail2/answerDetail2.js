@@ -8,8 +8,12 @@ Page({
    */
   data: {
     rIndex: -1,
+    page: 0,
     testImg: app.data.testImg,
     commentArr: []
+  },
+  getMoreNext () {
+    this.getEvaluate()
   },
   // 用户回复操作
   replyOperation (e) {
@@ -17,28 +21,114 @@ Page({
     this.setData({
       replyName: e.currentTarget.dataset.name,
       rIndex: e.currentTarget.dataset.cindex,
+      answer_is_teach: e.currentTarget.dataset.teach || 0,
+      receiver_user_id: e.currentTarget.dataset.name === '题主' ? 0 : e.currentTarget.dataset.id || 0,
       replyFocus: true
     })
   },
-  replyBlur (e) {
-    console.log(e)
-    this.setData({
-      rIndex: -1,
-      replyFocus: false
+  replyBlur () {
+    setTimeout(() => {
+      this.setData({
+        rIndex: -1,
+        replyFocus: false
+      })
+    }, 200)
+  },
+  replyConfirm (e) {
+    if (!e.detail.value.length) return app.setToast(that, {content: '请输入您的回复内容'})
+    let that = this
+    // let index = that.data.rIndex
+    app.wxrequest({
+      url: app.getUrl().questionDiscussSub,
+      data: {
+        question_id: that.data.options.id,
+        user_id: app.gs('userInfoAll').id,
+        receiver_id: that.data.info.user_id,
+        comment: e.detail.value,
+        receiver_user_id: that.data.rIndex * 1 === 0.5 ? 0 : that.data.commentArr[that.data.rIndex].user_id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.data.commentArr.push({
+            reply_user_id: app.gs('userInfoAll').id,
+            reply_nickname: app.gs('userInfoAll').nickname || '默认用户',
+            reply_is_teach: app.gs('userInfoAll').is_teach || 0,
+            comment: e.detail.value,
+            answer_nickname: that.data.replyName,
+            receiver_user_id: that.data.receiver_user_id,
+            answer_is_teach: that.data.answer_is_teach || 0
+          })
+          that.setData({
+            commentArr: that.data.commentArr
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
     })
   },
-
   onShareAppMessage () {
     return {
       title: '分享了一个问答',
       path: '/answerPage/pagesthree/answerDetail/answerDetail?id=12'
     }
   },
+  getDetail () {
+    let that = this
+    this.getEvaluate()
+    app.wxrequest({
+      url: app.getUrl().questionDetail,
+      data: {
+        question_id: that.data.options.id
+      },
+      success (res) {
+        console.log(res)
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          res.data.data.images = res.data.data.images ? res.data.data.images.split(',') : []
+          res.data.data.create_time = app.momentFormat(res.data.data.create_time * 1000, 'YYYY年MM月DD日 HH:MM:SS')
+          that.setData({
+            info: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+  getEvaluate () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().questionDiscuss,
+      data: {
+        question_id: that.data.options.id,
+        page: ++this.data.page
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            commentArr: that.data.commentArr.concat(res.data.data.lists),
+            more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+
+  showImg (e) {
+    app.showImg(this.data.info.images[e.currentTarget.dataset.index], this.data.info.images)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    console.log(options)
+    this.setData({
+      options
+    }, this.getDetail)
     // TODO: onLoad
   },
 

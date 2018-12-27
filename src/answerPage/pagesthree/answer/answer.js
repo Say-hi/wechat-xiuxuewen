@@ -23,8 +23,7 @@ Page({
         t: '我的提问'
       }
     ],
-    lists: [],
-    testImg: app.data.testImg
+    lists: []
   },
   getData () {
     this.getList()
@@ -46,10 +45,21 @@ Page({
       opacity: height <= 0 ? 0 : height / HEIGHT
     })
   },
-  getList () {
+  getList (search) {
     let that = this
     let data = {}
-    if (this.data.currentIndex * 1 === 1) {
+    if (search) {
+      this.data.page = 0
+      this.data.lists = []
+      this.setData({
+        currentIndex: -1,
+        search
+      })
+      data = {
+        page: ++this.data.page,
+        ask: search
+      }
+    } else if (this.data.currentIndex * 1 === 1) {
       data = {
         page: ++this.data.page
       }
@@ -78,11 +88,21 @@ Page({
             lists: that.data.lists.concat(res.data.data.lists),
             more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
           })
+          app.data.searchText = null
         } else {
           app.setToast(that, {content: res.data.desc})
         }
       }
     })
+  },
+  onReachBottom () {
+    if (this.data.more) {
+      if (this.data.search) {
+        this.getList(this.data.search)
+      } else {
+        this.getList()
+      }
+    } else app.setToast(this, {content: '没有更多内容啦'})
   },
   /**
    * 生命周期函数--监听页面加载
@@ -103,6 +123,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow () {
+    if (app.data.searchText) this.getList(app.data.searchText)
     // TODO: onShow
   },
 

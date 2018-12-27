@@ -48,6 +48,7 @@ Moment.locale('en', {
 // moment.locale('zh-cn')
 App({
   data: {
+    searchText: null,
     bottomTabIndex: 0,
     statusBarHeight,
     HEIGHT,
@@ -745,8 +746,8 @@ App({
    */
   onLaunch () {
     this.getNavTab({})
-    // this.su('userInfoAll', {id:1, nickname: 'Edward'})
-    this.su('userInfoAll', {id:2, nickname: 'Edward2'})
+    this.su('userInfoAll', {id:1, nickname: 'Edward'})
+    // this.su('userInfoAll', {id:2, nickname: 'Edward2'})
     // this.getFont()
   },
   /**

@@ -14,7 +14,13 @@ const serviceUrl = {
   courseDiscuss: baseDomain + '/course/discuss', // 获取评论的评论
   evaluate: baseDomain + '/course/evaluate', // 课程评论
   question: baseDomain + '/question/problem', // 问答
+  questionDetail: baseDomain + '/question/detail', // 问答详情
+  questionDiscuss: baseDomain + '/question/discuss', // 问答回复列表
+  questionDiscussSub: baseDomain + '/question/discuss_sub', // 问答回复
+  questionProblemSub: baseDomain + '/question/problem_sub', // 提问
   upVideo: baseDomain + '/upload/video', // 视频上传
+  dotNearby: baseDomain + '/dot/nearby', // 附近门店
+  activeNearby: baseDomain + '/active/nearby', // 附近课程
   upImage: baseDomain + '/upload/image' // 图片上传
 }
 module.exports = serviceUrl

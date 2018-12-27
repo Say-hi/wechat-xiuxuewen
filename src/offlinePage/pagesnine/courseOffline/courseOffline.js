@@ -8,6 +8,7 @@ Page({
    */
   data: {
     testImg: app.data.testImg,
+    page: 0,
     title: 'courseOffline'
   },
   /**
@@ -50,38 +51,48 @@ Page({
    * @constructor
    */
   Bmap (that, site) {
-    // let _this = this
     let BMap = new bmap.BMapWX({
       ak: 'RBTsmFCaerZ25VkuGhpSIZa5lyC36BcV'
     })
-    // BMap.weather({
-    //   fail (data) {
-    //     that.setData({
-    //       openType: 'openSetting'
-    //     })
-    //     console.log('fail', data)
-    //   },
-    //   success (data) {
-    //     let type = (new Date().getHours() > 18 || new Date().getHours() < 6) ? 'nightPictureUrl' : 'dayPictureUrl'
-    //     that.setData({
-    //       weatherInfo: data.originalData.results[0],
-    //       weatherPic: data.originalData.results[0].weather_data[0][type].replace('http://', 'https://')
-    //     })
-    //   },
-    //   location: site || null
-    // }, _this)
     BMap.regeocoding({
       location: site || null,
       success (res) {
         that.setData({
           addressInfo: res
-        })
+        }, that.getNear)
       },
       fail (data) {
         that.setData({
           openType: 'openSetting'
         })
         console.log('fail', data)
+      }
+    })
+  },
+  getNear () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().activeNearby,
+      data: {
+        code: that.data.addressInfo.originalData.result.addressComponent.adcode,
+        longitude: that.data.addressInfo.originalData.result.location.lng,
+        latitude: that.data.addressInfo.originalData.result.location.lat,
+        parent_code: that.data.parent_code || 0,
+        page: ++that.data.page
+      },
+      success (res) {
+        wx.hideLoading()
+        console.log(res)
+        if (res.data.status === 200) {
+          if (res.data.data.total < 1 && !that.data.parent_code) {
+            that.data.parent_code = 1
+            that.getNear()
+          } else {
+
+          }
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
       }
     })
   },

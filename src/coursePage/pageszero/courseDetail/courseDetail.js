@@ -27,7 +27,7 @@ Page({
         t: '教室'
       },
       {
-        t: '评价 (22)'
+        t: '评价'
       }
     ],
     commentArr: [],
@@ -289,6 +289,7 @@ Page({
             v['more'] = v.next.length < 10 ? 0 : 1
           }
           that.setData({
+            total: res.data.data.total,
             commentArr: that.data.commentArr.concat(res.data.data.lists),
             more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
           })
