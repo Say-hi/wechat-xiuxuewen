@@ -17,7 +17,7 @@ Component({
   },
   data: {
     statusBarHeight: app.data.statusBarHeight,
-    HEIGHT: app.data.HEIGHT
+    HEIGHT: app.data.HEIGHT_TOP
   },
   created () {
 

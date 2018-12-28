@@ -1,7 +1,9 @@
 {
   "usingComponents": {
-    "my-navigator-tab": "/components/my-navigator-tab/my-navigator-tab"
+    "my-navigator-tab": "/components/my-navigator-tab/my-navigator-tab",
+    "my-top-tab": "/components/my-top-tab/my-top-tab"
   },
+//  "navigationStyle": "custom",
   "backgroundColor": "#eee",
   "enablePullDownRefresh": true
 }

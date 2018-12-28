@@ -413,7 +413,7 @@ Page({
   goRelease () {
     let type = this.data.courseIndex === 0 ? 1 : this.data.courseIndex === 1 ? 2 : 4
     wx.navigateTo({
-      url: `../coursePage/courseDetail2/courseDetail?type=${type}`
+      url: `../../coursePage/courseDetail2/courseDetail?type=${type}`
     })
   },
   /**

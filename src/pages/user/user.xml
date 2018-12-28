@@ -28,7 +28,12 @@
       <view class="mt10">{{ item.t }}</view>
     </navigator>
   </view>
+  <navigator hover-class="none"
+             url="/storePage/pagesstore/index/index"
+             class="arrow f28 c444 p30 br18 bb bgfff mt20">我的门店</navigator>
 </view>
+
+
 
 <view class="zw"></view>
 <my-navigator-tab></my-navigator-tab>
