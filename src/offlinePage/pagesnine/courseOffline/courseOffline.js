@@ -82,13 +82,19 @@ Page({
       },
       success (res) {
         wx.hideLoading()
-        console.log(res)
         if (res.data.status === 200) {
           if (res.data.data.total < 1 && !that.data.parent_code) {
             that.data.parent_code = 1
             that.getNear()
           } else {
-
+            for (let v of res.data.data.lists) {
+              for (let s of v.lists) {
+                s.distance = s.distance > 1000 ? Math.floor(s.distance / 1000) + 'km' : s.distance + 'm'
+              }
+            }
+            that.setData({
+              lists: res.data.data.lists
+            })
           }
         } else {
           app.setToast(that, {content: res.data.desc})

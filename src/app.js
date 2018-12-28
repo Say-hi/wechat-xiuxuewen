@@ -106,6 +106,7 @@ App({
   },
   // 发起微信支付
   wxpay (obj) {
+    console.log(obj)
     let objs = {
       timeStamp: obj.timeStamp,
       nonceStr: obj.nonceStr,
@@ -757,6 +758,7 @@ App({
   onLaunch () {
     this.getNavTab({})
     this.su('userInfoAll', {id:1, nickname: 'Edward'})
+    this.su('key', 'ot5pZ5I61LK6MejZEpqwDZII1IjQ')
     // this.su('userInfoAll', {id:2, nickname: 'Edward2'})
     // this.getFont()
   },

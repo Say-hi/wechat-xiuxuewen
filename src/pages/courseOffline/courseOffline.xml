@@ -16,8 +16,14 @@
     <view class="f36 c666 bd1 lh88 p030">线下教室</view>
     <block wx:for="{{ lists }}"
            wx:for-index="oIndex"
+           wx:for-item="oItem"
            wx:key="*95">
-      <navigator hover-class="none" url="/coursePage/pageszero/courseDetail/courseDetail?id={{ item.id }}&type=3" class="room p30 bd1">
+      <view class="tar f28 c999 p20 bgeee">{{ oItem.city_name }}</view>
+      <navigator hover-class="none"
+                 wx:for="{{ oItem.lists }}"
+                 wx:key="*99"
+                 wx:for-index="iIndex"
+                 url="/coursePage/pageszero/courseDetail/courseDetail?id={{ item.id }}&type=3" class="room p30 bd1">
         <view class="f28 cff3a5a room-left">
           <image lazy-load="{{true}}" class="br" src="{{ item.avatar }}"></image>
           <!--<navigator url="/coursePage/pageszero/courseDetail/courseDetail?id=1&type=3" class="nav">查看</navigator>-->
@@ -34,20 +40,21 @@
                 class="room-tag nav">{{ iItem }}</view>
           <view class="room-img mt20">
             <image lazy-load="{{true}}"
-                   data-oindex="{{ oIndex }}"
+                   data-bindex="{{ oIndex }}"
+                   data-oindex="{{ iIndex }}"
                    data-index="{{ mIndex }}"
                    catchtap="showImg"
                    wx:for="{{ item.room_images }}"
                    wx:for-item="mItem"
                    wx:for-index="mIndex"
                    wx:key="*45"
-                   class="br18 {{ canShowIndex == oIndex ? 'showHeight' : mIndex > 2 ? 'hideHeight' : 'showHeight' }}"
+                   class="br18 {{ canShowIndex == iIndex ? 'showHeight' : mIndex > 2 ? 'hideHeight' : 'showHeight' }}"
                    src="{{ mItem }}"></image>
           </view>
-          <view data-index="{{ oIndex }}"
+          <view data-index="{{ iIndex }}"
                 catchtap="showMore"
                 wx:if="{{ item.room_images.length > 3 }}"
-                class="tac"><text class="iconfont f28 c444 pr {{ canShowIndex == oIndex ? '' : 'icon-jiantouarrowheads3' }}">{{ canShowIndex == oIndex ? '' : '查看更多' }}</text></view>
+                class="tac"><text class="iconfont f28 c444 pr {{ canShowIndex == iIndex ? '' : 'icon-jiantouarrowheads3' }}">{{ canShowIndex == iIndex ? '' : '查看更多' }}</text></view>
         </view>
       </navigator>
     </block>

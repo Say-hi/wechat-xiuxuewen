@@ -28,18 +28,18 @@
 
      <view class="c666 order-info br18 p30">
        <view class="goods-info f28 ">
-         <text class="fw7">价值300元学习大礼包</text>
+         <text class="fw7">价值{{ options.price * 1 }}元学习大礼包</text>
          <text>总计：1份</text>
        </view>
 
        <view class="goods-info f28 mt30">
          <text>商品总价</text>
-         <text class="f34 fw7 cff3b5b">¥200.0</text>
+         <text class="f34 fw7 cff3b5b">¥{{ options.price }}</text>
        </view>
 
        <view class="goods-info f28">
          <text>运费</text>
-         <text>免邮</text>
+         <text>{{ options.freight > 0 ? options.freight : '免邮' }}</text>
        </view>
      </view>
 
@@ -264,7 +264,7 @@
       <view catchtap="maskChange" class="p20 f28 c444">取消</view>
       <view catchtap="maskConfirm" class="p20 f28 cff3b5b">确认</view>
     </view>
-    <scroll-view scroll-y style="height: 400rpx;">
+    <scroll-view scroll-y style="height: 600rpx;">
       <view wx:for="{{ chooseArr }}"
             catchtap="maskChoose"
             data-index="{{ index }}"

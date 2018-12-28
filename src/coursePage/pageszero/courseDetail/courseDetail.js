@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    page: 0,
     swiperIndex: 1,
     swiperArr: [app.data.testImg, app.data.testImg],
     latitude: 23.111123,
@@ -61,11 +62,17 @@ Page({
     this.videoPlay()
     console.log('视频播放结束')
   },
+  // 导航栏选择操作
   chooseIndex (e) {
     if (this.data.options && this.data.options.type * 1 === 3) {
       this.setData({
         currentIndex: e.currentTarget.dataset.index
       })
+      if (e.currentTarget.dataset.index > 0 && e.currentTarget.dataset.index < 3) {
+        this.data.page = 0
+        this.data.commentArr = []
+        this.getOfflineCourse()
+      }
     } else {
       this.setData({
         currentIndex: e.currentTarget.dataset.index,
@@ -101,7 +108,7 @@ Page({
       tagIndex: e.currentTarget.dataset.index
     })
   },
-
+  // 评星
   upStar () {
     if (typeof this.data.starIndex === 'undefined') return app.setToast(this, {content: '请选择星星等级'})
     let that = this
@@ -125,7 +132,7 @@ Page({
       }
     })
   },
-
+  // 点赞
   collectO () {
     this.data.collect ? --this.data.detailInfo.collect_count : ++this.data.detailInfo.collect_count
     this.setData({
@@ -145,7 +152,7 @@ Page({
       finish: e.currentTarget.dataset.type === 'upAnswer' ? 1 : 0
     })
   },
-
+  // scroll滚动监听
   scrollOperation (e) {
     // if (this.data.options && this.data.options.type * 1 === 3) return
     if (!CAN_CHANGE) return
@@ -195,6 +202,7 @@ Page({
       replyFocus: true
     })
   },
+  // 失焦
   replyBlur () {
     setTimeout(() => {
       this.setData({
@@ -203,6 +211,7 @@ Page({
       })
     }, 200)
   },
+  // 回复
   replyConfirm (e) {
     if (!e.detail.value.length) return app.setToast(that, {content: '请输入您的回复内容'})
     let that = this
@@ -238,14 +247,15 @@ Page({
       }
     })
   },
+  // 展示图片
   showImg (e) {
-    app.showImg(e.currentTarget.dataset.src, [this.data.poster])
+    app.showImg(e.currentTarget.dataset.src, this.data.detailInfo.show_image)
   },
-
+  // 支付操作
   buyOperation () {
     // todo 发起支付
     wx.navigateTo({
-      url: '/offlinePage/pagesnine/offlineApply/offlineApply'
+      url: `/offlinePage/pagesnine/offlineApply/offlineApply?id=${this.data.detailInfo.id}&price=${this.data.detailInfo.price}&freight=${this.data.detailInfo.freight}`
     })
   },
   // 获取滚动高度
@@ -343,6 +353,7 @@ Page({
   // 获取详情
   getDetail () {
     if (this.data.options.type * 1 === 3) return this.getStoreDetail()
+    else if (this.data.options.type * 1 === 2) return this.getOfflineDetail()
     let that = this
     app.wxrequest({
       url: app.getUrl().courseDetail,
@@ -364,6 +375,7 @@ Page({
       }
     })
   },
+  // 获取门店详情
   getStoreDetail () {
     let that = this
     app.wxrequest({
@@ -375,7 +387,11 @@ Page({
         wx.hideLoading()
         if (res.data.status === 200) {
           res.data.data['collect_count'] >= 0 ? res.data.data.collect_count = res.data.data.collect_count * 1 + res.data.data.collect_base : res.data.data['collect_count'] = 0
+          res.data.data.class_image = res.data.data.class_image ? res.data.data.class_image.split(',') : []
+          res.data.data.room_images = res.data.data.room_images ? res.data.data.room_images.split(',') : []
+          res.data.data.room_teacher = res.data.data.room_teacher ? res.data.data.room_teacher.split(',') : []
           that.setData({
+            swiperArr: res.data.data.room_images,
             detailInfo: res.data.data
           })
           wx.getLocation({
@@ -387,6 +403,51 @@ Page({
                 })
               }
             }
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+  // 获取线下课程详情
+  getOfflineDetail () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().activeDetail,
+      data: {
+        active_id: that.data.options.id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          res.data.data['collect_count'] >= 0 ? res.data.data.collect_count = res.data.data.collect_count * 1 + res.data.data.collect_base : res.data.data['collect_count'] = 0
+          res.data.data.show_image = res.data.data.show_image ? res.data.data.show_image.split(',') : []
+          that.setData({
+            detailInfo: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+  // 获取驻店课程
+  getOfflineCourse () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().dotRelease,
+      data: {
+        user_id: that.data.detailInfo.user_id,
+        style: that.data.currentIndex * 1 === 1 ? 2 : 4,
+        page: ++that.data.page
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            commentArr: that.data.commentArr.concat(res.data.data.lists),
+            more: res.data.data.lists.length < res.data.data.pre_page ? 0 : 1
           })
         } else {
           app.setToast(that, {content: res.data.desc})
@@ -441,7 +502,7 @@ Page({
         videoTab: this.data.videoTab
       })
     } else if (options.type * 1 === 3) {
-      this.data.videoTab[1].t = '免费课程'
+      this.data.videoTab[1].t = '线下课程'
       this.data.videoTab[2].t = '驻店课程'
       this.data.videoTab.push({t: '作品秀'})
       this.setData({

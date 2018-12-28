@@ -23,6 +23,9 @@ const serviceUrl = {
   dotDetail: baseDomain + '/dot/detail', // 门店详情
   dotRelease: baseDomain + '/dot/release', // 门店课程
   activeNearby: baseDomain + '/active/nearby', // 附近课程
+  activeDetail: baseDomain + '/active/detail', // 附近课程
+  payActive: baseDomain + '/pay/active', // 支付
+  payActiveAgain: baseDomain + '/pay/active_again', // 二次支付
   upImage: baseDomain + '/upload/image' // 图片上传
 }
 module.exports = serviceUrl

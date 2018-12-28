@@ -17,7 +17,7 @@ Page({
     })
   },
   showImg (e) {
-    app.showImg(this.data.lists[e.currentTarget.dataset.oindex].room_images[e.currentTarget.dataset.index], this.data.lists[e.currentTarget.dataset.oindex].room_images)
+    app.showImg(this.data.lists[e.currentTarget.dataset.bindex].lists[e.currentTarget.dataset.oindex].room_images[e.currentTarget.dataset.index], this.data.lists[e.currentTarget.dataset.bindex].lists[e.currentTarget.dataset.oindex].room_images)
   },
   /**
    * 地址授权
@@ -95,12 +95,14 @@ Page({
             that.data.parent_code = 1
             that.getNear()
           } else {
-            for (let v of res.data.data) {
-              v.room_images = v.room_images.split(',')
-              v.distance = v.distance < 1 ? v.distance * 100 + 'm' : v.distance + 'km'
+            for (let v of res.data.data.lists) {
+              for (let s of v.lists) {
+                s.room_images = s.room_images.split(',')
+                s.distance = s.distance < 1 ? s.distance * 100 + 'm' : s.distance + 'km'
+              }
             }
             that.setData({
-              lists: res.data.data
+              lists: res.data.data.lists
             })
           }
         } else {

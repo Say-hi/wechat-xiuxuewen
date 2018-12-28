@@ -217,7 +217,71 @@ Page({
       swiperIndex: this.data.swiperIndex
     })
   },
+  pay () {
+    let that = this
+    if (this.data.order_id) {
+      return app.wxrequest({
+        url: app.getUrl().payActiveAgain,
+        data: {
+          order_id: that.data.order_id,
+          openid: app.gs()
+        },
+        success (res) {
+          wx.hideLoading()
+          if (res.data.status === 200) {
+            app.wxpay(Object.assign(res.data.data.msg, {
+              success () {
+                that.setData({
+                  swiperIndex: 1
+                })
+              },
+              fail () {
+                app.setToast(that, {content: '未完成支付'})
+              }
+            }))
+          } else {
+            app.setToast(that, {content: res.data.desc})
+          }
+        }
+      })
+    }
+    app.wxrequest({
+      url: app.getUrl().payActive,
+      data: {
+        openid: app.gs(),
+        user_id: app.gs('userInfoAll').id,
+        active_id: that.data.options.id,
+        add_phone: that.data.addressInfo.telNumber,
+        add_name: that.data.addressInfo.userName,
+        count: 1,
+        address: that.data.addressInfo.provinceName + that.data.addressInfo.cityName + that.data.addressInfo.countyName + that.data.addressInfo.detailInfo
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            order_id: res.data.data.order_id
+          })
+          app.wxpay(Object.assign(res.data.data.msg, {
+            success () {
+              that.setData({
+                swiperIndex: 1
+              })
+            },
+            fail () {
+              app.setToast(that, {content: '未完成支付'})
+            }
+          }))
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   nextTick (e) {
+    if (e.currentTarget.dataset.index * 1 === 1) {
+      return this.pay()
+    }
     this.setData({
       swiperIndex: e.currentTarget.dataset.index,
       showTop: e.currentTarget.dataset.index >= 2 ? 1 : 0
@@ -258,7 +322,15 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
+    this.setData({
+      options
+    })
+    if (app.gs('addressInfo')) {
+      this.setData({
+        addressInfo: app.gs('addressInfo')
+      })
+    }
     app.setBar('预约报名')
     // TODO: onLoad
   },
