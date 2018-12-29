@@ -3,9 +3,9 @@
     <view class="iconfont icon-dizhi f28">{{ openType == 'openSetting' ? '请您授权获位置信息(点击此处授权)' : (addressInfo.originalData.result.addressComponent.city || '获取数据中...') }} {{ addressInfo.originalData.result.addressComponent.district || '' }} </view>
     <!--<image lazy-load="{{true}}" class="weahter-img" mode="widthFix" src="{{ weatherPic }}"></image>-->
   </button>
-  <navigator hover-class="none" url="/searchPage/pagessix/searchHistory/searchHistory" class="input-wrap bb">
+  <navigator hover-class="none" url="/searchPage/pagessix/searchHistory/searchHistory?type=offline" class="input-wrap bb">
     <view class="iconfont f26 icon-sousuo cababab"></view>
-    <input placeholder-class="cababab" disabled="{{true}}" class="c393636 lh54 f26 search-input"  placeholder="输入你想问的问题"/>
+    <input placeholder-class="cababab" disabled="{{true}}" class="c393636 lh54 f26 search-input"  placeholder="搜索线下课程 例如“手工雾眉”"/>
   </navigator>
 </view>
 
@@ -36,7 +36,7 @@
               <image lazy-load="{{true}}" class="br" src="{{ iItem.avatar }}"></image>
               <text class="flex1">{{ iItem.room_name }}</text>
             </view>
-            <view class="keep">{{ iItem.distance }}</view>
+            <view wx:if="{{ iItem.distance != 'undefinedkm' }}" class="keep">{{ iItem.distance }}</view>
           </view>
         </view>
         <view class="h-w-r-bottom f26 c999 mt30">

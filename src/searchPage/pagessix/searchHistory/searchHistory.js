@@ -62,16 +62,17 @@ Page({
     if (content.detail) searcheText = content.detail.value
     else searcheText = content
     app.wxrequest({
-      url: that.data.options.type === 'question' ? app.getUrl().question : app.getUrl().articles,
-      data: {
-        page: 1,
-        ask: searcheText
-      },
+      url: that.data.options.type === 'question' ? app.getUrl().question : that.data.options.type === 'store' ? app.getUrl().dotSearch : that.data.options.type === 'course' ? app.getUrl().courseSearch : that.data.options.type === 'offline' ? app.getUrl().activeSearch : '',
+      data: Object.assign({
+        page: 1
+      }, that.data.options.type === 'question' ? {ask: searcheText} : that.data.options.type === 'store' ? {dot_name: searcheText} : (that.data.options.type === 'course' || that.data.options.type === 'offline') ? {title: searcheText} : {}),
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200 && res.data.data.total > 0) {
           app.data.searchText = searcheText
-          wx.navigateBack()
+          that.data.options.type === 'course' ? wx.navigateTo({
+              url: '/coursePage/pageszero/course/course?type=search'
+            }) : wx.navigateBack()
         } else {
           app.setToast(that, {content: '未搜索到相关内容'})
         }

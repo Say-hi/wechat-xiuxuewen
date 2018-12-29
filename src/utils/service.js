@@ -7,6 +7,7 @@ const serviceUrl = {
   style: baseDomain + '/home/page', // 不填默认为1, 1表示中间菜单,2表示底部菜单,3表示广告图
   login: baseDomain + '/api/index/login', // 登陆
   course: baseDomain + '/course/last', // 课程
+  courseSearch: baseDomain + '/course/search', // 搜索课程
   courseDetail: baseDomain + '/course/detail', // 课程详情
   courseStar: baseDomain + '/course/star', // 给课程评分
   courseEvaluateSub: baseDomain + '/course/evaluate_sub', // 提交课程评论
@@ -18,14 +19,21 @@ const serviceUrl = {
   questionDiscuss: baseDomain + '/question/discuss', // 问答回复列表
   questionDiscussSub: baseDomain + '/question/discuss_sub', // 问答回复
   questionProblemSub: baseDomain + '/question/problem_sub', // 提问
+  questionProblemHot: baseDomain + '/question/problem_hot', // 热门提问
+  questionProblemMy: baseDomain + '/question/problem_my', // 我的提问
+  questionProblemMyCount: baseDomain + '/question/problem_my_count', // 我的提问未读数量
   upVideo: baseDomain + '/upload/video', // 视频上传
   dotNearby: baseDomain + '/dot/nearby', // 附近门店
   dotDetail: baseDomain + '/dot/detail', // 门店详情
   dotRelease: baseDomain + '/dot/release', // 门店课程
+  dotSearch: baseDomain + '/dot/search', // 门店搜索
   activeNearby: baseDomain + '/active/nearby', // 附近课程
   activeDetail: baseDomain + '/active/detail', // 附近课程
+  activeSearch: baseDomain + '/active/search', // 线下课程搜索
   payActive: baseDomain + '/pay/active', // 支付
   payActiveAgain: baseDomain + '/pay/active_again', // 二次支付
+  userFeedback: baseDomain + '/user/feedback', // 反馈
+  userActive: baseDomain + '/user/active', // 用户预约
   upImage: baseDomain + '/upload/image' // 图片上传
 }
 module.exports = serviceUrl

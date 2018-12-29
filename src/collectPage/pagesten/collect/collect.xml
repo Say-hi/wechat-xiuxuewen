@@ -15,18 +15,25 @@
 <view class="zw90"></view>
 
 <view class="p20" wx:if="{{ options.type == 1 }}">
-  <view wx:for="1231231232"
+  <view wx:for="{{ lists }}"
         wx:key="*365">
-    <navigator hover-class="none" url="/pages/courseDetail/courseDetail?id=1&type=2"
+    <navigator hover-class="none"
+               url="/pages/courseDetail/courseDetail?id=1&type=2"
                class="hot-wrap other bgfff br18 {{ index >= 1 ? 'mt20' : '' }}">
-      <image lazy-load="{{true}}" data-content="线下课程" class="h-w-left pr br18" mode="aspectFill" src="{{ poster }}"></image>
+      <image lazy-load="{{true}}"
+             data-content="线下课程"
+             class="h-w-left pr br18"
+             mode="aspectFill"
+             src="{{ poster }}"></image>
       <view class="h-w-right">
         <view>
-          <view class="ell1 f32 fw7 c393636">圆三针手工雾眉操作要领操作</view>
+          <view class="ell1 f32 fw7 c393636">{{ item.title }}</view>
           <view class="f26 c999 shop mt10">
             <view class="shop-info">
-              <image lazy-load="{{true}}" class="br" src="{{ poster }}"></image>
-              <view class="flex1 check8">门店名称门店名称</view>
+              <image lazy-load="{{true}}"
+                     class="br"
+                     src="{{ item.image }}"></image>
+              <view class="flex1 check8">{{ item.room_name }}</view>
             </view>
             <!--<view class="keep">800m</view>-->
           </view>
@@ -43,7 +50,7 @@
     </view>
   </view>
 </view>
-
+<!--收藏-->
 <view class="p20" wx:if="{{ options.type == 2 }}">
   <!--教学视频-->
   <view hidden="{{ currentIndex >= 1 }}" class="video">

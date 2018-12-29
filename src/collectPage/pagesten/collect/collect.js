@@ -12,6 +12,8 @@ Page({
     longitude: 113.123432,
     currentIndex: 0,
     poster: app.data.testImg,
+    page: 0,
+    lists: [],
     videoTab: [
       {
         t: '未开始'
@@ -37,8 +39,34 @@ Page({
     })
   },
   chooseIndex (e) {
+    this.data.page = 0
     this.setData({
       currentIndex: e.currentTarget.dataset.index
+    }, this.getUserBuyCourse)
+  },
+  getUserBuyCourse () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().userActive,
+      data: {
+        user_id: app.gs('userInfoAll').id,
+        page: ++that.data.page,
+        state: that.data.currentIndex * 1 === 2 ? 2 : 1
+      },
+      success (res) {
+        wx.hideLoading()
+        console.log(res)
+        if (res.data.status === 200) {
+          // for (let v of res.data.data.lists) {
+          //
+          // }
+          that.setData({
+            lists: that.data.lists.concat(res.data.data.lists)
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
     })
   },
   /**
@@ -47,7 +75,7 @@ Page({
   onLoad (options) {
     this.setData({
       options
-    })
+    }, this.getUserBuyCourse)
     if (options.type >= 2) {
       this.setData({
         videoTab: [

@@ -20,10 +20,10 @@ Page({
     app.wxrequest({
       url: app.getUrl().questionDetail,
       data: {
-        question_id: that.data.options.id
+        question_id: that.data.options.id,
+        user_id: app.gs('userInfoAll').id
       },
       success (res) {
-        console.log(res)
         wx.hideLoading()
         if (res.data.status === 200) {
           that.setData({

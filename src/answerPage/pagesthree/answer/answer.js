@@ -56,6 +56,7 @@ Page({
         search
       })
       data = {
+        user_id: app.gs('userInfoAll').id,
         page: ++this.data.page,
         ask: search
       }
@@ -70,12 +71,11 @@ Page({
       }
     } else {
       data = {
-        hot: 1,
         page: ++this.data.page
       }
     }
     app.wxrequest({
-      url: app.getUrl().question,
+      url: this.data.currentIndex * 1 === 1 ? app.getUrl().question : this.data.currentIndex * 1 === 0 ? app.getUrl().questionProblemHot : app.getUrl().questionProblemMy,
       data,
       success (res) {
         wx.hideLoading()
@@ -104,6 +104,25 @@ Page({
       }
     } else app.setToast(this, {content: '没有更多内容啦'})
   },
+  getCount () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().questionProblemMyCount,
+      data: {
+        user_id: app.gs('userInfoAll').id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            hasInfo: res.data.data > 0 ? true : null
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -124,6 +143,7 @@ Page({
    */
   onShow () {
     if (app.data.searchText) this.getList(app.data.searchText)
+    this.getCount()
     // TODO: onShow
   },
 

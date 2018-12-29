@@ -1,7 +1,7 @@
 <view class="search">
   <view class="s-wrap">
     <view class="iconfont f32 icon-sousuo cababab"></view>
-    <input confirm-type="search" bindconfirm="search" cursor="30" placeholder-class="holder" class="br15 f26" placeholder="输入你想问的问题 例如“眉毛上色”" />
+    <input confirm-type="search" bindconfirm="search" cursor="30" placeholder-class="holder" class="br15 f26" placeholder="输入您要搜索的内容" />
   </view>
   <navigator open-type="navigateBack" class="f26 cff3b5b cancel">取消</navigator>
 </view>

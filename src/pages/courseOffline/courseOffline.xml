@@ -5,7 +5,7 @@
   </button>
   <navigator hover-class="none" url="/searchPage/pagessix/searchHistory/searchHistory?type=store" class="input-wrap">
     <view class="iconfont f26 icon-sousuo cababab"></view>
-    <input placeholder-class="cababab" disabled="{{true}}" class="c393636 lh54 f26 search-input"  placeholder="输入你想问的问题"/>
+    <input placeholder-class="cababab" disabled="{{true}}" class="c393636 lh54 f26 search-input"  placeholder="输入门店名称"/>
   </navigator>
 </view>
 

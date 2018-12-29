@@ -14,26 +14,26 @@ Page({
   },
   formSubmit (e) {
     let that = this
-    let images = ''
+    // let images = ''
     if (!e.detail.value.content) return app.setToast(this, {content: '请输入反馈内容'})
-    if (this.data.imgArr.length > 0) {
-      let imgArr = []
-      for (let v of this.data.imgArr) {
-        imgArr.push(v.id)
-      }
-      images = imgArr.join(',')
-    }
+    else if (!e.detail.value.contact) return app.setToast(this, {content: '请输入联系方式'})
+    // if (this.data.imgArr.length > 0) {
+    //   let imgArr = []
+    //   for (let v of this.data.imgArr) {
+    //     imgArr.push(v.id)
+    //   }
+    //   images = imgArr.join(',')
+    // }
     app.wxrequest({
-      url: app.getUrl().postFeedback,
+      url: app.getUrl().userFeedback,
       data: {
-        key: app.gs(),
-        content: e.detail.value.content,
-        contact_way: e.detail.value.contact || '用户未留联系方式',
-        images
+        user_id: app.gs('userInfoAll').id,
+        desc: e.detail.value.content,
+        contact: e.detail.value.contact
       },
       success (res) {
         wx.hideLoading()
-        if (res.data.code === 1) {
+        if (res.data.status === 200) {
           wx.showToast({
             title: '反馈成功'
           })
@@ -41,7 +41,7 @@ Page({
             wx.navigateBack()
           }, 1200)
         } else {
-          app.setToast(that, {content: res.data.message})
+          app.setToast(that, {content: res.data.desc})
         }
       }
     })

@@ -26,8 +26,11 @@ Page({
   getList () {
     let that = this
     app.wxrequest({
-      url: app.getUrl().course,
-      data: {
+      url:  that.data.options.type === 'search' ? app.getUrl().courseSearch : app.getUrl().course,
+      data: that.data.options.type === 'search' ? {
+          page: ++page,
+          title: that.data.searchText
+        } : {
         label: app.data.label[that.data.currentIndex].label,
         page: ++page
       },
@@ -51,7 +54,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    app.setBar(app.data.label[0].t)
+    if (app.data.searchText) {
+      this.data.searchText = app.data.searchText
+      app.data.searchText = null
+    }
+    app.setBar(options.type === 'search' ? '搜索课程' : app.data.label[0].t)
     page = 0
     this.setData({
       options

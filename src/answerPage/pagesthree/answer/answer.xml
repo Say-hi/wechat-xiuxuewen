@@ -14,7 +14,7 @@
           catchtap="chooseIndex"
           data-id="s{{ index }}"
           data-index="{{ index }}"
-          class="t-t-item {{ index == 2 && !hasInfo ? 'showCircle' : '' }} f30 tac pr {{ currentIndex == index ? 'cff3b5b f34 fw7' : 'c666' }}">
+          class="t-t-item {{ index == 2 && hasInfo ? 'showCircle' : '' }} f30 tac pr {{ currentIndex == index ? 'cff3b5b f34 fw7' : 'c666' }}">
       {{ item.t }}
     </view>
   </view>
@@ -28,7 +28,7 @@
   <navigator url="../answerDetail2/answerDetail2?id={{ item.id }}"
              wx:for="{{ lists }}"
              wx:key="*24"
-             class="bgfff br18 p30 mt20 {{ currentIndex == 2 ? 'has-reply pr' : '' }}">
+             class="bgfff br18 p30 mt20 {{ (currentIndex == 2 && item.unread > 0) ? 'has-reply pr' : '' }}">
     <view class="f36 c3a3a3a fw7 {{ currentIndex == 2 ? 'ell2' : '' }}">{{ item.context }}</view>
     <view hidden="{{ currentIndex == 2 }}">
       <view class="answer-img mt10">
@@ -42,7 +42,7 @@
       <view class="f20 c666 tar">{{ item.create_time }}</view>
       <view class="teacher mt30">
         <view class="teacher-reply c3a3a3a f26">
-          你做的改兰眉加宽部分与之前的旧眉颜色出现端车，老师回答，你做的改兰眉加宽部分与之前的旧眉颜色……
+          {{ item.first.comment }}
         </view>
         <view class="h-i-user mt20">
           <!--<image lazy-load="{{true}}" class="user-img br" src="{{ testImg }}"></image>-->

@@ -70,6 +70,7 @@ Page({
     })
   },
   getNear () {
+    if (this.data.searchText) return this.search()
     let that = this
     app.wxrequest({
       url: app.getUrl().activeNearby,
@@ -102,6 +103,35 @@ Page({
       }
     })
   },
+  // 搜索
+  search () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().activeSearch,
+      data: {
+        page: ++that.data.page,
+        title: that.data.searchText
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          for (let s of res.data.data.lists) {
+            s.distance = s.distance < 1 ? s.distance * 100 + 'm' : s.distance + 'km'
+          }
+          that.data.lists[0] = {
+            city_name: '搜索结果',
+            lists: that.data.lists[0].lists ? res.data.data.lists : that.data.lists[0].lists.concat(res.data.data.lists)
+          }
+          that.setData({
+            lists: that.data.lists,
+            more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
+          })
+        } else {
+          app.setToast(that, {content: '未搜索到相关内容'})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -122,6 +152,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow () {
+    if (this.data.searchText) {
+      this.data.page = 0
+      this.getNear()
+    } else if (app.data.searchText) {
+      this.data.page = 0
+      this.data.searchText = app.data.searchText
+      app.data.searchText = null
+      this.getNear()
+    }
     // TODO: onShow
   },
 
