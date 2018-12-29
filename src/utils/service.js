@@ -30,10 +30,15 @@ const serviceUrl = {
   activeNearby: baseDomain + '/active/nearby', // 附近课程
   activeDetail: baseDomain + '/active/detail', // 附近课程
   activeSearch: baseDomain + '/active/search', // 线下课程搜索
+  activeEnum: baseDomain + '/active/enum', //
   payActive: baseDomain + '/pay/active', // 支付
   payActiveAgain: baseDomain + '/pay/active_again', // 二次支付
   userFeedback: baseDomain + '/user/feedback', // 反馈
   userActive: baseDomain + '/user/active', // 用户预约
+  userCollect: baseDomain + '/user/collect', // 用户收集
+  userActivePay: baseDomain + '/user/active_pay', // 用户订单
+  userActiveChange: baseDomain + '/user/active_change', // 用户改变订单状态
+  userCollectSub: baseDomain + '/user/collect_sub', // 用户收藏
   upImage: baseDomain + '/upload/image' // 图片上传
 }
 module.exports = serviceUrl

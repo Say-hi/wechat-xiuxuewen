@@ -33,8 +33,6 @@
              class="arrow f28 c444 p30 br18 bb bgfff mt20">我的门店</navigator>
 </view>
 
-
-
 <view class="zw"></view>
 <my-navigator-tab></my-navigator-tab>
 <!--错误弹窗-->

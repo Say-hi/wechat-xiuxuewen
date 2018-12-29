@@ -19,9 +19,6 @@ Page({
         t: '未开始'
       },
       {
-        t: '正学习'
-      },
-      {
         t: '已结束'
       }
     ]
@@ -47,27 +44,31 @@ Page({
   getUserBuyCourse () {
     let that = this
     app.wxrequest({
-      url: app.getUrl().userActive,
+      url: that.data.options.type * 1 === 1 ? app.getUrl().userActive : app.getUrl().userCollect,
       data: {
         user_id: app.gs('userInfoAll').id,
         page: ++that.data.page,
-        state: that.data.currentIndex * 1 === 2 ? 2 : 1
+        state: that.data.currentIndex * 1 + 1
       },
       success (res) {
         wx.hideLoading()
-        console.log(res)
         if (res.data.status === 200) {
-          // for (let v of res.data.data.lists) {
-          //
-          // }
+          for (let v of res.data.data.lists) {
+            v.make_time = app.momentFormat(v.make_time * 1000, 'YYYY.MM.DD')
+          }
           that.setData({
-            lists: that.data.lists.concat(res.data.data.lists)
+            lists: that.data.lists.concat(res.data.data.lists),
+            more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
           })
         } else {
           app.setToast(that, {content: res.data.desc})
         }
       }
     })
+  },
+  onReachBottom () {
+    if (!this.data.more) return app.setToast(this, {content: '没有更多内容了'})
+    this.getUserBuyCourse()
   },
   /**
    * 生命周期函数--监听页面加载

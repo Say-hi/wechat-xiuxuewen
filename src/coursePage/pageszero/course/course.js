@@ -26,11 +26,11 @@ Page({
   getList () {
     let that = this
     app.wxrequest({
-      url:  that.data.options.type === 'search' ? app.getUrl().courseSearch : app.getUrl().course,
+      url: that.data.options.type === 'search' ? app.getUrl().courseSearch : app.getUrl().course,
       data: that.data.options.type === 'search' ? {
-          page: ++page,
-          title: that.data.searchText
-        } : {
+        page: ++page,
+        title: that.data.searchText
+      } : {
         label: app.data.label[that.data.currentIndex].label,
         page: ++page
       },

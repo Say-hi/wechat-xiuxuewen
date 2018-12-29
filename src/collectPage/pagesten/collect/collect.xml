@@ -24,7 +24,7 @@
              data-content="线下课程"
              class="h-w-left pr br18"
              mode="aspectFill"
-             src="{{ poster }}"></image>
+             src="{{ item.image }}"></image>
       <view class="h-w-right">
         <view>
           <view class="ell1 f32 fw7 c393636">{{ item.title }}</view>
@@ -32,23 +32,24 @@
             <view class="shop-info">
               <image lazy-load="{{true}}"
                      class="br"
-                     src="{{ item.image }}"></image>
+                     src="{{ item.avatar }}"></image>
               <view class="flex1 check8">{{ item.room_name }}</view>
             </view>
             <!--<view class="keep">800m</view>-->
           </view>
         </view>
         <view class="h-w-r-bottom f26 {{ currentIndex == 0 ? 'cff3b5b' : 'c666' }} mt20">
-          <view>时间：2018.12.20 12:30—14:30</view>
+          <view>时间：{{ item.make_time }} {{ item.day_up === 1 ? '上午' : '下午' }}</view>
           <!--<view class="cff3b5b">立刻报名 》</view>-->
           <!--<view class="f26 cff3b5b fw7 tar">88.8元</view>-->
         </view>
       </view>
     </navigator>
     <view hidden="{{ currentIndex >= 1 }}" class="tar mt20">
-      <view catchtap="goMapPoint" data-name="123" data-address="asdfasdfasdf" data-latitude="{{ latitude }}" data-longitude="{{ longitude }}" class="f26 cfff fw7 go-shop">到店学习</view>
+      <view catchtap="goMapPoint" data-name="123" data-address="asdfasdfasdf" data-latitude="{{ item.latitude }}" data-longitude="{{ item.longitude }}" class="f26 cfff fw7 go-shop">到店学习</view>
     </view>
   </view>
+  <view wx:if="{{ !lists.length }}" class="tac f28 c999 p20">还没有相关内容哦</view>
 </view>
 <!--收藏-->
 <view class="p20" wx:if="{{ options.type == 2 }}">

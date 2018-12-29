@@ -9,6 +9,8 @@ const app = getApp()
 //     categories: ['10.21', '10.21', '20.13', '20.14', '20.15', '20.16', '20.17']
 //   }
 // }
+
+// const userCollect =
 // 创建页面实例对象
 Page({
   /**

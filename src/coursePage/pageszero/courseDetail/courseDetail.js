@@ -134,10 +134,16 @@ Page({
   },
   // 点赞
   collectO () {
-    this.data.collect ? --this.data.detailInfo.collect_count : ++this.data.detailInfo.collect_count
-    this.setData({
-      collect: !this.data.collect,
-      detailInfo: this.data.detailInfo
+    let that = this
+    let type = that.data.options.type * 1 === 1 ? 1 : (that.data.options.type * 1 === 2 || that.data.options.type * 1 === 4) ? 3 : that.data.options.type * 1 === 3 ? 2 : null
+    app.userCollect(that.data.options.id, type).then(() => {
+      that.data.collect ? --that.data.detailInfo.collect_count : ++that.data.detailInfo.collect_count
+      that.setData({
+        collect: !that.data.collect,
+        detailInfo: that.data.detailInfo
+      })
+    }, err => {
+      console.log(err)
     })
   },
 
@@ -366,6 +372,7 @@ Page({
         if (res.data.status === 200) {
           res.data.data['collect_count'] >= 0 ? res.data.data.collect_count = res.data.data.collect_count * 1 + res.data.data.collect_base : res.data.data['collect_count'] = 0
           that.setData({
+            collect: res.data.data.is_collect >= 1 ? true : 0,
             detailInfo: res.data.data
           }, that.getEvaluate)
           app.setBar(res.data.data.title)
@@ -381,7 +388,8 @@ Page({
     app.wxrequest({
       url: app.getUrl().dotDetail,
       data: {
-        active_id: that.data.options.id
+        active_id: that.data.options.id,
+        user_id: app.gs('userInfoAll').id
       },
       success (res) {
         wx.hideLoading()
@@ -391,6 +399,7 @@ Page({
           res.data.data.room_images = res.data.data.room_images ? res.data.data.room_images.split(',') : []
           res.data.data.room_teacher = res.data.data.room_teacher ? res.data.data.room_teacher.split(',') : []
           that.setData({
+            collect: res.data.data.is_collect >= 1 ? true : 0,
             swiperArr: res.data.data.room_images,
             detailInfo: res.data.data
           })
@@ -416,7 +425,8 @@ Page({
     app.wxrequest({
       url: app.getUrl().activeDetail,
       data: {
-        active_id: that.data.options.id
+        active_id: that.data.options.id,
+        user_id: app.gs('userInfoAll').id
       },
       success (res) {
         wx.hideLoading()
@@ -424,6 +434,7 @@ Page({
           res.data.data['collect_count'] >= 0 ? res.data.data.collect_count = res.data.data.collect_count * 1 + res.data.data.collect_base : res.data.data['collect_count'] = 0
           res.data.data.show_image = res.data.data.show_image ? res.data.data.show_image.split(',') : []
           that.setData({
+            collect: res.data.data.is_collect >= 1 ? true : 0,
             detailInfo: res.data.data
           })
         } else {

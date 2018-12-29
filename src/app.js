@@ -751,6 +751,30 @@ App({
     s = s * 6378.137
     return s = Math.round(s * 10000) / 10
   },
+  userCollect (collect_id, state) {
+    let that = this
+    return new Promise (function (resolve, reject) {
+      that.wxrequest({
+        url: useUrl.userCollectSub,
+        data: {
+          user_id: that.gs('userInfoAll').id,
+          collect_id,
+          state
+        },
+        success (res) {
+          wx.hideLoading()
+          if (res.data.status === 200) {
+            resolve(res)
+          } else {
+            reject(res)
+          }
+        },
+        fail (err) {
+          reject(err)
+        }
+      })
+    })
+  },
   /**
    * 生命周期函数--监听小程序初始化
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）

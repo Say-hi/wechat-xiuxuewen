@@ -319,13 +319,37 @@ Page({
       })
     }
   },
+  getEnu () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().activeEnum,
+      data: {},
+      success (res) {
+        console.log(res)
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            ...res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
+    this.getEnu()
     this.setData({
       options
     })
+    if (options.trade) {
+      this.setData({
+        swiperIndex: 1
+      })
+    }
     if (app.gs('addressInfo')) {
       this.setData({
         addressInfo: app.gs('addressInfo')

@@ -68,6 +68,19 @@ Page({
       }
     })
   },
+  // 点赞
+  collectO () {
+    let that = this
+    app.userCollect(that.data.options.id, 4).then(() => {
+      that.data.collect ? --that.data.info.collect_count : ++that.data.info.collect_count
+      that.setData({
+        collect: !that.data.collect,
+        info: that.data.info
+      })
+    }, err => {
+      console.log(err)
+    })
+  },
   onShareAppMessage () {
     return {
       title: '分享了一个问答',
@@ -84,12 +97,12 @@ Page({
         user_id: app.gs('userInfoAll').id
       },
       success (res) {
-        console.log(res)
         wx.hideLoading()
         if (res.data.status === 200) {
           res.data.data.images = res.data.data.images ? res.data.data.images.split(',') : []
           res.data.data.create_time = app.momentFormat(res.data.data.create_time * 1000, 'YYYY年MM月DD日 HH:MM:SS')
           that.setData({
+            collect: res.data.data.is_collect >= 1 ? true : 0,
             info: res.data.data
           })
         } else {

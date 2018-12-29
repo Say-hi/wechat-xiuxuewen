@@ -72,8 +72,8 @@ Page({
           app.data.searchText = searcheText
           setTimeout(() => {
             that.data.options.type === 'course' ? wx.navigateTo({
-                url: '/coursePage/pageszero/course/course?type=search'
-              }) : wx.navigateBack()
+              url: '/coursePage/pageszero/course/course?type=search'
+            }) : wx.navigateBack()
           }, 20)
         } else {
           app.setToast(that, {content: '未搜索到相关内容'})
