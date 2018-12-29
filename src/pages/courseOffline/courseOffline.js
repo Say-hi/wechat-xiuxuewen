@@ -171,8 +171,6 @@ Page({
   onShow () {
     if (this.data.showImg === 1) {
       this.data.showImg = 0
-    } else if (this.data.searchText) {
-      this.search()
     } else if (app.data.searchText) {
       this.data.searchText = app.data.searchText
       app.data.searchText = null

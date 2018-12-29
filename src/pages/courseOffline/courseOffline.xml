@@ -32,7 +32,7 @@
           <view class="f34 c444 room-name fw7">{{ item.room_name }}</view>
           <view class="c999 f28 room-people">
             <text>{{ item.gradution_count * 1 + item.gradution_base * 1 }}人已经毕业</text>
-            <text>{{ item.distance }}</text>
+            <text wx:if="{{ item.distance != 'undefinedkm' }}">{{ item.distance }}</text>
           </view>
           <view wx:for="{{ item.label }}"
                 wx:key="*74"

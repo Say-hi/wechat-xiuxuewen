@@ -152,10 +152,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow () {
-    if (this.data.searchText) {
-      this.data.page = 0
-      this.getNear()
-    } else if (app.data.searchText) {
+    if (app.data.searchText) {
       this.data.page = 0
       this.data.searchText = app.data.searchText
       app.data.searchText = null
