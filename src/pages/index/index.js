@@ -251,6 +251,7 @@ Page({
    */
   onLoad (options) {
     let that = this
+    if (!app.gs()) app.wxlogin()
     app.getNavTab({
       style: 3,
       cb (res) {

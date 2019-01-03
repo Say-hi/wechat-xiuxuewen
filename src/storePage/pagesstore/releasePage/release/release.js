@@ -40,6 +40,8 @@ Page({
     upImgArrProgress3: [],
     upImgArr4: [],
     upImgArrProgress4: [],
+    upImgArr5: [],
+    upImgArrProgress5: [],
     content: 0
   },
   // 多图上传
@@ -222,6 +224,100 @@ Page({
             that.data.upImgArr4.splice(e.currentTarget.dataset.index, 1)
             that.setData({
               upImgArr4: that.data.upImgArr4
+            })
+          })
+        } else if (res.tapIndex === 1) {
+          that.upImg3(e.currentTarget.dataset.index)
+        }
+      }
+    })
+  },
+  // 多图上传
+  upImg4 (index) {
+    let imgArr = 'upImgArr5'
+    let progressArr = 'upImgArrProgress5'
+    let that = this
+    let length = that.data[imgArr].length || 0
+    let id = app.gs('userInfoAll').id || 10000
+    wx.chooseImage({
+      count: index >= 0 ? 1 : 9 - length,
+      success (res) {
+        for (let [i, v] of res.tempFilePaths.entries()) {
+          if (!that.data[imgArr][index >= 0 ? index : length + i]) {
+            that.data[imgArr][index >= 0 ? index : length + i] = {
+              temp: null,
+              real: null
+            }
+          }
+          that.data[imgArr][index >= 0 ? index : length + i]['real'] = ''
+          that.data[imgArr][index >= 0 ? index : length + i]['temp'] = v
+        }
+        that.setData({
+          upImgArr5: that.data[imgArr]
+        })
+        if (index >= 0) {
+          cos.deleteObject({
+            Bucket: config.Bucket,
+            Region: config.Region,
+            Key: that.data[imgArr][index].Key
+          })
+        }
+        (function upLoad (j) {
+          let v = res.tempFilePaths[j]
+          let Key = `image/${id}/${v.substr(v.lastIndexOf('/') + 1)}` // 这里指定上传的文件名
+          cos.postObject({
+            Bucket: config.Bucket,
+            Region: config.Region,
+            Key: Key,
+            FilePath: v,
+            onProgress: function (info) {
+              that.data[progressArr][index >= 0 ? index : length + j] = info.percent * 100
+              that.setData({
+                upImgArrProgress5: that.data[progressArr]
+              })
+            }
+          }, (err, data) => {
+            if (err) {
+              that.data[imgArr][index >= 0 ? index : length + j]['upFail'] = true
+              that.setData({
+                upImgArr5: that.data[imgArr]
+              })
+            } else {
+              console.log(data)
+              that.data[imgArr][index >= 0 ? index : length + j]['real'] = `https://${config.Bucket}.cos.${config.Region}.myqcloud.com/${Key}`
+              that.data[imgArr][index >= 0 ? index : length + j]['Key'] = Key
+              that.setData({
+                upImgArr5: that.data[imgArr]
+              })
+            }
+            if (j + 1 < res.tempFilePaths.length) upLoad(j + 1)
+          })
+        })(0)
+      }
+    })
+  },
+  // 图片操作
+  imgOperation3 (e) {
+    if (!this.data.upImgArr5[e.currentTarget.dataset.index].real) return app.setToast(this, {content: '请稍后操作'})
+    let that = this
+    let itemList = ['查看图片', '替换图片', '删除图片']
+    for (let v of this.data.upImgArr5) {
+      if (!v.real) itemList = ['查看图片', '替换图片']
+    }
+    wx.showActionSheet({
+      itemList,
+      success (res) {
+        if (res.tapIndex === 0) {
+          app.showImg(that.data.upImgArr5[e.currentTarget.dataset.index].temp, [that.data.upImgArr5[e.currentTarget.dataset.index].temp])
+        } else if (res.tapIndex === 2) {
+          cos.deleteObject({
+            Bucket: config.Bucket,
+            Region: config.Region,
+            Key: that.data.upImgArr5[e.currentTarget.dataset.index].Key
+          }, () => {
+            that.data.upImgArr5.splice(e.currentTarget.dataset.index, 1)
+            that.setData({
+              upImgArr5: that.data.upImgArr5
             })
           })
         } else if (res.tapIndex === 1) {

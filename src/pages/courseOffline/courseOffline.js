@@ -101,7 +101,7 @@ Page({
             for (let v of res.data.data.lists) {
               for (let s of v.lists) {
                 s.room_images = s.room_images.split(',')
-                s.distance = s.distance < 1 ? s.distance * 100 + 'm' : s.distance + 'km'
+                s.distance = s.distance > 1000 ? (s.distance / 1000).toFixed(2) + 'km' : s.distance + 'm'
               }
             }
             that.setData({
@@ -133,7 +133,7 @@ Page({
         if (res.data.status === 200) {
           for (let s of res.data.data.lists) {
             s.room_images = s.room_images.split(',')
-            s.distance = s.distance < 1 ? s.distance * 100 + 'm' : s.distance + 'km'
+            s.distance = s.distance > 1000 ? (s.distance / 1000).toFixed(2) + 'km' : s.distance + 'm'
           }
           that.data.lists[0] = {
             city_name: '搜索结果',

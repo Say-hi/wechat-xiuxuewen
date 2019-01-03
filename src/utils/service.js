@@ -5,7 +5,7 @@ const baseDomain = 'https://teach.idwenshi.com/teaching/public/index.php'
 // let baseDomain = 'https://www.1688rm.com'
 const serviceUrl = {
   style: baseDomain + '/home/page', // 不填默认为1, 1表示中间菜单,2表示底部菜单,3表示广告图
-  login: baseDomain + '/api/index/login', // 登陆
+  login: baseDomain + '/weixin/login', // 登陆
   course: baseDomain + '/course/last', // 课程
   courseSearch: baseDomain + '/course/search', // 搜索课程
   courseDetail: baseDomain + '/course/detail', // 课程详情
@@ -30,15 +30,17 @@ const serviceUrl = {
   activeNearby: baseDomain + '/active/nearby', // 附近课程
   activeDetail: baseDomain + '/active/detail', // 附近课程
   activeSearch: baseDomain + '/active/search', // 线下课程搜索
-  activeEnum: baseDomain + '/active/enum', //
+  activeEnum: baseDomain + '/active/enum', // 获取报名所需要的字段
+  activeSign: baseDomain + '/active/sign_up', // 报名活动
   payActive: baseDomain + '/pay/active', // 支付
   payActiveAgain: baseDomain + '/pay/active_again', // 二次支付
   userFeedback: baseDomain + '/user/feedback', // 反馈
   userActive: baseDomain + '/user/active', // 用户预约
-  userCollect: baseDomain + '/user/collect', // 用户收集
+  userCollect: baseDomain + '/user/collect', // 用户收集的内容
   userActivePay: baseDomain + '/user/active_pay', // 用户订单
   userActiveChange: baseDomain + '/user/active_change', // 用户改变订单状态
   userCollectSub: baseDomain + '/user/collect_sub', // 用户收藏
+  userCollectCancel: baseDomain + '/user/collect_cancel', // 用户取消收藏
   upImage: baseDomain + '/upload/image' // 图片上传
 }
 module.exports = serviceUrl

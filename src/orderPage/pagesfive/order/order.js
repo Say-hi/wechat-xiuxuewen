@@ -24,6 +24,8 @@ Page({
     ]
   },
   chooseIndex (e) {
+    this.data.lists = []
+    this.data.page = 0
     if (e.currentTarget.dataset.type === 'team') {
       this.setData({
         currentIndexTwo: e.currentTarget.dataset.index
@@ -31,7 +33,7 @@ Page({
     } else {
       this.setData({
         currentIndex: e.currentTarget.dataset.index
-      })
+      }, this.getData)
     }
   },
   getData () {
@@ -113,6 +115,10 @@ Page({
         }
       }
     })
+  },
+  onReachBottom () {
+    if (this.data.more > 0) this.getData()
+    else app.setToast(this, {content: '没有更多订单啦'})
   },
   /**
    * 生命周期函数--监听页面加载

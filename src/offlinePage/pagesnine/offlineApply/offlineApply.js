@@ -278,9 +278,46 @@ Page({
       }
     })
   },
+  activeSApply () {
+    let that = this
+    let makeTime = new Date(that.data.date).getTime()
+    app.wxrequest({
+      url: app.getUrl().activeSign,
+      data: {
+        order_id: that.data.order_id,
+        sex: that.data.genderText === '女' ? 2 : 1,
+        name: that.data.nameText,
+        phone: that.data.phoneText,
+        make_time: Math.floor(makeTime / 1000),
+        day_up: that.data.amIndex * 1 + 1,
+        experience: that.data.experienceText,
+        follow_teach: that.data.teacherText,
+        puzzled: that.data.questionText,
+        perfect: that.data.personText,
+        brand: that.data.brandText
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            swiperIndex: 5,
+            showTop: 1
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   nextTick (e) {
     if (e.currentTarget.dataset.index * 1 === 1) {
       return this.pay()
+    } else if (e.currentTarget.dataset.index * 1 === 3 && (!this.data.nameText || this.data.phoneText.length * 1 !== 11)) {
+      return app.setToast(this, {content: '请填写您的个人信息'})
+    } else if (e.currentTarget.dataset.index * 1 === 5 && !this.data.brandText) {
+      return app.setToast(this, {content: '请填写您使用的纹绣品牌'})
+    } else if (e.currentTarget.dataset.index * 1 === 5 && this.data.brandText) {
+      this.activeSApply()
     }
     this.setData({
       swiperIndex: e.currentTarget.dataset.index,
@@ -325,7 +362,6 @@ Page({
       url: app.getUrl().activeEnum,
       data: {},
       success (res) {
-        console.log(res)
         wx.hideLoading()
         if (res.data.status === 200) {
           that.setData({

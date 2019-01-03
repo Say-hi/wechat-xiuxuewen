@@ -76,6 +76,41 @@
       </view>
     </view>
   </view>
+
+  <!--添加学员作品-->
+  <view class="f28 c444 bgfff br18 p30 mt20 add-video">
+    <view class="f34">
+      <view class="f34 show-time">
+        <text class="fw7">往期学员作品秀</text>
+        <text class="c999 f28">最多上传9张图</text>
+      </view>
+    </view>
+    <view catchtap="upImg4"
+          data-type="cover"
+          wx:if="{{ upImgArr5.length < 9 }}"
+          class="tac br18 border-out a-v-btn mt20">
+      +添加图片
+    </view>
+    <view class="img-area mt10">
+      <view class="up-img">
+        <view wx:for="{{ upImgArr5 }}" wx:key="*42" class="pr up-img-area">
+          <image catchtap="imgOperation3"
+                 mode="aspectFit"
+                 data-index="{{ index }}"
+                 lazy-load="{{true}}"
+                 class="br20"
+                 src="{{ item.temp }}"></image>
+          <view hidden="{{ upImgArrProgress5[index] >= 100 }}"
+                catchtap="upno"
+                class="up-progress pa">
+            <view class="tac f20 cfff ">{{ !upImgArrProgress4[index] ? '等待上传' : '上传中' }}</view>
+            <progress border-radius="20"
+                      percent="{{ upImgArrProgress5[index] || 0 }}"></progress>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
   <!--老师风采（选填）-->
   <view class="f28 c444 bgfff br18 p30 mt20 add-video">
     <view class="f34">

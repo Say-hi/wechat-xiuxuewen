@@ -136,7 +136,7 @@ Page({
   collectO () {
     let that = this
     let type = that.data.options.type * 1 === 1 ? 1 : (that.data.options.type * 1 === 2 || that.data.options.type * 1 === 4) ? 3 : that.data.options.type * 1 === 3 ? 2 : null
-    app.userCollect(that.data.options.id, type).then(() => {
+    app.userCollect(that.data.detailInfo.is_collect, that.data.options.id, type).then(() => {
       that.data.collect ? --that.data.detailInfo.collect_count : ++that.data.detailInfo.collect_count
       that.setData({
         collect: !that.data.collect,
@@ -397,6 +397,7 @@ Page({
           res.data.data['collect_count'] >= 0 ? res.data.data.collect_count = res.data.data.collect_count * 1 + res.data.data.collect_base : res.data.data['collect_count'] = 0
           res.data.data.class_image = res.data.data.class_image ? res.data.data.class_image.split(',') : []
           res.data.data.room_images = res.data.data.room_images ? res.data.data.room_images.split(',') : []
+          res.data.data.show_image = res.data.data.show_image ? res.data.data.show_image.split(',') : []
           res.data.data.room_teacher = res.data.data.room_teacher ? res.data.data.room_teacher.split(',') : []
           that.setData({
             collect: res.data.data.is_collect >= 1 ? true : 0,
@@ -408,7 +409,7 @@ Page({
               if (res2.latitude) {
                 let d = app.distance(res2.latitude, res2.longitude, res.data.data.latitude, res.data.data.longitude)
                 that.setData({
-                  storeDistance: d > 1000 ? '离你最近' + Math.floor(d / 1000) + 'km' : '离你最近' + d + 'm'
+                  storeDistance: d > 1000 ? '离你最近' + (d / 1000).toFixed(2) + 'km' : '离你最近' + d + 'm'
                 })
               }
             }

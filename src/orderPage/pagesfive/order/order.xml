@@ -59,11 +59,13 @@
           <button open-type="contact" hidden="{{ currentIndex >= 2 }}" class="c444 cancel">咨询</button>
           <view data-index="{{ index }}" catchtap="orderOperation" data-type="cancel" hidden="{{ currentIndex >= 1 }}" class="c444 cancel">取消订单</view>
           <view data-index="{{ index }}" data-id="{{ item.id }}" catchtap="orderOperation" data-type="pay" hidden="{{ currentIndex >= 1 }}" class="cfff pay fw7">去付款</view>
+          <view data-index="{{ index }}" data-id="{{ item.id }}" catchtap="orderOperation" data-type="confirm" hidden="{{ currentIndex != 1 }}" class="cfff pay fw7">确认收货</view>
           <view data-index="{{ index }}" hidden="{{ currentIndex != 1 }}" class="cfff pay fw7">待发货</view>
           <view data-index="{{ index }}" catchtap="orderOperation" data-type="del" hidden="{{ currentIndex <= 1 }}" class="c444 cancel">删除订单</view>
         </view>
       </view>
     </block>
+    <view wx:if="{{ !lists.length }}" class="tac f28 c999 p20">您还没有相关的订单哦</view>
   </view>
 </view>
 <!--错误弹窗-->

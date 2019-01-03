@@ -9,12 +9,14 @@ Page({
   data: {
     tabNav: app.data.label,
     lists: [],
+    page: 0,
     currentIndex: 0
   },
 
   chooseIndex (e) {
     app.setBar(e.currentTarget.dataset.text)
     this.data.lists = []
+    this.data.page = 0
     page = 0
     this.setData({
       currentIndex: e.currentTarget.dataset.index
@@ -23,7 +25,43 @@ Page({
     //   scrollTop: 0
     // })
   },
+  getOfflineList () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().activeNearby,
+      data: {
+        label: app.data.label[that.data.currentIndex].label,
+        longitude: that.data.options.lng,
+        latitude: that.data.options.lat,
+        code: that.data.options.adcode,
+        parent_code: that.data.parent_code ? 1 : 0,
+        pages: ++this.data.page
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          if (res.data.data.total < 1 && !that.data.parent_code) {
+            that.data.parent_code = 1
+            that.data.page <= 1 ? that.data.page = 0 : null
+            that.getOfflineList()
+          } else {
+            for (let v of res.data.data.lists) {
+              for (let s of v.lists) {
+                s.distance = s.distance > 1000 ? Math.floor(s.distance / 1000) + 'km' : s.distance + 'm'
+              }
+            }
+            that.setData({
+              lists: res.data.data.lists
+            })
+          }
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   getList () {
+    if (this.data.options.type * 1 === 2) return this.getOfflineList()
     let that = this
     app.wxrequest({
       url: that.data.options.type === 'search' ? app.getUrl().courseSearch : app.getUrl().course,
@@ -49,6 +87,7 @@ Page({
   },
   onReachBottom () {
     if (this.data.more >= 1) this.getList()
+    else app.setToast(this, {content: '没有更多内容啦'})
   },
   /**
    * 生命周期函数--监听页面加载

@@ -8,8 +8,6 @@ Page({
    */
   data: {
     testImg: 'https://c.jiangwenqiang.com/api/logo.jpg',
-    latitude: 23.111123,
-    longitude: 113.123432,
     currentIndex: 0,
     poster: app.data.testImg,
     page: 0,
@@ -37,6 +35,7 @@ Page({
   },
   chooseIndex (e) {
     this.data.page = 0
+    this.data.lists = []
     this.setData({
       currentIndex: e.currentTarget.dataset.index
     }, this.getUserBuyCourse)
@@ -54,7 +53,14 @@ Page({
         wx.hideLoading()
         if (res.data.status === 200) {
           for (let v of res.data.data.lists) {
-            v.make_time = app.momentFormat(v.make_time * 1000, 'YYYY.MM.DD')
+            if (v.make_time) v.make_time = app.momentFormat(v.make_time * 1000, 'YYYY.MM.DD')
+            if (v.room_images) v.room_images = v.room_images.split(',')
+            if (that.data.resLl && v.latitude) {
+              let distance = app.distance(v.latitude, v.longitude, that.data.resLl.latitude, that.data.resLl.longitude)
+              v.distance = distance > 1000 ? (distance / 1000).toFixed(2) + 'km' : distance + 'm'
+            }
+            if (v.create_time) v.create_time = app.momentFormat(v.create_time * 1000, 'YYYY年MM月DD日 HH:MM:SS')
+            if (v.images) v.images = v.images.split(',')
           }
           that.setData({
             lists: that.data.lists.concat(res.data.data.lists),
@@ -74,6 +80,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
+    let that = this
+    wx.getLocation({
+      success (res) {
+        that.setData({
+          resLl: res
+        })
+      }
+    })
     this.setData({
       options
     }, this.getUserBuyCourse)

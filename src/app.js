@@ -342,151 +342,86 @@ App({
     })
   },
   // 用户登陆
-  wxlogin (loginSuccess, params) {
-    // console.log('loginSuccess', loginSuccess)
-    // console.log('params', params)
+  wxlogin (params) {
     let that = this
-    // if (wx.getStorageSync('session_key')) {
-    //   // console.log(1)
-    //   let checkObj = {
-    //     url: useUrl.carList,
-    //     data: {
-    //       session_key: wx.getStorageSync('session_key')
-    //     },
-    //     success (res) {
-    //       wx.hideLoading()
-    //       // session失效
-    //       if (res.data.status === 401) {
-    //         console.log('session_key失效')
-    //         // 无条件获取登陆code
-    //         wx.login({
-    //           success (res) {
-    //             // console.log(res)
-    //             let code = res.code
-    //             // 获取用户信息
-    //             let obj = {
-    //               success (data) {
-    //                 wx.setStorageSync('userInfo', data.userInfo)
-    //                 let {iv, encryptedData, rawData, signature} = data
-    //                 let recommendId = ''
-    //                 if (params) {
-    //                   recommendId: params.id
-    //                 }
-    //                 // 获取session_key
-    //                 let objs = {
-    //                   url: useUrl.login,
-    //                   data: {
-    //                     parent_openid: recommendId || 0,
-    //                     code: code,
-    //                     iv: iv,
-    //                     rawData,
-    //                     signature,
-    //                     encryptedData
-    //                   },
-    //                   success (res) {
-    //                     console.log(objs.data)
-    //                     // let session_key = 'akljgaajgoehageajnafe'
-    //                     // console.log(res)
-    //                     wx.setStorageSync('session_key', res.data.data.session_key)
-    //                     // console.log(session)
-    //                     if (loginSuccess) {
-    //                       loginSuccess(params)
-    //                     }
-    //                   }
-    //                 }
-    //                 that.wxrequest(objs)
-    //               },
-    //               fail (res) {
-    //                 console.log(res)
-    //                 wx.showToast({
-    //                   title: '您未授权小程序,请授权登陆'
-    //                 })
-    //               }
-    //             }
-    //             that.getUserInfo(obj)
-    //           },
-    //           fail (err) {
-    //             console.log('loginError' + err)
-    //           }
-    //         })
-    //       } else {
-    //         console.log('session_key有效')
-    //         if (loginSuccess) {
-    //           loginSuccess(params)
-    //         }
-    //       }
-    //     }
-    //   }
-    //   that.wxrequest(checkObj)
-    // } else {
-      // console.log(2)
-      // 无条件获取登陆code
-      wx.login({
-        success (res) {
-          let code = res.code
-          // 获取用户信息
-          let obj = {
-            success (data) {
-              // console.log('getuserinfo', data)
-              if (!data.iv) return
-              // console.log('goto')
-              wx.setStorageSync('userInfo', data.userInfo)
-              // let {iv, encryptedData, rawData, signature} = data
-              // let iv = data.iv
-              // let encryptedData = data.encryptedData
-              // let recommendId = ''
-              // console.log('params', params)
-              // if (params) {
-              //   recommendId = params.id
-              // }
-              // console.log('recommendId', recommendId)
-              // 获取session_key
-              let objs = {
-                url: useUrl.login,
-                data: {
-                  code,
-                  username: data.userInfo.nickName,
-                  avatar: data.userInfo.avatarUrl,
-                  sex: data.userInfo.gender
-                },
-                success (session) {
-                  console.log('session', session)
-                  // console.log(objs.data)
-                  wx.hideLoading()
-                  // let s = 'DUGufWMOkMIolSIXLajTvCEvXAYQZwSpnafUVlSagdNEReVSRDAECzwEVAtFbPWg'
-                  wx.setStorageSync('key', session.data.data.key)
-                  let currentPage = getCurrentPages()
-                  let query = ''
-                  console.log('currentPage', currentPage)
-                  try {
-                    let s = currentPage[currentPage.length - 1].options
-                    for (let i in s) {
-                      query += `${i}=${s[i]}&`
-                    }
-                  } catch (err) {
-                    query = currentPage[currentPage.length - 1]['__displayReporter']['showOptions']['query']
+    wx.login({
+      success (res) {
+        let code = res.code
+        // 获取用户信息
+        let obj = {
+          success (data) {
+            wx.setStorageSync('userInfo', data.userInfo)
+            let objs = {
+              url: useUrl.login,
+              data: {
+                code,
+                nickname: data.userInfo.nickName,
+                avatar_url: data.userInfo.avatarUrl,
+                sex: data.userInfo.gender,
+                city: data.userInfo.city,
+                country: data.userInfo.country,
+                province: data.userInfo.province
+              },
+              success (session) {
+                console.log('session', session)
+                wx.hideLoading()
+                wx.setStorageSync('key', session.data.data.openid)
+                wx.setStorageSync('userInfoAll', Object.assign(that.gs('userInfoAll') ? that.gs('userInfoAll') : {}, {id: session.data.data.id}))
+                let currentPage = getCurrentPages()
+                let query = ''
+                try {
+                  let s = currentPage[currentPage.length - 1].options
+                  for (let i in s) {
+                    query += `${i}=${s[i]}&`
                   }
-                  console.log('query', query)
-                  wx.reLaunch({
-                    url: '/' + currentPage[currentPage.length - 1]['__route__'] + (query.length > 0 ? '?' + query : '')
-                  })
+                } catch (err) {
+                  query = currentPage[currentPage.length - 1]['__displayReporter']['showOptions']['query']
                 }
+                console.log('query', query)
+                wx.reLaunch({
+                  url: '/' + currentPage[currentPage.length - 1]['__route__'] + (query.length > 0 ? '?' + query : '')
+                })
               }
-              that.wxrequest(objs)
-            },
-            fail () {
-              wx.showToast({
-                title: '您未授权小程序,请授权登陆'
-              })
             }
+            that.wxrequest(objs)
+          },
+          fail (err) {
+            console.log(err)
+            let objs = {
+              url: useUrl.login,
+              data: {
+                code
+              },
+              success (session) {
+                console.log('session', session)
+                wx.hideLoading()
+                wx.setStorageSync('key', session.data.data.openid)
+                wx.setStorageSync('userInfoAll', Object.assign(that.gs('userInfoAll') ? that.gs('userInfoAll') : {}, {id: session.data.data.id}))
+                let currentPage = getCurrentPages()
+                let query = ''
+                try {
+                  let s = currentPage[currentPage.length - 1].options
+                  for (let i in s) {
+                    query += `${i}=${s[i]}&`
+                  }
+                } catch (err) {
+                  query = currentPage[currentPage.length - 1]['__displayReporter']['showOptions']['query']
+                }
+                console.log('query', query)
+                wx.reLaunch({
+                  url: '/' + currentPage[currentPage.length - 1]['__route__'] + (query.length > 0 ? '?' + query : '')
+                })
+              }
+            }
+            that.wxrequest(objs)
           }
-          that.getUserInfo(obj)
-        },
-        fail (err) {
+        }
+        that.getUserInfo(obj)
+      },
+      fail (err) {
           console.log('loginError' + err)
         }
-      })
-    // }
+    })
   },
   // 获取缓存session_key
   gs (key) {
@@ -742,20 +677,21 @@ App({
   },
   // 地址计算
   distance (lat1, lng1, lat2, lng2) {
-    console.log(lat1, lng1, lat2, lng2)
-    let radLat1 = lat1 * Math.PI / 180.0
-    let radLat2 = lat2 * Math.PI / 180.0
-    let a = radLat1 - radLat2
-    let b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0
-    let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)))
-    s = s * 6378.137
-    return s = Math.round(s * 10000) / 10
+    let lat = [lat1, lat2]
+    let lng = [lng1, lng2]
+    let R = 6378137
+    let dLat = (lat[1] - lat[0]) * Math.PI / 180
+    let dLng = (lng[1] - lng[0]) * Math.PI / 180
+    let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat[0] * Math.PI / 180) * Math.cos(lat[1] * Math.PI / 180) * Math.sin(dLng / 2) * Math.sin(dLng / 2)
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+    let d = R * c
+    return Math.round(d)
   },
-  userCollect (collect_id, state) {
+  userCollect (is_collect, collect_id, state) {
     let that = this
     return new Promise (function (resolve, reject) {
       that.wxrequest({
-        url: useUrl.userCollectSub,
+        url: is_collect >= 1 ? useUrl.userCollectCancel : useUrl.userCollectSub,
         data: {
           user_id: that.gs('userInfoAll').id,
           collect_id,
@@ -782,7 +718,6 @@ App({
   onLaunch () {
     this.getNavTab({})
     this.su('userInfoAll', {id:1, nickname: 'Edward'})
-    this.su('key', 'ot5pZ5I61LK6MejZEpqwDZII1IjQ')
     // this.su('userInfoAll', {id:2, nickname: 'Edward2'})
     // this.getFont()
   },

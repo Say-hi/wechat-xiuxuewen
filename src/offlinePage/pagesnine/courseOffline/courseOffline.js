@@ -9,6 +9,7 @@ Page({
   data: {
     testImg: app.data.testImg,
     page: 0,
+    lists: [],
     title: 'courseOffline'
   },
   /**
@@ -86,11 +87,12 @@ Page({
         if (res.data.status === 200) {
           if (res.data.data.total < 1 && !that.data.parent_code) {
             that.data.parent_code = 1
+            that.data.page <= 1 ? that.data.page = 0 : null
             that.getNear()
           } else {
             for (let v of res.data.data.lists) {
               for (let s of v.lists) {
-                s.distance = s.distance > 1000 ? Math.floor(s.distance / 1000) + 'km' : s.distance + 'm'
+                s.distance = s.distance > 1000 ? (s.distance / 1000).toFixed(2) + 'km' : s.distance + 'm'
               }
             }
             that.setData({
@@ -120,7 +122,7 @@ Page({
           }
           that.data.lists[0] = {
             city_name: '搜索结果',
-            lists: that.data.lists[0].lists ? res.data.data.lists : that.data.lists[0].lists.concat(res.data.data.lists)
+            lists: !that.data.lists.length ? res.data.data.lists : that.data.lists[0].lists.concat(res.data.data.lists)
           }
           that.setData({
             lists: that.data.lists,
@@ -131,6 +133,10 @@ Page({
         }
       }
     })
+  },
+  onReachBottom () {
+    if (this.data.more > 0) this.getNear()
+    else app.setToast(this, {content: '没有更多内容啦'})
   },
   /**
    * 生命周期函数--监听页面加载
@@ -154,6 +160,7 @@ Page({
   onShow () {
     if (app.data.searchText) {
       this.data.page = 0
+      this.data.lists = []
       this.data.searchText = app.data.searchText
       app.data.searchText = null
       this.getNear()

@@ -25,7 +25,7 @@
     <view class="jwqfont jwq-kefu">联系客服</view>
   </button>
   <navigator open-type="reLaunch" url="/pages/index/index" class="p30 br18 bgfff message c444 f28 mt20">
-    <view class="jwqfont jwq-shezhi">返回用户端</view>
+    <view>返回用户端</view>
   </navigator>
 </view>
 <my-navigator-tab></my-navigator-tab>
