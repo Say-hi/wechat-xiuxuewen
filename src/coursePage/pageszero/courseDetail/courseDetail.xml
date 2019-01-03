@@ -17,7 +17,7 @@
   </video>
 </view>
 <view class="pr"
-      style="height: {{ needSmall ? 7 : 30 }}%;"
+      style="height: {{ needSmall ? 7 : 30 }}%;transition: all 0.5s;"
       hidden="{{ options.type != 3 }}">
 <swiper autoplay
         circular

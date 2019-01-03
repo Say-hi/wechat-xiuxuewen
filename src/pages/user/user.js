@@ -152,11 +152,40 @@ Page({
 //     //   height: 320,
 //     // })
 //   },
+  getInfo () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().userInfo,
+      data: {
+        user_id: app.gs('userInfoAll').id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          app.su('userInfoAll', res.data.data)
+          that.setData({
+            userInfo: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+  getUserInfoBtn (res) {
+    if (res.detail.iv)  app.wxlogin()
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
-
+    if (!app.gs('userInfoAll').nickname) {
+      this.getInfo()
+    } else {
+      this.setData({
+        userInfo: app.gs('userInfoAll')
+      })
+    }
     // TODO: onLoad
   },
 

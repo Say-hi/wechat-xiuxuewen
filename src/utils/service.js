@@ -41,6 +41,7 @@ const serviceUrl = {
   userActiveChange: baseDomain + '/user/active_change', // 用户改变订单状态
   userCollectSub: baseDomain + '/user/collect_sub', // 用户收藏
   userCollectCancel: baseDomain + '/user/collect_cancel', // 用户取消收藏
+  userInfo: baseDomain + '/user/info', // 用户信息
   upImage: baseDomain + '/upload/image' // 图片上传
 }
 module.exports = serviceUrl
