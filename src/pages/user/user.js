@@ -179,13 +179,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad () {
-    if (!app.gs('userInfoAll').nickname) {
-      this.getInfo()
-    } else {
-      this.setData({
-        userInfo: app.gs('userInfoAll')
-      })
-    }
+    this.getInfo()
     // TODO: onLoad
   },
 
