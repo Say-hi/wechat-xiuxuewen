@@ -5,6 +5,7 @@ const baseDomain = 'https://teach.idwenshi.com/teaching/public/index.php'
 // let baseDomain = 'https://www.1688rm.com'
 const serviceUrl = {
   style: baseDomain + '/home/page', // 不填默认为1, 1表示中间菜单,2表示底部菜单,3表示广告图
+  enum: baseDomain + '/home/enum', // 获取标签
   login: baseDomain + '/weixin/login', // 登陆
   course: baseDomain + '/course/last', // 课程
   courseSearch: baseDomain + '/course/search', // 搜索课程
@@ -45,6 +46,9 @@ const serviceUrl = {
   upImage: baseDomain + '/upload/image', // 图片上传
   // 门店端接口
   teacherUserVideo: baseDomain + '/teacher/user/video', // 获取上传过的视频
+  teacherCourseSub: baseDomain + '/teacher/course/sub', // 教师保存上传视频信息
+  teacherDotSub: baseDomain + '/teacher/dot/sub', // 门店信息插入记录
+  teacherActiveSub: baseDomain + '/teacher/active/sub', // 线下课程保存
   teacherUserActive: baseDomain + '/teacher/user/active' // 获取线下课程
 }
 module.exports = serviceUrl

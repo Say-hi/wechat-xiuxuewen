@@ -72,48 +72,6 @@ Page({
       writeComment: !this.data.writeComment
     })
   },
-
-  lostTime (time) {
-    if (timer) clearInterval(timer)
-    let that = this
-    let h = null
-    let m = null
-    let s = null
-    let ms = null
-    let msTime = time * 1000
-    ms = Math.floor(msTime % 1000)
-    s = Math.floor(msTime / 1000 % 60)
-    m = Math.floor(msTime / 1000 / 60 % 60)
-    h = Math.floor(msTime / 1000 / 60 / 60 % 24)
-    that.setData({
-      lost_h: h >= 10 ? h : '0' + h,
-      lost_m: m >= 10 ? m : '0' + m,
-      lost_s: s >= 10 ? s : '0' + s,
-      lost_ms: ms >= 100 ? ms : ms >= 10 ? '0' + ms : '00' + ms
-    })
-    timer = setInterval(() => {
-      if (msTime <= 0) {
-        that.setData({
-          lost_h: '已',
-          lost_m: '经',
-          lost_s: '结',
-          lost_ms: '束'
-        })
-        return clearInterval(timer)
-      }
-      ms = Math.floor(msTime % 1000)
-      s = Math.floor(msTime / 1000 % 60)
-      m = Math.floor(msTime / 1000 / 60 % 60)
-      h = Math.floor(msTime / 1000 / 60 / 60 % 24)
-      that.setData({
-        lost_h: h >= 10 ? h : '0' + h,
-        lost_m: m >= 10 ? m : '0' + m,
-        lost_s: s >= 10 ? s : '0' + s,
-        lost_ms: ms >= 100 ? ms : ms >= 10 ? '0' + ms : '00' + ms
-      })
-      msTime -= 21
-    }, 21)
-  },
   userChooseAnswer (e) {
     this.data.questionList[e.currentTarget.dataset.qindex]['chooseIndex'] = e.currentTarget.dataset.aindex
     this.setData({
@@ -327,14 +285,16 @@ Page({
     app.wxrequest({
       url: app.getUrl().courseDetail,
       data: {
-        course_id: that.data.options.id || 1
+        course_id: that.data.options.id,
+        user_id: app.gs('userInfoAll').id
       },
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
+          res.data.data.detail = res.data.data.detail.split(',')
           that.setData({
             detailInfo: res.data.data
-          }, that.getEvaluate)
+          })
           app.setBar(res.data.data.title)
         } else {
           app.setToast(that, {content: res.data.desc})

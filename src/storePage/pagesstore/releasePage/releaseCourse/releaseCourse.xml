@@ -10,14 +10,14 @@
           class="mt20 mr30 courseType {{ courseIndex == index ? 'active' : '' }}">{{ item }}</view>
   </view>
   <!--课程分类-->
-  <view hidden="{{ courseIndex == 1 || courseIndex == 2 }}" class="f28 c444 bgfff br18 p30 mt20">
+  <view class="f28 c444 bgfff br18 p30 mt20">
     <view class="fw7 f34">课程分类</view>
     <view catchtap="chooseF"
           data-type="label"
           wx:for="{{ labelArr }}"
           wx:key="*2"
           data-index="{{ index }}"
-          class="mt20 mr30 courseType {{ labelIndex == index ? 'active' : '' }}">{{ item }}</view>
+          class="mt20 mr30 courseType {{ labelIndex == index ? 'active' : '' }}">{{ item.t }}</view>
   </view>
   <!--上传课程视频-->
   <view hidden="{{ courseIndex == 1 || courseIndex == 2 }}" class="f28 c444 bgfff br18 p30 mt20 add-video">
@@ -41,6 +41,9 @@
   <view class="f28 c444 bgfff br18 p30 mt20">
     <view class="fw7 f34">设置课程标题</view>
     <input maxlength="28"
+           bindinput="inputValue"
+           data-type="name"
+           value="{{ nameText }}"
            class="border-out br18 f28 i-title mt20"
            placeholder="请输入课程标题，限定在28字以内" />
   </view>
@@ -82,7 +85,7 @@
               class="br18 border-out p30"
               value="{{ userChooseStart || startDay }}"
               start="{{ startDay }}"
-              end="{{ endDay }}"
+              end="{{ endDayShould }}"
               bindchange="bindDateChange"
               data-type="start"
       >
@@ -173,21 +176,25 @@
   <!--课程详情（选填）-->
   <view hidden="{{ courseIndex == 1 || courseIndex == 2 }}" class="f28 c444 bgfff br18 p30 mt20 add-video">
     <view class="fw7 f34">课程详情（选填）</view>
-    <view catchtap="upImg"
+    <view catchtap="{{ !!courseDetailUp ? '' : 'upImgDetail' }}"
           data-type="detail"
           class="tac br18 border-out a-v-btn mt20">
-      {{ upImgArr2[0].temp ? upImgArr2[0].real ? '替换详情图' : '图片上传中' : '+添加详情图' }}
+      {{ !!courseDetailUp ? '图片上传中' : '+添加详情图' }}
     </view>
-    <view class="img-area mt10">
-      <view hidden="{{ !upImgArrProgress2[0] || upImgArrProgress2[0] >= 100 }}"
+    <view wx:for="{{ upImgArr2 }}"
+          wx:key="*982"
+          class="img-area mt10">
+      <view hidden="{{ !upImgArrProgress2[index] || upImgArrProgress2[index] >= 100 }}"
             class="progress">
-        <view style="width: {{ upImgArrProgress2[0] }}%"
+        <view style="width: {{ upImgArrProgress2[index] }}%"
               class="progress-i"></view>
       </view>
       <image class="video-area"
+             catchtap="courseDetailUpImgOperation"
+             data-index="{{ index }}"
              mode="widthFix"
-             hidden="{{ !upImgArr2[0].temp }}"
-             src="{{ upImgArr2[0].temp }}">
+             hidden="{{ !item.temp }}"
+             src="{{ item.temp }}">
       </image>
     </view>
     <view class="c999 tar mt20">图片宽度为650PX，高度不限</view>

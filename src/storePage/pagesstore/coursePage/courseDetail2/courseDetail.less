@@ -750,12 +750,24 @@ page {
   left: 20rpx;
 }
 
-.bottom-btn {
+.bottom-btn, .bottom-btns {
   position: fixed;
   bottom: 30rpx;
   left: 0;
   width: 100%;
   padding: 0 30rpx;
+  display: flex;
+  align-items: center;
+  navigator {
+    flex: 1;
+    margin: 0 10rpx;
+    &:nth-child(2) {
+      view {
+        background-color: rgba(255, 254, 226, 0.9);
+        color: rgba(255,59,91,0.9);
+      }
+    }
+  }
   view {
     width: 100%;
     background:rgba(255,59,91,0.9);

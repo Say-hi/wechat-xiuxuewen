@@ -48,6 +48,11 @@ Page({
   onReachBottom () {
     if (this.data.more >= 1) this.getList()
   },
+  edit (e) {
+    wx.navigateTo({
+      url: `../../releasePage/releaseCourse/releaseCourse?id=${e.currentTarget.dataset.id}&courseIndex=0`
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -92,7 +97,7 @@ Page({
    */
   onPullDownRefresh () {
     this.data.lists = []
-    page = 0
+    this.data.page = 0
     this.getList()
     // TODO: onPullDownRefresh
   }

@@ -2,6 +2,7 @@
 const app = getApp()
 const COS = require('../cos-js-sdk-v5.min.js')
 const config = require('../config')
+const bmap = require('../../../../utils/bmap-wx')
 const cos = new COS({
   getAuthorization (params, callback) {
     let authorization = COS.getAuthorization({
@@ -42,7 +43,23 @@ Page({
     upImgArrProgress4: [],
     upImgArr5: [],
     upImgArrProgress5: [],
+    upImgArr6: [],
+    upImgArrProgress6: [],
     content: 0
+  },
+  Bmap (that, site) {
+    let BMap = new bmap.BMapWX({
+      ak: 'RBTsmFCaerZ25VkuGhpSIZa5lyC36BcV'
+    })
+    BMap.regeocoding({
+      location: site || null,
+      success (res) {
+        that.data.addressInfo = res
+      },
+      fail (data) {
+        console.log('fail', data)
+      }
+    })
   },
   // 多图上传
   upImg2 (index) {
@@ -321,8 +338,74 @@ Page({
             })
           })
         } else if (res.tapIndex === 1) {
-          that.upImg3(e.currentTarget.dataset.index)
+          that.upImg4(e.currentTarget.dataset.index)
         }
+      }
+    })
+  },
+  // 门店头像上传
+  upImg5 () {
+    if (this.data.upImgArr6.length >= 1 && !this.data.upImgArr6[0].real) return app.setToast(this, {content: '请等待上传完毕'})
+    let index = 0
+    let imgArr = 'upImgArr6'
+    let progressArr = 'upImgArrProgress6'
+    let that = this
+    let length = that.data[imgArr].length || 0
+    let id = app.gs('userInfoAll').id || 10000
+    wx.chooseImage({
+      count: 1,
+      success (res) {
+        for (let [i, v] of res.tempFilePaths.entries()) {
+          if (!that.data[imgArr][index >= 0 ? index : length + i]) {
+            that.data[imgArr][index >= 0 ? index : length + i] = {
+              temp: null,
+              real: null
+            }
+          }
+          that.data[imgArr][index >= 0 ? index : length + i]['real'] = ''
+          that.data[imgArr][index >= 0 ? index : length + i]['temp'] = v
+        }
+        that.setData({
+          upImgArr6: that.data[imgArr]
+        })
+        if (index >= 0) {
+          cos.deleteObject({
+            Bucket: config.Bucket,
+            Region: config.Region,
+            Key: that.data[imgArr][index].Key
+          })
+        }
+        (function upLoad (j) {
+          let v = res.tempFilePaths[j]
+          let Key = `image/${id}/${v.substr(v.lastIndexOf('/') + 1)}` // 这里指定上传的文件名
+          cos.postObject({
+            Bucket: config.Bucket,
+            Region: config.Region,
+            Key: Key,
+            FilePath: v,
+            onProgress: function (info) {
+              that.data[progressArr][index >= 0 ? index : length + j] = info.percent * 100
+              that.setData({
+                upImgArrProgress6: that.data[progressArr]
+              })
+            }
+          }, (err, data) => {
+            if (err) {
+              that.data[imgArr][index >= 0 ? index : length + j]['upFail'] = true
+              that.setData({
+                upImgArr6: that.data[imgArr]
+              })
+            } else {
+              console.log(data)
+              that.data[imgArr][index >= 0 ? index : length + j]['real'] = `https://${config.Bucket}.cos.${config.Region}.myqcloud.com/${Key}`
+              that.data[imgArr][index >= 0 ? index : length + j]['Key'] = Key
+              that.setData({
+                upImgArr6: that.data[imgArr]
+              })
+            }
+            if (j + 1 < res.tempFilePaths.length) upLoad(j + 1)
+          })
+        })(0)
       }
     })
   },
@@ -338,24 +421,17 @@ Page({
         if (!res.authSetting['scope.userLocation']) {
           wx.chooseLocation({
             success (res) {
-              that.setData({
-                openType: null,
-                userAddress: res
-              })
+              that.Bmap(that, `${res.longitude},${res.latitude}`)
             },
-            fail () {
-              that.setData({
-                openType: 'openSetting'
-              })
+            fail (err) {
+              console.log(err)
             }
           })
         } else {
           // 用户已授权
-          that.setData({
-            openType: null
-          })
           wx.chooseLocation({
             success (res) {
+              that.Bmap(that, `${res.longitude},${res.latitude}`)
               that.setData({
                 openType: null,
                 userAddress: res
@@ -450,9 +526,48 @@ Page({
     })
   },
 
-  goRelease () {
-    wx.navigateTo({
-      url: '../coursePage/courseDetail/courseDetail?type=3'
+  goRelease (e) {
+    let that = this
+    let roomImages = []
+    let showImage = []
+    let roomTeacher = []
+    for (let v of that.data.upImgArr3) {
+      roomImages.push(v.real)
+    }
+    for (let v of that.data.upImgArr5) {
+      showImage.push(v.real)
+    }
+    for (let v of that.data.upImgArr4) {
+      roomTeacher.push(v.real)
+    }
+    app.wxrequest({
+      url: app.getUrl().teacherDotSub,
+      data: {
+        avatar: that.data.upImgArr6[0].real,
+        user_id: app.gs('userInfoAll').id,
+        room_name: e.detail.value.name,
+        room_des: e.detail.value.desc,
+        label_one: e.detail.value.label0,
+        label_two: e.detail.value.label1,
+        label_three: e.detail.value.label2,
+        room_images: roomImages.join(','),
+        show_image: showImage.join(','),
+        room_teacher: roomTeacher.join(','),
+        code: that.data.addressInfo.originalData.result.addressComponent.adcode || 440105,
+        longitude: that.data.userAddress.longitude,
+        latitude: that.data.userAddress.latitude,
+        room_address: `${that.data.userAddress.address}${e.detail.value.address || ''}`
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          wx.navigateTo({
+            url: `../coursePage/courseDetail/courseDetail?id=${res.data.data}&type=3`
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
     })
   },
   /**

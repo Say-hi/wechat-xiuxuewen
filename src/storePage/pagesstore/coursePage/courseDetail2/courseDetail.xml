@@ -40,7 +40,7 @@
   <view hidden="{{ options.type != 1 }}" class="need-check course-list bgfff br18 p30 mt20">
     <view class="f36 fw7 c3a3a3a">课程详情</view>
     <view class="mt30 detail-img-w">
-      <image lazy-load mode="widthFix" wx:for="12" class="detail-img" wx:key="*43" src="{{ poster }}"></image>
+      <image lazy-load mode="widthFix" wx:for="{{ detailInfo.detail }}" class="detail-img" wx:key="*43" src="{{ item }}"></image>
     </view>
   </view>
   <!--上课时间-->
@@ -75,9 +75,14 @@
   </view>
 </view>
 <view class="zw mt10"></view>
-<navigator open-type="navigateBack" class="bottom-btn bb">
-  <view class="f34 cfff fw7 lh88 tac">编辑信息</view>
-</navigator>
+<view class="bottom-btn">
+  <navigator open-type="navigateBack" class="bb">
+    <view class="f34 cfff fw7 lh88 tac">编辑信息</view>
+  </navigator>
+  <navigator open-type="reLaunch" url="../../index/index" class=" bb">
+    <view class="f34 cfff fw7 lh88 tac">返回首页</view>
+  </navigator>
+</view>
 <!--错误弹窗-->
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

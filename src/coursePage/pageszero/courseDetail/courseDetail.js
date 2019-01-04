@@ -136,7 +136,7 @@ Page({
   collectO () {
     let that = this
     let type = that.data.options.type * 1 === 1 ? 1 : (that.data.options.type * 1 === 2 || that.data.options.type * 1 === 4) ? 3 : that.data.options.type * 1 === 3 ? 2 : null
-    app.userCollect(that.data.detailInfo.is_collect, that.data.options.id, type).then(() => {
+    app.userCollect(that.data.collect, that.data.options.id, type).then(() => {
       that.data.collect ? --that.data.detailInfo.collect_count : ++that.data.detailInfo.collect_count
       that.setData({
         collect: !that.data.collect,
@@ -483,11 +483,12 @@ Page({
         wx.hideLoading()
         if (res.data.status === 200) {
           that.data.commentArr.unshift({
-            avatar_url: that.data.poster,
-            nickname: '测试发布评论',
+            avatar_url: app.gs('userInfoAll').avatar_url,
+            user_id: app.gs('userInfoAll').id,
+            nickname: app.gs('userInfoAll').nickname,
             star_num: that.data.detailInfo.star,
             create_time: '刚刚',
-            replyArr: [],
+            next: [],
             comment: e.detail.value.content
           })
           that.setData({

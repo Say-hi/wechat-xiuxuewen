@@ -8,8 +8,6 @@ const statusBarHeight = wx.getSystemInfoSync().statusBarHeight
 
 const MenuButtonBounding = wx.getMenuButtonBoundingClientRect()
 const HEIGHT_TOP = MenuButtonBounding.bottom - statusBarHeight
-console.log(MenuButtonBounding)
-console.log(HEIGHT_TOP)
 // const bgMusic = wx.getBackgroundAudioManager()
 // const updateManager = wx.getUpdateManager()
 //
@@ -55,24 +53,7 @@ App({
     MenuButtonBounding,
     ALL_HEIGHT: statusBarHeight + HEIGHT_TOP,
     name: '绣学问小程序',
-    label: [
-      {
-        t: '纹眉',
-        label: 1
-      },
-      {
-        t: '眼线',
-        label: 2
-      },
-      {
-        t: '纹唇',
-        label: 3
-      },
-      {
-        t: '其他',
-        label: 4
-      },
-    ],
+    label: [],
     baseDomain: 'https://rtx.24sky.cn',
     testImg: 'https://c.jiangwenqiang.com/api/logo.jpg',
     reservation_bg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/reservation_bg.png',
@@ -691,7 +672,7 @@ App({
     let that = this
     return new Promise (function (resolve, reject) {
       that.wxrequest({
-        url: is_collect >= 1 ? useUrl.userCollectCancel : useUrl.userCollectSub,
+        url: is_collect ? useUrl.userCollectCancel : useUrl.userCollectSub,
         data: {
           user_id: that.gs('userInfoAll').id,
           collect_id,
@@ -711,12 +692,25 @@ App({
       })
     })
   },
+  getEnum () {
+    let that = this
+    this.wxrequest({
+      url: that.getUrl().enum,
+      data: {},
+      success (res) {
+        if (res.data.status === 200) {
+          that.data.label = res.data.data.label
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听小程序初始化
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
    */
   onLaunch () {
     this.getNavTab({})
+    this.getEnum()
     // this.su('userInfoAll', {id:2, nickname: 'Edward2'})
     // this.getFont()
   },

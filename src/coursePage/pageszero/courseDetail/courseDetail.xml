@@ -181,6 +181,7 @@
               <view class="user-star">
                 <view wx:for="12345"
                       wx:key="*127"
+                      wx:if="{{ cItem.star_num > 0 }}"
                       class="iconfont f30 icon-pingjiaxingxing {{ index < cItem.star_num ? 'main-text-color' : 'ce5e5e5' }}"></view>
               </view>
               <view class="f24 c999">{{ cItem.create_time }}</view>
@@ -371,6 +372,7 @@
             <view class="user-star">
               <view wx:for="12345"
                     wx:key="*128"
+                    wx:if="{{ cItem.star_num > 0 }}"
                     class="iconfont f30 icon-pingjiaxingxing {{ index < cItem.star_num ? 'main-text-color' : 'ce5e5e5' }}"></view>
             </view>
             <view class="f24 c999">{{ cItem.create_time }}</view>
