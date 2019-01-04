@@ -11,7 +11,8 @@
 
 <view class="bgfff mt-30 pr lh88">
   <view wx:for="{{ tabArr }}"
-        catchtap="chooseTab"
+        catchtap="chooseIndex"
+        data-text="{{ item }}"
         data-index="{{ index }}"
         class="{{ tabIndex == index ? 'f34 cff3b5b fw7' : 'f30 c393636' }}"
         wx:key="*68">{{ item }}</view>
@@ -41,7 +42,7 @@
 </view>
 
 <view wx:else class="p20 out-wrap">
-  <view wx:for="123"
+  <view wx:for="{{ lists }}"
         wx:key="*365">
     <navigator hover-class="none" url="../courseDetail/courseDetail?id=1&type=2"
                wx:for="123"

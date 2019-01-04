@@ -173,7 +173,7 @@ Page({
     })
   },
   getUserInfoBtn (res) {
-    if (res.detail.iv)  app.wxlogin()
+    if (res.detail.iv) app.wxlogin()
   },
   /**
    * 生命周期函数--监听页面加载

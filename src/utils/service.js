@@ -42,6 +42,9 @@ const serviceUrl = {
   userCollectSub: baseDomain + '/user/collect_sub', // 用户收藏
   userCollectCancel: baseDomain + '/user/collect_cancel', // 用户取消收藏
   userInfo: baseDomain + '/user/info', // 用户信息
-  upImage: baseDomain + '/upload/image' // 图片上传
+  upImage: baseDomain + '/upload/image', // 图片上传
+  // 门店端接口
+  teacherUserVideo: baseDomain + '/teacher/user/video', // 获取上传过的视频
+  teacherUserActive: baseDomain + '/teacher/user/active' // 获取线下课程
 }
 module.exports = serviceUrl

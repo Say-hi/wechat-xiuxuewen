@@ -1,6 +1,5 @@
 // 获取全局应用程序实例对象
 const app = getApp()
-let page = 0
 // 创建页面实例对象
 Page({
   /**
@@ -11,34 +10,27 @@ Page({
     top_bg_2: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/shop_bg_2.png',
     tabArr: ['视频课程', '线下课程'],
     tabIndex: 0,
+    page: 0,
     tabNav: app.data.label,
     testImg: app.data.testImg,
     lists: [],
     currentIndex: 0
   },
-  chooseTab (e) {
-    this.setData({
-      tabIndex: e.currentTarget.dataset.index
-    })
-  },
   chooseIndex (e) {
     app.setBar(e.currentTarget.dataset.text)
     this.data.lists = []
-    page = 0
+    this.data.page = 0
     this.setData({
-      currentIndex: e.currentTarget.dataset.index
+      tabIndex: e.currentTarget.dataset.index
     }, this.getList)
-    // wx.pageScrollTo({
-    //   scrollTop: 0
-    // })
   },
   getList () {
     let that = this
     app.wxrequest({
-      url: app.getUrl().course,
+      url: that.data.tabIndex * 1 === 0 ? app.getUrl().teacherUserVideo : app.getUrl().teacherUserActive,
       data: {
-        label: app.data.label[that.data.currentIndex].label,
-        page: ++page
+        user_id: app.gs('userInfoAll').id,
+        page: ++that.data.page
       },
       success (res) {
         wx.hideLoading()
@@ -60,8 +52,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    app.setBar(app.data.label[0].t)
-    page = 0
+    app.setBar('视频课程')
     this.setData({
       options
     }, this.getList)
