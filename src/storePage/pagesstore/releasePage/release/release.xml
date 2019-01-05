@@ -38,6 +38,7 @@
       <view class="fw7 f34">教室名称</view>
       <input maxlength="8"
              name="name"
+             value="{{ shopInfo.room_name }}"
              class="border-out br18 f28 i-title mt20"
              placeholder="请输入教室名称，8个字以内" />
     </view>
@@ -46,6 +47,7 @@
       <view class="fw7 f34">编辑教室简介（选填）</view>
       <input maxlength="-1"
              name="desc"
+             value="{{ shopInfo.room_des }}"
              class="border-out br18 f28 i-title mt20"
              placeholder="编辑教室简介（选填）" />
     </view>

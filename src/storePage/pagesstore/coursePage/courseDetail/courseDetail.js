@@ -31,41 +31,6 @@ Page({
         t: '评价 (22)'
       }
     ],
-    questionList: [
-      {
-        question: '2.圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个',
-        answer: ['wdfasdf', 'asdfasdfsd', 'asdfasdfasdf'],
-        chooseIndex: null
-      },
-      {
-        question: '2.圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个',
-        answer: ['圆三针手工雾眉操作要领操', '圆三针手工雾眉操作要领操', '圆三针手工雾眉操作要领操'],
-        chooseIndex: null,
-        userChoose: 0,
-        rightAnswer: 1
-      },
-      {
-        question: '2.圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个',
-        answer: ['圆三针手工雾眉操作要领操', 'asdfasdfsd', '圆三针手工雾眉操作要领操'],
-        chooseIndex: null,
-        userChoose: 1,
-        rightAnswer: 1
-      },
-      {
-        question: '2.圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个',
-        answer: ['圆三针手工雾眉操作要领操', 'asdfasdfsd', '圆三针手工雾眉操作要领操'],
-        chooseIndex: null,
-        userChoose: 1,
-        rightAnswer: 1
-      },
-      {
-        question: '2.圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个是题干这个是题干圆三针手工雾眉操作要领操，这个',
-        answer: ['圆三针手工雾眉操作要领操', 'asdfasdfsd', '圆三针手工雾眉操作要领操'],
-        chooseIndex: null,
-        userChoose: 1,
-        rightAnswer: 1
-      }
-    ],
     commentArr: [],
     rIndex: -1
   },
@@ -77,54 +42,6 @@ Page({
   goComment () {
     this.setData({
       writeComment: !this.data.writeComment
-    })
-  },
-
-  lostTime (time) {
-    if (timer) clearInterval(timer)
-    let that = this
-    let h = null
-    let m = null
-    let s = null
-    let ms = null
-    let msTime = time * 1000
-    ms = Math.floor(msTime % 1000)
-    s = Math.floor(msTime / 1000 % 60)
-    m = Math.floor(msTime / 1000 / 60 % 60)
-    h = Math.floor(msTime / 1000 / 60 / 60 % 24)
-    that.setData({
-      lost_h: h >= 10 ? h : '0' + h,
-      lost_m: m >= 10 ? m : '0' + m,
-      lost_s: s >= 10 ? s : '0' + s,
-      lost_ms: ms >= 100 ? ms : ms >= 10 ? '0' + ms : '00' + ms
-    })
-    timer = setInterval(() => {
-      if (msTime <= 0) {
-        that.setData({
-          lost_h: '已',
-          lost_m: '经',
-          lost_s: '结',
-          lost_ms: '束'
-        })
-        return clearInterval(timer)
-      }
-      ms = Math.floor(msTime % 1000)
-      s = Math.floor(msTime / 1000 % 60)
-      m = Math.floor(msTime / 1000 / 60 % 60)
-      h = Math.floor(msTime / 1000 / 60 / 60 % 24)
-      that.setData({
-        lost_h: h >= 10 ? h : '0' + h,
-        lost_m: m >= 10 ? m : '0' + m,
-        lost_s: s >= 10 ? s : '0' + s,
-        lost_ms: ms >= 100 ? ms : ms >= 10 ? '0' + ms : '00' + ms
-      })
-      msTime -= 21
-    }, 21)
-  },
-  userChooseAnswer (e) {
-    this.data.questionList[e.currentTarget.dataset.qindex]['chooseIndex'] = e.currentTarget.dataset.aindex
-    this.setData({
-      questionList: this.data.questionList
     })
   },
   videoPlay () {
@@ -328,7 +245,8 @@ Page({
     app.wxrequest({
       url: app.getUrl().courseDetail,
       data: {
-        course_id: that.data.options.id || 1
+        course_id: that.data.options.id || 1,
+        user_id: app.gs('userInfoAll').id
       },
       success (res) {
         wx.hideLoading()

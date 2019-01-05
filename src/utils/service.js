@@ -49,6 +49,7 @@ const serviceUrl = {
   teacherCourseSub: baseDomain + '/teacher/course/sub', // 教师保存上传视频信息
   teacherDotSub: baseDomain + '/teacher/dot/sub', // 门店信息插入记录
   teacherActiveSub: baseDomain + '/teacher/active/sub', // 线下课程保存
+  teacherDotDetail: baseDomain + '/teacher/dot/detail', // 获取门店信息
   teacherUserActive: baseDomain + '/teacher/user/active' // 获取线下课程
 }
 module.exports = serviceUrl

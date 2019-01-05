@@ -419,12 +419,16 @@ Page({
       success (res) {
         // 用户未授权
         if (!res.authSetting['scope.userLocation']) {
+          console.log(res)
           wx.chooseLocation({
             success (res) {
               that.Bmap(that, `${res.longitude},${res.latitude}`)
             },
             fail (err) {
               console.log(err)
+              that.setData({
+                openType: 'openSetting'
+              })
             }
           })
         } else {
@@ -528,32 +532,41 @@ Page({
 
   goRelease (e) {
     let that = this
+    if (!that.data.upImgArr6[0].real) return app.setToast(that, {content: '请上传教室头像'})
+    else if (!e.detail.value.name) return app.setToast(that, {content: '请填写教室名字'})
+    else if (that.data.userAddress.address === '选择地址定位') return app.setToast(that, {content: '请选择教室所处地理位置'})
     let roomImages = []
     let showImage = []
     let roomTeacher = []
     for (let v of that.data.upImgArr3) {
+      if (!v.real) return app.setToast(that, {content: '请等待图片上传完成'})
       roomImages.push(v.real)
     }
+    if (roomImages.length < 1) return app.setToast(that, {content:'请至少上传一张教室宣传图片'})
     for (let v of that.data.upImgArr5) {
+      if (!v.real) return app.setToast(that, {content: '请等待图片上传完成'})
       showImage.push(v.real)
     }
+    if (showImage.length < 1) return app.setToast(that, {content:'请至少上传一张学员作品秀'})
     for (let v of that.data.upImgArr4) {
+      if (!v.real) return app.setToast(that, {content: '请等待图片上传完成'})
       roomTeacher.push(v.real)
     }
     app.wxrequest({
       url: app.getUrl().teacherDotSub,
       data: {
+        id: that.data.id || '',
         avatar: that.data.upImgArr6[0].real,
         user_id: app.gs('userInfoAll').id,
         room_name: e.detail.value.name,
-        room_des: e.detail.value.desc,
-        label_one: e.detail.value.label0,
-        label_two: e.detail.value.label1,
-        label_three: e.detail.value.label2,
+        room_des: e.detail.value.desc || '',
+        label_one: e.detail.value.label0 || '富力天域',
+        label_two: e.detail.value.label1 || '十年纹绣',
+        label_three: e.detail.value.label2 || 'ID品牌',
         room_images: roomImages.join(','),
         show_image: showImage.join(','),
         room_teacher: roomTeacher.join(','),
-        code: that.data.addressInfo.originalData.result.addressComponent.adcode || 440105,
+        code: that.data.addressInfo ? that.data.addressInfo.originalData.result.addressComponent.adcode : that.data.shopInfo.code,
         longitude: that.data.userAddress.longitude,
         latitude: that.data.userAddress.latitude,
         room_address: `${that.data.userAddress.address}${e.detail.value.address || ''}`
@@ -562,7 +575,75 @@ Page({
         wx.hideLoading()
         if (res.data.status === 200) {
           wx.navigateTo({
-            url: `../coursePage/courseDetail/courseDetail?id=${res.data.data}&type=3`
+            url: `../../coursePage/courseDetail/courseDetail?id=${res.data.data}&type=3`
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+  getRoomInfo () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().teacherDotDetail,
+      data: {
+        user_id: app.gs('userInfoAll').id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          if (!res.data.data) return
+          that.data.upImgArr6.push({
+            temp: res.data.data.avatar,
+            real: res.data.data.avatar
+          })
+          that.data.labelArr[0] = res.data.data.label_one
+          that.data.labelArr[1] = res.data.data.label_two
+          that.data.labelArr[2] = res.data.data.label_three
+          for (let v of res.data.data.room_images.split(',')) {
+            that.data.upImgArr3.push({
+              temp: v,
+              real: v
+            })
+            that.data.upImgArrProgress3.push(100)
+          }
+          for (let v of res.data.data.show_image.split(',')) {
+            that.data.upImgArr5.push({
+              temp: v,
+              real: v
+            })
+            that.data.upImgArrProgress5.push(100)
+          }
+          if (res.data.data.room_teacher) {
+            for (let v of res.data.data.room_teacher.split(',')) {
+              that.data.upImgArr4.push({
+                temp: v,
+                real: v
+              })
+              that.data.upImgArrProgress4.push(100)
+            }
+          }
+          that.setData({
+            shopInfo: res.data.data,
+            id: res.data.data.id,
+            upImgArrProgress4: that.data.upImgArrProgress4,
+            upImgArrProgress3: that.data.upImgArrProgress3,
+            upImgArrProgress5: that.data.upImgArrProgress5,
+            labelArr: that.data.labelArr,
+            upImgArr3: that.data.upImgArr3,
+            upImgArr4: that.data.upImgArr4,
+            upImgArr5: that.data.upImgArr5,
+            upImgArr6: [{
+              temp: res.data.data.avatar,
+              real: res.data.data.avatar
+            }],
+            upImgArrProgress6: [100],
+            userAddress: {
+              address: res.data.data.room_address,
+              latitude: res.data.data.latitude,
+              longitude: res.data.data.longitude
+            }
           })
         } else {
           app.setToast(that, {content: res.data.desc})
@@ -577,6 +658,7 @@ Page({
     this.setData({
       options
     })
+    this.getRoomInfo()
     app.setBar(options.type || '教室信息设置')
     // TODO: onLoad
   },

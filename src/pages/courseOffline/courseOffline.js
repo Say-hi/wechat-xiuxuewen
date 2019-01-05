@@ -68,6 +68,7 @@ Page({
       location: site || null,
       success (res) {
         that.data.page = 0
+        that.data.lists = []
         that.setData({
           addressInfo: res
         }, that.getNear)
@@ -133,11 +134,14 @@ Page({
         if (res.data.status === 200) {
           for (let s of res.data.data.lists) {
             s.room_images = s.room_images.split(',')
-            s.distance = s.distance > 1000 ? (s.distance / 1000).toFixed(2) + 'km' : s.distance + 'm'
+            if (that.data.addressInfo) {
+              let sd = app.distance(s.latitude, s.longitude, that.data.addressInfo.originalData.result.location.lat, that.data.addressInfo.originalData.result.location.lng)
+              s.distance = sd > 1000 ? (sd / 1000).toFixed(2) + 'km' : sd + 'm'
+            }
           }
           that.data.lists[0] = {
             city_name: '搜索结果',
-            lists: that.data.lists[0].lists ? res.data.data.lists : that.data.lists[0].lists.concat(res.data.data.lists)
+            lists: !that.data.lists[0] ? res.data.data.lists : that.data.lists[0].lists.concat(res.data.data.lists)
           }
           that.setData({
             lists: that.data.lists,
@@ -174,6 +178,7 @@ Page({
     } else if (app.data.searchText) {
       this.data.searchText = app.data.searchText
       app.data.searchText = null
+      this.data.lists = []
       this.search()
     }
   },

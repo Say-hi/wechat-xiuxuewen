@@ -272,9 +272,14 @@
     <view wx:if="{{ options.type == 3 }}" class="zw mt30"></view>
 </scroll-view>
 
-<navigator wx:if="{{ options.type == 3 }}" open-type="navigateBack" class="bottom-btn bb">
-  <view class="f34 cfff fw7 lh88 tac">编辑信息</view>
-</navigator>
+<view class="bottom-btn" wx:if="{{ options.type == 3 }}">
+  <navigator open-type="navigateBack" class="bb">
+    <view class="f34 cfff fw7 lh88 tac">编辑信息</view>
+  </navigator>
+  <navigator open-type="reLaunch" url="../../index/index" class=" bb">
+    <view class="f34 cfff fw7 lh88 tac">返回首页</view>
+  </navigator>
+</view>
 
 <!--评论弹窗窗口-->
 <view catchtap="showMore"

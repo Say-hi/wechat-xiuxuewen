@@ -13,7 +13,7 @@
 
 
 <view class="p20">
-  <view class='f28 tac c999' hidden="{{ openType != 'openSetting' }}">请您点击左上角授权获取您的地理位置信息</view>
+  <view class='f28 tac c999' hidden="{{ openType != 'openSetting' || lists.length >= 1 }}">请您点击左上角授权获取您的地理位置信息</view>
   <view class="bgfff br18">
     <view class="f36 c666 bd1 lh88 p030">线下教室</view>
     <block wx:for="{{ lists }}"
@@ -61,6 +61,7 @@
       </navigator>
       <view wx:if="{{ !oItem.lists.length }}" class="tac p20 c999 f28">本地区正在火热招募中，敬请期待</view>
     </block>
+    <view hidden="{{ lists.length >= 1 }}" class="tac f28 c999 p20">暂无相关教室信息</view>
   </view>
 </view>
 
