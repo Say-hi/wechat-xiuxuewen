@@ -283,8 +283,11 @@ Page({
   getDetail () {
     let that = this
     app.wxrequest({
-      url: app.getUrl().courseDetail,
-      data: {
+      url: that.data.options.type >= 2 ? app.getUrl().activeDetail : app.getUrl().courseDetail,
+      data: that.data.options.type >= 2 ? {
+        active_id: that.data.options.id,
+        user_id: app.gs('userInfoAll').id
+      } : {
         course_id: that.data.options.id,
         user_id: app.gs('userInfoAll').id
       },

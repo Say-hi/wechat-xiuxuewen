@@ -58,9 +58,7 @@ Page({
     let that = this
     this.setData({
       speed: '0KB/s',
-      upText: '等待上传',
-      size: 0,
-      duration: 0
+      upText: '等待上传'
     })
     let start = new Date().getTime()
     wx.chooseVideo({
@@ -72,8 +70,15 @@ Page({
           size: res.size / 1024 > 1024 ? res.size / 1024 / 1024 + 'M' : res.size / 1024 + 'KB'
         })
         let v = res.tempFilePath
-        let Key = `video/10000/${v.substr(v.lastIndexOf('/') + 1)}`
+        let Key = `video/${app.gs('userInfoAll').id || 10000}/${v.substr(v.lastIndexOf('/') + 1)}`
         console.log(cos)
+        // if (that.data.videoUlrR) {
+        //   cos.deleteObject({
+        //     Bucket: config.Bucket,
+        //     Region: config.Region,
+        //     Key: that.data.videoUlrR.replace('https://teach-1258261086.cos.ap-guangzhou.myqcloud.com', '')
+        //   })
+        // }
         cos.postObject({
           Bucket: config.Bucket,
           Region: config.Region,
@@ -100,6 +105,12 @@ Page({
               videoUlrR: `https://${config.Bucket}.cos.${config.Region}.myqcloud.com/${Key}`
             })
           }
+        })
+      },
+      fail () {
+        that.setData({
+          upText: '',
+          speed: '替换视频'
         })
       }
     })
@@ -145,13 +156,13 @@ Page({
             upImgArr: that.data[imgArr]
           })
         }
-        if (index >= 0) {
-          cos.deleteObject({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Key: that.data[imgArr][index].Key
-          })
-        }
+        // if (index >= 0) {
+        //   cos.deleteObject({
+        //     Bucket: config.Bucket,
+        //     Region: config.Region,
+        //     Key: that.data[imgArr][index].Key ? that.data[imgArr][index].Key : that.data[imgArr][index].real.replace('https://teach-1258261086.cos.ap-guangzhou.myqcloud.com', '')
+        //   })
+        // }
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
           let Key = `image/${id}/${v.substr(v.lastIndexOf('/') + 1)}` // 这里指定上传的文件名
@@ -243,13 +254,13 @@ Page({
         that.setData({
           upImgArr2: that.data[imgArr]
         })
-        if (index >= 0) {
-          cos.deleteObject({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Key: that.data[imgArr][index].Key
-          })
-        }
+        // if (index >= 0) {
+        //   cos.deleteObject({
+        //     Bucket: config.Bucket,
+        //     Region: config.Region,
+        //     Key: that.data[imgArr][index].Key
+        //   })
+        // }
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
           let Key = `image/${id}/${v.substr(v.lastIndexOf('/') + 1)}` // 这里指定上传的文件名
@@ -299,15 +310,16 @@ Page({
         if (res.tapIndex === 0) {
           app.showImg(that.data.upImgArr2[e.currentTarget.dataset.index].temp, [that.data.upImgArr2[e.currentTarget.dataset.index].temp])
         } else if (res.tapIndex === 2) {
-          cos.deleteObject({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Key: that.data.upImgArr2[e.currentTarget.dataset.index].Key
-          }, () => {
-            that.data.upImgArr2.splice(e.currentTarget.dataset.index, 1)
-            that.setData({
-              upImgArr2: that.data.upImgArr2
-            })
+          // cos.deleteObject({
+          //   Bucket: config.Bucket,
+          //   Region: config.Region,
+          //   Key: that.data.upImgArr2[e.currentTarget.dataset.index].Key
+          // }, () => {
+          //
+          // })
+          that.data.upImgArr2.splice(e.currentTarget.dataset.index, 1)
+          that.setData({
+            upImgArr2: that.data.upImgArr2
           })
         } else if (res.tapIndex === 1) {
           that.upImgDetail(e.currentTarget.dataset.index)
@@ -338,13 +350,13 @@ Page({
         that.setData({
           upImgArr3: that.data[imgArr]
         })
-        if (index >= 0) {
-          cos.deleteObject({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Key: that.data[imgArr][index].Key
-          })
-        }
+        // if (index >= 0) {
+        //   cos.deleteObject({
+        //     Bucket: config.Bucket,
+        //     Region: config.Region,
+        //     Key: that.data[imgArr][index].Key
+        //   })
+        // }
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
           let Key = `image/${id}/${v.substr(v.lastIndexOf('/') + 1)}` // 这里指定上传的文件名
@@ -394,15 +406,16 @@ Page({
         if (res.tapIndex === 0) {
           app.showImg(that.data.upImgArr3[e.currentTarget.dataset.index].temp, [that.data.upImgArr3[e.currentTarget.dataset.index].temp])
         } else if (res.tapIndex === 2) {
-          cos.deleteObject({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Key: that.data.upImgArr3[e.currentTarget.dataset.index].Key
-          }, () => {
-            that.data.upImgArr3.splice(e.currentTarget.dataset.index, 1)
-            that.setData({
-              upImgArr3: that.data.upImgArr3
-            })
+          // cos.deleteObject({
+          //   Bucket: config.Bucket,
+          //   Region: config.Region,
+          //   Key: that.data.upImgArr3[e.currentTarget.dataset.index].Key
+          // }, () => {
+          //
+          // })
+          that.data.upImgArr3.splice(e.currentTarget.dataset.index, 1)
+          that.setData({
+            upImgArr3: that.data.upImgArr3
           })
         } else if (res.tapIndex === 1) {
           that.upImg2(e.currentTarget.dataset.index)
@@ -434,13 +447,13 @@ Page({
         that.setData({
           upImgArr4: that.data[imgArr]
         })
-        if (index >= 0) {
-          cos.deleteObject({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Key: that.data[imgArr][index].Key
-          })
-        }
+        // if (index >= 0) {
+        //   cos.deleteObject({
+        //     Bucket: config.Bucket,
+        //     Region: config.Region,
+        //     Key: that.data[imgArr][index].Key
+        //   })
+        // }
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
           let Key = `image/${id}/${v.substr(v.lastIndexOf('/') + 1)}` // 这里指定上传的文件名
@@ -490,15 +503,16 @@ Page({
         if (res.tapIndex === 0) {
           app.showImg(that.data.upImgArr4[e.currentTarget.dataset.index].temp, [that.data.upImgArr4[e.currentTarget.dataset.index].temp])
         } else if (res.tapIndex === 2) {
-          cos.deleteObject({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Key: that.data.upImgArr4[e.currentTarget.dataset.index].Key
-          }, () => {
-            that.data.upImgArr4.splice(e.currentTarget.dataset.index, 1)
-            that.setData({
-              upImgArr4: that.data.upImgArr4
-            })
+          // cos.deleteObject({
+          //   Bucket: config.Bucket,
+          //   Region: config.Region,
+          //   Key: that.data.upImgArr4[e.currentTarget.dataset.index].Key
+          // }, () => {
+          //
+          // })
+          that.data.upImgArr4.splice(e.currentTarget.dataset.index, 1)
+          that.setData({
+            upImgArr4: that.data.upImgArr4
           })
         } else if (res.tapIndex === 1) {
           that.upImg3(e.currentTarget.dataset.index)
@@ -531,7 +545,7 @@ Page({
     app.wxrequest({
       url: app.getUrl().teacherActiveSub,
       data: that.data.courseIndex * 1 === 1 ? {
-        id: that.data.id,
+        id: that.data.id || '',
         user_id: app.gs('userInfoAll').id,
         style: that.data.courseIndex * 2,
         label: that.data.labelArr[that.data.labelIndex].label,
@@ -542,7 +556,7 @@ Page({
         end_time: that.data.userChooseEnd ? (new Date(that.data.userChooseEnd).getTime()).toString().slice(0, 10) : (new Date(that.data.startDay2).getTime()).toString().slice(0, 10),
         show_image: showImage.join(',')
       } : {
-        id: that.data.id,
+        id: that.data.id || '',
         user_id: app.gs('userInfoAll').id,
         style: that.data.courseIndex * 2,
         label: that.data.labelArr[that.data.labelIndex].label,
@@ -618,25 +632,43 @@ Page({
         wx.hideLoading()
         let s = res.data.data
         // 封面
-        that.data.upImgArr.push({
-          temp: s.image,
-          real: s.image
-        })
-        // 详情
-        for (let v of s.detail.split(',')) {
-          that.data.upImgArr2.push({
-            temp: v,
-            real: v
+        if (s.image) {
+          that.data.upImgArr.push({
+            temp: s.image,
+            real: s.image
           })
         }
+        // 详情
+        if (s.detail) {
+          for (let v of s.detail.split(',')) {
+            that.data.upImgArr2.push({
+              temp: v,
+              real: v
+            })
+          }
+        }
+        if (s.show_image) {
+          for (let v of s.show_image.split(',')) {
+            that.data.upImgArr3.push({
+              temp: v,
+              real: v
+            })
+            that.data.upImgArrProgress3.push(100)
+          }
+        }
         that.setData({
+          userChooseStart: app.momentFormat(s.start_time * 1000, 'YYYY/MM/DD'),
+          userChooseEnd: app.momentFormat(s.end_time * 1000, 'YYYY/MM/DD'),
+          endDay: app.momentFormat(app.momentAdd(3, 'M', s.start_time * 1000), 'YYYY/MM/DD'),
           labelIndex: s.label - 1,
           videoUrl: s.video_url,
           upText: '成功',
           videoUlrR: s.video_url,
           nameText: s.title,
           upImgArr: that.data.upImgArr,
-          upImgArr2: that.data.upImgArr2
+          upImgArr2: that.data.upImgArr2,
+          upImgArr3: that.data.upImgArr3,
+          upImgArrProgress3: that.data.upImgArrProgress3
         })
       }
     })
