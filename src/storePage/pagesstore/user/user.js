@@ -16,45 +16,7 @@ Page({
    */
   data: {
     testImg: app.data.testImg,
-    operationArr: [
-      {
-        t: '我的预约',
-        src: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/user_1.png',
-        url: '/collectPage/pagesten/collect/collect?type=1'
-      },
-      {
-        t: '收藏',
-        src: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/user_2.png',
-        url: '/collectPage/pagesten/collect/collect?type=2'
-        // url: '../nearlearn/nearlearn?type=我的收藏'
-      },
-      {
-        t: '意见反馈',
-        src: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/user_3.png',
-        // url: '../showXiu/showXiu'
-        url: '/feedbackPage/pagesfour/feedback/feedback'
-      },
-      {
-        t: '课程订单',
-        src: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/user_4.png',
-        url: '/orderPage/pagesfive/order/order'
-      }
-      // {
-      //   t: '收藏',
-      //   src: app.data.testImg,
-      //   url: '../nearlearn/nearlearn?type=我的收藏'
-      // },
-      // {
-      //   t: '意见反馈',
-      //   url: '/feedbackPage/pagesfour/feedback/feedback',
-      //   src: app.data.testImg
-      // },
-      // {
-      //   t: '教师入口',
-      //   url: '/teacherPage/pageseight/teacherAnswer/teacherAnswer',
-      //   src: app.data.testImg
-      // }
-    ]
+    roomInfo: app.gs('roomInfo') || null
   },
   // setCanvas () {
   //   this.getAllRects()

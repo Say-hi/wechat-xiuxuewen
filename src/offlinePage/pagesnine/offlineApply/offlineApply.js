@@ -311,6 +311,7 @@ Page({
   },
   nextTick (e) {
     if (e.currentTarget.dataset.index * 1 === 1) {
+      if (!this.data.addressInfo) return app.setToast(this, {content: '请选择您的收货地址'})
       return this.pay()
     } else if (e.currentTarget.dataset.index * 1 === 3 && (!this.data.nameText || this.data.phoneText.length * 1 !== 11)) {
       return app.setToast(this, {content: '请填写您的个人信息'})

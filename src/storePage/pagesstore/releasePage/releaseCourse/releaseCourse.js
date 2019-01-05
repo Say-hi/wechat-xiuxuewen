@@ -531,6 +531,7 @@ Page({
     app.wxrequest({
       url: app.getUrl().teacherActiveSub,
       data: that.data.courseIndex * 1 === 1 ? {
+        id: that.data.id,
         user_id: app.gs('userInfoAll').id,
         style: that.data.courseIndex * 2,
         label: that.data.labelArr[that.data.labelIndex].label,
@@ -541,6 +542,7 @@ Page({
         end_time: that.data.userChooseEnd ? (new Date(that.data.userChooseEnd).getTime()).toString().slice(0, 10) : (new Date(that.data.startDay2).getTime()).toString().slice(0, 10),
         show_image: showImage.join(',')
       } : {
+        id: that.data.id,
         user_id: app.gs('userInfoAll').id,
         style: that.data.courseIndex * 2,
         label: that.data.labelArr[that.data.labelIndex].label,

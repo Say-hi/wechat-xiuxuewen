@@ -27,7 +27,7 @@
                  wx:for-index="iIndex"
                  url="/coursePage/pageszero/courseDetail/courseDetail?id={{ item.id }}&type=3" class="room p30 bd1">
         <view class="f28 cff3a5a room-left">
-          <image lazy-load="{{true}}" class="br" src="{{ item.avatar }}"></image>
+          <image lazy-load="{{true}}" class="br" mode="aspectFill" src="{{ item.avatar }}"></image>
           <!--<navigator url="/coursePage/pageszero/courseDetail/courseDetail?id=1&type=3" class="nav">查看</navigator>-->
         </view>
         <view class="room-right mt20">
@@ -45,6 +45,7 @@
                    data-bindex="{{ oIndex }}"
                    data-oindex="{{ iIndex }}"
                    data-index="{{ mIndex }}"
+                   mode="aspectFill"
                    catchtap="showImg"
                    wx:for="{{ item.room_images }}"
                    wx:for-item="mItem"

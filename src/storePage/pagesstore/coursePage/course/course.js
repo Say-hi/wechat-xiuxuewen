@@ -11,6 +11,7 @@ Page({
     tabArr: ['视频课程', '线下课程'],
     tabIndex: 0,
     page: 0,
+    roomInfo: app.gs('roomInfo'),
     tabNav: app.data.label,
     testImg: app.data.testImg,
     lists: [],
@@ -50,7 +51,38 @@ Page({
   },
   edit (e) {
     wx.navigateTo({
-      url: `../../releasePage/releaseCourse/releaseCourse?id=${e.currentTarget.dataset.id}&courseIndex=0`
+      url: `../../releasePage/releaseCourse/releaseCourse?id=${e.currentTarget.dataset.id}&courseIndex=${this.data.lists[e.currentTarget.dataset.index].style ? this.data.lists[e.currentTarget.dataset.index].style / 2 : 0}`
+    })
+  },
+  del (e) {
+    let that = this
+    wx.showModal({
+      title: '删除确认',
+      content: '删除的课程不可恢复哦',
+      cancelText: '不删了',
+      confirmText: '删除',
+      success (res) {
+        if (res.confirm) {
+          app.wxrequest({
+            url: that.data.tabIndex >= 1 ? app.getUrl().teacherDotDetail : app.getUrl().teacherCourseDel,
+            data: {
+              user_id: app.gs('userInfoAll').id,
+              id: e.currentTarget.dataset.id
+            },
+            success (res2) {
+              wx.hideLoading()
+              if (res2.data.status === 200) {
+                that.data.lists.splice(e.currentTarget.dataset.index, 1)
+                that.setData({
+                  lists: that.data.lists
+                })
+              } else {
+                app.setToast(that, {content: res2.data.desc})
+              }
+            }
+          })
+        }
+      }
     })
   },
   /**

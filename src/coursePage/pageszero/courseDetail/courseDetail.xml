@@ -26,7 +26,13 @@
         class="banner">
   <swiper-item  wx:for="{{ swiperArr }}"
                 wx:key="*0">
-    <image style="width: 100%; height: 100%;" lazy-load="{{true}}" catchtap="goOther" data-src="{{ item }}" data-url="{{ item }}" mode="aspectFill" src="{{ item }}"></image>
+    <image style="width: 100%; height: 100%;"
+           lazy-load="{{true}}"
+           catchtap="showImg"
+           data-type="swiper"
+           data-src="{{ item }}"
+           mode="aspectFill"
+           src="{{ item }}"></image>
   </swiper-item>
 </swiper>
 <view class="swiper-tag f24 cfff">{{ swiperIndex }}/{{ swiperArr.length }}</view>

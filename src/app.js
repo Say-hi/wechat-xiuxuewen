@@ -347,7 +347,18 @@ App({
                 console.log('session', session)
                 wx.hideLoading()
                 wx.setStorageSync('key', session.data.data.openid)
-                wx.setStorageSync('userInfoAll', Object.assign(that.gs('userInfoAll') ? that.gs('userInfoAll') : {}, {id: session.data.data.id}))
+                that.wxrequest({
+                  url: that.getUrl().userInfo,
+                  data: {
+                    user_id: session.data.data.id
+                  },
+                  success (res) {
+                    wx.hideLoading()
+                    if (res.data.status === 200) {
+                      that.su('userInfoAll', res.data.data)
+                    }
+                  }
+                })
                 let currentPage = getCurrentPages()
                 let query = ''
                 try {
@@ -377,7 +388,18 @@ App({
                 console.log('session', session)
                 wx.hideLoading()
                 wx.setStorageSync('key', session.data.data.openid)
-                wx.setStorageSync('userInfoAll', Object.assign(that.gs('userInfoAll') ? that.gs('userInfoAll') : {}, {id: session.data.data.id}))
+                that.wxrequest({
+                  url: that.getUrl().userInfo,
+                  data: {
+                    user_id: session.data.data.id
+                  },
+                  success (res) {
+                    wx.hideLoading()
+                    if (res.data.status === 200) {
+                      that.su('userInfoAll', res.data.data)
+                    }
+                  }
+                })
                 let currentPage = getCurrentPages()
                 let query = ''
                 try {

@@ -542,12 +542,12 @@ Page({
       if (!v.real) return app.setToast(that, {content: '请等待图片上传完成'})
       roomImages.push(v.real)
     }
-    if (roomImages.length < 1) return app.setToast(that, {content:'请至少上传一张教室宣传图片'})
+    if (roomImages.length < 1) return app.setToast(that, {content: '请至少上传一张教室宣传图片'})
     for (let v of that.data.upImgArr5) {
       if (!v.real) return app.setToast(that, {content: '请等待图片上传完成'})
       showImage.push(v.real)
     }
-    if (showImage.length < 1) return app.setToast(that, {content:'请至少上传一张学员作品秀'})
+    if (showImage.length < 1) return app.setToast(that, {content: '请至少上传一张学员作品秀'})
     for (let v of that.data.upImgArr4) {
       if (!v.real) return app.setToast(that, {content: '请等待图片上传完成'})
       roomTeacher.push(v.real)

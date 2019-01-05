@@ -2,14 +2,15 @@
 <view class="p20">
   <!--顶部导航-->
   <view class="bgfff br18 top-wrap">
-    <navigator  hover-class="none"
-                url="{{ item.url }}"
-                wx:for="{{ tabNav }}"
-                wx:key="*1"
-                class="t-w-item tac">
+    <view data-url="{{ item.url }}"
+          wx:for="{{ tabNav }}"
+          wx:key="*1"
+          data-index="{{ index }}"
+          catchtap='tabO'
+          class="t-w-item tac">
       <image class="br" src="{{ item.img }}"></image>
       <view class="c444 f28 ">{{ item.t }}</view>
-    </navigator>
+    </view>
   </view>
   <!--消息通知-->
   <view class="p30 br18 bgfff message c444 mt20">

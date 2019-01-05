@@ -25,11 +25,42 @@ Page({
     ],
     testImg: app.data.testImg
   },
+  getRoomInfo () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().teacherDotDetail,
+      data: {
+        user_id: app.gs('userInfoAll').id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          app.su('roomInfo', res.data.data)
+          if (res.data.data) {
+            that.data.hasShop = 1
+          } else {
+            that.data.hasShop = 0
+          }
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+  tabO (e) {
+    if (this.data.hasShop === 0) return app.setToast(this, {content: '请先设置您的教室信息'})
+    else {
+      wx.navigateTo({
+        url: e.currentTarget.dataset.url
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
     app.setBar('首页')
+    this.getRoomInfo()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

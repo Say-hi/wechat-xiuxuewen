@@ -47,8 +47,10 @@ const serviceUrl = {
   // 门店端接口
   teacherUserVideo: baseDomain + '/teacher/user/video', // 获取上传过的视频
   teacherCourseSub: baseDomain + '/teacher/course/sub', // 教师保存上传视频信息
+  teacherCourseDel: baseDomain + '/teacher/course/del', // 教师删除上传视频信息
   teacherDotSub: baseDomain + '/teacher/dot/sub', // 门店信息插入记录
   teacherActiveSub: baseDomain + '/teacher/active/sub', // 线下课程保存
+  teacherActiveDel: baseDomain + '/teacher/active/del', // 线下课程删除
   teacherDotDetail: baseDomain + '/teacher/dot/detail', // 获取门店信息
   teacherUserActive: baseDomain + '/teacher/user/active' // 获取线下课程
 }

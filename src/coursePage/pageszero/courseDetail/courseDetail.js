@@ -255,7 +255,7 @@ Page({
   },
   // 展示图片
   showImg (e) {
-    app.showImg(e.currentTarget.dataset.src, this.data.detailInfo.show_image)
+    app.showImg(e.currentTarget.dataset.src, e.currentTarget.dataset.type === 'swiper' ? this.data.swiperArr : this.data.detailInfo.show_image)
   },
   // 支付操作
   buyOperation () {
@@ -388,7 +388,7 @@ Page({
     app.wxrequest({
       url: app.getUrl().dotDetail,
       data: {
-        active_id: that.data.options.id,
+        dot_id: that.data.options.id,
         user_id: app.gs('userInfoAll').id
       },
       success (res) {

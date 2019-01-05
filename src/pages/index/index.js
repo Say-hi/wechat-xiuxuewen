@@ -251,7 +251,7 @@ Page({
    */
   onLoad (options) {
     let that = this
-    if (!app.gs()) app.wxlogin()
+    if (!app.gs()) return app.wxlogin()
     app.getNavTab({
       style: 3,
       cb (res) {
@@ -281,21 +281,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow () {
-    this.setKill()
+    // this.setKill()
     // console.log(' ---------- onShow ----------')
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide () {
-    clearInterval(timer)
+    // clearInterval(timer)
     // console.log(' ---------- onHide ----------')
   },
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload () {
-    clearInterval(timer)
+    // clearInterval(timer)
     // console.log(' ---------- onUnload ----------')
   },
   onShareAppMessage () {
