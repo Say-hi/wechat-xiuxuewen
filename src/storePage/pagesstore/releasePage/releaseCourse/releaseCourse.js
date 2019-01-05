@@ -163,6 +163,7 @@ Page({
         //     Key: that.data[imgArr][index].Key ? that.data[imgArr][index].Key : that.data[imgArr][index].real.replace('https://teach-1258261086.cos.ap-guangzhou.myqcloud.com', '')
         //   })
         // }
+        function noUse () {}
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
           let Key = `image/${id}/${v.substr(v.lastIndexOf('/') + 1)}` // 这里指定上传的文件名
@@ -261,6 +262,7 @@ Page({
         //     Key: that.data[imgArr][index].Key
         //   })
         // }
+        function noUse () {}
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
           let Key = `image/${id}/${v.substr(v.lastIndexOf('/') + 1)}` // 这里指定上传的文件名
@@ -357,6 +359,7 @@ Page({
         //     Key: that.data[imgArr][index].Key
         //   })
         // }
+        function noUse () {}
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
           let Key = `image/${id}/${v.substr(v.lastIndexOf('/') + 1)}` // 这里指定上传的文件名
@@ -454,6 +457,7 @@ Page({
         //     Key: that.data[imgArr][index].Key
         //   })
         // }
+        function noUse () {}
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
           let Key = `image/${id}/${v.substr(v.lastIndexOf('/') + 1)}` // 这里指定上传的文件名
@@ -534,14 +538,18 @@ Page({
   // 发布线下课程
   subOffline () {
     let that = this
+    if (!that.data.nameText) return app.setToast(this, {content: '请填写课程标题'})
+    if (!that.data.upImgArr.length) return app.setToast(this, {content: '请上传课程封面'})
     let showImage = []
     let classImage = []
-    for (let v of this.data.upImgArr3) {
-      showImage.push(v.real)
-    }
     for (let v of this.data.upImgArr4) {
       classImage.push(v.real)
     }
+    if (!classImage.length && that.data.courseIndex * 1 === 2) return app.setToast(this, {content: '请上传至少一张教室环境图片'})
+    for (let v of this.data.upImgArr3) {
+      showImage.push(v.real)
+    }
+    if (!showImage.length) return app.setToast(this, {content: '请上传至少一张作品秀图片'})
     app.wxrequest({
       url: app.getUrl().teacherActiveSub,
       data: that.data.courseIndex * 1 === 1 ? {
@@ -554,7 +562,8 @@ Page({
         class_time: '随到随学',
         start_time: that.data.userChooseStart ? (new Date(that.data.userChooseStart).getTime()).toString().slice(0, 10) : (new Date(that.data.startDay).getTime()).toString().slice(0, 10),
         end_time: that.data.userChooseEnd ? (new Date(that.data.userChooseEnd).getTime()).toString().slice(0, 10) : (new Date(that.data.startDay2).getTime()).toString().slice(0, 10),
-        show_image: showImage.join(',')
+        show_image: showImage.join(','),
+        class_image: ''
       } : {
         id: that.data.id || '',
         user_id: app.gs('userInfoAll').id,
@@ -656,6 +665,15 @@ Page({
             that.data.upImgArrProgress3.push(100)
           }
         }
+        if (s.class_image) {
+          for (let v of s.class_image.split(',')) {
+            that.data.upImgArr4.push({
+              temp: v,
+              real: v
+            })
+            that.data.upImgArrProgress4.push(100)
+          }
+        }
         that.setData({
           userChooseStart: app.momentFormat(s.start_time * 1000, 'YYYY/MM/DD'),
           userChooseEnd: app.momentFormat(s.end_time * 1000, 'YYYY/MM/DD'),
@@ -668,7 +686,9 @@ Page({
           upImgArr: that.data.upImgArr,
           upImgArr2: that.data.upImgArr2,
           upImgArr3: that.data.upImgArr3,
-          upImgArrProgress3: that.data.upImgArrProgress3
+          upImgArrProgress3: that.data.upImgArrProgress3,
+          upImgArr4: that.data.upImgArr4,
+          upImgArrProgress4: that.data.upImgArrProgress4
         })
       }
     })

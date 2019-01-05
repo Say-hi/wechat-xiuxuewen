@@ -38,7 +38,7 @@
             <!--<view class="keep">800m</view>-->
           </view>
         </view>
-        <view class="h-w-r-bottom f26 {{ currentIndex == 0 ? 'cff3b5b' : 'c666' }} mt20">
+        <view wx:if="{{ item.fill_in >= 1 }}" class="h-w-r-bottom f26 {{ currentIndex == 0 ? 'cff3b5b' : 'c666' }} mt20">
           <view>时间：{{ item.make_time }} {{ item.day_up === 1 ? '上午' : '下午' }}</view>
           <!--<view class="cff3b5b">立刻报名 》</view>-->
           <!--<view class="f26 cff3b5b fw7 tar">88.8元</view>-->
@@ -46,7 +46,8 @@
       </view>
     </navigator>
     <view hidden="{{ currentIndex >= 1 }}" class="tar mt20">
-      <view catchtap="goMapPoint" data-name="123" data-address="asdfasdfasdf" data-latitude="{{ item.latitude }}" data-longitude="{{ item.longitude }}" class="f26 cfff fw7 go-shop">到店学习</view>
+      <view wx:if="{{ item.fill_in >= 1 }}" catchtap="goMapPoint" data-name="123" data-address="{{ item.room_address }}" data-latitude="{{ item.latitude }}" data-longitude="{{ item.longitude }}" class="f26 cfff fw7 go-shop">到店学习</view>
+      <navigator wx:else url="/offlinePage/pagesnine/offlineApply/offlineApply?trade=123&id={{ item.id }}" class="f26 cfff fw7 go-shop">预约时间</navigator>
     </view>
   </view>
 </view>

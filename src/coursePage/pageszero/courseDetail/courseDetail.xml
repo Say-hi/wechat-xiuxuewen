@@ -125,14 +125,14 @@
         </view>
       </view>
       <!--报名说明-->
-      <view id="check_3"
-            wx:if="{{ options.type == 4 }}"
-            class="need-check course-list bgfff br18 p30 mt20">
-        <view class="f36 fw7 c444">报名费说明</view>
-        <view class="f28 c666 mt20">
-          报名费用于预定到店名额，一天只有10个名额，先到先的 关于申请说明，满足下列条件可以退款： 1.按照约定时间到店学习后可以申请退款， 2.如果有事无法如约到店，请提前24小时联系客服申请退款
-        </view>
-      </view>
+      <!--<view id="check_3"-->
+            <!--wx:if="{{ options.type == 4 }}"-->
+            <!--class="need-check course-list bgfff br18 p30 mt20">-->
+        <!--<view class="f36 fw7 c444">报名费说明</view>-->
+        <!--<view class="f28 c666 mt20">-->
+          <!--报名费用于预定到店名额，一天只有10个名额，先到先的 关于申请说明，满足下列条件可以退款： 1.按照约定时间到店学习后可以申请退款， 2.如果有事无法如约到店，请提前24小时联系客服申请退款-->
+        <!--</view>-->
+      <!--</view>-->
       <view wx:if="{{ options.type != 4 }}"
             id="s2"
             class="zw20 need-check"></view>
@@ -297,6 +297,7 @@
                  data-index="{{ index }}"
                  class="br18 show-img"
                  catchtap="showImg"
+                 mode="aspectFill"
                  data-src="{{ item }}"
                  src="{{ item }}"></image>
         </view>
@@ -339,6 +340,7 @@
                  wx:for-item="olitem"
                  class="br18 show-img"
                  catchtap="showImg"
+                 mode="aspectFill"
                  data-src="{{ olitem }}"
                  src="{{ olitem }}"></image>
         </view>

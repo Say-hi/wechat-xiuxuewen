@@ -78,7 +78,7 @@ Page({
                 lists: that.data.lists
               })
               wx.navigateTo({
-                url: `/offlinePage/pagesnine/offlineApply/offlineApply?trade=${that.data.lists[index].out_trade_no}`
+                url: `/offlinePage/pagesnine/offlineApply/offlineApply?trade=${that.data.lists[index].out_trade_no}&id=${that.data.lists[index].id}`
               })
             },
             fail () {

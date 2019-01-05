@@ -209,7 +209,7 @@ Page({
   },
 
   showImg (e) {
-    app.showImg(e.currentTarget.dataset.src, [this.data.poster])
+    app.showImg(e.currentTarget.dataset.src, this.data.detailInfo[e.currentTarget.dataset.imgarr])
   },
 
   buyOperation () {
@@ -294,7 +294,17 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
-          res.data.data.detail = res.data.data.detail.split(',')
+          if (res.data.data.detail) res.data.data.detail = res.data.data.detail.split(',')
+          if (res.data.data.class_image) res.data.data.class_image = res.data.data.class_image.split(',')
+          if (res.data.data.room_teacher) res.data.data.room_teacher = res.data.data.room_teacher.split(',')
+          if (res.data.data.room_images) res.data.data.room_images = res.data.data.room_images.split(',')
+          if (res.data.data.show_image) res.data.data.show_image = res.data.data.show_image.split(',')
+          try {
+            res.data.data.start_time = app.momentFormat(res.data.data.start_time * 1000, 'YYYY-MM-DD')
+            res.data.data.end_time = app.momentFormat(res.data.data.end_time * 1000, 'YYYY-MM-DD')
+          } catch (err) {
+            console.log(err)
+          }
           that.setData({
             detailInfo: res.data.data
           })

@@ -11,6 +11,10 @@ module.exports = {
     getApp: true,
 	Component: true,
 	getCurrentPages: true,
-    wx: true
+    wx: true,
+    noUse: true
+  },
+  'rules': {
+  	'no-unused-vars': 1
   }
 };

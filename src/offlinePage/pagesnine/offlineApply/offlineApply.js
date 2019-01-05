@@ -384,7 +384,8 @@ Page({
     })
     if (options.trade) {
       this.setData({
-        swiperIndex: 1
+        swiperIndex: 1,
+        order_id: options.id
       })
     }
     if (app.gs('addressInfo')) {

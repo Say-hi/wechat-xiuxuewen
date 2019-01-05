@@ -84,13 +84,14 @@ Page({
         that.setData({
           upImgArr3: that.data[imgArr]
         })
-        if (index >= 0) {
-          cos.deleteObject({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Key: that.data[imgArr][index].Key
-          })
-        }
+        // if (index >= 0) {
+        //   cos.deleteObject({
+        //     Bucket: config.Bucket,
+        //     Region: config.Region,
+        //     Key: that.data[imgArr][index].Key
+        //   })
+        // }
+        function noUse () {}
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
           let Key = `image/${id}/${v.substr(v.lastIndexOf('/') + 1)}` // 这里指定上传的文件名
@@ -139,15 +140,16 @@ Page({
         if (res.tapIndex === 0) {
           app.showImg(that.data.upImgArr3[e.currentTarget.dataset.index].temp, [that.data.upImgArr3[e.currentTarget.dataset.index].temp])
         } else if (res.tapIndex === 2) {
-          cos.deleteObject({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Key: that.data.upImgArr3[e.currentTarget.dataset.index].Key
-          }, () => {
-            that.data.upImgArr3.splice(e.currentTarget.dataset.index, 1)
-            that.setData({
-              upImgArr3: that.data.upImgArr3
-            })
+          // cos.deleteObject({
+          //   Bucket: config.Bucket,
+          //   Region: config.Region,
+          //   Key: that.data.upImgArr3[e.currentTarget.dataset.index].Key
+          // }, () => {
+          //
+          // })
+          that.data.upImgArr3.splice(e.currentTarget.dataset.index, 1)
+          that.setData({
+            upImgArr3: that.data.upImgArr3
           })
         } else if (res.tapIndex === 1) {
           that.upImg2(e.currentTarget.dataset.index)
@@ -178,13 +180,14 @@ Page({
         that.setData({
           upImgArr4: that.data[imgArr]
         })
-        if (index >= 0) {
-          cos.deleteObject({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Key: that.data[imgArr][index].Key
-          })
-        }
+        // if (index >= 0) {
+        //   cos.deleteObject({
+        //     Bucket: config.Bucket,
+        //     Region: config.Region,
+        //     Key: that.data[imgArr][index].Key
+        //   })
+        // }
+        function noUse () {}
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
           let Key = `image/${id}/${v.substr(v.lastIndexOf('/') + 1)}` // 这里指定上传的文件名
@@ -233,15 +236,16 @@ Page({
         if (res.tapIndex === 0) {
           app.showImg(that.data.upImgArr4[e.currentTarget.dataset.index].temp, [that.data.upImgArr4[e.currentTarget.dataset.index].temp])
         } else if (res.tapIndex === 2) {
-          cos.deleteObject({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Key: that.data.upImgArr4[e.currentTarget.dataset.index].Key
-          }, () => {
-            that.data.upImgArr4.splice(e.currentTarget.dataset.index, 1)
-            that.setData({
-              upImgArr4: that.data.upImgArr4
-            })
+          // cos.deleteObject({
+          //   Bucket: config.Bucket,
+          //   Region: config.Region,
+          //   Key: that.data.upImgArr4[e.currentTarget.dataset.index].Key
+          // }, () => {
+          //
+          // })
+          that.data.upImgArr4.splice(e.currentTarget.dataset.index, 1)
+          that.setData({
+            upImgArr4: that.data.upImgArr4
           })
         } else if (res.tapIndex === 1) {
           that.upImg3(e.currentTarget.dataset.index)
@@ -272,13 +276,14 @@ Page({
         that.setData({
           upImgArr5: that.data[imgArr]
         })
-        if (index >= 0) {
-          cos.deleteObject({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Key: that.data[imgArr][index].Key
-          })
-        }
+        // if (index >= 0) {
+        //   cos.deleteObject({
+        //     Bucket: config.Bucket,
+        //     Region: config.Region,
+        //     Key: that.data[imgArr][index].Key
+        //   })
+        // }
+        function noUse () {}
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
           let Key = `image/${id}/${v.substr(v.lastIndexOf('/') + 1)}` // 这里指定上传的文件名
@@ -327,15 +332,16 @@ Page({
         if (res.tapIndex === 0) {
           app.showImg(that.data.upImgArr5[e.currentTarget.dataset.index].temp, [that.data.upImgArr5[e.currentTarget.dataset.index].temp])
         } else if (res.tapIndex === 2) {
-          cos.deleteObject({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Key: that.data.upImgArr5[e.currentTarget.dataset.index].Key
-          }, () => {
-            that.data.upImgArr5.splice(e.currentTarget.dataset.index, 1)
-            that.setData({
-              upImgArr5: that.data.upImgArr5
-            })
+          // cos.deleteObject({
+          //   Bucket: config.Bucket,
+          //   Region: config.Region,
+          //   Key: that.data.upImgArr5[e.currentTarget.dataset.index].Key
+          // }, () => {
+          //
+          // })
+          that.data.upImgArr5.splice(e.currentTarget.dataset.index, 1)
+          that.setData({
+            upImgArr5: that.data.upImgArr5
           })
         } else if (res.tapIndex === 1) {
           that.upImg4(e.currentTarget.dataset.index)
@@ -368,13 +374,14 @@ Page({
         that.setData({
           upImgArr6: that.data[imgArr]
         })
-        if (index >= 0) {
-          cos.deleteObject({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Key: that.data[imgArr][index].Key
-          })
-        }
+        // if (index >= 0) {
+        //   cos.deleteObject({
+        //     Bucket: config.Bucket,
+        //     Region: config.Region,
+        //     Key: that.data[imgArr][index].Key
+        //   })
+        // }
+        function noUse () {}
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
           let Key = `image/${id}/${v.substr(v.lastIndexOf('/') + 1)}` // 这里指定上传的文件名
@@ -490,13 +497,14 @@ Page({
         that.setData({
           upImgArr: that.data.upImgArr
         })
-        if (index >= 0) {
-          cos.deleteObject({
-            Bucket: config.Bucket,
-            Region: config.Region,
-            Key: that.data.upImgArr[index].Key
-          })
-        }
+        function noUse () {}
+        // if (index >= 0) {
+        //   cos.deleteObject({
+        //     Bucket: config.Bucket,
+        //     Region: config.Region,
+        //     Key: that.data.upImgArr[index].Key
+        //   })
+        // }
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
           let Key = `image/${id}/${v.substr(v.lastIndexOf('/') + 1)}` // 这里指定上传的文件名
@@ -529,7 +537,6 @@ Page({
       }
     })
   },
-
   goRelease (e) {
     let that = this
     if (!that.data.upImgArr6[0].real) return app.setToast(that, {content: '请上传教室头像'})

@@ -359,7 +359,7 @@ Page({
   // 获取详情
   getDetail () {
     if (this.data.options.type * 1 === 3) return this.getStoreDetail()
-    else if (this.data.options.type * 1 === 2) return this.getOfflineDetail()
+    else if (this.data.options.type * 1 === 2 || this.data.options.type * 1 === 4) return this.getOfflineDetail()
     let that = this
     app.wxrequest({
       url: app.getUrl().courseDetail,
@@ -434,10 +434,12 @@ Page({
         if (res.data.status === 200) {
           res.data.data['collect_count'] >= 0 ? res.data.data.collect_count = res.data.data.collect_count * 1 + res.data.data.collect_base : res.data.data['collect_count'] = 0
           res.data.data.show_image = res.data.data.show_image ? res.data.data.show_image.split(',') : []
+          res.data.data.room_images = res.data.data.room_images ? res.data.data.room_images.split(',') : []
           that.setData({
             collect: res.data.data.is_collect >= 1 ? true : 0,
             detailInfo: res.data.data
           })
+          app.setBar(res.data.data.title)
         } else {
           app.setToast(that, {content: res.data.desc})
         }

@@ -64,7 +64,7 @@ Page({
       success (res) {
         if (res.confirm) {
           app.wxrequest({
-            url: that.data.tabIndex >= 1 ? app.getUrl().teacherDotDetail : app.getUrl().teacherCourseDel,
+            url: that.data.tabIndex >= 1 ? app.getUrl().teacherActiveDel : app.getUrl().teacherCourseDel,
             data: {
               user_id: app.gs('userInfoAll').id,
               id: e.currentTarget.dataset.id
