@@ -8,7 +8,30 @@ Page({
   data: {
     title: 'collage',
     openType: 'share',
+    page: 0,
+    lists: [],
     testImg: app.data.testImg
+  },
+  getData () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().teacherUserIncome,
+      data: {
+        user_id: app.gs('userInfoAll').id,
+        page: ++that.data.page
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            lists: that.data.lists.concat(res.data.data),
+            more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载

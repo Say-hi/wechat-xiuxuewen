@@ -1,4 +1,4 @@
 // Window configuration
 {
-  "enablePullDownRefresh": false
+  "enablePullDownRefresh": true
 }
