@@ -53,6 +53,11 @@ const serviceUrl = {
   teacherActiveDel: baseDomain + '/teacher/active/del', // 线下课程删除
   teacherDotDetail: baseDomain + '/teacher/dot/detail', // 获取门店信息
   teacherUserIncome: baseDomain + '/teacher/user/income', // 收益
+  teacherUserMessage: baseDomain + '/teacher/user/message', // 消息通知
+  teacherUserSys: baseDomain + '/teacher/user/sys_notice', // 系统通知
+  teacherUserSysDetail: baseDomain + '/teacher/user/sys_detail', // 系统通修改为已读
+  teacherUserEvaluateMsg: baseDomain + '/teacher/user/evaluate_msg', // 教师查看用户对视频的评价
+  teacherUserVideoCollect: baseDomain + '/teacher/user/video_collect', // 教师查看用户的收藏的信息列表
   teacherUserActive: baseDomain + '/teacher/user/active' // 获取线下课程
 }
 module.exports = serviceUrl

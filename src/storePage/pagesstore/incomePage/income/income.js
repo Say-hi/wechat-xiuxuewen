@@ -12,7 +12,7 @@ Page({
     lists: [],
     testImg: app.data.testImg
   },
-  getData () {
+  getList () {
     let that = this
     app.wxrequest({
       url: app.getUrl().teacherUserIncome,
@@ -24,7 +24,7 @@ Page({
         wx.hideLoading()
         if (res.data.status === 200) {
           that.setData({
-            lists: that.data.lists.concat(res.data.data),
+            lists: that.data.lists.concat(res.data.data.lists),
             more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
           })
         } else {
@@ -33,11 +33,16 @@ Page({
       }
     })
   },
+  onReachBottom () {
+    if (this.data.more >= 1) this.getList()
+    else app.setToast(this, {content: '没有更多内容啦'})
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
     app.setBar('我的收益')
+    this.getList()
   },
 
   /**

@@ -136,7 +136,7 @@ Page({
   collectO () {
     let that = this
     let type = that.data.options.type * 1 === 1 ? 1 : (that.data.options.type * 1 === 2 || that.data.options.type * 1 === 4) ? 3 : that.data.options.type * 1 === 3 ? 2 : null
-    app.userCollect(that.data.collect, that.data.options.id, type).then(() => {
+    app.userCollect(that.data.collect, that.data.options.id, that.data.detailInfo.user_id, type).then(() => {
       that.data.collect ? --that.data.detailInfo.collect_count : ++that.data.detailInfo.collect_count
       that.setData({
         collect: !that.data.collect,
@@ -371,6 +371,9 @@ Page({
         wx.hideLoading()
         if (res.data.status === 200) {
           res.data.data['collect_count'] >= 0 ? res.data.data.collect_count = res.data.data.collect_count * 1 + res.data.data.collect_base : res.data.data['collect_count'] = 0
+          if (res.data.data.detail) {
+            res.data.data.detail = res.data.data.detail.split(',')
+          }
           that.setData({
             collect: res.data.data.is_collect >= 1 ? true : 0,
             detailInfo: res.data.data

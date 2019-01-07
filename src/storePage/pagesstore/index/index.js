@@ -25,6 +25,23 @@ Page({
     ],
     testImg: app.data.testImg
   },
+  getMessage () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().teacherUserSys,
+      data: {
+        user_id: app.gs('userInfoAll').id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   getRoomInfo () {
     let that = this
     app.wxrequest({
@@ -72,6 +89,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow () {
+    this.getMessage()
     // console.log(' ---------- onShow ----------')
   },
   /**

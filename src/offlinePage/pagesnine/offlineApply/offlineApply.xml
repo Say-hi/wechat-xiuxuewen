@@ -1,4 +1,4 @@
-<view class="tab-top bgfff lh88 bt1 bd1">
+<view wx:if="{{ !entering }}" class="tab-top bgfff lh88 bt1 bd1">
   <view wx:for="{{ videoTab }}"
         wx:key="*72"
         class="t-t-item tac fw7 f28 {{ showTop == index ? 'cff3a5a' : 'c9a9a9a' }}">
@@ -28,7 +28,8 @@
 
      <view class="c666 order-info br18 p30">
        <view class="goods-info f28 ">
-         <text class="fw7">价值{{ options.price * 1 }}元学习大礼包</text>
+         <text wx:if="{{ !entering }}" class="fw7">价值{{ options.price * 1 }}元学习大礼包</text>
+         <text wx:else class="fw7">{{ options.name }}</text>
          <text>总计：1份</text>
        </view>
 
@@ -56,7 +57,8 @@
       </view>
       <view class="success">支付成功</view>
       <view class="user-input pay-success-btn f34 cff3a5a tac goods-btn">
-        <view catchtap="nextTick" data-index="2" class="flex1 cfff">立即预约到店时间</view>
+        <view wx:if="{{ !entering }}" catchtap="nextTick" data-index="2" class="flex1 cfff">立即预约到店时间</view>
+        <navigator wx:else url="/storePage/pagesstore/index/index" open-type="redirect" class="flex1 cfff">专属教室查看</navigator>
       </view>
     </view>
   </swiper-item>

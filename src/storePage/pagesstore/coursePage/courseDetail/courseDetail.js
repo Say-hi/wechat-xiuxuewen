@@ -169,7 +169,7 @@ Page({
   },
 
   showImg (e) {
-    app.showImg(e.currentTarget.dataset.src, [this.data.poster])
+    app.showImg(e.currentTarget.dataset.src, this.data.detailInfo.show_image)
   },
 
   buyOperation () {
@@ -243,18 +243,30 @@ Page({
   getDetail () {
     let that = this
     app.wxrequest({
-      url: app.getUrl().courseDetail,
-      data: {
+      url: that.data.options.type * 1 === 3 ? app.getUrl().teacherDotDetail : app.getUrl().courseDetail,
+      data: that.data.options.type * 1 === 3 ? {
+        user_id: app.gs('userInfoAll').id
+      } : {
         course_id: that.data.options.id || 1,
         user_id: app.gs('userInfoAll').id
       },
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
-          that.setData({
-            detailInfo: res.data.data
-          }, that.getEvaluate)
-          app.setBar(res.data.data.title)
+          if (that.data.options.type * 1 === 3) {
+            res.data.data.room_teacher = res.data.data.room_teacher.split(',')
+            res.data.data.show_image = res.data.data.show_image.split(',')
+            that.setData({
+              swiperArr: res.data.data.room_images.split(','),
+              detailInfo: res.data.data
+            })
+            app.setBar('教室详情')
+          } else {
+            that.setData({
+              detailInfo: res.data.data
+            }, that.getEvaluate)
+            app.setBar(res.data.data.title)
+          }
         } else {
           app.setToast(that, {content: res.data.desc})
         }

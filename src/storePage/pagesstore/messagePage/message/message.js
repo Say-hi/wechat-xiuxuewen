@@ -14,19 +14,42 @@ Page({
       },
       {
         t: '评论',
-        n: 123
+        n: 0
       },
       {
         t: '收藏',
-        n: 123
+        n: 0
       }
     ]
+  },
+  getMessage () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().teacherUserMessage,
+      data: {
+        user_id: app.gs('userInfoAll').id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.data.messageArr[0].n = res.data.data.sys_notice
+          that.data.messageArr[2].n = res.data.data.collect
+          that.data.messageArr[1].n = res.data.data.video_msg
+          that.setData({
+            messageArr: that.data.messageArr
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
     app.setBar('我的消息')
+    this.getMessage()
     // TODO: onLoad
   },
 

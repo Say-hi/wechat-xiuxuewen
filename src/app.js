@@ -690,13 +690,14 @@ App({
     let d = R * c
     return Math.round(d)
   },
-  userCollect (is_collect, collect_id, state) {
+  userCollect (is_collect, collect_id, obj_user_id, state) {
     let that = this
     return new Promise (function (resolve, reject) {
       that.wxrequest({
         url: is_collect ? useUrl.userCollectCancel : useUrl.userCollectSub,
         data: {
           user_id: that.gs('userInfoAll').id,
+          obj_user_id,
           collect_id,
           state
         },

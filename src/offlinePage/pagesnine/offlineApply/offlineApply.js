@@ -378,22 +378,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    this.getEnu()
-    this.setData({
-      options
-    })
-    if (options.trade) {
+    if (options.type === 'entering') {
       this.setData({
-        swiperIndex: 1,
-        order_id: options.id
+        options,
+        entering: true
       })
+      app.setBar('门店入驻')
+    } else {
+      this.getEnu()
+      this.setData({
+        options
+      })
+      if (options.trade) {
+        this.setData({
+          swiperIndex: 1,
+          order_id: options.id
+        })
+      }
+      app.setBar('预约报名')
     }
     if (app.gs('addressInfo')) {
       this.setData({
         addressInfo: app.gs('addressInfo')
       })
     }
-    app.setBar('预约报名')
+
     // TODO: onLoad
   },
 

@@ -1,0 +1,123 @@
+.top-bg {
+  width: 100%;
+  height: 434rpx;
+}
+
+.title-out {
+  position: relative;
+  display: inline-block;
+  .title {
+    display: inline-block;
+  }
+  .title-bg {
+    width: 100%;
+    height: 16rpx;
+    margin-top: -16rpx;
+  }
+}
+
+.content-scroll {
+  width: 100%;
+  .content-scroll-in {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .gift-item {
+    min-width: 203rpx;
+    min-height: 244rpx;
+    //overflow: hidden;
+    margin-right: 20rpx;
+    margin-bottom: 60rpx;
+    transition: all 0.5s;
+    image {
+      height: 160rpx;
+      width: 100%;
+      border-radius: 18rpx;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+  .c666 {
+    border: 2rpx solid #b7b7b7;
+  }
+  .cff4e6b {
+    border: 2rpx solid #ff4e6b;
+  }
+  .iconfont::before {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    font-size: 40rpx;
+    transform: translate(-50%, 60rpx);
+  }
+}
+
+.open-gift {
+  .arrow::after {
+    transition: all 0.5s;
+    width: 14rpx;
+    height: 14rpx;
+    right: -40rpx;
+    border-color: #ff4e6b #ff4e6b transparent transparent;
+    transform: translate(-50%, -75%) rotate(135deg);
+  }
+  .open::after {
+    transform: translate(-50%, 0%) rotate(-45deg);
+    background: linear-gradient();
+  }
+}
+
+.gift-content {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  display: flex;
+  transition: all 0.5s;
+  image {
+    width: 160rpx;
+    height: 160rpx;
+    border: 2rpx solid #d8d8d8;
+    margin-right: 20rpx;
+  }
+  .g-c-r {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+}
+
+.show {
+  width: 100%;
+  height: inherit;
+}
+
+.bottom-btn {
+  width: 100%;
+  .b-t {
+    width: 100%;
+    background: #FF3B5A;
+    border-radius: 50rpx;
+    box-shadow: 0rpx 10rpx 10rpx 6rpx rgba(255, 228, 232, 0.8);
+  }
+}
+.kefu {
+  .b-t {
+    background-color: #fff;
+    border: 2rpx solid #ff3b5b;
+  }
+}
+
+.df {
+  display: flex;
+  flex-wrap: wrap;
+  .get-img {
+    width: 315rpx;
+    height: 200rpx;
+    margin: 20rpx 20rpx 0 0;
+    &:nth-child(2n) {
+      margin: 20rpx 0 0 0;
+    }
+  }
+}

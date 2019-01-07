@@ -7,27 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    testImg: app.data.testImg,
-    giftIndex: 0,
-    bgcS: '#FDA36E',
-    bgcE: '#F48280',
-    title: 'entering'
+    title: 'new'
   },
-  chooseGift (e) {
-    this.setData({
-      giftIndex: e.currentTarget.dataset.index
-    })
-  },
-  openGift () {
-    this.setData({
-      open: !this.data.open
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
-
     // TODO: onLoad
   },
 

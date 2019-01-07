@@ -7,7 +7,7 @@
     <view wx:if="{{ options.type == 1 }}" catchtap="videoPlay" class="video-btn iconfont icon-bofang1 pa"></view>
   </view>
   <video wx:else
-         poster="{{ poster }}"
+         poster="{{ detailInfo.image }}"
          controls="{{ controls }}"
          bindended="videoEnd"
          objectFit="contain"
@@ -90,6 +90,15 @@
           <view>{{ (detailInfo.learn_base || detailInfo.gradution_base) * 1 + (detailInfo.learn_count || detailInfo.gradution_count) * 1 }}人已学习</view>
           <view wx:if="{{ options.type == 1 }}" class="f26 cff3b5b">{{ detailInfo.price > 0 ? detailInfo.price + '元' : '免费' }}</view>
         </view>
+      </view>
+      <view wx:if="{{ options.type == 1 }}" class="need-check mt20 p30 br18 bgfff">
+        <view class="f36 fw7 c444">课程详情</view>
+        <image wx:for="{{ detailInfo.detail }}"
+               wx:key="*932"
+               mode="widthFix"
+               style="width: 100%;"
+               lazy-load
+               src="{{ item }}"></image>
       </view>
       <view id="s1" class="zw20 need-check"></view>
       <!--地址栏-->
