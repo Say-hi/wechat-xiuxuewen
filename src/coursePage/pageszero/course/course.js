@@ -47,7 +47,7 @@ Page({
           } else {
             for (let v of res.data.data.lists) {
               for (let s of v.lists) {
-                s.distance = s.distance > 1000 ? Math.floor(s.distance / 1000) + 'km' : s.distance + 'm'
+                s.distance = s.distance > 1000 ? (s.distance / 1000).toFixed(2) + 'km' : s.distance + 'm'
               }
             }
             that.setData({

@@ -58,6 +58,27 @@ Page({
       // }
     ]
   },
+  goStore () {
+    if (app.gs('userInfoAll').is_teach >= 1) {
+      wx.navigateTo({
+        url: '/storePage/pagesstore/index/index'
+      })
+    } else {
+      wx.showModal({
+        title: '未开通教室',
+        content: '亲爱的用户您还没有开通教室权限哦',
+        cancelText: '下次开通',
+        confirmText: '立即开通',
+        success (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/enteringPage/pagestwelve/entering/entering'
+            })
+          }
+        }
+      })
+    }
+  },
   // setCanvas () {
   //   this.getAllRects()
 //   },

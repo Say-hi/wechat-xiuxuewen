@@ -202,7 +202,12 @@
               <view class="f24 c999">{{ cItem.create_time }}</view>
             </view>
             <view class="h-i-content">
-              <view class="f26 c3a3a3a user-content p200">
+              <view catchtap="replyOperation"
+                    data-name="回复楼主"
+                    data-cindex="{{ cIndex }}"
+                    data-id="{{ cItem.user_id }}"
+                    data-teach="{{ cItem.is_teach }}"
+                    class="f26 c3a3a3a user-content p200">
                 {{ cItem.comment }}
               </view>
               <view class="user-work-img">
@@ -395,7 +400,12 @@
             <view class="f24 c999">{{ cItem.create_time }}</view>
           </view>
           <view class="h-i-content">
-            <view class="f26 c3a3a3a user-content p200">
+            <view catchtap="replyOperation"
+                  data-name="回复楼主"
+                  data-cindex="{{ cIndex }}"
+                  data-id="{{ cItem.user_id }}"
+                  data-teach="{{ cItem.is_teach }}"
+                  class="f26 c3a3a3a user-content p200">
               {{ cItem.comment }}
             </view>
             <view class="user-work-img">

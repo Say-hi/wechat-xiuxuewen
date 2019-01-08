@@ -56,7 +56,7 @@
     <view class="f34 c666 tac br18 bgfff mt20 ladder">成长阶梯 新手必看</view>
 
     <view class="container bgfff br20 new p30">
-        <navigator hover-class="none" url="/coursePage/pageszero/course/course" class="c-top">
+        <navigator hover-class="none" url="/coursePage/pageszero/course/course?type=1" class="c-top">
             <view class="c-t-l f36 c444 fw7">最新教学视频</view>
             <view class="c-t-r f24 c444 arrow">查看更多</view>
         </navigator>

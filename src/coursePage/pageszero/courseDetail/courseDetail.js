@@ -4,6 +4,7 @@ let PAGE = 0
 let timer = null
 let CAN_CHANGE = false
 let NEED_SHOW = [0, 0, 0]
+let REPLY = false
 // 创建页面实例对象
 Page({
   /**
@@ -219,6 +220,9 @@ Page({
   },
   // 回复
   replyConfirm (e) {
+    console.log(e)
+    if (REPLY) return
+    REPLY = true
     if (!e.detail.value.length) return app.setToast(that, {content: '请输入您的回复内容'})
     let that = this
     let index = that.data.rIndex
@@ -250,6 +254,9 @@ Page({
         } else {
           app.setToast(that, {content: res.data.desc})
         }
+      },
+      complete () {
+        REPLY = false
       }
     })
   },

@@ -594,7 +594,7 @@ Page({
   subOnline () {
     let that = this
     if (!that.data.videoUlrR) return app.setToast(this, {content: '请上传课程视频或等待课程上传完毕'})
-    else if ( !that.data.upImgArr.length || !that.data.upImgArr[0].real) return app.setToast(this, {content: '请上传视频封面图'})
+    else if (!that.data.upImgArr.length || !that.data.upImgArr[0].real) return app.setToast(this, {content: '请上传视频封面图'})
     else if (!that.data.nameText) return app.setToast(this, {content: '请填写视频标题'})
     let detail = []
     for (let v of this.data.upImgArr2) {
