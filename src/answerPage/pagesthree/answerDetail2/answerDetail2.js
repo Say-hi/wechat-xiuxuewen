@@ -71,7 +71,7 @@ Page({
   // 点赞
   collectO () {
     let that = this
-    app.userCollect(that.data.options.id, 4).then(() => {
+    app.userCollect(that.data.collect, that.data.options.id, that.data.info.user_id, 4).then(() => {
       that.data.collect ? --that.data.info.collect_count : ++that.data.info.collect_count
       that.setData({
         collect: !that.data.collect,
@@ -82,9 +82,10 @@ Page({
     })
   },
   onShareAppMessage () {
+    let that = this
     return {
       title: '分享了一个问答',
-      path: '/answerPage/pagesthree/answerDetail/answerDetail?id=12'
+      path: `/answerPage/pagesthree/answerDetail2/answerDetail2?id=${that.data.options.id}`
     }
   },
   getDetail () {
@@ -140,6 +141,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
+    if (!app.gs('userInfoAll')) return app.wxlogin()
     this.setData({
       options
     }, this.getDetail)

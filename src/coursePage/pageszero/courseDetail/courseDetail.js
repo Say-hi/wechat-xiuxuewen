@@ -361,7 +361,11 @@ Page({
   },
   // 分享
   onShareAppMessage () {
-
+    let that = this
+    return {
+      title: `向您推荐${that.data.detailInfo.title}教学`,
+      path: `/coursePage/pageszero/courseDetail/courseDetail?id=${that.data.options.id}&type=${that.data.options.type}`
+    }
   },
   // 获取详情
   getDetail () {
@@ -517,6 +521,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
+    if (!app.gs('userInfoAll')) return app.wxlogin()
     // type 对应规则 1 线上课程 2 线下课程 3 教室
     this.setData({
       options

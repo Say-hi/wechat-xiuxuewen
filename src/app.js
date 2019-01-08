@@ -356,22 +356,22 @@ App({
                     wx.hideLoading()
                     if (res.data.status === 200) {
                       that.su('userInfoAll', res.data.data)
+                      let currentPage = getCurrentPages()
+                      let query = ''
+                      try {
+                        let s = currentPage[currentPage.length - 1].options
+                        for (let i in s) {
+                          query += `${i}=${s[i]}&`
+                        }
+                      } catch (err) {
+                        query = currentPage[currentPage.length - 1]['__displayReporter']['showOptions']['query']
+                      }
+                      console.log('query', query)
+                      wx.reLaunch({
+                        url: '/' + currentPage[currentPage.length - 1]['__route__'] + (query.length > 0 ? '?' + query : '')
+                      })
                     }
                   }
-                })
-                let currentPage = getCurrentPages()
-                let query = ''
-                try {
-                  let s = currentPage[currentPage.length - 1].options
-                  for (let i in s) {
-                    query += `${i}=${s[i]}&`
-                  }
-                } catch (err) {
-                  query = currentPage[currentPage.length - 1]['__displayReporter']['showOptions']['query']
-                }
-                console.log('query', query)
-                wx.reLaunch({
-                  url: '/' + currentPage[currentPage.length - 1]['__route__'] + (query.length > 0 ? '?' + query : '')
                 })
               }
             }
