@@ -529,6 +529,7 @@
     </view>
   </form>
 </view>
+<my-back></my-back>
 <!--<my-navigator-tab wx:if="{{ !needSmall }}" prop-nav="{{ tabArr2 }}"></my-navigator-tab>-->
 <!--错误弹窗-->
 <import src="/template/template"></import>

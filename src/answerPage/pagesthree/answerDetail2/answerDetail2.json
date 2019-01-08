@@ -1,5 +1,8 @@
 // Window configuration
 {
+  "usingComponents": {
+    "my-back": "../../../components/my-back/back"
+  },
   // 类型：HexColor；默认值：#000000
   // 导航栏背景颜色，如"#000000"
   "navigationBarBackgroundColor": "#ffffff",

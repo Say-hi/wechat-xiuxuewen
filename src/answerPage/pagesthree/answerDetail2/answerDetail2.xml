@@ -3,7 +3,7 @@
     <image lazy-load="{{true}}" class="br" src="{{ info.avatar_url }}"></image>
     <view class="{{ info.is_teach == 1 ? 'teacher-tag' : '' }}">{{ info.nickname }}</view>
     <view class="flex1 tar f28 c999">
-      <text catchtap="collectO" class="iconfont f28 c999 {{ !!collect ? 'icon-xinheart118 cff3b5b' : 'icon-shoucang' }}">　</text>
+      <text catchtap="collectO" class="iconfont f28 c999 {{ !!collect ? 'icon-xinheart118 cff3b5b' : 'icon-shoucang' }}"> {{ info.collect_count }}　</text>
       <button open-type="share" class="iconfont icon-fenxiang f30 c999"></button>
     </view>
   </view>
@@ -65,3 +65,9 @@
           class="tac f24 c999 mt10">查看更多回答</view>
   </view>
 </view>
+
+        <!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+
+<my-back></my-back>
