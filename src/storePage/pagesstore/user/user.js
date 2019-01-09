@@ -16,7 +16,8 @@ Page({
    */
   data: {
     testImg: app.data.testImg,
-    roomInfo: app.gs('roomInfo') || null
+    shopBg: app.gs('userInfoAll').is_teach <= 1 ? 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/shop_bg_1.png' : 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/shop_bg_2.png',
+    vipI: app.gs('userInfoAll').is_teach <= 1 ? 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/vip_1.png' : 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/vip_2.png'
   },
   // setCanvas () {
   //   this.getAllRects()
@@ -116,7 +117,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad () {
-
+    this.setData({
+      roomInfo: app.gs('roomInfo')
+    })
     // TODO: onLoad
   },
 

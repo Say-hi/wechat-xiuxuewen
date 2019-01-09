@@ -11,7 +11,7 @@
 //    "pages/courseDetail/courseDetail", // 课程详情  传入值 type 对应规则 1 线上课程 2 线下课程 3 教室 4 驻店课程
 //    "pages/courseList/courseList", // 课程列表
     "pages/courseOffline/courseOffline" // 线下相关
-//    "pages/course/course" // 课程,,
+//    "pages/course/course" // 课程,,,
     // Dont remove this comment
   ],
   "subPackages": [
@@ -135,6 +135,13 @@
       "name": "entering",
       "pages": [
         "pagestwelve/entering/entering" // 商家入驻
+      ]
+    },
+    {
+      "root": "sharePage", // 分享
+      "name": "share",
+      "pages": [
+        "pagesshare/share/share"
       ]
     }
   ],

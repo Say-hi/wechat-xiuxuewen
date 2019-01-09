@@ -19,7 +19,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    courseArr: ['视频课程', '免费线下课程', '驻店课程'],
+    courseArr: ['视频课程', '手把手线下课程', '跟师学驻店课程'],
     labelArr: app.data.label,
     courseIndex: 0,
     labelIndex: 0,
@@ -43,6 +43,7 @@ Page({
   chooseF (e) {
     if (e.currentTarget.dataset.type === 'course') {
       if (this.data.id) return app.setToast(this, {content: '不可修改课程类型'})
+      if (e.currentTarget.dataset.index > app.gs('userInfoAll').is_teach) return app.setToast(this, {content: '您还么有权限发布此类型的课程，请联系客服'})
       this.setData({
         courseIndex: e.currentTarget.dataset.index
       })

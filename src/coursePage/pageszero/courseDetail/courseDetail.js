@@ -5,6 +5,7 @@ let timer = null
 let CAN_CHANGE = false
 let NEED_SHOW = [0, 0, 0]
 let REPLY = false
+let MOVE = false
 // 创建页面实例对象
 Page({
   /**
@@ -161,6 +162,7 @@ Page({
   },
   // scroll滚动监听
   scrollOperation (e) {
+    MOVE = true
     // if (this.data.options && this.data.options.type * 1 === 3) return
     if (!CAN_CHANGE) return
     if (this.data.options && this.data.options.type * 1 !== 3) {
@@ -191,7 +193,9 @@ Page({
     CAN_CHANGE = true
   },
   scrollUp () {
+    if (MOVE) return
     CAN_CHANGE = false
+    MOVE = false
     this.setData({
       needSmall: false
     })
@@ -413,6 +417,7 @@ Page({
           res.data.data.room_images = res.data.data.room_images ? res.data.data.room_images.split(',') : []
           res.data.data.show_image = res.data.data.show_image ? res.data.data.show_image.split(',') : []
           res.data.data.room_teacher = res.data.data.room_teacher ? res.data.data.room_teacher.split(',') : []
+          app.setBar(res.data.data.room_name)
           that.setData({
             collect: res.data.data.is_collect >= 1 ? true : 0,
             swiperArr: res.data.data.room_images,

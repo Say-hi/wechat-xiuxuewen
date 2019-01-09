@@ -19,7 +19,7 @@ Page({
       },
       {
         t: '分享有奖',
-        url: '../releasePage/releaseCourse/releaseCourse',
+        url: '/sharePage/pagesshare/share/share',
         img: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/index_3.png'
       }
     ],

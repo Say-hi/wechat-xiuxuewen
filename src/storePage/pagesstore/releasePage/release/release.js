@@ -666,7 +666,7 @@ Page({
       options
     })
     this.getRoomInfo()
-    app.setBar(options.type || '教室信息设置')
+    app.setBar(options.type || '学堂信息设置')
     // TODO: onLoad
   },
 

@@ -9,12 +9,12 @@
 <view class="p20 room-info">
   <!--教室信息-->
   <view class="br18 r-i p30 pr">
-    <image class="br18 r-i-bg pa" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/user_bg.png"></image>
+    <image class="br18 r-i-bg pa" src="{{ shopBg }}"></image>
     <view class="r-i-t pa p30">
       <view class="f34 cfff fw7">{{ roomInfo.room_name || '还未设置教室信息' }}</view>
       <view class="f28 cfff">会员号：888888</view>
       <view class="f24 cfff bottom pa jwqfont jwq-xialasanjiao">查看教室等级权益</view>
-      <image class="br pa" mode="aspectFill" src="{{ roomInfo.avatar || testImg }}"></image>
+      <image class="br pa vipbg" mode="aspectFill" src="{{ vipI }}"></image>
     </view>
   </view>
   <!--我的收益-->

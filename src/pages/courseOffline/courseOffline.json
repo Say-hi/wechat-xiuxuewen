@@ -7,6 +7,6 @@
     "my-top-tab": "../../components/my-top-tab/my-top-tab"
   },
   // 导航栏标题文字内容
-  "navigationBarTitleText": "线下手把手教学",
+  "navigationBarTitleText": "线下学堂",
   "enablePullDownRefresh": false
 }

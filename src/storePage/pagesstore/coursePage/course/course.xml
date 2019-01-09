@@ -1,6 +1,6 @@
 <view class="top-info pr">
   <image class="top-bg"
-         src="{{ top_bg_1 }}"></image>
+         src="{{ top_bg }}"></image>
   <image src="{{ roomInfo.avatar }}"
          mode="aspectFill"
          class="br pa user-img"></image>

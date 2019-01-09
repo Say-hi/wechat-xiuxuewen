@@ -7,7 +7,7 @@
           data-type="course"
           wx:key="*3"
           data-index="{{ index }}"
-          class="mt20 mr30 courseType {{ courseIndex == index ? 'active' : '' }}">{{ item }}</view>
+          class="mt20 f28 courseType {{ courseIndex == index ? 'active' : '' }}">{{ item }}</view>
   </view>
   <!--课程分类-->
   <view class="f28 c444 bgfff br18 p30 mt20">
@@ -17,7 +17,7 @@
           wx:for="{{ labelArr }}"
           wx:key="*2"
           data-index="{{ index }}"
-          class="mt20 mr30 courseType {{ labelIndex == index ? 'active' : '' }}">{{ item.t }}</view>
+          class="mt20 mr30 courseType hasborder {{ labelIndex == index ? 'active' : '' }}">{{ item.t }}</view>
   </view>
   <!--上传课程视频-->
   <view hidden="{{ courseIndex == 1 || courseIndex == 2 }}" class="f28 c444 bgfff br18 p30 mt20 add-video">

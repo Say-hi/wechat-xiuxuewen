@@ -13,7 +13,7 @@
   "navigationBarTextStyle": "black",
   // 类型：String；默认值：无
   // 导航栏标题文字内容
-  "navigationBarTitleText": "问答",
+  "navigationBarTitleText": "你问我答",
   // 类型：HexColor；默认值：#ffffff
   // 窗口的背景色
   "backgroundColor": "#eeeeee",

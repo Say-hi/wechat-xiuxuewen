@@ -59,9 +59,9 @@
       <view>活动有效期：{{ detailInfo.start_time }}—{{ detailInfo.end_time }}</view>
     </view>
   </view>
-  <!--教室介绍-->
+  <!--学堂介绍-->
   <view hidden="{{ options.type != 4 }}" class="bgfff br18 f28 mt20 need-check c666 p30 introduce">
-    <view class="f36 c3a3a3a fw7">教室介绍</view>
+    <view class="f36 c3a3a3a fw7">学堂介绍</view>
     <image lazy-load="{{true}}" class="mt20"
            wx:for="{{ detailInfo.class_image }}"
            wx:key="*987"

@@ -79,7 +79,7 @@
       <view wx:if="{{ options.type != 3 }}" id="s1" class="zw20 need-check"></view>
       <!--地址栏-->
       <view id="check_2" class="need-check {{ options.type == 3 ? 'mt20' : '' }} course-list bgfff br18 p30">
-        <view class="f36 fw7 c3a3a3a">线下教室</view>
+        <view class="f36 fw7 c3a3a3a">线下学堂</view>
         <view wx:if="{{ options.type != 3 }}" class="f36 c3a3a3a shop-info mt20 fw7">
           <image lazy-load="{{true}}" class="br" src="{{ poster }}"></image>
           <view class="shop-name flex1">
@@ -88,18 +88,18 @@
             <navigator wx:if="{{ options.type == 2 || options.type == 4 }}"
                        open-type="redirect"
                        url="./courseDetail?id=1&type=3"
-                       class="cff3b5b f26">进入教室</navigator>
+                       class="cff3b5b f26">进入学堂</navigator>
           </view>
         </view>
         <view class="f28 c444 mt20">
-          店铺地址：{{ detailInfo.room_address }}
+          学堂地址：{{ detailInfo.room_address }}
         </view>
         <view wx:if="{{ options.type == 1 }}"
               class="tar mt20">
           <navigator open-type="redirect"
                      url="./courseDetail?id=1&type=3"
                      wx:if="{{ options.type != 3 }}"
-                     class="f26 cfff go-room">进入教室</navigator>
+                     class="f26 cfff go-room">进入学堂</navigator>
           <view catchtap="goMapPoint"
                 data-name="123"
                 data-address="asdfasdfasdf"
@@ -231,10 +231,10 @@
           </view>
         </view>
       </view>
-      <!--教室介绍-->
+      <!--学堂介绍-->
       <view wx:if="{{ options.type == 4 }}"
             class="bgfff br18 f28 {{ options.type == 3 ? '' : 'mt20' }} need-check c666 p30 introduce">
-        <view class="f36 c444 fw7">{{ options.type == 4 ? '教室环境' : '教室介绍' }}</view>
+        <view class="f36 c444 fw7">{{ options.type == 4 ? '学堂环境' : '学堂介绍' }}</view>
         <view class="mt20">报名费用于预定到店名额，一天只有10个名额，先到先的</view>
         <image lazy-load="{{true}}" class="mt20"
                wx:for="123"

@@ -4,7 +4,7 @@
     <view class="f28 c444 bgfff br18 p30 mt20 add-video">
       <view class="f34">
         <view class="f34 show-time">
-          <text class="fw7">门店头像</text>
+          <text class="fw7">学堂招牌</text>
         </view>
       </view>
       <view catchtap="upImg5"
@@ -35,7 +35,7 @@
     </view>
     <!--教室名称-->
     <view class="f28 c444 bgfff br18 p30 mt20">
-      <view class="fw7 f34">教室名称</view>
+      <view class="fw7 f34">学堂名称</view>
       <input maxlength="8"
              name="name"
              value="{{ shopInfo.room_name }}"
@@ -44,12 +44,12 @@
     </view>
     <!--编辑教室简介（选填）-->
     <view class="f28 mt20 c444 bgfff br18 p30">
-      <view class="fw7 f34">编辑教室简介（选填）</view>
+      <view class="fw7 f34">编辑学堂简介（选填）</view>
       <input maxlength="-1"
              name="desc"
              value="{{ shopInfo.room_des }}"
              class="border-out br18 f28 i-title mt20"
-             placeholder="编辑教室简介（选填）" />
+             placeholder="编辑学堂简介（选填）" />
     </view>
     <!--课程分类-->
     <view class="f28 c444 bgfff br18 p30 mt20">
@@ -68,7 +68,7 @@
     </view>
     <!--教室地址-->
     <view class="f28 mt20 c444 bgfff br18 p30">
-      <view class="fw7 f34">教室地址</view>
+      <view class="fw7 f34">学堂地址</view>
       <button hover-class="none"
               catchtap="{{ openType != 'openSetting' ? 'address' : '' }}"
               open-type="{{ openType }}"

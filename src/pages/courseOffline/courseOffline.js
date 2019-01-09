@@ -158,7 +158,7 @@ Page({
    */
   onLoad () {
     this.Bmap(this)
-    app.setBar('线下手把手教学')
+    app.setBar('线下学堂')
     // TODO: onLoad
   },
 

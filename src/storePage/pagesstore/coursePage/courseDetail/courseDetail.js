@@ -260,7 +260,7 @@ Page({
               swiperArr: res.data.data.room_images.split(','),
               detailInfo: res.data.data
             })
-            app.setBar('教室详情')
+            app.setBar(res.data.data.room_name)
           } else {
             that.setData({
               detailInfo: res.data.data
