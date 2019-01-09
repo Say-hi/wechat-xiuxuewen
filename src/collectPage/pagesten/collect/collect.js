@@ -14,7 +14,10 @@ Page({
     lists: [],
     videoTab: [
       {
-        t: '未开始'
+        t: '未预约'
+      },
+      {
+        t: '进行中'
       },
       {
         t: '已结束'
@@ -47,7 +50,7 @@ Page({
       data: {
         user_id: app.gs('userInfoAll').id,
         page: ++that.data.page,
-        state: that.data.currentIndex * 1 + 1
+        state: that.data.options.type * 1 === 1 ? that.data.currentIndex * 1 === 0 ? 3 : that.data.currentIndex : that.data.currentIndex * 1 + 1
       },
       success (res) {
         wx.hideLoading()

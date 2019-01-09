@@ -86,7 +86,7 @@ Page({
       }
     ],
     date: app.momentFormat(new Date(), 'YYYY-MM-DD'),
-    endDate: app.momentAdd('3', 'M', new Date()),
+    endDate: app.momentFormat(app.momentAdd('3', 'M', new Date()), 'YYYY/MM/DD'),
     amArr: ['上午', '下午'],
     amIndex: 0,
     expectedArr: ['一天', '两天', '三天', '四天', '五天', '一个星期'],

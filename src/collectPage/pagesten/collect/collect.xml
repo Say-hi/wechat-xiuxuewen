@@ -18,7 +18,7 @@
   <view wx:for="{{ lists }}"
         wx:key="*365">
     <navigator hover-class="none"
-               url="/pages/courseDetail/courseDetail?id=1&type=2"
+               url="/coursePage/pageszero/courseDetail/courseDetail?id={{ item.id }}&type={{ item.style }}"
                class="hot-wrap other bgfff br18 {{ index >= 1 ? 'mt20' : '' }}">
       <image lazy-load="{{true}}"
              data-content="线下课程"
@@ -56,7 +56,7 @@
   <!--教学视频-->
   <view hidden="{{ currentIndex >= 1 }}" class="video">
     <navigator hover-class="none"
-               url="/coursePages/pageszero/courseDetail/courseDetail?id={{ item.id }}&type={{ item.status }}"
+               url="/coursePage/pageszero/courseDetail/courseDetail?id={{ item.id }}&type={{ item.status }}"
                class="hot-wrap p30 {{ index >= 1 ? 'mt20' : '' }} other bgfff br18"
                wx:for="{{ lists }}"
                wx:key="*3">

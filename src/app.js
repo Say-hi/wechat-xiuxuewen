@@ -225,6 +225,7 @@ App({
         console.log('未传入fail回调函数,err:' + err.errMsg)
       },
       complete: obj.complete || function (res) {
+        console.log(res)
         wx.stopPullDownRefresh()
         // console.log(res)
         // sessionId 失效
