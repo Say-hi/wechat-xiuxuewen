@@ -5,7 +5,7 @@
   <view class="fw7 mt30 f54 ">1200.00</view>
   <view class="f28 mt20 ">我的收益</view>
   <view class="tar">
-    <view class="get-btn f26 c9b735e">提现</view>
+    <view catchtap="moneyOperation" data-type="change" class="get-btn f26 c9b735e">提现</view>
   </view>
 </view>
 
@@ -22,6 +22,26 @@
       <view class="f28 c999 mt10">2018年12月10日 16:30</view>
     </view>
     <view class="tac p20 f28 c999" wx:if="{{ !lists.length }}">还没有产生收益哦</view>
+  </view>
+</view>
+
+
+<view class="mask" hidden="{{ !getMoneyShow }}">
+  <view class="mask-in mask-money">
+    <!--<view class="mask-title tac f30 lh80">提现积分</view>-->
+    <view class="f28 mask-tixian-top">
+      <view class="fw7">提现方式</view>
+      <view>微信钱包</view>
+    </view>
+    <view class="f24 c999 p20">可提现积分: {{ info.commission }}</view>
+    <view class="f30 p20 input-area">
+      <view class="fw7">提现积分</view>
+      <input bindinput="inputValue" value="{{ userInputMoney }}" class='f30 c333' type="number" placeholder="请输入提现积分" />
+    </view>
+    <view class="mask-btns">
+      <view catchtap="moneyOperation" data-type="confirm">提现</view>
+      <view catchtap="moneyOperation" data-type="change">取消</view>
+    </view>
   </view>
 </view>
 <!--错误弹窗-->

@@ -10,7 +10,12 @@ Page({
     bg: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/share_bg.png',
     title: 'share'
   },
-
+  onShareAppMessage () {
+    return {
+      title: '邀请您入驻绣学问，成为优秀的纹绣人',
+      path: '/pages/index/index'
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */

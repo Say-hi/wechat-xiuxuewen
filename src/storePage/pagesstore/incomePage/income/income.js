@@ -37,6 +37,11 @@ Page({
     if (this.data.more >= 1) this.getList()
     else app.setToast(this, {content: '没有更多内容啦'})
   },
+  moneyOperation () {
+    this.setData({
+      getMoneyShow: !this.data.getMoneyShow
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

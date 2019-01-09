@@ -122,6 +122,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh () {
+    this.data.page = 0
+    this.data.lists = []
+    this.getList()
     // TODO: onPullDownRefresh
   }
 })
