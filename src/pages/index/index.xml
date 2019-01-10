@@ -101,6 +101,7 @@
 </view>
 
 <view class="zw"></view>
+<my-add></my-add>
 <!--<my-login></my-login>-->
 <my-navigator-tab prop-nav="{{ tabArr2 }}"></my-navigator-tab>
 <!--<my-tip bindds="ds" mask="mask" mask-in="mask-in" prop-user="{{ componentsData }}"></my-tip>-->

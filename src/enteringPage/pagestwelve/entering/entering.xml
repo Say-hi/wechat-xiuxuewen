@@ -62,7 +62,7 @@
                wx:key="*133"
                mode="widthFix"
                lazy-load
-               src="{{ item.iamge }}"></image>
+               src="{{ item.image }}"></image>
       </view>
       <view class="bottom-btn kefu mt30">
         <button open-type="contact" class="f34 b-t cff3b5b fw7 lh88 tac">联系客服</button>

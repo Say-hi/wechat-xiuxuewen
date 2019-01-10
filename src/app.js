@@ -7,6 +7,7 @@ const wxParse = require('./wxParse/wxParse')
 const statusBarHeight = wx.getSystemInfoSync().statusBarHeight
 
 const MenuButtonBounding = wx.getMenuButtonBoundingClientRect()
+console.log(MenuButtonBounding)
 const HEIGHT_TOP = MenuButtonBounding.bottom - statusBarHeight
 // const bgMusic = wx.getBackgroundAudioManager()
 // const updateManager = wx.getUpdateManager()
@@ -46,6 +47,8 @@ Moment.locale('en', {
 // moment.locale('zh-cn')
 App({
   data: {
+    // TOP_CENTER: ((MenuButtonBounding.right - MenuButtonBounding.left) / 2 / 2) + MenuButtonBounding.left,
+    TOP_CENTER: (MenuButtonBounding.right - 66),
     searchText: null,
     bottomTabIndex: 0,
     statusBarHeight,
@@ -750,6 +753,7 @@ App({
    * 当小程序从前台进入后台，会触发 onHide
    */
   onHide () {
+    this.su('first', 1)
     // console.log(' ========== Application is hid ========== ')
   }
 })

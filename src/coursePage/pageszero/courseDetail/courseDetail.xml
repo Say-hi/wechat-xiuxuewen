@@ -1,7 +1,9 @@
 <!--顶部视频区域-->
 <view hidden="{{ options.type == 3 }}" style="height: {{ needSmall ? 7 : 30 }}%;" class="video-area">
   <view wx:if="{{ !play }}" class="video-poster-img pr">
-    <image lazy-load="{{true}}" class="video-poster"
+    <image lazy-load="{{true}}"
+           class="video-poster"
+           catchtap="noneedsmall"
            mode="aspectFill"
            src="{{ detailInfo.image }}"></image>
     <view wx:if="{{ options.type == 1 }}" catchtap="videoPlay" class="video-btn iconfont icon-bofang1 pa"></view>
@@ -25,6 +27,7 @@
         style="height: 100%;"
         class="banner">
   <swiper-item  wx:for="{{ swiperArr }}"
+                catchtap="noneedsmall"
                 wx:key="*0">
     <image style="width: 100%; height: 100%;"
            lazy-load="{{true}}"
@@ -318,8 +321,8 @@
         <view wx:if="{{ !detailInfo.show_image.length }}" class="f28 c999 p20 tac">暂无相关作品</view>
       </view>
     </view>
-    <view wx:if="{{ options.type != 3 }}" class="zw"></view>
-    <view wx:if="{{ options.type != 3 }}" hidden="{{ needSmall }}" class="zw"></view>
+    <view wx:if="{{ options.type != 3 }}" style="height: 40rpx;"></view>
+    <!--<view wx:if="{{ options.type != 3 }}" hidden="{{ needSmall }}" class="zw"></view>-->
   </view>
   <view wx:if="{{ options.type == 3 }}">
     <view hidden="{{ options.type == 3 && (currentIndex == 0 || currentIndex == 3) }}">
@@ -530,7 +533,9 @@
   </form>
 </view>
 <my-back></my-back>
+<view class="outsize" catchtap="noneedsmall">{{ needSmall ? '放大' : '缩小' }}</view>
 <!--<my-navigator-tab wx:if="{{ !needSmall }}" prop-nav="{{ tabArr2 }}"></my-navigator-tab>-->
+<my-add></my-add>
 <!--错误弹窗-->
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

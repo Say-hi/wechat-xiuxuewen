@@ -26,7 +26,7 @@
         catchtap="goStore"
         class="arrow f28 c444 p30 br18 bb bgfff mt20">我的学堂</view>
 </view>
-
+<my-add></my-add>
 <view class="zw"></view>
 <my-navigator-tab></my-navigator-tab>
 <!--错误弹窗-->

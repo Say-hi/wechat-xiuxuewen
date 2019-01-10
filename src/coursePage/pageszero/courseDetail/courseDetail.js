@@ -1,10 +1,10 @@
 // 获取全局应用程序实例对象
 const app = getApp()
 let PAGE = 0
-let CAN_CHANGE = false
+let CAN_CHANGE = true
 let NEED_SHOW = [0, 0, 0]
 let REPLY = false
-let MOVE = false
+let MOVE = true
 let timer = null
 // 创建页面实例对象
 Page({
@@ -66,6 +66,10 @@ Page({
   },
   // 导航栏选择操作
   chooseIndex (e) {
+    CAN_CHANGE = false
+    setTimeout(() => {
+      CAN_CHANGE = true
+    }, 1000)
     if (this.data.options && this.data.options.type * 1 === 3) {
       this.setData({
         currentIndex: e.currentTarget.dataset.index
@@ -162,19 +166,13 @@ Page({
   },
   // scroll滚动监听
   scrollOperation (e) {
-    if (timer) {
-      clearTimeout(timer)
-      setTimeout(function () {
-        MOVE = false
-      }, 200)
-    }
-    timer = setTimeout(function () {
-      MOVE = true
-    }, 0)
     // if (this.data.options && this.data.options.type * 1 === 3) return
-    if (!CAN_CHANGE) return
+    // if (!CAN_CHANGE) return
     if (this.data.options && this.data.options.type * 1 !== 3) {
+      if (!CAN_CHANGE) return
       let s = e.detail.scrollTop
+      console.log('s', s)
+      console.log('NEED_SHOW[1]', NEED_SHOW[1])
       let currentIndex = 0
       if (s < NEED_SHOW[0]) currentIndex = 0
       else if (s > NEED_SHOW[0] && s < NEED_SHOW[1]) currentIndex = 1
@@ -183,7 +181,8 @@ Page({
         currentIndex
       })
     }
-    let change = e.detail.deltaY
+    // let change = e.detail.deltaY
+    let change = 10
     if (change <= 0) {
       // 下方隐藏，上方缩小
       this.setData({
@@ -192,18 +191,22 @@ Page({
     }
   },
   touchend () {
-    CAN_CHANGE = false
+    // CAN_CHANGE = false
   },
   touchmove () {
     // console.log('move', e)
   },
   toucstart () {
-    CAN_CHANGE = true
+    // CAN_CHANGE = true
+  },
+  noneedsmall () {
+    this.setData({
+      needSmall: !this.data.needSmall
+    })
   },
   scrollUp () {
     if (MOVE) return
     CAN_CHANGE = false
-    MOVE = false
     this.setData({
       needSmall: false
     })
@@ -581,6 +584,7 @@ Page({
    */
   onUnload () {
     PAGE = 0
+    NEED_SHOW[0] = NEED_SHOW[1] = NEED_SHOW[2] = 0
     // TODO: onUnload
   },
 
