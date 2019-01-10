@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    testImg: app.data.testImg,
+    tabIndex: 0,
     giftIndex: 0,
     bgcS: '#FDA36E',
     bgcE: '#F48280',
@@ -23,11 +23,30 @@ Page({
       open: !this.data.open
     })
   },
+  getlists () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().userGift,
+      data: {
+        style: that.data.tabIndex * 1 + 1
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            lists: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
-
+    this.getlists()
     // TODO: onLoad
   },
 

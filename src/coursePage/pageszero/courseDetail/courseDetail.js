@@ -1,11 +1,11 @@
 // 获取全局应用程序实例对象
 const app = getApp()
 let PAGE = 0
-let timer = null
 let CAN_CHANGE = false
 let NEED_SHOW = [0, 0, 0]
 let REPLY = false
 let MOVE = false
+let timer = null
 // 创建页面实例对象
 Page({
   /**
@@ -162,7 +162,15 @@ Page({
   },
   // scroll滚动监听
   scrollOperation (e) {
-    MOVE = true
+    if (timer) {
+      clearTimeout(timer)
+      setTimeout(function () {
+        MOVE = false
+      }, 200)
+    }
+    timer = setTimeout(function () {
+      MOVE = true
+    }, 0)
     // if (this.data.options && this.data.options.type * 1 === 3) return
     if (!CAN_CHANGE) return
     if (this.data.options && this.data.options.type * 1 !== 3) {
@@ -352,7 +360,6 @@ Page({
       }
     })
   },
-
   // 评论弹窗触顶
   onScrollUp () {
     PAGE = 0

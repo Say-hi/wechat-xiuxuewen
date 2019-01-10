@@ -43,6 +43,7 @@ const serviceUrl = {
   userCollectSub: baseDomain + '/user/collect_sub', // 用户收藏
   userCollectCancel: baseDomain + '/user/collect_cancel', // 用户取消收藏
   userInfo: baseDomain + '/user/info', // 用户信息
+  userGift: baseDomain + '/user/gift', // 礼包
   upImage: baseDomain + '/upload/image', // 图片上传
   // 门店端接口
   teacherUserVideo: baseDomain + '/teacher/user/video', // 获取上传过的视频
@@ -58,6 +59,7 @@ const serviceUrl = {
   teacherUserSysDetail: baseDomain + '/teacher/user/sys_detail', // 系统通修改为已读
   teacherUserEvaluateMsg: baseDomain + '/teacher/user/evaluate_msg', // 教师查看用户对视频的评价
   teacherUserVideoCollect: baseDomain + '/teacher/user/video_collect', // 教师查看用户的收藏的信息列表
+
   teacherUserActive: baseDomain + '/teacher/user/active' // 获取线下课程
 }
 module.exports = serviceUrl
