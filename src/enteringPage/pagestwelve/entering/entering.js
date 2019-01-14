@@ -45,8 +45,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
     this.getlists()
+    if (options && options.id) {
+      app.wxlogin(options.id)
+    }
     // TODO: onLoad
   },
 

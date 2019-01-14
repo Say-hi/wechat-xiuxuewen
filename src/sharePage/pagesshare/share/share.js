@@ -7,19 +7,40 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bg: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/share_bg.png',
     title: 'share'
+  },
+  getShare () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().teacherDotShare,
+      data: {
+        user_id: app.gs('userInfoAll').id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          app.WP('title', 'html', res.data.data.context, that, 0)
+          that.setData({
+            info: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
   },
   onShareAppMessage () {
     return {
       title: '邀请您入驻绣学问，成为优秀的纹绣人',
-      path: '/pages/index/index'
+      path: `/enteringPage/pagestwelve/entering/entering?id=${app.gs('userInfoAll').id}`
     }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
+    console.log(1)
+    this.getShare()
     // TODO: onLoad
   },
 

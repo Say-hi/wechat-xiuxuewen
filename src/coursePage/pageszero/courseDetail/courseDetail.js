@@ -395,6 +395,12 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
+          if (!res.data.data) {
+            app.setToast(that, {content: '内容已被删除'})
+            setTimeout(() => {
+              wx.navigateBack()
+            }, 1000)
+          }
           res.data.data['collect_count'] >= 0 ? res.data.data.collect_count = res.data.data.collect_count * 1 + res.data.data.collect_base : res.data.data['collect_count'] = 0
           if (res.data.data.detail) {
             res.data.data.detail = res.data.data.detail.split(',')
@@ -422,6 +428,12 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
+          if (!res.data.data) {
+            app.setToast(that, {content: '学堂暂停营业'})
+            setTimeout(() => {
+              wx.navigateBack()
+            }, 1000)
+          }
           res.data.data['collect_count'] >= 0 ? res.data.data.collect_count = res.data.data.collect_count * 1 + res.data.data.collect_base : res.data.data['collect_count'] = 0
           res.data.data.class_image = res.data.data.class_image ? res.data.data.class_image.split(',') : []
           res.data.data.room_images = res.data.data.room_images ? res.data.data.room_images.split(',') : []
@@ -461,6 +473,12 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
+          if (!res.data.data) {
+            app.setToast(that, {content: '课程已被删除'})
+            setTimeout(() => {
+              wx.navigateBack()
+            }, 1000)
+          }
           res.data.data['collect_count'] >= 0 ? res.data.data.collect_count = res.data.data.collect_count * 1 + res.data.data.collect_base : res.data.data['collect_count'] = 0
           res.data.data.show_image = res.data.data.show_image ? res.data.data.show_image.split(',') : []
           res.data.data.room_images = res.data.data.room_images ? res.data.data.room_images.split(',') : []

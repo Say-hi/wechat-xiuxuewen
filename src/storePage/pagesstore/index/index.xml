@@ -13,11 +13,13 @@
     </view>
   </view>
   <!--消息通知-->
-  <view class="p30 br18 bgfff message c444 mt20">
-    <text class="f28 fw7">消息通知</text>
-    <text class="f28 m-center flex1">恭喜你线下驻店课程审核通过</text>
-    <text class="f22 c666">30分钟前</text>
-  </view>
+  <swiper autoplay="{{true}}" circular="{{true}}" class="mt20" vertical="{{true}}" style="height: 94rpx;">
+    <swiper-item class="p30 bb br18 bgfff message c444" wx:for="{{ MSG }}" wx:key="*93">
+      <text class="f28 fw7">消息通知</text>
+      <text class="f28 m-center flex1">恭喜{{ MSG[index].title }}课程{{ MSG[index].check_time ? '审核通过' : '已发布' }}</text>
+      <text class="f22 c666">{{ MSG[index].create_time }}</text>
+    </swiper-item>
+  </swiper>
 
   <navigator url="../releasePage/release/release" class="p30 br18 bgfff message c444 f28 mt20">
     <view class="jwqfont jwq-shezhi">教室信息设置</view>

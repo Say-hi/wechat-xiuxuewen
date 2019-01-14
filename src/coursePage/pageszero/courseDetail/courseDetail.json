@@ -1,6 +1,5 @@
 // Window configuration
 {
-
   "usingComponents": {
     "my-back": "/components/my-back/back"
   },

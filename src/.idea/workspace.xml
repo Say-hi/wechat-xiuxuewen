@@ -21,87 +21,48 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="courseDetail.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/coursePage/pageszero/courseDetail/courseDetail.xml">
+      <file leaf-file-name="income.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/storePage/pagesstore/incomePage/income/income.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="531" column="11" lean-forward="true" selection-start-line="531" selection-start-column="11" selection-end-line="531" selection-end-column="11" />
-              <folding>
-                <element signature="n#view#0;n#view#0;n#scroll-view#0;n#!!top" expanded="false" />
-                <element signature="n#view#8;n#view#0;n#view#0;n#scroll-view#0;n#!!top" expanded="false" />
-                <element signature="n#view#0;n#view#1;n#scroll-view#0;n#!!top" expanded="false" />
-                <element signature="n#view#1;n#view#1;n#scroll-view#0;n#!!top" expanded="false" />
-                <element signature="n#view#4;n#!!top" expanded="false" />
-                <element signature="n#view#5;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="courseDetail.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/coursePage/pageszero/courseDetail/courseDetail.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="731" column="7" lean-forward="true" selection-start-line="731" selection-start-column="7" selection-end-line="731" selection-end-column="7" />
+            <state relative-caret-position="330">
+              <caret line="73" column="13" lean-forward="true" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/index/index.json">
+      <file leaf-file-name="searchHistory.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/searchPage/pagessix/searchHistory/searchHistory.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="-374">
+              <caret line="28" column="57" lean-forward="false" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app.js">
+      <file leaf-file-name="searchHistory.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/searchPage/pagessix/searchHistory/searchHistory.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="755" column="23" lean-forward="false" selection-start-line="755" selection-start-column="23" selection-end-line="755" selection-end-column="23" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="add.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/my-add/add.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+            <state relative-caret-position="396">
+              <caret line="17" column="55" lean-forward="false" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/my-add/add.js">
+      <file leaf-file-name="income.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/storePage/pagesstore/incomePage/income/income.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="7" column="33" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+            <state relative-caret-position="374">
+              <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="back.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/my-back/back.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" column="2" lean-forward="false" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="back.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/my-back/back.js">
+      <file leaf-file-name="back.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/my-back/back.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -110,21 +71,51 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/my-add/add.xml">
+      <file leaf-file-name="entering.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/enteringPage/pagestwelve/entering/entering.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="51" lean-forward="false" selection-start-line="0" selection-start-column="45" selection-end-line="0" selection-end-column="51" />
+            <state relative-caret-position="44">
+              <caret line="2" column="2" lean-forward="true" selection-start-line="2" selection-start-column="2" selection-end-line="4" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/my-add/add.less">
+      <file leaf-file-name="entering.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/enteringPage/pagestwelve/entering/entering.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="73" column="1" lean-forward="true" selection-start-line="73" selection-start-column="1" selection-end-line="73" selection-end-column="1" />
+            <state relative-caret-position="378">
+              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="courseDetail.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/coursePage/pageszero/courseDetail/courseDetail.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="courseOffline.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/offlinePage/pagesnine/courseOffline/courseOffline.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="offlineApply.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/offlinePage/pagesnine/offlineApply/offlineApply.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -134,18 +125,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>scrollOperation</find>
-      <find>gift-content</find>
-      <find>colle</find>
-      <find>teacherUserDetail</find>
-      <find>/teacher/user/income</find>
-      <find>system</find>
-      <find>楼主</find>
-      <find>iconfont icon-pinglun</find>
       <find>replyOperation</find>
       <find>replyConfirm</find>
       <find>replyBlur</find>
-      <find>wxlogin</find>
       <find>wxrequest</find>
       <find>goStore</find>
       <find>教</find>
@@ -161,9 +143,18 @@
       <find>onsc</find>
       <find>CAN_CHANGE</find>
       <find>chooseIndex</find>
-      <find>getDetail</find>
       <find>noneedsmall</find>
       <find>onlaun</find>
+      <find>search</find>
+      <find>teacherActiveMsgteacherUserSys</find>
+      <find>pay</find>
+      <find>提交</find>
+      <find>getMessage</find>
+      <find>inputValue</find>
+      <find>getDetail</find>
+      <find>wxlogin</find>
+      <find>onsha</find>
+      <find>onshare</find>
     </findStrings>
     <replaceStrings>
       <replace>path</replace>
@@ -194,43 +185,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/collectPage/pagesten/collect/collect.js" />
-        <option value="$PROJECT_DIR$/pages/user/user.js" />
-        <option value="$PROJECT_DIR$/answerPage/pagesthree/answer/answer.json" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/coursePage/course/course.xml" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/coursePage/course/course.js" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/user/user.xml" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/user/user.less" />
-        <option value="$PROJECT_DIR$/pages/courseOffline/courseOffline.js" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/releasePage/releaseCourse/releaseCourse.js" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/releasePage/releaseCourse/releaseCourse.xml" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/releasePage/releaseCourse/releaseCourse.less" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/releasePage/release/release.js" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/releasePage/release/release.xml" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/coursePage/courseDetail/courseDetail.js" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/coursePage/courseDetail/courseDetail.xml" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/coursePage/courseDetail2/courseDetail.xml" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/user/user.js" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/index/index.js" />
-        <option value="$PROJECT_DIR$/sharePage/pagesshare/share/share.json" />
-        <option value="$PROJECT_DIR$/common/color.less" />
-        <option value="$PROJECT_DIR$/sharePage/pagesshare/share/share.xml" />
-        <option value="$PROJECT_DIR$/sharePage/pagesshare/share/share.less" />
-        <option value="$PROJECT_DIR$/sharePage/pagesshare/share/share.js" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/messagePage/messageDetail/messageDetail.json" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/messagePage/messageDetail/messageDetail.js" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/incomePage/income/income.less" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/incomePage/income/income.xml" />
-        <option value="$PROJECT_DIR$/storePage/pagesstore/incomePage/income/income.js" />
-        <option value="$PROJECT_DIR$/utils/service.js" />
-        <option value="$PROJECT_DIR$/enteringPage/pagestwelve/entering/entering.js" />
-        <option value="$PROJECT_DIR$/enteringPage/pagestwelve/entering/entering.xml" />
-        <option value="$PROJECT_DIR$/coursePage/pageszero/courseDetail/courseDetail.js" />
-        <option value="$PROJECT_DIR$/components/my-back/back.less" />
-        <option value="$PROJECT_DIR$/coursePage/pageszero/courseDetail/courseDetail.less" />
-        <option value="$PROJECT_DIR$/components/my-add/add.json" />
-        <option value="$PROJECT_DIR$/pages/index/index.xml" />
-        <option value="$PROJECT_DIR$/components/my-navigator-tab/my-navigator-tab.json" />
         <option value="$PROJECT_DIR$/components/my-tip/my-tip.json" />
         <option value="$PROJECT_DIR$/components/my-top-tab/my-top-tab.json" />
         <option value="$PROJECT_DIR$/components/my-login/my-login.json" />
@@ -241,10 +195,47 @@
         <option value="$PROJECT_DIR$/pages/index/index.json" />
         <option value="$PROJECT_DIR$/pages/user/user.json" />
         <option value="$PROJECT_DIR$/app.json" />
-        <option value="$PROJECT_DIR$/components/my-add/add.xml" />
         <option value="$PROJECT_DIR$/components/my-add/add.less" />
         <option value="$PROJECT_DIR$/components/my-add/add.js" />
+        <option value="$PROJECT_DIR$/components/my-add/add.xml" />
+        <option value="$PROJECT_DIR$/sharePage/pagesshare/share/share.xml" />
+        <option value="$PROJECT_DIR$/storePage/pagesstore/releasePage/release/release.js" />
+        <option value="$PROJECT_DIR$/storePage/pagesstore/index/index.xml" />
+        <option value="$PROJECT_DIR$/storePage/pagesstore/index/index.js" />
+        <option value="$PROJECT_DIR$/enteringPage/pagestwelve/entering/entering.less" />
+        <option value="$PROJECT_DIR$/storePage/pagesstore/user/user.xml" />
+        <option value="$PROJECT_DIR$/coursePage/pageszero/courseDetail/courseDetail.js" />
+        <option value="$PROJECT_DIR$/enteringPage/pagestwelve/entering/entering.js" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/sharePage/pagesshare/share/share.js" />
+        <option value="$PROJECT_DIR$/answerPage/pagesthree/answer/answer.js" />
+        <option value="$PROJECT_DIR$/collagePage/pagesone/collage/collage.js" />
+        <option value="$PROJECT_DIR$/collectPage/pagesten/collect/collect.js" />
+        <option value="$PROJECT_DIR$/coursePage/pageszero/course/course.js" />
+        <option value="$PROJECT_DIR$/feedbackPage/pagesfour/feedback/feedback.js" />
+        <option value="$PROJECT_DIR$/newPage/pagesthrteen/new/new.js" />
+        <option value="$PROJECT_DIR$/offlinePage/pagesnine/courseOffline/courseOffline.js" />
+        <option value="$PROJECT_DIR$/offlinePage/pagesnine/offlineApply/offlineApply.js" />
+        <option value="$PROJECT_DIR$/orderPage/pagesfive/order/order.js" />
+        <option value="$PROJECT_DIR$/pages/courseOffline/courseOffline.js" />
+        <option value="$PROJECT_DIR$/pages/index/index.js" />
+        <option value="$PROJECT_DIR$/pages/user/user.js" />
+        <option value="$PROJECT_DIR$/practicePage/pagestwo/practice/practice.js" />
+        <option value="$PROJECT_DIR$/practicePage/pagestwo/practiceDetail/practiceDetail.js" />
+        <option value="$PROJECT_DIR$/releasePage/pageseleven/release/release.js" />
+        <option value="$PROJECT_DIR$/reservationPage/pagesseven/myReservation/myReservation.js" />
+        <option value="$PROJECT_DIR$/reservationPage/pagesseven/reservation/reservation.js" />
+        <option value="$PROJECT_DIR$/reservationPage/pagesseven/reservationDetail/reservationDetail.js" />
+        <option value="$PROJECT_DIR$/reservationPage/pagesseven/teacherDetail/teacherDetail.js" />
+        <option value="$PROJECT_DIR$/utils/service.js" />
+        <option value="$PROJECT_DIR$/storePage/pagesstore/incomePage/income/income.json" />
+        <option value="$PROJECT_DIR$/storePage/pagesstore/incomePage/income/income.xml" />
+        <option value="$PROJECT_DIR$/enteringPage/pagestwelve/entering/entering.json" />
+        <option value="$PROJECT_DIR$/enteringPage/pagestwelve/entering/entering.xml" />
+        <option value="$PROJECT_DIR$/coursePage/pageszero/courseDetail/courseDetail.json" />
+        <option value="$PROJECT_DIR$/storePage/pagesstore/incomePage/income/income.js" />
+        <option value="$PROJECT_DIR$/searchPage/pagessix/searchHistory/searchHistory.js" />
+        <option value="$PROJECT_DIR$/searchPage/pagessix/searchHistory/searchHistory.xml" />
       </list>
     </option>
   </component>
@@ -255,9 +246,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="573" />
-    <option name="y" value="11" />
-    <option name="width" value="1622" />
+    <option name="x" value="564" />
+    <option name="y" value="109" />
+    <option name="width" value="1267" />
     <option name="height" value="1023" />
   </component>
   <component name="ProjectView">
@@ -298,25 +289,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
+              <option name="myItemId" value="storePage" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
+              <option name="myItemId" value="pagesstore" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -330,11 +307,19 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
+              <option name="myItemId" value="storePage" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="index" />
+              <option name="myItemId" value="pagesstore" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="incomePage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="income" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -348,11 +333,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
+              <option name="myItemId" value="searchPage" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="courseOffline" />
+              <option name="myItemId" value="pagessix" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="searchHistory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="enteringPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pagestwelve" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -371,60 +378,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pageszero" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="courseDetail" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="coursePage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pageszero" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="my-add" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -564,18 +517,18 @@
       <workItem from="1546824685350" duration="15674000" />
       <workItem from="1546847503426" duration="15573000" />
       <workItem from="1546937635750" duration="5791000" />
-      <workItem from="1547002852956" duration="26129000" />
+      <workItem from="1547002852956" duration="45203000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="760837000" />
+    <option name="totallyTimeSpent" value="779911000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="573" y="11" width="1622" height="1023" extended-state="0" />
+    <frame x="564" y="109" width="1267" height="1023" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15782829" sideWeight="0.494302" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2034174" sideWeight="0.494302" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921347" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -601,71 +554,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="46" />
+      <option name="time" value="48" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/coursePage/courseDetail/courseDetail.xml">
+    <entry file="file://$PROJECT_DIR$/app.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="84" column="40" lean-forward="false" selection-start-line="84" selection-start-column="40" selection-end-line="84" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/coursePage/courseDetail2/courseDetail.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1408">
-          <caret line="64" column="44" lean-forward="false" selection-start-line="64" selection-start-column="44" selection-end-line="64" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/coursePage/courseDetail2/courseDetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="290" column="40" lean-forward="false" selection-start-line="290" selection-start-column="40" selection-end-line="290" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/user/user.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/user/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="120" column="29" lean-forward="false" selection-start-line="120" selection-start-column="29" selection-end-line="120" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/index/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="21" column="47" lean-forward="false" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/color.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sharePage/pagesshare/share/share.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="26" />
+        <state relative-caret-position="466">
+          <caret line="233" column="0" lean-forward="true" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -678,83 +575,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sharePage/pagesshare/share/share.js">
+    <entry file="file://$PROJECT_DIR$/sharePage/pagesshare/share/share.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="19" column="19" lean-forward="true" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+        <state relative-caret-position="176">
+          <caret line="8" column="59" lean-forward="true" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/messagePage/messageDetail/messageDetail.xml">
+    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/releasePage/release/release.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/messagePage/messageDetail/messageDetail.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/messagePage/messageDetail/messageDetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="123" column="24" lean-forward="true" selection-start-line="123" selection-start-column="24" selection-end-line="123" selection-end-column="24" />
+        <state relative-caret-position="324">
+          <caret line="661" column="5" lean-forward="true" selection-start-line="661" selection-start-column="5" selection-end-line="661" selection-end-column="5" />
           <folding>
-            <element signature="e#185#782#0" expanded="false" />
-            <element signature="e#799#1235#0" expanded="false" />
-            <element signature="e#1250#2072#0" expanded="false" />
+            <element signature="e#1322#3602#0" expanded="false" />
+            <element signature="e#3633#4691#0" expanded="false" />
+            <element signature="e#4720#7000#0" expanded="false" />
+            <element signature="e#7032#8090#0" expanded="false" />
+            <element signature="e#8119#10399#0" expanded="false" />
+            <element signature="e#10431#11489#0" expanded="false" />
+            <element signature="e#11515#13908#0" expanded="false" />
+            <element signature="e#13920#13974#0" expanded="false" />
+            <element signature="e#13999#14795#0" expanded="false" />
+            <element signature="e#14825#15019#0" expanded="false" />
+            <element signature="e#15038#15099#0" expanded="false" />
+            <element signature="e#15117#15306#0" expanded="false" />
+            <element signature="e#15345#17525#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sharePage/pagesshare/share/share.json">
+    <entry file="file://$PROJECT_DIR$/offlinePage/pagesnine/offlineApply/offlineApply.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state relative-caret-position="277">
+          <caret line="32" column="27" lean-forward="true" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/incomePage/income/income.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="57" column="14" lean-forward="true" selection-start-line="57" selection-start-column="14" selection-end-line="57" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/incomePage/income/income.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/incomePage/income/income.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="43" column="4" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="45" column="44" lean-forward="true" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/enteringPage/pagestwelve/entering/entering.json">
+    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/index/index.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -764,32 +623,107 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/enteringPage/pagestwelve/entering/entering.less">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/user/user.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="26" column="31" lean-forward="true" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/user/user.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/enteringPage/pagestwelve/entering/entering.xml">
+    <entry file="file://$PROJECT_DIR$/enteringPage/pagestwelve/entering/entering.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="62" column="30" lean-forward="true" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
+        <state relative-caret-position="374">
+          <caret line="44" column="5" lean-forward="true" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/enteringPage/pagestwelve/entering/entering.js">
+    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/index/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="247">
+          <caret line="132" column="9" lean-forward="false" selection-start-line="132" selection-start-column="2" selection-end-line="132" selection-end-column="9" />
+          <folding>
+            <element signature="e#89#717#0" expanded="false" />
+            <element signature="e#736#1245#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/index/index.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/answerPage/pagesthree/answer/answer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="32" column="4" lean-forward="false" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/answerPage/pagesthree/answerDetail/answerDetail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-30">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/answerPage/pagesthree/answerDetail2/answerDetail2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="83" column="9" lean-forward="false" selection-start-line="83" selection-start-column="2" selection-end-line="83" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/collagePage/pagesone/collage/collage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/collectPage/pagesten/collect/collect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="31" column="4" lean-forward="false" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coursePage/pageszero/course/course.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/coursePage/pageszero/courseDetail/courseDetail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="202" column="18" lean-forward="true" selection-start-line="202" selection-start-column="18" selection-end-line="202" selection-end-column="18" />
+        <state relative-caret-position="314">
+          <caret line="495" column="11" lean-forward="true" selection-start-line="495" selection-start-column="11" selection-end-line="495" selection-end-column="11" />
           <folding>
             <element signature="e#517#622#0" expanded="false" />
             <element signature="e#683#758#0" expanded="false" />
@@ -815,122 +749,117 @@
             <element signature="e#9945#10016#0" expanded="false" />
             <element signature="e#10049#10102#0" expanded="false" />
             <element signature="e#10135#10351#0" expanded="false" />
-            <element signature="e#10378#11427#0" expanded="false" />
-            <element signature="e#11461#13072#0" expanded="false" />
-            <element signature="e#13110#14052#0" expanded="false" />
-            <element signature="e#14088#14700#0" expanded="false" />
-            <element signature="e#14733#15786#0" expanded="false" />
+            <element signature="e#10378#11607#0" expanded="false" />
+            <element signature="e#11641#13432#0" expanded="false" />
+            <element signature="e#13470#14592#0" expanded="false" />
+            <element signature="e#14628#15240#0" expanded="false" />
+            <element signature="e#15273#16326#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coursePage/pageszero/courseDetail/courseDetail.json">
+    <entry file="file://$PROJECT_DIR$/feedbackPage/pagesfour/feedback/feedback.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="41" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="41" />
+        <state relative-caret-position="388">
+          <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/index/index.xml">
+    <entry file="file://$PROJECT_DIR$/newPage/pagesthrteen/new/new.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="105" column="62" lean-forward="true" selection-start-line="105" selection-start-column="62" selection-end-line="105" selection-end-column="62" />
+        <state relative-caret-position="352">
+          <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/my-tip/my-tip.json">
+    <entry file="file://$PROJECT_DIR$/offlinePage/pagesnine/courseOffline/courseOffline.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+        <state relative-caret-position="388">
+          <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/my-top-tab/my-top-tab.json">
+    <entry file="file://$PROJECT_DIR$/offlinePage/pagesnine/offlineApply/offlineApply.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+        <state relative-caret-position="423">
+          <caret line="99" column="4" lean-forward="false" selection-start-line="99" selection-start-column="4" selection-end-line="99" selection-end-column="4" />
+          <folding>
+            <element signature="e#267#509#0" expanded="false" />
+            <element signature="e#554#929#0" expanded="false" />
+            <element signature="e#992#1106#0" expanded="false" />
+            <element signature="e#8967#9902#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orderPage/pagesfive/order/order.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="30" column="4" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/my-login/my-login.json">
+    <entry file="file://$PROJECT_DIR$/pages/courseOffline/courseOffline.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/my-back/back.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="41" lean-forward="false" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/canvasdrawer/canvasdrawer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="1" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/my-navigator-tab/my-navigator-tab.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="1" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/my-navigator-tab/my-navigator-tab.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="388">
+          <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/index/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="36" lean-forward="true" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+        <state relative-caret-position="309">
+          <caret line="305" column="4" lean-forward="false" selection-start-line="305" selection-start-column="4" selection-end-line="305" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/canvasdrawer/canvasdrawer.js">
+    <entry file="file://$PROJECT_DIR$/pages/user/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="11" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="251" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/my-login/my-login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="20" />
+        <state relative-caret-position="357">
+          <caret line="65" column="4" lean-forward="false" selection-start-line="65" selection-start-column="4" selection-end-line="65" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/courseOffline/courseOffline.xml">
+    <entry file="file://$PROJECT_DIR$/practicePage/pagestwo/practice/practice.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="17" />
+        <state relative-caret-position="542">
+          <caret line="45" column="4" lean-forward="false" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/index/index.less">
+    <entry file="file://$PROJECT_DIR$/practicePage/pagestwo/practiceDetail/practiceDetail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/releasePage/pageseleven/release/release.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="40" column="4" lean-forward="false" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reservationPage/pagesseven/myReservation/myReservation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="542">
+          <caret line="26" column="4" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reservationPage/pagesseven/reservation/reservation.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -938,124 +867,158 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/courseOffline/courseOffline.json">
+    <entry file="file://$PROJECT_DIR$/reservationPage/pagesseven/reservation/reservation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="21" lean-forward="false" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+        <state relative-caret-position="344">
+          <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/user/user.xml">
+    <entry file="file://$PROJECT_DIR$/reservationPage/pagesseven/reservationDetail/reservationDetail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="28" column="17" lean-forward="true" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+        <state relative-caret-position="476">
+          <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.json">
+    <entry file="file://$PROJECT_DIR$/reservationPage/pagesseven/teacherDetail/teacherDetail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="169" column="4" lean-forward="false" selection-start-line="169" selection-start-column="4" selection-end-line="169" selection-end-column="4" />
+        <state relative-caret-position="542">
+          <caret line="26" column="4" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/user/user.json">
+    <entry file="file://$PROJECT_DIR$/sharePage/pagesshare/share/share.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="68" lean-forward="true" selection-start-line="6" selection-start-column="68" selection-end-line="6" selection-end-column="68" />
+        <state relative-caret-position="286">
+          <caret line="36" column="4" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/index/index.json">
+    <entry file="file://$PROJECT_DIR$/teacherPage/pageseight/teacherAnswer/teacherAnswer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/my-back/back.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="2" lean-forward="false" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/my-back/back.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/my-add/add.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coursePage/pageszero/courseDetail/courseDetail.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="531" column="11" lean-forward="true" selection-start-line="531" selection-start-column="11" selection-end-line="531" selection-end-column="11" />
-          <folding>
-            <element signature="n#view#0;n#view#0;n#scroll-view#0;n#!!top" expanded="false" />
-            <element signature="n#view#8;n#view#0;n#view#0;n#scroll-view#0;n#!!top" expanded="false" />
-            <element signature="n#view#0;n#view#1;n#scroll-view#0;n#!!top" expanded="false" />
-            <element signature="n#view#1;n#view#1;n#scroll-view#0;n#!!top" expanded="false" />
-            <element signature="n#view#4;n#!!top" expanded="false" />
-            <element signature="n#view#5;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coursePage/pageszero/courseDetail/courseDetail.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="731" column="7" lean-forward="true" selection-start-line="731" selection-start-column="7" selection-end-line="731" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/my-add/add.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="73" column="1" lean-forward="true" selection-start-line="73" selection-start-column="1" selection-end-line="73" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/my-add/add.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="51" lean-forward="false" selection-start-line="0" selection-start-column="45" selection-end-line="0" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/my-add/add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="33" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+        <state relative-caret-position="176">
+          <caret line="8" column="9" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="755" column="23" lean-forward="false" selection-start-line="755" selection-start-column="23" selection-end-line="755" selection-end-column="23" />
+        <state relative-caret-position="229">
+          <caret line="349" column="19" lean-forward="true" selection-start-line="349" selection-start-column="19" selection-end-line="349" selection-end-column="19" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="e#12414#12801#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="48" column="12" lean-forward="false" selection-start-line="48" selection-start-column="2" selection-end-line="48" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/incomePage/income/income.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/my-top-tab/my-top-tab.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/my-back/back.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/offlinePage/pagesnine/courseOffline/courseOffline.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/offlinePage/pagesnine/offlineApply/offlineApply.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/enteringPage/pagestwelve/entering/entering.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/enteringPage/pagestwelve/entering/entering.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="2" lean-forward="true" selection-start-line="2" selection-start-column="2" selection-end-line="4" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coursePage/pageszero/courseDetail/courseDetail.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/incomePage/income/income.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storePage/pagesstore/incomePage/income/income.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="73" column="13" lean-forward="true" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/searchPage/pagessix/searchHistory/searchHistory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-374">
+          <caret line="28" column="57" lean-forward="false" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/searchPage/pagessix/searchHistory/searchHistory.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="17" column="55" lean-forward="false" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -9,5 +9,5 @@
   // 类型：HexColor；默认值：#ffffff
   // 窗口的背景色
   "backgroundColor": "#eeeeee",
-  "enablePullDownRefresh": false
+  "enablePullDownRefresh": true
 }

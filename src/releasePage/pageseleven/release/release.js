@@ -33,6 +33,12 @@ Page({
     upImgArrProgress: [],
     content: 0
   },
+  onShareAppMessage () {
+    return {
+      title: '绣学问，真纹绣',
+      path: `/pages/index/index`
+    }
+  },
   inputValue (e) {
     this.setData({
       content: e.detail.value

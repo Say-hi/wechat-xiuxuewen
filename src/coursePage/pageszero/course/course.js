@@ -12,7 +12,12 @@ Page({
     page: 0,
     currentIndex: 0
   },
-
+  onShareAppMessage () {
+    return {
+      title: '绣学问，真纹绣',
+      path: `/pages/index/index`
+    }
+  },
   chooseIndex (e) {
     app.setBar(e.currentTarget.dataset.text)
     this.data.lists = []

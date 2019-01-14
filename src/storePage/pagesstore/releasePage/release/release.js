@@ -563,6 +563,7 @@ Page({
       url: app.getUrl().teacherDotSub,
       data: {
         id: that.data.id || '',
+        openid: app.gs(),
         avatar: that.data.upImgArr6[0].real,
         user_id: app.gs('userInfoAll').id,
         room_name: e.detail.value.name,

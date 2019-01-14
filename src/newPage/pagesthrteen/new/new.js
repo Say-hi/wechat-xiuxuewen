@@ -9,7 +9,12 @@ Page({
   data: {
     title: 'new'
   },
-
+  onShareAppMessage () {
+    return {
+      title: '绣学问，真纹绣',
+      path: `/pages/index/index`
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */

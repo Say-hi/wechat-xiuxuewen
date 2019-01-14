@@ -25,6 +25,12 @@ Page({
     ],
     lists: []
   },
+  onShareAppMessage () {
+    return {
+      title: '绣学问，真纹绣',
+      path: `/pages/index/index`
+    }
+  },
   getData () {
     this.getList()
     wx.pageScrollTo({

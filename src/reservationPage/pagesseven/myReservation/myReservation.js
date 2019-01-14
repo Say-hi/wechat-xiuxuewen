@@ -19,6 +19,12 @@ Page({
     ],
     testImg: app.data.testImg
   },
+  onShareAppMessage () {
+    return {
+      title: '绣学问，真纹绣',
+      path: `/pages/index/index`
+    }
+  },
   goToShop () {
     wx.openLocation({
       // latitude: latitude,

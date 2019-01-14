@@ -15,8 +15,8 @@
       <!--<view class="jwq icon-shanchu" bindtap="cleanHistory"></view>-->
     </view>
     <view class="menu2-comment">
-      <view bindtap="chooseTip" data-content="{{ item }}" data-type="key" data-choose="{{ index }}" class="menu2-comment-item mt20 {{ keyWordIndex == index ?  'active' : '' }}" wx:for="{{ keyWord }}" wx:key="unique">
-        {{ item }}
+      <view bindtap="chooseTip" data-content="{{ item.t }}" data-type="key" data-choose="{{ index }}" class="menu2-comment-item mt20 {{ keyWordIndex == index ?  'active' : '' }}" wx:for="{{ keyWord }}" wx:key="unique">
+        {{ item.t }}
       </view>
     </view>
   </view>

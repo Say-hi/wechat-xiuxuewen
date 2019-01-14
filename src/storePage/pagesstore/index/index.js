@@ -25,23 +25,6 @@ Page({
     ],
     testImg: app.data.testImg
   },
-  getMessage () {
-    let that = this
-    app.wxrequest({
-      url: app.getUrl().teacherUserSys,
-      data: {
-        user_id: app.gs('userInfoAll').id
-      },
-      success (res) {
-        wx.hideLoading()
-        if (res.data.status === 200) {
-
-        } else {
-          app.setToast(that, {content: res.data.desc})
-        }
-      }
-    })
-  },
   getRoomInfo () {
     let that = this
     app.wxrequest({
@@ -72,12 +55,53 @@ Page({
       })
     }
   },
+  getMsg () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().teacherActiveMsg,
+      data: {
+        user_id: app.gs('userInfoAll').id,
+        num: 3
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          for (let v of res.data.data) {
+            v.create_time = app.moment(v.create_time * 1000)
+          }
+          that.setData({
+            MSG: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+  getInfo () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().userInfo,
+      data: {
+        user_id: app.gs('userInfoAll').id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          app.su('userInfoAll', res.data.data)
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
     app.setBar('首页')
     this.getRoomInfo()
+    this.getInfo()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -89,7 +113,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow () {
-    this.getMessage()
+    this.getMsg()
     // console.log(' ---------- onShow ----------')
   },
   /**

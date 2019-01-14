@@ -11,25 +11,28 @@ Page({
     keyWord: [1, 23, 4],
     searchShow: true
   },
+  onShareAppMessage () {
+    return {
+      title: '绣学问，真纹绣',
+      path: `/pages/index/index`
+    }
+  },
   getKey () {
-    // let that = this
-    // app.wxrequest({
-    //   url: app.getUrl().keywords,
-    //   data: {
-    //     key: app.gs(),
-    //     type: that.data.options.type === 'goods' ? 1 : 0
-    //   },
-    //   success (res) {
-    //     wx.hideLoading()
-    //     if (res.data.code === 1) {
-    //       that.setData({
-    //         keyWord: res.data.data
-    //       })
-    //     } else {
-    //       app.setToast(that, {content: res.data.msg})
-    //     }
-    //   }
-    // })
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().homeSearch,
+      data: {},
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            keyWord: res.data.data[that.data.options.type]
+          })
+        } else {
+          app.setToast(that, {content: res.data.msg})
+        }
+      }
+    })
   },
   cleanHistory () {
     this.setData({
@@ -117,6 +120,21 @@ Page({
         that.setData({
           history: wx.getStorageSync(type)
         })
+      }
+    })
+  },
+  getHot () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().search,
+      data: {},
+      success (res) {
+        wx.hideLaoding()
+        if (res.data.status === 200) {
+
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
       }
     })
   },

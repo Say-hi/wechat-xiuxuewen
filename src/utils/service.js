@@ -6,6 +6,7 @@ const baseDomain = 'https://teach.idwenshi.com/teaching/public/index.php'
 const serviceUrl = {
   style: baseDomain + '/home/page', // 不填默认为1, 1表示中间菜单,2表示底部菜单,3表示广告图
   enum: baseDomain + '/home/enum', // 获取标签
+  search: baseDomain + '/home/search', // 获取标签
   login: baseDomain + '/weixin/login', // 登陆
   course: baseDomain + '/course/last', // 课程
   courseSearch: baseDomain + '/course/search', // 搜索课程
@@ -44,6 +45,8 @@ const serviceUrl = {
   userCollectCancel: baseDomain + '/user/collect_cancel', // 用户取消收藏
   userInfo: baseDomain + '/user/info', // 用户信息
   userGift: baseDomain + '/user/gift', // 礼包
+  payDot: baseDomain + '/pay/dot', // 支付成为门店入驻
+  homeSearch: baseDomain + '/home/search', // 搜索关键字
   upImage: baseDomain + '/upload/image', // 图片上传
   // 门店端接口
   teacherUserVideo: baseDomain + '/teacher/user/video', // 获取上传过的视频
@@ -59,7 +62,9 @@ const serviceUrl = {
   teacherUserSysDetail: baseDomain + '/teacher/user/sys_detail', // 系统通修改为已读
   teacherUserEvaluateMsg: baseDomain + '/teacher/user/evaluate_msg', // 教师查看用户对视频的评价
   teacherUserVideoCollect: baseDomain + '/teacher/user/video_collect', // 教师查看用户的收藏的信息列表
-
+  teacherUserCash: baseDomain + '/teacher/user/cash', // 教师提现
+  teacherDotShare: baseDomain + '/teacher/dot/share', // 教师邀请
+  teacherActiveMsg: baseDomain + '/teacher/active/msg', // 获取一条驻店课程消息
   teacherUserActive: baseDomain + '/teacher/user/active' // 获取线下课程
 }
 module.exports = serviceUrl

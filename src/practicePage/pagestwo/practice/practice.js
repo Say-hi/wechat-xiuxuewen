@@ -38,6 +38,12 @@ Page({
       }
     ]
   },
+  onShareAppMessage () {
+    return {
+      title: '绣学问，真纹绣',
+      path: `/pages/index/index`
+    }
+  },
   navigate (e) {
     wx.navigateTo({
       url: e.currentTarget.dataset.url

@@ -1,13 +1,14 @@
+<import src="/wxPrase/wxParse"></import>
 <view class="wrap pr">
-  <image mode="aspectFill" src="{{ bg }}"></image>
+  <image mode="aspectFill" src="{{ info.image_url }}"></image>
   <view class="pa share-p cff4159 tac">
-    <view class="f28">已成功邀请10人</view>
-    <view class="f88 fw7">1980</view>
+    <view class="f28">已成功邀请{{ info.data.total }}人</view>
+    <view class="f88 fw7">{{ info.data.amount }}</view>
     <view class="f24">累计获得奖励 (元)</view>
   </view>
   <scroll-view class="pa scroll f28 cfff tac p30" scroll-y>
     <view>活动说明</view>
-    <text class="mt20">邀请门店入驻成为我们的教学 基地可以获取</text><text class="c000">198元现金红包</text>
+    <template is="wxParse" data="{{ wxParseData: title.nodes }}"></template>
   </scroll-view>
   <button class="share-btn" open-type="share"></button>
 </view>

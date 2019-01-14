@@ -92,6 +92,12 @@ Page({
     expectedArr: ['一天', '两天', '三天', '四天', '五天', '一个星期'],
     expectedIndex: 0
   },
+  onShareAppMessage () {
+    return {
+      title: '绣学问，真纹绣',
+      path: `/pages/index/index`
+    }
+  },
   showBottomScorll (e) {
     let type = e.currentTarget.dataset.type
     let that = this
@@ -278,6 +284,38 @@ Page({
       }
     })
   },
+  dotPay () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().payDot,
+      data: {
+        openid: app.gs(),
+        user_id: app.gs('userInfoAll').id,
+        gift_id: that.data.options.id,
+        name: that.data.addressInfo.userName,
+        phone: that.data.addressInfo.telNumber,
+        count: 1,
+        address: `${that.data.addressInfo.provinceName}${that.data.addressInfo.cityName}${that.data.addressInfo.countyName}${that.data.addressInfo.detailInfo}`
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          app.wxpay(Object.assign(res.data.data.msg, {
+            success () {
+              that.setData({
+                swiperIndex: 1
+              })
+            },
+            fail () {
+              app.setToast(that, {content: '未完成支付'})
+            }
+          }))
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   activeSApply () {
     let that = this
     let makeTime = new Date(that.data.date).getTime()
@@ -312,6 +350,7 @@ Page({
   nextTick (e) {
     if (e.currentTarget.dataset.index * 1 === 1) {
       if (!this.data.addressInfo) return app.setToast(this, {content: '请选择您的收货地址'})
+      if (this.data.options.type === 'entering') return this.dotPay()
       return this.pay()
     } else if (e.currentTarget.dataset.index * 1 === 3 && (!this.data.nameText || this.data.phoneText.length * 1 !== 11)) {
       return app.setToast(this, {content: '请填写您的个人信息'})

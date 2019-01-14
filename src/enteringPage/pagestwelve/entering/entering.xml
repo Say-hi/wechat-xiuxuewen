@@ -32,7 +32,7 @@
         </view>
       </view>
       <view class="bottom-btn mt30">
-        <navigator url="/offlinePage/pagesnine/offlineApply/offlineApply?type=entering&name=12342134&price=123&id=12" class="f34 b-t cfff fw7 lh88 tac">立刻开通 ¥{{ lists[giftIndex].price }}/年</navigator>
+        <navigator url="/offlinePage/pagesnine/offlineApply/offlineApply?type=entering&name={{ lists[giftIndex].title }}&price={{ lists[giftIndex].price }}&id={{ lists[giftIndex].id }}" class="f34 b-t cfff fw7 lh88 tac">立刻开通 ¥{{ lists[giftIndex].price }}/年</navigator>
       </view>
       <view class="tac c444 f24 mt30">我已阅读并同意《绣学问平台入驻协议》</view>
     </view>
@@ -61,6 +61,7 @@
         <image wx:for="{{ lists[giftIndex].auth }}"
                wx:key="*133"
                mode="widthFix"
+               style="width:100%;"
                lazy-load
                src="{{ item.image }}"></image>
       </view>
@@ -70,6 +71,7 @@
     </view>
   </view>
 </view>
+<my-back></my-back>
 <!--错误弹窗-->
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

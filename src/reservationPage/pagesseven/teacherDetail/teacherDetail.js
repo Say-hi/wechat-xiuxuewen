@@ -19,6 +19,12 @@ Page({
     reservation_bg: app.data.reservation_bg,
     testImg: app.data.testImg
   },
+  onShareAppMessage () {
+    return {
+      title: '绣学问，真纹绣',
+      path: `/pages/index/index`
+    }
+  },
   chooseIndex (e) {
     this.setData({
       currentIndex: e.currentTarget.dataset.index

@@ -338,7 +338,16 @@ App({
             wx.setStorageSync('userInfo', data.userInfo)
             let objs = {
               url: useUrl.login,
-              data: {
+              data: params ? {
+                parent_id: params,
+                code,
+                nickname: data.userInfo.nickName,
+                avatar_url: data.userInfo.avatarUrl,
+                sex: data.userInfo.gender,
+                city: data.userInfo.city,
+                country: data.userInfo.country,
+                province: data.userInfo.province
+              } : {
                 code,
                 nickname: data.userInfo.nickName,
                 avatar_url: data.userInfo.avatarUrl,
@@ -360,6 +369,7 @@ App({
                     wx.hideLoading()
                     if (res.data.status === 200) {
                       that.su('userInfoAll', res.data.data)
+                      if (params) return
                       let currentPage = getCurrentPages()
                       let query = ''
                       try {
@@ -385,7 +395,10 @@ App({
             console.log(err)
             let objs = {
               url: useUrl.login,
-              data: {
+              data: params ? {
+                code,
+                parent_id: params
+              } : {
                 code
               },
               success (session) {
@@ -404,6 +417,7 @@ App({
                     }
                   }
                 })
+                if (params) return
                 let currentPage = getCurrentPages()
                 let query = ''
                 try {
