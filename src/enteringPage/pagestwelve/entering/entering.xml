@@ -34,7 +34,7 @@
       <view class="bottom-btn mt30">
         <navigator url="/offlinePage/pagesnine/offlineApply/offlineApply?type=entering&name={{ lists[giftIndex].title }}&price={{ lists[giftIndex].price }}&id={{ lists[giftIndex].id }}" class="f34 b-t cfff fw7 lh88 tac">立刻开通 ¥{{ lists[giftIndex].price }}/年</navigator>
       </view>
-      <view class="tac c444 f24 mt30">我已阅读并同意《绣学问平台入驻协议》</view>
+      <view catchtap="rulerChange" class="tac c444 f24 mt30">我已阅读并同意《绣学问平台入驻协议》</view>
     </view>
     <!--获得-->
     <view class="p30 br18 bgfff mt20">
@@ -71,7 +71,16 @@
     </view>
   </view>
 </view>
+
+<view catchtap="rulerChange" class='ruler {{ rulerShow ? "" : "noshow" }}'>
+  <view class="ruler-wrap" catchtap="noup">
+    <scroll-view scroll-y="{{true}}" style="height: 100%;">
+      <template is="wxParse" data="{{ wxParseData: ruler.nodes }}"></template>
+    </scroll-view>
+  </view>
+</view>
 <my-back></my-back>
 <!--错误弹窗-->
+<import src="/wxParse/wxParse"></import>
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

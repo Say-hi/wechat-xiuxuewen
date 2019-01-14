@@ -14,6 +14,7 @@ Page({
     title: 'entering'
   },
   chooseGift (e) {
+    app.WP('ruler', 'html', this.data.lists[e.currentTarget.dataset.index].rule, this, 5)
     this.setData({
       giftIndex: e.currentTarget.dataset.index
     })
@@ -33,6 +34,7 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
+          app.WP('ruler', 'html', res.data.data[0].rule, that, 5)
           that.setData({
             lists: res.data.data
           })
@@ -40,6 +42,12 @@ Page({
           app.setToast(that, {content: res.data.desc})
         }
       }
+    })
+  },
+  noup () {},
+  rulerChange () {
+    this.setData({
+      rulerShow: !this.data.rulerShow
     })
   },
   /**
