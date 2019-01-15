@@ -100,6 +100,9 @@
                wx:key="*932"
                mode="widthFix"
                style="width: 100%;"
+               catchtap="showImg2"
+               data-src="{{ item }}"
+               data-label="detail"
                lazy-load
                src="{{ item }}"></image>
       </view>
@@ -289,6 +292,9 @@
         <image lazy-load="{{true}}" class="mt20"
                wx:for="{{ detailInfo.room_images }}"
                wx:key="*987"
+               catchtap="showImg2"
+               data-src="{{ item }}"
+               data-label="room_images"
                mode="widthFix"
                src="{{ item }}"></image>
       </view>
@@ -299,6 +305,9 @@
                class="mt20"
                wx:for="{{ detailInfo.room_teacher }}"
                wx:key="*988"
+               catchtap="showImg2"
+               data-src="{{ item }}"
+               data-label="room_teacher"
                mode="widthFix"
                src="{{ item }}"></image>
       </view>
@@ -533,7 +542,7 @@
   </form>
 </view>
 <my-back></my-back>
-<view class="outsize" catchtap="noneedsmall">{{ needSmall ? '放大' : '缩小' }}</view>
+<!--<view class="outsize" catchtap="noneedsmall">{{ needSmall ? '放大' : '缩小' }}</view>-->
 <!--<my-navigator-tab wx:if="{{ !needSmall }}" prop-nav="{{ tabArr2 }}"></my-navigator-tab>-->
 <my-add></my-add>
 <!--错误弹窗-->

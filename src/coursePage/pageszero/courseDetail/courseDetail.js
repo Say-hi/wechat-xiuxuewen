@@ -279,6 +279,9 @@ Page({
   showImg (e) {
     app.showImg(e.currentTarget.dataset.src, e.currentTarget.dataset.type === 'swiper' ? this.data.swiperArr : this.data.detailInfo.show_image)
   },
+  showImg2 (e) {
+    app.showImg(e.currentTarget.dataset.src, this.data.detailInfo[e.currentTarget.dataset.label])
+  },
   // 支付操作
   buyOperation () {
     // todo 发起支付

@@ -19,7 +19,7 @@
           wx:key="*77">
       <view class="f30 c393636 df">
         <text>{{ item.title }}</text>
-        <text class="fw7">+{{ item.amount }}元</text>
+        <text class="fw7">{{ item.amount < 0 ? '-' + item.amount : '+' + item.amount }}元</text>
       </view>
       <view class="f28 c999 mt10">{{ item.create_time }}</view>
     </view>
