@@ -1,4 +1,407 @@
-<view class=""></view>
+<swiper style="width: 100%; height: 100%;"
+        vertical="{{true}}"
+        bindchange="swiperChange"
+        current="{{ tabIndex }}">
+  <swiper-item >
+    <view class="page-wrap page1">
+      <view class="top-bg">
+        <image src="{{ testImg }}"></image>
+      </view>
+      <view class="p30 f30 cfff fw7 lv-wrap">
+        <view catchtap="lvChoose" data-index="0" class="lv-1 {{ lvIndex == 0 ? 'active' : '' }}">第一阶段</view>
+        <view catchtap="lvChoose" data-index="1" class="lv-2 {{ lvIndex == 1 ? 'active' : '' }}">第二阶段</view>
+        <view catchtap="lvChoose" data-index="2" class="lv-3 {{ lvIndex == 2 ? 'active' : '' }}">第三阶段</view>
+      </view>
+      <view class="f34 c3a3a3a fw7 tac mt30">{{ titleArr[lvIndex] }}</view>
+      <view class="p30" style="padding-top: 20rpx;">
+        <view class="video-wrap bgfff br18 p10">
+          <video class="br18" objectFit="fill" src="{{ videoUrl }}"></video>
+        </view>
+      </view>
+      <view catchtap="chooseTab" data-index="1" class="f28 lh60 fw7 tac iconfont icon-jiantouarrowheads3 cf46677">点击翻页</view>
+    </view>
+  </swiper-item>
+  <!--1-1-->
+  <swiper-item wx:if="{{ lvIndex <= 0 }}">
+    <view style="height: 88rpx;"></view>
+    <image class="bg-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/001.png" style="left: 0;"></image>
+    <view class="content-wrap">
+      <view class="s-title pr tac bgfff f36 c3a3a3a fw7 mt20">
+        <image class="title-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/002.png"></image>
+        01.纹绣师的内功心法
+      </view>
+      <view class="p30 pr" style="padding: 20rpx 30rpx 20rpx 30rpx">
+        <view class="s-content p20 bb">
+          <view class="br18 tal bgfff f30 c3a3a3a lh42" style="padding: 40rpx 30rpx;">
+            <view>要想成为一名优秀的纹绣师，</view>
+            <view>就一定要明白</view>
+            <view>万丈高楼从地起的基本道理。</view>
+            <view>只有夯实了纹饰基本功，</view>
+            <view>才能立于不败之地，</view>
+            <view>因为不管以后市场和审美趋势如何变化，</view>
+            <view>你都可以应对自如，</view>
+            <view>这是万变不离其宗的道理！</view>
+          </view>
+        </view>
+      </view>
+      <view style="padding: 0 30rpx; display: flex;">
+        <view class="s-one-left">
+          <image catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image catchtap="showImg" data-src="{{}}" class="mt10" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+        <view class="s-one-right">
+          <image catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <!--1-2-->
+  <swiper-item wx:if="{{ lvIndex <= 0 }}">
+    <view style="height: 88rpx;"></view>
+    <image class="bg-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/003.png" style="right: 0"></image>
+    <view class="content-wrap">
+      <view class="s-title s-title2 bb pr tac bgfff f36 c3a3a3a fw7 mt20">
+        <image class="title-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/004.png"></image>
+        02.扎实基础
+      </view>
+      <view class="p30 pr" style="padding: 20rpx 30rpx 20rpx 30rpx">
+        <view class="s-content p20 bb">
+          <view class="br18 tal bgfff f30 c3a3a3a lh42" style="padding: 30rpx 30rpx;">
+            <view>要想打好基础，</view>
+            <view>就需要进行全面的、系统的、</view>
+            <view>科学的过关训练，</view>
+            <view>而这种训练除了需要好方法、</view>
+            <view>好老师的同时，</view>
+            <view>还要有一定的时间的沉淀！</view>
+          </view>
+        </view>
+      </view>
+      <view style="padding: 0 30rpx; display: flex;">
+        <view class="s-one-left">
+          <image style="height: 170rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="height: 152rpx;" catchtap="showImg" data-src="{{}}" class="mt10" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="height: 152rpx;" catchtap="showImg" data-src="{{}}" class="mt10" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+        <view class="s-one-right">
+          <image style="height: 255rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="height: 255rpx;" catchtap="showImg" data-src="{{}}" class="" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <!--1-3-->
+  <swiper-item wx:if="{{ lvIndex <= 0 }}">
+    <view style="height: 88rpx;"></view>
+    <image class="bg-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/001.png" style="left: 0;"></image>
+    <view class="content-wrap">
+      <view class="s-title pr tac bgfff f36 c3a3a3a fw7 mt20">
+        <image class="title-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/002.png"></image>
+        03.欲速则不达
+      </view>
+      <view class="p30 pr" style="padding: 20rpx 30rpx 20rpx 30rpx">
+        <view class="s-content p20 bb">
+          <view class="br18 tal bgfff f30 c3a3a3a lh42" style="padding: 40rpx 30rpx;">
+            <view>欲速则不达，</view>
+            <view>切不可线条眉过不了关就去学雾眉；</view>
+            <view>教室里没有学明白，</view>
+            <view>就去参加大酒店的所谓“公开课”；</view>
+            <view>当你把希望寄托在了</view>
+            <view>三天两夜的形式化学习和分享中，</view>
+            <view>把学习技术变成了几百人的凑热闹，</view>
+            <view>原本做手艺赚钱的初心</view>
+            <view>被误导成了出卖自己的同道获取小利，</view>
+            <view>得不偿失！</view>
+          </view>
+        </view>
+      </view>
+      <view style="padding: 0 30rpx; display: flex;">
+        <view class="s-one-left">
+          <image style="width: 366rpx; height: 340rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+        <view class="s-one-right">
+          <image style="width: 274rpx; height: 193rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="width: 274rpx; height: 129rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <!--1-4-->
+  <swiper-item wx:if="{{ lvIndex <= 0 }}">
+    <view style="height: 88rpx;"></view>
+    <image class="bg-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/003.png" style="right: 0"></image>
+    <view class="content-wrap">
+      <view class="s-title s-title2 bb pr tac bgfff f36 c3a3a3a fw7 mt20">
+        <image class="title-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/004.png"></image>
+        04.不忘初心
+      </view>
+      <view class="p30 pr" style="padding: 20rpx 30rpx 20rpx 30rpx">
+        <view class="s-content p20 bb">
+          <view class="br18 tal bgfff f30 c3a3a3a lh42" style="padding: 30rpx 30rpx;">
+            <view>市场上这种舍本求末、</view>
+            <view>急功近利的炒作教学，</view>
+            <view>别有用心甚至是误人子弟的人也很多，</view>
+            <view>只有你不忘初心，</view>
+            <view>坚持明确的成长学习方向，</view>
+            <view>脚踏实地，</view>
+            <view>一步一个脚印的去成长，</view>
+            <view>你自然有望成为</view>
+            <view>一名成功的优秀纹饰美容师！</view>
+          </view>
+        </view>
+      </view>
+      <view style="padding: 0 30rpx; display: flex;">
+        <view class="s-one-left">
+          <image style="height: 195rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="height: 195rpx;" catchtap="showImg" data-src="{{}}" class="mt10" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+        <view class="s-one-right">
+          <image style="height: 402rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+
+  <!--2-1-->
+  <swiper-item wx:if="{{ lvIndex == 1 }}">
+    <view style="height: 88rpx;"></view>
+    <image class="bg-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/001.png" style="left: 0;"></image>
+    <view class="content-wrap">
+      <view class="s-title pr tac bgfff f36 c3a3a3a fw7 mt20">
+        <image class="title-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/002.png"></image>
+        01.当前的困惑
+      </view>
+      <view class="p30 pr" style="padding: 20rpx 30rpx 20rpx 30rpx">
+        <view class="s-content p20 bb">
+          <view class="br18 tal bgfff f30 c3a3a3a lh42" style="padding: 40rpx 30rpx;">
+            <view>你是否遇到过这些问题：</view>
+            <view>明明眉毛绣的很好，生意却不怎么样？</view>
+            <view>明明客人进步的很多，可惜成交不理想？</view>
+            <view>既使成交了，可是价格又很低？</view>
+            <view>终上所述，原因何在？</view>
+          </view>
+        </view>
+      </view>
+      <view style="padding: 0 30rpx; display: flex;">
+        <view class="s-one-left">
+          <image style="width: 260rpx; height:170rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="width: 260rpx; height:340rpx;" catchtap="showImg" data-src="{{}}" class="mt10" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+        <view class="s-one-right">
+          <image style="width: 380rpx; height: 255rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="width: 380rpx; height: 255rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <!--2-2-->
+  <swiper-item wx:if="{{ lvIndex == 1 }}">
+    <view style="height: 88rpx;"></view>
+    <image class="bg-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/003.png" style="right: 0"></image>
+    <view class="content-wrap">
+      <view class="s-title s-title2 bb pr tac bgfff f36 c3a3a3a fw7 mt20">
+        <image class="title-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/004.png"></image>
+        02.绣外功
+      </view>
+      <view class="p30 pr" style="padding: 20rpx 30rpx 20rpx 30rpx">
+        <view class="s-content p20 bb">
+          <view class="br18 tal bgfff f30 c3a3a3a lh42" style="padding: 30rpx 30rpx;">
+            <view>其实是你的个人素养即“绣外功”提升的还不够！</view>
+            <view>所谓的“绣外功”包含有：社会共识、道德共鸣、审美趋势、文化素质、专业话题、待人处事、现场管理、客情维护、自我管理、是非区分等等！</view>
+          </view>
+        </view>
+      </view>
+      <view style="padding: 0 30rpx; display: flex;">
+        <view class="s-one-left">
+          <image style="height: 340rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="height: 170rpx;" catchtap="showImg" data-src="{{}}" class="mt10" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+        <view class="s-one-right">
+          <image style="height: 255rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="height: 255rpx;" catchtap="showImg" data-src="{{}}" class="" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <!--2-3-->
+  <swiper-item wx:if="{{ lvIndex == 1 }}">
+    <view style="height: 88rpx;"></view>
+    <image class="bg-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/001.png" style="left: 0;"></image>
+    <view class="content-wrap">
+      <view class="s-title pr tac bgfff f36 c3a3a3a fw7 mt20">
+        <image class="title-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/002.png"></image>
+        03.艺必有年
+      </view>
+      <view class="p30 pr" style="padding: 20rpx 30rpx 20rpx 30rpx">
+        <view class="s-content p20 bb">
+          <view class="br18 tal bgfff f30 c3a3a3a lh42" style="padding: 40rpx 30rpx;">
+            <view>内容虽多，但艺必有年，</view>
+            <view>慢慢来，</view>
+            <view>只要方向对了，一年一年的成长，</view>
+            <view>争取在两到三年以内，</view>
+            <view>脱颖而出，</view>
+            <view>技术+素养的双重提升，</view>
+            <view>更能助你获得个人事业上的成功！</view>
+          </view>
+        </view>
+      </view>
+      <view style="padding: 0 30rpx; display: flex;">
+        <view class="s-one-left">
+          <image style="width: 260rpx; height: 231rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="width: 260rpx; height: 216rpx;" catchtap="showImg" data-src="{{}}" class="mt10" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+        <view class="s-one-right">
+          <image style="width: 380rpx; height: 238rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="width: 380rpx; height: 222rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+
+  <!--3-1-->
+  <swiper-item wx:if="{{ lvIndex == 2 }}">
+    <view style="height: 88rpx;"></view>
+    <image class="bg-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/001.png" style="left: 0;"></image>
+    <view class="content-wrap">
+      <view class="s-title pr tac bgfff f36 c3a3a3a fw7 mt20">
+        <image class="title-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/002.png"></image>
+        01.自我包装
+      </view>
+      <view class="p30 pr" style="padding: 20rpx 30rpx 20rpx 30rpx">
+        <view class="s-content p20 bb">
+          <view class="br18 tal bgfff f30 c3a3a3a lh42" style="padding: 40rpx 30rpx;">
+            <view>人靠衣装，佛要金装！</view>
+            <view>“包装”自我，</view>
+            <view>应要在你的技术很好、</view>
+            <view>心正意诚的前提下方可进行！</view>
+          </view>
+        </view>
+      </view>
+      <view style="padding: 0 30rpx; display: flex;">
+        <view class="s-one-left">
+          <image style="width: 162rpx; height:148rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="width: 162rpx; height: 215rpx;" catchtap="showImg" data-src="{{}}" class="mt10" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="width: 162rpx; height: 192rpx;" catchtap="showImg" data-src="{{}}" class="mt10" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+        <view class="s-one-left" style="margin-left: 10rpx;">
+          <image style="width: 285rpx; height:185rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="width: 285rpx; height:186rpx;" catchtap="showImg" data-src="{{}}" class="mt10" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="width: 285rpx; height:198rpx;" catchtap="showImg" data-src="{{}}" class="mt10" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+        <view class="s-one-right">
+          <image style="width: 162rpx; height: 197rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="width: 162rpx; height: 169rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="width: 162rpx; height: 197rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <!--3-2-->
+  <swiper-item wx:if="{{ lvIndex == 2 }}">
+    <view style="height: 88rpx;"></view>
+    <image class="bg-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/003.png" style="right: 0"></image>
+    <view class="content-wrap">
+      <view class="s-title s-title2 bb pr tac bgfff f36 c3a3a3a fw7 mt20">
+        <image class="title-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/004.png"></image>
+        02.明星光环
+      </view>
+      <view class="p30 pr" style="padding: 20rpx 30rpx 20rpx 30rpx">
+        <view class="s-content p20 bb">
+          <view class="br18 tal bgfff f30 c3a3a3a lh42" style="padding: 30rpx 30rpx;">
+            <view>iD禧形运色明星沙龙会、</view>
+            <view>iD禧形运色纹饰美妆高峰论坛现已成功举办了十二届</view>
+            <view>先后合作过胡杏儿、黄圣依、明道、于丹、乐嘉等六十多们明星名人</view>
+          </view>
+        </view>
+      </view>
+      <view class="pr" style="padding: 0 30rpx;">
+        <image class="pa move-img" style="width: 240rpx; height: 154rpx; top: 0; left: 30rpx;" lazy-load catchtap="showImg" data-src="{{}}" mode="aspectFill" src="{{ testImg }}"></image>
+        <image class="pa move-img" style="width: 202rpx; height: 154rpx; top: 0; left: 300rpx;" lazy-load catchtap="showImg" data-src="{{}}" mode="aspectFill" src="{{ testImg }}"></image>
+        <image class="pa move-img" style="width: 162rpx; height: 208rpx; top: 0; left: 530rpx;" lazy-load catchtap="showImg" data-src="{{}}" mode="aspectFill" src="{{ testImg }}"></image>
+        <image class="pa move-img" style="width: 163rpx; height: 202rpx; top: 184rpx; left: 30rpx;" lazy-load catchtap="showImg" data-src="{{}}" mode="aspectFill" src="{{ testImg }}"></image>
+        <image class="pa move-img" style="width: 285rpx; height: 232rpx; top: 184rpx; left: 220rpx;" lazy-load catchtap="showImg" data-src="{{}}" mode="aspectFill" src="{{ testImg }}"></image>
+        <image class="pa move-img" style="width: 162rpx; height: 194rpx; top: 240rpx; left: 530rpx;" lazy-load catchtap="showImg" data-src="{{}}" mode="aspectFill" src="{{ testImg }}"></image>
+        <image class="pa move-img" style="width: 162rpx; height: 170rpx; top: 410rpx; left: 30rpx;" lazy-load catchtap="showImg" data-src="{{}}" mode="aspectFill" src="{{ testImg }}"></image>
+        <image class="pa move-img" style="width: 285rpx; height: 136rpx; top: 440rpx; left: 220rpx;" lazy-load catchtap="showImg" data-src="{{}}" mode="aspectFill" src="{{ testImg }}"></image>
+        <image class="pa move-img" style="width: 162rpx; height: 124rpx; top: 460rpx; left: 530rpx;" lazy-load catchtap="showImg" data-src="{{}}" mode="aspectFill" src="{{ testImg }}"></image>
+      </view>
+    </view>
+  </swiper-item>
+  <!--3-3-->
+  <swiper-item wx:if="{{ lvIndex == 2 }}">
+    <view style="height: 88rpx;"></view>
+    <image class="bg-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/001.png" style="left: 0;"></image>
+    <view class="content-wrap">
+      <view class="s-title pr tac bgfff f36 c3a3a3a fw7 mt20">
+        <image class="title-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/002.png"></image>
+        03.形象塑造
+      </view>
+      <view class="p30 pr" style="padding: 20rpx 30rpx 20rpx 30rpx">
+        <view class="s-content p20 bb">
+          <view class="br18 tal bgfff f30 c3a3a3a lh42" style="padding: 40rpx 30rpx;">
+            <view>iD纹饰美妆明星会中的服装、场景、奖杯、西模、画册、海报、专家榜……</view>
+            <view>每一种影像都是恰到好处，</view>
+            <view>旨在正面地建树你的专业形象，</view>
+            <view>用明星品牌映衬你的纹绣高度，</view>
+            <view>用明星品牌树立终端消费信心，</view>
+            <view>让你成为一名“秀外慧中”的纹绣大师！</view>
+          </view>
+        </view>
+      </view>
+      <view style="padding: 0 30rpx; display: flex; flex-wrap: wrap;">
+        <image class="move-img" style="width: 285rpx; height: 249rpx;" lazy-load catchtap="showImg" data-src="{{}}" mode="aspectFill" src="{{ testImg }}"></image>
+        <image class="move-img ml10" style="width: 355rpx; height: 249rpx;" lazy-load catchtap="showImg" data-src="{{}}" mode="aspectFill" src="{{ testImg }}"></image>
+        <image class="move-img mt10" style="width: 355rpx; height: 215rpx;" lazy-load catchtap="showImg" data-src="{{}}" mode="aspectFill" src="{{ testImg }}"></image>
+        <image class="move-img mt10 ml10" style="width: 285rpx; height: 216rpx;" lazy-load catchtap="showImg" data-src="{{}}" mode="aspectFill" src="{{ testImg }}"></image>
+      </view>
+    </view>
+  </swiper-item>
+  <!--3-4-->
+  <swiper-item wx:if="{{ lvIndex == 2 }}">
+    <view style="height: 88rpx;"></view>
+    <image class="bg-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/003.png" style="right: 0"></image>
+    <view class="content-wrap">
+      <view class="s-title s-title2 bb pr tac bgfff f36 c3a3a3a fw7 mt20">
+        <image class="title-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/004.png"></image>
+        04.优秀平台
+      </view>
+      <view class="p30 pr" style="padding: 20rpx 30rpx 20rpx 30rpx">
+        <view class="s-content p20 bb">
+          <view class="br18 tal bgfff f30 c3a3a3a lh42" style="padding: 30rpx 30rpx;">
+            <view>那么，想要实现一名纹饰美容师的成长三阶曲，要怎么做或在哪里能实现呢？其实你需要的是一个平台！</view>
+            <view>一个能展现自己的纹绣平台，</view>
+            <view>一个汇集千万优秀纹绣师的学习平台！</view>
+            <view>一个随时就能拓宽自己圈子资源的共享平台!</view>
+            <view>此时不关注【绣学问】，更待何时！</view>
+            <view>当你脚踏实地循着成长三步曲，</view>
+            <view>在绣学问这一盏明灯的引领下，</view>
+            <view>成就下一个纹绣大师，就是你！</view>
+          </view>
+        </view>
+      </view>
+      <view style="padding: 0 50rpx; display: flex;">
+        <view class="s-one-left">
+          <image style="width: 356rpx; height:167rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="width: 356rpx; height:167rpx;" catchtap="showImg" data-src="{{}}" class="mt10" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+        <view class="s-one-right">
+          <image style="width: 244rpx; height: 102rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="width: 244rpx; height: 102rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+          <image style="width: 244rpx; height: 102rpx;" catchtap="showImg" data-src="{{}}" lazy-load mode="aspectFill" src="{{ testImg }}"></image>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+</swiper>
+
+<view class="tab lh88 f30 cfff {{ tabIndex <= 0 ? 'move-out' : 'move-in' }}">
+  <view catchtap="chooseTab" data-index="0" class="tac t-item">顶部</view>
+  <view wx:for="{{ lvIndex == 1 ? '123' : '1234' }}"
+        wx:key="*73"
+        data-index="{{ (index * 1 + 1) }}"
+        catchtap="chooseTab"
+        class="tac {{ tabIndex == (index * 1 + 1) ? 'active' : '' }} t-item">0{{ index * 1 + 1 }}</view>
+  <view style="left: {{ 150 * tabIndex }}rpx;" class="tab-mask tac">{{ tabIndex <= 0 ? '顶部' : '0' + tabIndex }}</view>
+</view>
 <!--错误弹窗-->
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

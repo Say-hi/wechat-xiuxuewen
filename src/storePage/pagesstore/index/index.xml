@@ -27,8 +27,11 @@
   <button open-type="contact" class="p30 br18 bgfff message c444 f28 mt1">
     <view class="jwqfont jwq-kefu">联系客服</view>
   </button>
-  <navigator open-type="reLaunch" url="/pages/index/index" class="p30 br18 bgfff message c444 f28 mt20">
-    <view>返回用户端</view>
+  <!--<navigator open-type="reLaunch" url="/pages/index/index" class="p30 br18 bgfff message c444 f28 mt20">-->
+    <!--<view>返回用户端</view>-->
+  <!--</navigator>-->
+  <navigator open-type="reLaunch" url="/pages/index/index" class="bgfff goback c444 f28">
+    主页
   </navigator>
 </view>
 <my-navigator-tab></my-navigator-tab>

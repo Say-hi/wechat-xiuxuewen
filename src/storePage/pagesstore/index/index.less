@@ -20,3 +20,31 @@
 .jwqfont::before {
   margin-right: 10rpx;
 }
+
+.goback {
+  border-radius: 50%;
+  position: fixed;
+  bottom: 70rpx;
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 80rpx;
+  text-align: center;
+  left: 50%;
+  //z-index: 1001;
+  //border: 1rpx solid #eee;
+  transform: translate(-50%, 0);
+  animation: 1s movein linear forwards;
+}
+@keyframes movein {
+  from  {
+    bottom: 0rpx;
+    transform: translate(-50%, 0) scale(0.1);
+  }
+  80% {
+    transform: translate(-50%, 0) scale(1.2);
+  }
+  to {
+    bottom: 70rpx;
+    transform: translate(-50%, 0) scale(1);
+  }
+}

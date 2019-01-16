@@ -53,7 +53,9 @@
         <!--<view class="ad-m-text ell1">这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案</view>-->
     <!--</view>-->
 
-    <view class="f34 c666 tac br18 bgfff mt20 ladder">成长阶梯 新手必看</view>
+    <navigator url="/newPage/pagesthrteen/new/new" class="f34 c666 tac br18 bgfff mt20 ladder">
+      <image mode="widthFix" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/grow.png"></image>
+    </navigator>
 
     <view class="container bgfff br20 new p30">
         <navigator hover-class="none" url="/coursePage/pageszero/course/course?type=1" class="c-top">
