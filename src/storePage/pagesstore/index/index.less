@@ -24,27 +24,32 @@
 .goback {
   border-radius: 50%;
   position: fixed;
-  bottom: 70rpx;
-  width: 120rpx;
-  height: 120rpx;
-  line-height: 80rpx;
+  bottom: 140rpx;
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
   text-align: center;
-  left: 50%;
-  //z-index: 1001;
-  //border: 1rpx solid #eee;
-  transform: translate(-50%, 0);
-  animation: 1s movein linear forwards;
+  right: 30rpx;
+  border: 1rpx solid #eee;
+  transition: all 0.5s;
+}
+.move {
+  animation: 0.5s movein linear forwards;
+}
+.moveother {
+  width: 0;
+  height: 0;
 }
 @keyframes movein {
   from  {
     bottom: 0rpx;
-    transform: translate(-50%, 0) scale(0.1);
+    transform: scale(0.1);
   }
   80% {
-    transform: translate(-50%, 0) scale(1.2);
+    transform: scale(1.2);
   }
   to {
-    bottom: 70rpx;
-    transform: translate(-50%, 0) scale(1);
+    bottom: 140rpx;
+    transform: scale(1);
   }
 }

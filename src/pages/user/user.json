@@ -11,6 +11,7 @@
   // 类型：String；默认值：无
   // 导航栏标题文字内容
   "navigationBarTitleText": "我的",
+  "disableScroll": true,
   // 类型：Boolean；默认值：false
   // 是否开启下拉刷新，详见页面相关事件处理函数。
   "enablePullDownRefresh": false

@@ -16,7 +16,7 @@ Page({
    */
   data: {
     testImg: app.data.testImg,
-    shopBg: app.gs('userInfoAll').is_teach <= 1 ? 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/shop_bg_1.png' : 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/shop_bg_2.png',
+    shopBg: app.gs('userInfoAll').is_teach <= 1 ? 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/shop_2_2.png' : 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/shop_1_1.png',
     vipI: app.gs('userInfoAll').is_teach <= 1 ? 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/vip_1.png' : 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/vip_2.png'
   },
   // setCanvas () {

@@ -22,11 +22,14 @@
 
   <view class="f20 mt20 c666 info-time">
     <view>{{ info.create_time }}</view>
-    <view catchtap="replyOperation" data-name="题主" data-id="{{ info.user_id }}" data-cindex="0.5" class="iconfont icon-pinglun"></view>
+    <view style="display: flex;">
+      <navigator url="/feedbackPage/pagesfour/feedback/feedback?userid={{ info.user_id }}&id={{ options.id }}&title={{ info.context }}&style=2" class="iconfont icon-tousujubao p20"></navigator>
+      <view catchtap="replyOperation" data-name="题主" data-id="{{ info.user_id }}" data-cindex="0.5" class="iconfont icon-pinglun p20"></view>
+    </view>
   </view>
 
   <view hidden="{{ commentArr.length <= 0 ? rIndex < 0 : false}}"
-        class="reply pr mt20 br20 f26 c393636 p30">
+        class="reply pr  br20 f26 c393636 p30">
     <view catchtap="replyOperation"
           data-type="other"
           class="mt10 f26 answer-reply-item"

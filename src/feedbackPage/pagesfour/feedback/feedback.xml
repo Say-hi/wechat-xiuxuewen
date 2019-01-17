@@ -1,9 +1,9 @@
 
 <view class="p20">
   <form bindsubmit="formSubmit">
-    <textarea class="br18 p30 bb bgfff" name="content" placeholder="请详细描述你遇到的问题或建议"></textarea>
+    <textarea class="br18 p30 bb bgfff" name="content" placeholder="{{ options.id ? '请填写举报内容' : '请详细描述你遇到的问题或建议' }}"></textarea>
 
-    <input class="br18 p30 mt20 bgfff" name="contact" placeholder="联系方式：手机号，微信号"/>
+    <input wx:if="{{ !options.id }}" class="br18 p30 mt20 bgfff" name="contact" placeholder="联系方式：手机号，微信号"/>
     <!--<view class="up-img">-->
     <!--<view wx:for="{{ imgArr }}" wx:key="*11" class="u-i-w pr">-->
     <!--<text data-index="{{ index }}" catchtap="del" class="close jwq icon-guanbi br pa"></text>-->

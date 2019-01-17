@@ -20,16 +20,29 @@ Page({
   },
   formSubmit (e) {
     let that = this
-    // let images = ''
     if (!e.detail.value.content) return app.setToast(this, {content: '请输入反馈内容'})
-    else if (!e.detail.value.contact) return app.setToast(this, {content: '请输入联系方式'})
-    // if (this.data.imgArr.length > 0) {
-    //   let imgArr = []
-    //   for (let v of this.data.imgArr) {
-    //     imgArr.push(v.id)
-    //   }
-    //   images = imgArr.join(',')
-    // }
+    if (that.data.options.id) {
+      return app.wxrequest({
+        url: app.getUrl().homeReport,
+        data: {
+          user_id: that.data.options.userid,
+          style: that.data.options.style,
+          obj_id: that.data.options.id,
+          title: that.data.options.title,
+          reason: e.detail.value.content
+        },
+        success (res) {
+          wx.hideLoading()
+          if (res.data.status === 200) {
+            wx.showToast({
+              title: '反馈成功'
+            })
+          } else {
+            app.setToast(that, {content: res.data.desc})
+          }
+        }
+      })
+    } else if (!e.detail.value.contact) return app.setToast(this, {content: '请输入联系方式'})
     app.wxrequest({
       url: app.getUrl().userFeedback,
       data: {
@@ -77,7 +90,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
+    this.setData({
+      options
+    })
+    if (options.id) app.setBar('举报')
     // TODO: onLoad
   },
 

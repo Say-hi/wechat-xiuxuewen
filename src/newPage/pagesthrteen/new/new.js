@@ -9,7 +9,8 @@ Page({
   data: {
     lvIndex: 0,
     tabIndex: 0,
-    titleArr: ['第一阶段 夯实基础学技术', '第二阶段：个人素养应提升', '第三阶段：光环效应须“包装”'],
+    autoplay: true,
+    titleArr: ['第一阶段：夯实基础学技术', '第二阶段：个人素养应提升', '第三阶段：光环效应须“包装”'],
     videoUrl: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
     testImg: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/005.png'
   },
@@ -37,10 +38,28 @@ Page({
       path: `/newPage/pagesthrteen/new/new`
     }
   },
+  getGrow () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().homeGrow,
+      data: {},
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            growUp: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
+    this.getGrow()
     // TODO: onLoad
   },
 

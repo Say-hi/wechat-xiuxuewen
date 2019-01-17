@@ -1,3 +1,27 @@
+.top-tab {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 88rpx;
+  z-index: 999;
+  border-top: 1rpx solid #eee;
+  .t-t-i {
+    display: inline-block;
+    text-align: center;
+    font-size: 30rpx;
+    color: #999;
+    transition: all 0.5s;
+    &.active {
+      font-size: 34rpx;
+      color: #444;
+    }
+  }
+}
+
 .top-bg {
   width: 100%;
   height: 590rpx;
@@ -6,14 +30,47 @@
 .title-out {
   position: relative;
   display: inline-block;
-  .title {
-    display: inline-block;
-  }
-  .title-bg {
-    width: 100%;
-    height: 16rpx;
-    margin-top: -16rpx;
-  }
+}
+
+.title {
+  display: inline-block;
+}
+.title-bg {
+  //margin-top: -16rpx;
+  //animation: 0.5s heartwork linear;
+  transition: all 0.5s;
+}
+.bactive {
+  width: 100%;
+  height: 16rpx;
+  margin-top: -16rpx;
+}
+.hidebbg {
+  width: 0;
+  margin-top: 0;
+  height: 16rpx;
+  background-color: #fff !important;
+}
+
+.outSize {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s;
+}
+
+.move-left-in {
+  left: 0;
+}
+.move-left-out {
+  left: -100%;
+}
+.move-right-in {
+  left: 0;
+}
+.move-right-out {
+  left: 100%;
 }
 
 .content-scroll {

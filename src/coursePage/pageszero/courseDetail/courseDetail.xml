@@ -83,6 +83,7 @@
           <view class="v-i-left">
             <view class="f36 fw7">{{ detailInfo.title }}</view>
             <view wx:if="{{ options.type != 1 }}" class="f26 c999">上课时间：随到随学</view>
+            <navigator url="/feedbackPage/pagesfour/feedback/feedback?style=1&type={{ options.type }}&id={{ detailInfo.id }}&title={{ detailInfo.title }}&userid={{ detailInfo.user_id }}" style="color: #ababab; padding-top: 20rpx;" class="f26">举报</navigator>
           </view>
           <view class="v-i-right c999 tar">
             <view catchtap="collectO" class="iconfont f20 {{ collect ? 'icon-xinheart118 cff3b5b' : 'icon-shoucang' }} ">{{ detailInfo.collect_count }}</view>

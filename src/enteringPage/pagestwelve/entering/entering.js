@@ -7,11 +7,18 @@ Page({
    * 页面的初始数据
    */
   data: {
+    ttArr: ['特约讲师', '跟师学孵化基地'],
     tabIndex: 0,
     giftIndex: 0,
+    cttIndex: 0,
     bgcS: '#FDA36E',
     bgcE: '#F48280',
     title: 'entering'
+  },
+  choosetoptab (e) {
+    this.setData({
+      cttIndex: e.currentTarget.dataset.index
+    })
   },
   chooseGift (e) {
     app.WP('ruler', 'html', this.data.lists[e.currentTarget.dataset.index].rule, this, 5)
@@ -50,11 +57,27 @@ Page({
       rulerShow: !this.data.rulerShow
     })
   },
+  gethomeEquity () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().homeEquity,
+      data: {},
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          app.WP('quanyi', 'html', res.data.data.context, that, 0)
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
     this.getlists()
+    this.gethomeEquity()
     if (options && options.id) {
       app.wxlogin(options.id)
     }

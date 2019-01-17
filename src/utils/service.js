@@ -47,6 +47,9 @@ const serviceUrl = {
   userGift: baseDomain + '/user/gift', // 礼包
   payDot: baseDomain + '/pay/dot', // 支付成为门店入驻
   homeSearch: baseDomain + '/home/search', // 搜索关键字
+  homeGrow: baseDomain + '/home/grow', // 成长阶梯
+  homeEquity: baseDomain + '/home/equity', // 入驻
+  homeReport: baseDomain + '/home/report', // 举报
   upImage: baseDomain + '/upload/image', // 图片上传
   // 门店端接口
   teacherUserVideo: baseDomain + '/teacher/user/video', // 获取上传过的视频
