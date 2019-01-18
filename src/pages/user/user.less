@@ -1,12 +1,4 @@
 @import "../../common/variable";
-@keyframes biling {
-  from {
-    left: -40%;
-  }
-  to {
-    left: 120%;
-  }
-}
 .user-top {
   height: 240rpx;
   .bg-img {
@@ -15,17 +7,6 @@
     background: linear-gradient(135deg, #ff3b5b, #ff3757);
     position: relative;
     overflow: hidden;
-    .bg-img-bling {
-      position: absolute;
-      top: 0;
-      left: -40%;
-      width: 50%;
-      height: 100%;
-      opacity: 0.5;
-      background-image: linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,0.5),rgba(255,255,255,0));
-      transform: skewX(-25deg);
-      animation: 1.5s biling linear infinite;
-    }
   }
 
   .user-info {

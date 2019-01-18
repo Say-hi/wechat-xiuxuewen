@@ -15,3 +15,29 @@
 .through-line {
   text-decoration: line-through;
 }
+
+@keyframes biling {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 120%;
+  }
+}
+.bg-img-bling {
+  position: relative;
+  overflow: hidden;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    left: -40%;
+    width: 50%;
+    height: 100%;
+    opacity: 0.5;
+    background-image: linear-gradient(90deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5),rgba(255,255,255,0.1));
+    transform: skewX(-25deg);
+    animation: 1.5s biling linear infinite;
+  }
+}

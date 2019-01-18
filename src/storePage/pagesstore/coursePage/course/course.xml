@@ -1,24 +1,27 @@
-<view class="top-info pr">
-  <image class="top-bg"
-         src="{{ top_bg }}"></image>
-  <image src="{{ roomInfo.avatar }}"
-         mode="aspectFill"
-         class="br pa user-img"></image>
-  <view class="user-name pa">
-    <view class="f34 cfff fw7"><open-data type="userNickName"></open-data></view>
-    <view class="f28 cfff mt10">{{ roomInfo.room_name }}</view>
+<view class="top-fixed">
+  <view class="top-info pr bg-img-bling">
+    <image class="top-bg"
+           src="{{ top_bg }}"></image>
+    <image src="{{ roomInfo.avatar }}"
+           mode="aspectFill"
+           class="br pa user-img"></image>
+    <view class="user-name pa">
+      <view class="f34 cfff fw7"><open-data type="userNickName"></open-data></view>
+      <view class="f28 cfff mt10">{{ roomInfo.room_name }}</view>
+    </view>
+  </view>
+
+  <view class="bgfff mt-30 pr lh88">
+    <view wx:for="{{ tabArr }}"
+          catchtap="chooseIndex"
+          data-text="{{ item }}"
+          data-index="{{ index }}"
+          class="{{ tabIndex == index ? 'f34 cff3b5b fw7' : 'f30 c393636' }}"
+          wx:key="*68">{{ item }}</view>
   </view>
 </view>
 
-<view class="bgfff mt-30 pr lh88">
-  <view wx:for="{{ tabArr }}"
-        catchtap="chooseIndex"
-        data-text="{{ item }}"
-        data-index="{{ index }}"
-        class="{{ tabIndex == index ? 'f34 cff3b5b fw7' : 'f30 c393636' }}"
-        wx:key="*68">{{ item }}</view>
-</view>
-
+<view style="height: 250rpx;"></view>
 
 <view wx:if="{{ tabIndex != 1 }}" class="p20 out-wrap">
     <navigator hover-class="none" url="/coursePage/pageszero/courseDetail/courseDetail?id={{ item.id }}&type=1" class="hot-wrap p30 other bgfff br18" wx:for="{{ lists }}" wx:key="*3">

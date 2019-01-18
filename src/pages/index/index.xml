@@ -53,7 +53,7 @@
         <!--<view class="ad-m-text ell1">这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案</view>-->
     <!--</view>-->
 
-    <navigator url="/newPage/pagesthrteen/new/new" class="f34 c666 tac br18 bgfff mt20 ladder">
+    <navigator url="/newPage/pagesthrteen/new/new" class="f34 c666 tac br18 bgfff mt20 ladder bg-img-bling">
       <image mode="widthFix" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/grow.png"></image>
     </navigator>
 

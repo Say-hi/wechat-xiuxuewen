@@ -8,7 +8,7 @@
 
 <view class="p20 room-info">
   <!--教室信息-->
-  <view class="br18 r-i p30 pr">
+  <view class="br18 r-i p30 pr bg-img-bling">
     <image class="br18 r-i-bg pa" src="{{ shopBg }}"></image>
     <view class="r-i-t pa p30">
       <view class="f34 cfff fw7">{{ roomInfo.room_name || '还未设置教室信息' }}</view>

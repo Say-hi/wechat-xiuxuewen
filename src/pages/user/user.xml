@@ -1,5 +1,5 @@
 <view class="pr user-top">
-  <view class="bg-img"><view class="bg-img-bling"></view></view>
+  <view class="bg-img bg-img-bling"></view>
   <button open-type="getUserInfo" bindgetuserinfo="getUserInfoBtn" class="user-info pa">
     <image lazy-load="{{true}}" class="user-img br" src="{{ userInfo.avatar_url }}"></image>
     <view class="f26 cfff user-name">

@@ -8,9 +8,7 @@
         <image src="{{ testImg }}"></image>
       </view>
       <view class="p30 f30 cfff fw7 lv-wrap">
-        <view wx:for="{{ growUp }}" wx:key="*978" catchtap="lvChoose" data-index="{{ index }}" class="lv-{{ index * 1 + 1 }} {{ lvIndex == index ? 'active' : '' }}">{{ item.lv }}</view>
-        <!--<view catchtap="lvChoose" data-index="1" class="lv-2 {{ lvIndex == 1 ? 'active' : '' }}">第二阶段</view>-->
-        <!--<view catchtap="lvChoose" data-index="2" class="lv-3 {{ lvIndex == 2 ? 'active' : '' }}">第三阶段</view>-->
+        <view wx:for="{{ growUp }}" wx:key="*978" catchtap="lvChoose" data-index="{{ index }}" class="lv-{{ index * 1 + 1 }} {{ lvIndex == index ? 'active bg-img-bling' : '' }}">{{ item.lv }}</view>
       </view>
       <view class="f34 c3a3a3a fw7 tac mt30">{{ growUp[lvIndex].title }}</view>
       <view class="p30" style="padding-top: 20rpx;">

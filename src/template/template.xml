@@ -2,7 +2,7 @@
     <view class="mask-t">
         <view class="mask-toast" style="background: {{ bgc }};">
             <view wx:if="{{ title }}" style="color: {{ color }};" class="tac mask-title">{{ title }}</view>
-            <image lazy-load="{{true}}" wx:if="{{ image }}" mode="aspectFill" class="mask-image" src="{{ image }}"></image>
+            <image style="display: inline-block;" lazy-load="{{true}}" wx:if="{{ image }}" mode="aspectFill" class="mask-image" src="{{ image }}"></image>
             <view class="mask-content" style="color: {{ color }};">{{ content }}</view>
         </view>
     </view>
