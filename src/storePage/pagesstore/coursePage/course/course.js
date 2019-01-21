@@ -10,7 +10,6 @@ Page({
     tabArr: ['视频课程', '线下课程'],
     tabIndex: 0,
     page: 0,
-    roomInfo: app.gs('roomInfo'),
     tabNav: app.data.label,
     testImg: app.data.testImg,
     lists: [],
@@ -90,7 +89,8 @@ Page({
   onLoad (options) {
     app.setBar('视频课程')
     this.setData({
-      options
+      options,
+      roomInfo: app.gs('roomInfo')
     }, this.getList)
     // TODO: onLoad
   },

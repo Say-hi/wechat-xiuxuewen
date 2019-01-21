@@ -39,20 +39,6 @@
     </navigator>
 </view>
 
-    <!--<navigator url="/reservationPage/pagesseven/reservation/reservation" class="reservation bgfff p20 f26 br20 mt20">-->
-        <!--<view>-->
-            <!--<view class="f42 c393636 fw7">线下预约</view>-->
-            <!--<view class="f26 cff3757">立即预约 》</view>-->
-        <!--</view>-->
-        <!--<view class="iconfont icon-dianpu cff86b1"></view>-->
-    <!--</navigator>-->
-
-    <!--<view class="ad-message bgfff p20 f26 br20">-->
-        <!--<view class="iconfont icon-notice"></view>-->
-        <!--<view class="ad-m-img"><image lazy-load="{{true}}" mode="aspectFill" class="ad-m-i" src='{{ testImg }}'></image></view>-->
-        <!--<view class="ad-m-text ell1">这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案这是一个文案</view>-->
-    <!--</view>-->
-
     <navigator url="/newPage/pagesthrteen/new/new" class="f34 c666 tac br18 bgfff mt20 ladder bg-img-bling">
       <image mode="widthFix" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/grow.png"></image>
     </navigator>
