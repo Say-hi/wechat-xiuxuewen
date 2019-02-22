@@ -9,7 +9,7 @@
   <view style="background: linear-gradient(90deg, {{ lists[giftIndex].color_start }}, {{ lists[giftIndex].color_end }});">
     <image class="top-bg" src="{{ lists[giftIndex].poster }}"></image>
     <!--礼包-->
-    <view class="p20 pr" style="margin-top: -114rpx;">
+    <view class="p20 pr" style="margin-top: -90rpx;">
       <view class="p30 br18 bgfff">
         <view class="f34 c3a3a3a fw7 title-out">
           <view class="title">选择礼包入驻平台</view>
@@ -38,8 +38,11 @@
             <view class="tar">x{{ iItem.count }}</view>
           </view>
         </view>
-        <view class="bottom-btn mt30">
-          <navigator url="/offlinePage/pagesnine/offlineApply/offlineApply?type=entering&name={{ lists[giftIndex].title }}&price={{ lists[giftIndex].price }}&id={{ lists[giftIndex].id }}" class="f34 b-t cfff fw7 lh88 tac">立刻开通 ¥{{ lists[giftIndex].price }}</navigator>
+        <view class="bottom-btn mt30" hidden="{{ is_teacher < 0 }}">
+          <view wx:if="{{ is_teacher >= 1 }}" class="f34 b-t cfff fw7 lh88 tac">
+            您已入驻成为特约讲师
+          </view>
+          <navigator wx:else url="/offlinePage/pagesnine/offlineApply/offlineApply?type=entering&name={{ lists[giftIndex].title }}&price={{ lists[giftIndex].price }}&id={{ lists[giftIndex].id }}" class="f34 b-t cfff fw7 lh88 tac">立刻开通 ¥{{ lists[giftIndex].price }}</navigator>
         </view>
         <view catchtap="rulerChange" class="tac c444 f24 mt30">我已阅读并同意《绣学问平台入驻协议》</view>
       </view>

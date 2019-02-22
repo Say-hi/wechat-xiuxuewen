@@ -8,6 +8,7 @@ Page({
    */
   data: {
     ttArr: ['特约讲师', '跟师学孵化基地'],
+    is_teacher: app.gs('userInfoAll').is_teach || 0,
     tabIndex: 0,
     giftIndex: 0,
     cttIndex: 0,
@@ -72,6 +73,26 @@ Page({
       }
     })
   },
+  getInfo () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().userInfo,
+      data: {
+        user_id: app.gs('userInfoAll').id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          app.su('userInfoAll', res.data.data)
+          that.setData({
+            is_teacher: res.data.data.is_teach
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -95,6 +116,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow () {
+    if (app.gs('userInfoAll')) {
+      this.getInfo()
+    }
     // TODO: onShow
   },
 

@@ -25,6 +25,9 @@ Page({
     ],
     testImg: app.data.testImg
   },
+  upFormId (e) {
+    app.upFormId(e)
+  },
   getRoomInfo () {
     let that = this
     app.wxrequest({
@@ -100,7 +103,6 @@ Page({
    */
   onLoad (options) {
     app.setBar('首页')
-    this.getRoomInfo()
     this.getInfo()
   },
   /**
@@ -113,6 +115,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow () {
+    this.getRoomInfo()
     this.getMsg()
     this.setData({
       move: !this.data.move

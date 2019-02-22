@@ -35,7 +35,7 @@ Page({
   },
   onShareAppMessage () {
     return {
-      title: '绣学问，真纹绣',
+      title: app.gs('shareText') || '绣学问，真纹绣',
       path: `/pages/index/index`
     }
   },

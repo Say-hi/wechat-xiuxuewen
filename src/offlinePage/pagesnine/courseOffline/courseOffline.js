@@ -14,7 +14,7 @@ Page({
   },
   onShareAppMessage () {
     return {
-      title: '绣学问，真纹绣',
+      title: app.gs('shareText') || '绣学问，真纹绣',
       path: `/pages/index/index`
     }
   },
@@ -65,7 +65,8 @@ Page({
       location: site || null,
       success (res) {
         that.setData({
-          addressInfo: res
+          addressInfo: res,
+          page: 0
         }, that.getNear)
       },
       fail (data) {
@@ -86,6 +87,7 @@ Page({
         longitude: that.data.addressInfo.originalData.result.location.lng,
         latitude: that.data.addressInfo.originalData.result.location.lat,
         parent_code: that.data.parent_code || 0,
+        user_id: app.gs('userInfoAll').id,
         page: ++that.data.page
       },
       success (res) {

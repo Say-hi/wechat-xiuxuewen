@@ -5,6 +5,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 100;
 }
 
 .tab-top {
@@ -147,4 +148,31 @@ button {
 .width202 {
   width: 240rpx;
   word-break: break-all;
+}
+.mask-scroll {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.mask {
+  transition: all 0.5s;
+  overflow: hidden;
+}
+.small {
+  width: 100%;
+  height: 0;
+}
+.big {
+  width: 100%;
+  height: 100%;
+}
+.icon-quxiao {
+  position: absolute;
+  bottom: 20rpx;
+  left: 50%;
+  transform: translate(-50%, 0);
+  &:before {
+    font-size: 60rpx;
+  }
 }

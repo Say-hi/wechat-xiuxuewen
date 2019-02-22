@@ -1,4 +1,5 @@
 <!--<my-top-tab></my-top-tab>-->
+<form report-submit="{{true}}" bindsubmit="upFormId">
 <view class="p20">
   <!--顶部导航-->
   <view class="bgfff br18 top-wrap">
@@ -8,8 +9,10 @@
           data-index="{{ index }}"
           catchtap='tabO'
           class="t-w-item tac">
-      <image class="br" src="{{ item.img }}"></image>
-      <view class="c444 f28 ">{{ item.t }}</view>
+      <button hover-class="none" form-type="submit" class="form-button">
+        <image class="br" src="{{ item.img }}"></image>
+        <view class="c444 f28 ">{{ item.t }}</view>
+      </button>
     </view>
   </view>
   <!--消息通知-->
@@ -32,6 +35,7 @@
   <!--</navigator>-->
   <navigator open-type="reLaunch" url="/pages/index/index" class="bgfff goback c444 f28 {{ move ? 'move' : 'moveother' }}">绣学问</navigator>
 </view>
+</form>
 <my-navigator-tab></my-navigator-tab>
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

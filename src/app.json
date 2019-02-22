@@ -151,7 +151,10 @@
       "packages": [
         "answer",
         "offline",
-        "course"
+        "course",
+        "new",
+        "entering",
+        "search"
       ]
     },
     "answerPage/pagesthree/answer/answer": {
@@ -164,7 +167,14 @@
       "network": "all",
       "packages": [
         "order",
-        "collect"
+        "collect",
+        "store"
+      ]
+    },
+    "storePage/pagesstore/index/index": {
+      "network": "all",
+      "packages": [
+        "share"
       ]
     }
   },

@@ -1,31 +1,37 @@
-<view class="pr user-top">
+<form report-submit="{{true}}" bindsubmit="upFormId">
+<button open-type="getUserInfo" bindgetuserinfo="getUserInfoBtn" class="pr user-top">
   <view class="bg-img bg-img-bling"></view>
-  <button open-type="getUserInfo" bindgetuserinfo="getUserInfoBtn" class="user-info pa">
+  <view class="user-info pa">
     <image lazy-load="{{true}}" class="user-img br" src="{{ userInfo.avatar_url }}"></image>
     <view class="f26 cfff user-name">
       <view class="fw7">{{ userInfo.nickname }}</view>
       <view class="f20 mt10">学号：{{ userInfo.id }}</view>
     </view>
-  </button>
-</view>
+  </view>
+</button>
 
 <view class="user-operation p20">
   <view class="bgfff br18 p20">
     <navigator url="{{ item.url }}"
-               hover-class="none"
+               hover-class="xanone"
                class="user-o-item f26 c444 mt20"
                wx:key="*101"
                wx:for="{{ operationArr }}">
-      <image lazy-load="{{true}}"
-             mode="widthFix"
-             src="{{ item.src }}"></image>
-      <view class="mt10">{{ item.t }}</view>
+      <button form-type="submit" hover-class="none" class="f26 c444 form-button">
+        <image lazy-load="{{true}}"
+               mode="widthFix"
+               src="{{ item.src }}"></image>
+        <view class="mt10">{{ item.t }}</view>
+      </button>
     </navigator>
   </view>
   <view url="/storePage/pagesstore/index/index"
         catchtap="goStore"
-        class="arrow f28 c444 p30 br18 bb bgfff mt20">我的学堂</view>
+        class="arrow f28 c444 p30 br18 bb bgfff mt20">
+    <button send-message-path="{{path}}" form-type="submit" hover-class="none" class="flex1 f28 tal">我的学堂</button>
+  </view>
 </view>
+</form>
 <my-add></my-add>
 <view class="zw"></view>
 <my-navigator-tab></my-navigator-tab>

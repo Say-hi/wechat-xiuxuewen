@@ -1,4 +1,4 @@
-<import src="/wxPrase/wxParse"></import>
+<import src="/wxParse/wxParse"></import>
 <view class="wrap pr">
   <image mode="aspectFill" src="{{ info.image_url }}"></image>
   <view class="pa share-p cff4159 tac">
@@ -10,7 +10,7 @@
     <view>活动说明</view>
     <template is="wxParse" data="{{ wxParseData: title.nodes }}"></template>
   </scroll-view>
-  <button class="share-btn" open-type="share"></button>
+  <button class="share-btn" hover-class="none" open-type="share"></button>
 </view>
 <!--错误弹窗-->
 <import src="/template/template"></import>

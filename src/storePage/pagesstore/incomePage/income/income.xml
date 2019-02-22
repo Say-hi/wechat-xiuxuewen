@@ -1,11 +1,13 @@
+<form report-submit="{{true}}" bindsubmit="upFormId">
 <view class="top-info ca3633e tac bt1 p30 pr">
   <image class="incomebg pa"
          mode="aspectFill"
          src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/income_bg.png"></image>
   <view class="fw7 mt30 f54 ">{{ totalFee }}</view>
   <view class="f28 mt20 ">我的收益</view>
+
   <view class="tar">
-    <view catchtap="moneyOperation" data-type="change" class="get-btn f26 c9b735e">提现</view>
+    <button form-type="submit" catchtap="moneyOperation" data-type="change" class="get-btn f26 c9b735e">提现</button>
   </view>
 </view>
 <view class="p20">
@@ -19,7 +21,7 @@
           wx:key="*77">
       <view class="f30 c393636 df">
         <text>{{ item.title }}</text>
-        <text class="fw7">{{ item.amount < 0 ? '-' + item.amount : '+' + item.amount }}元</text>
+        <text class="fw7">{{ item.amount < 0 ? item.amount : '+' + item.amount }}元</text>
       </view>
       <view class="f28 c999 mt10">{{ item.create_time }}</view>
     </view>
@@ -46,6 +48,7 @@
     </view>
   </view>
 </view>
+</form>
 <!--错误弹窗-->
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

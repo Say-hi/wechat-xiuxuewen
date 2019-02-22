@@ -14,7 +14,7 @@ Page({
   },
   onShareAppMessage () {
     return {
-      title: '绣学问，真纹绣',
+      title: app.gs('shareText') || '绣学问，真纹绣',
       path: `/pages/index/index`
     }
   },
@@ -96,6 +96,7 @@ Page({
         longitude: that.data.addressInfo.originalData.result.location.lng,
         latitude: that.data.addressInfo.originalData.result.location.lat,
         parent_code: that.data.parent_code || 0,
+        user_id: app.gs('userInfoAll').id,
         page: ++that.data.page
       },
       success (res) {
@@ -103,6 +104,7 @@ Page({
         if (res.data.status === 200) {
           if (res.data.data.total < 1 && !that.data.parent_code) {
             that.data.parent_code = 1
+            that.data.page <= 1 ? that.data.page = 0 : null
             that.getNear()
           } else {
             for (let v of res.data.data.lists) {

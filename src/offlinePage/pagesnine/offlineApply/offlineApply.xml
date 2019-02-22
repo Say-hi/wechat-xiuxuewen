@@ -251,10 +251,9 @@
       <view class="c444 f48 fw7 tac success">
         恭喜您预约成功！
       </view>
-      <navigator url="/collectPage/pagesten/collect/collect?type=1" class="user-input user-step user-all-finish user-time f28 cff3a5a tac mt60">
+      <navigator url="/collectPage/pagesten/collect/collect?type=1&cur=1" class="user-input user-step user-all-finish user-time f28 cff3a5a tac mt60">
         <view class="flex1">查看我的预约</view>
       </navigator>
-
     </view>
   </swiper-item>
 </swiper>

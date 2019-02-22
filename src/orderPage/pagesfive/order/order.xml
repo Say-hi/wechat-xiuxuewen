@@ -31,7 +31,7 @@
       <view class="bgfff br18 other p30">
         <view class="f26 c666 order-num">
           <view>订单编号：{{ item.out_trade_no }}</view>
-          <view class="fw7 cf7546f">{{ currentIndex == 2 ? '交易成功' : currentIndex == 1 ? '等待卖家发货' : '等待买家付款' }}</view>
+          <view class="fw7 cf7546f">{{ currentIndex == 2 ? '交易成功' : currentIndex == 1 ? item.status == 1 ? '等待卖家发货': '卖家已发货' : '等待买家付款' }}</view>
         </view>
         <navigator hover-class="none"
                    class="mt20 hot-wrap">
@@ -58,16 +58,27 @@
           <!--<view >咨询</view>-->
           <button open-type="contact" hidden="{{ currentIndex >= 2 }}" class="c444 cancel">咨询</button>
           <view data-index="{{ index }}" catchtap="orderOperation" data-type="cancel" hidden="{{ currentIndex >= 1 }}" class="c444 cancel">取消订单</view>
-          <view data-index="{{ index }}" data-id="{{ item.id }}" catchtap="orderOperation" data-type="pay" hidden="{{ currentIndex >= 1 }}" class="cfff pay fw7">去付款</view>
-          <!--<view data-index="{{ index }}" data-id="{{ item.id }}" catchtap="orderOperation" data-type="confirm" hidden="{{ currentIndex != 1 }}" class="cfff pay fw7">物流</view>-->
-          <view data-index="{{ index }}" data-id="{{ item.id }}" catchtap="orderOperation" data-type="confirm" hidden="{{ currentIndex != 1 }}" class="cfff pay fw7">确认收货</view>
-          <view data-index="{{ index }}" hidden="{{ currentIndex != 1 }}" class="cfff pay fw7">待发货</view>
+          <view data-index="{{ index }}" data-id="{{ item.order_id }}" catchtap="orderOperation" data-type="pay" hidden="{{ currentIndex >= 1 }}" class="cfff pay fw7">去付款</view>
+          <view wx:if="{{ item.status == 2 }}" data-logistic="{{ item.order_num }}" data-id="{{ item.out_trade_no }}" catchtap="showScroll" data-type="confirm" class="cfff pay fw7">物流信息</view>
+          <view wx:if="{{ item.status == 2 }}" data-index="{{ index }}" data-id="{{ item.order_id }}" catchtap="orderOperation" data-type="confirm" hidden="{{ currentIndex != 1 }}" class="cfff pay fw7">确认收货</view>
+          <view wx:else data-index="{{ index }}" hidden="{{ currentIndex != 1 }}" class="cfff pay fw7">待发货</view>
           <view data-index="{{ index }}" catchtap="orderOperation" data-type="del" hidden="{{ currentIndex <= 1 }}" class="c444 cancel">删除订单</view>
         </view>
       </view>
     </block>
     <view wx:if="{{ !lists.length }}" class="tac f28 c999 p20">您还没有相关的订单哦</view>
   </view>
+</view>
+
+<view class="mask {{ showS ? 'big' : 'small' }}" catchtap="showScroll" data-type="check">
+  <!--<view catchtap="showScroll" data-type="check" class="icon-quxiao iconfont cfff f40"></view>-->
+  <scroll-view catchtap="noUp" class="mask-scroll" scroll-y style="height: 80%; width: 80%; border-radius: 18rpx; background: #fff; padding: 20rpx;">
+    <view class="f30 c333 fw7 tac">物流信息</view>
+    <view wx:for="{{ express }}" wx:key="*94" style="font-size: 28rpx; color: #444; margin-top: 20rpx;">
+      <view>{{ item.time }}</view>
+      <view>{{ item.context }}</view>
+    </view>
+  </scroll-view>
 </view>
 <!--错误弹窗-->
 <import src="/template/template"></import>

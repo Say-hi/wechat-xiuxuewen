@@ -26,7 +26,7 @@ Page({
   },
   onShareAppMessage () {
     return {
-      title: '绣学问，真纹绣',
+      title: app.gs('shareText') || '绣学问，真纹绣',
       path: `/pages/index/index`
     }
   },
@@ -36,7 +36,6 @@ Page({
     })
   },
   goMapPoint (e) {
-    console.log(e.currentTarget.dataset)
     wx.openLocation({
       scale: 10,
       ...(e.currentTarget.dataset)
@@ -68,7 +67,7 @@ Page({
               let distance = app.distance(v.latitude, v.longitude, that.data.resLl.latitude, that.data.resLl.longitude)
               v.distance = distance > 1000 ? (distance / 1000).toFixed(2) + 'km' : distance + 'm'
             }
-            if (v.create_time) v.create_time = app.momentFormat(v.create_time * 1000, 'YYYY年MM月DD日 HH:MM:SS')
+            if (v.create_time) v.create_time = app.momentFormat(v.create_time * 1000, 'YYYY年MM月DD日 HH:mm:ss')
             if (v.images) v.images = v.images.split(',')
           }
           that.setData({
@@ -98,7 +97,8 @@ Page({
       }
     })
     this.setData({
-      options
+      options,
+      currentIndex: options.cur || 0
     }, this.getUserBuyCourse)
     if (options.type >= 2) {
       this.setData({

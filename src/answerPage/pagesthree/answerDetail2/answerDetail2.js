@@ -101,7 +101,7 @@ Page({
         wx.hideLoading()
         if (res.data.status === 200) {
           res.data.data.images = res.data.data.images ? res.data.data.images.split(',') : []
-          res.data.data.create_time = app.momentFormat(res.data.data.create_time * 1000, 'YYYY年MM月DD日 HH:MM:SS')
+          res.data.data.create_time = app.momentFormat(res.data.data.create_time * 1000, 'YYYY年MM月DD日 HH:mm:ss')
           that.setData({
             collect: res.data.data.is_collect >= 1 ? true : 0,
             info: res.data.data

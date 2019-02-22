@@ -254,7 +254,7 @@ Page({
         wx.hideLoading()
         if (res.data.status === 200) {
           if (that.data.options.type * 1 === 3) {
-            res.data.data.room_teacher = res.data.data.room_teacher.split(',')
+            res.data.data.room_teacher = res.data.data.room_teacher ? res.data.data.room_teacher.split(',') : []
             res.data.data.show_image = res.data.data.show_image.split(',')
             that.setData({
               swiperArr: res.data.data.room_images.split(','),

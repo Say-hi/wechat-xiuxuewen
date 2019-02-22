@@ -12,6 +12,9 @@ Page({
     lists: [],
     testImg: app.data.testImg
   },
+  upFormId (e) {
+    app.upFormId(e)
+  },
   getList () {
     let that = this
     app.wxrequest({

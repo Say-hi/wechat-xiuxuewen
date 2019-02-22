@@ -43,8 +43,10 @@ const serviceUrl = {
   userActiveChange: baseDomain + '/user/active_change', // 用户改变订单状态
   userCollectSub: baseDomain + '/user/collect_sub', // 用户收藏
   userCollectCancel: baseDomain + '/user/collect_cancel', // 用户取消收藏
+  userLogistic: baseDomain + '/user/logistic', // 物流查询
   userInfo: baseDomain + '/user/info', // 用户信息
   userGift: baseDomain + '/user/gift', // 礼包
+  formid: baseDomain + '/user/formid', // 收集formid
   payDot: baseDomain + '/pay/dot', // 支付成为门店入驻
   homeSearch: baseDomain + '/home/search', // 搜索关键字
   homeGrow: baseDomain + '/home/grow', // 成长阶梯

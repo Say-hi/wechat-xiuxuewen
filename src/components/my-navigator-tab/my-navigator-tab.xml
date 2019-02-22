@@ -1,3 +1,4 @@
+<form report-submit="{{true}}" bindsubmit="upFormId">
 <view class="tab-wrap tab-wrap2 bt1 bottom-operation">
     <navigator open-type="reLaunch"
                catchtap="_goUrl"
@@ -7,7 +8,10 @@
                wx:key="*5"
                hover-class="none"
                class="tab-item f24 c333">
-        <image lazy-load="{{true}}" mode="widthFix" src="{{ item.active ? item.select_icon : item.icon  }}"></image>
-        <view class="f24 c333 {{ item.active ? 'active' : '' }}">{{ item.title }}</view>
+        <button hover-class="none" form-type="submit" class="form-button">
+            <image lazy-load="{{true}}" mode="widthFix" src="{{ item.active ? item.select_icon : item.icon  }}"></image>
+            <view class="f24 c333 {{ item.active ? 'active' : '' }}">{{ item.title }}</view>
+        </button>
     </navigator>
 </view>
+</form>

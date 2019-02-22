@@ -26,6 +26,9 @@ Component({
     }
   },
   methods: {
+    upFormId (e) {
+      app.upFormId(e)
+    },
     _goUrl (e) {
       app.data.bottomTabIndex = e.currentTarget.dataset.index
     },

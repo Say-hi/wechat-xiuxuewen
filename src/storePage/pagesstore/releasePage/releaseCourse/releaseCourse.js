@@ -43,7 +43,7 @@ Page({
   chooseF (e) {
     if (e.currentTarget.dataset.type === 'course') {
       if (this.data.id) return app.setToast(this, {content: '不可修改课程类型'})
-      if (e.currentTarget.dataset.index > app.gs('userInfoAll').is_teach) return app.setToast(this, {content: '您还么有权限发布此类型的课程，请联系客服'})
+      if (e.currentTarget.dataset.index > app.gs('userInfoAll').is_teach) return app.setToast(this, {content: '您还没有权限发布此类型的课程，请联系客服'})
       this.setData({
         courseIndex: e.currentTarget.dataset.index
       })
@@ -72,14 +72,6 @@ Page({
         })
         let v = res.tempFilePath
         let Key = `video/${app.gs('userInfoAll').id || 10000}/${v.substr(v.lastIndexOf('/') + 1)}`
-        console.log(cos)
-        // if (that.data.videoUlrR) {
-        //   cos.deleteObject({
-        //     Bucket: config.Bucket,
-        //     Region: config.Region,
-        //     Key: that.data.videoUlrR.replace('https://teach-1258261086.cos.ap-guangzhou.myqcloud.com', '')
-        //   })
-        // }
         cos.postObject({
           Bucket: config.Bucket,
           Region: config.Region,
@@ -157,13 +149,6 @@ Page({
             upImgArr: that.data[imgArr]
           })
         }
-        // if (index >= 0) {
-        //   cos.deleteObject({
-        //     Bucket: config.Bucket,
-        //     Region: config.Region,
-        //     Key: that.data[imgArr][index].Key ? that.data[imgArr][index].Key : that.data[imgArr][index].real.replace('https://teach-1258261086.cos.ap-guangzhou.myqcloud.com', '')
-        //   })
-        // }
         function noUse () {}
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
@@ -256,13 +241,6 @@ Page({
         that.setData({
           upImgArr2: that.data[imgArr]
         })
-        // if (index >= 0) {
-        //   cos.deleteObject({
-        //     Bucket: config.Bucket,
-        //     Region: config.Region,
-        //     Key: that.data[imgArr][index].Key
-        //   })
-        // }
         function noUse () {}
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
@@ -313,13 +291,6 @@ Page({
         if (res.tapIndex === 0) {
           app.showImg(that.data.upImgArr2[e.currentTarget.dataset.index].temp, [that.data.upImgArr2[e.currentTarget.dataset.index].temp])
         } else if (res.tapIndex === 2) {
-          // cos.deleteObject({
-          //   Bucket: config.Bucket,
-          //   Region: config.Region,
-          //   Key: that.data.upImgArr2[e.currentTarget.dataset.index].Key
-          // }, () => {
-          //
-          // })
           that.data.upImgArr2.splice(e.currentTarget.dataset.index, 1)
           that.setData({
             upImgArr2: that.data.upImgArr2
@@ -353,13 +324,6 @@ Page({
         that.setData({
           upImgArr3: that.data[imgArr]
         })
-        // if (index >= 0) {
-        //   cos.deleteObject({
-        //     Bucket: config.Bucket,
-        //     Region: config.Region,
-        //     Key: that.data[imgArr][index].Key
-        //   })
-        // }
         function noUse () {}
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
@@ -410,13 +374,6 @@ Page({
         if (res.tapIndex === 0) {
           app.showImg(that.data.upImgArr3[e.currentTarget.dataset.index].temp, [that.data.upImgArr3[e.currentTarget.dataset.index].temp])
         } else if (res.tapIndex === 2) {
-          // cos.deleteObject({
-          //   Bucket: config.Bucket,
-          //   Region: config.Region,
-          //   Key: that.data.upImgArr3[e.currentTarget.dataset.index].Key
-          // }, () => {
-          //
-          // })
           that.data.upImgArr3.splice(e.currentTarget.dataset.index, 1)
           that.setData({
             upImgArr3: that.data.upImgArr3
@@ -451,13 +408,6 @@ Page({
         that.setData({
           upImgArr4: that.data[imgArr]
         })
-        // if (index >= 0) {
-        //   cos.deleteObject({
-        //     Bucket: config.Bucket,
-        //     Region: config.Region,
-        //     Key: that.data[imgArr][index].Key
-        //   })
-        // }
         function noUse () {}
         (function upLoad (j) {
           let v = res.tempFilePaths[j]
@@ -508,13 +458,6 @@ Page({
         if (res.tapIndex === 0) {
           app.showImg(that.data.upImgArr4[e.currentTarget.dataset.index].temp, [that.data.upImgArr4[e.currentTarget.dataset.index].temp])
         } else if (res.tapIndex === 2) {
-          // cos.deleteObject({
-          //   Bucket: config.Bucket,
-          //   Region: config.Region,
-          //   Key: that.data.upImgArr4[e.currentTarget.dataset.index].Key
-          // }, () => {
-          //
-          // })
           that.data.upImgArr4.splice(e.currentTarget.dataset.index, 1)
           that.setData({
             upImgArr4: that.data.upImgArr4

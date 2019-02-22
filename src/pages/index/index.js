@@ -19,30 +19,32 @@ Page({
     indicatorActiveColorVideo: '#dab866',
     show: true,
     tabNav: [
-      {
-        title: '教学视频',
-        type: 'navigate',
-        url: '/coursePage/pageszero/course/course?type=1'
-      },
-      {
-        title: '线下学习',
-        type: 'navigate',
-        url: '/offlinePage/pagesnine/courseOffline/courseOffline'
-      },
-      {
-        title: '问答',
-        type: 'navigate',
-        url: '/answerPage/pagesthree/answer/answer'
-      },
-      {
-        title: '教室入驻',
-        type: 'navigate',
-        url: '/answerPage/pagesthree/answer/answer'
-      }
+      // {
+      //   title: '教学视频',
+      //   type: 'navigate',
+      //   url: '/coursePage/pageszero/course/course?type=1'
+      // },
+      // {
+      //   title: '线下学习',
+      //   type: 'navigate',
+      //   url: '/offlinePage/pagesnine/courseOffline/courseOffline'
+      // },
+      // {
+      //   title: '问答',
+      //   type: 'navigate',
+      //   url: '/answerPage/pagesthree/answer/answer'
+      // },
+      // {
+      //   title: '教室入驻',
+      //   type: 'navigate',
+      //   url: '/answerPage/pagesthree/answer/answer'
+      // }
     ]
 
   },
-
+  upFormId (e) {
+    app.upFormId(e)
+  },
   /**
    * 地址授权
    * @param e
@@ -251,7 +253,7 @@ Page({
    */
   onLoad (options) {
     let that = this
-    if (!app.gs()) return app.wxlogin()
+    if (!app.gs() || !app.gs('userInfoAll')) return app.wxlogin()
     app.getNavTab({
       style: 3,
       cb (res) {
@@ -300,7 +302,7 @@ Page({
   },
   onShareAppMessage () {
     return {
-      title: '绣学问，真纹绣',
+      title: app.gs('shareText') || '绣学问，真纹绣',
       path: `/pages/index/index`
     }
   },

@@ -25,7 +25,7 @@ Page({
   },
   onShareAppMessage () {
     return {
-      title: '绣学问，真纹绣',
+      title: app.gs('shareText') || '绣学问，真纹绣',
       path: `/pages/index/index`
     }
   },
@@ -47,14 +47,16 @@ Page({
     app.wxrequest({
       url: app.getUrl().userActivePay,
       data: {
+        // user_id: 2,
         user_id: app.gs('userInfoAll').id,
-        status: that.data.currentIndex * 3
+        page: ++that.data.page,
+        status: that.data.currentIndex * 1 === 0 ? 0 : that.data.currentIndex * 1 === 1 ? 6 : 3
       },
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
           for (let v of res.data.data.lists) {
-            v.create_time = app.momentFormat(v.create_time * 1000, 'MM月DD日 HH:MM')
+            v.create_time = app.momentFormat(v.create_time * 1000, 'MM月DD日 HH:mm')
           }
           that.setData({
             lists: that.data.lists ? that.data.lists.concat(res.data.data.lists) : res.data.data.lists,
@@ -105,6 +107,7 @@ Page({
     app.wxrequest({
       url: app.getUrl().userActiveChange,
       data: {
+        // user_id: 2,
         user_id: app.gs('userInfoAll').id,
         out_trade_no: that.data.lists[e.currentTarget.dataset.index].out_trade_no,
         style: e.currentTarget.dataset.type === 'cancel' ? 1 : e.currentTarget.dataset.type === 'del' ? 2 : 3
@@ -125,6 +128,33 @@ Page({
   onReachBottom () {
     if (this.data.more > 0) this.getData()
     else app.setToast(this, {content: '没有更多订单啦'})
+  },
+  showScroll (e) {
+    let that = this
+    if (e.currentTarget.dataset.type === 'check') {
+      that.setData({
+        showS: !that.data.showS
+      })
+    } else {
+      app.wxrequest({
+        url: app.getUrl().userLogistic,
+        data: {
+          out_trade_no: e.currentTarget.dataset.id,
+          order_num: e.currentTarget.dataset.logistic
+        },
+        success (res) {
+          wx.hideLoading()
+          if (res.data.status === 200) {
+            that.setData({
+              showS: !that.data.showS,
+              express: res.data.data.data
+            })
+          } else {
+            app.setToast(that, {content: res.data.desc})
+          }
+        }
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载

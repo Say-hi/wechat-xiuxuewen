@@ -27,7 +27,7 @@ Page({
   },
   onShareAppMessage () {
     return {
-      title: '绣学问，真纹绣',
+      title: app.gs('shareText') || '绣学问，真纹绣',
       path: `/pages/index/index`
     }
   },
@@ -40,9 +40,15 @@ Page({
   chooseIndex (e) {
     this.data.page = 0
     this.data.lists = []
-    this.setData({
-      currentIndex: e.currentTarget.dataset.index
-    }, this.getData)
+    try {
+      this.setData({
+        currentIndex: e.currentTarget.dataset.index
+      }, this.getData)
+    } catch (err) {
+      this.setData({
+        currentIndex: 2
+      }, this.getData)
+    }
   },
   onPageScroll (e) {
     let height = (HEIGHT - e.scrollTop * proportion) >= 100 ? 100 : (HEIGHT - e.scrollTop * proportion)
@@ -62,7 +68,7 @@ Page({
         search
       })
       data = {
-        user_id: app.gs('userInfoAll').id,
+        // user_id: app.gs('userInfoAll').id,
         page: ++this.data.page,
         ask: search
       }
@@ -81,13 +87,13 @@ Page({
       }
     }
     app.wxrequest({
-      url: this.data.currentIndex * 1 === 1 ? app.getUrl().question : this.data.currentIndex * 1 === 0 ? app.getUrl().questionProblemHot : app.getUrl().questionProblemMy,
+      url: (this.data.currentIndex * 1 === 1 || this.data.currentIndex * 1 === -1) ? app.getUrl().question : this.data.currentIndex * 1 === 0 ? app.getUrl().questionProblemHot : app.getUrl().questionProblemMy,
       data,
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
           for (let v of res.data.data.lists) {
-            v.create_time = app.momentFormat(v.create_time * 1000, 'YYYY年MM月DD日 HH:MM:SS')
+            v.create_time = app.momentFormat(v.create_time * 1000, 'YYYY年MM月DD日 HH:mm:ss')
             v.images = v.images ? v.images.split(',') : []
           }
           that.setData({

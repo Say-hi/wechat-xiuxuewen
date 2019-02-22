@@ -30,8 +30,10 @@ Page({
     })
   },
   onShareAppMessage () {
+    let that = this
     return {
-      title: '邀请您入驻绣学问，成为优秀的纹绣人',
+      title: `${that.data.info.share_title || '邀请您入驻绣学问，成为优秀的纹绣人'}`,
+      imageUrl: `${that.data.info.share_imageUrl || ''}`,
       path: `/enteringPage/pagestwelve/entering/entering?id=${app.gs('userInfoAll').id}`
     }
   },
@@ -39,7 +41,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad () {
-    console.log(1)
     this.getShare()
     // TODO: onLoad
   },

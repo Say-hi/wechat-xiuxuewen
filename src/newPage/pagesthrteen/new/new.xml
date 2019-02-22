@@ -70,7 +70,7 @@
         </view>
         <view class="s-one-right">
           <image style="height: 255rpx;" catchtap="showImg" data-src="{{ growUp[0].content_group[1].imageArr[3].url }}" lazy-load mode="aspectFill" src="{{ growUp[0].content_group[1].imageArr[3].url }}"></image>
-          <image style="height: 255rpx;" catchtap="showImg" data-src="{{ growUp[0].content_group[1].imageArr[4].url }}" class="" lazy-load mode="aspectFill" src="{{ growUp[0].content_group[1].imageArr[4].url }}"></image>
+          <image style="height: 255rpx;" catchtap="showImg" data-src="{{ growUp[0].content_group[1].imageArr[4].url }}" class="mt10" lazy-load mode="aspectFill" src="{{ growUp[0].content_group[1].imageArr[4].url }}"></image>
         </view>
       </view>
     </view>

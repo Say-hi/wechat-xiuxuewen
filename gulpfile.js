@@ -78,16 +78,16 @@ gulp.task('compile:js', () => {
 gulp.task('compile:xml', () => {
   return gulp.src(['src/**/*.xml'])
     .pipe(plugins.sourcemaps.init())
-    .pipe(plugins.if(isProduction, plugins.htmlmin({
-      collapseWhitespace: true,
-      // collapseBooleanAttributes: true,
-      // removeAttributeQuotes: true,
-      keepClosingSlash: true, // xml
-      removeComments: true,
-      removeEmptyAttributes: true,
-      removeScriptTypeAttributes: true,
-      removeStyleLinkTypeAttributes: true
-    })))
+    // .pipe(plugins.if(isProduction, plugins.htmlmin({
+    //   // collapseWhitespace: true,
+    //   // collapseBooleanAttributes: true,
+    //   // removeAttributeQuotes: true,
+    //   keepClosingSlash: true, // xml
+    //   removeComments: true
+    //   // removeEmptyAttributes: true,
+    //   // removeScriptTypeAttributes: true,
+    //   // removeStyleLinkTypeAttributes: true
+    // })))
     .pipe(plugins.rename({ extname: '.wxml' }))
     .pipe(plugins.sourcemaps.write('.'))
     .pipe(gulp.dest('dist'))

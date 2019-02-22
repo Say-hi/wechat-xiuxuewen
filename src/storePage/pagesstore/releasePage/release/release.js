@@ -165,7 +165,7 @@ Page({
     let length = that.data[imgArr].length || 0
     let id = app.gs('userInfoAll').id || 10000
     wx.chooseImage({
-      count: index >= 0 ? 1 : 9 - length,
+      count: index >= 0 ? 1 : 2 - length,
       success (res) {
         for (let [i, v] of res.tempFilePaths.entries()) {
           if (!that.data[imgArr][index >= 0 ? index : length + i]) {
@@ -539,7 +539,7 @@ Page({
   },
   goRelease (e) {
     let that = this
-    if (!that.data.upImgArr6[0].real) return app.setToast(that, {content: '请上传教室头像'})
+    if (!that.data.upImgArr6[0] || !that.data.upImgArr6[0].real) return app.setToast(that, {content: '请上传教室头像'})
     else if (!e.detail.value.name) return app.setToast(that, {content: '请填写教室名字'})
     else if (that.data.userAddress.address === '选择地址定位') return app.setToast(that, {content: '请选择教室所处地理位置'})
     let roomImages = []
@@ -582,6 +582,8 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
+          that.data.id = res.data.data
+          app.su('roomInfo', res.data.data)
           wx.navigateTo({
             url: `../../coursePage/courseDetail/courseDetail?id=${res.data.data}&type=3`
           })

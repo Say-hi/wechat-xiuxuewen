@@ -18,7 +18,7 @@
   <view wx:for="{{ lists }}"
         wx:key="*365">
     <navigator hover-class="none"
-               url="/coursePage/pageszero/courseDetail/courseDetail?id={{ item.id }}&type={{ item.style }}"
+               url="/coursePage/pageszero/courseDetail/courseDetail?id={{ item.active_id }}&type={{ item.style }}"
                class="hot-wrap other bgfff br18 {{ index >= 1 ? 'mt20' : '' }}">
       <image lazy-load="{{true}}"
              data-content="线下课程"
@@ -45,8 +45,8 @@
         </view>
       </view>
     </navigator>
-    <view hidden="{{ currentIndex >= 1 }}" class="tar mt20">
-      <view wx:if="{{ item.fill_in >= 1 }}" catchtap="goMapPoint" data-name="123" data-address="{{ item.room_address }}" data-latitude="{{ item.latitude }}" data-longitude="{{ item.longitude }}" class="f26 cfff fw7 go-shop">到店学习</view>
+    <view hidden="{{ currentIndex >= 2 }}" class="tar mt20">
+      <view wx:if="{{ item.fill_in >= 1 }}" catchtap="goMapPoint" data-name="{{ item.room_address }}" data-address="{{ item.room_address }}" data-latitude="{{ item.latitude }}" data-longitude="{{ item.longitude }}" class="f26 cfff fw7 go-shop">到店学习</view>
       <navigator wx:else url="/offlinePage/pagesnine/offlineApply/offlineApply?trade=123&id={{ item.id }}" class="f26 cfff fw7 go-shop">预约时间</navigator>
     </view>
   </view>
