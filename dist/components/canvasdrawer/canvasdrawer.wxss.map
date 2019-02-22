@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/canvasdrawer/canvasdrawer.less"],"names":[],"mappings":"AAAA;EACE,eAAA;EACA,YAAA","sourcesContent":[".board {\n  position: fixed;\n  top: 2000rpx;\n}"],"file":"canvasdrawer.wxss"}

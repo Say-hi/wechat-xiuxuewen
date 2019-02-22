@@ -1,0 +1,36 @@
+.tab-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 7%;
+}
+.tab-top .t-t-item {
+  padding-bottom: 4rpx;
+  transition: all .5s;
+}
+.tab-top .t-t-item:after {
+  content: '';
+  position: absolute;
+  bottom: 14rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  background-color: #fff;
+  transition: all .5s;
+}
+.tab-top .cff3b5b:after {
+  height: 4rpx;
+  width: 100%;
+  background-color: #FF3B5B;
+}
+.student {
+  display: flex;
+  align-items: center;
+}
+.student image {
+  border-radius: 50%;
+  width: 60rpx;
+  height: 60rpx;
+  margin: 0 20rpx;
+}

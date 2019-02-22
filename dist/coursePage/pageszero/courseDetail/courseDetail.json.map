@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["coursePage/pageszero/courseDetail/courseDetail.json"],"sourcesContent":["// Window configuration\n{\n  \"usingComponents\": {\n    \"my-back\": \"/components/my-back/back\"\n  },\n  \"disableScroll\": true,\n  \"enablePullDownRefresh\": false\n}\n"],"file":"courseDetail.json"}

@@ -1,0 +1,28 @@
+<view class="p20">
+  <view class="tab-top bgfff lh88 br18 mt20">
+    <view wx:for="{{ videoTab }}"
+          wx:key="*7"
+          catchtap="chooseIndex"
+          data-index="{{ index }}"
+          class="t-t-item f26 tac pr {{ currentIndex == index ? 'cff3b5b' : 'c666' }}">
+      {{ item.t }}
+    </view>
+  </view>
+
+  <navigator wx:for="123123123213"
+             wx:key="*53"
+             class="mt20 bgfff br18 p20 f28"
+             url="/practicePage/pagestwo/practiceDetail/practiceDetail?id={{ item.id }}">
+    <view class="student c3a3a3a">
+      <text>学员</text>
+      <image lazy-load="{{true}}" src="{{ testImg }}"></image>
+      <view>购买此课程的学员昵称</view>
+    </view>
+    <view class="mt20">2018-12-08 15:05 学员提交了实操练习作品，请您点评</view>
+  </navigator>
+</view>
+
+
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

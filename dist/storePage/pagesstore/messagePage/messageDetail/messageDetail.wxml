@@ -1,0 +1,59 @@
+<import src="/wxParse/wxParse"></import>
+<view wx:if="{{ options.type == '评论' }}" class="p020">
+  <block wx:for="{{ lists }}" wx:key="*54">
+    <view class="f22 c3a3a3a tac mt30">{{ item.create_time }} <text class="cff3b5b ml20" wx:if="{{ item.status == 1 }}">未读</text></view>
+    <view class="p30 bgfff br18 mt10" catchtap="goDetail" data-type="com" data-id="{{ item.course_id }}">
+      <text class="f28 cfff tag">视频课程</text>
+      <view class="f26 c444 mt20">
+        《{{ item.title }}》收到<text class="fw7">{{ item.nickname }}</text>的评论
+      </view>
+      <view class="f34 c393636 mt20 fw7">
+        “{{ item.comment }} ”
+      </view>
+      <view class="f24 c444 mt20">查看详情</view>
+    </view>
+  </block>
+  <view style="height: 20rpx"></view>
+</view>
+<view hidden="{{ options.type != '系统通知' || sysIndex >= 0 }}" class="p020">
+  <block wx:for="{{ lists }}" wx:key="*59">
+    <view class="f22 c3a3a3a tac mt30">{{ item.create_time }} <text class="cff3b5b ml20" wx:if="{{ item.status == 1 }}">未读</text></view>
+    <view class="p30 bgfff br18 mt10" catchtap="goDetail" data-type='sys' data-index="{{ index }}">
+      <text class="f28 cfff tag">系统通知</text>
+      <view class="f26 c444 mt20">
+        {{ item.title }}
+      </view>
+      <!--<view class="f34 c393636 mt20 fw7">-->
+        <!--{{ item.context }}-->
+      <!--</view>-->
+      <view class="f24 c444 mt20">查看详情</view>
+    </view>
+  </block>
+</view>
+
+<view hidden="{{ sysIndex < 0 }}" class="p20 system bb">
+  <view class="br18 bgfff p30 system bb">
+    <view catchtap="goDetail" data-type="close" class="f34 c393636 fw7 tac pr iconfont icon-cuowu">{{ sysInfo.title }}</view>
+    <view class="mt20 f22 tac c3a3a3a">{{ sysInfo.create_time }}</view>
+    <view class="mt30">
+      <template is="wxParse" data="{{ wxParseData: desc.nodes }}"></template>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{ options.type == '收藏' }}" class="p20">
+  <view wx:for="{{ lists }}"
+        wx:key="*123"
+        class="p30 br18 bgfff message c444 f28 mt1">
+    <image class="br" src="{{ item.avatar_url }}"></image>
+    <view class="f28 flex1">
+      <text class="ce9ab86">{{ item.nickname }} </text>
+      <text class="c666">收藏了你的视频</text>
+      <text class="ce9ab86">《{{ item.title }}》</text>
+    </view>
+  </view>
+</view>
+<view class="tac p20 f28 c999" wx:if="{{ !lists.length }}">还没有相关内容哦</view>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

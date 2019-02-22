@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["storePage/pagesstore/messagePage/messageDetail/messageDetail.json"],"sourcesContent":["// Window configuration\n{\n  // 类型：HexColor；默认值：#000000\n  // 导航栏背景颜色，如\"#000000\"\n  // 是否开启下拉刷新，详见页面相关事件处理函数。\n  \"enablePullDownRefresh\": true\n}\n"],"file":"messageDetail.json"}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/my-back/back.js"],"names":["Component","properties","data","ready","methods"],"mappings":";;AAAA;AACAA,UAAU;AACRC,cAAY,EADJ;AAERC,QAAM,EAFE;AAGRC,OAHQ,mBAGC,CAAE,CAHH;;AAIRC,WAAS;AAJD,CAAV","file":"back.js","sourcesContent":["/*eslint-disable */\r\nComponent({\r\n  properties: {},\r\n  data: {},\r\n  ready () {},\r\n  methods: {}\r\n})\r\n"]}

@@ -1,0 +1,74 @@
+<view class="top-address bgfff bt1">
+  <button open-type="{{ openType }}" bindopensetting="open_site" catchtap="{{ !openType ? 'choose_site' : '' }}" class="fw7 f28 address">
+    <view class="iconfont icon-dizhi f28">{{ openType == 'openSetting' ? '请您授权获位置信息(点击此处授权)' : (addressInfo.originalData.result.addressComponent.city || '获取数据中...') }} {{ addressInfo.originalData.result.addressComponent.district || '' }} </view>
+    <!--<image lazy-load="{{true}}" class="weahter-img" mode="widthFix" src="{{ weatherPic }}"></image>-->
+  </button>
+  <navigator hover-class="none" url="/searchPage/pagessix/searchHistory/searchHistory?type=store" class="input-wrap">
+    <view class="iconfont f26 icon-sousuo cababab"></view>
+    <input placeholder-class="cababab" disabled="{{true}}" class="c393636 lh54 f26 search-input"  placeholder="输入门店名称"/>
+  </navigator>
+</view>
+
+<view class="zw100"></view>
+
+
+<view class="p20">
+  <view class='f28 tac c999' hidden="{{ openType != 'openSetting' || lists.length >= 1 }}">请您点击左上角授权获取您的地理位置信息</view>
+  <view class="bgfff br18">
+    <view class="f36 c666 bd1 lh88 p030">线下教室</view>
+    <block wx:for="{{ lists }}"
+           wx:for-index="oIndex"
+           wx:for-item="oItem"
+           wx:key="*95">
+      <view class="tar f28 c999 p20 bgeee">{{ oItem.city_name }}</view>
+      <navigator hover-class="none"
+                 wx:for="{{ oItem.lists }}"
+                 wx:key="*99"
+                 wx:for-index="iIndex"
+                 url="/coursePage/pageszero/courseDetail/courseDetail?id={{ item.id }}&type=3" class="room p30 bd1">
+        <view class="f28 cff3a5a room-left">
+          <image lazy-load="{{true}}" class="br" mode="aspectFill" src="{{ item.avatar }}"></image>
+          <!--<navigator url="/coursePage/pageszero/courseDetail/courseDetail?id=1&type=3" class="nav">查看</navigator>-->
+        </view>
+        <view class="room-right mt20">
+          <view class="f34 c444 room-name fw7">{{ item.room_name }}</view>
+          <view class="c999 f28 room-people">
+            <text>{{ item.gradution_count * 1 + item.gradution_base * 1 }}人已经毕业</text>
+            <text wx:if="{{ item.distance != 'undefinedkm' }}">{{ item.distance }}</text>
+          </view>
+          <view wx:for="{{ item.label }}"
+                wx:key="*74"
+                wx:for-item="iItem"
+                class="room-tag nav">{{ iItem }}</view>
+          <view class="room-img mt20">
+            <image lazy-load="{{true}}"
+                   data-bindex="{{ oIndex }}"
+                   data-oindex="{{ iIndex }}"
+                   data-index="{{ mIndex }}"
+                   mode="aspectFill"
+                   catchtap="showImg"
+                   wx:for="{{ item.room_images }}"
+                   wx:for-item="mItem"
+                   wx:for-index="mIndex"
+                   wx:key="*45"
+                   class="br18 {{ canShowIndex == iIndex ? 'showHeight' : mIndex > 2 ? 'hideHeight' : 'showHeight' }}"
+                   src="{{ mItem }}"></image>
+          </view>
+          <view data-index="{{ iIndex }}"
+                catchtap="showMore"
+                wx:if="{{ item.room_images.length > 3 }}"
+                class="tac"><text class="iconfont f28 c444 pr {{ canShowIndex == iIndex ? '' : 'icon-jiantouarrowheads3' }}">{{ canShowIndex == iIndex ? '' : '查看更多' }}</text></view>
+        </view>
+      </navigator>
+      <view wx:if="{{ !oItem.lists.length }}" class="tac p20 c999 f28">本地区正在火热招募中，敬请期待</view>
+    </block>
+    <view hidden="{{ lists.length >= 1 }}" class="tac f28 c999 p20">暂无相关教室信息</view>
+  </view>
+</view>
+
+<my-add></my-add>
+<view class="zw"></view>
+<my-navigator-tab></my-navigator-tab>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

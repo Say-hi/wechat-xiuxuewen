@@ -1,0 +1,61 @@
+page {
+  background-color: #fff;
+}
+.search {
+  padding: 16rpx 30rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+}
+.search .s-wrap {
+  display: flex;
+  align-items: center;
+  border-radius: 65rpx;
+  background-color: #eee;
+  flex: 1;
+  padding-left: 20rpx;
+}
+.search input {
+  flex: 1;
+  padding-left: 20rpx;
+  height: 65rpx;
+  line-height: 65rpx;
+  background-color: #eee;
+  margin-right: 20rpx;
+}
+.search .cancel {
+  margin-left: 30rpx;
+}
+.mt60 {
+  margin-top: 60rpx;
+}
+.history-item {
+  margin-right: 30rpx;
+}
+.search-operation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.menu2-comment {
+  display: flex;
+  flex-wrap: wrap;
+}
+.menu2-comment .menu2-comment-item {
+  font-size: 24rpx;
+  padding: 10rpx 30rpx;
+  border-radius: 50rpx;
+  color: #999;
+  border: 1rpx solid #eee;
+  margin-right: 20rpx;
+  background-color: #f1f1f1;
+}
+.menu2-comment .active {
+  border-radius: 50rpx;
+  color: #fff;
+  background-image: linear-gradient(45deg, #ff3b5b 0%, #f8ceff 99%, #ff97a8 100%);
+}
+.icon-remen::before {
+  color: #ff3b5b;
+}

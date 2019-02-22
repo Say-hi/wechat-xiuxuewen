@@ -1,0 +1,36 @@
+<!--顶部信息-->
+<view class="top-info bgfff bb">
+  <view class="br img">
+    <open-data class="user-img" type="userAvatarUrl"></open-data>
+  </view>
+  <view class="c444 fw7 f28"><open-data type="userNickName"></open-data></view>
+</view>
+
+<view class="p20 room-info">
+  <!--教室信息-->
+  <view class="br18 r-i p30 pr bg-img-bling">
+    <image class="br18 r-i-bg pa" src="{{ shopBg }}"></image>
+    <view class="r-i-t pa p30">
+      <view class="f34 cfff fw7">{{ roomInfo.room_name || '还未设置教室信息' }}</view>
+      <view class="f28 cfff">会员号：{{ roomInfo.user_id }}</view>
+      <!--<view class="f24 cfff bottom pa jwqfont jwq-xialasanjiao">查看教室等级权益</view>-->
+      <image class="br pa vipbg" mode="aspectFill" src="{{ vipI }}"></image>
+    </view>
+  </view>
+  <!--我的收益-->
+  <navigator hover-class="none"
+             url="../incomePage/income/income"
+             class="p30 br18 bgfff message c444 f28 mt30">
+    <view class="jwqfont jwq-shouyi">我的收益</view>
+  </navigator>
+  <!--消息通知-->
+  <navigator hover-class="none"
+             url="../messagePage/message/message"
+             class="p30 br18 bgfff message c444 f28 mt1">
+    <view class="jwqfont jwq-tongzhi">消息通知</view>
+  </navigator>
+</view>
+<my-navigator-tab></my-navigator-tab>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

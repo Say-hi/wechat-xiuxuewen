@@ -1,0 +1,50 @@
+<import src="/wxParse/wxParse"></import>
+
+<view class="p20">
+  <view class="br18 teacher-top pr">
+    <image lazy-load="{{true}}" class="bg-img" src="{{ reservation_bg }}"></image>
+    <view class="teacher-info pa">
+      <image lazy-load="{{true}}" class="br" src="{{ testImg }}"></image>
+      <view class="cfff f28">老师名字</view>
+    </view>
+  </view>
+
+  <view class="tab-top bgfff lh88 br18 mt20">
+    <view wx:for="{{ videoTab }}"
+          wx:key="*7"
+          catchtap="chooseIndex"
+          data-index="{{ index }}"
+          class="t-t-item f26 tac pr {{ currentIndex == index ? 'cff3b5b' : 'c666' }}">
+      {{ item.t }}
+    </view>
+  </view>
+
+  <view hidden="{{ currentIndex == 1 }}">
+    <navigator url="../reservationDetail/reservationDetail?id={{ item.id }}" class="teacher-item mt20 p30" wx:for="121231231233" wx:key="*82">
+      <image lazy-load="{{true}}" mode="aspectFill" src="{{ testImg }}"></image>
+      <view class="teacher-content">
+        <view>
+          <view class="teacher-name f28 fw7 c3a3a3a">上课时间：2018年6月18日</view>
+          <view class="teacher-name ell2 f24 c999 mt10">授课内容授课内容授课内容授课内容授课内容授课内容授课内容授课内容授课内容授课内容授课内容授课内容授课内容授课内容授课内容授课内容授课内容授课内容授课内容授课内容</view>
+        </view>
+        <view class="f24 c3a3a3a teacher-bottom">
+          <view class="teacher-time fw7"></view>
+          <view class="teacher-count cff3757 fw7">12人参与</view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+
+  <view class="mt20 bb br18 bgfff" hidden="{{ currentIndex == 0 }}">
+    富文本展示
+    <template is="wxParse" data="{{ wxParseData: teacher.nodes }}"></template>
+    <view class="tac f24 c999 p20">哎呦，老师还没有填写介绍信息~~</view>
+  </view>
+</view>
+
+<view class="zw"></view>
+
+<my-navigator-tab></my-navigator-tab>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

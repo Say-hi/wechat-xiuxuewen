@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["storePage/pagesstore/releasePage/release/release.json"],"sourcesContent":["// Window configuration\n{\n  \"backgroundColor\": \"#ffffff\",\n  \"enablePullDownRefresh\": false\n}\n"],"file":"release.json"}

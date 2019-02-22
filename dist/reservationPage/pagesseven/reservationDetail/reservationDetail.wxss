@@ -1,0 +1,123 @@
+.teacher-top {
+  height: 202rpx;
+  overflow: hidden;
+}
+.teacher-top .bg-img {
+  height: 100%;
+  width: 100%;
+}
+.teacher-top .teacher-info {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.teacher-top .teacher-info .br {
+  width: 100rpx;
+  height: 100rpx;
+}
+.banner {
+  width: 100%;
+  height: 200rpx;
+  overflow: hidden;
+}
+.banner image {
+  width: 100%;
+  height: 100%;
+  border-radius: 18rpx;
+}
+.other-teacher-wrap {
+  width: 100%;
+}
+.other-teacher-wrap .scroll-box {
+  width: 100%;
+  display: flex;
+}
+.other-teacher-wrap .o-t-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 172rpx;
+  height: 168rpx;
+  background-color: #ffe7ff;
+  margin-right: 30rpx;
+}
+.other-teacher-wrap .o-t-item image {
+  width: 60rpx;
+  height: 60rpx;
+}
+.start-answer {
+  background-color: #ff3b5b;
+  display: inline-block;
+  border-radius: 60rpx;
+  width: 80%;
+  position: fixed;
+  bottom: 150rpx;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 12rpx 0;
+  box-shadow: 0rpx 10rpx 10rpx 6rpx rgba(255, 228, 232, 0.8);
+}
+.start-answer text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.mask-comment-show {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.mask-comment-show .start-answer-sign {
+  background-color: #ff3b5b;
+  display: inline-block;
+  border-radius: 60rpx;
+  width: 80%;
+  position: absolute;
+  bottom: 140rpx;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 12rpx 0;
+  box-shadow: 0rpx 10rpx 10rpx 6rpx rgba(255, 228, 232, 0.8);
+}
+.mask-comment {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+}
+.mask-comment .comment-scroll {
+  height: 100%;
+  width: 100%;
+}
+.mask-comment .icon-fabu {
+  color: #fff;
+  position: absolute;
+  top: -70rpx;
+  left: 50%;
+  font-size: 60rpx;
+  transform: translate(-50%, 0);
+  z-index: 100;
+}
+.mask-comment .rotate-left {
+  animation: 1s rotateLeft forwards;
+}
+.sing-info {
+  display: flex;
+  align-items: center;
+}
+.sing-info input {
+  flex: 1;
+  background-color: #eee;
+  border-radius: 60rpx;
+  padding-left: 20rpx;
+  margin-left: 20rpx;
+}
+@keyframes rotateLeft {
+  from {
+    transform: translate(-50%, -100%) rotate(0);
+  }
+  to {
+    transform: translate(-50%, 0%) rotate(405deg);
+  }
+}

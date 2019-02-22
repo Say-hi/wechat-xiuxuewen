@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["components/my-add/add.xml"],"sourcesContent":["<!--<view class=\"out {{ show ? 'move' : '' }} {{ noshow ? 'noshow' : '' }}\">-->\r\n  <!--<view class=\"add\">点击添加到我的小程序，下次查看更方便</view>-->\r\n  <!--<view class=\"angle\"></view>-->\r\n<!--</view>-->"],"file":"add.wxml"}

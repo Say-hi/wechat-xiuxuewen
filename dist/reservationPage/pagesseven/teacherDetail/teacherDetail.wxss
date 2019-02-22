@@ -1,0 +1,65 @@
+.teacher-top {
+  height: 202rpx;
+  overflow: hidden;
+}
+.teacher-top .bg-img {
+  height: 100%;
+  width: 100%;
+}
+.teacher-top .teacher-info {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.teacher-top .teacher-info .br {
+  width: 100rpx;
+  height: 100rpx;
+}
+.tab-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 7%;
+}
+.tab-top .t-t-item {
+  padding-bottom: 4rpx;
+  transition: all .5s;
+}
+.tab-top .t-t-item:after {
+  content: '';
+  position: absolute;
+  bottom: 14rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  background-color: #fff;
+  transition: all .5s;
+}
+.tab-top .cff3b5b:after {
+  height: 4rpx;
+  width: 100%;
+  background-color: #FF3B5B;
+}
+.teacher-item {
+  display: flex;
+  border-radius: 18rpx;
+  background-color: #fff;
+  overflow: hidden;
+}
+.teacher-item image {
+  width: 184rpx;
+  height: 170rpx;
+  border-radius: 18rpx;
+  margin-right: 30rpx;
+}
+.teacher-item .teacher-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.teacher-item .teacher-bottom {
+  display: flex;
+  justify-content: space-between;
+}

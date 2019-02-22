@@ -1,0 +1,154 @@
+page {
+  background-color: #eee;
+}
+.tab-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+}
+.tab-top .t-t-item {
+  padding-bottom: 4rpx;
+  transition: all .5s;
+}
+.tab-top .t-t-item:after {
+  content: '';
+  position: absolute;
+  bottom: 14rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  background-color: #fff;
+  transition: all .5s;
+}
+.tab-top .cff3b5b:after {
+  height: 4rpx;
+  width: 100%;
+  background-color: #fff;
+}
+.out-wrap {
+  margin-top: 98rpx;
+  padding-bottom: 0;
+}
+.out-wrap-search {
+  margin-top: 0;
+}
+.container {
+  margin-top: 20rpx;
+}
+.container .c-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.new-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.new-wrap .c-w-item {
+  flex: 0 0 50%;
+}
+.new-wrap .c-w-item:nth-child(2n) {
+  border-left: 15rpx solid #fff;
+}
+.new-wrap .c-w-item:nth-child(2n + 1) {
+  border-right: 15rpx solid #fff;
+}
+.new-wrap .c-w-item image {
+  height: 178rpx;
+  width: 100%;
+}
+.new-wrap .c-w-item .c-w-i-collect {
+  top: 0;
+  right: 0;
+}
+.new-wrap .c-w-item .n-w-r-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.new-wrap .c-w-item .n-w-r-bottom view {
+  flex: 1;
+  word-break: keep-all;
+}
+.hot-wrap {
+  display: flex;
+  align-items: center;
+}
+.hot-wrap .h-w-left {
+  height: 142rpx;
+  width: 260rpx;
+  margin-right: 10rpx;
+}
+.hot-wrap .h-w-right {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  min-height: 158rpx;
+}
+.hot-wrap .h-w-right .tag {
+  display: inline-block;
+  border: 2rpx solid #D3ABF7;
+  padding: 2rpx 10rpx;
+  margin-right: 14rpx;
+  margin-top: 10rpx;
+  color: #D3ABF7;
+}
+.hot-wrap .h-w-right .shop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hot-wrap .h-w-right .shop-info {
+  display: flex;
+  align-items: center;
+}
+.hot-wrap .h-w-right .shop-info image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+.hot-wrap .h-w-r-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hot-wrap .h-w-r-bottom .flex1 {
+  flex: 1;
+  word-break: keep-all;
+}
+.other {
+  margin-bottom: 20rpx;
+}
+.offline {
+  padding-right: 30rpx;
+}
+.offline .h-w-left {
+  width: 260rpx;
+  height: 202rpx;
+  margin-right: 30rpx;
+}
+.offline .h-w-r-bottom {
+  justify-content: flex-start;
+}
+.offline .h-w-r-bottom view {
+  margin-right: 10rpx;
+}
+.offline .shop-info image {
+  margin-right: 10rpx;
+}
+.arrow {
+  margin-right: 10rpx;
+}
+.arrow:after {
+  right: -14rpx;
+  width: 10rpx;
+  height: 10rpx;
+}

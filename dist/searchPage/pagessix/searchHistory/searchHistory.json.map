@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["searchPage/pagessix/searchHistory/searchHistory.json"],"sourcesContent":["// Window configuration\n{\n  // 类型：HexColor；默认值：#000000\n  // 导航栏背景颜色，如\"#000000\"\n  \"backgroundColor\": \"#ffffff\",\n  \"enablePullDownRefresh\": false\n}\n"],"file":"searchHistory.json"}

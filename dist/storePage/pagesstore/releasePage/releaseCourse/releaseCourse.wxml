@@ -1,0 +1,215 @@
+<view class="p20">
+  <!--课程类型-->
+  <view class="f28 c444 bgfff br18 p30">
+    <view class="fw7 f34">课程类型</view>
+    <view catchtap="chooseF"
+          wx:for="{{ courseArr }}"
+          data-type="course"
+          wx:key="*3"
+          data-index="{{ index }}"
+          class="mt20 f28 courseType {{ courseIndex == index ? 'active' : '' }}">{{ item }}</view>
+  </view>
+  <!--课程分类-->
+  <view class="f28 c444 bgfff br18 p30 mt20">
+    <view class="fw7 f34">课程分类</view>
+    <view catchtap="chooseF"
+          data-type="label"
+          wx:for="{{ labelArr }}"
+          wx:key="*2"
+          data-index="{{ index }}"
+          class="mt20 mr30 courseType hasborder {{ labelIndex == index ? 'active' : '' }}">{{ item.t }}</view>
+  </view>
+  <!--上传课程视频-->
+  <view hidden="{{ courseIndex == 1 || courseIndex == 2 }}" class="f28 c444 bgfff br18 p30 mt20 add-video">
+    <view class="fw7 f34">上传课程视频</view>
+    <view catchtap="upVideo"
+          class="tac br18 border-out a-v-btn mt20">
+      {{ videoUrl ? upText == '成功' ? '替换视频' : upText + '  ' + speed : '+添加视频' }}
+    </view>
+    <video class="video-area mt10"
+           hidden="{{ !videoUrl }}"
+           src="{{ videoUrl }}">
+      <cover-view hidden="{{ !percent || percent >= 100 }}"
+                  class="progress">
+        <cover-view style="width: {{ percent }}%"
+                    class="progress-i"></cover-view>
+      </cover-view>
+    </video>
+    <view class="c999 tar mt20">视频格式建议为MP4</view>
+  </view>
+  <!--设置课程标题-->
+  <view class="f28 c444 bgfff br18 p30 mt20">
+    <view class="fw7 f34">设置课程标题</view>
+    <input maxlength="28"
+           bindinput="inputValue"
+           data-type="name"
+           value="{{ nameText }}"
+           class="border-out br18 f28 i-title mt20"
+           placeholder="请输入课程标题，限定在28字以内" />
+  </view>
+  <!--上传课程封面-->
+  <view class="f28 c444 bgfff br18 p30 mt20 add-video">
+    <view class="fw7 f34">上传课程封面</view>
+    <view catchtap="upImg"
+          data-type="cover"
+          class="tac br18 border-out i-title  mt20">
+      {{ upImgArr[0].temp ? upImgArr[0].real ? '替换封面图' : '图片上传中' : '+添加封面图' }}
+    </view>
+    <view class="img-area mt10">
+      <view hidden="{{ !upImgArrProgress[0] || upImgArrProgress[0] >= 100 }}"
+                  class="progress">
+        <view style="width: {{ upImgArrProgress[0] }}%"
+                    class="progress-i"></view>
+      </view>
+      <image class="video-area"
+             mode="widthFix"
+             hidden="{{ !upImgArr[0].temp }}"
+             src="{{ upImgArr[0].temp }}">
+      </image>
+    </view>
+  </view>
+  <!--上课时间-->
+  <view hidden="{{ courseIndex == 0 }}" class="f28 c444 bgfff br18 p30 mt20">
+    <view class="fw7 f34">上课时间</view>
+    <view class="mt20 mr30 courseType active">报名即可参加学习</view>
+  </view>
+  <!--活动有效期-->
+  <view hidden="{{ courseIndex == 0 }}" class="f28 c444 bgfff br18 p30 mt20">
+    <view class="f34 show-time">
+      <text class="fw7">活动有效期</text>
+      <text class="c999 f28">最长有效期3个月</text>
+    </view>
+    <view class="show-time-choose mt20">
+      <picker
+              mode="date"
+              class="br18 border-out p30"
+              value="{{ userChooseStart || startDay }}"
+              start="{{ startDay }}"
+              end="{{ endDayShould }}"
+              bindchange="bindDateChange"
+              data-type="start"
+      >
+        <view class="picker">{{ userChooseStart || startDay }} 23:59</view>
+      </picker>
+      -
+      <picker
+              mode="date"
+              class="br18 border-out p30"
+              value="{{ userChooseEnd || startDay2 }}"
+              start="{{ startDay2 }}"
+              end="{{ endDay }}"
+              bindchange="bindDateChange"
+              data-type="end"
+      >
+        <view class="picker">{{ userChooseEnd || startDay2 }} 23:59</view>
+      </picker>
+    </view>
+  </view>
+  <!--添加教学环境图片-->
+  <view hidden="{{ courseIndex != 2 }}" class="f28 c444 bgfff br18 p30 mt20 add-video">
+    <view class="f34">
+      <view class="f34 show-time">
+        <text class="fw7">添加教学环境图片</text>
+        <text class="c999 f28">最多上传9张</text>
+      </view>
+    </view>
+    <view catchtap="upImg3"
+          data-type="cover"
+          wx:if="{{ upImgArr4.length < 9 }}"
+          class="tac br18 border-out a-v-btn mt20">
+      +添加图片
+    </view>
+    <view class="img-area mt10">
+      <view class="up-img">
+        <view wx:for="{{ upImgArr4 }}" wx:key="*42" class="pr up-img-area">
+          <image catchtap="imgOperation2"
+                 mode="aspectFit"
+                 data-index="{{ index }}"
+                 lazy-load="{{true}}"
+                 class="br20"
+                 src="{{ item.temp }}"></image>
+          <view hidden="{{ upImgArrProgress4[index] >= 100 }}"
+                catchtap="upno"
+                class="up-progress pa">
+            <view class="tac f20 cfff ">{{ !upImgArrProgress4[index] ? '等待上传' : '上传中' }}</view>
+            <progress border-radius="20"
+                      percent="{{ upImgArrProgress4[index] || 0 }}"></progress>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--作品秀-->
+  <view hidden="{{ courseIndex == 0 }}" class="f28 c444 bgfff br18 p30 mt20 add-video">
+    <view class="f34">
+      <view class="f34 show-time">
+        <text class="fw7">作品绣</text>
+        <text class="c999 f28">最多上传9张</text>
+      </view>
+    </view>
+    <view catchtap="upImg2"
+          data-type="cover"
+          wx:if="{{ upImgArr3.length < 9 }}"
+          class="tac br18 border-out a-v-btn mt20">
+      +添加图片
+    </view>
+    <view class="img-area mt10">
+      <view class="up-img">
+        <view wx:for="{{ upImgArr3 }}" wx:key="*42" class="pr up-img-area">
+          <image catchtap="imgOperation"
+                 mode="aspectFit"
+                 data-index="{{ index }}"
+                 lazy-load="{{true}}"
+                 class="br20"
+                 src="{{ item.temp }}"></image>
+          <view hidden="{{ upImgArrProgress3[index] >= 100 }}"
+                catchtap="upno"
+                class="up-progress pa">
+            <view class="tac f20 cfff ">{{ !upImgArrProgress3[index] ? '等待上传' : '上传中' }}</view>
+            <progress border-radius="20"
+                      percent="{{ upImgArrProgress3[index] || 0 }}"></progress>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--课程详情（选填）-->
+  <view hidden="{{ courseIndex == 1 || courseIndex == 2 }}" class="f28 c444 bgfff br18 p30 mt20 add-video">
+    <view class="fw7 f34">课程详情（选填）</view>
+    <view catchtap="{{ !!courseDetailUp ? '' : 'upImgDetail' }}"
+          data-type="detail"
+          class="tac br18 border-out a-v-btn mt20">
+      {{ !!courseDetailUp ? '图片上传中' : '+添加详情图' }}
+    </view>
+    <view wx:for="{{ upImgArr2 }}"
+          wx:key="*982"
+          class="img-area mt10">
+      <view hidden="{{ !upImgArrProgress2[index] || upImgArrProgress2[index] >= 100 }}"
+            class="progress">
+        <view style="width: {{ upImgArrProgress2[index] }}%"
+              class="progress-i"></view>
+      </view>
+      <image class="video-area"
+             catchtap="courseDetailUpImgOperation"
+             data-index="{{ index }}"
+             mode="widthFix"
+             hidden="{{ !item.temp }}"
+             src="{{ item.temp }}">
+      </image>
+    </view>
+    <view class="c999 tar mt20">图片宽度为650PX，高度不限</view>
+  </view>
+  <!--收费类型-->
+  <view hidden="{{ courseIndex == 1 || courseIndex == 2 }}" class="f28 c444 bgfff br18 p30 mt20">
+    <view class="fw7 f34">收费类型</view>
+    <view class="mt20 mr30 courseType active">免费</view>
+  </view>
+</view>
+
+<view class="zw mt10"></view>
+<view catchtap="goRelease" class="bottom-btn">
+  <view class="f34 cfff fw7 lh88 tac">发布</view>
+</view>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

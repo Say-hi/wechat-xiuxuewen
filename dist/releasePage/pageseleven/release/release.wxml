@@ -1,0 +1,48 @@
+<textarea maxlength="500" bindinput="inputValue" class="bb p20 f26 bt1" placeholder="描述一下您的问题"></textarea>
+
+<view class="up-img p20">
+  <view wx:for="{{ upImgArr }}" wx:key="*42" class="pr up-img-area">
+    <image catchtap="imgOperation"
+           mode="aspectFit"
+           data-index="{{ index }}"
+           lazy-load="{{true}}"
+           class="br20"
+           src="{{ item.temp }}"></image>
+    <view hidden="{{ upImgArrProgress[index] >= 100 }}" class="up-progress pa">
+      <view class="tac f20 cfff ">{{ !upImgArrProgress[index] ? '等待上传' : '上传中' }}</view>
+      <progress border-radius="20"
+                percent="{{ upImgArrProgress[index] || 0 }}"></progress>
+    </view>
+  </view>
+  <view wx:if="{{ upImgArr.length < 9 }}" catchtap="wxUploadImg" class="up-btn br20 bb iconfont icon-fabu"></view>
+</view>
+
+<view class="bottom-wrap p20">
+  <!--<view class="tips c999">-->
+    <!--<view catchtap="chooseTip"-->
+          <!--data-index="{{ index }}"-->
+          <!--class="tips-item br10 f20 {{ item.choose ? 'active' : '' }}"-->
+          <!--wx:for="{{ tipsArr }}"-->
+          <!--wx:key="*41">{{ item.t }}</view>-->
+  <!--</view>-->
+  <view class="count tar f26">{{ content.length || 0 }}/500字</view>
+</view>
+
+<!--<view catchtap="compress">是否开启视频压缩: {{ compressd ? '压缩' : '不压缩' }}</view>-->
+
+<!--<view catchtap="upVideo">视频上传测试</view>-->
+
+<!--<view>{{ speed || '未开始上传' }}</view>-->
+<!--<view>视频大小:{{ size }}</view>-->
+<!--<view>时长: {{ duration }}秒</view>-->
+<!--<view>上传结果: {{ upText || '未开始上传' }}</view>-->
+<!--<view>用时：{{ time }} 秒</view>-->
+
+<view class="zw"></view>
+
+<view catchtap="release" class="release-btn cfff fw7">{{ options.type || '发布提问' }}</view>
+
+
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

@@ -1,0 +1,91 @@
+<import src="/wxParse/wxParse"></import>
+
+<view class="p20">
+  <view class="br18 teacher-top pr">
+    <image lazy-load="{{true}}" class="bg-img" src="{{ reservation_bg }}"></image>
+    <view class="teacher-info pa">
+      <image lazy-load="{{true}}" class="br" src="{{ testImg }}"></image>
+      <view class="cfff f28">老师名字</view>
+    </view>
+  </view>
+
+  <view class="bgfff br18 p30 bb mt20">
+    富文本展示
+    <template is="wxParse" data="{{ wxParseData: lesson.nodes }}"></template>
+  </view>
+
+  <view class="bgfff br18 p30 f28 c3a3a3a mt20">
+    <view class="f34 fw7">上课注意事项</view>
+    <view class="mt20">已报名人数：20</view>
+    <view class="mt10">已报名人数：20</view>
+    <view class="mt10">授课时间：2018年9月20日 15:30—17:30</view>
+    <view class="mt10">金额：99.99</view>
+  </view>
+
+  <view class="bgfff br18 p30 bb mt20">
+    富文本展示
+    <template is="wxParse" data="{{ wxParseData: teacher.nodes }}"></template>
+  </view>
+
+  <view class="bgfff br18 p30 bb mt20 f28 c3a3a3a">
+    <view class="f34 fw7">老师店铺名称</view>
+
+    <swiper autoplay
+            indicator-dots
+            circular
+            indicator-color="{{ indicatorColor }}"
+            indicator-active-color="{{ indicatorActiveColor }}"
+            class="banner br18 mt30">
+      <swiper-item  wx:for="testImg"
+                    wx:key="*0">
+        <image lazy-load="{{true}}" catchtap="goOther" data-src="{{ testImg }}" data-url="{{ item.path }}" mode="aspectFill" src="{{ testImg }}"></image>
+      </swiper-item>
+    </swiper>
+
+    <view class="mt20">店铺地址：广州市海珠区富力天域大厦根据实际地址编辑</view>
+
+    <view class="mt30 fw7 f34">优秀教师</view>
+
+    <scroll-view class="other-teacher-wrap mt20" scroll-x="{{true}}">
+      <view class="scroll-box">
+        <navigator url="../teacherDetail/teacherDetail?id={{ item.id }}" class="o-t-item br18" wx:for="12312321312312" wx:key="*321">
+          <image lazy-load="{{true}}" class="br" src="{{ testImg }}"></image>
+          <view class="mt20 ell2">老师名字</view>
+        </navigator>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="zw"></view>
+  <view catchtap="showMore" data-type="comment" class="f34 start-answer tac cfff fw7 mt20">立刻报名</view>
+</view>
+
+<view catchtap="showMore"
+      data-type="comment"
+      class="mask mask-comment-show {{ showComment ? 'showReply' : 'closeReply' }}">
+<view class="mask-comment p30"
+      catchtap="noUp"
+      style="height: 93%;">
+  <view catchtap="showMore"
+        data-type="comment"
+        class="iconfont icon-fabu {{ showComment ? 'rotate-left' : '' }}"></view>
+  <view class="comment-scroll pr"
+               scroll-y="{{true}}"
+               catchtap="noUp"
+               scroll-with-animation="{{true}}">
+    <view class="sing-info f28 c3a3a3a mt20" wx:for="13213" wx:key="*5423">
+      <view>填写内容</view>
+      <input placeholder="填写内容" />
+    </view>
+
+    <!--<view class="zw80"></view>-->
+    <view catchtap="showMore" data-type="comment" class="f34 start-answer-sign tac cfff fw7 mt20">提交报名信息</view>
+  </view>
+</view>
+</view>
+
+<view class="zw"></view>
+
+<my-navigator-tab></my-navigator-tab>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

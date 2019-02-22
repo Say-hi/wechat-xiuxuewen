@@ -1,0 +1,150 @@
+page {
+  background-color: #eee;
+}
+.tab-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100rpx;
+}
+.tab-top .t-t-item {
+  padding-bottom: 4rpx;
+  transition: all .5s;
+}
+.tab-top .t-t-item:after {
+  content: '';
+  position: absolute;
+  bottom: 14rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  background-color: #fff;
+  transition: all .5s;
+}
+.tab-top .cff3b5b:after {
+  height: 4rpx;
+  width: 100%;
+  background-color: #FF3B5B;
+}
+.practice-wrap {
+  padding: 0 20rpx;
+  padding-bottom: 20rpx;
+}
+.shicao-title {
+  border-radius: 5rpx;
+  padding: 5rpx 7rpx;
+  color: #ff3b5b;
+  margin-right: 4rpx;
+}
+.start-answer {
+  background-color: #ff3b5b;
+  display: inline-block;
+  border-radius: 60rpx;
+  width: 100%;
+  height: 80rpx;
+  position: relative;
+  padding: 12rpx 0;
+  margin: 70rpx 0rpx;
+  box-shadow: 0rpx 10rpx 10rpx 6rpx rgba(255, 228, 232, 0.8);
+}
+.start-answer text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.homework-area .h-i-user {
+  display: flex;
+  align-items: center;
+}
+.homework-area .h-i-user .user-img {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 10rpx;
+}
+.homework-area .h-i-user .tar {
+  flex: 1;
+}
+.homework-area .tips {
+  margin: 0 10rpx;
+  background-color: #ff3b5b;
+  padding: 1rpx 4rpx;
+}
+.homework-area .h-i-content .user-work-img {
+  display: flex;
+  flex-wrap: wrap;
+}
+.homework-area .h-i-content .user-work-img .u-w-i-img {
+  width: 120rpx;
+  height: 120rpx;
+  margin: 10rpx;
+}
+.homework-area .h-i-content .user-operation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.homework-area .h-i-content .user-operation .iconfont {
+  margin-right: 10rpx;
+}
+.homework-area .h-i-content .user-operation .iconfont:before {
+  margin-right: 5rpx;
+}
+.homework-area .h-i-content .reply {
+  background-color: #f1f1f1;
+}
+.homework-area .h-i-content .reply:before {
+  content: '';
+  position: absolute;
+  top: -10rpx;
+  left: 40rpx;
+  height: 20rpx;
+  width: 20rpx;
+  background-color: #f1f1f1;
+  transform: scaleY(1.4) rotateZ(45deg);
+}
+.arrow {
+  margin-right: 10rpx;
+}
+.arrow:after {
+  right: -14rpx;
+  width: 10rpx;
+  height: 10rpx;
+}
+.container {
+  margin-top: 20rpx;
+  padding: 30rpx;
+}
+.container .c-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.new-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.new-wrap .c-w-item {
+  flex: 0 0 50%;
+}
+.new-wrap .c-w-item:nth-child(2n) {
+  border-left: 15rpx solid #fff;
+}
+.new-wrap .c-w-item:nth-child(2n + 1) {
+  border-right: 15rpx solid #fff;
+}
+.new-wrap .c-w-item image {
+  height: 178rpx;
+  width: 100%;
+}
+.new-wrap .c-w-item .c-w-i-collect {
+  top: 0;
+  right: 0;
+}
