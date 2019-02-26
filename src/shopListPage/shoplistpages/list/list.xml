@@ -1,0 +1,38 @@
+<form>
+<scroll-view scroll-x="{{true}}" class="goods-wrap bt1 bgfff">
+  <view class="new-wrap-container">
+    <button wx:for="{{ goodslabel }}"
+            wx:key="*012"
+            form-type="submit"
+            class="f26 c666 goods-label flex1"
+            hover-class="none">
+      {{ item }}
+    </button>
+  </view>
+</scroll-view>
+<view class="p20 container">
+  <navigator hover-class="none"
+             url="/shopListPage/shoplistpages/detail/detail?id={{ item.id }}"
+             class="goods-list bd1 bgfff p30"
+        wx:key="*011"
+        wx:for="123123">
+    <image mode="aspectFill"
+           class="br8"
+           src="{{ img }}"></image>
+    <view class="flex1">
+      <view class="f30 c444">我是商品标题，我总共有三行，我是商品标题</view>
+      <view class="f38 c444 fw7 mt20">¥88.00</view>
+      <button open-type="share"
+              catchtap="noUse"
+              hover-class="none"
+              class="goods-bottom">
+        <view class="cff3b5b f26">赚¥8.80</view>
+        <view class="f28 fw7 cff5975">分享赚</view>
+      </button>
+    </view>
+  </navigator>
+</view>
+</form>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

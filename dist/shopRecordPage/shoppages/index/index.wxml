@@ -1,0 +1,32 @@
+<form>
+  <view class="p20">
+    <view class="p30 bgfff br8 mt20"
+          wx:for="123"
+          wx:key="*128">
+      <view class="f28 c444 df">
+        <text class="fw7">销售利润收入</text>
+        <text>+8.80</text>
+      </view>
+      <view class="f24 c999 df mt20">
+        <text>订单号：001904519394067205</text>
+        <text>2019-02-26 09:25:10</text>
+      </view>
+    </view>
+
+    <view class="p30 bgfff br8 mt20"
+          wx:for="123"
+          wx:key="*123">
+      <view class="f28 c444 df">
+        <text class="fw7">申请单号WP001904519394067205</text>
+        <text>¥88.80</text>
+      </view>
+      <view class="f24 c999 df mt20">
+        <text>2019-02-26 09:25:10 提现方式：微信</text>
+        <text class="{{ index == 1 ? 'cff5975' : '' }}">提现成功</text>
+      </view>
+    </view>
+  </view>
+</form>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

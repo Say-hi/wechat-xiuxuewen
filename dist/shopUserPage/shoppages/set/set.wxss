@@ -1,0 +1,13 @@
+.user-name,
+.shop-img {
+  display: flex;
+  align-items: center;
+  margin-top: 1rpx;
+}
+.shop-img {
+  justify-content: space-between;
+}
+.shop-img image {
+  width: 48rpx;
+  height: 48rpx;
+}

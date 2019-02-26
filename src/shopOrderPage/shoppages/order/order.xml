@@ -1,0 +1,65 @@
+<form>
+  <view class="bt1 tab bgfff">
+    <view wx:for="{{ tabNav }}"
+          catchtap="tabChoose"
+          data-index="{{ index }}"
+          class="f26 c666 flex1 tac tr5 {{ tabIndex == index ? 'active fw7' : '' }}"
+          wx:key="*94">{{ item }}</view>
+  </view>
+  <view class="p20 mt70">
+    <block wx:for="123"
+           wx:key="*123">
+      <view class="tac f22 c3a3a3a mt20">10月20日 17:28</view>
+      <view class="p20 bgfff br8 f26 c666 mt10">
+        <view class="order-num">
+          <text>订单编号：16686868</text>
+          <text class="cf7546f fw7">等待卖家发货</text>
+        </view>
+        <view class="p20 br8 order-goods f26 c666 mt10">
+          <image src="{{ img }}"
+                 mode="aspectFill"
+                 class="br8 mr20"></image>
+          <text class="mr20 flex1">我是商品标题，我是商品标题</text>
+          <view class="og-r tar">
+            <view class="fw7">¥200</view>
+            <view>X1</view>
+          </view>
+        </view>
+        <view class="p20 br8 order-goods more-goods f26 c666 mt10">
+          <view class="g-item"
+                wx:for="13241234"
+                wx:key="*674">
+            <image src="{{ img }}"
+                   mode="aspectFill"
+                   class="br8 mr20"></image>
+            <text>x11</text>
+          </view>
+        </view>
+        <view class="p10 bd1 total f26">
+          <view>
+            <text class="c393636 mr20">共计12件商品</text>
+            <text class="cff5975 fw7">合计：200元</text>
+          </view>
+          <text class="cff5975 fw7">赚¥3.00</text>
+        </view>
+        <view class="f26 order-bottom p10">
+          <text class="c444 fw7">买家：王小溪王小</text>
+          <view class="ob-r flex1">
+            <button class="confirm f26 cfff cancel">取消订单</button>
+            <button class="confirm f26 cfff">立刻付款</button>
+            <button catchtap="showExpress"
+                    data-index="{{ index }}"
+                    class="confirm f26 cfff cancel">查看物流</button>
+            <button class="confirm f26 cfff">确认收货</button>
+            <button class="confirm f26 cfff">点击发货</button>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</form>
+
+<my-express prop-obj="{{ expressObj }}"></my-express>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

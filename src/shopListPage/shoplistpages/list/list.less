@@ -1,0 +1,36 @@
+.container {
+  margin-top: 86rpx;
+}
+.goods-wrap {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 86rpx;
+  z-index: 99;
+  .new-wrap-container {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .goods-label {
+    display: inline-block;
+    padding: 0 15rpx;
+    line-height: 84rpx;
+    word-break: keep-all;
+    overflow: visible;
+  }
+}
+
+.goods-list {
+  display: flex;
+  image {
+    width: 180rpx;
+    height: 180rpx;
+    margin-right: 20rpx;
+  }
+  .goods-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

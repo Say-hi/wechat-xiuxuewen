@@ -30,6 +30,9 @@ image {
 .mt30 {
   margin-top: 30rpx;
 }
+.mt90 {
+  margin-top: 90rpx;
+}
 
 .ml0 {
   margin-left: 0;
@@ -43,6 +46,9 @@ image {
 .mr15 {
   margin-right: 15rpx;
 }
+.ml20 {
+  margin-left: 20rpx;
+}
 .ml30 {
   margin-left: 30rpx;
 }
@@ -50,6 +56,9 @@ image {
   margin-left: 60rpx;
 }
 
+.mr20 {
+  margin-right: 20rpx;
+}
 .mr30 {
   margin-right: 30rpx;
 }
@@ -82,6 +91,7 @@ image {
 .zw200 {
   height: 200rpx;
 }
+
 
 button {
   background-color: transparent;
@@ -147,9 +157,18 @@ button {
 .p020 {
   padding: 0rpx 20rpx;
 }
+.p2010 {
+  padding: 20rpx 10rpx;
+}
+.p2030 {
+  padding: 20rpx 30rpx;
+}
 
 .p200 {
   padding: 20rpx 0rpx;
+}
+.pl20 {
+  padding-left: 20rpx;
 }
 
 .m200 {
@@ -244,6 +263,10 @@ button {
 
 .tr7 {
   transition: all 0.7s;
+}
+
+.tr5 {
+  transition: all 0.5s;
 }
 
 //导航按钮颜色
@@ -517,4 +540,38 @@ button {
   left: 0;
   width: 100%;
   background-color: #fff;
+}
+
+.goback {
+  border-radius: 50%;
+  position: fixed;
+  bottom: 140rpx;
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  right: 30rpx;
+  border: 1rpx solid #eee;
+  transition: all 0.5s;
+}
+
+.move {
+  animation: 0.5s movein linear forwards;
+}
+.moveother {
+  width: 0;
+  height: 0;
+}
+@keyframes movein {
+  from  {
+    bottom: 0rpx;
+    transform: scale(0.1);
+  }
+  80% {
+    transform: scale(1.2);
+  }
+  to {
+    bottom: 140rpx;
+    transform: scale(1);
+  }
 }

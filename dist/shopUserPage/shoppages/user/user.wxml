@@ -1,0 +1,55 @@
+<form>
+  <view class="p20">
+    <view class="user-info bgfff br8 p30">
+      <image src="{{ img }}"
+             class="br mr20"
+             mode="aspectFill"></image>
+      <view class="c444 flex1">
+        <text class="f28 fw7">真实姓名</text>
+        <text class="f24">ID888888</text>
+      </view>
+      <view class="operation">
+        <navigator url="/shopNotePage/shoppages/index/index" hover-class="none" class="jwqfont jwq-tongzhi"></navigator>
+        <navigator url="../set/set?type=user" hover-class="none" class="jwqfont jwq-shezhi"></navigator>
+      </view>
+    </view>
+    <view class="p30 br8 bgfff f28 c444 mt20" wx:if="{{ agents }}">
+      <view>店铺订单</view>
+      <view class="shop-order-num mt30">
+        <navigator wx:for="123"
+                   url="/shopOrderPage/shoppages/order/order?type={{ index + 1 }}"
+                   class="son-item tac f24 br8"
+                   wx:key="*14">
+          <view>5</view>
+          <view>{{ index <= 0 ? '待付款' : index == 1 ? '待发货' : '待收货' }}</view>
+        </navigator>
+      </view>
+    </view>
+    <view class="p20 f24 mt20 c444 bgfff br8 user-order tac">
+      <view class="bd1">
+        <view catchtap="chooseDay" data-type="today" class="{{ today ? 'active' : '' }}">今日</view>
+        <view catchtap="chooseDay" data-type="t" class="{{ today ? '' : 'active' }}">累计</view>
+      </view>
+      <view class="shop-order-num">
+        <view wx:for="123"
+              hidden="{{ index == 2 && !agents }}"
+              class="son-item son-item2 tac f24 br8"
+              wx:key="*12">
+          <view>5</view>
+          <view>{{ index <= 0 ? '订单' : index == 1 ? '收益' : '营业额' }}</view>
+        </view>
+      </view>
+    </view>
+    <view class="user-bottom f28 fw7 c444">
+      <navigator url="/shopMoneyPage/shoppages/index/index" class="ub-item br8 bgfff tac lh80">资金管理</navigator>
+      <navigator url="/shopOrderPage/shoppages/order/order?type=0" class="ub-item br8 bgfff tac lh80">销售订单</navigator>
+      <navigator wx:if="{{ agents }}" url="../set/set?type=shop" class="ub-item br8 bgfff tac lh80">店铺设置</navigator>
+    </view>
+  </view>
+</form>
+<view class="zw"></view>
+<my-navigator-tab></my-navigator-tab>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+

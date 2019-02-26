@@ -1,0 +1,23 @@
+.money-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.money-top .get-money {
+  color: #ff3b5b;
+  padding: 10rpx 23rpx;
+  border: 2rpx solid #ff3b5b;
+  border-radius: 80rpx;
+}
+.shop-order-num {
+  display: flex;
+  justify-content: space-around;
+}
+.shop-order-num .son-item {
+  min-width: 160rpx;
+  padding: 20rpx;
+  background: #FFF4F6;
+}
+.shop-order-num .son-item2 {
+  background: #fff;
+}

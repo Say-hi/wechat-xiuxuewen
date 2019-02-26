@@ -1,0 +1,125 @@
+page {
+  background-color: #f1f1f1;
+}
+.shop-info {
+  display: flex;
+  align-items: center;
+}
+.shop-info .img {
+  width: 120rpx;
+  height: 120rpx;
+}
+.shop-info .icon-fenxiang {
+  padding: 20rpx;
+  font-size: 40rpx;
+}
+.search {
+  padding: 20rpx 30rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8rpx;
+  margin-top: 2rpx;
+}
+.search .s-wrap {
+  display: flex;
+  align-items: center;
+  border-radius: 65rpx;
+  border: 2rpx solid #999;
+  background-color: #fff;
+  flex: 1;
+  padding-left: 20rpx;
+}
+.search input {
+  flex: 1;
+  padding-left: 20rpx;
+  height: 65rpx;
+  line-height: 65rpx;
+  background-color: #fff;
+  margin-right: 20rpx;
+}
+.search .cancel {
+  margin-left: 30rpx;
+}
+.container {
+  margin-top: 20rpx;
+  overflow: hidden;
+}
+.container .c-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.scroll-c {
+  padding-bottom: 30rpx;
+  margin-top: -8rpx;
+}
+.scroll-c .new-wrap {
+  width: 100%;
+}
+.scroll-c .new-wrap .new-wrap-container {
+  display: flex;
+}
+.scroll-c .new-wrap .c-w-item {
+  margin-right: 20rpx;
+}
+.scroll-c .new-wrap .c-w-item:nth-child(1) {
+  margin-left: 30rpx;
+}
+.scroll-c .new-wrap .c-w-item:nth-last-child(1) {
+  margin-right: 0;
+  border-right: 30rpx solid transparent;
+}
+.scroll-c .new-wrap .c-w-item image {
+  width: 200rpx;
+  height: 113rpx;
+}
+.goods-wrap {
+  width: 100%;
+  height: 86rpx;
+  margin-top: -8rpx;
+}
+.goods-wrap .new-wrap-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.goods-wrap .goods-label {
+  display: inline-block;
+  padding: 0 15rpx;
+  line-height: 84rpx;
+  word-break: keep-all;
+  overflow: visible;
+}
+.goods-wrap .goods-label:nth-child(1) {
+  padding-left: 30rpx;
+}
+.goods-list {
+  display: flex;
+}
+.goods-list image {
+  width: 180rpx;
+  height: 180rpx;
+  margin-right: 20rpx;
+}
+.goods-list .goods-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.video-mask video {
+  width: 100%;
+  height: 400rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.video-mask .icon-cuowu {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  font-size: 120rpx;
+  color: #fff;
+  transform: translate(-50%, -50%);
+}

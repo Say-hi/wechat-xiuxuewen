@@ -1,0 +1,58 @@
+.user-info {
+  display: flex;
+}
+.user-info image {
+  width: 120rpx;
+  height: 120rpx;
+}
+.user-info .c444 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.user-info .operation {
+  display: flex;
+}
+.user-info .jwqfont {
+  font-size: 40rpx;
+  margin: 15rpx !important;
+  color: #999;
+}
+.shop-order-num {
+  display: flex;
+  justify-content: space-around;
+}
+.shop-order-num .son-item {
+  min-width: 160rpx;
+  padding: 20rpx 0;
+  background: #FFF4F6;
+}
+.shop-order-num .son-item2 {
+  background: #fff;
+}
+.user-order .bd1 {
+  display: inline-block;
+  padding-bottom: 10rpx;
+}
+.user-order .bd1 view {
+  display: inline-block;
+  padding: 10rpx 20rpx;
+  border: 2rpx solid #979797;
+  border-radius: 50rpx;
+  margin: 0 15rpx;
+  transition: all .5s;
+}
+.user-order .bd1 view.active {
+  color: #fff;
+  border-color: #ff5975;
+  background-color: #ff5975;
+}
+.user-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.user-bottom .ub-item {
+  flex: 0 0 48%;
+  margin-top: 20rpx;
+}

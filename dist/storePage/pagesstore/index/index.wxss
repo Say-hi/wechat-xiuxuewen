@@ -18,38 +18,6 @@
 .jwqfont::before {
   margin-right: 10rpx;
 }
-.goback {
-  border-radius: 50%;
-  position: fixed;
-  bottom: 140rpx;
-  width: 100rpx;
-  height: 100rpx;
-  line-height: 100rpx;
-  text-align: center;
-  right: 30rpx;
-  border: 1rpx solid #eee;
-  transition: all 0.5s;
-}
-.move {
-  animation: 0.5s movein linear forwards;
-}
-.moveother {
-  width: 0;
-  height: 0;
-}
-@keyframes movein {
-  from {
-    bottom: 0rpx;
-    transform: scale(0.1);
-  }
-  80% {
-    transform: scale(1.2);
-  }
-  to {
-    bottom: 140rpx;
-    transform: scale(1);
-  }
-}
 .form-button {
   width: 100%;
   display: flex;

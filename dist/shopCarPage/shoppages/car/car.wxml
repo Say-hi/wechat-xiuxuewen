@@ -1,0 +1,57 @@
+<form>
+  <view class="f26 c666 edit bgfff bt1">
+    <text>共188件宝贝</text>
+    <text catchtap="edit">管理</text>
+  </view>
+  <view class="p20 mt90">
+    <view class="car-list bgfff p30"
+          wx:for="{{ list }}"
+          wx:key="*07">
+      <view catchtap="choose"
+            data-index="{{ index }}"
+            class="iconfont {{ item.choose ? 'icon-gouxuan' : 'icon-wxz' }}"></view>
+      <image src="{{ img }}"
+             class="br8 mr20"
+             mode="aspectFill"></image>
+      <view class="f28 c444 c-l-r flex1">
+        <text>我是商品标题，我总共有三行，我是商品标题</text>
+        <view>规格: 摩卡棕</view>
+        <view class="f38 c444 clr-b mt20">
+          <text class="fw7">¥{{ item.price }}</text>
+          <view class="gmc-num">
+            <view catchtap="numOperation"
+                  data-index="{{ index }}"
+                  data-type="del"
+                  class="gmcn-del br8">-</view>
+            <view class="br8 gmcn-in"
+                  value="{{ item.num }}">{{ item.num }}</view>
+            <view catchtap="numOperation"
+                  data-index="{{ index }}"
+                  data-type="add"
+                  class="gmcn-add br8">+</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="zw"></view>
+  <view class="bgfff submit bt1 f24 c444">
+    <view catchtap="checkAll"
+          data-index="{{ selectAll }}"
+          class="iconfont {{ selectAll == -2 ? 'icon-gouxuan' : 'icon-wxz' }}"> 全选</view>
+    <view wx:if="{{ !del }}" class="s-r">
+      <text>不含运费，</text>
+      <text class="f28 fw7">合计：¥{{ totalMoney }}</text>
+      <button catchtap="submit" class="f28 cfff">结算({{ totalCount }})</button>
+    </view>
+    <button catchtap="del" wx:else class="f28 del">删除</button>
+  </view>
+  <view wx:if="{{ list.length <= 0 }}" class="no-goods bt1">
+    您的购物车空空的哦，快去选购您喜爱的产品吧
+  </view>
+</form>
+<view class="zw"></view>
+<my-navigator-tab></my-navigator-tab>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

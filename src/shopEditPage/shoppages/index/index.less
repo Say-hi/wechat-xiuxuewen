@@ -1,0 +1,74 @@
+.top {
+  display: flex;
+}
+
+image {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.speci-item {
+  display: flex;
+  align-items: center;
+  view {
+    flex: 1;
+  }
+  text {
+    word-break: keep-all;
+    margin: 0 20rpx;
+    margin-left: 30rpx;
+  }
+  .si-price {
+    display: flex;
+    align-items: center;
+  }
+  input {
+    border: 2rpx solid #979797;
+    border-radius: 8rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    min-width: 150rpx;
+  }
+}
+.express {
+  display: flex;
+  align-items: center;
+  .tips {
+    line-height: 60rpx;
+    width: 60rpx;
+    border: 2rpx solid #979797;
+  }
+  input {
+    line-height: 60rpx;
+    height: 60rpx;
+    border: 2rpx solid #979797;
+    border-radius: 8rpx;
+  }
+}
+input {
+  padding-left: 10rpx;
+}
+.icon-gouxuan {
+  color: #ff5975;
+}
+
+.edit-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  button {
+    border: 2rpx solid #666;
+    border-radius: 80rpx;
+    padding: 20rpx 60rpx;
+    margin-left: 20rpx;
+    font-size: 34rpx;
+    font-weight: 700;
+    &.cfff {
+      border-color: #ff5975;
+      background-color: #ff5975;
+    }
+  }
+}

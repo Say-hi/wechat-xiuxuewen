@@ -1,0 +1,41 @@
+<form>
+<scroll-view scroll-x="{{true}}" class="goods-wrap bt1 bgfff">
+  <view class="new-wrap-container">
+    <button wx:for="{{ goodslabel }}"
+            wx:key="*012"
+            form-type="submit"
+            class="f26 c666 goods-label flex1"
+            hover-class="none">
+      {{ item }}
+    </button>
+  </view>
+</scroll-view>
+<view class="p20 container">
+  <view class="goods-list bd1 br8 bgfff {{ index >= 1 ? 'mt20' : '' }}"
+        wx:key="*this2"
+        wx:for="123123">
+    <view class="video-area">
+      <view hidden="{{ playIndex == index }}"
+            catchtap="playVideo"
+            data-index="{{ index }}"
+            class="iconfont icon-bofang1 pr">
+        <image class="poster-img"
+               src="{{ img }}"></image>
+      </view>
+      <video poster="{{ img }}"
+             wx:if="{{ playIndex == index }}"
+             object-fit="cover"
+             class="videocss"
+             autoplay="{{ playIndex == index }}"
+             src="{{ videoSrc }}"></video>
+    </view>
+    <view class="p20 bgfff video-bottom">
+      <view class="f30 c444">我是视频标题</view>
+      <view class="f24 c999">播放次数：666</view>
+    </view>
+  </view>
+</view>
+</form>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

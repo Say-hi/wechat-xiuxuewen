@@ -1,0 +1,36 @@
+<form>
+<view class="p20">
+  <view class="search">
+    <view class="s-wrap">
+      <view class="iconfont f32 icon-sousuo c999"></view>
+      <input confirm-type="search" bindconfirm="search" cursor="30" placeholder-class="holder" class="br15 f28" placeholder="输入您要搜索的内容" />
+    </view>
+    <navigator open-type="navigateBack" class="f28 fw7 c444 cancel">搜索</navigator>
+  </view>
+  <view class="f24 c444 bgfff p2030 br8 mt1">分销商(66人)</view>
+  <view class="p20 bgfff br8 f24 c444 mt20"
+        wx:for="1234"
+        wx:key="*123">
+    <text>注册时间：2019.01.19</text>
+    <view class="p30 client-item mt10">
+      <view>
+        <image class="br mr20" src="{{ img }}"></image>
+        <text class="f28">真实姓名</text>
+      </view>
+      <view>
+        <text>订单总额：¥0.00</text>
+        <text>订单数量：88</text>
+      </view>
+      <view>
+        <text>联系电话：13631208101</text>
+        <text>客户人数：88</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+</form>
+
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

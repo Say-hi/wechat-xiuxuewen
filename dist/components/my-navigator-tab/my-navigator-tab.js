@@ -37,10 +37,29 @@ Component({
       var navData = app.gs('bottomNav');
       var currentPage = getCurrentPages();
       var store = false;
+      var shop = false;
+      console.warn('route', currentPage[currentPage.length - 1].route);
       if (currentPage[currentPage.length - 1].route.indexOf('storePage') >= 0) {
         store = true;
         navData = app.gs('storeBottomNav');
         app.data.bottomTabIndex = currentPage[currentPage.length - 1].route.indexOf('index') >= 0 ? 0 : 1;
+      } else if (currentPage[currentPage.length - 1].route.indexOf('shop') >= 0) {
+        shop = true;
+        navData = app.gs('shopBottomNav');
+        switch (currentPage[currentPage.length - 1].route) {
+          case 'shopPage/shoppages/index/index':
+            app.data.bottomTabIndex = 0;
+            break;
+          case 'shopCenterPage/shoppages/index/index':
+            app.data.bottomTabIndex = 1;
+            break;
+          case 'shopCarPage/shoppages/car/car':
+            app.data.bottomTabIndex = 2;
+            break;
+          case 'shopUserPage/shoppages/user/user':
+            app.data.bottomTabIndex = 3;
+            break;
+        }
       }
       if (navData) {
         var _iteratorNormalCompletion = true;
@@ -76,11 +95,11 @@ Component({
         app.wxrequest({
           url: app.getUrl().style,
           data: {
-            style: store ? 4 : 1
+            style: shop ? 5 : store ? 4 : 1
           },
           success: function success(res) {
             wx.hideLoading();
-            app.su(store ? 'storeBottomNav' : 'bottomNav', res.data.data);
+            app.su(shop ? 'shopBottomNav' : store ? 'storeBottomNav' : 'bottomNav', res.data.data);
             res.data.data[app.data.bottomTabIndex]['active'] = true;
             that.setData({
               navData: res.data.data

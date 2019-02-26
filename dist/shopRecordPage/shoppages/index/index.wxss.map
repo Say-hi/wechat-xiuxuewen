@@ -1,0 +1,1 @@
+{"version":3,"sources":["shopRecordPage/shoppages/index/index.less"],"names":[],"mappings":"AACE,KAAC,UAAU;EACT,aAAA;;AAIJ;EACE,aAAA;EACA,mBAAA;EACA,8BAAA","sourcesContent":[".mt20 {\r\n  &:nth-child(1) {\r\n    margin-top: 0;\r\n  }\r\n}\r\n\r\n.df {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: space-between;\r\n}"],"file":"index.wxss"}

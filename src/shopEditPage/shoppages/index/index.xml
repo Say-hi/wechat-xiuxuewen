@@ -1,0 +1,42 @@
+<form>
+<view class="p20">
+  <view class="p30 br8 bgfff top">
+    <image mode="aspectFill"
+           class="br8 mr20"
+           src="{{ img }}"></image>
+    <view class="f30 c444 flex1">我是商品标题，我总共有两行，我是商品标题</view>
+  </view>
+  <view class="p30 mt1 br8 bgfff f26 c3a3a3a fw7">库存&价格</view>
+  <view wx:for="1234"
+        wx:key="*02"
+        class="p30 mt1 br8 bgfff f26 c3a3a3a speci-item mt1">
+    <view>自然棕</view>
+    <view class="si-price">
+      <text>价格</text>
+      <input placeholder="0.01" type="digit"/>
+    </view>
+    <view class="si-price">
+      <text>价格</text>
+      <input placeholder="0.01" type="digit"/>
+    </view>
+  </view>
+  <view class="p30 mt1 br8 bgfff f26 c3a3a3a fw7 express">
+    <text class="mr20 fw7">运费设置</text>
+    <view class="tips br8 tac">￥</view>
+    <input placeholder="0.01" type="digit"/>
+  </view>
+  <view class="p30 mt1 br8 bgfff f26 c3a3a3a sale">
+    <text class="fw7">开售时间</text>
+    <text catchtap="chooseSale" data-type="1" class="iconfont p030 {{ sale == 1 ? 'icon-gouxuan' : 'icon-wxz' }}"> 立刻上架</text>
+    <text catchtap="chooseSale" data-type="2" class="iconfont p030 {{ sale == 2 ? 'icon-gouxuan' : 'icon-wxz' }}"> 放入仓库</text>
+  </view>
+  <view class="zw"></view>
+</view>
+<view class="p2030 edit-bottom bgfff">
+  <button catchtap="back">取消</button>
+  <button class="cfff">保存</button>
+</view>
+</form>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

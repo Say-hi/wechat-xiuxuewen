@@ -1,0 +1,69 @@
+<from>
+  <view wx:if="{{ !need_pay }}">
+    <view class="p20">
+      <view class="br18 bgfff goods p30 pr">
+        <view catchtap="chooseAddress"
+              class="address pr">
+          <image lazy-load="{{true}}"
+                 mode="widthFix"
+                 src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/add_address1.png"></image>
+          <view wx:if="{{ addressInfo }}"
+                class="address-s f26 c3a3a3a">
+            <view class="a-s-t">
+              <text class="iconfont icon-dizhi f26">收货人: {{ addressInfo.userName }}</text>
+              <text class="f26">{{ addressInfo.telNumber }}</text>
+            </view>
+            <view class="ell2">
+              收货地址: {{ addressInfo.provinceName }}{{ addressInfo.cityName }}{{ addressInfo.countyName }}{{ addressInfo.detailInfo }}
+            </view>
+          </view>
+          <view wx:if="{{ needSetting }}"
+                class="open-setting">
+            <button catchtap="openSetting">开启授权</button>
+          </view>
+        </view>
+        <scroll-view scroll-y
+                     style="max-height: 640rpx;">
+          <view class="goods-list br8 p20 f28 c666"
+                wx:key="*45"
+                wx:for="112341234">
+            <image src="{{ img }}"
+                   class="br8"
+                   mode="aspectFill"></image>
+            <view class="flex1">我是商品名称我是商品名称我是商品名称我是商品名称</view>
+            <view class="ml10">X11111</view>
+          </view>
+        </scroll-view>
+        <view class="p20 f28 c444 bd1">
+          <view>共计<text class="fw7">1件</text>商品</view>
+
+          <view class="money mt30">
+            <text>商品总价</text>
+            <text>¥200.00</text>
+          </view>
+
+          <view class="money">
+            <text>运费</text>
+            <text>¥200.00</text>
+          </view>
+        </view>
+        <view class="f28 c444 fw7 tar mt10">共计需要付款：￥213.00</view>
+      </view>
+    </view>
+    <view class="submit bt1 f24 c444">
+      <text>共1件，</text>
+      <text class="f34 fw7">合计：¥213.00</text>
+      <button catchtap="submit" class="f34 cfff">提交订单</button>
+    </view>
+  </view>
+  <view wx:else class="p20 pay-success">
+    <view class="bgfff br8">
+      <image src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/pay_success.png"></image>
+      <view class="c444 fw7">支付成功！</view>
+      <button catchtap="gohome">返回商城首页</button>
+    </view>
+  </view>
+</from>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

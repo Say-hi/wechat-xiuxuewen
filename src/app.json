@@ -2,17 +2,8 @@
 //  群信息小程序页面分布
   "pages": [
     "pages/index/index", // 首页
-//    "pages/nearlearn/nearlearn", // 最近学习
     "pages/user/user", // 我的
-//    "pages/showXiu/showXiu", // 作品秀个人展示
-//    "pages/showDetail/showDetail", // 作品秀详情
-//    "pages/show/show", // 作品秀
-//    "pages/release/release", // 发布作品&发布提问
-//    "pages/courseDetail/courseDetail", // 课程详情  传入值 type 对应规则 1 线上课程 2 线下课程 3 教室 4 驻店课程
-//    "pages/courseList/courseList", // 课程列表
     "pages/courseOffline/courseOffline" // 线下相关
-//    "pages/course/course" // 课程,,,
-    // Dont remove this comment
   ],
   "subPackages": [
     {
@@ -143,6 +134,107 @@
       "pages": [
         "pagesshare/share/share"
       ]
+    },
+    {
+      "root": "shopPage", // 商城
+      "name": "shop",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopVideoPage", // 商城视频
+      "name": "video",
+      "pages": [
+        "shopvideopages/video/video"
+      ]
+    },
+    {
+      "root": "shopListPage", // 商城商品
+      "name": "list",
+      "pages": [
+        "shoplistpages/list/list", // 商品列表
+        "shoplistpages/submit/submit", // 提交商品订单
+        "shoplistpages/detail/detail" // 商品详情
+      ]
+    },
+    {
+      "root": "shopCarPage", // 购物车
+      "name": "car",
+      "pages": [
+        "shoppages/car/car"
+      ]
+    },
+    {
+      "root": "shopOrderPage", // 商城订单
+      "name": "shopOrder",
+      "pages": [
+        "shoppages/order/order"
+      ]
+    },
+    {
+      "root": "shopClientPage", // 商城客户管理
+      "name": "client",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopCenterPage", // 商城产品管理
+      "name": "center",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopMoneyPage", // 商城资金管理
+      "name": "money",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopNotePage", // 店铺通知
+      "name": "note",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopEditPage", // 商品编辑
+      "name": "edit",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopGoodsPage", // 商品管理
+      "name": "goods",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopWithdrawPage", // 商城提现
+      "name": "withdraw",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopRecordPage", // 商城记录
+      "name": "record",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopUserPage", // 用户中心
+      "name": "user",
+      "pages": [
+        "shoppages/user/user", // 用户信息
+        "shoppages/set/set" // 用户设置
+      ]
     }
   ],
   "preloadRule": {
@@ -154,7 +246,8 @@
         "course",
         "new",
         "entering",
-        "search"
+        "search",
+        "shop"
       ]
     },
     "answerPage/pagesthree/answer/answer": {
@@ -175,6 +268,38 @@
       "network": "all",
       "packages": [
         "share"
+      ]
+    },
+    "shopPage/shoppages/index/index": {
+      "network": "all",
+      "packages": [
+        "car",
+        "list",
+        "video",
+        "center",
+        "user"
+      ]
+    },
+    "shopUserPage/shoppages/user/user": {
+      "network": "all",
+      "packages": [
+        "shopOrder",
+        "client",
+        "money",
+        "note"
+      ]
+    },
+    "shopCenterPage/shoppages/index/index": {
+      "network": "all",
+      "packages": [
+        "edit"
+      ]
+    },
+    "shopMoneyPage/shoppages/index/index": {
+      "network": "all",
+      "packages": [
+        "record",
+        "withdraw"
       ]
     }
   },
@@ -202,6 +327,14 @@
     // 是否开启下拉刷新，详见页面相关事件处理函数。
     // https://mp.weixin.qq.com/debug/wxadoc/dev/framework/app-service/page.html?t=1476197491005#页面相关事件处理函数
     "enablePullDownRefresh": false
+  },
+  "usingComponents": {
+    "my-add": "/components/my-add/add",
+    "my-tip": "/components/my-tip/my-tip",
+    "my-login": "/components/my-login/my-login",
+    "my-express": "/components/my-express/my-express",
+    "my-navigator-tab": "/components/my-navigator-tab/my-navigator-tab",
+    "my-top-tab": "/components/my-top-tab/my-top-tab"
   },
 //  "tabBar": {
 //    "color": "#999999",

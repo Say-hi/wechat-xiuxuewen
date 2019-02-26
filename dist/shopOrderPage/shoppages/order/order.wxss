@@ -1,0 +1,73 @@
+.tab {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  line-height: 68rpx;
+}
+.tab .active {
+  color: #ff5975;
+}
+.mt70 {
+  margin-top: 50rpx;
+}
+.order-num {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.order-goods {
+  background-color: #f2f2f2;
+  display: flex;
+}
+.order-goods.more-goods {
+  flex-wrap: wrap;
+}
+.order-goods.more-goods .g-item {
+  margin-top: 10rpx;
+  margin-right: 10rpx;
+  display: flex;
+}
+.order-goods image {
+  width: 129rpx;
+  height: 129rpx;
+}
+.order-goods .og-r {
+  color: #393636;
+}
+.total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.order-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.order-bottom .ob-r {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.order-bottom .confirm {
+  background-color: #ff3b5b;
+  padding: 8rpx 20rpx;
+  border-radius: 80rpx;
+  border: 2rpx solid #ff3b5b;
+  word-break: keep-all;
+  margin: 4rpx;
+  margin-right: 0;
+  margin-left: 30rpx;
+}
+.order-bottom .confirm:nth-child(1) {
+  margin-left: 0;
+}
+.order-bottom .confirm.cancel {
+  background-color: #fff;
+  color: #444;
+  border-color: #444;
+}

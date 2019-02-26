@@ -1,0 +1,104 @@
+.edit {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 28rpx 30rpx 30rpx;
+}
+.iconfont {
+  font-size: 30rpx;
+  margin: 30rpx;
+  color: #979797;
+  &.icon-gouxuan {
+    color: #ff5975;
+  }
+}
+.car-list {
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+  image {
+    width: 154rpx;
+    height: 154rpx;
+  }
+  .clr-b {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.submit {
+  position: fixed;
+  bottom: 120rpx;
+  left: 0;
+  width: 100%;
+  padding-right: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  .cfff {
+    padding: 20rpx 30rpx;
+    border-radius: 60rpx;
+    background-color: #ff5975;
+    margin-left: 20rpx;
+  }
+  .s-r {
+    display: flex;
+    align-items: center;
+    text {
+      word-break: keep-all;
+    }
+  }
+  button {
+    word-break: keep-all;
+    background-color: #ff5975;
+    border-radius: 88rpx;
+    color: #fff;
+    padding: 10rpx 30rpx !important;
+    &.del {
+      padding: 10rpx 48rpx !important;
+    }
+  }
+}
+.gmc-num {
+  display: flex;
+  align-items: center;
+}
+@height: 60rpx;
+.gmcn-in {
+  height: @height;
+  line-height: @height;
+  width: 80rpx;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  border: 1rpx solid #444;
+  display: inline-block;
+}
+.gmcn-del, .gmcn-add {
+  background-color: #ff5975;
+  width: @height;
+  height: @height;
+  line-height: @height - 10;
+  color: #fff;
+  text-align: center;
+  font-size: 50rpx;
+  margin: 0 10rpx;
+}
+
+.no-goods {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  text-align: center;
+  padding: 40rpx;
+  font-size: 30rpx;
+}

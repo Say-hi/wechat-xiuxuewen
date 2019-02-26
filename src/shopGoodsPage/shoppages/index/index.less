@@ -1,0 +1,127 @@
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 68rpx;
+}
+.active {
+  color: #ff3b5b;
+  font-weight: 700;
+}
+.iconfont {
+  font-size: 30rpx;
+  color: #979797;
+  &.icon-gouxuan {
+    color: #ff5975;
+  }
+}
+.car-list {
+  display: flex;
+  flex-direction: column;
+  image {
+    width: 129rpx;
+    height: 129rpx;
+  }
+  .goods-info {
+    background: #f2f2f2;
+    display: flex;
+    .c444 {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+  .goods-count {
+    padding: 20rpx 10rpx;
+    display: flex;
+    justify-content: space-between;
+  }
+  .goods-op {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      font-size:  26rpx;
+      color: #444;
+      text-align: center;
+      border: 2rpx solid #444;
+      padding: 8rpx 30rpx;
+      margin: 20rpx 10rpx 0 20rpx;
+      border-radius: 80rpx;
+    }
+  }
+}
+
+.submit {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-right: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  .cfff {
+    padding: 20rpx 30rpx;
+    border-radius: 60rpx;
+    background-color: #ff5975;
+    margin-left: 20rpx;
+  }
+  .s-r {
+    display: flex;
+    align-items: center;
+    text {
+      word-break: keep-all;
+    }
+  }
+  button {
+    word-break: keep-all;
+    background-color: #ff5975;
+    border-radius: 88rpx;
+    color: #fff;
+    border: 2rpx solid #ff5975;
+    padding: 10rpx 30rpx !important;
+    &.del {
+      background-color: #fff;
+      color: #444;
+      border-color: #444;
+    }
+  }
+}
+.gmc-num {
+  display: flex;
+  align-items: center;
+}
+@height: 60rpx;
+.gmcn-in {
+  height: @height;
+  line-height: @height;
+  width: 80rpx;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  border: 1rpx solid #444;
+  display: inline-block;
+}
+.gmcn-del, .gmcn-add {
+  background-color: #ff5975;
+  width: @height;
+  height: @height;
+  line-height: @height - 10;
+  color: #fff;
+  text-align: center;
+  font-size: 50rpx;
+  margin: 0 10rpx;
+}
+
+.no-goods {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  text-align: center;
+  padding: 40rpx;
+  font-size: 30rpx;
+}

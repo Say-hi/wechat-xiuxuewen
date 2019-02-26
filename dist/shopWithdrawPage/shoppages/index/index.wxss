@@ -1,0 +1,34 @@
+.df {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.withdraw-btn {
+  line-height: 88rpx;
+  background-color: #ff5975;
+  border-radius: 80rpx;
+}
+.withdraw-btn.c444 {
+  background-color: #fff;
+}
+.mask-scroll {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.mask {
+  transition: all 0.5s;
+  overflow: hidden;
+}
+.small {
+  width: 100%;
+  height: 0;
+}
+.big {
+  width: 100%;
+  height: 100%;
+}
+.icon-cuowu {
+  font-size: 60rpx;
+}

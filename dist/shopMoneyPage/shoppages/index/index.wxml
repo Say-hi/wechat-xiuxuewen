@@ -1,0 +1,53 @@
+<form>
+<view class="p20">
+  <view class="p2030 bgfff br8">
+    <text class="f48 c444 fw7">¥88.00</text>
+    <view class="money-top f26 c444">
+      <text>我的收益</text>
+      <navigator url="/shopWithdrawPage/shoppages/index/index"
+                 class="get-money">申请提现</navigator>
+    </view>
+  </view>
+  <navigator url="/shopRecordPage/shoppages/index/index?type=a"
+             class="p30 bgfff br8 arrow f28 c444 fw7 mt30">收益明细</navigator>
+  <navigator url="/shopRecordPage/shoppages/index/index?type=withdraw"
+             class="p30 bgfff br8 arrow f28 c444 fw7 mt1">提现记录</navigator>
+  <view class="p30 bgfff br8 f24 c444 mt20">
+    <view class="shop-order-num">
+      <view wx:for="123"
+                 class="son-item tac f24 br8"
+                 wx:key="*12">
+        <view>5</view>
+        <view>{{ index == 1 ? '总计已结算收益' : index == 2 ? '待结算收益' : '今日收益' }}</view>
+      </view>
+    </view>
+  </view>
+</view>
+</form>
+
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

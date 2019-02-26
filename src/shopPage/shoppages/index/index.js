@@ -1,0 +1,102 @@
+// 获取全局应用程序实例对象
+const app = getApp()
+
+// 创建页面实例对象
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    img: app.data.testImg,
+    list: [
+      {
+        image: app.data.testImg,
+        title: '我是视频标题我是视频标题我是视频标题'
+      },
+      {
+        image: app.data.testImg,
+        title: '我是视频标题'
+      },
+      {
+        image: app.data.testImg,
+        title: '我是视频标题'
+      },
+      {
+        image: app.data.testImg,
+        title: '我是视频标题我是视频标题我是视频标题'
+      },
+      {
+        image: app.data.testImg,
+        title: '我是视频标题我是视频标题我是视频标题我是视频标题我是视频标题'
+      }
+    ],
+    videoSrc: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+    goodslabel: ['色乳类', '色乳类', '色乳类', '色乳类', '色乳类', '色乳类', '色乳类色乳类色乳类色乳类']
+  },
+  noUse () {
+    app.noUse()
+  },
+  playVideo (e) {
+    let that = this
+    this.setData({
+      play: !that.data.play,
+      playIndex: e.currentTarget.dataset.index
+    })
+  },
+  onShareAppMessage () {
+    let that = this
+    return {
+      title: `${that.data.info.share_title || '邀请您入驻绣学问，成为优秀的纹绣人'}`,
+      imageUrl: `${that.data.info.share_imageUrl || ''}`,
+      path: `/enteringPage/pagestwelve/entering/entering?id=${app.gs('userInfoAll').id}`
+    }
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad () {
+    if (!app.gs() || !app.gs('userInfoAll')) return app.wxlogin()
+    // TODO: onLoad
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady () {
+    // TODO: onReady
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow () {
+    this.setData({
+      move: !this.data.move
+    })
+    // TODO: onShow
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide () {
+    this.setData({
+      move: !this.data.move
+    })
+    // TODO: onHide
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload () {
+    // TODO: onUnload
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh () {
+    // TODO: onPullDownRefresh
+  }
+})

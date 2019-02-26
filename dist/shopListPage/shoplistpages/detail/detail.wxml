@@ -1,0 +1,98 @@
+<form>
+  <swiper class="goods-swiper" autoplay="{{true}}">
+    <swiper-item wx:for="123123" wx:key="*112">
+      <image mode="aspectFill" src="{{ img }}"></image>
+    </swiper-item>
+  </swiper>
+  <button open-type="share"
+          hover-class="none"
+          class="p30 goods-title tal">
+    <view class="f34 c3a3a3a fw7">我是产品标题呀</view>
+    <view class="goods-bottom mt10">
+      <view class="g-b-t">
+        <view class="cff5975 f48 fw7">¥488</view><view class="f26 c666 ml10">赚¥8.80</view>
+      </view>
+      <view class="f28 fw7 cff5975">分享赚</view>
+    </view>
+  </button>
+  <view class="goods-count f26 c3a3a3a p030">
+    <view>运费 ¥13.00</view>
+    <view>库存 888</view>
+    <view>销量 888</view>
+  </view>
+  <view class="f34 c444 p30">商品详情</view>
+  <image wx:for="123"
+         wx:key="*12"
+         mode="widthFix"
+         class="detail-img"
+         src="{{ img }}"></image>
+  <view class="zw90"></view>
+  <view class="bottom-tab">
+    <navigator url="/shopPage/shoppages/index/index"
+               hover-stop-propagation="{{true}}"
+               hover-class="none"
+               class="jwqfont jwq-dianpu"
+               open-type="reLaunch"></navigator>
+    <view catchtap="buy" data-type="car" class="addcar flex1 tac c444 f34 fw7">加入购物车</view>
+    <view catchtap="buy" data-type="buy" class="buynow flex1 tac cfff f34 fw7">立刻购买</view>
+  </view>
+  <!--商品规格选择-->
+  <view class="goods-mask {{ buyMask ? '' : 'noshow' }}"
+        catchtap="buy"
+        data-type="change">
+    <!--商品展示-->
+    <view catchtap="noUse"
+          class="g-m-wrap bgfff">
+      <view class="g-m-top p30 bd1 pr">
+        <image mode="aspectFill"
+               class="br8"
+               src="{{ img }}"></image>
+        <view class="c444 f26">
+          <view class="cff5975 f34">¥488</view>
+          <view>库存：88</view>
+          <view>请选择：色系</view>
+        </view>
+        <view catchtap="buy"
+              data-type="change"
+              class="close iconfont icon-cuowu"></view>
+      </view>
+      <!--规格设置-->
+      <scroll-view scroll-y style="max-height: 700rpx;">
+        <view class="p30 bd1 f30 c444 g-m-specification fw7"
+              wx:key="*98"
+              wx:for-index="oindex"
+              wx:for="{{ specifi }}">
+          <view class="gms-t">{{ item.t }}</view>
+          <view class="gms-c">
+            <view wx:for="{{ item.chooses }}"
+                  wx:for-index="iindex"
+                  catchtap="chooseSp"
+                  data-index="{{ iindex }}"
+                  data-oindex="{{ oindex }}"
+                  class="gms-c-item {{ item.choose ? 'choose' : '' }}"
+                  wx:key="*15">{{ item.t }}</view>
+          </view>
+        </view>
+      </scroll-view>
+      <!--购买数量-->
+      <view class="g-m-count f30 c444 bd1 p30">
+        <view class="fw7">购买数量</view>
+        <view class="gmc-num">
+          <view catchtap="numOperation" data-type="del" class="gmcn-del br8">-</view>
+          <input type="number"
+                 disabled="{{true}}"
+                 catchinput="inputValue"
+                 class="br8 gmcn-in"
+                 value="{{ num }}" />
+          <view catchtap="numOperation" data-type="add" class="gmcn-add br8">+</view>
+        </view>
+      </view>
+      <view catchtap="goSubmit" class="g-m-confirm f34 cfff fw7 tac">
+        确定
+      </view>
+    </view>
+  </view>
+</form>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

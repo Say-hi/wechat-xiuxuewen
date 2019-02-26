@@ -40,6 +40,7 @@ App({
     testImg: 'https://c.jiangwenqiang.com/api/logo.jpg',
     reservation_bg: 'https://c.jiangwenqiang.com/workProject/payKnowledge/reservation_bg.png'
   },
+  noUse: function noUse() {},
   cloud: function cloud() {
     return _cloud;
   },
