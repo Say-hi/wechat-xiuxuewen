@@ -4,36 +4,40 @@
     <button wx:for="{{ goodslabel }}"
             wx:key="*012"
             form-type="submit"
-            class="f26 c666 goods-label flex1"
+            catchtap="chooseLabel"
+            data-index="{{ index }}"
+            class="f26 c666 goods-label flex1 {{ labelIndex == index ? 'active' : '' }}"
             hover-class="none">
-      {{ item }}
+      {{ item.name }}
     </button>
   </view>
 </scroll-view>
 <view class="p20 container">
   <view class="goods-list bd1 br8 bgfff {{ index >= 1 ? 'mt20' : '' }}"
         wx:key="*this2"
-        wx:for="123123">
+        wx:for="{{ list }}">
     <view class="video-area">
       <view hidden="{{ playIndex == index }}"
             catchtap="playVideo"
             data-index="{{ index }}"
             class="iconfont icon-bofang1 pr">
         <image class="poster-img"
-               src="{{ img }}"></image>
+               mode="aspectFill"
+               src="{{ item.img }}"></image>
       </view>
-      <video poster="{{ img }}"
+      <video poster="{{ item.img }}"
              wx:if="{{ playIndex == index }}"
              object-fit="cover"
              class="videocss"
              autoplay="{{ playIndex == index }}"
-             src="{{ videoSrc }}"></video>
+             src="{{ item.video_url }}"></video>
     </view>
     <view class="p20 bgfff video-bottom">
-      <view class="f30 c444">我是视频标题</view>
-      <view class="f24 c999">播放次数：666</view>
+      <view class="f30 c444">{{ item.title }}</view>
+      <view class="f24 c999">播放次数：{{ item.play_count }}</view>
     </view>
   </view>
+  <view wx:if="{{ list.length <= 0 }}" class="tac f26 p20 c444">还没有该分类的视频，正在火速补充中</view>
 </view>
 </form>
 <!--错误弹窗-->

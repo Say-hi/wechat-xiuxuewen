@@ -4,6 +4,7 @@
  * Created by Administrator on 2017/6/2.
  */
 var baseDomain = 'https://teach.idwenshi.com/teaching/public/index.php';
+var shopBaseDomain = 'https://teach.idwenshi.com/teach/teach/web/index.php';
 // let baseDomain = 'https://www.1688rm.com'
 var serviceUrl = {
   style: baseDomain + '/home/page', // 不填默认为1, 1表示中间菜单,2表示底部菜单,3表示广告图
@@ -72,7 +73,11 @@ var serviceUrl = {
   teacherUserCash: baseDomain + '/teacher/user/cash', // 教师提现
   teacherDotShare: baseDomain + '/teacher/dot/share', // 教师邀请
   teacherActiveMsg: baseDomain + '/teacher/active/msg', // 获取一条驻店课程消息
-  teacherUserActive: baseDomain + '/teacher/user/active' // 获取线下课程
+  teacherUserActive: baseDomain + '/teacher/user/active', // 获取线下课程
+  // 商城接口
+  shopCategoryList: shopBaseDomain + '/category/list', // 分类
+  shopProductList: shopBaseDomain + '/product/list', // 商品
+  shopVideoList: shopBaseDomain + '/video/list' // 视频列表
 };
 module.exports = serviceUrl;
 //# sourceMappingURL=service.js.map

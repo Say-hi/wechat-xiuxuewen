@@ -10,12 +10,12 @@
   <view class="search">
     <view class="s-wrap">
       <view class="iconfont f32 icon-sousuo c999"></view>
-      <input confirm-type="search" bindconfirm="search" cursor="30" placeholder-class="holder" class="br15 f28" placeholder="输入您要搜索的内容" />
+      <input confirm-type="search" bindconfirm="search" cursor="30" placeholder-class="holder" bindinput="inputValue" class="br15 f28" placeholder="输入您要搜索的内容" />
     </view>
-    <navigator open-type="navigateBack" class="f28 fw7 c444 cancel">搜索</navigator>
+    <view catchtap="search" open-type="navigateBack" class="f28 fw7 c444 cancel">搜索</view>
   </view>
   <!--视频区域-->
-  <view class="container bgfff br8 new p30">
+  <view wx:if="{{ list.length >= 1 }}" class="container bgfff br8 new p30">
     <navigator hover-class="none" url="/shopVideoPage/shopvideopages/video/video" class="c-top">
       <view class="c-t-l f36 c444 fw7">操作视频</view>
       <view class="c-t-r f26 c444 ">查看更多</view>
@@ -37,7 +37,7 @@
             <image lazy-load="{{true}}"
                    class="br8"
                    mode="aspectFill"
-                   src="{{ item.image }}"></image>
+                   src="{{ item.img }}"></image>
             <view class="ell1 f24 c444 fw7 mt10 tal">{{ item.title }}</view>
           </button>
         </view>
@@ -59,28 +59,31 @@
       <button wx:for="{{ goodslabel }}"
               wx:key="*123"
               form-type="submit"
-              class="f26 c666 goods-label flex1"
+              catchtap="chooseLabel"
+              data-index="{{ index }}"
+              class="f26 c666 goods-label flex1 {{ labelIndex == index ? 'active' : '' }}"
               hover-class="none">
-        {{ item }}
+        {{ item.name }}
       </button>
     </view>
   </scroll-view>
+  <view wx:if="{{ goods.length <= 0 }}" class="tac f26 p20 c444">商品正在火速补充中</view>
   <navigator url="/shopListPage/shoplistpages/detail/detail?id={{ item.id }}"
              hover-class="none"
              class="goods-list bd1 bgfff p30"
              wx:key="*011"
-             wx:for="123123">
+             wx:for="{{ goods }}">
     <image mode="aspectFill"
            class="br8"
-           src="{{ img }}"></image>
+           src="{{ item.img }}"></image>
     <view class="flex1">
-      <view class="f30 c444">我是商品标题，我总共有三行，我是商品标题</view>
-      <view class="f38 c444 fw7 mt20">¥88.00</view>
+      <view class="f30 c444">{{ item.title }}</view>
+      <view class="f38 c444 fw7 mt20">¥{{ item.old_price }}</view>
       <button open-type="share"
               hover-class="none"
               catchtap="noUse"
               class="goods-bottom">
-        <view class="cff3b5b f26">赚¥8.80</view>
+        <view class="cff3b5b f26">赚¥{{ item.level_one }}</view>
         <view class="f28 fw7 cff5975">分享赚</view>
       </button>
     </view>
@@ -91,7 +94,7 @@
 <view class="mask video-mask" wx:if="{{ play }}">
   <video autoplay="{{ play }}"
          object-fit="contain"
-         src="{{ list[playIndex].video_url || videoSrc }}"></video>
+         src="{{ list[playIndex].video_url }}"></video>
   <view catchtap="playVideo"
         data-index="-1"
         class="iconfont icon-cuowu"></view>

@@ -16,7 +16,7 @@
       <input placeholder="0.01" type="digit"/>
     </view>
     <view class="si-price">
-      <text>价格</text>
+      <text>库存</text>
       <input placeholder="0.01" type="digit"/>
     </view>
   </view>

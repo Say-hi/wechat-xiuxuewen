@@ -9,10 +9,40 @@ Page({
    * 页面的初始数据
    */
   data: {
+    labelIndex: 0,
+    page: 0,
     playIndex: -1,
     img: app.data.testImg,
-    goodslabel: ['色乳类', '色乳类', '色乳类', '色乳类', '色乳类', '色乳类', '色乳类色乳类色乳类色乳类'],
-    videoSrc: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400'
+    list: []
+  },
+  getVideo: function getVideo() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().shopVideoList,
+      data: {
+        cid: that.data.goodslabel[that.data.labelIndex].id,
+        page: ++that.data.page
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData({
+            list: that.data.list.concat(res.data.data.lists),
+            more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
+  chooseLabel: function chooseLabel(e) {
+    this.data.page = 0;
+    this.data.list = [];
+    this.setData({
+      playIndex: -1,
+      labelIndex: e.currentTarget.dataset.index
+    }, this.getVideo);
   },
   playVideo: function playVideo(e) {
     var that = this;
@@ -33,6 +63,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function onLoad() {
+    this.setData({
+      goodslabel: app.gs('shopLabel')
+    }, this.getVideo);
     // TODO: onLoad
   },
 
@@ -67,12 +100,20 @@ Page({
   onUnload: function onUnload() {
     // TODO: onUnload
   },
-
+  onReachBottom: function onReachBottom() {
+    if (this.data.more > 0) this.getVideo();else app.setToast(this, { content: '没有更多内容啦' });
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function onPullDownRefresh() {
+    this.data.page = 0;
+    this.data.list = [];
+    this.setData({
+      playIndex: -1
+    });
+    this.getVideo();
     // TODO: onPullDownRefresh
   }
 });

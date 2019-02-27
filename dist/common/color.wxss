@@ -1,0 +1,99 @@
+.mainBg {
+  background-color: #f4f4f4;
+}
+.tab-bg {
+  background-color: #f4f4f4;
+}
+.main-text-color {
+  color: #ff3b5b;
+}
+.bgfff {
+  background-color: #fff;
+}
+.bgeee {
+  background-color: #f1f1f1;
+}
+.c000 {
+  color: #000;
+}
+.c333 {
+  color: #333;
+}
+.c444 {
+  color: #444;
+}
+.c666 {
+  color: #666;
+}
+.c999 {
+  color: #999;
+}
+.cfff {
+  color: #fff;
+}
+.cccc {
+  color: #ccc;
+}
+.c54 {
+  color: #545454;
+}
+.c3a {
+  color: #3a3a3a;
+}
+.ce5e5e5 {
+  color: #e5e5e5;
+}
+.cababab {
+  color: #ababab;
+}
+.c393636 {
+  color: #393636;
+}
+.cff3b5b {
+  color: #ff3b5b;
+}
+.c9a9a9a {
+  color: #9a9a9a;
+}
+.c8b8b8b {
+  color: #8b8b8b;
+}
+.cff3a5a {
+  color: #ff3a5a;
+}
+.cd8d8d8 {
+  color: #d8d8d8;
+}
+.cf7546f {
+  color: #f7546f;
+}
+.cff3757 {
+  color: #ff3757;
+}
+.cf46677 {
+  color: #f46677;
+}
+.cf7546f {
+  color: #f7546f;
+}
+.cff86b1 {
+  color: #FF86B1;
+}
+.cff4159 {
+  color: #FF4159;
+}
+.cb670f7 {
+  color: #b670f7;
+}
+.c3a3a3a {
+  color: #3a3a3a;
+}
+.cff4e6b {
+  color: #FF4E6B;
+}
+.cb7b7b7 {
+  color: #b7b7b7;
+}
+.cff5975 {
+  color: #ff5975;
+}

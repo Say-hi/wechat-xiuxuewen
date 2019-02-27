@@ -10,24 +10,100 @@ Page({
    */
   data: {
     img: app.data.testImg,
-    list: [{
-      image: app.data.testImg,
-      title: '我是视频标题我是视频标题我是视频标题'
-    }, {
-      image: app.data.testImg,
-      title: '我是视频标题'
-    }, {
-      image: app.data.testImg,
-      title: '我是视频标题'
-    }, {
-      image: app.data.testImg,
-      title: '我是视频标题我是视频标题我是视频标题'
-    }, {
-      image: app.data.testImg,
-      title: '我是视频标题我是视频标题我是视频标题我是视频标题我是视频标题'
-    }],
-    videoSrc: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
-    goodslabel: ['色乳类', '色乳类', '色乳类', '色乳类', '色乳类', '色乳类', '色乳类色乳类色乳类色乳类']
+    labelIndex: 0
+  },
+  inputValue: function inputValue(e) {
+    this.data.searchText = e.detail.value;
+  },
+  getVideo: function getVideo() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().shopVideoList,
+      data: {},
+      success: function success(res) {
+        wx.hideLoading();
+        wx.stopPullDownRefresh();
+        if (res.data.status === 200) {
+          that.setData({
+            list: res.data.data.lists
+          }, that.getCategory);
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
+  getCategory: function getCategory() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().shopCategoryList,
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData({
+            goodslabel: res.data.data
+          }, that.getShopProduct);
+          app.su('shopLabel', res.data.data);
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
+  getShopProduct: function getShopProduct() {
+    var that = this;
+    if (this.data.goodslabel[this.data.labelIndex].name === '搜索') return this.search();
+    app.wxrequest({
+      url: app.getUrl().shopProductList,
+      data: {
+        mid: 0,
+        cid: that.data.goodslabel[that.data.labelIndex].id
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData({
+            goods: res.data.data.lists
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
+  chooseLabel: function chooseLabel(e) {
+    this.setData({
+      goodslabel: this.data.goodslabel,
+      labelIndex: e.currentTarget.dataset.index
+    }, this.getShopProduct);
+  },
+  search: function search() {
+    var that = this;
+    if (!this.data.searchText || this.data.searchText.length <= 0) return app.setToast(this, { content: '请输入搜索的内容' });
+    app.wxrequest({
+      url: app.getUrl().shopProductList,
+      data: {
+        mid: 0,
+        title: that.data.searchText
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          if (that.data.goodslabel[0].name !== '搜索') {
+            that.data.goodslabel.unshift({
+              name: '搜索'
+            });
+          }
+          that.setData({
+            labelIndex: 0,
+            goodslabel: that.data.goodslabel,
+            goods: res.data.data.lists
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
   },
   noUse: function noUse() {
     app.noUse();
@@ -53,6 +129,7 @@ Page({
    */
   onLoad: function onLoad() {
     if (!app.gs() || !app.gs('userInfoAll')) return app.wxlogin();
+    this.getVideo();
     // TODO: onLoad
   },
 
@@ -72,7 +149,6 @@ Page({
     this.setData({
       move: !this.data.move
     });
-    // TODO: onShow
   },
 
 
@@ -83,7 +159,6 @@ Page({
     this.setData({
       move: !this.data.move
     });
-    // TODO: onHide
   },
 
 
@@ -99,7 +174,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function onPullDownRefresh() {
-    // TODO: onPullDownRefresh
+    this.getVideo();
   }
 });
 //# sourceMappingURL=index.js.map

@@ -38,7 +38,6 @@ Component({
       var currentPage = getCurrentPages();
       var store = false;
       var shop = false;
-      console.warn('route', currentPage[currentPage.length - 1].route);
       if (currentPage[currentPage.length - 1].route.indexOf('storePage') >= 0) {
         store = true;
         navData = app.gs('storeBottomNav');

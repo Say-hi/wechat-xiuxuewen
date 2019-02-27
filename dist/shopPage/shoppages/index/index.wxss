@@ -91,6 +91,9 @@ page {
   word-break: keep-all;
   overflow: visible;
 }
+.goods-wrap .goods-label.active {
+  color: #ff5975;
+}
 .goods-wrap .goods-label:nth-child(1) {
   padding-left: 30rpx;
 }
