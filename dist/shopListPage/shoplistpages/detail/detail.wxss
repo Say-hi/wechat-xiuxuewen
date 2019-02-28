@@ -87,6 +87,12 @@ page {
   height: 160rpx;
   margin-top: -60rpx;
   margin-right: 20rpx;
+  transition: all 0.7s;
+}
+.g-m-wrap .g-m-top image.noshow {
+  width: 0;
+  height: 0;
+  border-radius: 50%;
 }
 .g-m-wrap .g-m-top .close {
   position: absolute;

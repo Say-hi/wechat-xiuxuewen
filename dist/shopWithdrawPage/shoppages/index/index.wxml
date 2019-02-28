@@ -1,23 +1,28 @@
-<form>
+<form report-submit="{{true}}" bindsubmit="upFormId">
 <view class="p20">
   <view class="bgfff br8 f28 c444">
     <view class="bd1 p30 df">
       <text class="fw7">提现方式</text>
       <text>微信钱包</text>
     </view>
-    <view class="p30">可提现收益：88.00</view>
+    <view class="p30">可提现收益：{{ profit || 0 }}</view>
   </view>
   <view class="bgfff p30 br8 f28 c444 df mt20">
     <text class="mr20">提现积分</text>
     <input class="flex1 tal"
-           type="digit"
+           bindinput="inputValue"
+           value="{{ outMoney }}"
+           type="number"
            placeholder="请输入提现收益"/>
   </view>
   <view catchtap="showScroll" class="f26 cff5975 tar p2010">提现说明</view>
   <button hover-class="none"
+          form-type="submit"
+          catchtap="shopUserCash"
           class="f28 mt20 withdraw-btn cfff fw7">立刻提现</button>
   <button hover-class="none"
           catchtap="back"
+          form-type="submit"
           class="f28 mt30 withdraw-btn c444 fw7">取消</button>
 </view>
 </form>

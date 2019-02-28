@@ -19,7 +19,7 @@
              class="goods-list bd1 bgfff p30"
         wx:key="*011"
         wx:for="{{ list }}">
-    <image mode="aspectFill"
+    <image mode="aspectFit"
            class="br8"
            src="{{ item.img }}"></image>
     <view class="flex1">

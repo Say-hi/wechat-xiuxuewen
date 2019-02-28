@@ -31,6 +31,7 @@ Page({
       },
       success (res) {
         wx.hideLoading()
+        wx.stopPullDownRefresh()
         if (res.data.status === 200) {
           that.setData({
             list: that.data.list.concat(res.data.data.lists),
@@ -46,10 +47,18 @@ Page({
     app.upFormId(e)
   },
   onShareAppMessage () {
-    return {
-      title: `向您推荐店铺【${app.gs('shopInfoAll').name}】`,
-      imageUrl: `${app.gs('shopInfoAll').avatar || ''}`,
-      path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}`
+    if (!app.gs('shopInfo').mid) {
+      return {
+        title: app.gs('shareText').t || '绣学问，真纹绣',
+        path: `/pages/index/index`,
+        imageUrl: app.gs('shareText').g
+      }
+    } else {
+      return {
+        title: `向您推荐店铺【${app.gs('shopInfoAll').name}】`,
+        imageUrl: `${app.gs('shopInfoAll').avatar || ''}`,
+        path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}`
+      }
     }
   },
   /**

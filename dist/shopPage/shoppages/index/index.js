@@ -51,6 +51,7 @@ Page({
     });
   },
   getShopProduct: function getShopProduct() {
+    if (this.data.noshop) return;
     var that = this;
     if (this.data.goodslabel[this.data.labelIndex].name === '搜索') return this.search();
     app.wxrequest({
@@ -107,6 +108,7 @@ Page({
   },
   shopInfo: function shopInfo() {
     var that = this;
+    if (this.data.noshop) return;
     app.wxrequest({
       url: app.getUrl().shopInfo,
       data: {
@@ -143,11 +145,45 @@ Page({
   },
   onShareAppMessage: function onShareAppMessage() {
     var that = this;
-    return {
-      title: '\u5411\u60A8\u63A8\u8350\u5E97\u94FA\u3010' + that.data.info.name + '\u3011',
-      imageUrl: '' + (that.data.info.avatar || ''),
-      path: '/shopPage/shoppages/index/index?mid=' + that.data.id
-    };
+    if (!app.gs('shopInfo').mid) {
+      return {
+        title: app.gs('shareText').t || '绣学问，真纹绣',
+        path: '/pages/index/index',
+        imageUrl: app.gs('shareText').g
+      };
+    } else {
+      return {
+        title: '\u5411\u60A8\u63A8\u8350\u5E97\u94FA\u3010' + that.data.info.name + '\u3011',
+        imageUrl: '' + (that.data.info.avatar || ''),
+        path: '/shopPage/shoppages/index/index?mid=' + that.data.id
+      };
+    }
+  },
+  getUser: function getUser() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().shopUserInfo,
+      data: {
+        uid: app.gs('userInfoAll').id
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData({
+            userInfo: res.data.data
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
+  showTip: function showTip() {
+    wx.showModal({
+      title: '未进入店铺',
+      content: '请扫码店主的【小程序码】或通过店主的【小程序分享】进入',
+      showCancel: false
+    });
   },
 
   /**
@@ -157,15 +193,12 @@ Page({
     if (!app.gs('shopInfo').mid) {
       app.su('shopInfo', options);
       if (!app.gs('shopInfo').mid) {
-        wx.showModal({
-          title: '进入错误',
-          content: '请扫码店主的【小程序码】或从【店主分享】进入',
-          showCancel: false,
-          success: function success() {
-            wx.reLaunch({
-              url: '/pages/index/index'
-            });
-          }
+        this.setData({
+          noshop: true
+        }, this.getUser);
+      } else {
+        this.setData({
+          noshop: false
         });
       }
     }

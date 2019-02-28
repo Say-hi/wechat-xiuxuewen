@@ -80,6 +80,10 @@ const serviceUrl = {
   shopProduct: shopBaseDomain + '/product/detail', // 商品详情
   shopUserInfo: shopBaseDomain + '/user/info', // 商城用户信息
   shopUserReal: shopBaseDomain + '/user/real', // 商城用户名字修改
+  shopUserFund: shopBaseDomain + '/user/fund', // 商城用户资金管理
+  shopUserCash: shopBaseDomain + '/user/cash', // 商城用户资金提现
+  shopUserInDetail: shopBaseDomain + '/user/indetail', // 商城用户收益明细
+  shopUserRecord: shopBaseDomain + '/user/record', // 商城用户提现记录
   shopVideoList: shopBaseDomain + '/video/list' // 视频列表
 }
 module.exports = serviceUrl

@@ -22,7 +22,7 @@
             data-index="{{ index }}"
             class="iconfont icon-bofang1 pr">
         <image class="poster-img"
-               mode="aspectFill"
+               mode="aspectFit"
                src="{{ item.img }}"></image>
       </view>
       <video poster="{{ item.img }}"

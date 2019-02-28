@@ -55,12 +55,19 @@ Page({
     app.upFormId(e);
   },
   onShareAppMessage: function onShareAppMessage() {
-    var that = this;
-    return {
-      title: '' + (that.data.info.share_title || '邀请您入驻绣学问，成为优秀的纹绣人'),
-      imageUrl: '' + (that.data.info.share_imageUrl || ''),
-      path: '/enteringPage/pagestwelve/entering/entering?id=' + app.gs('userInfoAll').id
-    };
+    if (!app.gs('shopInfo').mid) {
+      return {
+        title: app.gs('shareText').t || '绣学问，真纹绣',
+        path: '/pages/index/index',
+        imageUrl: app.gs('shareText').g
+      };
+    } else {
+      return {
+        title: '\u5411\u60A8\u63A8\u8350\u5E97\u94FA\u3010' + app.gs('shopInfoAll').name + '\u3011',
+        imageUrl: '' + (app.gs('shopInfoAll').avatar || ''),
+        path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id
+      };
+    }
   },
 
   /**

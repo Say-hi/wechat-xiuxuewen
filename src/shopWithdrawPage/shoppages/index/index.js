@@ -9,6 +9,55 @@ Page({
   data: {
     img: app.data.testImg
   },
+  upFormId (e) {
+    app.upFormId(e)
+  },
+  inputValue (e) {
+    console.log(e)
+    this.setData({
+      outMoney: e.detail.value * 1 >= this.data.profit ? this.data.profit * 1 : e.detail.value * 1
+    })
+  },
+  shopUserCash () {
+    let that = this
+    if (!this.data.outMoney || this.data.outMoney < 1) return app.setToast(this, {content: '最小提现额度为1'})
+    app.wxrequest({
+      url: app.getUrl().shopUserCash,
+      data: {
+        uid: app.gs('userInfoAll').id,
+        amount: that.data.outMoney
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          wx.showToast({
+            title: '提现成功'
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+  shopUserFund () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().shopUserFund,
+      data: {
+        uid: app.gs('userInfoAll').id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            profit: res.data.data.mall_total_fee
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   showScroll () {
     this.setData({
       showS: !this.data.showS
@@ -18,11 +67,18 @@ Page({
     wx.navigateBack()
   },
   onShareAppMessage () {
-    let that = this
-    return {
-      title: `${that.data.info.share_title || '邀请您入驻绣学问，成为优秀的纹绣人'}`,
-      imageUrl: `${that.data.info.share_imageUrl || ''}`,
-      path: `/enteringPage/pagestwelve/entering/entering?id=${app.gs('userInfoAll').id}`
+    if (!app.gs('shopInfo').mid) {
+      return {
+        title: app.gs('shareText').t || '绣学问，真纹绣',
+        path: `/pages/index/index`,
+        imageUrl: app.gs('shareText').g
+      }
+    } else {
+      return {
+        title: `向您推荐店铺【${app.gs('shopInfoAll').name}】`,
+        imageUrl: `${app.gs('shopInfoAll').avatar || ''}`,
+        path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}`
+      }
     }
   },
   /**
@@ -43,6 +99,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow () {
+    this.shopUserFund()
     // TODO: onShow
   },
 

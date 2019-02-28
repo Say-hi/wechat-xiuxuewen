@@ -37,19 +37,25 @@ Page({
     });
   },
   onShareAppMessage: function onShareAppMessage() {
-    var that = this;
-    return {
-      title: '\u5411\u60A8\u63A8\u8350\u5E97\u94FA\u3010' + that.data.info.name + '\u3011',
-      imageUrl: '' + (that.data.info.avatar || ''),
-      path: '/shopPage/shoppages/index/index?mid=' + that.data.id
-    };
+    if (!app.gs('shopInfo').mid) {
+      return {
+        title: app.gs('shareText').t || '绣学问，真纹绣',
+        path: '/pages/index/index',
+        imageUrl: app.gs('shareText').g
+      };
+    } else {
+      return {
+        title: '\u5411\u60A8\u63A8\u8350\u5E97\u94FA\u3010' + app.gs('shopInfoAll').name + '\u3011',
+        imageUrl: '' + (app.gs('shopInfoAll').avatar || ''),
+        path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id
+      };
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function onLoad() {
-    this.getUser();
     // TODO: onLoad
   },
 
@@ -66,6 +72,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function onShow() {
+    this.getUser();
     // TODO: onShow
   },
 

@@ -11,6 +11,55 @@ Page({
   data: {
     img: app.data.testImg
   },
+  upFormId: function upFormId(e) {
+    app.upFormId(e);
+  },
+  inputValue: function inputValue(e) {
+    console.log(e);
+    this.setData({
+      outMoney: e.detail.value * 1 >= this.data.profit ? this.data.profit * 1 : e.detail.value * 1
+    });
+  },
+  shopUserCash: function shopUserCash() {
+    var that = this;
+    if (!this.data.outMoney || this.data.outMoney < 1) return app.setToast(this, { content: '最小提现额度为1' });
+    app.wxrequest({
+      url: app.getUrl().shopUserCash,
+      data: {
+        uid: app.gs('userInfoAll').id,
+        amount: that.data.outMoney
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          wx.showToast({
+            title: '提现成功'
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
+  shopUserFund: function shopUserFund() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().shopUserFund,
+      data: {
+        uid: app.gs('userInfoAll').id
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData({
+            profit: res.data.data.mall_total_fee
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
   showScroll: function showScroll() {
     this.setData({
       showS: !this.data.showS
@@ -20,12 +69,19 @@ Page({
     wx.navigateBack();
   },
   onShareAppMessage: function onShareAppMessage() {
-    var that = this;
-    return {
-      title: '' + (that.data.info.share_title || '邀请您入驻绣学问，成为优秀的纹绣人'),
-      imageUrl: '' + (that.data.info.share_imageUrl || ''),
-      path: '/enteringPage/pagestwelve/entering/entering?id=' + app.gs('userInfoAll').id
-    };
+    if (!app.gs('shopInfo').mid) {
+      return {
+        title: app.gs('shareText').t || '绣学问，真纹绣',
+        path: '/pages/index/index',
+        imageUrl: app.gs('shareText').g
+      };
+    } else {
+      return {
+        title: '\u5411\u60A8\u63A8\u8350\u5E97\u94FA\u3010' + app.gs('shopInfoAll').name + '\u3011',
+        imageUrl: '' + (app.gs('shopInfoAll').avatar || ''),
+        path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id
+      };
+    }
   },
 
   /**
@@ -48,6 +104,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function onShow() {
+    this.shopUserFund();
     // TODO: onShow
   },
 

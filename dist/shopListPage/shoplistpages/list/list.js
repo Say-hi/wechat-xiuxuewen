@@ -33,6 +33,7 @@ Page({
       },
       success: function success(res) {
         wx.hideLoading();
+        wx.stopPullDownRefresh();
         if (res.data.status === 200) {
           that.setData({
             list: that.data.list.concat(res.data.data.lists),
@@ -48,11 +49,19 @@ Page({
     app.upFormId(e);
   },
   onShareAppMessage: function onShareAppMessage() {
-    return {
-      title: '\u5411\u60A8\u63A8\u8350\u5E97\u94FA\u3010' + app.gs('shopInfoAll').name + '\u3011',
-      imageUrl: '' + (app.gs('shopInfoAll').avatar || ''),
-      path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id
-    };
+    if (!app.gs('shopInfo').mid) {
+      return {
+        title: app.gs('shareText').t || '绣学问，真纹绣',
+        path: '/pages/index/index',
+        imageUrl: app.gs('shareText').g
+      };
+    } else {
+      return {
+        title: '\u5411\u60A8\u63A8\u8350\u5E97\u94FA\u3010' + app.gs('shopInfoAll').name + '\u3011',
+        imageUrl: '' + (app.gs('shopInfoAll').avatar || ''),
+        path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id
+      };
+    }
   },
 
   /**

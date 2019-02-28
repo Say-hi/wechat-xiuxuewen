@@ -1,7 +1,7 @@
 <form>
 <view class="p20">
   <view class="p2030 bgfff br8">
-    <text class="f48 c444 fw7">¥88.00</text>
+    <text class="f48 c444 fw7">¥{{ info.mall_total_fee }}</text>
     <view class="money-top f26 c444">
       <text>我的收益</text>
       <navigator url="/shopWithdrawPage/shoppages/index/index"
@@ -17,7 +17,7 @@
       <view wx:for="123"
                  class="son-item tac f24 br8"
                  wx:key="*12">
-        <view>5</view>
+        <view>{{ index == 1 ? info.profit : index == 2 ? info.stay_count : info.today_profit }}</view>
         <view>{{ index == 1 ? '总计已结算收益' : index == 2 ? '待结算收益' : '今日收益' }}</view>
       </view>
     </view>

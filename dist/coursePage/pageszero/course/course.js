@@ -150,7 +150,8 @@ Page({
     app.setBar(options.type === 'search' ? '搜索课程' : app.data.label[0].t);
     page = 0;
     this.setData({
-      options: options
+      options: options,
+      tabNav: app.data.label
     }, this.getList);
     // TODO: onLoad
   },

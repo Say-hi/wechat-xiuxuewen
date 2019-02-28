@@ -46,19 +46,19 @@
           class="g-m-wrap bgfff">
       <view class="g-m-top p30 bd1 pr">
         <image mode="aspectFill"
-               class="br8"
+               class="br8 {{ buyMask ? '' : 'noshow' }}"
                src="{{ info.img }}"></image>
         <view class="c444 f26">
           <view class="cff5975 f34">¥{{ info.sku[labelIndex].price }}</view>
           <view>库存：{{ info.sku[labelIndex].stock }}</view>
-          <view>请选择：{{ info.label }}</view>
+          <view wx:if="{{ info.label != '-1' }}">请选择：{{ info.label }}</view>
         </view>
         <view catchtap="buy"
               data-type="change"
               class="close iconfont icon-cuowu"></view>
       </view>
       <!--规格设置-->
-      <scroll-view scroll-y style="max-height: 700rpx;">
+      <scroll-view wx:if="{{ info.label != '-1' }}" scroll-y style="max-height: 700rpx;">
         <!--<view class="p30 bd1 f30 c444 g-m-specification fw7"-->
               <!--wx:key="*98"-->
               <!--wx:for-index="oindex"-->

@@ -17,11 +17,18 @@ Page({
     })
   },
   onShareAppMessage () {
-    let that = this
-    return {
-      title: `${that.data.info.share_title || '邀请您入驻绣学问，成为优秀的纹绣人'}`,
-      imageUrl: `${that.data.info.share_imageUrl || ''}`,
-      path: `/enteringPage/pagestwelve/entering/entering?id=${app.gs('userInfoAll').id}`
+    if (!app.gs('shopInfo').mid) {
+      return {
+        title: app.gs('shareText').t || '绣学问，真纹绣',
+        path: `/pages/index/index`,
+        imageUrl: app.gs('shareText').g
+      }
+    } else {
+      return {
+        title: `向您推荐店铺【${app.gs('shopInfoAll').name}】`,
+        imageUrl: `${app.gs('shopInfoAll').avatar || ''}`,
+        path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}`
+      }
     }
   },
   /**

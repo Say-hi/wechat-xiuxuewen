@@ -194,10 +194,18 @@ Page({
     })
   },
   onShareAppMessage () {
-    return {
-      title: `向您推荐店铺【${app.gs('shopInfoAll').name}】`,
-      imageUrl: `${app.gs('shopInfoAll').avatar || ''}`,
-      path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}`
+    if (!app.gs('shopInfo').mid) {
+      return {
+        title: app.gs('shareText').t || '绣学问，真纹绣',
+        path: `/pages/index/index`,
+        imageUrl: app.gs('shareText').g
+      }
+    } else {
+      return {
+        title: `向您推荐店铺【${app.gs('shopInfoAll').name}】`,
+        imageUrl: `${app.gs('shopInfoAll').avatar || ''}`,
+        path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}`
+      }
     }
   },
   /**
