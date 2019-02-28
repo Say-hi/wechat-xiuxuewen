@@ -46,9 +46,13 @@ Page({
   },
   playVideo: function playVideo(e) {
     var that = this;
+    app.videoCount(this.data.list[e.currentTarget.dataset.index].id);
     that.setData({
       playIndex: e.currentTarget.dataset.index
     });
+  },
+  upFormId: function upFormId(e) {
+    app.upFormId(e);
   },
   onShareAppMessage: function onShareAppMessage() {
     var that = this;

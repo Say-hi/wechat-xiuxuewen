@@ -12,6 +12,25 @@ Page({
     img: app.data.testImg,
     today: true
   },
+  getUser: function getUser() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().shopUserInfo,
+      data: {
+        uid: app.gs('userInfoAll').id
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData({
+            info: res.data.data
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
   chooseDay: function chooseDay(e) {
     this.setData({
       today: e.currentTarget.dataset.type === 'today'
@@ -20,9 +39,9 @@ Page({
   onShareAppMessage: function onShareAppMessage() {
     var that = this;
     return {
-      title: '' + (that.data.info.share_title || '邀请您入驻绣学问，成为优秀的纹绣人'),
-      imageUrl: '' + (that.data.info.share_imageUrl || ''),
-      path: '/enteringPage/pagestwelve/entering/entering?id=' + app.gs('userInfoAll').id
+      title: '\u5411\u60A8\u63A8\u8350\u5E97\u94FA\u3010' + that.data.info.name + '\u3011',
+      imageUrl: '' + (that.data.info.avatar || ''),
+      path: '/shopPage/shoppages/index/index?mid=' + that.data.id
     };
   },
 
@@ -30,6 +49,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function onLoad() {
+    this.getUser();
     // TODO: onLoad
   },
 

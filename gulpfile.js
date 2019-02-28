@@ -97,7 +97,7 @@ gulp.task('compile:xml', () => {
  * Compile less source to distribution directory
  */
 gulp.task('compile:less', () => {
-  return gulp.src(['src/**/*.less'])
+  return gulp.src(['src/**/*.less', '!src/common/*'])
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.less())
     .pipe(plugins.if(isProduction, plugins.cssnano({ compatibility: '*' })))

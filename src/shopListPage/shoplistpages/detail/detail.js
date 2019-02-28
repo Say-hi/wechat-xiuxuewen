@@ -8,7 +8,7 @@ Page({
    */
   data: {
     num: 1,
-    img: app.data.testImg,
+    labelIndex: 0,
     specifi: [
       {
         t: 'color',
@@ -142,9 +142,9 @@ Page({
     app.noUse()
   },
   numOperation (e) {
-    let that = this
     let type = e.currentTarget.dataset.type
     if (type === 'add') {
+      if (this.data.num >= this.data.info.sku[this.data.labelIndex].stock) return app.setToast(this, {content: '已达库存上限'})
       this.setData({
         num: ++this.data.num
       })
@@ -155,30 +155,56 @@ Page({
       })
     }
   },
+  // chooseSp (e) {
+  //   let that = this
+  //   let {oindex, index} = e.currentTarget.dataset
+  //   for (let v of that.data.specifi[oindex].chooses) {
+  //     v['choose'] = false
+  //   }
+  //   that.data.specifi[oindex].chooses[index]['choose'] = true
+  //   let setStr = `specifi[${oindex}]`
+  //   this.setData({
+  //     [setStr]: that.data.specifi[oindex]
+  //   })
+  // },
   chooseSp (e) {
-    let that = this
-    let {oindex, index} = e.currentTarget.dataset
-    for (let v of that.data.specifi[oindex].chooses) {
-      v['choose'] = false
-    }
-    that.data.specifi[oindex].chooses[index]['choose'] = true
-    let setStr = `specifi[${oindex}]`
     this.setData({
-      [setStr]: that.data.specifi[oindex]
+      labelIndex: e.currentTarget.dataset.index
+    })
+  },
+  shopProduct (pid) {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().shopProduct,
+      data: {
+        pid
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          res.data.data.imgs = res.data.data.imgs ? res.data.data.imgs.split(',') : []
+          res.data.data.detail = res.data.data.detail ? res.data.data.detail.split(',') : []
+          that.setData({
+            info: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
     })
   },
   onShareAppMessage () {
-    let that = this
     return {
-      title: `${that.data.info.share_title || '邀请您入驻绣学问，成为优秀的纹绣人'}`,
-      imageUrl: `${that.data.info.share_imageUrl || ''}`,
-      path: `/enteringPage/pagestwelve/entering/entering?id=${app.gs('userInfoAll').id}`
+      title: `向您推荐店铺【${app.gs('shopInfoAll').name}】`,
+      imageUrl: `${app.gs('shopInfoAll').avatar || ''}`,
+      path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}`
     }
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
+    this.shopProduct(options.id)
     // TODO: onLoad
   },
 

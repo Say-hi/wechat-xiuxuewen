@@ -1,7 +1,5 @@
 'use strict';
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 // 获取全局应用程序实例对象
 var app = getApp();
 
@@ -12,7 +10,7 @@ Page({
    */
   data: {
     num: 1,
-    img: app.data.testImg,
+    labelIndex: 0,
     specifi: [{
       t: 'color',
       chooses: [{
@@ -113,9 +111,9 @@ Page({
     app.noUse();
   },
   numOperation: function numOperation(e) {
-    var that = this;
     var type = e.currentTarget.dataset.type;
     if (type === 'add') {
+      if (this.data.num >= this.data.info.sku[this.data.labelIndex].stock) return app.setToast(this, { content: '已达库存上限' });
       this.setData({
         num: ++this.data.num
       });
@@ -126,53 +124,58 @@ Page({
       });
     }
   },
+
+  // chooseSp (e) {
+  //   let that = this
+  //   let {oindex, index} = e.currentTarget.dataset
+  //   for (let v of that.data.specifi[oindex].chooses) {
+  //     v['choose'] = false
+  //   }
+  //   that.data.specifi[oindex].chooses[index]['choose'] = true
+  //   let setStr = `specifi[${oindex}]`
+  //   this.setData({
+  //     [setStr]: that.data.specifi[oindex]
+  //   })
+  // },
   chooseSp: function chooseSp(e) {
+    this.setData({
+      labelIndex: e.currentTarget.dataset.index
+    });
+  },
+  shopProduct: function shopProduct(pid) {
     var that = this;
-    var _e$currentTarget$data = e.currentTarget.dataset,
-        oindex = _e$currentTarget$data.oindex,
-        index = _e$currentTarget$data.index;
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
-
-    try {
-      for (var _iterator = that.data.specifi[oindex].chooses[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        var v = _step.value;
-
-        v['choose'] = false;
-      }
-    } catch (err) {
-      _didIteratorError = true;
-      _iteratorError = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion && _iterator.return) {
-          _iterator.return();
-        }
-      } finally {
-        if (_didIteratorError) {
-          throw _iteratorError;
+    app.wxrequest({
+      url: app.getUrl().shopProduct,
+      data: {
+        pid: pid
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          res.data.data.imgs = res.data.data.imgs ? res.data.data.imgs.split(',') : [];
+          res.data.data.detail = res.data.data.detail ? res.data.data.detail.split(',') : [];
+          that.setData({
+            info: res.data.data
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
         }
       }
-    }
-
-    that.data.specifi[oindex].chooses[index]['choose'] = true;
-    var setStr = 'specifi[' + oindex + ']';
-    this.setData(_defineProperty({}, setStr, that.data.specifi[oindex]));
+    });
   },
   onShareAppMessage: function onShareAppMessage() {
-    var that = this;
     return {
-      title: '' + (that.data.info.share_title || '邀请您入驻绣学问，成为优秀的纹绣人'),
-      imageUrl: '' + (that.data.info.share_imageUrl || ''),
-      path: '/enteringPage/pagestwelve/entering/entering?id=' + app.gs('userInfoAll').id
+      title: '\u5411\u60A8\u63A8\u8350\u5E97\u94FA\u3010' + app.gs('shopInfoAll').name + '\u3011',
+      imageUrl: '' + (app.gs('shopInfoAll').avatar || ''),
+      path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id
     };
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function onLoad() {
+  onLoad: function onLoad(options) {
+    this.shopProduct(options.id);
     // TODO: onLoad
   },
 

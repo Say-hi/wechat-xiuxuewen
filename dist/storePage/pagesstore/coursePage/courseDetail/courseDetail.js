@@ -249,9 +249,6 @@ Page({
     if (this.data.more >= 1) this.getEvaluate();
   },
 
-  // 分享
-  onShareAppMessage: function onShareAppMessage() {},
-
   // 获取详情
   getDetail: function getDetail() {
     var that = this;

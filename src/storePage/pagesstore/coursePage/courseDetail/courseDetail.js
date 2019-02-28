@@ -235,10 +235,6 @@ Page({
   onreachbottom () {
     if (this.data.more >= 1) this.getEvaluate()
   },
-  // 分享
-  onShareAppMessage () {
-
-  },
   // 获取详情
   getDetail () {
     let that = this

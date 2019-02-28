@@ -452,6 +452,17 @@ App({
       })
     }
   },
+  videoCount (vid) {
+    this.wxrequest({
+      url: this.getUrl().shopVideoIncrease,
+      data: {
+        vid
+      },
+      complete () {
+        wx.hideLoading()
+      }
+    })
+  },
   // 手机号码验证
   checkMobile (mobile) {
     if (!(/^1[3|4|5|7|8][0-9]\d{8}$/.test(mobile))) {

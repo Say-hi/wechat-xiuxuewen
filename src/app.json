@@ -14,27 +14,27 @@
         "pageszero/courseDetail/courseDetail" // 课程详情
       ]
     },
-    {
-      "root": "collagePage", // 拼团分包
-      "name": "collage",
-      "pages": [
-        "pagesone/collage/collage" // 拼团
-      ]
-    },
-    {
-      "root": "practicePage", // 实操练习分包
-      "name": "practice",
-      "pages": [
-        "pagestwo/practice/practice", // 实操练习
-        "pagestwo/practiceDetail/practiceDetail" // 实操练习详情
-      ]
-    },
+//    {
+//      "root": "collagePage", // 拼团分包
+//      "name": "collage",
+//      "pages": [
+//        "pagesone/collage/collage" // 拼团
+//      ]
+//    },
+//    {
+//      "root": "practicePage", // 实操练习分包
+//      "name": "practice",
+//      "pages": [
+//        "pagestwo/practice/practice", // 实操练习
+//        "pagestwo/practiceDetail/practiceDetail" // 实操练习详情
+//      ]
+//    },
     {
       "root": "answerPage", // 问答分包
       "name": "answer",
       "pages": [
         "pagesthree/answer/answer", // 问答列表
-        "pagesthree/answerDetail/answerDetail", // 问答详情
+//        "pagesthree/answerDetail/answerDetail", // 问答详情
         "pagesthree/answerDetail2/answerDetail2" // 问答详情2
       ]
     },
@@ -59,23 +59,23 @@
         "pagessix/searchHistory/searchHistory"
       ]
     },
-    {
-      "root": "reservationPage", // 线下预约分包
-      "name": "reservation",
-      "pages": [
-        "pagesseven/reservation/reservation", // 预约列表
-        "pagesseven/myReservation/myReservation", // 我的报名
-        "pagesseven/reservationDetail/reservationDetail", // 预约详情
-        "pagesseven/teacherDetail/teacherDetail" // 教师详情
-      ]
-    },
-    {
-      "root": "teacherPage", // 教师端
-      "name": "teacher",
-      "pages": [
-        "pageseight/teacherAnswer/teacherAnswer"
-      ]
-    },
+//    {
+//      "root": "reservationPage", // 线下预约分包
+//      "name": "reservation",
+//      "pages": [
+//        "pagesseven/reservation/reservation", // 预约列表
+//        "pagesseven/myReservation/myReservation", // 我的报名
+//        "pagesseven/reservationDetail/reservationDetail", // 预约详情
+//        "pagesseven/teacherDetail/teacherDetail" // 教师详情
+//      ]
+//    },
+//    {
+//      "root": "teacherPage", // 教师端
+//      "name": "teacher",
+//      "pages": [
+//        "pageseight/teacherAnswer/teacherAnswer"
+//      ]
+//    },
     {
       "root": "offlinePage", // 线下课程分包
       "name": "offline",

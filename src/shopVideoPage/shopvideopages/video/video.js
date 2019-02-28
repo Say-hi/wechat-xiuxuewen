@@ -44,9 +44,13 @@ Page({
   },
   playVideo (e) {
     let that = this
+    app.videoCount(this.data.list[e.currentTarget.dataset.index].id)
     that.setData({
       playIndex: e.currentTarget.dataset.index
     })
+  },
+  upFormId (e) {
+    app.upFormId(e)
   },
   onShareAppMessage () {
     let that = this

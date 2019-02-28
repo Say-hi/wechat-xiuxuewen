@@ -7,29 +7,58 @@ Page({
    * 页面的初始数据
    */
   data: {
-    playIndex: -1,
-    img: app.data.testImg,
-    goodslabel: ['色乳类', '色乳类', '色乳类', '色乳类', '色乳类', '色乳类', '色乳类色乳类色乳类色乳类'],
-    videoSrc: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400'
+    labelIndex: 0,
+    page: 0,
+    list: [],
+    img: app.data.testImg
   },
-  playVideo (e) {
+  chooseLabel (e) {
+    this.data.page = 0
+    this.data.list = []
+    this.setData({
+      goodslabel: this.data.goodslabel,
+      labelIndex: e.currentTarget.dataset.index
+    }, this.getShopProduct)
+  },
+  getShopProduct () {
     let that = this
-    that.setData({
-      playIndex: e.currentTarget.dataset.index
+    app.wxrequest({
+      url: app.getUrl().shopProductList,
+      data: {
+        mid: 0,
+        page: ++that.data.page,
+        cid: that.data.goodslabel[that.data.labelIndex].id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            list: that.data.list.concat(res.data.data.lists),
+            more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
     })
   },
+  upFormId (e) {
+    app.upFormId(e)
+  },
   onShareAppMessage () {
-    let that = this
     return {
-      title: `${that.data.info.share_title || '邀请您入驻绣学问，成为优秀的纹绣人'}`,
-      imageUrl: `${that.data.info.share_imageUrl || ''}`,
-      path: `/enteringPage/pagestwelve/entering/entering?id=${app.gs('userInfoAll').id}`
+      title: `向您推荐店铺【${app.gs('shopInfoAll').name}】`,
+      imageUrl: `${app.gs('shopInfoAll').avatar || ''}`,
+      path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}`
     }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad () {
+    this.setData({
+      goodslabel: app.gs('shopLabel')
+    }, this.getShopProduct)
     // TODO: onLoad
   },
 
@@ -60,11 +89,17 @@ Page({
   onUnload () {
     // TODO: onUnload
   },
-
+  onReachBottom () {
+    if (this.data.more > 0) this.getShopProduct()
+    else app.setToast(this, {content: '没有更多内容啦'})
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh () {
+    this.data.page = 0
+    this.data.list = []
+    this.getShopProduct()
     // TODO: onPullDownRefresh
   }
 })

@@ -75,6 +75,11 @@ const serviceUrl = {
   // 商城接口
   shopCategoryList: shopBaseDomain + '/category/list', // 分类
   shopProductList: shopBaseDomain + '/product/list', // 商品
+  shopInfo: shopBaseDomain + '/shop/info', // 商城信息
+  shopVideoIncrease: shopBaseDomain + '/video/increase', // 增加点击量
+  shopProduct: shopBaseDomain + '/product/detail', // 商品详情
+  shopUserInfo: shopBaseDomain + '/user/info', // 商城用户信息
+  shopUserReal: shopBaseDomain + '/user/real', // 商城用户名字修改
   shopVideoList: shopBaseDomain + '/video/list' // 视频列表
 }
 module.exports = serviceUrl

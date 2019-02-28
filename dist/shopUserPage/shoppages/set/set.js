@@ -12,10 +12,31 @@ Page({
     img: app.data.testImg,
     today: true
   },
-  inputName: function inputName(e) {
-    wx.showToast({
-      title: '修改完成'
+  shopUserReal: function shopUserReal(name) {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().shopUserReal,
+      data: {
+        uid: app.gs('userInfoAll').id,
+        mall_rname: name
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          wx.showToast({
+            title: '修改完成'
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
     });
+  },
+  inputName: function inputName(e) {
+    if (e.detail.value.length <= 0) return app.setToast(this, { content: '请输入内容' });
+    if (this.data.options.type === 'user') {
+      this.shopUserReal(e.detail.value);
+    }
   },
   chooseDay: function chooseDay(e) {
     this.setData({

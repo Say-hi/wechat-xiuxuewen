@@ -36,8 +36,9 @@ Page({
   },
   onShareAppMessage: function onShareAppMessage() {
     return {
-      title: app.gs('shareText') || '绣学问，真纹绣',
-      path: '/pages/index/index'
+      title: app.gs('shareText').t || '绣学问，真纹绣',
+      path: '/pages/index/index',
+      imageUrl: app.gs('shareText').g
     };
   },
   inputValue: function inputValue(e) {

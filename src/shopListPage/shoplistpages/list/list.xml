@@ -1,32 +1,35 @@
-<form>
+<form report-submit="{{true}}" bindsubmit="upFormId">
 <scroll-view scroll-x="{{true}}" class="goods-wrap bt1 bgfff">
   <view class="new-wrap-container">
     <button wx:for="{{ goodslabel }}"
             wx:key="*012"
             form-type="submit"
-            class="f26 c666 goods-label flex1"
+            catchtap="chooseLabel"
+            data-index="{{ index }}"
+            class="f26 c666 goods-label flex1 {{ labelIndex == index ? 'active' : '' }}"
             hover-class="none">
-      {{ item }}
+      {{ item.name }}
     </button>
   </view>
 </scroll-view>
 <view class="p20 container">
+  <view wx:if="{{ list.length <= 0 }}" class="tac f26 p20 c444">商品正在火速补充中</view>
   <navigator hover-class="none"
              url="/shopListPage/shoplistpages/detail/detail?id={{ item.id }}"
              class="goods-list bd1 bgfff p30"
         wx:key="*011"
-        wx:for="123123">
+        wx:for="{{ list }}">
     <image mode="aspectFill"
            class="br8"
-           src="{{ img }}"></image>
+           src="{{ item.img }}"></image>
     <view class="flex1">
-      <view class="f30 c444">我是商品标题，我总共有三行，我是商品标题</view>
-      <view class="f38 c444 fw7 mt20">¥88.00</view>
+      <view class="f30 c444">{{ item.title }}</view>
+      <view class="f38 c444 fw7 mt20">¥{{ item.old_price }}</view>
       <button open-type="share"
               catchtap="noUse"
               hover-class="none"
               class="goods-bottom">
-        <view class="cff3b5b f26">赚¥8.80</view>
+        <view class="cff3b5b f26">赚¥{{ item.level_one }}</view>
         <view class="f28 fw7 cff5975">分享赚</view>
       </button>
     </view>

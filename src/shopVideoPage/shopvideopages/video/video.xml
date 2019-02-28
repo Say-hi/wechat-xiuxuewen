@@ -1,4 +1,4 @@
-<form>
+<form report-submit="{{true}}" bindsubmit="upFormId">
 <scroll-view scroll-x="{{true}}" class="goods-wrap bt1 bgfff">
   <view class="new-wrap-container">
     <button wx:for="{{ goodslabel }}"

@@ -13,9 +13,6 @@
   height: 130rpx;
   justify-content: flex-end;
 }
-.tab-wrap .tab-item image {
-  max-width: 85rpx;
-}
 .tab-wrap .tab-item .f24 {
   margin-top: 24rpx;
 }
@@ -23,7 +20,8 @@
   height: 92rpx;
 }
 .tab-wrap2 image {
-  max-width: 50rpx !important;
+  width: 48rpx !important;
+  padding-bottom: 2rpx;
 }
 .tab-wrap2 .f24 {
   margin-top: 10rpx !important;

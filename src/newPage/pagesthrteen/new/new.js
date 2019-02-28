@@ -34,8 +34,9 @@ Page({
   },
   onShareAppMessage () {
     return {
-      title: '纹饰美容的成长三步曲',
-      path: `/newPage/pagesthrteen/new/new`
+      title: app.gs('shareText').t || '绣学问，真纹绣',
+      path: `/pages/index/index`,
+      imageUrl: app.gs('shareText').g
     }
   },
   getGrow () {

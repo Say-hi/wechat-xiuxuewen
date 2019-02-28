@@ -515,6 +515,17 @@ App({
       });
     }
   },
+  videoCount: function videoCount(vid) {
+    this.wxrequest({
+      url: this.getUrl().shopVideoIncrease,
+      data: {
+        vid: vid
+      },
+      complete: function complete() {
+        wx.hideLoading();
+      }
+    });
+  },
 
   // 手机号码验证
   checkMobile: function checkMobile(mobile) {

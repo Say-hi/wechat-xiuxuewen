@@ -1,31 +1,32 @@
 <form>
   <swiper class="goods-swiper" autoplay="{{true}}">
-    <swiper-item wx:for="123123" wx:key="*112">
-      <image mode="aspectFill" src="{{ img }}"></image>
+    <swiper-item wx:for="{{ info.imgs.length >= 1 ? info.imgs : [info.img] }}" wx:key="*112">
+      <image mode="aspectFill" src="{{ item }}"></image>
     </swiper-item>
   </swiper>
   <button open-type="share"
           hover-class="none"
           class="p30 goods-title tal">
-    <view class="f34 c3a3a3a fw7">我是产品标题呀</view>
+    <view class="f34 c3a3a3a fw7">{{ info.title }}</view>
     <view class="goods-bottom mt10">
       <view class="g-b-t">
-        <view class="cff5975 f48 fw7">¥488</view><view class="f26 c666 ml10">赚¥8.80</view>
+        <view class="cff5975 f48 fw7">¥{{ info.old_price }}</view><view class="f26 c666 ml10">赚¥{{ info.level_one }}</view>
       </view>
       <view class="f28 fw7 cff5975">分享赚</view>
     </view>
   </button>
   <view class="goods-count f26 c3a3a3a p030">
-    <view>运费 ¥13.00</view>
-    <view>库存 888</view>
-    <view>销量 888</view>
+    <view>运费 ¥{{ info.freight }}</view>
+    <view>库存 {{ info.stock }}</view>
+    <view>销量 {{ info.count_sale }}</view>
   </view>
   <view class="f34 c444 p30">商品详情</view>
-  <image wx:for="123"
+  <view>{{ info.detail_text }}</view>
+  <image wx:for="{{ info.detail }}"
          wx:key="*12"
          mode="widthFix"
          class="detail-img"
-         src="{{ img }}"></image>
+         src="{{ item }}"></image>
   <view class="zw90"></view>
   <view class="bottom-tab">
     <navigator url="/shopPage/shoppages/index/index"
@@ -46,11 +47,11 @@
       <view class="g-m-top p30 bd1 pr">
         <image mode="aspectFill"
                class="br8"
-               src="{{ img }}"></image>
+               src="{{ info.img }}"></image>
         <view class="c444 f26">
-          <view class="cff5975 f34">¥488</view>
-          <view>库存：88</view>
-          <view>请选择：色系</view>
+          <view class="cff5975 f34">¥{{ info.sku[labelIndex].price }}</view>
+          <view>库存：{{ info.sku[labelIndex].stock }}</view>
+          <view>请选择：{{ info.label }}</view>
         </view>
         <view catchtap="buy"
               data-type="change"
@@ -58,19 +59,25 @@
       </view>
       <!--规格设置-->
       <scroll-view scroll-y style="max-height: 700rpx;">
-        <view class="p30 bd1 f30 c444 g-m-specification fw7"
-              wx:key="*98"
-              wx:for-index="oindex"
-              wx:for="{{ specifi }}">
-          <view class="gms-t">{{ item.t }}</view>
+        <!--<view class="p30 bd1 f30 c444 g-m-specification fw7"-->
+              <!--wx:key="*98"-->
+              <!--wx:for-index="oindex"-->
+              <!--wx:for="1">-->
+        <view class="p30 bd1 f30 c444 g-m-specification fw7">
+          <view class="gms-t">{{ info.label }}</view>
           <view class="gms-c">
-            <view wx:for="{{ item.chooses }}"
-                  wx:for-index="iindex"
+            <!--<view wx:for="{{ info.sku }}"-->
+                  <!--wx:for-index="iindex"-->
+                  <!--catchtap="chooseSp"-->
+                  <!--data-index="{{ iindex }}"-->
+                  <!--data-oindex="{{ oindex }}"-->
+                  <!--class="gms-c-item {{ item.choose ? 'choose' : '' }}"-->
+                  <!--wx:key="*15">{{ item.value }}</view>-->
+            <view wx:for="{{ info.sku }}"
                   catchtap="chooseSp"
-                  data-index="{{ iindex }}"
-                  data-oindex="{{ oindex }}"
-                  class="gms-c-item {{ item.choose ? 'choose' : '' }}"
-                  wx:key="*15">{{ item.t }}</view>
+                  data-index="{{ index }}"
+                  class="gms-c-item {{ labelIndex == index ? 'choose' : '' }}"
+                  wx:key="*15">{{ item.value }}</view>
           </view>
         </view>
       </scroll-view>

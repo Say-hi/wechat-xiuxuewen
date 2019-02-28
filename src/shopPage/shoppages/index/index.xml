@@ -1,10 +1,10 @@
-<form>
+<form report-submit="{{true}}" bindsubmit="upFormId">
 <view class="p20">
   <view class="bgfff br8 p30 shop-info">
-    <image src="{{ img }}"
+    <image src="{{ info.avatar }}"
            class="br img"
            mode="aspectFill" ></image>
-    <view class="c444 f34 fw7 flex1 pl20">纹绣殿堂的店铺</view>
+    <view class="c444 f34 fw7 flex1 pl20">{{ info.name }}</view>
     <button open-type="share" class="iconfont icon-fenxiang c999"></button>
   </view>
   <view class="search">
@@ -24,11 +24,9 @@
   <view class="br8 scroll-c bgfff">
     <scroll-view scroll-x="{{true}}" class="new-wrap">
       <view class="new-wrap-container">
-        <view hover-class="none"
-                   url=""
-                   class="c-w-item bb"
-                   wx:for="{{ list }}"
-                   wx:key="*1">
+        <view class="c-w-item bb"
+              wx:for="{{ list }}"
+              wx:key="*1">
           <!--<view catchtap="collect" data-id="{{ item.id }}" class="c-w-i-collect pa f22 p10">收藏</view>-->
           <button form-type="submit"
                   hover-class="none"
