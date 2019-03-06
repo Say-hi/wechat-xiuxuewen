@@ -171,4 +171,3 @@ Page({
     this.getInfo();
   }
 });
-//# sourceMappingURL=index.js.map

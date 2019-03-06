@@ -207,4 +207,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=answer.js.map

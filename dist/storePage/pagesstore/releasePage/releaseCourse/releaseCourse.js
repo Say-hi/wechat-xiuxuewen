@@ -992,4 +992,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=releaseCourse.js.map

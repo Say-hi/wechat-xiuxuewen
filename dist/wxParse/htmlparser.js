@@ -180,4 +180,3 @@ function makeMap(str) {
 
 module.exports = HTMLParser;
 /*eslint-enable */
-//# sourceMappingURL=htmlparser.js.map

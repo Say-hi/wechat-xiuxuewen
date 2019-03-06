@@ -183,4 +183,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=collect.js.map

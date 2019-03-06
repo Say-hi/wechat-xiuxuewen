@@ -1,8 +1,1 @@
-.mt20:nth-child(1) {
-  margin-top: 0;
-}
-.df {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+.mt20:first-child{margin-top:0}.df{display:flex;align-items:center;justify-content:space-between}

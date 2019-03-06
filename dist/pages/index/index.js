@@ -376,4 +376,3 @@ Page({
     // console.log(' ---------- onPullDownRefresh ----------')
   }
 });
-//# sourceMappingURL=index.js.map

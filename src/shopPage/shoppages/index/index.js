@@ -55,7 +55,7 @@ Page({
     app.wxrequest({
       url: app.getUrl().shopProductList,
       data: {
-        mid: 0,
+        mid: app.gs('shopInfoAll').id,
         cid: that.data.goodslabel[that.data.labelIndex].id
       },
       success (res) {
@@ -153,7 +153,7 @@ Page({
       return {
         title: `向您推荐店铺【${that.data.info.name}】`,
         imageUrl: `${that.data.info.avatar || ''}`,
-        path: `/shopPage/shoppages/index/index?mid=${that.data.id}`
+        path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}&user=${app.gs('userInfoAll').id}`
       }
     }
   },
@@ -167,11 +167,32 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
+          if (!res.data.data.mall_id && app.gs('shopInfo').mid) that.shopBinding()
           that.setData({
             userInfo: res.data.data
           })
+          if (res.data.data.mall_is * 1 === 1) {
+            app.su('shopInfo', {mid: res.data.data.id})
+            that.setData({
+              noshop: false
+            }, that.getVideo)
+          } else if (res.data.data.mall_id) {
+            app.su('shopInfo', {mid: res.data.data.mall_id})
+            that.setData({
+              noshop: false
+            }, that.getVideo)
+          } else {
+            that.setData({
+              noshop: !app.gs('shopInfo').mid
+            }, that.getVideo)
+          }
         } else {
-          app.setToast(that, {content: res.data.desc})
+          if (res.data.desc === '发生错误,联系管理员') {
+            wx.removeStorageSync('userInfoAll')
+            app.wxlogin()
+          } else {
+            app.setToast(that, {content: res.data.desc})
+          }
         }
       }
     })
@@ -183,24 +204,35 @@ Page({
       showCancel: false
     })
   },
+  shopBinding () {
+    console.log({
+      mid: app.gs('shopInfo').mid,
+      sid: app.gs('shopInfo').user,
+      uid: app.gs('userInfoAll').id
+    })
+    app.wxrequest({
+      url: app.getUrl().shopBinding,
+      data: {
+        mid: app.gs('shopInfo').mid,
+        sid: app.gs('shopInfo').user,
+        uid: app.gs('userInfoAll').id
+      },
+      complete () {
+        wx.hideLoading()
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
+    if (!app.gs() || !app.gs('userInfoAll')) return app.wxlogin()
     if (!app.gs('shopInfo').mid) {
       app.su('shopInfo', options)
-      if (!app.gs('shopInfo').mid) {
-        this.setData({
-          noshop: true
-        }, this.getUser)
-      } else {
-        this.setData({
-          noshop: false
-        })
-      }
+      this.getUser()
+    } else {
+      this.getUser()
     }
-    if (!app.gs() || !app.gs('userInfoAll')) return app.wxlogin()
-    this.getVideo()
   },
 
   /**
@@ -226,7 +258,6 @@ Page({
       move: !this.data.move
     })
   },
-
   /**
    * 生命周期函数--监听页面卸载
    */
@@ -238,6 +269,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh () {
-    this.getVideo()
+    this.getUser()
   }
 })

@@ -1,0 +1,173 @@
+<form>
+  <scroll-view class="out-scroll {{ !cttIndex ? 'move-left-in' : 'move-left-out' }}"  scroll-y="1">
+    <view class="p20 out-wrap">
+      <view class="r-top">
+        <button catchtap="CTT" class="f28 flex1 c3a3a3a bgfff br8 {{ !cttIndex ? 'active' : '' }}">1.编辑商品信息</button>
+        <button catchtap="CTT" class="f28 flex1 c3a3a3a bgfff br8 {{ cttIndex ? 'active' : '' }}">2.编辑商品详情</button>
+      </view>
+      <view class="mt20 bgfff br8 p30 f28 c444 s-title">
+        <text>商品标题</text>
+        <input bindblur="inputValue" placeholder="输入商品标题" data-type="title" value="{{ info.title || '' }}" class="mt20 br8 pl20"/>
+      </view>
+      <view class="mt20 bgfff br8 p30 f28 c444 s-title">
+        <text>商品图</text>
+        <view class="s-tt" hidden="{{ upImgArr2.length >= 9 }}" catchtap="upImg2">+点击上传图片</view>
+        <view class="img-area s-up-img">
+          <view class="up-img">
+            <view wx:for="{{ upImgArr2 }}" wx:key="*42" class="pr up-img-area">
+              <image catchtap="imgOperation2"
+                     mode="aspectFit"
+                     data-index="{{ index }}"
+                     lazy-load="{{true}}"
+                     class="br20"
+                     src="{{ item.temp }}"></image>
+              <view hidden="{{ upImgArrProgress2[index] >= 100 }}"
+                    catchtap="upno"
+                    class="up-progress pa">
+                <view class="tac f20 cfff ">{{ !upImgArrProgress2[index] ? '等待上传' : '上传中' }}</view>
+                <progress border-radius="20"
+                          percent="{{ upImgArrProgress2[index] || 0 }}"></progress>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="mt20 bgfff br8 p30 f28 c444 s-title">
+        <text>商品分组</text>
+        <picker  bindchange="bindLabelChange"
+                 value="{{ labelIndex }}"
+                 range="{{ goodslabel }}"
+                 range-key="name"
+                 class="s-tt arrow">{{ goodslabel[labelIndex].name }}</picker>
+      </view>
+      <view class="mt20 bgfff br8 p30 f28 c3a3a3a s-title">
+        <text>库存&价格</text>
+        <view catchtap="sizeMore" class="size-choose bt1 bd1 c3a3a3a">
+          <view class="iconfont f26 mr30 {{ sizeMore ? 'icon-wxz' : 'icon-xuanzeanniu' }}">统一规格</view>
+          <view class="iconfont f26 ml30 {{ sizeMore ? 'icon-xuanzeanniu' : 'icon-wxz' }}">多种规格<text class="c999">(多种颜色，净含量等)</text></view>
+        </view>
+        <picker wx:if="{{ sizeMore }}"  bindchange="bindSizeChange"
+                value="{{ sizeIndex }}"
+                range="{{ sizeArr }}"
+                range-key="name"
+                class="s-tt arrow">{{ sizeArr[sizeIndex].name }}</picker>
+        <view hidden="{{ !sizeMore }}" class="f28 c444 more-size-in p30 bd1">
+          <view wx:for="{{ info.sku }}"
+                data-index="{{ index }}"
+                catchtap="addItem"
+                class="msi-item iconfont f28 icon-cuowu"
+                wx:key="*90">{{ item.value }}</view>
+          <view data-index="-1"
+                catchtap="addItem"
+                class="cfff">添加项目</view>
+        </view>
+        <view hidden="{{ !sizeMore }}" wx:for="{{ info.sku }}"
+              wx:key="*64"
+              class="size-item-set f26 c3a3a3a bd1 p30 bgfff br8">
+          <text>{{ item.value || '' }}</text>
+          <view class="sis-set-out ml20">
+            <view class="sis-set ml20">
+              <text>价格 </text>
+              <input type="digit" bindblur="inputValue" data-type="price" data-index="{{ index }}" class="ml20" value="{{ item.price }}" />
+            </view>
+            <view class="sis-set ml20">
+              <text>库存 </text>
+              <input type="number" bindblur="inputValue" data-type="stock" data-index="{{ index }}" class="ml20" value="{{ item.stock }}" />
+            </view>
+          </view>
+        </view>
+        <view hidden="{{ sizeMore }}" wx:key="*64"
+              class="size-item-set f26 c3a3a3a bd1 p30 bgfff br8">
+          <text></text>
+          <view class="sis-set-out nomore ml20">
+            <view class="sis-set ml20">
+              <text>价格 </text>
+              <input type="digit" bindblur="inputValue" data-type="price" data-index="0" class="ml20" value="{{ info.sku[0].price }}" />
+            </view>
+            <view class="sis-set ml20">
+              <text>库存 </text>
+              <input type="number" bindblur="inputValue" data-type="stock" data-index="0" class="ml20" value="{{ info.sku[0].stock }}" />
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="p30 mt1 br8 bgfff f26 c3a3a3a fw7 express mt20">
+        <text class="mr20 fw7">运费设置</text>
+        <view class="tips br8 tac">￥</view>
+        <input placeholder="0.01" bindblur="inputValue" data-type="express" value="{{ info.freight }}" type="digit"/>
+      </view>
+      <view class="p30 mt20 br8 bgfff f26 c3a3a3a sale">
+        <text class="fw7">开售时间</text>
+        <text catchtap="chooseSale" class="iconfont f26 c3a3a3a p030 {{ info.is_up == 1 ? 'icon-gouxuan' : 'icon-wxz' }}"> 立刻上架</text>
+        <text catchtap="chooseSale" class="iconfont f26 c3a3a3a p030 {{ info.is_up != 1 ? 'icon-gouxuan' : 'icon-wxz' }}"> 放入仓库</text>
+      </view>
+      <view catchtap="CTT" class="release-bottom bgfff">
+        <button class="f34 cfff">下一步</button>
+      </view>
+    </view>
+  </scroll-view>
+  <scroll-view class="out-scroll {{ cttIndex ? 'move-right-in' : 'move-right-out' }}" scroll-y="1">
+    <view class="p20">
+      <view class="r-top">
+        <button catchtap="CTT" class="f28 flex1 c3a3a3a bgfff br8 {{ !cttIndex ? 'active' : '' }}">1.编辑商品信息</button>
+        <button catchtap="CTT" class="f28 flex1 c3a3a3a bgfff br8 {{ cttIndex ? 'active' : '' }}">2.编辑商品详情</button>
+      </view>
+      <view class="mt20 bgfff br8 p30 f28 c444 s-title">
+        <text>商品详情图</text>
+        <view catchtap="upImg3" hidden="{{ upImgArr3.length >= 9 }}" class="s-tt">+点击上传图片</view>
+        <view class="img-area s-up-img">
+          <view class="up-img">
+            <view wx:for="{{ upImgArr3 }}" wx:key="*42" class="pr up-img-area">
+              <image catchtap="imgOperation3"
+                     mode="aspectFit"
+                     data-index="{{ index }}"
+                     lazy-load="{{true}}"
+                     class="br20"
+                     src="{{ item.temp }}"></image>
+              <view hidden="{{ upImgArrProgress3[index] >= 100 }}"
+                    catchtap="upno"
+                    class="up-progress pa">
+                <view class="tac f20 cfff ">{{ !upImgArrProgress3[index] ? '等待上传' : '上传中' }}</view>
+                <progress border-radius="20"
+                          percent="{{ upImgArrProgress3[index] || 0 }}"></progress>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="detail-btn">
+      <view catchtap="CTT" class="release-bottom back flex1 bgfff">
+        <button class="f34 c666">返回</button>
+      </view>
+      <view class="release-bottom bgfff flex1">
+        <button catchtap="upGoods" class="f34 cfff">保存</button>
+      </view>
+    </view>
+  </scroll-view>
+</form>
+
+<view class="mask {{ addItemIndex >= -2 ? 'addItemMaskIn' : 'addItemMaskOut' }}">
+  <view class="mask-in br8 {{ addItemIndex >= -2 ? 'addItemMaskIn' : 'addItemMaskOut' }}">
+    <form report-submit="1" bindsubmit="changeContent">
+      <view class="tac f40 lh50 c444 fw7 p20">{{ addItemIndex == -2 ? '添加自定义规格' : addItemIndex == -1 ? '添加项目' : '修改项目'  }}</view>
+      <input class="mask-add-item br8"
+             name="addItem"
+             focus="{{ addItemIndex >= -2 }}"
+             value="{{ addItemIndex >= 0 ? info.sku[addItemIndex].value : '' }}" />
+      <view class="mask-btn">
+        <button data-type="cancel"
+                form-type="submit"
+                wx:if="{{ addItemIndex != -2 }}"
+              class="c999 mb-item cancel">{{ addItemIndex >= 0 ? '删除' : '取消'}}</button>
+        <button form-type="submit"
+                data-type="confirm"
+              class="cfff mb-item confirm">确认</button>
+      </view>
+    </form>
+  </view>
+</view>
+
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

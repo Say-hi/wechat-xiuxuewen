@@ -1,4 +1,4 @@
-<from>
+<from report-submit="{{true}}" bindsubmit="upFormId">
   <view wx:if="{{ !need_pay }}">
     <view class="p20">
       <view class="br18 bgfff goods p30 pr">
@@ -26,33 +26,36 @@
                      style="max-height: 640rpx;">
           <view class="goods-list br8 p20 f28 c666"
                 wx:key="*45"
-                wx:for="112341234">
-            <image src="{{ img }}"
+                wx:for="{{ info }}">
+            <image src="{{ item.img }}"
                    class="br8"
-                   mode="aspectFill"></image>
-            <view class="flex1">我是商品名称我是商品名称我是商品名称我是商品名称</view>
-            <view class="ml10">X11111</view>
+                   mode="aspectFit"></image>
+            <view class="flex1">
+              <view>{{ item.title }}</view>
+              <veiw wx:if="{{ item.label != -1 }}">{{ item.label }}:{{ item.sku ? item.sku.value : item.value  }}</veiw>
+            </view>
+            <view class="ml10">X{{ item.count }}</view>
           </view>
         </scroll-view>
         <view class="p20 f28 c444 bd1">
-          <view>共计<text class="fw7">1件</text>商品</view>
+          <view>共计<text class="fw7">{{ allCount }}件</text>商品</view>
 
           <view class="money mt30">
             <text>商品总价</text>
-            <text>¥200.00</text>
+            <text>¥{{ Allmoney }}</text>
           </view>
 
           <view class="money">
             <text>运费</text>
-            <text>¥200.00</text>
+            <text>¥{{ maxFreight }}</text>
           </view>
         </view>
-        <view class="f28 c444 fw7 tar mt10">共计需要付款：￥213.00</view>
+        <view  class="f28 c444 fw7 tar mt10"><text wx:if="{{ discount_name.length >= 1 }}">({{  discount_name }})</text>共计需要付款：￥{{ Allmoney * 1 + maxFreight * 1 }}</view>
       </view>
     </view>
     <view class="submit bt1 f24 c444">
-      <text>共1件，</text>
-      <text class="f34 fw7">合计：¥213.00</text>
+      <text>共{{ allCount }}件，</text>
+      <text class="f34 fw7">合计：¥{{ Allmoney * 1 + maxFreight * 1 }}</text>
       <button catchtap="submit" class="f34 cfff">提交订单</button>
     </view>
   </view>
@@ -60,7 +63,7 @@
     <view class="bgfff br8">
       <image src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/pay_success.png"></image>
       <view class="c444 fw7">支付成功！</view>
-      <button catchtap="gohome">返回商城首页</button>
+      <button open-type="submit" catchtap="gohome">返回商城首页</button>
     </view>
   </view>
 </from>

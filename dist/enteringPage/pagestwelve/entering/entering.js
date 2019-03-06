@@ -69,6 +69,9 @@ Page({
         wx.hideLoading();
         if (res.data.status === 200) {
           app.WP('quanyi', 'html', res.data.data.context, that, 0);
+          that.setData({
+            tech_count: res.data.data.teach_count || 0
+          });
         } else {
           app.setToast(that, { content: res.data.desc });
         }
@@ -151,4 +154,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=entering.js.map

@@ -95,6 +95,8 @@
       "root": "releasePage", // 收藏分包
       "name": "release",
       "pages": [
+        "pageseleven/set/set", // 商城用户设置
+        "pageseleven/index/index", // 商城发布产品
         "pageseleven/release/release" // 我的收藏&我的预约
       ]
     },
@@ -232,8 +234,7 @@
       "root": "shopUserPage", // 用户中心
       "name": "user",
       "pages": [
-        "shoppages/user/user", // 用户信息
-        "shoppages/set/set" // 用户设置
+        "shoppages/user/user" // 用户信息
       ]
     }
   ],
@@ -286,13 +287,15 @@
         "shopOrder",
         "client",
         "money",
-        "note"
+        "note",
+        "release"
       ]
     },
     "shopCenterPage/shoppages/index/index": {
       "network": "all",
       "packages": [
-        "edit"
+        "edit",
+        "release"
       ]
     },
     "shopMoneyPage/shoppages/index/index": {

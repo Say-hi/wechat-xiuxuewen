@@ -88,4 +88,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=share.js.map

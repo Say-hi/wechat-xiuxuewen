@@ -4,61 +4,84 @@
           catchtap="tabChoose"
           data-index="{{ index }}"
           class="f26 c666 flex1 tac tr5 {{ tabIndex == index ? 'active fw7' : '' }}"
-          wx:key="*94">{{ item }}</view>
+          wx:key="*94">{{ item.t }}</view>
   </view>
   <view class="p20 mt70">
-    <block wx:for="123"
+    <block wx:for="{{ list }}"
            wx:key="*123">
-      <view class="tac f22 c3a3a3a mt20">10月20日 17:28</view>
+      <view class="tac f22 c3a3a3a mt20">{{ item.create_time }}</view>
       <view class="p20 bgfff br8 f26 c666 mt10">
         <view class="order-num">
-          <text>订单编号：16686868</text>
-          <text class="cf7546f fw7">等待卖家发货</text>
+          <text>订单编号：{{ item.out_trade_no }}</text>
+          <text class="cf7546f fw7">{{ item.status == -1 ? '等待买家付款' : item.status == 1 ? '等待商家发货' : item.status == 2 ? '待确认收货' : item.status == 3 ? '交易已完成' : '订单已失效' }}</text>
         </view>
-        <view class="p20 br8 order-goods f26 c666 mt10">
-          <image src="{{ img }}"
-                 mode="aspectFill"
+        <view wx:if="{{ item.list.length < 2 }}" class="p20 br8 order-goods f26 c666 mt10">
+          <image src="{{ item.list[0].img }}"
+                 mode="aspectFit"
                  class="br8 mr20"></image>
-          <text class="mr20 flex1">我是商品标题，我是商品标题</text>
+          <text class="mr20 flex1">{{ item.list[0].title }}</text>
           <view class="og-r tar">
-            <view class="fw7">¥200</view>
-            <view>X1</view>
+            <view class="fw7">¥{{ item.amount }}</view>
+            <view>X{{ item.list[0].count }}</view>
           </view>
         </view>
-        <view class="p20 br8 order-goods more-goods f26 c666 mt10">
+        <view wx:else class="p20 br8 order-goods more-goods f26 c666 mt10">
           <view class="g-item"
-                wx:for="13241234"
+                wx:for="{{ item.list }}"
+                wx:for-item="iitem"
                 wx:key="*674">
-            <image src="{{ img }}"
-                   mode="aspectFill"
+            <image src="{{ iitem.img }}"
+                   mode="aspectFit"
                    class="br8 mr20"></image>
-            <text>x11</text>
+            <text>x{{ iitem.count }}</text>
           </view>
         </view>
         <view class="p10 bd1 total f26">
           <view>
-            <text class="c393636 mr20">共计12件商品</text>
-            <text class="cff5975 fw7">合计：200元</text>
+            <text class="c393636 mr20">共计{{ item.all_count }}件商品</text>
+            <text class="c393636 mr20">物流费:{{ item.logistic_fee }}</text>
+            <text class="cff5975 fw7">合计：{{ item.total_fee }}元</text>
           </view>
-          <text class="cff5975 fw7">赚¥3.00</text>
+          <!--<text class="cff5975 fw7">赚¥3.00</text>-->
         </view>
+        <view wx:if="{{ discount_name.length >= 1 && options.for == 'user' }}" class="f22 cff5975 tar mt10">{{ discount_name  }}</view>
         <view class="f26 order-bottom p10">
-          <text class="c444 fw7">买家：王小溪王小</text>
+          <text class="c444 fw7">买家：{{ item.name }}</text>
           <view class="ob-r flex1">
-            <button class="confirm f26 cfff cancel">取消订单</button>
-            <button class="confirm f26 cfff">立刻付款</button>
+            <button catchtap="change" data-index="{{ index }}" wx:if="{{ (item.status == -1 || item.status == -2) && options.for == 'user' }}" class="confirm f26 cfff cancel">取消订单</button>
+            <button catchtap="payAgain" data-index="{{ index }}" wx:if="{{ item.status == -1 && item.self && options.for == 'user' }}" class="confirm f26 cfff">立刻付款</button>
             <button catchtap="showExpress"
                     data-index="{{ index }}"
+                    wx:if="{{ item.status == 2 }}"
                     class="confirm f26 cfff cancel">查看物流</button>
-            <button class="confirm f26 cfff">确认收货</button>
-            <button class="confirm f26 cfff">点击发货</button>
+            <button catchtap="change" data-index="{{ index }}" wx:if="{{ item.status == 2 && item.self && options.for == 'user' }}" class="confirm f26 cfff">确认收货</button>
+            <button catchtap="fahuo" data-index="{{ index }}" wx:if="{{ item.status == 1 && options.for == 'shop' }}" class="confirm f26 cfff">点击发货</button>
           </view>
         </view>
       </view>
     </block>
+    <view wx:if="{{ list.length <= 0 }}" class="tac f26 p20 c444">暂无相关订单</view>
   </view>
 </form>
-
+<view class="mask" wx:if="{{ fahuomask }}">
+<form report-submit="1" bindsubmit="deliver">
+  <view class="mask-in br8">
+    <view class="mask-item">
+      <text>物流公司</text>
+      <input name="name" placeholder="输入物流公司名称" />
+    </view>
+    <view class="mask-item">
+      <text>物流单号</text>
+      <input name="num" placeholder="输入物流单号" />
+      <!--<text class="jwqfont jwq-iconfontscan c666"></text>-->
+    </view>
+    <view class="mask-btn">
+      <button catchtap="fahuo" data-index="-1" class="mb-item cancel">取消</button>
+      <button form-type="submit" class="mb-item confirm cfff">确认</button>
+    </view>
+  </view>
+</form>
+</view>
 <my-express prop-obj="{{ expressObj }}"></my-express>
 <!--错误弹窗-->
 <import src="/template/template"></import>

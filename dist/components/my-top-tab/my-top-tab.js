@@ -27,4 +27,3 @@ Component({
     }
   }
 });
-//# sourceMappingURL=my-top-tab.js.map

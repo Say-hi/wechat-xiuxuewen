@@ -142,4 +142,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=feedback.js.map

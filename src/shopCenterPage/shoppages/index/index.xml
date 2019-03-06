@@ -1,26 +1,26 @@
-<form>
+<form report-submit="{{true}}" bindsubmit="upFormId">
 <view class="p20">
   <view class="br8 bgfff p300 f24 c444 goods-top">
     <navigator hover-class="none"
                wx:for="123"
                wx:key="*23"
                url="/shopGoodsPage/shoppages/index/index?type={{ index }}">
-      <view>{{ index }}</view>
+      <view>{{ index == 0 ? topInfo.is_up : index == 1 ? topInfo.is_down : topInfo.low_stock }}</view>
       <view>{{ index <= 0 ? '出售中的商品' : index == 1 ? '仓库中的商品' : '库存紧张的商品' }}</view>
     </navigator>
   </view>
   <view class="f28 c444 fw7 release mt20">
-    <view class="r-item">发布新的商品</view>
+    <navigator url='/releasePage/pageseleven/index/index' class="r-item">发布新的商品</navigator>
     <view class="r-item">编辑运费模板</view>
   </view>
-  <swiper class="mt20 br8 godds-swiper"
+  <swiper class="mt20 br8 godds-swiper bgfff"
           circular="1"
           autoplay="1">
-    <swiper-item wx:for="1324"
+    <swiper-item wx:for="{{ ad }}"
                  wx:key="*59">
-      <image mode="aspectFill"
+      <image mode="aspectFit"
              class="br8"
-             src="{{ img }}"></image>
+             src="{{ item.img_url }}"></image>
     </swiper-item>
   </swiper>
   <view class="f28 c444 fw7 p30 br8 bgfff mt20">商品中心</view>
@@ -28,36 +28,39 @@
                class="goods-wrap bgfff">
     <view class="new-wrap-container">
       <button wx:for="{{ goodslabel }}"
-              wx:key="*this"
+              wx:key="*65"
               form-type="submit"
-              class="f26 c666 goods-label flex1"
+              catchtap="chooseLabel"
+              data-index="{{ index }}"
+              class="f26 c666 goods-label flex1 {{ labelIndex == index ? 'active' : '' }}"
               hover-class="none">
-        {{ item }}
+        {{ item.name }}
       </button>
     </view>
   </scroll-view>
-  <view url="/shopListPage/shoplistpages/detail/detail?id={{ item.id }}"
+  <navigator url="/shopListPage/shoplistpages/detail/detail?id={{ item.id }}&type=no"
              hover-class="none"
              class="goods-list bt1 bgfff p30"
              wx:key="*011"
-             wx:for="123123">
-    <image mode="aspectFill"
+             wx:for="{{ list }}">
+    <image mode="aspectFit"
            class="br8"
-           src="{{ img }}"></image>
+           src="{{ item.img }}"></image>
     <view class="flex1">
-      <view class="f30 c444">我是商品标题，我总共有三行，我是商品标题</view>
+      <view class="f30 c444">{{ item.title }}</view>
       <view class="goods-bottom">
-        <view class="f38 c444 fw7">¥88.00</view>
+        <view class="f38 c444 fw7">¥{{ item.old_price }}</view>
         <view class="f28 c444 goods-operation">
           <text data-id="{{ item.id }}" data-type="warehouse" catchtap="upGoods" class="mr20">放入仓库</text>
           <text data-id="{{ item.id }}" data-type="now" catchtap="upGoods">一键上传</text>
         </view>
       </view>
     </view>
-  </view>
+  </navigator>
+  <view wx:if="{{ list.length <= 0 }}" class="tac f26 p20 c444">商品正在火速补充中</view>
 </view>
-  <view class="not-agents">
-    <button open-type="contact">联系客服开通店铺权限</button>
+  <view wx:if="{{ !agents }}" class="not-agents">
+    <button class="f28 c999" open-type="contact">联系客服开通店铺权限</button>
   </view>
 </form>
 <view class="zw"></view>

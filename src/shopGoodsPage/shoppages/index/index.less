@@ -25,6 +25,17 @@
   .goods-info {
     background: #f2f2f2;
     display: flex;
+    &.system {
+      position: relative;
+      &:after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        content: '系统商品';
+        color: #ff5975;
+        font-size: 22rpx;
+      }
+    }
     .c444 {
       display: flex;
       flex-direction: column;
@@ -61,6 +72,9 @@
   align-items: center;
   justify-content: space-between;
   background: #fff;
+  &.screen-all {
+    padding-bottom: 60rpx;
+  }
   .cfff {
     padding: 20rpx 30rpx;
     border-radius: 60rpx;

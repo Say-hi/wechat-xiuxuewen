@@ -37,4 +37,3 @@ module.exports = {
     });
   }
 };
-//# sourceMappingURL=cloud.js.map

@@ -2498,4 +2498,3 @@ showdown.subParser('unescapeSpecialChars', function (text) {
 });
 module.exports = showdown;
 /*eslint-enable */
-//# sourceMappingURL=showdown.js.map

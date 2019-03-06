@@ -103,7 +103,7 @@
                    mode="aspectFit"
                    data-index="{{ index }}"
                    lazy-load="{{true}}"
-                   class="br20"
+                   class="br8"
                    src="{{ item.temp }}"></image>
             <view hidden="{{ upImgArrProgress3[index] >= 100 }}"
                   catchtap="upno"

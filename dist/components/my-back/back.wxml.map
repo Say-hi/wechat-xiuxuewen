@@ -1,1 +1,0 @@
-{"version":3,"names":[],"mappings":"","sources":["components/my-back/back.xml"],"sourcesContent":["<navigator open-type=\"reLaunch\" url=\"/pages/index/index\" class=\"back-home\">首页</navigator>"],"file":"back.wxml"}

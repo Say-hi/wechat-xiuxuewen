@@ -114,6 +114,9 @@ button {
 .zw {
   height: 120rpx;
 }
+.zw-all {
+  height: 160rpx;
+}
 
 .flex1 {
   flex: 1;
@@ -352,19 +355,6 @@ button {
   z-index: 10000;
 }
 
-.mask-btn {
-  display: flex;
-  color: #16a1fe;
-  text-align: center;
-  line-height: 112rpx;
-  border-top: 1rpx solid #dcdcdc;
-  view {
-    flex: 1;
-  }
-  .cancel {
-    border-right: 1rpx solid #dcdcdc;
-  }
-}
 // 模拟maskToast弹窗
 .mask-t {
   background-color: rgba(0,0,0,0.1);
@@ -459,30 +449,30 @@ button {
       border-radius: 10rpx;
       font-size: 30rpx;
     }
-    .mask-btn {
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      line-height: 80rpx;
-      view {
-        flex: 1;
-        text-align: center;
-      }
-      .cancel {
-        background-color: #eee;
-        border-bottom-left-radius: 10rpx;
-      }
-      .confirm {
-        color: #fff;
-        background-color: #22ac38;
-        border-bottom-right-radius: 10rpx;
-      }
-    }
   }
 }
+
+.mask-btn {
+  display: flex;
+  text-align: center;
+  line-height: 80rpx;
+  .mb-item {
+    flex: 1;
+    line-height: 80rpx;
+    height: 80rpx;
+    text-align: center;
+    border-radius: 0;
+  }
+  .cancel {
+    background-color: #eee;
+    border-bottom-left-radius: 10rpx;
+  }
+  .confirm {
+    background-color: #ff5975;
+    border-bottom-right-radius: 10rpx;
+  }
+}
+
 .settop {
   float: right;
   padding: 10rpx;
@@ -574,4 +564,17 @@ button {
     bottom: 140rpx;
     transform: scale(1);
   }
+}
+
+.move-left-in {
+  left: 0;
+}
+.move-left-out {
+  left: -100%;
+}
+.move-right-in {
+  left: 0;
+}
+.move-right-out {
+  left: 100%;
 }

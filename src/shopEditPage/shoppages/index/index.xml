@@ -1,29 +1,29 @@
 <form>
 <view class="p20">
   <view class="p30 br8 bgfff top">
-    <image mode="aspectFill"
+    <image mode="aspectFit"
            class="br8 mr20"
-           src="{{ img }}"></image>
-    <view class="f30 c444 flex1">我是商品标题，我总共有两行，我是商品标题</view>
+           src="{{ info.img }}"></image>
+    <view class="f30 c444 flex1">{{ info.title }}</view>
   </view>
   <view class="p30 mt1 br8 bgfff f26 c3a3a3a fw7">库存&价格</view>
-  <view wx:for="1234"
+  <view wx:for="{{ info.sku }}"
         wx:key="*02"
         class="p30 mt1 br8 bgfff f26 c3a3a3a speci-item mt1">
-    <view>自然棕</view>
+    <view>{{ item.value == -1 ? '统一规格' : item.value }}</view>
     <view class="si-price">
       <text>价格</text>
-      <input placeholder="0.01" type="digit"/>
+      <input bindblur="blurinput" data-index="{{ index }}" data-type="price" placeholder="0.01" value="{{ item.price }}" type="digit"/>
     </view>
     <view class="si-price">
       <text>库存</text>
-      <input placeholder="0.01" type="digit"/>
+      <input bindblur="blurinput" data-index="{{ index }}" data-type="stock" placeholder="1" value="{{ item.stock }}" type="number"/>
     </view>
   </view>
   <view class="p30 mt1 br8 bgfff f26 c3a3a3a fw7 express">
     <text class="mr20 fw7">运费设置</text>
     <view class="tips br8 tac">￥</view>
-    <input placeholder="0.01" type="digit"/>
+    <input bindblur="blurinput" data-index="-1" placeholder="0.01" value="{{ info.freight }}" type="digit"/>
   </view>
   <view class="p30 mt1 br8 bgfff f26 c3a3a3a sale">
     <text class="fw7">开售时间</text>
@@ -34,7 +34,7 @@
 </view>
 <view class="p2030 edit-bottom bgfff">
   <button catchtap="back">取消</button>
-  <button class="cfff">保存</button>
+  <button form-type="submit" catchtap="release" class="cfff">保存</button>
 </view>
 </form>
 <!--错误弹窗-->

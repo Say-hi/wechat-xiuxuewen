@@ -2,7 +2,7 @@
 
 // 获取全局应用程序实例对象
 var app = getApp();
-
+console.log(app.data.all_Screen);
 // 创建页面实例对象
 Page({
   /**
@@ -11,98 +11,68 @@ Page({
   data: {
     num: 1,
     labelIndex: 0,
-    specifi: [{
-      t: 'color',
-      chooses: [{
-        t: '可可棕',
-        id: 1
-      }, {
-        t: '可可棕',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }]
-    }, {
-      t: 'color',
-      chooses: [{
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }]
-    }, {
-      t: 'color',
-      chooses: [{
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }]
-    }, {
-      t: 'color',
-      chooses: [{
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }, {
-        t: 'adsf',
-        id: 1
-      }]
-    }]
+    all_Screen: app.data.all_screen,
+    discount_name: app.gs('shopInfoAll').discount_name,
+    discount_value: app.gs('shopInfoAll').discount_value
+  },
+  showImg: function showImg(e) {
+    wx.previewImage({
+      urls: this.data.info.detail,
+      current: this.data.info.detail[e.currentTarget.dataset.index]
+    });
   },
   goSubmit: function goSubmit() {
-    wx.navigateTo({
-      url: '../submit/submit'
+    if (this.data.num > this.data.info.sku[this.data.labelIndex].stock) return app.setToast(this, { content: '该产品已无库存' });
+    if (this.data.addCar) {
+      var that = this;
+      return app.wxrequest({
+        url: app.getUrl().shopCartAdd,
+        data: Object.assign({
+          uid: app.gs('userInfoAll').id,
+          mid: that.data.info.mid,
+          count: that.data.num,
+          sku_id: that.data.info.sku[that.data.labelIndex].id,
+          pid: that.data.info.id
+        }),
+        success: function success(res) {
+          wx.hideLoading();
+          if (res.data.status === 200) {
+            wx.showToast({
+              title: '添加成功'
+            });
+            that.setData({
+              num: 1,
+              buyMask: that.data.info.label * 1 !== -1
+            });
+          } else {
+            app.setToast(that, { content: res.data.desc });
+          }
+        }
+      });
+    }
+    var _data$info = this.data.info,
+        img = _data$info.img,
+        title = _data$info.title,
+        label = _data$info.label,
+        sku = _data$info.sku,
+        freight = _data$info.freight,
+        id = _data$info.id;
+
+    app.su('buyInfo', [{
+      id: id,
+      img: img,
+      title: title,
+      label: label,
+      freight: freight,
+      sku: sku[this.data.labelIndex],
+      count: this.data.num
+    }]);
+    wx.redirectTo({
+      url: '../submit/submit?type=now'
     });
   },
   buy: function buy(e) {
+    this.data.addCar = e.currentTarget.dataset.type === 'car';
     this.setData({
       buyMask: !this.data.buyMask
     });
@@ -124,19 +94,6 @@ Page({
       });
     }
   },
-
-  // chooseSp (e) {
-  //   let that = this
-  //   let {oindex, index} = e.currentTarget.dataset
-  //   for (let v of that.data.specifi[oindex].chooses) {
-  //     v['choose'] = false
-  //   }
-  //   that.data.specifi[oindex].chooses[index]['choose'] = true
-  //   let setStr = `specifi[${oindex}]`
-  //   this.setData({
-  //     [setStr]: that.data.specifi[oindex]
-  //   })
-  // },
   chooseSp: function chooseSp(e) {
     this.setData({
       labelIndex: e.currentTarget.dataset.index
@@ -154,6 +111,34 @@ Page({
         if (res.data.status === 200) {
           res.data.data.imgs = res.data.data.imgs ? res.data.data.imgs.split(',') : [];
           res.data.data.detail = res.data.data.detail ? res.data.data.detail.split(',') : [];
+          app.setBar(res.data.data.title);
+          res.data.data['stock'] = 0;
+          var _iteratorNormalCompletion = true;
+          var _didIteratorError = false;
+          var _iteratorError = undefined;
+
+          try {
+            for (var _iterator = res.data.data.sku[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+              var v = _step.value;
+
+              v['discount'] = (v.price * that.data.discount_value).toFixed(2);
+              res.data.data['stock'] += v.stock * 1;
+            }
+          } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+              }
+            } finally {
+              if (_didIteratorError) {
+                throw _iteratorError;
+              }
+            }
+          }
+
           that.setData({
             info: res.data.data
           });
@@ -174,7 +159,7 @@ Page({
       return {
         title: '\u5411\u60A8\u63A8\u8350\u5E97\u94FA\u3010' + app.gs('shopInfoAll').name + '\u3011',
         imageUrl: '' + (app.gs('shopInfoAll').avatar || ''),
-        path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id
+        path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id + '&user=' + app.gs('userInfoAll').id
       };
     }
   },
@@ -183,6 +168,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function onLoad(options) {
+    this.setData({
+      options: options
+    });
     this.shopProduct(options.id);
     // TODO: onLoad
   },
@@ -227,4 +215,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=detail.js.map

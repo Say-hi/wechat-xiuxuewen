@@ -1,6 +1,7 @@
 <form report-submit="{{true}}" bindsubmit="upFormId">
 <button open-type="getUserInfo" bindgetuserinfo="getUserInfoBtn" class="pr user-top">
   <view class="bg-img bg-img-bling"></view>
+  <!--<view class="bg-img asdfasdf"></view>-->
   <view class="user-info pa">
     <image lazy-load="{{true}}" class="user-img br" src="{{ userInfo.avatar_url }}"></image>
     <view class="f26 cfff user-name">

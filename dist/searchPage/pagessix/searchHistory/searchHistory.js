@@ -198,4 +198,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=searchHistory.js.map

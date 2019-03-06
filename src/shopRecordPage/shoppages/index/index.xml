@@ -27,6 +27,7 @@
       </view>
       <view class="f24 c999" hidden="{{ item.status != 3 }}">失败原因: {{ item.reason }}</view>
     </view>
+    <view wx:if="{{ list.length <= 0 }}" class="tac f26 p20 c444">暂无相关记录内容</view>
   </view>
 </form>
 <!--错误弹窗-->

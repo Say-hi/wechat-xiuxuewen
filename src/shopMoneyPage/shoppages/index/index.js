@@ -40,7 +40,7 @@ Page({
       return {
         title: `向您推荐店铺【${app.gs('shopInfoAll').name}】`,
         imageUrl: `${app.gs('shopInfoAll').avatar || ''}`,
-        path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}`
+        path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}&user=${app.gs('userInfoAll').id}`
       }
     }
   },

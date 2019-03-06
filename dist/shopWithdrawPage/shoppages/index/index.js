@@ -61,6 +61,21 @@ Page({
     });
   },
   showScroll: function showScroll() {
+    if (!this.data.ruler) {
+      var that = this;
+      app.wxrequest({
+        url: app.getUrl().shopUserExplain,
+        data: {},
+        success: function success(res) {
+          wx.hideLoading();
+          if (res.data.status === 200) {
+            app.WP('ruler', 'html', res.data.data.desc, that, 5);
+          } else {
+            app.setToast(that, { content: res.data.desc });
+          }
+        }
+      });
+    }
     this.setData({
       showS: !this.data.showS
     });
@@ -79,7 +94,7 @@ Page({
       return {
         title: '\u5411\u60A8\u63A8\u8350\u5E97\u94FA\u3010' + app.gs('shopInfoAll').name + '\u3011',
         imageUrl: '' + (app.gs('shopInfoAll').avatar || ''),
-        path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id
+        path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id + '&user=' + app.gs('userInfoAll').id
       };
     }
   },
@@ -132,4 +147,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=index.js.map

@@ -157,4 +157,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=messageDetail.js.map

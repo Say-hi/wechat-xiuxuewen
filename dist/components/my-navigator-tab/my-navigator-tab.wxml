@@ -1,5 +1,6 @@
 <form report-submit="{{true}}" bindsubmit="upFormId">
-<view class="tab-wrap tab-wrap2 bt1 bottom-operation">
+<view class="{{ all_Screen ? 'zw-all' : 'zw' }}"></view>
+<view class="tab-wrap tab-wrap2 bt1 bottom-operation {{ all_Screen ? 'all-screen' : '' }}">
     <navigator open-type="reLaunch"
                catchtap="_goUrl"
                data-index="{{ index }}"

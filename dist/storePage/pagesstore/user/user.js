@@ -166,4 +166,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=user.js.map

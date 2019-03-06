@@ -86,7 +86,28 @@ var serviceUrl = {
   shopUserCash: shopBaseDomain + '/user/cash', // 商城用户资金提现
   shopUserInDetail: shopBaseDomain + '/user/indetail', // 商城用户收益明细
   shopUserRecord: shopBaseDomain + '/user/record', // 商城用户提现记录
+  shopUserNotice: shopBaseDomain + '/user/notice', // 商城用户消息
+  shopUserRead: shopBaseDomain + '/user/read', // 商城用户消息已读
+  shopUserExplain: shopBaseDomain + '/user/explain', // 商城提现说明
+  shopCartAdd: shopBaseDomain + '/cart/add', // 商城添加到购物车
+  shopCartList: shopBaseDomain + '/cart/list', // 商城购物车
+  shopCartDelete: shopBaseDomain + '/cart/delete', // 商城购物车删除
+  shopCartChange: shopBaseDomain + '/cart/change', // 商城购物车数量修改
+  shopCenter: shopBaseDomain + '/shop/center', // 商城中心
+  shopSale: shopBaseDomain + '/shop/sale', // 商城中心
+  shopRelease: shopBaseDomain + '/shop/release', // 商城产品上传
+  shoPayDirect: shopBaseDomain + '/pay/direct', // 商城直接购买
+  shoPayCart: shopBaseDomain + '/pay/cart', // 商城购物车购买
+  shopAd: shopBaseDomain + '/shop/ad', // 商城广告
+  shopEdit: shopBaseDomain + '/shop/edit', // 商城产品编辑
+  shopSet: shopBaseDomain + '/shop/set', // 商城店铺名字修改
+  shopUserOrders: shopBaseDomain + '/user/orders', // 商城用户店铺订单
+  shopUserOperate: shopBaseDomain + '/user/operate', // 商城用户店铺订单状态修改
+  shopExpress: shopBaseDomain + '/shop/express', // 商城订单发货
+  shopTeam: shopBaseDomain + '/shop/team', // 商城分销商
+  shopPayAgain: shopBaseDomain + '/pay/again', // 商城再次支付
+  shopDeal: shopBaseDomain + '/shop/deal', // 商城产品操作
+  shopBinding: shopBaseDomain + '/publicly/binding', // 商城用户绑定
   shopVideoList: shopBaseDomain + '/video/list' // 视频列表
 };
 module.exports = serviceUrl;
-//# sourceMappingURL=service.js.map

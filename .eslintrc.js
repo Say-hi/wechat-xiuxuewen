@@ -15,6 +15,7 @@ module.exports = {
     noUse: true
   },
   'rules': {
-  	'no-unused-vars': 1
+  	'no-unused-vars': 1,
+  	'no-useless-computed-key': 1
   }
 };

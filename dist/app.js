@@ -28,6 +28,7 @@ Moment.updateLocale('en', {
 App({
   data: {
     // TOP_CENTER: ((MenuButtonBounding.right - MenuButtonBounding.left) / 2 / 2) + MenuButtonBounding.left,
+    all_screen: wx.getSystemInfoSync().model.indexOf('X') >= 0,
     TOP_CENTER: MenuButtonBounding.right - 66,
     searchText: null,
     bottomTabIndex: 0,
@@ -77,7 +78,6 @@ App({
 
   // 发起微信支付
   wxpay: function wxpay(obj) {
-    console.log(obj);
     var objs = {
       timeStamp: obj.timeStamp,
       nonceStr: obj.nonceStr,
@@ -105,6 +105,29 @@ App({
       complete: obj.complete || function () {}
     };
     wx.requestPayment(objs);
+  },
+  wxpay2: function wxpay2(obj) {
+    return new Promise(function (resolve, reject) {
+      wx.requestPayment({
+        timeStamp: obj.timeStamp,
+        nonceStr: obj.nonceStr,
+        package: obj.package,
+        signType: obj.signType || 'MD5',
+        paySign: obj.paySign,
+        success: function success(payRes) {
+          if (payRes.errMsg === 'requestPayment:ok') {
+            resolve(payRes);
+          } else {
+            reject(payRes);
+          }
+        },
+        fail: function fail(err) {
+          reject(err);
+        },
+
+        complete: obj.complete || function () {}
+      });
+    });
   },
 
   // 下载内容获取临时路径
@@ -692,19 +715,6 @@ App({
     _cloud.getShareText().then(function (res) {
       that.su('shareText', res.result);
     });
-    // wx.cloud.init({
-    //   traceUser: true
-    // })
-    // wx.cloud.callFunction({
-    //   name: 'getShareText',
-    //   data: {},
-    //   success (res) {
-    //     that.su('shareText', res.result)
-    //   },
-    //   fail (err) {
-    //     console.log(err)
-    //   }
-    // })
   },
 
   /**
@@ -719,8 +729,6 @@ App({
     setTimeout(function () {
       _this.getShareText();
     }, 500);
-    // this.su('userInfoAll', {id:2, nickname: 'Edward2'})
-    // this.getFont()
   },
 
   /**
@@ -745,4 +753,3 @@ App({
     // console.log(' ========== Application is hid ========== ')
   }
 });
-//# sourceMappingURL=app.js.map

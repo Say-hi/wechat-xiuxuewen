@@ -92,4 +92,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=message.js.map

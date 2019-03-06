@@ -24,11 +24,14 @@
   <view>{{ info.detail_text }}</view>
   <image wx:for="{{ info.detail }}"
          wx:key="*12"
+         data-index="{{ index }}"
+         catchtap="showImg"
          mode="widthFix"
          class="detail-img"
          src="{{ item }}"></image>
   <view class="zw90"></view>
-  <view class="bottom-tab">
+  <view wx:if="{{ all_Screen }}" class="zw40"></view>
+  <view wx:if="{{ !options.type }}" class="bottom-tab {{ all_Screen ? 'all-screen' : '' }}">
     <navigator url="/shopPage/shoppages/index/index"
                hover-stop-propagation="{{true}}"
                hover-class="none"
@@ -43,15 +46,19 @@
         data-type="change">
     <!--商品展示-->
     <view catchtap="noUse"
-          class="g-m-wrap bgfff">
+          class="g-m-wrap bgfff {{ all_Screen ? 'all-screen' : '' }}">
       <view class="g-m-top p30 bd1 pr">
         <image mode="aspectFill"
                class="br8 {{ buyMask ? '' : 'noshow' }}"
                src="{{ info.img }}"></image>
         <view class="c444 f26">
-          <view class="cff5975 f34">¥{{ info.sku[labelIndex].price }}</view>
+          <view class="cff5975 f34">
+            <text>¥{{ info.sku[labelIndex].discount }}</text>
+            <text wx:if="{{ discount_name.length >= 1 }}" class="c999 text-t f22 pl20">¥{{ info.sku[labelIndex].price }}</text>
+          </view>
           <view>库存：{{ info.sku[labelIndex].stock }}</view>
           <view wx:if="{{ info.label != '-1' }}">请选择：{{ info.label }}</view>
+          <view wx:if="{{ discount_name.length >= 1 }}" class="cff5975 f22">{{ discount_name }}</view>
         </view>
         <view catchtap="buy"
               data-type="change"

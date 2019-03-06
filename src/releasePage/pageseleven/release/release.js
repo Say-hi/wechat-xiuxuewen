@@ -1,7 +1,7 @@
 // 获取全局应用程序实例对象
 const app = getApp()
-const COS = require('./cos-js-sdk-v5.min')
-const config = require('./config')
+const COS = require('../cos-js-sdk-v5.min.js')
+const config = require('../config')
 const cos = new COS({
   getAuthorization (params, callback) {
     let authorization = COS.getAuthorization({

@@ -225,4 +225,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=order.js.map

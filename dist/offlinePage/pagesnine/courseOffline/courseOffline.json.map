@@ -1,1 +1,0 @@
-{"version":3,"names":[],"mappings":"","sources":["offlinePage/pagesnine/courseOffline/courseOffline.json"],"sourcesContent":["// Window configuration\n{\n  // 导航栏标题文字内容\n  \"navigationBarTitleText\": \"线下手把手教学\",\n  \"enablePullDownRefresh\": false\n}\n"],"file":"courseOffline.json"}

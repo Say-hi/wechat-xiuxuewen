@@ -9,7 +9,8 @@ Component({
     }
   },
   data: {
-    navData: []
+    navData: [],
+    all_Screen: app.data.all_screen
   },
   lifetimes: {
     created () {

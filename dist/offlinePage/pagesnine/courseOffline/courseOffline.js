@@ -272,4 +272,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=courseOffline.js.map

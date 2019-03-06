@@ -27,4 +27,3 @@ Component({
     }
   }
 });
-//# sourceMappingURL=add.js.map

@@ -4,8 +4,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 // 获取全局应用程序实例对象
 var app = getApp();
-var COS = require('./cos-js-sdk-v5.min');
-var config = require('./config');
+var COS = require('../cos-js-sdk-v5.min.js');
+var config = require('../config');
 var cos = new COS({
   getAuthorization: function getAuthorization(params, callback) {
     var authorization = COS.getAuthorization({
@@ -349,4 +349,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=release.js.map

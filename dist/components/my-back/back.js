@@ -8,4 +8,3 @@ Component({
 
   methods: {}
 });
-//# sourceMappingURL=back.js.map

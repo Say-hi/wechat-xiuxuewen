@@ -193,4 +193,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=income.js.map

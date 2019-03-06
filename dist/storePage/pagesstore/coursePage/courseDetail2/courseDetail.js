@@ -402,4 +402,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=courseDetail.js.map

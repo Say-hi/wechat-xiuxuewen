@@ -7,9 +7,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    sale: 0,
-    img: app.data.testImg,
-    goodslabel: ['色乳类', '色乳类', '色乳类', '色乳类', '色乳类', '色乳类', '色乳类色乳类色乳类色乳类']
+    sale: 1
+  },
+  blurinput (e) {
+    let index = e.currentTarget.dataset.index
+    if (index < 0) {
+      this.setData({
+        ['info.freight']: (e.detail.value * 1).toFixed(2)
+      })
+    } else {
+      console.log(e)
+      let str = `info.sku[${e.currentTarget.dataset.index}].${e.currentTarget.dataset.type === 'price' ? 'price' : 'stock'}`
+      this.setData({
+        [str]: (e.detail.value * 1).toFixed(e.currentTarget.dataset.type === 'price' ? 2 : 0)
+      })
+    }
   },
   back () {
     wx.navigateBack()
@@ -18,41 +30,6 @@ Page({
     this.setData({
       sale: e.currentTarget.dataset.type
     })
-  },
-  upGoods (e) {
-    if (e.currentTarget.dataset.type === 'now') {
-      wx.showModal({
-        title: '上传确认',
-        content: '是否确认上传此商品',
-        success (res) {
-          if (res.confirm) {
-            wx.showModal({
-              title: '上传方式',
-              content: '请选择您的上传方式',
-              confirmText: '编辑上传',
-              cancelText: '直接上传',
-              success (res2) {
-                if (res2.confirm) {
-
-                } else if (res.cancel) {
-
-                }
-              }
-            })
-          }
-        }
-      })
-    } else {
-      wx.showModal({
-        title: '放入仓库',
-        content: '是否确认将此商品放入仓库',
-        success (res) {
-          if (res.confirm) {
-
-          }
-        }
-      })
-    }
   },
   onShareAppMessage () {
     if (!app.gs('shopInfo').mid) {
@@ -65,14 +42,64 @@ Page({
       return {
         title: `向您推荐店铺【${app.gs('shopInfoAll').name}】`,
         imageUrl: `${app.gs('shopInfoAll').avatar || ''}`,
-        path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}`
+        path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}&user=${app.gs('userInfoAll').id}`
       }
     }
+  },
+  shopProduct (pid) {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().shopProduct,
+      data: {
+        pid
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            info: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+  release () {
+    let info = this.data.info
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().shopEdit,
+      data: {
+        pid: info.id,
+        mid: app.gs('shopInfoAll').id,
+        parent_id: info.parent_id || info.id,
+        title: info.title,
+        img: info.img,
+        old_price: info.old_price,
+        freight: info.freight,
+        is_up: that.data.sale === 1 ? 1 : -1,
+        label: info.label,
+        sku: JSON.stringify(info.sku)
+      },
+      success (res2) {
+        wx.hideLoading()
+        if (res2.data.status === 200) {
+          wx.showToast({
+            title: '添加成功'
+          })
+        } else {
+          app.setToast(that, {content: res2.data.desc})
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
+    this.data.options = options
+    this.shopProduct(options.id)
     // TODO: onLoad
   },
 

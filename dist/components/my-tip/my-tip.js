@@ -114,4 +114,3 @@ Component({
     }
   }
 });
-//# sourceMappingURL=my-tip.js.map

@@ -492,4 +492,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=offlineApply.js.map

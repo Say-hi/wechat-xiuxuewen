@@ -1,26 +1,30 @@
 <form>
   <view class="p20">
     <view class="user-info bgfff br8 p30">
-      <image src="{{ info.avatar_url }}"
-             class="br mr20"
-             mode="aspectFill"></image>
-      <view class="c444 flex1">
-        <text class="f28 fw7">{{ info.mall_rname || info.nickname }}</text>
-        <text class="f24">ID{{ info.id }}</text>
-      </view>
+      <button hover-class="none"
+              open-type="getUserInfo"
+              bindgetuserinfo="getUserInfoBtn">
+        <image src="{{ agents ? shopInfo.avatar : info.avatar_url }}"
+               class="br mr20"
+               mode="aspectFill"></image>
+        <view class="c444 tal">
+          <text class="f28 fw7">{{ agents ? shopInfo.name : info.mall_rname || info.nickname }}</text>
+          <text class="f24">ID{{ agents ? shopInfo.id : info.id }}</text>
+        </view>
+      </button>
       <view class="operation">
         <navigator url="/shopNotePage/shoppages/index/index" hover-class="none" class="jwqfont jwq-tongzhi"></navigator>
-        <navigator url="../set/set?type=user" hover-class="none" class="jwqfont jwq-shezhi"></navigator>
+        <navigator hidden="{{ agents }}" url="/releasePage/pageseleven/set/set?type={{ !agents ? 'user' : 'shop' }}" hover-class="none" class="jwqfont jwq-shezhi"></navigator>
       </view>
     </view>
     <view class="p30 br8 bgfff f28 c444 mt20" wx:if="{{ agents }}">
       <view>店铺订单</view>
       <view class="shop-order-num mt30">
         <navigator wx:for="123"
-                   url="/shopOrderPage/shoppages/order/order?type={{ index + 1 }}"
+                   url="/shopOrderPage/shoppages/order/order?type={{ index + 1 }}&for=shop"
                    class="son-item tac f24 br8"
                    wx:key="*14">
-          <view>5</view>
+          <view>{{ index <= 0 ? info.stay_pay : index == 1 ? info.stay_deliver : info.stay_receive }}</view>
           <view>{{ index <= 0 ? '待付款' : index == 1 ? '待发货' : '待收货' }}</view>
         </navigator>
       </view>
@@ -35,15 +39,16 @@
               hidden="{{ index == 2 && !agents }}"
               class="son-item son-item2 tac f24 br8"
               wx:key="*12">
-          <view>{{ index <= 0 ? info.order_count : 3 }}</view>
-          <view>{{ index <= 0 ? '订单' : index == 1 ? '收益' : '营业额' }}</view>
+          <view>{{ today ? index == 0 ? info.today_order_count : index == 1 ? info.today_profit : info.today_turnover : index == 0 ? info.order_count : index == 1 ? info.profit : info.turnover }}</view>
+          <view>{{ index == 0 ? '订单' : index == 1 ? '收益' : '营业额' }}</view>
         </view>
       </view>
     </view>
     <view class="user-bottom f28 fw7 c444">
       <navigator url="/shopMoneyPage/shoppages/index/index" class="ub-item br8 bgfff tac lh80">资金管理</navigator>
-      <navigator url="/shopOrderPage/shoppages/order/order?type=0" class="ub-item br8 bgfff tac lh80">销售订单</navigator>
-      <navigator wx:if="{{ agents }}" url="../set/set?type=shop" class="ub-item br8 bgfff tac lh80">店铺设置</navigator>
+      <navigator url="/shopOrderPage/shoppages/order/order?type=0&for=user" class="ub-item br8 bgfff tac lh80">销售订单</navigator>
+      <navigator wx:if="{{ agents }}" url="/releasePage/pageseleven/set/set?type=shop" class="ub-item br8 bgfff tac lh80">店铺设置</navigator>
+      <navigator wx:if="{{ agents }}" url="/shopClientPage/shoppages/index/index" class="ub-item br8 bgfff tac lh80">店铺代理</navigator>
     </view>
   </view>
 </form>

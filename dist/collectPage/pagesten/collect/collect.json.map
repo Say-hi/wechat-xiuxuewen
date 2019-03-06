@@ -1,1 +1,0 @@
-{"version":3,"names":[],"mappings":"","sources":["collectPage/pagesten/collect/collect.json"],"sourcesContent":["// Window configuration\n{\n  \"enablePullDownRefresh\": true\n}\n"],"file":"collect.json"}

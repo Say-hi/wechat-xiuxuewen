@@ -7,31 +7,32 @@
           wx:key="*94">{{ item }}</view>
   </view>
   <view class="p20 mt70">
-    <view class="f22 c3a3a3a tac mt20">10月20日 17:28</view>
-    <view class="p30 bgfff br8 mt10">
-      <view>
+    <!--<view class="f22 c3a3a3a tac mt20">10月20日 17:28</view>-->
+    <view class="p30 bgfff br8 mt10" wx:for="{{ list }}" wx:key="*124">
+      <view wx:if="{{ !item.img_url }}">
         <view class="title">
-          <text class="f38 c444 fw7">订单提醒</text>
-          <text class="f26 c666">2019.02.18</text>
+          <text class="f38 c444 fw7">{{ item.title }}</text>
+          <text class="f26 c666 flex1 keep tar">{{ item.create_time }}</text>
         </view>
-        <view class="f26 c393636 mt20">您的店铺产生了一笔88.00元的订单，点击查看</view>
+        <view class="f26 c393636 mt20">{{ item.content }}</view>
       </view>
-      <view>
+      <view wx:else>
         <view class="title">
-          <text class="f38 c444 fw7">订单提醒</text>
-          <text class="f26 c666">2019.02.18</text>
+          <text class="f38 c444 fw7 ell1">{{ item.title }}</text>
+          <text class="f26 c666 flex1 keep tar">{{ item.create_time }}</text>
         </view>
         <view class="goods-info mt20">
-          <image src="{{ img }}"
+          <image src="{{ item.img_url }}"
                  class="br8 goods-img mr20"
-                 mode="aspectFill"></image>
+                 mode="aspectFit"></image>
           <view class="f26 c393636 flex1">
-            <view>我是商品标题，我是商品标题，我是商品 标题，我是商品标题，我是商品标题</view>
+            <view>{{ item.title }}</view>
             <view class="mt30">运单号：39931109400297</view>
           </view>
         </view>
       </view>
     </view>
+    <view wx:if="{{ !list.length }}" class="tac p20 c999 f28">暂无相关通知</view>
   </view>
 </form>
 

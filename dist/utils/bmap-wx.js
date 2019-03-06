@@ -402,4 +402,3 @@ var BMapWX = function () {
 }();
 
 module.exports.BMapWX = BMapWX;
-//# sourceMappingURL=bmap-wx.js.map

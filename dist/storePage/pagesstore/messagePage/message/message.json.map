@@ -1,1 +1,0 @@
-{"version":3,"names":[],"mappings":"","sources":["storePage/pagesstore/messagePage/message/message.json"],"sourcesContent":["// Window configuration\n{\n  // 类型：Boolean；默认值：false\n  // 是否开启下拉刷新，详见页面相关事件处理函数。\n  \"enablePullDownRefresh\": false\n}\n"],"file":"message.json"}

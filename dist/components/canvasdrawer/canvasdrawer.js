@@ -303,4 +303,3 @@ Component({
     }
   }
 });
-//# sourceMappingURL=canvasdrawer.js.map

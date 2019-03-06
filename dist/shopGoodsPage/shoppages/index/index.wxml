@@ -1,7 +1,4 @@
-<form>
-  <view wx:if="{{ list.length <= 0 }}" class="no-goods bt1">
-    您还没有相关的产品咧
-  </view>
+<form report-submit="{{true}}" bindsubmit="upFormId">
   <view wx:if="{{ tabIndex >= 1 }}" class="f28 c666 tab bgfff bt1">
     <view catchtap="tabChoose" data-index="1" class="tac flex1 {{ tabIndex == 1 ? 'active' : '' }}">全部</view>
     <view catchtap="tabChoose" data-index="2" class="tac flex1 {{ tabIndex == 2 ? 'active' : '' }}">售完下架</view>
@@ -10,42 +7,49 @@
   <view class="p20">
     <block wx:for="{{ list }}"
            wx:key="*07">
-      <view class="f22 c3a3a3a tac mt10">10月20日 17:28</view>
-      <view class="car-list p20 bgfff mt20">
+      <view class="f22 c3a3a3a tac mt10">{{ item.create_time }}</view>
+      <navigator hover-class="none"
+                 url="/shopListPage/shoplistpages/detail/detail?id={{ item.id }}&type=nobuy"
+                 class="car-list p20 bgfff mt20">
         <view catchtap="choose"
               data-index="{{ index }}"
-              class="iconfont f26 {{ item.choose ? 'icon-gouxuan' : 'icon-wxz' }}">　发布时间：2019.01.07 10:26:35</view>
-        <view class="p20 br8 mt20 goods-info">
-          <image src="{{ img }}"
+              class="iconfont f26 {{ item.choose ? 'icon-gouxuan' : 'icon-wxz' }}">　发布时间：{{ item.update_time }}</view>
+        <view class="p20 br8 mt20 goods-info {{ item.parent_id > 0 ? 'system' : '' }}">
+          <image src="{{ item.img }}"
                  class="br8 mr20"
-                 mode="aspectFill"></image>
+                 mode="aspectFit"></image>
           <view class="f26 c444">
-            <text class="fw7">我是商品标题，我是商品标题</text>
-            <text class="c666">商品编号：16686868</text>
+            <text class="fw7">{{ item.title }}</text>
+            <text class="c666">商品编号：{{ item.no }}</text>
+            <text wx:if="{{ item.sku.length >= 2 }}" class="c666 f2">多规格</text>
           </view>
         </view>
         <view class="f26 c444 fw7 bd1 goods-count">
-          <text>¥200.00元</text>
-          <text>库存：4888</text>
-          <text>销量：88</text>
+          <text>¥{{ item.old_price }}元</text>
+          <text>库存：{{ item.stock }}</text>
+          <text>销量：{{ item.count_sale }}</text>
         </view>
         <view class="goods-op">
-          <button>删除</button>
+          <button catchtap="shopO" data-index="{{ index }}" data-type="del" open-type="submit">删除</button>
+          <button catchtap="shopO" data-index="{{ index }}" data-type="down" wx:if="{{ tabIndex == 0 }}">下架</button>
           <button catchtap="goEdit" data-index="{{ index }}">编辑</button>
-          <button>上架</button>
+          <button catchtap="shopO" data-index="{{ index }}" data-type="up" wx:if="{{ tabIndex == 1 }}">上架</button>
         </view>
-      </view>
+      </navigator>
     </block>
+    <view wx:if="{{ list.length <= 0 }}" class="p20 c999 f28 tac">
+      您还没有相关的产品咧
+    </view>
   </view>
-  <view class="zw"></view>
-  <view class="bgfff submit bt1 f24 c444 p2030">
+  <view class="zw {{ all_Screen ? 'zw-all' : '' }}"></view>
+  <view wx:if="{{ list.length > 0 }}" class="bgfff submit bt1 f24 c444 p2030 {{ all_Screen ? 'screen-all' : '' }}">
     <view catchtap="checkAll"
           data-index="{{ selectAll }}"
           class="iconfont {{ selectAll == -2 ? 'icon-gouxuan' : 'icon-wxz' }}"> 全选</view>
     <view wx:if="{{ !del }}" class="s-r">
-      <button catchtap="del" class="f28 cfff del">删除</button>
-      <button catchtap="submit" class="f28 cfff">下架</button>
-      <button catchtap="submit" class="f28 cfff">上架</button>
+      <button form-type="submit" catchtap="shopO" data-type="del" data-index="-1" class="f28 cfff del">删除</button>
+      <button form-type="submit" wx:if="{{ tabIndex == 0 }}" catchtap="shopO" data-type="down" data-index="-1" class="f28 cfff">下架</button>
+      <button form-type="submit" wx:if="{{ tabIndex == 1 }}" catchtap="shopO" data-type="up" data-index="-1" class="f28 cfff">上架</button>
     </view>
   </view>
 </form>

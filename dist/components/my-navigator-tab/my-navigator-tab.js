@@ -11,7 +11,8 @@ Component({
     }
   },
   data: {
-    navData: []
+    navData: [],
+    all_Screen: app.data.all_screen
   },
   lifetimes: {
     created: function created() {},
@@ -109,4 +110,3 @@ Component({
     }
   }
 });
-//# sourceMappingURL=my-navigator-tab.js.map

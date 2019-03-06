@@ -1,1 +1,0 @@
-{"version":3,"names":[],"mappings":"","sources":["feedbackPage/pagesfour/feedback/feedback.json"],"sourcesContent":["// Window configuration\n{\n  \"navigationBarTitleText\": \"意见反馈\",\n  // 是否开启下拉刷新，详见页面相关事件处理函数。\n  \"enablePullDownRefresh\": false\n}\n"],"file":"feedback.json"}

@@ -272,4 +272,3 @@ module.exports = {
     emojisInit: emojisInit
 };
 /*eslint-enable */
-//# sourceMappingURL=html2json.js.map

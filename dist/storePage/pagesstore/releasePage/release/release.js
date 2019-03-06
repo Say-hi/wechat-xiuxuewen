@@ -1040,4 +1040,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=release.js.map

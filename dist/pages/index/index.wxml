@@ -55,7 +55,7 @@
             <navigator hover-class="none" url="/coursePage/pageszero/courseDetail/courseDetail?id={{ item.id }}&free=1&type=1" class="c-w-item bb pr mt30" wx:for="{{ list }}" wx:if="{{ index < 6 }}" wx:key="*2">
                 <!--<view catchtap="collect" data-id="{{ item.id }}" class="c-w-i-collect pa f22 p10">收藏</view>-->
                 <button form-type="submit" hover-class="none">
-                  <image lazy-load="{{true}}" class="br10" mode="aspectFit" src="{{ item.image }}"></image>
+                  <image lazy-load="{{true}}" class="br10" mode="aspectFill" src="{{ item.image }}"></image>
                   <view class="ell1 f32 c393636 fw7 mt5 tal">{{ item.title }}</view>
                   <view class="f26 c999 c-w-i-i-w">
                     <view class="c-w-i-info mt10">
@@ -71,7 +71,7 @@
     <view class="tac f24 c999 lh80">已经到底部啦</view>
 </view>
 </form>
-<view class="zw"></view>
+<!--<view class="zw"></view>-->
 <my-add></my-add>
 <!--<my-login></my-login>-->
 <my-navigator-tab prop-nav="{{ tabArr2 }}"></my-navigator-tab>

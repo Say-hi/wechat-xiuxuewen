@@ -10,7 +10,7 @@
 }
 .iconfont {
   font-size: 30rpx;
-  margin: 30rpx;
+  padding: 30rpx;
   color: #979797;
   &.icon-gouxuan {
     color: #ff5975;
@@ -20,6 +20,25 @@
   display: flex;
   align-items: center;
   padding-left: 0;
+  &.has-change {
+    position: relative;
+    background-color: #eee;
+    &:after {
+      content: '该产品已下架,点击移除';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(15deg);
+      padding: 0 30rpx;
+      height: 50rpx;
+      line-height: 50rpx;
+      text-align: center;
+      color: #999;
+      background-color: #fff;
+      border: 2rpx solid #999;
+      font-size: 28rpx;
+    }
+  }
   image {
     width: 154rpx;
     height: 154rpx;
@@ -41,6 +60,9 @@
   align-items: center;
   justify-content: space-between;
   background: #fff;
+  &.all-screen {
+    bottom: 150rpx;
+  }
   .cfff {
     padding: 20rpx 30rpx;
     border-radius: 60rpx;
@@ -52,6 +74,9 @@
     align-items: center;
     text {
       word-break: keep-all;
+    }
+    .bgceee {
+      background-color: #eee;
     }
   }
   button {

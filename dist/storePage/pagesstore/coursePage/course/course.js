@@ -141,4 +141,3 @@ Page({
     // TODO: onPullDownRefresh
   }
 });
-//# sourceMappingURL=course.js.map

@@ -1,12 +1,1 @@
-.back-home {
-  position: fixed;
-  bottom: 150rpx;
-  right: -10rpx;
-  width: 80rpx;
-  border-radius: 15rpx;
-  padding: 10rpx;
-  background-color: rgba(255, 59, 91, 0.9);
-  font-size: 30rpx;
-  text-align: center;
-  color: #fff;
-}
+.back-home{position:fixed;bottom:150rpx;right:-10rpx;width:80rpx;border-radius:15rpx;padding:10rpx;background-color:rgba(255,59,91,.9);font-size:30rpx;text-align:center;color:#fff}
