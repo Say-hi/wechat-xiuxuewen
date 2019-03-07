@@ -22,7 +22,7 @@ Page({
   },
   shopUserCash: function shopUserCash() {
     var that = this;
-    if (!this.data.outMoney || this.data.outMoney < 1) return app.setToast(this, { content: '最小提现额度为1' });
+    // if (!this.data.outMoney || this.data.outMoney < 1) return app.setToast(this, { content: '最小提现额度为1' });
     app.wxrequest({
       url: app.getUrl().shopUserCash,
       data: {

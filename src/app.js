@@ -25,7 +25,6 @@ Moment.updateLocale('en', {
 })
 App({
   data: {
-    // TOP_CENTER: ((MenuButtonBounding.right - MenuButtonBounding.left) / 2 / 2) + MenuButtonBounding.left,
     all_screen: (wx.getSystemInfoSync().model).indexOf('X') >= 0,
     TOP_CENTER: (MenuButtonBounding.right - 66),
     searchText: null,
@@ -202,15 +201,10 @@ App({
   },
   // 请求数据
   wxrequest (obj) {
-    // let that = this
     wx.showLoading({
       title: '请求数据中...',
       mask: true
     })
-    // console.log('obj', obj)
-    // if (!obj.data.iv) {
-    //   obj.data = Object.assign(obj.data, {session_key: that.gs()})
-    // }
     wx.request({
       url: obj.url || useUrl.login,
       method: obj.method || 'POST',
@@ -226,6 +220,7 @@ App({
       },
       complete: obj.complete || function (res) {
         console.log('url', obj.url)
+        console.log('data', obj.data)
         console.log('complete', res)
         wx.stopPullDownRefresh()
       }
@@ -639,10 +634,6 @@ App({
         that.su('shareText', res.result)
       })
   },
-  /**
-   * 生命周期函数--监听小程序初始化
-   * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
-   */
   onLaunch () {
     this.getNavTab({})
     this.getEnum()
@@ -650,24 +641,13 @@ App({
       this.getShareText()
     }, 500)
   },
-  /**
-   * 生命周期函数--监听小程序显示
-   * 当小程序启动，或从后台进入前台显示，会触发 onShow
-   */
-  onShow () {
-    // console.log(' ========== Application is showed ========== ')
-  },
+  onShow () {},
   onPageNotFound () {
     wx.reLaunch({
       url: '/pages/index/index'
     })
   },
-  /**
-   * 生命周期函数--监听小程序隐藏
-   * 当小程序从前台进入后台，会触发 onHide
-   */
   onHide () {
     this.su('first', 1)
-    // console.log(' ========== Application is hid ========== ')
   }
 })

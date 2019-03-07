@@ -60,7 +60,7 @@ Page({
                     url: '/shopEditPage/shoppages/index/index?id=' + e.currentTarget.dataset.id
                   });
                 } else if (res2.cancel) {
-                  that.shopProduct(e.currentTarget.dataset.id, -1);
+                  that.shopProduct(e.currentTarget.dataset.id, 1);
                 }
               }
             });
@@ -73,7 +73,7 @@ Page({
         content: '是否确认将此商品放入仓库',
         success: function success(res) {
           if (res.confirm) {
-            that.shopProduct(e.currentTarget.dataset.id, 1);
+            that.shopProduct(e.currentTarget.dataset.id, -1);
           }
         }
       });

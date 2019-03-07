@@ -375,5 +375,5 @@
     "downloadFile": 10000
   },
   // Debug log to console
-  "debug": true
+  "debug": false
 }

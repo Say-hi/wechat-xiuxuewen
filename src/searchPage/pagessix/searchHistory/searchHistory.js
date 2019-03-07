@@ -7,8 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: 'searchHistory',
-    keyWord: [1, 23, 4],
+    keyWord: [],
     searchShow: true
   },
   onShareAppMessage () {
@@ -59,9 +58,7 @@ Page({
     }
   },
   search (content) {
-    // return
     let that = this
-    // console.log(content)
     let searcheText = ''
     if (content.detail) searcheText = content.detail.value
     else searcheText = content
@@ -88,11 +85,9 @@ Page({
     for (let index in that.data.history) {
       // 搜索项已经存在
       if (that.data.history[index] === searcheText) {
-        // console.log(index)
         that.setData({
           chooseHistory: index
         })
-        // that.getSearch(that.data.history[index])
         return
       }
     }
@@ -112,7 +107,6 @@ Page({
       searchShow: true
     })
     // 执行搜索操作
-    // this.getSearch(searcheText)
     let type = that.data.options.type === 'goods' ? 'goodsHistory' : 'articleHistory'
     wx.setStorage({
       key: type,
@@ -144,7 +138,6 @@ Page({
    */
   onLoad (options) {
     app.setBar('搜索')
-    // app.getSelf(this)
     let history = options.type === 'goods' ? app.gs('goodsHistory') : app.gs('articleHistory')
     if (!history) {
       this.setData({

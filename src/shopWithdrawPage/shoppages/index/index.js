@@ -13,7 +13,6 @@ Page({
     app.upFormId(e)
   },
   inputValue (e) {
-    console.log(e)
     this.setData({
       outMoney: e.detail.value * 1 >= this.data.profit ? this.data.profit * 1 : e.detail.value * 1
     })

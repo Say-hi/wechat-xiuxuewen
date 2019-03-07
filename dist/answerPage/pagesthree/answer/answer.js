@@ -156,53 +156,23 @@ Page({
       }
     });
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function onLoad() {
     this.getList();
-    // TODO: onLoad
   },
-
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
   onReady: function onReady() {
     // TODO: onReady
   },
-
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function onShow() {
     if (app.data.searchText) this.getList(app.data.searchText);
     this.getCount();
     // TODO: onShow
   },
-
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
   onHide: function onHide() {
     // TODO: onHide
   },
-
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload: function onUnload() {
     // TODO: onUnload
   },
-
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh: function onPullDownRefresh() {
     // TODO: onPullDownRefresh
   }
