@@ -1,5 +1,7 @@
 'use strict';
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 // 获取全局应用程序实例对象
 var app = getApp();
 var bmap = require('../../utils/bmap-wx');
@@ -11,9 +13,7 @@ Page({
   data: {
     HEIGHT_TOP: app.data.HEIGHT_TOP,
     ALL_HEIGHT: app.data.ALL_HEIGHT,
-    testImg: 'https://c.jiangwenqiang.com/api/logo.jpg',
     page: 0,
-    imgDomain: app.data.imgDomain,
     answerArr: [],
     indicatorColor: 'rgba(0, 0, 0, 0.4)',
     indicatorActiveColor: '#ffffff',
@@ -25,7 +25,6 @@ Page({
     app.upFormId(e);
   },
   open_site: function open_site(e) {
-    console.log('setting');
     if (e.detail.authSetting['scope.userLocation']) {
       wx.showToast({
         title: '授权成功'
@@ -147,6 +146,55 @@ Page({
       }
     });
   },
+  getUser: function getUser() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().shopUserInfo,
+      data: {
+        uid: app.gs('userInfoAll').id
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData({
+            userInfo: res.data.data
+          });
+        }
+      }
+    });
+  },
+  phone: function phone(e) {
+    var that = this;
+    wx.login({
+      success: function success(res) {
+        app.wxrequest({
+          url: app.getUrl().shopPhone,
+          data: {
+            code: res.code,
+            encryptedData: e.detail.encryptedData,
+            iv: e.detail.iv,
+            uid: that.data.userInfo.id
+          },
+          success: function success(res) {
+            wx.hideLoading();
+            if (res.data.status === 200) {
+              that.getUser();
+            } else {
+              app.setToast(that, { content: res.data.desc });
+            }
+          }
+        });
+      }
+    });
+  },
+  login: function login() {
+    app.wxlogin();
+  },
+  goNow: function goNow() {
+    var _setData;
+
+    this.setData((_setData = {}, _defineProperty(_setData, 'userInfo.nickname', '未登录用户'), _defineProperty(_setData, 'userInfo.phone', 18888888888), _setData));
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -154,6 +202,7 @@ Page({
   onLoad: function onLoad(options) {
     var that = this;
     if (!app.gs() || !app.gs('userInfoAll')) return app.wxlogin();
+    this.getUser();
     app.getNavTab({
       style: 3,
       cb: function cb(res) {

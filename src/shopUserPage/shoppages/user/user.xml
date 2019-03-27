@@ -8,13 +8,16 @@
                class="br mr20"
                mode="aspectFill"></image>
         <view class="c444 tal">
-          <text class="f28 fw7">{{ agents ? shopInfo.name : info.mall_rname || info.nickname }}</text>
-          <text class="f24">ID{{ agents ? shopInfo.id : info.id }}</text>
+          <text class="f28 fw7 tal">{{ agents ? shopInfo.name : info.mall_rname ? info.mall_rname : info.nickname == '游客' ? '游客--点击头像进行登录' : info.nickname }}</text>
+          <text class="f24 tal">ID{{ agents ? shopInfo.id : info.id }}</text>
+        </view>
+        <view class="f22 c444 refresh">
+          点击更新资料
         </view>
       </button>
       <view class="operation">
-        <navigator url="/shopNotePage/shoppages/index/index" hover-class="none" class="jwqfont jwq-tongzhi"></navigator>
-        <navigator hidden="{{ agents }}" url="/releasePage/pageseleven/set/set?type={{ !agents ? 'user' : 'shop' }}" hover-class="none" class="jwqfont jwq-shezhi"></navigator>
+        <navigator url="/shopNotePage/shoppages/index/index" hover-class="none" class="jwqfont jwq-tongzhi"><image wx:if="{{ systemVersion }}" style="width: 40rpx; height: 40rpx; display: inline-block;" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/icon/note.png"></image></navigator>
+        <navigator hidden="{{ agents }}" url="/releasePage/pageseleven/set/set?type={{ !agents ? 'user' : 'shop' }}" hover-class="none" class="jwqfont jwq-shezhi"><image wx:if="{{ systemVersion }}" style="width: 40rpx; height: 40rpx; display: inline-block;" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/icon/setting.png"></image></navigator>
       </view>
     </view>
     <view class="p30 br8 bgfff f28 c444 mt20" wx:if="{{ agents }}">
@@ -48,11 +51,13 @@
       <navigator url="/shopMoneyPage/shoppages/index/index" class="ub-item br8 bgfff tac lh80">资金管理</navigator>
       <navigator url="/shopOrderPage/shoppages/order/order?type=0&for=user" class="ub-item br8 bgfff tac lh80">销售订单</navigator>
       <navigator wx:if="{{ agents }}" url="/releasePage/pageseleven/set/set?type=shop" class="ub-item br8 bgfff tac lh80">店铺设置</navigator>
-      <navigator wx:if="{{ agents }}" url="/shopClientPage/shoppages/index/index" class="ub-item br8 bgfff tac lh80">店铺代理</navigator>
+      <navigator wx:if="{{ agents }}" url="/shopClientPage/shoppages/index/index?type=agents" class="ub-item br8 bgfff tac lh80">店铺代理</navigator>
+      <navigator url="/shopClientPage/shoppages/index/index?type=user" class="ub-item br8 bgfff tac lh80">我的代理</navigator>
     </view>
   </view>
 </form>
 <view class="zw"></view>
+<my-back></my-back>
 <my-navigator-tab></my-navigator-tab>
 <!--错误弹窗-->
 <import src="/template/template"></import>

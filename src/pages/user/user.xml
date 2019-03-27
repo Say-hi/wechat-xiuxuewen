@@ -5,9 +5,12 @@
   <view class="user-info pa">
     <image lazy-load="{{true}}" class="user-img br" src="{{ userInfo.avatar_url }}"></image>
     <view class="f26 cfff user-name">
-      <view class="fw7">{{ userInfo.nickname }}</view>
-      <view class="f20 mt10">学号：{{ userInfo.id }}</view>
+      <view class="fw7 tal">{{ userInfo.nickname == '游客' ? userInfo.nickname + '--请点击登录' : userInfo.nickname }}</view>
+      <view class="f20 mt10 tal">学号：{{ userInfo.id }}</view>
     </view>
+  </view>
+  <view class="f22 cfff refresh pa">
+    点击更新资料
   </view>
 </button>
 
@@ -31,6 +34,7 @@
         class="arrow f28 c444 p30 br18 bb bgfff mt20">
     <button send-message-path="{{path}}" form-type="submit" hover-class="none" class="flex1 f28 tal">我的学堂</button>
   </view>
+  <official-account></official-account>
 </view>
 </form>
 <my-add></my-add>

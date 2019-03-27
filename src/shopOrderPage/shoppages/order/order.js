@@ -34,6 +34,17 @@ Page({
     ],
     list: []
   },
+  copy (e) {
+    let that = this
+    wx.setClipboardData({
+      data: that.data.list[e.currentTarget.dataset.index][e.currentTarget.dataset.type],
+      success (res) {
+        wx.showToast({
+          title: '复制成功'
+        })
+      }
+    })
+  },
   showExpress (e) {
     this.setData({
       expressObj: {

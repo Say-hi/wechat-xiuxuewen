@@ -7,7 +7,7 @@
       </view>
       <view class="mt20 bgfff br8 p30 f28 c444 s-title">
         <text>商品标题</text>
-        <input bindblur="inputValue" placeholder="输入商品标题" data-type="title" value="{{ info.title || '' }}" class="mt20 br8 pl20"/>
+        <input bindblur="inputValue" placeholder="输入商品标题" data-type="title" value="{{ info.title || '' }}" class="p10 mt20 br8 pl20"/>
       </view>
       <view class="mt20 bgfff br8 p30 f28 c444 s-title">
         <text>商品图</text>

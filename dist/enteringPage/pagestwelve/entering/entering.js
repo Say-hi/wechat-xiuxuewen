@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ttArr: ['特约讲师', '跟师学孵化基地'],
+    ttArr: ['特约讲师', '驻店跟师学师范基地'],
     is_teacher: app.gs('userInfoAll').is_teach || 0,
     tabIndex: 0,
     giftIndex: 0,

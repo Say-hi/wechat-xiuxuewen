@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    systemVersion: app.data.systemVersion,
     labelIndex: 0,
     page: 0,
     list: [],
@@ -17,6 +18,7 @@ Page({
     this.data.list = []
     this.setData({
       goodslabel: this.data.goodslabel,
+      scrollId: e.currentTarget.dataset.index - 1 < 0 ? 0 : e.currentTarget.dataset.index - 1,
       labelIndex: e.currentTarget.dataset.index
     }, this.getShopProduct)
   },
@@ -64,8 +66,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
     this.setData({
+      scrollId: options.index - 1 < 0 ? 0 : options.index - 1,
+      labelIndex: options.index,
       goodslabel: app.gs('shopLabel')
     }, this.getShopProduct)
     // TODO: onLoad

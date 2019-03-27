@@ -118,7 +118,7 @@ Component({
       const { 
         MaxLineNumber = 2, 
         breakWord = false, 
-        color = 'black', 
+        color = 'white',
         content = '', 
         fontSize = 16, 
         top = 0, 

@@ -86,8 +86,12 @@
             <navigator url="/feedbackPage/pagesfour/feedback/feedback?style=1&type={{ options.type }}&id={{ detailInfo.id }}&title={{ detailInfo.title }}&userid={{ detailInfo.user_id }}" style="color: #ababab; padding-top: 20rpx;" class="f26">举报</navigator>
           </view>
           <view class="v-i-right c999 tar">
-            <view catchtap="collectO" class="iconfont f20 {{ collect ? 'icon-xinheart118 cff3b5b' : 'icon-shoucang' }} ">{{ detailInfo.collect_count }}</view>
-            <button open-type="share" class="iconfont icon-fenxiang f20 c999">分享</button>
+            <view catchtap="collectO" class="iconfont f20 {{ collect ? 'icon-xinheart118 cff3b5b' : 'icon-shoucang' }} ">
+              <image wx:if="{{ systemVersion }}" style="width: 30rpx; height: 30rpx; display: inline-block;" src="{{ collect ? 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/icon/collect_choose.png' : 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/icon/collect.png' }}"></image>
+              {{ detailInfo.collect_count }}</view>
+            <button open-type="share" class="iconfont icon-fenxiang f20 c999">
+              <image wx:if="{{ systemVersion }}" style="width: 30rpx; height: 30rpx; display: inline-block;" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/icon/share.png"></image>
+              分享</button>
           </view>
         </view>
         <view class="f26 c999 v-i-l-bottom mt30">
@@ -176,7 +180,7 @@
 
         </view>
         <view class="video-level mt30 p30 br18"
-              wx:if="{{ !starOperation && detailInfo.star == 0 }}">
+              wx:if="{{ !starOperation && detailInfo.star == 0 && !systemVersion }}">
           <view class="f26 cababab">课程评分</view>
           <view class="v-l-star-wrap mt20">
             <view wx:for="12345"

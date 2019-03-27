@@ -15,38 +15,43 @@
           <text>订单编号：{{ item.out_trade_no }}</text>
           <text class="cf7546f fw7">{{ item.status == -1 ? '等待买家付款' : item.status == 1 ? '等待商家发货' : item.status == 2 ? '待确认收货' : item.status == 3 ? '交易已完成' : '订单已失效' }}</text>
         </view>
-        <view wx:if="{{ item.list.length < 2 }}" class="p20 br8 order-goods f26 c666 mt10">
-          <image src="{{ item.list[0].img }}"
+        <navigator url="/shopListPage/shoplistpages/detail/detail?id={{ item.id }}" wx:for="{{ item.list }}"
+              wx:key
+              class="p20 br8 order-goods f26 c666 mt10">
+          <image src="{{ item.img }}"
                  mode="aspectFit"
                  class="br8 mr20"></image>
-          <text class="mr20 flex1">{{ item.list[0].title }}</text>
+          <text class="mr20 flex1">{{ item.title }}</text>
           <view class="og-r tar">
-            <view class="fw7">¥{{ item.amount }}</view>
-            <view>X{{ item.list[0].count }}</view>
+            <view class="fw7">¥{{ item.price || '未知' }}</view>
+            <view>X{{ item.count }}</view>
           </view>
-        </view>
-        <view wx:else class="p20 br8 order-goods more-goods f26 c666 mt10">
-          <view class="g-item"
-                wx:for="{{ item.list }}"
-                wx:for-item="iitem"
-                wx:key="*674">
-            <image src="{{ iitem.img }}"
-                   mode="aspectFit"
-                   class="br8 mr20"></image>
-            <text>x{{ iitem.count }}</text>
-          </view>
-        </view>
+        </navigator>
+        <!--<view wx:else class="p20 br8 order-goods more-goods f26 c666 mt10">-->
+          <!--<view class="g-item"-->
+                <!--wx:for="{{ item.list }}"-->
+                <!--wx:for-item="iitem"-->
+                <!--wx:key="*674">-->
+            <!--<image src="{{ iitem.img }}"-->
+                   <!--mode="aspectFit"-->
+                   <!--class="br8 mr20"></image>-->
+            <!--<text>x{{ iitem.count }}</text>-->
+          <!--</view>-->
+        <!--</view>-->
         <view class="p10 bd1 total f26">
           <view>
             <text class="c393636 mr20">共计{{ item.all_count }}件商品</text>
             <text class="c393636 mr20">物流费:{{ item.logistic_fee }}</text>
-            <text class="cff5975 fw7">合计：{{ item.total_fee }}元</text>
+            <text class="c393636">合计：{{ item.amount }}元</text>
           </view>
           <!--<text class="cff5975 fw7">赚¥3.00</text>-->
         </view>
-        <view wx:if="{{ discount_name.length >= 1 && options.for == 'user' }}" class="f22 cff5975 tar mt10">{{ discount_name  }}</view>
+        <view class="tar f26 fw7 cff5975 p10">
+          实际需付款{{ item.total_fee }}元
+        </view>
+        <!--<view wx:if="{{ discount_name.length >= 1 && options.for == 'user' }}" class="f22 cff5975 tar mt10">{{ discount_name  }}</view>-->
         <view class="f26 order-bottom p10">
-          <text class="c444 fw7">买家：{{ item.name }}</text>
+          <text class="c444 fw7" data-index="{{ index }}" catchtap="copy" data-type="name">买家：{{ item.name }}</text>
           <view class="ob-r flex1">
             <button catchtap="change" data-index="{{ index }}" wx:if="{{ (item.status == -1 || item.status == -2) && options.for == 'user' }}" class="confirm f26 cfff cancel">取消订单</button>
             <button catchtap="payAgain" data-index="{{ index }}" wx:if="{{ item.status == -1 && item.self && options.for == 'user' }}" class="confirm f26 cfff">立刻付款</button>
@@ -58,6 +63,8 @@
             <button catchtap="fahuo" data-index="{{ index }}" wx:if="{{ item.status == 1 && options.for == 'shop' }}" class="confirm f26 cfff">点击发货</button>
           </view>
         </view>
+        <view wx:if="{{ options.for == 'shop' }}" class="f26 c444" data-index="{{ index }}" catchtap="copy" data-type="address">收货地址: {{ item.address }}</view>
+        <view wx:if="{{ options.for == 'shop' }}" class="f26 c444" data-index="{{ index }}" catchtap="copy" data-type="phone">联系电话: {{ item.phone }}</view>
       </view>
     </block>
     <view wx:if="{{ list.length <= 0 }}" class="tac f26 p20 c444">暂无相关订单</view>

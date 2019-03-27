@@ -90,7 +90,7 @@
     <view class="p20 ">
       <view class="p30 bgfff br18">
         <view class="f34 c3a3a3a fw7 title-out">
-          <view class="title">孵化基地入驻权益享受</view>
+          <view class="title">驻店跟师学师范基地入驻权益享受</view>
           <view style="background: {{ lists[giftIndex].color_start }};" class="title-bg bactive"></view>
         </view>
         <template is="wxParse" data="{{ wxParseData: quanyi.nodes }}"></template>

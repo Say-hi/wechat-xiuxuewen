@@ -42,6 +42,7 @@ Page({
       data: {
         mid: app.gs('shopInfoAll').id,
         page: ++that.data.page,
+        uid: that.data.type === 'user' ? app.gs('userInfoAll').id : 0,
         name: that.data.searchText || ''
       },
       success (res) {
@@ -65,7 +66,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
+    this.data.type = options.type
     this.getList()
     // TODO: onLoad
   },

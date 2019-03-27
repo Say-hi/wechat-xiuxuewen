@@ -48,7 +48,7 @@
 
     <view class="container bgfff br20 new p30">
         <navigator hover-class="none" url="/coursePage/pageszero/course/course?type=1" class="c-top">
-            <view class="c-t-l f36 c444 fw7">最新教学视频</view>
+            <view class="c-t-l f36 c444 fw7">最新视频</view>
             <view class="c-t-r f24 c444 arrow">查看更多</view>
         </navigator>
         <view class="new-wrap">
@@ -71,6 +71,14 @@
     <view class="tac f24 c999 lh80">已经到底部啦</view>
 </view>
 </form>
+
+<view wx:if="{{ userInfo && (userInfo.nickname == '游客' || !userInfo.phone) }}" class="mask loginmmn">
+<image class="login-bg" mode="aspectFill" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/login-bg.png"></image>
+<view class="login-text cfff f28 keep tac">授权登录小程序开启更多精彩！</view>
+<button open-type="getUserInfo" bindgetuserinfo="login" class="login-btn {{ userInfo.nickname != '游客' ? 'active' : '' }}">{{ userInfo.nickname != '游客' ? '授权用户名已完成' : '授权用户名' }}</button>
+<button open-type="getPhoneNumber" bindgetphonenumber="phone" class="login-btn login-btn-two {{ userInfo.phone.length > 6 ? 'active' : '' }}">{{ userInfo.phone.length > 6 ? '授权手机号已完成' : '授权手机号获取高质量服务' }}</button>
+<button catchtap="goNow" class="login-btn login-btn-three active">继续浏览</button>
+</view>
 <!--<view class="zw"></view>-->
 <my-add></my-add>
 <!--<my-login></my-login>-->

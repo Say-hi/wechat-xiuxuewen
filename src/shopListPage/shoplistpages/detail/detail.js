@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    systemVersion: app.data.systemVersion,
     num: 1,
     labelIndex: 0,
     all_Screen: app.data.all_screen,

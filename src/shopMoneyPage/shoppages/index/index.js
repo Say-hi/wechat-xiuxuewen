@@ -9,6 +9,26 @@ Page({
   data: {
     img: app.data.testImg
   },
+  showOutMoney () {
+    this.setData({
+      showMoney: !this.data.showMoney
+    })
+  },
+  shopMoneyRuler () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().shopMoneyRuler,
+      data: {},
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          app.WP('ruler', 'html', res.data.data.content, that, 0)
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   shopUserFund () {
     let that = this
     app.wxrequest({
@@ -48,6 +68,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad () {
+    this.shopMoneyRuler()
     // TODO: onLoad
   },
 

@@ -8,5 +8,24 @@
       <view class="fw7">{{ options.type == 'user' ? '真实姓名' : '店铺名称' }}</view>
       <input bindblur="inputName" class="flex1 tar ml20" maxlength="10" placeholder="{{ options.type == 'user' ? '请输入您的姓名' : '请输入店铺名称' }}" value='{{ username }}'/>
     </view>
+    <view wx:if="{{ options.type == 'shop' }}" class="p20 mt10 bgfff fw7 f28">店铺广告</view>
+    <view wx:if="{{ options.type == 'shop' }}" class="up-img bgfff p20 br8">
+      <view wx:for="{{ upImgArr }}" wx:key="*42" class="pr up-img-area">
+        <image catchtap="imgOperation"
+               mode="aspectFit"
+               data-index="{{ index }}"
+               lazy-load="{{true}}"
+               class="br20"
+               src="{{ item.temp }}"></image>
+        <view hidden="{{ upImgArrProgress[index] >= 100 }}" class="up-progress pa">
+          <view class="tac f20 cfff ">{{ !upImgArrProgress[index] ? '等待上传' : '上传中' }}</view>
+          <progress border-radius="20"
+                    percent="{{ upImgArrProgress[index] || 0 }}"></progress>
+        </view>
+      </view>
+      <view wx:if="{{ upImgArr.length < 3 }}" catchtap="wxUploadImg" class="up-btn br20 bb iconfont icon-fabu"></view>
+    </view>
+
+    <button catchtap="shopUserReal" class="save mt20 bgcfff br8">保存</button>
   </view>
 </form>

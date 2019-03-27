@@ -9,9 +9,7 @@ Page({
   data: {
     HEIGHT_TOP: app.data.HEIGHT_TOP,
     ALL_HEIGHT: app.data.ALL_HEIGHT,
-    testImg: 'https://c.jiangwenqiang.com/api/logo.jpg',
     page: 0,
-    imgDomain: app.data.imgDomain,
     answerArr: [],
     indicatorColor: 'rgba(0, 0, 0, 0.4)',
     indicatorActiveColor: '#ffffff',
@@ -23,7 +21,6 @@ Page({
     app.upFormId(e)
   },
   open_site (e) {
-    console.log('setting')
     if (e.detail.authSetting['scope.userLocation']) {
       wx.showToast({
         title: '授权成功'
@@ -124,12 +121,63 @@ Page({
       }
     })
   },
+  getUser () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().shopUserInfo,
+      data: {
+        uid: app.gs('userInfoAll').id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            userInfo: res.data.data
+          })
+        }
+      }
+    })
+  },
+  phone (e) {
+    let that = this
+    wx.login({
+      success (res) {
+        app.wxrequest({
+          url: app.getUrl().shopPhone,
+          data: {
+            code: res.code,
+            encryptedData: e.detail.encryptedData,
+            iv: e.detail.iv,
+            uid: that.data.userInfo.id
+          },
+          success (res) {
+            wx.hideLoading()
+            if (res.data.status === 200) {
+              that.getUser()
+            } else {
+              app.setToast(that, {content: res.data.desc})
+            }
+          }
+        })
+      }
+    })
+  },
+  login () {
+    app.wxlogin()
+  },
+  goNow () {
+    this.setData({
+      ['userInfo.nickname']: '未登录用户',
+      ['userInfo.phone']: 18888888888
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
     let that = this
     if (!app.gs() || !app.gs('userInfoAll')) return app.wxlogin()
+    this.getUser()
     app.getNavTab({
       style: 3,
       cb (res) {

@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    systemVersion: app.data.systemVersion,
     img: app.data.testImg,
     today: true
   },

@@ -149,7 +149,7 @@ Component({
           _params$breakWord = params.breakWord,
           breakWord = _params$breakWord === undefined ? false : _params$breakWord,
           _params$color = params.color,
-          color = _params$color === undefined ? 'black' : _params$color,
+          color = _params$color === undefined ? 'white' : _params$color,
           _params$content = params.content,
           content = _params$content === undefined ? '' : _params$content,
           _params$fontSize = params.fontSize,

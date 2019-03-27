@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    systemVersion: app.data.systemVersion,
     selectAll: -1, // -2 全选中
     totalMoney: 0,
     totalCount: 0,
@@ -42,7 +43,7 @@ Page({
               if (v.is_unchange * 1 !== 1) {
                 noMean.push(v);
               } else {
-                v.price = (that.data.discount_value * v.price).toFixed(2);
+                v.price = (1 * v.price).toFixed(2);
                 list.push(v);
               }
             }

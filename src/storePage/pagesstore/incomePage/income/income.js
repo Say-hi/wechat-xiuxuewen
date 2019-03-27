@@ -12,6 +12,11 @@ Page({
     lists: [],
     testImg: app.data.testImg
   },
+  showOutMoney () {
+    this.setData({
+      showMoney: !this.data.showMoney
+    })
+  },
   upFormId (e) {
     app.upFormId(e)
   },
@@ -90,6 +95,21 @@ Page({
       })
     }
   },
+  shopMoneyRuler () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().shopMoneyRuler,
+      data: {},
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          app.WP('ruler', 'html', res.data.data.content, that, 0)
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   getRoomInfo () {
     let that = this
     app.wxrequest({
@@ -101,8 +121,8 @@ Page({
         wx.hideLoading()
         if (res.data.status === 200) {
           that.setData({
-            putMoney: res.data.data.put_money,
-            totalFee: res.data.data.total_fee
+            putMoney: res.data.data ? res.data.data.put_money : '0.00',
+            totalFee: res.data.data ? res.data.data.total_fee : '0.00'
           })
         } else {
           app.setToast(that, {content: res.data.desc})
@@ -124,6 +144,7 @@ Page({
     app.setBar('我的收益')
     this.getList()
     this.getRoomInfo()
+    this.shopMoneyRuler()
   },
 
   /**

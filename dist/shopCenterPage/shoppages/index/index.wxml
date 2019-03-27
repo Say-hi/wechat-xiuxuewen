@@ -11,24 +11,28 @@
   </view>
   <view class="f28 c444 fw7 release mt20">
     <navigator url='/releasePage/pageseleven/index/index' class="r-item">发布新的商品</navigator>
-    <view class="r-item">编辑运费模板</view>
+    <!--<view class="r-item">编辑运费模板</view>-->
   </view>
   <swiper class="mt20 br8 godds-swiper bgfff"
+          wx:if="{{ ad.length > 0 }}"
           circular="1"
           autoplay="1">
     <swiper-item wx:for="{{ ad }}"
                  wx:key="*59">
-      <image mode="aspectFit"
+      <image mode="aspectFill"
              class="br8"
              src="{{ item.img_url }}"></image>
     </swiper-item>
   </swiper>
   <view class="f28 c444 fw7 p30 br8 bgfff mt20">商品中心</view>
   <scroll-view scroll-x="{{true}}"
+               scroll-into-view="index{{ scrollId }}"
+               scroll-with-animation="1"
                class="goods-wrap bgfff">
     <view class="new-wrap-container">
       <button wx:for="{{ goodslabel }}"
               wx:key="*65"
+              id="index{{ index }}"
               form-type="submit"
               catchtap="chooseLabel"
               data-index="{{ index }}"

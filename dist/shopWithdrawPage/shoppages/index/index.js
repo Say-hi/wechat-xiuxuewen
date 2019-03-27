@@ -15,14 +15,13 @@ Page({
     app.upFormId(e);
   },
   inputValue: function inputValue(e) {
-    console.log(e);
     this.setData({
       outMoney: e.detail.value * 1 >= this.data.profit ? this.data.profit * 1 : e.detail.value * 1
     });
   },
   shopUserCash: function shopUserCash() {
     var that = this;
-    // if (!this.data.outMoney || this.data.outMoney < 1) return app.setToast(this, { content: '最小提现额度为1' });
+    if (!this.data.outMoney || this.data.outMoney < 1) return app.setToast(this, { content: '最小提现额度为1' });
     app.wxrequest({
       url: app.getUrl().shopUserCash,
       data: {

@@ -1,5 +1,8 @@
 <form>
-  <swiper class="goods-swiper" autoplay="{{true}}">
+  <swiper class="goods-swiper">
+    <swiper-item wx:if="{{ info.video_url && info.video_url.length > 5 }}">
+      <video autoplay="1" style="width: 100%; height: 100%;" object-fit="cover" src="{{ info.video_url }}"></video>
+    </swiper-item>
     <swiper-item wx:for="{{ info.imgs.length >= 1 ? info.imgs : [info.img] }}" wx:key="*112">
       <image mode="aspectFill" src="{{ item }}"></image>
     </swiper-item>
@@ -10,7 +13,8 @@
     <view class="f34 c3a3a3a fw7">{{ info.title }}</view>
     <view class="goods-bottom mt10">
       <view class="g-b-t">
-        <view class="cff5975 f48 fw7">¥{{ info.old_price }}</view><view class="f26 c666 ml10">赚¥{{ info.level_one }}</view>
+        <view class="cff5975 f48 fw7">¥{{ info.old_price }}</view>
+        <!--<view class="f26 c666 ml10">赚¥{{ info.level_one }}</view>-->
       </view>
       <view class="f28 fw7 cff5975">分享赚</view>
     </view>
@@ -24,6 +28,7 @@
   <view>{{ info.detail_text }}</view>
   <image wx:for="{{ info.detail }}"
          wx:key="*12"
+         lazy-load="1"
          data-index="{{ index }}"
          catchtap="showImg"
          mode="widthFix"
@@ -35,8 +40,10 @@
     <navigator url="/shopPage/shoppages/index/index"
                hover-stop-propagation="{{true}}"
                hover-class="none"
-               class="jwqfont jwq-dianpu"
-               open-type="reLaunch"></navigator>
+               class="{{ systemVersion ? '' : 'jwqfont' }} jwq-dianpu"
+               open-type="reLaunch">
+      <image wx:if="{{ systemVersion }}" style='width: 40rpx; height: 40rpx;display:inline-block;' src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/icon/shop.png"></image>
+    </navigator>
     <view catchtap="buy" data-type="car" class="addcar flex1 tac c444 f34 fw7">加入购物车</view>
     <view catchtap="buy" data-type="buy" class="buynow flex1 tac cfff f34 fw7">立刻购买</view>
   </view>
@@ -53,12 +60,13 @@
                src="{{ info.img }}"></image>
         <view class="c444 f26">
           <view class="cff5975 f34">
-            <text>¥{{ info.sku[labelIndex].discount }}</text>
-            <text wx:if="{{ discount_name.length >= 1 }}" class="c999 text-t f22 pl20">¥{{ info.sku[labelIndex].price }}</text>
+            <!--<text>¥{{ info.sku[labelIndex].discount }}</text>-->
+            <!--<text wx:if="{{ discount_name.length >= 1 }}" class="c999 text-t f22 pl20">¥{{ info.sku[labelIndex].price }}</text>-->
+            <text>¥{{ info.sku[labelIndex].price }}</text>
           </view>
           <view>库存：{{ info.sku[labelIndex].stock }}</view>
           <view wx:if="{{ info.label != '-1' }}">请选择：{{ info.label }}</view>
-          <view wx:if="{{ discount_name.length >= 1 }}" class="cff5975 f22">{{ discount_name }}</view>
+          <!--<view wx:if="{{ discount_name.length >= 1 }}" class="cff5975 f22">{{ discount_name }}</view>-->
         </view>
         <view catchtap="buy"
               data-type="change"

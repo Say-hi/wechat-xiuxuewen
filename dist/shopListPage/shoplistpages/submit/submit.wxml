@@ -45,17 +45,23 @@
             <text>¥{{ Allmoney }}</text>
           </view>
 
+          <view class="money cff5975">
+            <text>折后价</text>
+            <text>¥{{ AllPay }}</text>
+          </view>
+
           <view class="money">
             <text>运费</text>
             <text>¥{{ maxFreight }}</text>
           </view>
         </view>
-        <view  class="f28 c444 fw7 tar mt10"><text wx:if="{{ discount_name.length >= 1 }}">({{  discount_name }})</text>共计需要付款：￥{{ Allmoney * 1 + maxFreight * 1 }}</view>
+        <view  class="f28 c444 fw7 tar mt10 cff5975">共计需要付款：￥{{ AllPay * 1 + maxFreight * 1 }}</view>
+        <!--<view  class="f28 c444 fw7 tar mt10"><text wx:if="{{ discount_name.length >= 1 }}">({{  discount_name }})</text>共计需要付款：￥{{ Allmoney * 1 + maxFreight * 1 }}</view>-->
       </view>
     </view>
     <view class="submit bt1 f24 c444">
       <text>共{{ allCount }}件，</text>
-      <text class="f34 fw7">合计：¥{{ Allmoney * 1 + maxFreight * 1 }}</text>
+      <text class="f34 fw7">合计：¥{{ AllPay * 1 + maxFreight * 1 }}</text>
       <button catchtap="submit" class="f34 cfff">提交订单</button>
     </view>
   </view>

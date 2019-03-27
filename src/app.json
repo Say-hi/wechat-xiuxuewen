@@ -231,6 +231,13 @@
       ]
     },
     {
+      "root": "sharePicturePage", // 图片分享
+      "name": "pictureShare",
+      "pages": [
+        "shoppages/index/carShare"
+      ]
+    },
+    {
       "root": "shopUserPage", // 用户中心
       "name": "user",
       "pages": [
@@ -278,7 +285,8 @@
         "list",
         "video",
         "center",
-        "user"
+        "user",
+        "pictureShare"
       ]
     },
     "shopUserPage/shoppages/user/user": {
@@ -337,6 +345,8 @@
     "my-login": "/components/my-login/my-login",
     "my-express": "/components/my-express/my-express",
     "my-navigator-tab": "/components/my-navigator-tab/my-navigator-tab",
+    "canvasdrawer": "/components/canvasdrawer/canvasdrawer",
+    "my-back": "/components/my-back/back",
     "my-top-tab": "/components/my-top-tab/my-top-tab"
   },
 //  "tabBar": {

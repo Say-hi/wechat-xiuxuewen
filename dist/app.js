@@ -27,6 +27,7 @@ Moment.updateLocale('en', {
 });
 App({
   data: {
+    systemVersion: wx.getSystemInfoSync().system.split('.')[0].indexOf('9') >= 0,
     all_screen: wx.getSystemInfoSync().model.indexOf('X') >= 0,
     TOP_CENTER: MenuButtonBounding.right - 66,
     searchText: null,
@@ -322,6 +323,9 @@ App({
               data: params ? {
                 parent_id: params,
                 code: code,
+                iv: data.iv,
+                signature: data.signature,
+                encryptedData: data.encryptedData,
                 nickname: data.userInfo.nickName,
                 avatar_url: data.userInfo.avatarUrl,
                 sex: data.userInfo.gender,
@@ -330,6 +334,9 @@ App({
                 province: data.userInfo.province
               } : {
                 code: code,
+                iv: data.iv,
+                signature: data.signature,
+                encryptedData: data.encryptedData,
                 nickname: data.userInfo.nickName,
                 avatar_url: data.userInfo.avatarUrl,
                 sex: data.userInfo.gender,

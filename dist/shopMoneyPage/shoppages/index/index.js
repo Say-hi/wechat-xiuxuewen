@@ -11,6 +11,26 @@ Page({
   data: {
     img: app.data.testImg
   },
+  showOutMoney: function showOutMoney() {
+    this.setData({
+      showMoney: !this.data.showMoney
+    });
+  },
+  shopMoneyRuler: function shopMoneyRuler() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().shopMoneyRuler,
+      data: {},
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          app.WP('ruler', 'html', res.data.data.content, that, 0);
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
   shopUserFund: function shopUserFund() {
     var that = this;
     app.wxrequest({
@@ -51,6 +71,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function onLoad() {
+    this.shopMoneyRuler();
     // TODO: onLoad
   },
 

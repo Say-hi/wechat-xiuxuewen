@@ -115,6 +115,7 @@ Page({
     this.data.page = 0;
     this.data.list = [];
     this.setData({
+      scrollId: e.currentTarget.dataset.index - 1 < 0 ? 0 : e.currentTarget.dataset.index - 1,
       labelIndex: e.currentTarget.dataset.index
     }, this.getShopProduct);
   },
@@ -176,6 +177,7 @@ Page({
             data: {
               mid: app.gs('shopInfoAll').id,
               cid: info.cid,
+              video_url: info.video_url,
               parent_id: info.id,
               title: info.title,
               img: info.img,
@@ -265,12 +267,17 @@ Page({
   onUnload: function onUnload() {
     // TODO: onUnload
   },
-
+  onReachBottom: function onReachBottom() {
+    if (!this.data.more) return app.setToast(this, { content: '没有更多内容了' });
+    this.getShopProduct();
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function onPullDownRefresh() {
+    this.data.page = 0;
+    this.data.list = [];
     this.getUser();
     // TODO: onPullDownRefresh
   }

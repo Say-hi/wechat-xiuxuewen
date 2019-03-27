@@ -12,9 +12,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    systemVersion: app.data.systemVersion,
     page: 0,
     swiperIndex: 1,
-    swiperArr: [app.data.testImg, app.data.testImg],
+    swiperArr: [app.data.testImg],
     latitude: 23.111123,
     longitude: 113.123432,
     poster: 'https://c.jiangwenqiang.com/api/logo.jpg',
@@ -559,6 +560,7 @@ Page({
   onLoad (options) {
     if (!app.gs('userInfoAll')) return app.wxlogin()
     // type 对应规则 1 线上课程 2 线下课程 3 教室
+    if (options.type === 'search') options.type = 1
     this.setData({
       options
     }, this.getDetail)

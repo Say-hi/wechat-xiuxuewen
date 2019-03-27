@@ -33,6 +33,17 @@ Page({
     }],
     list: []
   },
+  copy: function copy(e) {
+    var that = this;
+    wx.setClipboardData({
+      data: that.data.list[e.currentTarget.dataset.index][e.currentTarget.dataset.type],
+      success: function success(res) {
+        wx.showToast({
+          title: '复制成功'
+        });
+      }
+    });
+  },
   showExpress: function showExpress(e) {
     this.setData({
       expressObj: {

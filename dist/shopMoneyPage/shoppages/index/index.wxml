@@ -4,8 +4,8 @@
     <text class="f48 c444 fw7">¥{{ info.mall_total_fee }}</text>
     <view class="money-top f26 c444">
       <text>我的收益</text>
-      <navigator url="/shopWithdrawPage/shoppages/index/index"
-                 class="get-money">申请提现</navigator>
+      <view catchtap="showOutMoney" url="/shopWithdrawPage/shoppages/index/index"
+                 class="get-money">申请提现</view>
     </view>
   </view>
   <navigator url="/shopRecordPage/shoppages/index/index?type=a"
@@ -24,6 +24,13 @@
   </view>
 </view>
 </form>
+<official-account></official-account>
+<import src="/wxParse/wxParse"></import>
+<view class="mask p30 bb" wx:if="{{ showMoney }}" catchtap="showOutMoney">
+  <scroll-view scroll-y style="height: 500rpx;" class="money-tips">
+    <template is="wxParse" data="{{ wxParseData: ruler.nodes }}"></template>
+  </scroll-view>
+</view>
 
 <!--错误弹窗-->
 <import src="/template/template"></import>

@@ -85,6 +85,7 @@ const serviceUrl = {
   shopUserInDetail: shopBaseDomain + '/user/indetail', // 商城用户收益明细
   shopUserRecord: shopBaseDomain + '/user/record', // 商城用户提现记录
   shopUserNotice: shopBaseDomain + '/user/notice', // 商城用户消息
+  shopUserQrcode: shopBaseDomain + '/user/qrcode', // 商城用户二维码
   shopUserRead: shopBaseDomain + '/user/read', // 商城用户消息已读
   shopUserExplain: shopBaseDomain + '/user/explain', // 商城提现说明
   shopCartAdd: shopBaseDomain + '/cart/add', // 商城添加到购物车
@@ -106,6 +107,8 @@ const serviceUrl = {
   shopPayAgain: shopBaseDomain + '/pay/again', // 商城再次支付
   shopDeal: shopBaseDomain + '/shop/deal', // 商城产品操作
   shopBinding: shopBaseDomain + '/publicly/binding', // 商城用户绑定
+  shopPhone: shopBaseDomain + '/wechat/phone', // 解密手机
+  shopMoneyRuler: shopBaseDomain + '/shop/moneyruler', // 解密手机
   shopVideoList: shopBaseDomain + '/video/list' // 视频列表
 }
 module.exports = serviceUrl

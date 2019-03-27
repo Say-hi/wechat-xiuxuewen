@@ -17,7 +17,7 @@
         <view class="p20 br8 mt20 goods-info {{ item.parent_id > 0 ? 'system' : '' }}">
           <image src="{{ item.img }}"
                  class="br8 mr20"
-                 mode="aspectFit"></image>
+                 mode="aspectFill"></image>
           <view class="f26 c444">
             <text class="fw7">{{ item.title }}</text>
             <text class="c666">商品编号：{{ item.no }}</text>

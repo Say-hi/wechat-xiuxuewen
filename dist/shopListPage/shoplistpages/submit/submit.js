@@ -267,7 +267,9 @@ Page({
     this.setData({
       info: app.gs('buyInfo'),
       allCount: allCount,
-      Allmoney: (Allmoney * (this.data.type === 'now' ? this.data.discount_value : 1)).toFixed(2),
+      // Allmoney: (Allmoney * (this.data.type === 'now' ? this.data.discount_value : 1)).toFixed(2),
+      Allmoney: Allmoney.toFixed(2),
+      AllPay: (Allmoney * this.data.discount_value).toFixed(2),
       maxFreight: maxFreight,
       addressInfo: app.gs('addressInfo') || null
     });

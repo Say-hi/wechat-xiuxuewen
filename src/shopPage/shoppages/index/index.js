@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    systemVersion: app.data.systemVersion,
     img: app.data.testImg,
     labelIndex: 0
   },
@@ -71,8 +72,14 @@ Page({
     })
   },
   chooseLabel (e) {
+    if (this.data.goodslabel[e.currentTarget.dataset.index].name !== '搜索') {
+      return wx.navigateTo({
+        url: `/shopListPage/shoplistpages/list/list?index=${e.currentTarget.dataset.index}`
+      })
+    }
     this.setData({
       goodslabel: this.data.goodslabel,
+      scrollId: e.currentTarget.dataset.index - 1 < 0 ? 0 : e.currentTarget.dataset.index - 1,
       labelIndex: e.currentTarget.dataset.index
     }, this.getShopProduct)
   },
@@ -82,7 +89,7 @@ Page({
     app.wxrequest({
       url: app.getUrl().shopProductList,
       data: {
-        mid: 0,
+        mid: app.gs('shopInfoAll').id,
         title: that.data.searchText
       },
       success (res) {
@@ -110,13 +117,23 @@ Page({
     app.wxrequest({
       url: app.getUrl().shopInfo,
       data: {
-        mid: app.gs('shopInfo').mid || 1
+        mid: app.gs('shopInfo').mid || 10000
       },
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
-          if (!app.gs('shopInfoAll')) {
-            app.su('shopInfoAll', res.data.data)
+          if (res.data.data.status < 0) {
+            app.setToast(that, {content: '该店因违规被封闭，即将跳转回官方店铺'})
+            setTimeout(() => {
+              app.su('shopInfo', {mid: 10000})
+              return that.shopInfo()
+            }, 1500)
+          }
+          app.su('shopInfoAll', res.data.data)
+          try {
+            res.data.data.ad = res.data.data.ad.split(',')
+          } catch (err) {
+            console.log(err)
           }
           that.setData({
             info: res.data.data
@@ -157,7 +174,7 @@ Page({
       }
     }
   },
-  getUser () {
+  getUser (out) {
     let that = this
     app.wxrequest({
       url: app.getUrl().shopUserInfo,
@@ -167,10 +184,14 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
-          if (!res.data.data.mall_id && app.gs('shopInfo').mid) that.shopBinding()
-          that.setData({
-            userInfo: res.data.data
-          })
+          // if (res.data.data.mall_id <= 10000 && app.gs('shopInfo').mid > 10000 && app.gs('shopInfo').user) that.shopBinding()
+          that.shopBinding(out)
+          if (!that.data.userInfo || that.data.userInfo.nickname !== '未登录用户请在【用户中心】进行登录') {
+            that.setData({
+              userInfo: res.data.data
+            })
+            if (res.data.data.nickname === '游客' || !res.data.data.phone || res.data.data.phone.length < 6) return
+          }
           if (res.data.data.mall_is * 1 === 1) {
             app.su('shopInfo', {mid: res.data.data.id})
             that.setData({
@@ -204,12 +225,9 @@ Page({
       showCancel: false
     })
   },
-  shopBinding () {
-    console.log({
-      mid: app.gs('shopInfo').mid,
-      sid: app.gs('shopInfo').user,
-      uid: app.gs('userInfoAll').id
-    })
+  shopBinding (out) {
+    if (out) return
+    let that = this
     app.wxrequest({
       url: app.getUrl().shopBinding,
       data: {
@@ -218,21 +236,61 @@ Page({
         uid: app.gs('userInfoAll').id
       },
       complete () {
+        that.getUser(1)
         wx.hideLoading()
       }
     })
+  },
+  showShare () {
+    this.setData({
+      cardshare: !this.data.cardshare
+    })
+  },
+  phone (e) {
+    let that = this
+    wx.login({
+      success (res) {
+        app.wxrequest({
+          url: app.getUrl().shopPhone,
+          data: {
+            code: res.code,
+            encryptedData: e.detail.encryptedData,
+            iv: e.detail.iv,
+            uid: that.data.userInfo.id
+          },
+          success (res) {
+            wx.hideLoading()
+            if (res.data.status === 200) {
+              that.getUser()
+            } else {
+              app.setToast(that, {content: res.data.desc})
+            }
+          }
+        })
+      }
+    })
+  },
+  login () {
+    app.wxlogin()
+  },
+  goNow () {
+    this.setData({
+      ['userInfo.nickname']: '未登录用户请在【我的】进行登录',
+      ['userInfo.phone']: 18888888888
+    }, this.getVideo)
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    if (!app.gs() || !app.gs('userInfoAll')) return app.wxlogin()
-    if (!app.gs('shopInfo').mid) {
-      app.su('shopInfo', options)
-      this.getUser()
+    if (options.scene) {
+      let scene = decodeURIComponent(options.scene).split('&')
+      app.su('shopInfo', {mid: scene[0].split('=')[1], user: scene[1].split('=')[1]})
     } else {
-      this.getUser()
+      app.su('shopInfo', options)
     }
+    if (!app.gs() || !app.gs('userInfoAll')) return app.wxlogin()
+    this.getUser()
   },
 
   /**
@@ -245,18 +303,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow () {
-    this.setData({
-      move: !this.data.move
-    })
+    // this.setData({
+    //   move: !this.data.move
+    // })
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide () {
-    this.setData({
-      move: !this.data.move
-    })
+    // this.setData({
+    //   move: !this.data.move
+    // })
   },
   /**
    * 生命周期函数--监听页面卸载
