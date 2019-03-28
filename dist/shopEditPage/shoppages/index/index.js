@@ -4,7 +4,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 // 获取全局应用程序实例对象
 var app = getApp();
-
+var UpLoad = require('../upLoad');
 // 创建页面实例对象
 Page({
   /**
@@ -18,7 +18,6 @@ Page({
     if (index < 0) {
       this.setData(_defineProperty({}, 'info.freight', (e.detail.value * 1).toFixed(2)));
     } else {
-      console.log(e);
       var str = 'info.sku[' + e.currentTarget.dataset.index + '].' + (e.currentTarget.dataset.type === 'price' ? 'price' : 'stock');
       this.setData(_defineProperty({}, str, (e.detail.value * 1).toFixed(e.currentTarget.dataset.type === 'price' ? 2 : 0)));
     }
@@ -56,6 +55,28 @@ Page({
       success: function success(res) {
         wx.hideLoading();
         if (res.data.status === 200) {
+          try {
+            var sku = res.data.data.sku;
+            sku.map(function (v, i) {
+              if (!v.img) {
+                sku[i].img = [];
+              } else {
+                var temp = v.img.split(',');
+                var tempArr = [];
+                temp.map(function (vv, ii) {
+                  tempArr.push({
+                    temp: vv,
+                    key: vv,
+                    real: vv,
+                    progress: 100
+                  });
+                });
+                sku[i].img = tempArr;
+              }
+            });
+          } catch (err) {
+            console.log(err);
+          }
           that.setData({
             info: res.data.data
           });
@@ -68,19 +89,31 @@ Page({
   release: function release() {
     var info = this.data.info;
     var that = this;
+    var SKUS = info.sku;
+    info.sku.map(function (v, index) {
+      var temp = [];
+      if (!v.img.length) temp.push(info.img);
+      v.img.map(function (s, y) {
+        if (s.progress < 98) return app.setToast(that, { content: '\u8BF7\u7B49\u5F85\u3010' + (v.value <= -1 ? '统一规格' : v.value) + '\u3011\u5206\u7C7B\u7684\u56FE\u7247\u4E0A\u4F20\u5B8C\u6210' });
+        temp.push(s.real);
+      });
+      SKUS[index].img = temp.join(',');
+    });
     app.wxrequest({
       url: app.getUrl().shopEdit,
       data: {
         pid: info.id,
+        cid: info.cid,
+        imgs: info.imgs,
         mid: app.gs('shopInfoAll').id,
-        parent_id: info.parent_id || info.id,
+        parent_id: info.id || info.parent_id,
         title: info.title,
         img: info.img,
         old_price: info.old_price,
         freight: info.freight,
         is_up: that.data.sale === 1 ? 1 : -1,
         label: info.label,
-        sku: JSON.stringify(info.sku)
+        sku: JSON.stringify(SKUS)
       },
       success: function success(res2) {
         wx.hideLoading();
@@ -88,11 +121,20 @@ Page({
           wx.showToast({
             title: '添加成功'
           });
+          wx.navigateBack();
         } else {
           app.setToast(that, { content: res2.data.desc });
         }
       }
     });
+  },
+  addItemImg: function addItemImg(e) {
+    new UpLoad({ count: 3, this: this, imgArr: e.currentTarget.dataset.index }).chooseImage();
+  },
+
+  // 修改规格图片
+  changeItemImg: function changeItemImg(e) {
+    new UpLoad({ count: 3, this: this, imgArr: e.currentTarget.dataset.oindex, index: e.currentTarget.dataset.index }).imgOp();
   },
 
   /**

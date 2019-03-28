@@ -17,6 +17,11 @@ Page({
     all_Screen: app.data.all_screen,
     tabIndex: 0
   },
+  inputas: function inputas(e) {
+    this.setData({
+      title: e.detail.value
+    });
+  },
   goEdit: function goEdit(e) {
     wx.navigateTo({
       url: this.data.list[e.currentTarget.dataset.index].parent_id * 1 === 0 ? '/releasePage/pageseleven/index/index?id=' + this.data.list[e.currentTarget.dataset.index].id : '/shopEditPage/shoppages/index/index?id=' + this.data.list[e.currentTarget.dataset.index].id + '&type=edit'
@@ -201,6 +206,12 @@ Page({
   upFormId: function upFormId(e) {
     app.upFormId(e);
   },
+  search: function search(e) {
+    this.data.title = e.detail.value ? e.detail.value : this.data.title;
+    this.data.page = 0;
+    this.data.list = [];
+    this.getGoods();
+  },
   getGoods: function getGoods() {
     var that = this;
     app.wxrequest({
@@ -208,7 +219,8 @@ Page({
       data: {
         mid: app.gs('shopInfoAll').id,
         state: this.data.tabIndex * 1 + 1,
-        page: ++that.data.page
+        page: ++that.data.page,
+        title: this.data.title || ''
       },
       success: function success(res) {
         wx.hideLoading();
@@ -331,6 +343,7 @@ Page({
   onPullDownRefresh: function onPullDownRefresh() {
     this.data.page = 0;
     this.data.list = [];
+    this.data.title = '';
     this.getGoods();
     // TODO: onPullDownRefresh
   }

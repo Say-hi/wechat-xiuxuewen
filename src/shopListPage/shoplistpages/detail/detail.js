@@ -88,7 +88,8 @@ Page({
   },
   chooseSp (e) {
     this.setData({
-      labelIndex: e.currentTarget.dataset.index
+      labelIndex: e.currentTarget.dataset.index,
+      current: 0
     })
   },
   shopProduct (pid) {
@@ -109,6 +110,19 @@ Page({
             v['discount'] = (v.price * that.data.discount_value).toFixed(2)
             res.data.data['stock'] += v.stock * 1
           }
+          let sku = res.data.data.sku
+          sku.map((v, i) => {
+            if (!v.img) {
+              sku[i].img = []
+            } else {
+              let temp = v.img.split(',')
+              let tempArr = []
+              temp.map((vv, ii) => {
+                tempArr.push(vv)
+              })
+              sku[i].img = tempArr
+            }
+          })
           that.setData({
             info: res.data.data
           })

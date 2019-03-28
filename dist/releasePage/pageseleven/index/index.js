@@ -19,6 +19,7 @@ var cos = new COS({
     callback(authorization);
   }
 });
+var UpLoad = require('../upLoad');
 // 创建页面实例对象
 Page({
   /**
@@ -26,12 +27,13 @@ Page({
    */
   data: {
     info: {
-      freight: 0.01,
+      freight: 0.00,
       is_up: -1,
       sku: [{
         value: '默认',
         price: 0.01,
-        stock: 1
+        stock: 1,
+        img: []
       }]
     },
     topIndex: 0,
@@ -53,6 +55,15 @@ Page({
     upImgArr3: [],
     upImgArrProgress3: []
   },
+  addItemImg: function addItemImg(e) {
+    new UpLoad({ count: 3, this: this, imgArr: e.currentTarget.dataset.index }).chooseImage();
+  },
+
+  // 修改规格图片
+  changeItemImg: function changeItemImg(e) {
+    new UpLoad({ count: 3, this: this, imgArr: e.currentTarget.dataset.oindex, index: e.currentTarget.dataset.index }).imgOp();
+  },
+
   // 多图上传
   upImg2: function upImg2(index) {
     var imgArr = 'upImgArr2';
@@ -122,7 +133,6 @@ Page({
                 upImgArr2: that.data[imgArr]
               });
             } else {
-              console.log(data);
               that.data[imgArr][index >= 0 ? index : length + j]['real'] = 'https://' + config.Bucket + '.cos.' + config.Region + '.myqcloud.com/' + Key;
               that.data[imgArr][index >= 0 ? index : length + j]['Key'] = Key;
               that.setData({
@@ -321,6 +331,11 @@ Page({
     this.setData(_defineProperty({}, 'info.is_up', this.data.info.is_up * 1 === 1 ? -1 : 1));
   },
   changeContent: function changeContent(e) {
+    if (e.detail.target.dataset.type === 'cancel' && this.data.addItemIndex * 1 < 0) {
+      return this.setData({
+        addItemIndex: -3
+      });
+    }
     if (!e.detail.value.addItem.length) return app.setToast(this, { content: '请输入内容' });
     if (e.detail.target.dataset.type === 'cancel') {
       if (this.data.addItemIndex * 1 >= 0) {
@@ -446,11 +461,11 @@ Page({
               }
             }
           }
-          that.data.upImgArr2.unshift({
-            real: res.data.data.img,
-            temp: res.data.data.img,
-            key: res.data.data.img
-          });
+          // that.data.upImgArr2.unshift({
+          //   real: res.data.data.img,
+          //   temp: res.data.data.img,
+          //   key: res.data.data.img
+          // })
           that.data.upImgArrProgress2.unshift(100);
           res.data.data.detail = res.data.data.detail ? res.data.data.detail.split(',') : [];
           if (res.data.data.detail.length > 0) {
@@ -484,6 +499,24 @@ Page({
               }
             }
           }
+          var sku = res.data.data.sku;
+          sku.map(function (v, i) {
+            if (!v.img) {
+              sku[i].img = [];
+            } else {
+              var temp = v.img.split(',');
+              var tempArr = [];
+              temp.map(function (vv, ii) {
+                tempArr.push({
+                  temp: vv,
+                  key: vv,
+                  real: vv,
+                  progress: 100
+                });
+              });
+              sku[i].img = tempArr;
+            }
+          });
           var _iteratorNormalCompletion7 = true;
           var _didIteratorError7 = false;
           var _iteratorError7 = undefined;
@@ -530,12 +563,6 @@ Page({
                 that.data.sizeIndex = i;
                 break;
               }
-              // if (i === that.data.sizeArr.length - 1) {
-              //   that.data.sizeIndex = that.data.sizeArr.length - 1
-              //   that.data.sizeArr.pop()
-              //   that.data.sizeArr.push({name: res.data.data.label}, {name: '自定义'})
-              //   // that.data.sizeArr.splice(that.data.sizeArr.length - 1, 0, {name: res.data.data.label})
-              // }
             }
           } catch (err) {
             _didIteratorError8 = true;
@@ -592,7 +619,7 @@ Page({
     var imgs = [];
     var detail = [];
     var info = this.data.info;
-    if (info.title.length <= 0) return app.set(this, { content: '请输入产品标题' });
+    if (!info.title || info.title.length <= 0) return app.setToast(this, { content: '请输入产品标题' });
     if (this.data.upImgArr2.length <= 0) return app.setToast(this, { content: '最少上传一张商品图' });
     var _iteratorNormalCompletion9 = true;
     var _didIteratorError9 = false;
@@ -646,6 +673,16 @@ Page({
       }
     }
 
+    var SKUS = info.sku;
+    info.sku.map(function (v, index) {
+      var temp = [];
+      if (!v.img.length) temp.push(that.data.upImgArr2[0].real);
+      v.img.map(function (s, y) {
+        if (s.progress < 98) return app.setToast(that, { content: '\u8BF7\u7B49\u5F85\u3010' + v.value + '\u3011\u5206\u7C7B\u7684\u56FE\u7247\u4E0A\u4F20\u5B8C\u6210' });
+        temp.push(s.real);
+      });
+      SKUS[index].img = temp.join(',');
+    });
     app.wxrequest({
       url: app.getUrl()[that.data.info.id ? 'shopEdit' : 'shopRelease'],
       data: Object.assign({
@@ -659,7 +696,7 @@ Page({
         freight: info.freight,
         is_up: info.is_up,
         label: that.data.sizeMore ? that.data.sizeArr[that.data.sizeIndex].name : -1,
-        sku: JSON.stringify(info.sku),
+        sku: JSON.stringify(SKUS),
         detail: detail.join(','),
         detail_text: info.detail_text || ''
       }, that.data.info.id ? { pid: that.data.info.id } : {}),

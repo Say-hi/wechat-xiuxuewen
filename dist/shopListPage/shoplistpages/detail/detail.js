@@ -97,7 +97,8 @@ Page({
   },
   chooseSp: function chooseSp(e) {
     this.setData({
-      labelIndex: e.currentTarget.dataset.index
+      labelIndex: e.currentTarget.dataset.index,
+      current: 0
     });
   },
   shopProduct: function shopProduct(pid) {
@@ -140,6 +141,19 @@ Page({
             }
           }
 
+          var sku = res.data.data.sku;
+          sku.map(function (v, i) {
+            if (!v.img) {
+              sku[i].img = [];
+            } else {
+              var temp = v.img.split(',');
+              var tempArr = [];
+              temp.map(function (vv, ii) {
+                tempArr.push(vv);
+              });
+              sku[i].img = tempArr;
+            }
+          });
           that.setData({
             info: res.data.data
           });

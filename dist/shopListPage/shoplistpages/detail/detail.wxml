@@ -1,7 +1,10 @@
 <form>
-  <swiper class="goods-swiper">
+  <swiper class="goods-swiper" current="{{ current }}">
     <swiper-item wx:if="{{ info.video_url && info.video_url.length > 5 }}">
       <video autoplay="1" style="width: 100%; height: 100%;" object-fit="cover" src="{{ info.video_url }}"></video>
+    </swiper-item>
+    <swiper-item wx:for="{{ info.sku[labelIndex].img }}" wx:key="*112">
+      <image mode="aspectFill" src="{{ item }}"></image>
     </swiper-item>
     <swiper-item wx:for="{{ info.imgs.length >= 1 ? info.imgs : [info.img] }}" wx:key="*112">
       <image mode="aspectFill" src="{{ item }}"></image>
@@ -57,7 +60,7 @@
       <view class="g-m-top p30 bd1 pr">
         <image mode="aspectFill"
                class="br8 {{ buyMask ? '' : 'noshow' }}"
-               src="{{ info.img }}"></image>
+               src="{{ info.sku[labelIndex].img[0] || info.img }}"></image>
         <view class="c444 f26">
           <view class="cff5975 f34">
             <!--<text>¥{{ info.sku[labelIndex].discount }}</text>-->

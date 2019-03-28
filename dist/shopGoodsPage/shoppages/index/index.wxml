@@ -3,6 +3,19 @@
     <view catchtap="tabChoose" data-index="1" class="tac flex1 {{ tabIndex == 1 ? 'active' : '' }}">全部</view>
     <view catchtap="tabChoose" data-index="2" class="tac flex1 {{ tabIndex == 2 ? 'active' : '' }}">售完下架</view>
   </view>
+  <view class="search bgcfff">
+    <view class="s-wrap">
+      <view class="iconfont f32 icon-sousuo c999"></view>
+      <input confirm-type="search"
+             bindconfirm="search"
+             cursor="30"
+             placeholder-class="holder"
+             bindinput="inputas"
+             class="br15 f28"
+             placeholder="输入您要搜索的产品" />
+    </view>
+    <view catchtap="search" class="f28 fw7 c444 cancel">搜索</view>
+  </view>
   <view class="f26 p30 c666 bt1 bgfff">商品默认按序号降序排序，序号相同按发布时间排序</view>
   <view class="p20">
     <block wx:for="{{ list }}"

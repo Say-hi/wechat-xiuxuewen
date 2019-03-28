@@ -13,6 +13,7 @@ const cos = new COS({
     callback(authorization)
   }
 })
+const UpLoad = require('../upLoad')
 // 创建页面实例对象
 Page({
   /**
@@ -20,12 +21,13 @@ Page({
    */
   data: {
     info: {
-      freight: 0.01,
+      freight: 0.00,
       is_up: -1,
       sku: [{
         value: '默认',
         price: 0.01,
-        stock: 1
+        stock: 1,
+        img: []
       }]
     },
     topIndex: 0,
@@ -50,6 +52,13 @@ Page({
     upImgArrProgress2: [],
     upImgArr3: [],
     upImgArrProgress3: []
+  },
+  addItemImg (e) {
+    new UpLoad({count: 3, this: this, imgArr: e.currentTarget.dataset.index}).chooseImage()
+  },
+  // 修改规格图片
+  changeItemImg (e) {
+    new UpLoad({count: 3, this: this, imgArr: e.currentTarget.dataset.oindex, index: e.currentTarget.dataset.index}).imgOp()
   },
   // 多图上传
   upImg2 (index) {
@@ -96,7 +105,6 @@ Page({
                 upImgArr2: that.data[imgArr]
               })
             } else {
-              console.log(data)
               that.data[imgArr][index >= 0 ? index : length + j]['real'] = `https://${config.Bucket}.cos.${config.Region}.myqcloud.com/${Key}`
               that.data[imgArr][index >= 0 ? index : length + j]['Key'] = Key
               that.setData({
@@ -226,6 +234,11 @@ Page({
     })
   },
   changeContent (e) {
+    if (e.detail.target.dataset.type === 'cancel' && this.data.addItemIndex * 1 < 0) {
+      return this.setData({
+        addItemIndex: -3
+      })
+    }
     if (!e.detail.value.addItem.length) return app.setToast(this, {content: '请输入内容'})
     if (e.detail.target.dataset.type === 'cancel') {
       if (this.data.addItemIndex * 1 >= 0) {
@@ -333,11 +346,11 @@ Page({
               that.data.upImgArrProgress2.push(100)
             }
           }
-          that.data.upImgArr2.unshift({
-            real: res.data.data.img,
-            temp: res.data.data.img,
-            key: res.data.data.img
-          })
+          // that.data.upImgArr2.unshift({
+          //   real: res.data.data.img,
+          //   temp: res.data.data.img,
+          //   key: res.data.data.img
+          // })
           that.data.upImgArrProgress2.unshift(100)
           res.data.data.detail = res.data.data.detail ? res.data.data.detail.split(',') : []
           if (res.data.data.detail.length > 0) {
@@ -350,6 +363,24 @@ Page({
               that.data.upImgArrProgress3.push(100)
             }
           }
+          let sku = res.data.data.sku
+          sku.map((v, i) => {
+            if (!v.img) {
+              sku[i].img = []
+            } else {
+              let temp = v.img.split(',')
+              let tempArr = []
+              temp.map((vv, ii) => {
+                tempArr.push({
+                  temp: vv,
+                  key: vv,
+                  real: vv,
+                  progress: 100
+                })
+              })
+              sku[i].img = tempArr
+            }
+          })
           for (let [i, v] of that.data.goodslabel.entries()) {
             if (v.id * 1 === res.data.data.cid * 1) {
               that.data.labelIndex = i
@@ -363,12 +394,6 @@ Page({
               that.data.sizeIndex = i
               break
             }
-            // if (i === that.data.sizeArr.length - 1) {
-            //   that.data.sizeIndex = that.data.sizeArr.length - 1
-            //   that.data.sizeArr.pop()
-            //   that.data.sizeArr.push({name: res.data.data.label}, {name: '自定义'})
-            //   // that.data.sizeArr.splice(that.data.sizeArr.length - 1, 0, {name: res.data.data.label})
-            // }
           }
           if (scount >= that.data.sizeArr.length) {
             that.data.sizeIndex = scount - 1
@@ -417,8 +442,8 @@ Page({
     let that = this
     let imgs = []
     let detail = []
-    let info = this.data.info
-    if (info.title.length <= 0) return app.set(this, {content: '请输入产品标题'})
+    const info = this.data.info
+    if (!info.title || info.title.length <= 0) return app.setToast(this, {content: '请输入产品标题'})
     if (this.data.upImgArr2.length <= 0) return app.setToast(this, {content: '最少上传一张商品图'})
     for (let v of this.data.upImgArr2) {
       if (!v.real) return app.setToast(that, {content: '请等待所有图片上传完成'})
@@ -428,6 +453,16 @@ Page({
       if (!v.real) return app.setToast(that, {content: '请等待所有图片上传完成'})
       detail.push(v.real)
     }
+    let SKUS = info.sku
+    info.sku.map((v, index) => {
+      let temp = []
+      if (!v.img.length) temp.push(that.data.upImgArr2[0].real)
+      v.img.map((s, y) => {
+        if (s.progress < 98) return app.setToast(that, {content: `请等待【${v.value}】分类的图片上传完成`})
+        temp.push(s.real)
+      })
+      SKUS[index].img = temp.join(',')
+    })
     app.wxrequest({
       url: app.getUrl()[that.data.info.id ? 'shopEdit' : 'shopRelease'],
       data: Object.assign({
@@ -441,7 +476,7 @@ Page({
         freight: info.freight,
         is_up: info.is_up,
         label: that.data.sizeMore ? that.data.sizeArr[that.data.sizeIndex].name : -1,
-        sku: JSON.stringify(info.sku),
+        sku: JSON.stringify(SKUS),
         detail: detail.join(','),
         detail_text: info.detail_text || ''
       }, that.data.info.id ? {pid: that.data.info.id} : {}),
@@ -458,6 +493,7 @@ Page({
       }
     })
   },
+
   onShareAppMessage () {
     if (!app.gs('shopInfo').mid) {
       return {

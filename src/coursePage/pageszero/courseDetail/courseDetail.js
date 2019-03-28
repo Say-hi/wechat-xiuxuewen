@@ -405,7 +405,11 @@ Page({
               wx.navigateBack()
             }, 1000)
           }
-          res.data.data['collect_count'] >= 0 ? res.data.data.collect_count = res.data.data.collect_count * 1 + res.data.data.collect_base : res.data.data['collect_count'] = 0
+          try {
+            res.data.data['collect_count'] >= 0 ? res.data.data.collect_count = res.data.data.collect_count * 1 + res.data.data.collect_base : res.data.data['collect_count'] = 0
+          } catch (err) {
+            res.data.data['collect_count'] = 0
+          }
           if (res.data.data.detail) {
             res.data.data.detail = res.data.data.detail.split(',')
           }

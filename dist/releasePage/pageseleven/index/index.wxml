@@ -63,38 +63,89 @@
         </view>
         <view hidden="{{ !sizeMore }}" wx:for="{{ info.sku }}"
               wx:key="*64"
-              class="size-item-set f26 c3a3a3a bd1 p30 bgfff br8">
-          <text>{{ item.value || '' }}</text>
-          <view class="sis-set-out ml20">
-            <view class="sis-set ml20">
-              <text>价格 </text>
-              <input type="digit" bindblur="inputValue" data-type="price" data-index="{{ index }}" class="ml20" value="{{ item.price }}" />
-            </view>
-            <view class="sis-set ml20">
-              <text>库存 </text>
-              <input type="number" bindblur="inputValue" data-type="stock" data-index="{{ index }}" class="ml20" value="{{ item.stock }}" />
+              class="size-item-set-out p200 f26 c3a3a3a bd1  bgfff br8">
+          <view class="size-item-set">
+            <text>{{ item.value || '' }}</text>
+            <view class="sis-set-out ml20">
+              <view class="sis-set ml20">
+                <text>价格 </text>
+                <input type="digit" bindblur="inputValue" data-type="price" data-index="{{ index }}" class="ml20" value="{{ item.price }}" />
+              </view>
+              <view class="sis-set ml20">
+                <text>库存 </text>
+                <input type="number" bindblur="inputValue" data-type="stock" data-index="{{ index }}" class="ml20" value="{{ item.stock }}" />
+              </view>
+
             </view>
           </view>
+
+          <view class="tar flex1 mt10 item-img">
+            <text>展示图片:</text>
+            <image mode="aspectFill"
+                   wx:for="{{ item.img }}"
+                   wx:for-index="iIndex"
+                   wx:for-item="iItem"
+                   wx:key
+                   data-index="{{ iIndex }}"
+                   data-oindex="{{ index }}"
+                   catchtap="changeItemImg"
+                   class="ml20"
+                   style="width: 100rpx; height: 100rpx; border-radius: 8rpx;"
+                   src="{{ iItem.real || upImgArr2[0].temp || 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/upload.jpg' }}"></image>
+            <image mode="aspectFill"
+                   wx:if="{{ !item.img || item.img.length < 3 }}"
+                   data-index="{{ index }}"
+                   catchtap="addItemImg"
+                   class="ml20"
+                   style="width: 100rpx; height: 100rpx; border-radius: 8rpx;"
+                   src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/upload.jpg"></image>
+          </view>
+
         </view>
         <view hidden="{{ sizeMore }}" wx:key="*64"
-              class="size-item-set f26 c3a3a3a bd1 p30 bgfff br8">
-          <text></text>
-          <view class="sis-set-out nomore ml20">
-            <view class="sis-set ml20">
-              <text>价格 </text>
-              <input type="digit" bindblur="inputValue" data-type="price" data-index="0" class="ml20" value="{{ info.sku[0].price }}" />
+              class="size-item-sets f26 c3a3a3a bd1 p200 bgfff br8">
+          <view class="size-item-set">
+            <text>统一</text>
+            <view class="sis-set-out nomore ml20">
+              <view class="sis-set-out">
+                <view class="sis-set ml20">
+                  <text>价格 </text>
+                  <input type="digit" bindblur="inputValue" data-type="price" data-index="0" class="ml20" value="{{ info.sku[0].price }}" />
+                </view>
+                <view class="sis-set ml20">
+                  <text>库存 </text>
+                  <input type="number" bindblur="inputValue" data-type="stock" data-index="0" class="ml20" value="{{ info.sku[0].stock }}" />
+                </view>
+              </view>
             </view>
-            <view class="sis-set ml20">
-              <text>库存 </text>
-              <input type="number" bindblur="inputValue" data-type="stock" data-index="0" class="ml20" value="{{ info.sku[0].stock }}" />
-            </view>
+          </view>
+          <view class="tar flex1 mt10 item-img">
+            <text>展示图片:</text>
+            <image mode="aspectFill"
+                   wx:for="{{ info.sku[0].img }}"
+                   wx:for-index="iIndex"
+                   wx:for-item="iItem"
+                   wx:key
+                   data-index="{{ iIndex }}"
+                   data-oindex="{{ index }}"
+                   catchtap="changeItemImg"
+                   class="ml20"
+                   style="width: 100rpx; height: 100rpx; border-radius: 8rpx;"
+                   src="{{ iItem.real || upImgArr2[0].temp || 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/upload.jpg' }}"></image>
+            <image mode="aspectFill"
+                   wx:if="{{ !info.sku[0].img || info.sku[0].img.length < 3 }}"
+                   data-index="{{ index }}"
+                   catchtap="addItemImg"
+                   class="ml20"
+                   style="width: 100rpx; height: 100rpx; border-radius: 8rpx;"
+                   src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/upload.jpg"></image>
           </view>
         </view>
       </view>
       <view class="p30 mt1 br8 bgfff f26 c3a3a3a fw7 express mt20">
         <text class="mr20 fw7">运费设置</text>
         <view class="tips br8 tac">￥</view>
-        <input placeholder="0.01" bindblur="inputValue" data-type="express" value="{{ info.freight }}" type="digit"/>
+        <input placeholder="0.00" bindblur="inputValue" data-type="express" value="{{ info.freight }}" type="digit"/>
       </view>
       <view class="p30 mt20 br8 bgfff f26 c3a3a3a sale">
         <text class="fw7">开售时间</text>

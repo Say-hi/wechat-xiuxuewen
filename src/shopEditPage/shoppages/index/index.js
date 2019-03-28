@@ -1,6 +1,6 @@
 // 获取全局应用程序实例对象
 const app = getApp()
-
+const UpLoad = require('../upLoad')
 // 创建页面实例对象
 Page({
   /**
@@ -16,7 +16,6 @@ Page({
         ['info.freight']: (e.detail.value * 1).toFixed(2)
       })
     } else {
-      console.log(e)
       let str = `info.sku[${e.currentTarget.dataset.index}].${e.currentTarget.dataset.type === 'price' ? 'price' : 'stock'}`
       this.setData({
         [str]: (e.detail.value * 1).toFixed(e.currentTarget.dataset.type === 'price' ? 2 : 0)
@@ -56,6 +55,28 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
+          try {
+            let sku = res.data.data.sku
+            sku.map((v, i) => {
+              if (!v.img) {
+                sku[i].img = []
+              } else {
+                let temp = v.img.split(',')
+                let tempArr = []
+                temp.map((vv, ii) => {
+                  tempArr.push({
+                    temp: vv,
+                    key: vv,
+                    real: vv,
+                    progress: 100
+                  })
+                })
+                sku[i].img = tempArr
+              }
+            })
+          } catch (err) {
+            console.log(err)
+          }
           that.setData({
             info: res.data.data
           })
@@ -68,19 +89,31 @@ Page({
   release () {
     let info = this.data.info
     let that = this
+    let SKUS = info.sku
+    info.sku.map((v, index) => {
+      let temp = []
+      if (!v.img.length) temp.push(info.img)
+      v.img.map((s, y) => {
+        if (s.progress < 98) return app.setToast(that, {content: `请等待【${v.value <= -1 ? '统一规格' : v.value}】分类的图片上传完成`})
+        temp.push(s.real)
+      })
+      SKUS[index].img = temp.join(',')
+    })
     app.wxrequest({
       url: app.getUrl().shopEdit,
       data: {
         pid: info.id,
+        cid: info.cid,
+        imgs: info.imgs,
         mid: app.gs('shopInfoAll').id,
-        parent_id: info.parent_id || info.id,
+        parent_id: info.id || info.parent_id,
         title: info.title,
         img: info.img,
         old_price: info.old_price,
         freight: info.freight,
         is_up: that.data.sale === 1 ? 1 : -1,
         label: info.label,
-        sku: JSON.stringify(info.sku)
+        sku: JSON.stringify(SKUS)
       },
       success (res2) {
         wx.hideLoading()
@@ -88,11 +121,19 @@ Page({
           wx.showToast({
             title: '添加成功'
           })
+          wx.navigateBack()
         } else {
           app.setToast(that, {content: res2.data.desc})
         }
       }
     })
+  },
+  addItemImg (e) {
+    new UpLoad({count: 3, this: this, imgArr: e.currentTarget.dataset.index}).chooseImage()
+  },
+  // 修改规格图片
+  changeItemImg (e) {
+    new UpLoad({count: 3, this: this, imgArr: e.currentTarget.dataset.oindex, index: e.currentTarget.dataset.index}).imgOp()
   },
   /**
    * 生命周期函数--监听页面加载
