@@ -2,6 +2,8 @@
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 // 获取全局应用程序实例对象
 var app = getApp();
 var COS = require('../cos-js-sdk-v5.min');
@@ -25,6 +27,9 @@ Page({
   data: {
     upImgArr: [],
     upImgArrProgress: []
+  },
+  inputValue: function inputValue(e) {
+    this.setData(_defineProperty({}, e.currentTarget.dataset.type, e.detail.value));
   },
   shopUserReal: function shopUserReal() {
     var that = this;
@@ -66,6 +71,8 @@ Page({
         name: that.data.username,
         ad: temp.join(','),
         avatar: that.data.avatar
+        // logistic_fee: that.data.mini,
+        // low_total_fee: that.data.express
       },
       success: function success(res) {
         wx.hideLoading();
@@ -330,6 +337,8 @@ Page({
 
       this.setData({
         upImgArr: upImgArr,
+        // mini: app.gs('userInfoAll').rule.logistic_fee,
+        // express: app.gs('userInfoAll').rule.low_total_fee,
         upImgArrProgress: upImgArrProgress
       });
     }

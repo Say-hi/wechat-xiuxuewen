@@ -1,0 +1,26 @@
+<form>
+  <view class="p20">
+    <view class="tab c999 f28 p10">
+      <view data-type="{{ index }}"
+            class="flex1 tac tr5 {{ tabIndex == index ? 'c2ca2f2 fw7' : '' }}"
+            catchtap="tabChoose"
+            wx:key
+            wx:for="{{ tabArr }}">{{ item }}</view>
+    </view>
+    <view class="zw50"></view>
+    <view wx:for="123"
+          wx:key
+          class="item p30 bgfff br8 mt20">
+      <view class="f28 c444 flex fw7">
+        <view class="need-left">购买商品</view>
+        <view>+89.88分</view>
+      </view>
+      <view class="c999 f28 mt10">顾盼生辉系列唇部色料8ml</view>
+      <view class="c999 f28">2019-02-26 09:25:10</view>
+    </view>
+    <view class="tac f28 c999 p20">--- 暂无相关记录 ---</view>
+  </view>
+</form>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

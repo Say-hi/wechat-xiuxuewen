@@ -48,29 +48,17 @@ Component({
         navData = app.gs('shopBottomNav');
         switch (currentPage[currentPage.length - 1].route) {
           case 'shopPage/shoppages/index/index':
-            app.data.bottomTabIndex = 0;
+            app.data.bottomTabIndex = 1;
             break;
           case 'shopCenterPage/shoppages/index/index':
             app.data.bottomTabIndex = 99;
             break;
           case 'shopCarPage/shoppages/car/car':
-            app.data.bottomTabIndex = 1;
-            break;
-          case 'shopUserPage/shoppages/user/user':
             app.data.bottomTabIndex = 2;
             break;
-          // case 'shopPage/shoppages/index/index':
-          //   app.data.bottomTabIndex = 0
-          //   break
-          // case 'shopCenterPage/shoppages/index/index':
-          //   app.data.bottomTabIndex = 1
-          //   break
-          // case 'shopCarPage/shoppages/car/car':
-          //   app.data.bottomTabIndex = 2
-          //   break
-          // case 'shopUserPage/shoppages/user/user':
-          //   app.data.bottomTabIndex = 3
-          //   break
+          case 'shopUserPage/shoppages/user/user':
+            app.data.bottomTabIndex = 3;
+            break;
         }
       }
       if (navData) {

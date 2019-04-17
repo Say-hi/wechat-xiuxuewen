@@ -10,7 +10,7 @@
                hover-class="none"
                class="tab-item f24 c333">
         <button hover-class="none" form-type="submit" class="form-button">
-            <image lazy-load="{{true}}" mode="widthFix" src="{{ item.active ? item.select_icon : item.icon  }}"></image>
+            <image class="images" lazy-load="{{true}}" mode="widthFix" src="{{ item.active ? item.select_icon : item.icon  }}"></image>
             <view class="f24 c333 {{ item.active ? 'active' : '' }}">{{ item.title }}</view>
         </button>
     </navigator>

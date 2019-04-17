@@ -3,7 +3,7 @@
         <image lazy-load="{{true}}" class="tip-img" src="{{ userInfo.avatar }}"></image>
         <view class="user-name">{{ userInfo.username }}</view>
         <view class="ds-t">
-            <text>打赏脑籽</text>
+            <text class="ds-tt">打赏脑籽</text>
             <image lazy-load="{{true}}" mode="widthFix" class="tip-img2" src="{{ naozai }}"></image>
         </view>
         <view class="chooseTab">

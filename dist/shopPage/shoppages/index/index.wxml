@@ -146,7 +146,7 @@
 </view>
 
 <view class="zw"></view>
-<my-back></my-back>
+<!--<my-back></my-back>-->
 <my-navigator-tab></my-navigator-tab>
 <!--错误弹窗-->
 <import src="/template/template"></import>

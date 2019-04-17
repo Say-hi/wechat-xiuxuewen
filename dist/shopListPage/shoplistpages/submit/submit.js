@@ -9,8 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    discount_name: app.gs('shopInfoAll').discount_name,
-    discount_value: app.gs('shopInfoAll').discount_value
+    discount_name: app.gs('shopInfoAll').rule.state_name,
+    discount_value: app.gs('shopInfoAll').rule.discount
   },
   // 选择地址
   chooseAddress: function chooseAddress() {
@@ -123,6 +123,7 @@ Page({
       } : Object.assign({
         name: that.data.addressInfo.userName,
         phone: that.data.addressInfo.telNumber,
+        recharge: that.data.recharge || 0,
         address: '' + that.data.addressInfo.provinceName + that.data.addressInfo.cityName + that.data.addressInfo.countyName + that.data.addressInfo.detailInfo,
         mid: app.gs('shopInfoAll').id,
         uid: app.gs('userInfoAll').id,
@@ -270,7 +271,7 @@ Page({
       // Allmoney: (Allmoney * (this.data.type === 'now' ? this.data.discount_value : 1)).toFixed(2),
       Allmoney: Allmoney.toFixed(2),
       AllPay: (Allmoney * this.data.discount_value).toFixed(2),
-      maxFreight: maxFreight,
+      maxFreight: maxFreight > 0 ? maxFreight : app.gs('shopInfoAll').rule.low_total_fee > Allmoney ? app.gs('shopInfoAll').rule.logistic_fee : maxFreight,
       addressInfo: app.gs('addressInfo') || null
     });
     // TODO: onLoad

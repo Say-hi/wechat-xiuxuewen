@@ -100,7 +100,7 @@ gulp.task('compile:less', () => {
   return gulp.src(['src/**/*.less', '!src/common/*'])
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.less())
-    .pipe(plugins.if(true, plugins.cssnano({ compatibility: '*' })))
+    .pipe(plugins.if(true, plugins.cssnano({ compatibility: '*', zindex: false })))
     .pipe(plugins.rename({ extname: '.wxss' }))
     // .pipe(plugins.sourcemaps.write('.'))
     .pipe(gulp.dest('dist'))

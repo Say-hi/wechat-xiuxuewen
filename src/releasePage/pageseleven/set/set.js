@@ -22,6 +22,11 @@ Page({
     upImgArr: [],
     upImgArrProgress: []
   },
+  inputValue (e) {
+    this.setData({
+      [e.currentTarget.dataset.type]: e.detail.value
+    })
+  },
   shopUserReal () {
     let that = this
     let temp = []
@@ -41,6 +46,8 @@ Page({
         name: that.data.username,
         ad: temp.join(','),
         avatar: that.data.avatar
+        // logistic_fee: that.data.mini,
+        // low_total_fee: that.data.express
       },
       success (res) {
         wx.hideLoading()
@@ -234,6 +241,8 @@ Page({
       }
       this.setData({
         upImgArr,
+        // mini: app.gs('userInfoAll').rule.logistic_fee,
+        // express: app.gs('userInfoAll').rule.low_total_fee,
         upImgArrProgress
       })
     }

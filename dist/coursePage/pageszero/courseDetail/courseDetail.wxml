@@ -533,14 +533,14 @@
 <view hidden="{{ !writeComment }}" class="mask write-comment" catchtap="goComment">
   <form bindsubmit="writeConfirm">
     <view class="w-c p20 f26" catchtap="noUp">
-      <input bindconfirm="writeConfirm"
+      <textarea bindconfirm="writeConfirm"
              name="content"
              confirm-type="send"
              cursor-spacing="30"
              focus="{{ writeComment }}"
              value="{{ inputValue }}"
              class="flex1"
-             placeholder="你觉得课程怎么样呢，来说说吧～（至少五个字）" />
+                placeholder="你觉得课程怎么样呢，来说说吧～（至少五个字）" ></textarea>
       <button form-type="submit"
               class="send-btn cfff">发送</button>
     </view>

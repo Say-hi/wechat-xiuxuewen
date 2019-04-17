@@ -243,6 +243,27 @@
       "pages": [
         "shoppages/user/user" // 用户信息
       ]
+    },
+    {
+      "root": "shopScorePage", // 用户积分
+      "name": "score",
+      "pages": [
+        "shoppages/index/index" // 用户积分
+      ]
+    },
+    {
+      "root": "shopRulerPage", // 用户规则
+      "name": "ruler",
+      "pages": [
+        "shoppages/index/index" // 用户规则
+      ]
+    },
+    {
+      "root": "shopChargePage", // 用户充值
+      "name": "charge",
+      "pages": [
+        "shoppages/index/index" // 用户充值
+      ]
     }
   ],
   "preloadRule": {
@@ -296,6 +317,8 @@
         "client",
         "money",
         "note",
+        "score",
+        "ruler",
         "release"
       ]
     },
@@ -341,7 +364,7 @@
   },
   "usingComponents": {
     "my-add": "/components/my-add/add",
-    "my-tip": "/components/my-tip/my-tip",
+//    "my-tip": "/components/my-tip/my-tip",
     "my-login": "/components/my-login/my-login",
     "my-express": "/components/my-express/my-express",
     "my-navigator-tab": "/components/my-navigator-tab/my-navigator-tab",

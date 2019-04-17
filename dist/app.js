@@ -721,6 +721,8 @@ App({
   onLaunch: function onLaunch() {
     var _this = this;
 
+    wx.removeStorageSync('shopBottomNav');
+    wx.removeStorageSync('bottomNav');
     this.getNavTab({});
     this.getEnum();
     setTimeout(function () {

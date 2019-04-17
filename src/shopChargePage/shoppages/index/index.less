@@ -1,0 +1,46 @@
+.df {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.money-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  .item {
+    text-align: center;
+    width: 204rpx;
+    border: 2rpx solid #979797;
+    &.active {
+      background-color: #2CA2F2;
+      border-color: #2CA2F2;
+      color: #fff;
+    }
+  }
+  input {
+    height: 88rpx;
+    padding: 0 20rpx;
+    padding-right: 40rpx;
+    &.focus {
+      border-color: #2CA2F2;
+      text-align: left;
+      position: relative;
+      &:before {
+        content: '元';
+        color: #444;
+        font-size: 28rpx;
+        position: absolute;
+        top: 50%;
+        right: 20rpx;
+        transform: translate(0, -50%);
+      }
+    }
+  }
+}
+
+.charge-btn {
+  background-color: #2CA2F2;
+  border-radius: 50rpx;
+}

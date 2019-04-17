@@ -1,0 +1,16 @@
+<form>
+  <view class="p020">
+    <view wx:for="123"
+          wx:key
+          class="p30 f28 c666 br8 bgfff mt20">
+      <view class="tac">
+        <view class="need-left c444 fw7">如何获取积分？</view>
+      </view>
+      <view class="mt20">1.邀请好友加入绣学问平台</view>
+      <view>2.在绣学问平台商城中购买商品</view>
+    </view>
+  </view>
+</form>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

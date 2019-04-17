@@ -9,11 +9,32 @@ Page({
    * 页面的初始数据
    */
   data: {
+    startText: ['零', '一', '二', '三', '四', '五', '六', '七'],
     img: app.data.testImg
   },
   showOutMoney: function showOutMoney() {
     this.setData({
       showMoney: !this.data.showMoney
+    });
+  },
+  getUser: function getUser() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().shopUserInfo,
+      data: {
+        uid: app.gs('userInfoAll').id
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData({
+            userInfo: res.data.data,
+            agents: res.data.data.mall_is > 0
+          }, that.shopInfo);
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
     });
   },
   shopMoneyRuler: function shopMoneyRuler() {
@@ -71,7 +92,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function onLoad() {
-    this.shopMoneyRuler();
+
+    // this.shopMoneyRuler()
     // TODO: onLoad
   },
 
@@ -88,6 +110,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function onShow() {
+    this.getUser();
     this.shopUserFund();
     // TODO: onShow
   },

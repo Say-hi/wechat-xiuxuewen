@@ -21,7 +21,10 @@
           <image src="{{ item.img }}"
                  mode="aspectFit"
                  class="br8 mr20"></image>
-          <text class="mr20 flex1">{{ item.title }}</text>
+          <view class="mr20 flex1 df">
+            <text>{{ item.title }}</text>
+            <text>规格:{{ item.value <= 0 ? '默认': item.value }}</text>
+          </view>
           <view class="og-r tar">
             <view class="fw7">¥{{ item.price || '未知' }}</view>
             <view>X{{ item.count }}</view>

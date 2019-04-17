@@ -1,0 +1,33 @@
+.tab {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 20rpx;
+  left: 0;
+  width: 100%;
+}
+.zw50 {
+  height: 50rpx;
+}
+.item {
+  .flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.need-left {
+  position: relative;
+  padding-left: 10rpx;
+  &:before {
+    position: absolute;
+    top: 50%;
+    left: 0rpx;
+    transform: translate(-50%, -50%);
+    content: '';
+    height: 80%;
+    width: 6rpx;
+    background-color: #39ADF8;
+    border-radius: 10rpx;
+  }
+}

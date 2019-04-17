@@ -9,9 +9,46 @@ Page({
    * 页面的初始数据
    */
   data: {
+    user_bg: '',
     systemVersion: app.data.systemVersion,
     img: app.data.testImg,
+    erweima: 'https://c.jiangwenqiang.com/api/logo.jpg',
     today: true
+  },
+  showImage: function showImage() {
+    this.setData({
+      showImage: !this.data.showImage
+    });
+  },
+  saveImage: function saveImage() {
+    var that = this;
+    wx.showLoading({
+      title: '图片保存中'
+    });
+    wx.downloadFile({
+      url: that.data.erweima,
+      success: function success(res) {
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success: function success() {
+            wx.hideLoading();
+            wx.showToast({
+              title: '保存成功'
+            });
+            that.showImage();
+          },
+          fail: function fail() {
+            wx.hideLoading();
+            wx.showModal({
+              title: '保存失败',
+              content: '请搜索公众号【绣学问】',
+              showCancel: false
+            });
+            that.showImage();
+          }
+        });
+      }
+    });
   },
   getUser: function getUser() {
     var that = this;
@@ -56,7 +93,8 @@ Page({
   },
   chooseDay: function chooseDay(e) {
     this.setData({
-      today: e.currentTarget.dataset.type === 'today'
+      today: e.currentTarget.dataset.type === 'today',
+      move: this.data.move === 'rotatetab' ? 'null' : 'rotatetab'
     });
   },
   onShareAppMessage: function onShareAppMessage() {

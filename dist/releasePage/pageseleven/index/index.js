@@ -676,11 +676,14 @@ Page({
     var SKUS = info.sku;
     info.sku.map(function (v, index) {
       var temp = [];
-      if (!v.img.length) temp.push(that.data.upImgArr2[0].real);
-      v.img.map(function (s, y) {
-        if (s.progress < 98) return app.setToast(that, { content: '\u8BF7\u7B49\u5F85\u3010' + v.value + '\u3011\u5206\u7C7B\u7684\u56FE\u7247\u4E0A\u4F20\u5B8C\u6210' });
-        temp.push(s.real);
-      });
+      if (!v.img || !v.img.length) {
+        temp.push(that.data.upImgArr2[0].real);
+      } else {
+        v.img.map(function (s, y) {
+          if (s.progress < 98) return app.setToast(that, { content: '\u8BF7\u7B49\u5F85\u3010' + v.value + '\u3011\u5206\u7C7B\u7684\u56FE\u7247\u4E0A\u4F20\u5B8C\u6210' });
+          temp.push(s.real);
+        });
+      }
       SKUS[index].img = temp.join(',');
     });
     app.wxrequest({

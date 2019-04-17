@@ -25,7 +25,16 @@
       </view>
       <view wx:if="{{ upImgArr.length < 3 }}" catchtap="wxUploadImg" class="up-btn br20 bb iconfont icon-fabu"></view>
     </view>
-
+    <!--<view wx:if="{{ options.type == 'shop' }}" class="bgfff input-area p030">-->
+      <!--<view class="ia-area f28 p200 c444">-->
+        <!--<text>设置最小包邮金额</text>-->
+        <!--<input bindinput="inputValue" data-type="mini" type="digit" value="{{ mini }}" placeholder="请输入金额" />-->
+      <!--</view>-->
+      <!--<view class="ia-area f28 c444 p200 bt1">-->
+        <!--<text>设置邮费</text>-->
+        <!--<input bindinput="inputValue" data-type="express" type="digit" value="{{ express }}" placeholder="请输入金额" />-->
+      <!--</view>-->
+    <!--</view>-->
     <button catchtap="shopUserReal" class="save mt20 bgcfff br8">保存</button>
   </view>
 </form>

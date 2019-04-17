@@ -1,34 +1,154 @@
-.money-top {
+.f58 {
+  font-size: 58rpx;
+}
+.user-img-area {
+  width: 100%;
+  height: 250rpx;
+  //overflow: hidden;
+  .user-bg-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 18rpx;
+  }
+  .user-info {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 18rpx;
+    box-shadow: 4rpx 4rpx 11rpx #09CDC2;
+  }
+  .user-money {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .user-btn {
+    padding: 10rpx 30rpx;
+    border-radius: 50rpx;
+    border: 2rpx solid #fff;
+    background:rgba(255,255,255,0.2);
+  }
+}
+
+.user-operation {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  .arrow {
+    font-size: 28rpx;
+    color: #666;
+    font-weight: 200;
+    margin-top: 10rpx;
+    display: inline-block;
+  }
+  .arrow::after {
+    width: 10rpx;
+    height: 10rpx;
+    right: -20rpx;
+  }
+}
+.user-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  .get-money {
-    color: #ff3b5b;
-    padding: 10rpx 23rpx;
-    border: 2rpx solid #ff3b5b;
-    border-radius: 80rpx;
+  padding-left: 46rpx;
+  &:before {
+    position: absolute;
+    top: 50%;
+    left: 30rpx;
+    transform: translate(-50%, -50%);
+    content: '';
+    height: 30%;
+    width: 6rpx;
+    background-color: #39ADF8;
+    border-radius: 10rpx;
   }
 }
 
-.shop-order-num {
-  display: flex;
-  justify-content: space-around;
-  .son-item {
-    min-width: 160rpx;
-    padding: 20rpx;
-    background: #FFF4F6;
-  }
-  .son-item2 {
-    background: #fff;
+.lv-3 {
+  .user-lv {
+    color: #19618F;
   }
 }
 
-.money-tips {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  background-color: #fff;
-  border-radius: 18rpx;
+.lv-5 {
+  .user-lv {
+    color: #724F1A;
+  }
+  .user-info {
+    box-shadow: 4rpx 4rpx 11rpx #E7C996;
+  }
+  .user-item::before {
+    background-color: #CBA369;
+  }
 }
+
+.lv-6 {
+  .user-lv {
+    color: #445160;
+  }
+  .user-info {
+    box-shadow: 4rpx 4rpx 11rpx #8FA7C6;
+  }
+  .user-item::before {
+    background-color: #8D9DB6;
+  }
+}
+
+.lv-7 {
+  .user-lv {
+    color: #743E30;
+  }
+  .user-info {
+    box-shadow: 4rpx 4rpx 11rpx #D6AC95;
+  }
+  .user-item::before {
+    background-color: #B57E70;
+  }
+}
+
+.lv-agents {
+  .user-lv {
+    color: #F0C587;
+  }
+  .user-info {
+    box-shadow: 4rpx 4rpx 11rpx #272727;
+  }
+}
+//.money-top {
+//  display: flex;
+//  align-items: center;
+//  justify-content: space-between;
+//  .get-money {
+//    color: #ff3b5b;
+//    padding: 10rpx 23rpx;
+//    border: 2rpx solid #ff3b5b;
+//    border-radius: 80rpx;
+//  }
+//}
+//
+//.shop-order-num {
+//  display: flex;
+//  justify-content: space-around;
+//  .son-item {
+//    min-width: 160rpx;
+//    padding: 20rpx;
+//    background: #FFF4F6;
+//  }
+//  .son-item2 {
+//    background: #fff;
+//  }
+//}
+//
+//.money-tips {
+//  position: absolute;
+//  top: 50%;
+//  left: 50%;
+//  transform: translate(-50%, -50%);
+//  width: 90%;
+//  background-color: #fff;
+//  border-radius: 18rpx;
+//}

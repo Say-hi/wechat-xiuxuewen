@@ -23,7 +23,7 @@
           </view>
         </view>
         <scroll-view scroll-y
-                     style="max-height: 640rpx;">
+                     style="max-height: 580rpx;">
           <view class="goods-list br8 p20 f28 c666"
                 wx:key="*45"
                 wx:for="{{ info }}">

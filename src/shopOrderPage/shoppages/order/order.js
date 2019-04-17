@@ -9,8 +9,8 @@ Page({
   data: {
     page: 0,
     tabIndex: 0,
-    discount_name: app.gs('shopInfoAll').discount_name,
-    discount_value: app.gs('shopInfoAll').discount_value,
+    discount_name: app.gs('shopInfoAll').rule.state_name,
+    discount_value: app.gs('shopInfoAll').rule.discount,
     tabNav: [
       {
         t: '全部',

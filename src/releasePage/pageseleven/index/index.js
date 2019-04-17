@@ -456,11 +456,14 @@ Page({
     let SKUS = info.sku
     info.sku.map((v, index) => {
       let temp = []
-      if (!v.img.length) temp.push(that.data.upImgArr2[0].real)
-      v.img.map((s, y) => {
-        if (s.progress < 98) return app.setToast(that, {content: `请等待【${v.value}】分类的图片上传完成`})
-        temp.push(s.real)
-      })
+      if (!v.img || !v.img.length) {
+        temp.push(that.data.upImgArr2[0].real)
+      } else {
+        v.img.map((s, y) => {
+          if (s.progress < 98) return app.setToast(that, {content: `请等待【${v.value}】分类的图片上传完成`})
+          temp.push(s.real)
+        })
+      }
       SKUS[index].img = temp.join(',')
     })
     app.wxrequest({
