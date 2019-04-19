@@ -68,7 +68,7 @@
         <view catchtap="chooseDay" data-type="t" class="{{ today ? '' : 'active' }}">累计</view>
       </view>
       <view class="shop-order-num mt30">
-        <navigator hover-class="none" url="{{ index == 0 ? '/shopOrderPage/shoppages/order/order?type=0&for='+ (agents ? 'shop':'user') : index == 1 ? '/shopMoneyPage/shoppages/index/index' : '' }}" wx:for="123"
+        <navigator hover-class="none" url="{{ index == 0 ? '/shopOrderPage/shoppages/order/order?type=0&for='+ (agents ? 'shop':'user') : index == 1 ? '/shopRecordPage/shoppages/index/index?type=a&index=0' : '' }}" wx:for="123"
               hidden="{{ index == 2 && !agents }}"
               class="son-item son-item2 tac f24 br8"
               wx:key="*12">
@@ -80,14 +80,13 @@
       </view>
     </view>
     <view class="user-bottom f28 fw7 mt20 c19618F">
-      <navigator wx:if="{{ !agents }}" url="/shopMoneyPage/shoppages/index/index" class="ub-item arrow br8 bgfff tal ">资金管理</navigator>
+      <navigator url="/shopMoneyPage/shoppages/index/index" class="ub-item arrow br8 bgfff tal ">资金管理</navigator>
       <navigator url="/shopOrderPage/shoppages/order/order?type=0&for=user" class="ub-item arrow br8 bgfff tal ">销售订单</navigator>
-      <view wx:if="{{ !agents }}" class="zw20"></view>
+      <view class="zw20"></view>
       <navigator url="/shopClientPage/shoppages/index/index?type=user" class="ub-item arrow br8 bgfff tal ">我的代理</navigator>
-      <view wx:if="{{ agents }}" class="zw20"></view>
       <navigator wx:if="{{ agents }}" url="/shopClientPage/shoppages/index/index?type=agents" class="ub-item arrow br8 bgfff tal">店铺代理</navigator>
-      <navigator wx:if="{{ agents }}" url="/releasePage/pageseleven/set/set?type=shop" class="ub-item arrow br8 bgfff tal ">店铺设置</navigator>
       <view wx:if="{{ agents }}" class="zw20"></view>
+      <navigator wx:if="{{ agents }}" url="/releasePage/pageseleven/set/set?type=shop" class="ub-item arrow br8 bgfff tal ">店铺设置</navigator>
       <navigator url="/shopNotePage/shoppages/index/index" class="ub-item arrow br8 bgfff tal ">消息通知</navigator>
     </view>
   </view>

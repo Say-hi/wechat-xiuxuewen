@@ -5,5 +5,5 @@
   // 导航栏标题文字内容
   "navigationBarTitleText": "充值",
   // 是否开启下拉刷新，详见页面相关事件处理函数。
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": false
 }

@@ -10,6 +10,7 @@ Page({
    */
   data: {
     page: 0,
+    starArr: ['三星用户', '五星用户', '六星用户', '七星用户'],
     list: []
   },
   call: function call(e) {
@@ -42,7 +43,8 @@ Page({
     app.wxrequest({
       url: app.getUrl().shopTeam,
       data: {
-        mid: app.gs('shopInfoAll').id,
+        // mid: app.gs('shopInfoAll').id,
+        mid: 10000,
         page: ++that.data.page,
         uid: that.data.type === 'user' ? app.gs('userInfoAll').id : 0,
         name: that.data.searchText || ''
@@ -88,12 +90,14 @@ Page({
     });
   },
 
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function onLoad(options) {
-    this.data.type = options.type;
-    this.getList();
+    this.setData({
+      type: options.type
+    }, this.getList);
     // TODO: onLoad
   },
 

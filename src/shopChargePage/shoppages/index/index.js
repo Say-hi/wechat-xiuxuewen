@@ -8,13 +8,16 @@ Page({
    */
   data: {
     chooseIndex: 0,
-    moneyArr: [500,1000,5000]
+    moneyArr: [500, 1000, 5000]
   },
   chooseCharge (e) {
     this.setData({
       chooseIndex: e.currentTarget.dataset.type,
       focus: false
     })
+  },
+  charge () {
+    wx.navigateBack({})
   },
   focusinput () {
     this.setData({
@@ -25,7 +28,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad () {
+  onLoad (options) {
+    this.setData({
+      recharge: options.money
+    })
     // TODO: onLoad
   },
 

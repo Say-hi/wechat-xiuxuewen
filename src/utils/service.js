@@ -3,6 +3,7 @@
  */
 const baseDomain = 'https://teach.idwenshi.com/teaching/public/index.php'
 const shopBaseDomain = 'https://teach.idwenshi.com/teach/teach/web/index.php'
+const webBaseDomain = 'https://teach.idwenshi.com/teach/api/web/index.php'
 // let baseDomain = 'https://www.1688rm.com'
 const serviceUrl = {
   style: baseDomain + '/home/page', // 不填默认为1, 1表示中间菜单,2表示底部菜单,3表示广告图
@@ -109,6 +110,10 @@ const serviceUrl = {
   shopBinding: shopBaseDomain + '/publicly/binding', // 商城用户绑定
   shopPhone: shopBaseDomain + '/wechat/phone', // 解密手机
   shopMoneyRuler: shopBaseDomain + '/shop/moneyruler', // 解密手机
-  shopVideoList: shopBaseDomain + '/video/list' // 视频列表
+  shopVideoList: shopBaseDomain + '/video/list', // 视频列表
+
+  profitDetail: webBaseDomain + '/user/profit-detail'
+
+
 }
 module.exports = serviceUrl

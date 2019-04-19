@@ -3,13 +3,13 @@
   <view class="pr user-img-area br18">
     <image class="pa user-bg-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/user_lv/lv{{ agents ? 'agents' : userInfo.star ? userInfo.star : 3 }}.png"></image>
     <view class="pa user-info p30">
-      <view class="f32 fw7 user-lv">{{ agents ? '代理商' : startText[userInfo.star] + '星用户' }}</view>
+      <view class="f32 fw7 user-lv">{{ agents ? '代理商' : startText[userInfo.star || 3] + '星用户' }}</view>
       <view class="user-money">
         <view class="f28 cfff">
-          <view class="f58 fw7">88.88</view>
-          <view>我的支票</view>
+          <view class="f58 fw7">{{ info.recharge || '0.00' }}</view>
+          <view>{{ agents ? '我的现金余额' : '我的支票' }}</view>
         </view>
-        <navigator hover-class="none" url="/shopChargePage/shoppages/index/index" class="f28 cfff user-btn fw7">
+        <navigator hover-class="none" url="/shopChargePage/shoppages/index/index?money={{ info.recharge || '0.00' }}" class="f28 cfff user-btn fw7">
           {{ agents ? '立刻充值' : '充值升级' }}
         </navigator>
       </view>
@@ -19,29 +19,29 @@
     <veiw>我的收益</veiw>
     <view class="user-operation mt20 f38 fw7">
       <navigator hover-class="none" url="/shopRecordPage/shoppages/index/index?type=a&index=1" class="flex1 tac">
-        <view>{{ info.today_profit || 0 }}</view>
+        <view>{{ info.today_profit || '0.00' }}</view>
         <view class="arrow">今日</view>
       </navigator>
       <navigator hover-class="none" url="/shopRecordPage/shoppages/index/index?type=a&index=2" class="flex1 tac">
-        <view>{{ info.mall_total_fee || 0 }}</view>
+        <view>{{ info.mall_total_fee || '0.00' }}</view>
         <view class="arrow">可提现</view>
       </navigator>
       <navigator hover-class="none" url="/shopRecordPage/shoppages/index/index?type=a&index=3" class="flex1 tac">
-        <view>88.88</view>
+        <view>{{ info.stay_count || '0.00' }}</view>
         <view class="arrow">待到账</view>
       </navigator>
     </view>
   </view>
-  
+
   <view wx:else class="p30 br8 bgfff f28 c444 tac mt20">
     <veiw>我的营业额</veiw>
     <view class="user-operation mt20 f38 fw7">
       <view class="flex1 tac">
-        <view>88.88</view>
+        <view>{{ userInfo.today_turnover || '0.00' }}</view>
         <view class="f28 c666">今日</view>
       </view>
       <view class="flex1 tac">
-        <view>88.88</view>
+        <view>{{ userInfo.turnover || '0.00' }}</view>
         <view class="f28 c666">累计</view>
       </view>
     </view>
@@ -49,7 +49,7 @@
 
   <view wx:if="{{ !agents }}" class="user-item br8 bgfff c444 f28 fw7 tal pr mt20 p30">
     <view>累计已提现收益(元)</view>
-    <view class="c666">{{ info.profit || 0 }}</view>
+    <view class="c666">{{ info.profit || '0.00' }}</view>
   </view>
   <!--<view class="p2030 bgfff br8">-->
     <!--<text class="f48 c444 fw7">¥{{ info.mall_total_fee }}</text>-->

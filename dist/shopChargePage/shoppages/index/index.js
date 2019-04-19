@@ -18,6 +18,9 @@ Page({
       focus: false
     });
   },
+  charge: function charge() {
+    wx.navigateBack({});
+  },
   focusinput: function focusinput() {
     this.setData({
       chooseIndex: -1,
@@ -28,7 +31,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function onLoad() {
+  onLoad: function onLoad(options) {
+    this.setData({
+      recharge: options.money
+    });
     // TODO: onLoad
   },
 

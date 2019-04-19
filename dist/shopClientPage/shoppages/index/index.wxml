@@ -19,7 +19,10 @@
   <view class="p20 bgfff br8 f24 c444 mt20"
         wx:for="{{ list }}"
         wx:key="*123">
-    <text>注册时间：{{ item.mall_create_time || '未知' }}</text>
+    <view class="df">
+      <text>注册时间：{{ item.mall_create_time || '未知' }}</text>
+      <picker range="{{ starArr }}" wx:if="{{ type == 'agents' }}" data-index="{{ index }}"  class="f28" style="color:#FF3B5B;">星级设定</picker>
+    </view>
     <view class="p30 client-item mt10">
       <view>
         <image class="br mr20" src="{{ item.avatar_url }}"></image>

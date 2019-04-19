@@ -4,7 +4,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 // 获取全局应用程序实例对象
 var app = getApp();
-
+var needtime = false;
 // 创建页面实例对象
 Page({
   /**
@@ -25,7 +25,12 @@ Page({
   timeChoose: function timeChoose(e) {
     if (e.currentTarget.dataset.type === 'confirm') {
       if (new Date(this.data.end_date).getTime() < new Date(this.data.star_date)) return app.setToast(this, { content: '开始时间不能大于结束时间' });
+      needtime = true;
+      this.data.page = 0;
+      this.data.list = [];
+      this.profitDetail();
     } else {
+      needtime = false;
       return this.setData({
         star_date: new Date().getFullYear() + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate(),
         end_date: new Date().getFullYear() + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate()
@@ -39,9 +44,17 @@ Page({
     });
   },
   chooseTab: function chooseTab(e) {
+    this.data.page = 0;
+    this.data.list = [];
     this.setData({
       tabIndex: e.currentTarget.dataset.index
-    });
+    }, this.profitDetail);
+  },
+  inputvalue: function inputvalue(e) {
+    this.data.page = 0;
+    this.data.list = [];
+    this.data.inputtext = e.detail.value;
+    this.profitDetail();
   },
   getList: function getList() {
     var that = this;
@@ -105,6 +118,56 @@ Page({
       };
     }
   },
+  profitDetail: function profitDetail() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().profitDetail,
+      data: {
+        uid: app.gs('userInfoAll').id,
+        where: that.data.tabIndex * 1 + 1,
+        out_trade_no: that.data.inputtext || '',
+        time_start: needtime ? new Date(that.data.star_date).getTime() / 1000 : '',
+        time_end: needtime ? new Date(that.data.end_date).getTime() / 1000 : '',
+        page: ++that.data.page
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          var _iteratorNormalCompletion2 = true;
+          var _didIteratorError2 = false;
+          var _iteratorError2 = undefined;
+
+          try {
+            for (var _iterator2 = res.data.data.lists[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+              var v = _step2.value;
+
+              v['create_time'] = app.momentFormat(v.create_time * 1000, 'YYYY-MM-DD HH:mm:ss');
+            }
+          } catch (err) {
+            _didIteratorError2 = true;
+            _iteratorError2 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                _iterator2.return();
+              }
+            } finally {
+              if (_didIteratorError2) {
+                throw _iteratorError2;
+              }
+            }
+          }
+
+          that.setData({
+            list: that.data.list.concat(res.data.data.lists),
+            more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -113,7 +176,7 @@ Page({
     this.setData({
       type: options.type,
       tabIndex: options.index
-    }, this.getList);
+    }, this.profitDetail);
     app.setBar(options.type === 'withdraw' ? '提现记录' : '收益明细');
     // TODO: onLoad
   },
@@ -150,7 +213,7 @@ Page({
     // TODO: onUnload
   },
   onReachBottom: function onReachBottom() {
-    if (this.data.more > 0) this.getList();else app.setToast(this, { content: '没有更多内容啦' });
+    if (this.data.more > 0) this.profitDetail();else app.setToast(this, { content: '没有更多内容啦' });
   },
 
   /**
@@ -159,7 +222,7 @@ Page({
   onPullDownRefresh: function onPullDownRefresh() {
     this.data.page = 0;
     this.data.list = [];
-    this.getList();
+    this.profitDetail();
     // TODO: onPullDownRefresh
   }
 });

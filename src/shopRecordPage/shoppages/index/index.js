@@ -1,6 +1,6 @@
 // 获取全局应用程序实例对象
 const app = getApp()
-
+let needtime = false
 // 创建页面实例对象
 Page({
   /**
@@ -28,7 +28,12 @@ Page({
   timeChoose (e) {
     if (e.currentTarget.dataset.type === 'confirm') {
       if (new Date(this.data.end_date).getTime() < new Date(this.data.star_date)) return app.setToast(this, {content: '开始时间不能大于结束时间'})
+      needtime = true
+      this.data.page = 0
+      this.data.list = []
+      this.profitDetail()
     } else {
+      needtime = false
       return this.setData({
         star_date: `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`,
         end_date: `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`
@@ -42,9 +47,17 @@ Page({
     })
   },
   chooseTab (e) {
+    this.data.page = 0
+    this.data.list = []
     this.setData({
       tabIndex: e.currentTarget.dataset.index
-    })
+    }, this.profitDetail)
+  },
+  inputvalue (e) {
+    this.data.page = 0
+    this.data.list = []
+    this.data.inputtext = e.detail.value
+    this.profitDetail()
   },
   getList () {
     let that = this
@@ -86,6 +99,34 @@ Page({
       }
     }
   },
+  profitDetail () {
+    let that = this
+     app.wxrequest({
+       url: app.getUrl().profitDetail,
+       data: {
+         uid: app.gs('userInfoAll').id,
+         where: that.data.tabIndex * 1 + 1,
+         out_trade_no: that.data.inputtext || '',
+         time_start: needtime ? new Date(that.data.star_date).getTime() / 1000 : '',
+         time_end: needtime ? new Date(that.data.end_date).getTime() / 1000 : '',
+         page: ++that.data.page
+       },
+       success (res) {
+         wx.hideLoading()
+         if (res.data.status === 200) {
+           for (let v of res.data.data.lists) {
+             v['create_time'] = app.momentFormat(v.create_time * 1000, 'YYYY-MM-DD HH:mm:ss')
+           }
+           that.setData({
+             list: that.data.list.concat(res.data.data.lists),
+             more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
+           })
+         } else {
+           app.setToast(that, {content: res.data.desc})
+         }
+       }
+     })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -93,7 +134,7 @@ Page({
     this.setData({
       type: options.type,
       tabIndex: options.index
-    }, this.getList)
+    }, this.profitDetail)
     app.setBar(options.type === 'withdraw' ? '提现记录' : '收益明细')
     // TODO: onLoad
   },
@@ -126,7 +167,7 @@ Page({
     // TODO: onUnload
   },
   onReachBottom () {
-    if (this.data.more > 0) this.getList()
+    if (this.data.more > 0) this.profitDetail()
     else app.setToast(this, {content: '没有更多内容啦'})
   },
   /**
@@ -135,7 +176,7 @@ Page({
   onPullDownRefresh () {
     this.data.page = 0
     this.data.list = []
-    this.getList()
+    this.profitDetail()
     // TODO: onPullDownRefresh
   }
 })

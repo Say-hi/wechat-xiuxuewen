@@ -2,7 +2,7 @@
 <view class="p20">
   <view class="br8 p30 f28 c444 bgfff df">
     <view>我的现金余额(元)</view>
-    <view class="f34 fw7">88.88</view>
+    <view class="f34 fw7">{{ recharge }}</view>
   </view>
   <view class="br8 bgfff f28 c444 fw7 mt1 p30">
     <view>充值金额</view>
@@ -12,9 +12,9 @@
           {{ item }}元
         </view>
       </block>
-      <input bindfocus="focusinput" type="number" class="br8 item lh88 mt20 {{ focus ? 'focus' : '' }}" placeholder="其他金额"/>
+      <input cursor="10" bindfocus="focusinput" type="number" class="br8 item lh88 mt20 {{ focus ? 'focus' : '' }}" placeholder="其他金额"/>
     </view>
-    <view class="tac f28 cfff lh88 charge-btn mt30">立刻充值</view>
+    <view catchtap="charge" class="tac f28 cfff lh88 charge-btn mt30">立刻充值</view>
   </view>
 
 </view>
