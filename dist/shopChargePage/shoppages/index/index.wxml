@@ -1,7 +1,7 @@
 <form>
 <view class="p20">
   <view class="br8 p30 f28 c444 bgfff df">
-    <view>我的现金余额(元)</view>
+    <view>{{ agents == 1 ? '我的现金余额(元)' : '我的支票(元)' }}</view>
     <view class="f34 fw7">{{ recharge }}</view>
   </view>
   <view class="br8 bgfff f28 c444 fw7 mt1 p30">
@@ -9,10 +9,10 @@
     <view class="money-area">
       <block wx:for="{{ moneyArr }}" wx:key>
         <view catchtap="chooseCharge" data-type="{{ index }}" class="br8 lh88 item mt20 {{ chooseIndex == index ? 'active' : '' }}">
-          {{ item }}元
+          {{ item.pirce }}元
         </view>
       </block>
-      <input cursor="10" bindfocus="focusinput" type="number" class="br8 item lh88 mt20 {{ focus ? 'focus' : '' }}" placeholder="其他金额"/>
+      <input bindinput="inputvalue" cursor="10" bindfocus="focusinput" type="number" class="br8 item lh88 mt20 {{ focus ? 'focus' : '' }}" placeholder="其他金额"/>
     </view>
     <view catchtap="charge" class="tac f28 cfff lh88 charge-btn mt30">立刻充值</view>
   </view>

@@ -9,7 +9,7 @@
           <view class="f58 fw7">{{ info.recharge || '0.00' }}</view>
           <view>{{ agents ? '我的现金余额' : '我的支票' }}</view>
         </view>
-        <navigator hover-class="none" url="/shopChargePage/shoppages/index/index?money={{ info.recharge || '0.00' }}" class="f28 cfff user-btn fw7">
+        <navigator hover-class="none" url="/shopChargePage/shoppages/index/index?money={{ info.recharge || '0.00' }}&agents={{ agents ? 1 : 0 }}" class="f28 cfff user-btn fw7">
           {{ agents ? '立刻充值' : '充值升级' }}
         </navigator>
       </view>

@@ -101,31 +101,31 @@ Page({
   },
   profitDetail () {
     let that = this
-     app.wxrequest({
-       url: app.getUrl().profitDetail,
-       data: {
-         uid: app.gs('userInfoAll').id,
-         where: that.data.tabIndex * 1 + 1,
-         out_trade_no: that.data.inputtext || '',
-         time_start: needtime ? new Date(that.data.star_date).getTime() / 1000 : '',
-         time_end: needtime ? new Date(that.data.end_date).getTime() / 1000 : '',
-         page: ++that.data.page
-       },
-       success (res) {
-         wx.hideLoading()
-         if (res.data.status === 200) {
-           for (let v of res.data.data.lists) {
-             v['create_time'] = app.momentFormat(v.create_time * 1000, 'YYYY-MM-DD HH:mm:ss')
-           }
-           that.setData({
-             list: that.data.list.concat(res.data.data.lists),
-             more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
-           })
-         } else {
-           app.setToast(that, {content: res.data.desc})
-         }
-       }
-     })
+    app.wxrequest({
+      url: app.getUrl().profitDetail,
+      data: {
+        uid: app.gs('userInfoAll').id,
+        where: that.data.tabIndex * 1 + 1,
+        out_trade_no: that.data.inputtext || '',
+        time_start: that.data.tabIndex * 1 !== 1 ? needtime ? new Date(that.data.star_date).getTime() / 1000 : '' : '',
+        time_end: that.data.tabIndex * 1 !== 1 ? needtime ? new Date(that.data.end_date).getTime() / 1000 : '' : '',
+        page: ++that.data.page
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          for (let v of res.data.data.lists) {
+            v['create_time'] = app.momentFormat(v.create_time * 1000, 'YYYY-MM-DD HH:mm:ss')
+          }
+          that.setData({
+            list: that.data.list.concat(res.data.data.lists),
+            more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载

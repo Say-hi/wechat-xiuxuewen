@@ -113,7 +113,9 @@ var serviceUrl = {
   shopPhone: shopBaseDomain + '/wechat/phone', // 解密手机
   shopMoneyRuler: shopBaseDomain + '/shop/moneyruler', // 解密手机
   shopVideoList: shopBaseDomain + '/video/list', // 视频列表
-
+  rechargeList: shopBaseDomain + '/recharge/lists', // 视频列表
+  rechargePay: shopBaseDomain + '/recharge/pay', // 视频列表
+  // 公众号接口
   profitDetail: webBaseDomain + '/user/profit-detail'
 
 };

@@ -126,8 +126,8 @@ Page({
         uid: app.gs('userInfoAll').id,
         where: that.data.tabIndex * 1 + 1,
         out_trade_no: that.data.inputtext || '',
-        time_start: needtime ? new Date(that.data.star_date).getTime() / 1000 : '',
-        time_end: needtime ? new Date(that.data.end_date).getTime() / 1000 : '',
+        time_start: that.data.tabIndex * 1 !== 1 ? needtime ? new Date(that.data.star_date).getTime() / 1000 : '' : '',
+        time_end: that.data.tabIndex * 1 !== 1 ? needtime ? new Date(that.data.end_date).getTime() / 1000 : '' : '',
         page: ++that.data.page
       },
       success: function success(res) {
