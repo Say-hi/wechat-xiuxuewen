@@ -10,7 +10,7 @@ Page({
     user_bg: '',
     systemVersion: app.data.systemVersion,
     img: app.data.testImg,
-    erweima: 'https://c.jiangwenqiang.com/api/logo.jpg',
+    erweima: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/publicy/qrcode_for_gh_66d80c7d342c_258.jpg',
     today: true
   },
   showImage () {
@@ -21,7 +21,8 @@ Page({
   saveImage () {
     let that = this
     wx.showLoading({
-      title: '图片保存中'
+      title: '图片保存中',
+      mask: true
     })
     wx.downloadFile({
       url: that.data.erweima,
@@ -39,7 +40,7 @@ Page({
             wx.hideLoading()
             wx.showModal({
               title: '保存失败',
-              content: '请搜索公众号【绣学问】',
+              content: '请搜索公众号【焕颜季】',
               showCancel: false
             })
             that.showImage()
@@ -58,6 +59,7 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
+          app.su('userInfoAll', res.data.data)
           that.setData({
             info: res.data.data,
             agents: res.data.data.mall_is > 0

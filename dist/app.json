@@ -1,1 +1,334 @@
-{"pages":["pages/index/index","pages/user/user","pages/courseOffline/courseOffline"],"subPackages":[{"root":"coursePage","name":"course","pages":["pageszero/course/course","pageszero/courseDetail/courseDetail"]},{"root":"answerPage","name":"answer","pages":["pagesthree/answer/answer","pagesthree/answerDetail2/answerDetail2"]},{"root":"feedbackPage","name":"feedback","pages":["pagesfour/feedback/feedback"]},{"root":"orderPage","name":"order","pages":["pagesfive/order/order"]},{"root":"searchPage","name":"search","pages":["pagessix/searchHistory/searchHistory"]},{"root":"offlinePage","name":"offline","pages":["pagesnine/courseOffline/courseOffline","pagesnine/offlineApply/offlineApply"]},{"root":"collectPage","name":"collect","pages":["pagesten/collect/collect"]},{"root":"releasePage","name":"release","pages":["pageseleven/set/set","pageseleven/index/index","pageseleven/release/release"]},{"root":"newPage","name":"new","pages":["pagesthrteen/new/new"]},{"root":"storePage","name":"store","pages":["pagesstore/index/index","pagesstore/user/user","pagesstore/coursePage/course/course","pagesstore/coursePage/courseDetail/courseDetail","pagesstore/coursePage/courseDetail2/courseDetail","pagesstore/incomePage/income/income","pagesstore/messagePage/message/message","pagesstore/messagePage/messageDetail/messageDetail","pagesstore/releasePage/release/release","pagesstore/releasePage/releaseCourse/releaseCourse"]},{"root":"enteringPage","name":"entering","pages":["pagestwelve/entering/entering"]},{"root":"sharePage","name":"share","pages":["pagesshare/share/share"]},{"root":"shopPage","name":"shop","pages":["shoppages/index/index"]},{"root":"shopVideoPage","name":"video","pages":["shopvideopages/video/video"]},{"root":"shopListPage","name":"list","pages":["shoplistpages/list/list","shoplistpages/submit/submit","shoplistpages/detail/detail"]},{"root":"shopCarPage","name":"car","pages":["shoppages/car/car"]},{"root":"shopOrderPage","name":"shopOrder","pages":["shoppages/order/order"]},{"root":"shopClientPage","name":"client","pages":["shoppages/index/index"]},{"root":"shopCenterPage","name":"center","pages":["shoppages/index/index"]},{"root":"shopMoneyPage","name":"money","pages":["shoppages/index/index"]},{"root":"shopNotePage","name":"note","pages":["shoppages/index/index"]},{"root":"shopEditPage","name":"edit","pages":["shoppages/index/index"]},{"root":"shopGoodsPage","name":"goods","pages":["shoppages/index/index"]},{"root":"shopWithdrawPage","name":"withdraw","pages":["shoppages/index/index"]},{"root":"shopRecordPage","name":"record","pages":["shoppages/index/index"]},{"root":"sharePicturePage","name":"pictureShare","pages":["shoppages/index/carShare"]},{"root":"shopUserPage","name":"user","pages":["shoppages/user/user"]},{"root":"shopScorePage","name":"score","pages":["shoppages/index/index"]},{"root":"shopRulerPage","name":"ruler","pages":["shoppages/index/index"]},{"root":"shopChargePage","name":"charge","pages":["shoppages/index/index"]}],"preloadRule":{"pages/index/index":{"network":"all","packages":["answer","offline","course","new","entering","search","shop"]},"answerPage/pagesthree/answer/answer":{"network":"all","packages":["release"]},"pages/user/user":{"network":"all","packages":["order","collect","store"]},"storePage/pagesstore/index/index":{"network":"all","packages":["share"]},"shopPage/shoppages/index/index":{"network":"all","packages":["car","list","video","center","user","pictureShare"]},"shopUserPage/shoppages/user/user":{"network":"all","packages":["shopOrder","client","money","note","score","ruler","release"]},"shopCenterPage/shoppages/index/index":{"network":"all","packages":["edit","release"]},"shopMoneyPage/shoppages/index/index":{"network":"all","packages":["record","withdraw"]}},"window":{"navigationBarBackgroundColor":"#ffffff","navigationBarTextStyle":"black","navigationBarTitleText":"绣学问","backgroundColor":"#eeeeee","backgroundTextStyle":"light","enablePullDownRefresh":false},"usingComponents":{"my-add":"/components/my-add/add","my-login":"/components/my-login/my-login","my-express":"/components/my-express/my-express","my-navigator-tab":"/components/my-navigator-tab/my-navigator-tab","canvasdrawer":"/components/canvasdrawer/canvasdrawer","my-back":"/components/my-back/back","my-top-tab":"/components/my-top-tab/my-top-tab"},"permission":{"scope.userLocation":{"desc":"您的位置信息用于获取附近的门店"}},"networkTimeout":{"request":10000,"downloadFile":10000},"debug":false}
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/user",
+    "pages/courseOffline/courseOffline"
+  ],
+  "subPackages": [
+    {
+      "root": "coursePage",
+      "name": "course",
+      "pages": [
+        "pageszero/course/course",
+        "pageszero/courseDetail/courseDetail"
+      ]
+    },
+    {
+      "root": "answerPage",
+      "name": "answer",
+      "pages": [
+        "pagesthree/answer/answer",
+        "pagesthree/answerDetail2/answerDetail2"
+      ]
+    },
+    {
+      "root": "feedbackPage",
+      "name": "feedback",
+      "pages": [
+        "pagesfour/feedback/feedback"
+      ]
+    },
+    {
+      "root": "orderPage",
+      "name": "order",
+      "pages": [
+        "pagesfive/order/order"
+      ]
+    },
+    {
+      "root": "searchPage",
+      "name": "search",
+      "pages": [
+        "pagessix/searchHistory/searchHistory"
+      ]
+    },
+    {
+      "root": "offlinePage",
+      "name": "offline",
+      "pages": [
+        "pagesnine/courseOffline/courseOffline",
+        "pagesnine/offlineApply/offlineApply"
+      ]
+    },
+    {
+      "root": "collectPage",
+      "name": "collect",
+      "pages": [
+        "pagesten/collect/collect"
+      ]
+    },
+    {
+      "root": "releasePage",
+      "name": "release",
+      "pages": [
+        "pageseleven/set/set",
+        "pageseleven/index/index",
+        "pageseleven/release/release"
+      ]
+    },
+    {
+      "root": "newPage",
+      "name": "new",
+      "pages": [
+        "pagesthrteen/new/new"
+      ]
+    },
+    {
+      "root": "storePage",
+      "name": "store",
+      "pages": [
+        "pagesstore/index/index",
+        "pagesstore/user/user",
+        "pagesstore/coursePage/course/course",
+        "pagesstore/coursePage/courseDetail/courseDetail",
+        "pagesstore/coursePage/courseDetail2/courseDetail",
+        "pagesstore/incomePage/income/income",
+        "pagesstore/messagePage/message/message",
+        "pagesstore/messagePage/messageDetail/messageDetail",
+        "pagesstore/releasePage/release/release",
+        "pagesstore/releasePage/releaseCourse/releaseCourse"
+      ]
+    },
+    {
+      "root": "enteringPage",
+      "name": "entering",
+      "pages": [
+        "pagestwelve/entering/entering"
+      ]
+    },
+    {
+      "root": "sharePage",
+      "name": "share",
+      "pages": [
+        "pagesshare/share/share"
+      ]
+    },
+    {
+      "root": "shopPage",
+      "name": "shop",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopVideoPage",
+      "name": "video",
+      "pages": [
+        "shopvideopages/video/video"
+      ]
+    },
+    {
+      "root": "shopListPage",
+      "name": "list",
+      "pages": [
+        "shoplistpages/list/list",
+        "shoplistpages/submit/submit",
+        "shoplistpages/detail/detail"
+      ]
+    },
+    {
+      "root": "shopCarPage",
+      "name": "car",
+      "pages": [
+        "shoppages/car/car"
+      ]
+    },
+    {
+      "root": "shopOrderPage",
+      "name": "shopOrder",
+      "pages": [
+        "shoppages/order/order"
+      ]
+    },
+    {
+      "root": "shopClientPage",
+      "name": "client",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopCenterPage",
+      "name": "center",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopMoneyPage",
+      "name": "money",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopNotePage",
+      "name": "note",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopEditPage",
+      "name": "edit",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopGoodsPage",
+      "name": "goods",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopWithdrawPage",
+      "name": "withdraw",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopRecordPage",
+      "name": "record",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "sharePicturePage",
+      "name": "pictureShare",
+      "pages": [
+        "shoppages/index/carShare"
+      ]
+    },
+    {
+      "root": "shopUserPage",
+      "name": "user",
+      "pages": [
+        "shoppages/user/user"
+      ]
+    },
+    {
+      "root": "shopScorePage",
+      "name": "score",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopRulerPage",
+      "name": "ruler",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "shopChargePage",
+      "name": "charge",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": [
+        "answer",
+        "offline",
+        "course",
+        "new",
+        "entering",
+        "search",
+        "shop"
+      ]
+    },
+    "answerPage/pagesthree/answer/answer": {
+      "network": "all",
+      "packages": [
+        "release"
+      ]
+    },
+    "pages/user/user": {
+      "network": "all",
+      "packages": [
+        "order",
+        "collect",
+        "store"
+      ]
+    },
+    "storePage/pagesstore/index/index": {
+      "network": "all",
+      "packages": [
+        "share"
+      ]
+    },
+    "shopPage/shoppages/index/index": {
+      "network": "all",
+      "packages": [
+        "car",
+        "list",
+        "video",
+        "center",
+        "user",
+        "pictureShare"
+      ]
+    },
+    "shopUserPage/shoppages/user/user": {
+      "network": "all",
+      "packages": [
+        "shopOrder",
+        "client",
+        "money",
+        "note",
+        "score",
+        "ruler",
+        "release"
+      ]
+    },
+    "shopCenterPage/shoppages/index/index": {
+      "network": "all",
+      "packages": [
+        "edit",
+        "release"
+      ]
+    },
+    "shopMoneyPage/shoppages/index/index": {
+      "network": "all",
+      "packages": [
+        "record",
+        "withdraw"
+      ]
+    }
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "绣学问",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": false
+  },
+  "usingComponents": {
+    "my-add": "/components/my-add/add",
+    "my-login": "/components/my-login/my-login",
+    "my-express": "/components/my-express/my-express",
+    "my-navigator-tab": "/components/my-navigator-tab/my-navigator-tab",
+    "canvasdrawer": "/components/canvasdrawer/canvasdrawer",
+    "my-back": "/components/my-back/back",
+    "my-top-tab": "/components/my-top-tab/my-top-tab"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息用于获取附近的门店"
+    }
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false,
+  "sitemapLocation": "sitemap.json"
+}

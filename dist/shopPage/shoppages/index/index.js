@@ -232,6 +232,7 @@ Page({
   shopBinding: function shopBinding(out) {
     if (out) return;
     var that = this;
+    if (!app.gs('shopInfo').mid) return;
     app.wxrequest({
       url: app.getUrl().shopBinding,
       data: {

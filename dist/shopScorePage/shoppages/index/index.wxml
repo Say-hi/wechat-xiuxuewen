@@ -8,15 +8,15 @@
             wx:for="{{ tabArr }}">{{ item }}</view>
     </view>
     <view class="zw50"></view>
-    <view wx:for="123"
+    <view wx:for="{{ list }}"
           wx:key
           class="item p30 bgfff br8 mt20">
       <view class="f28 c444 flex fw7">
         <view class="need-left">购买商品</view>
-        <view>+89.88分</view>
+        <view>{{ item.score < 0 ? '-' : '+' }}{{ item.score }}分</view>
       </view>
-      <view class="c999 f28 mt10">顾盼生辉系列唇部色料8ml</view>
-      <view class="c999 f28">2019-02-26 09:25:10</view>
+      <view class="c999 f28 mt10">{{ item.des }}</view>
+      <view class="c999 f28">{{ item.create_time }}</view>
     </view>
     <view class="tac f28 c999 p20">--- 暂无相关记录 ---</view>
   </view>

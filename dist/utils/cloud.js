@@ -35,5 +35,19 @@ module.exports = {
         }
       });
     });
+  },
+  getMoney: function getMoney() {
+    return new Promise(function (resolve, reject) {
+      wx.cloud.callFunction({
+        name: 'getMoney',
+        data: {},
+        success: function success(res) {
+          resolve(res.result);
+        },
+        fail: function fail(err) {
+          reject(err);
+        }
+      });
+    });
   }
 };

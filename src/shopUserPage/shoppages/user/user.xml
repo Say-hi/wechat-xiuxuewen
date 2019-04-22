@@ -12,7 +12,7 @@
       <view class="c444 tal">
         <text class="f28 fw7 tal namecolor">{{ agents ? shopInfo.name : info.mall_rname ? info.mall_rname : info.nickname == '游客' ? '游客--点击头像进行登录' : info.nickname }}</text>
         <text class="f24 tal cfff">ID{{ agents ? shopInfo.id : info.id }}</text>
-        <view class="user-lv f18 cfff mt10">
+        <view wx:if="{{ shopInfo.rule.state != 1 }}" class="user-lv f18 cfff mt10">
           <view class="ul-left lv3">{{ agents ? '代理商' : 'LV.'+ (info.star ? info.star : 3)}}</view>
           <view wx:if="{{ !agents }}" class="tac ul-center c000 pr">
             <!--<view class="pa ulc-text1 c999">100/10000</view>-->
@@ -58,7 +58,7 @@
           <view class="tac">
             <text class="arrow c424242">{{ index <= 0 ? '待付款' : index == 1 ? '待发货' : '待收货' }}</text>
           </view>
-          <view class="mt20 f28 fw7 c424242">{{ index <= 0 ? info.stay_pay : index == 1 ? info.stay_deliver : info.stay_receive }}</view>
+          <view class="mt20 f28 fw7 c424242">{{ index <= 0 ? info.stay_pay || 0 : index == 1 ? info.stay_deliver || 0 : info.stay_receive || 0 }}</view>
         </navigator>
       </view>
     </view>
@@ -68,11 +68,11 @@
         <view catchtap="chooseDay" data-type="t" class="{{ today ? '' : 'active' }}">累计</view>
       </view>
       <view class="shop-order-num mt30">
-        <navigator hover-class="none" url="{{ index == 0 ? '/shopOrderPage/shoppages/order/order?type=0&for='+ (agents ? 'shop':'user') : index == 1 ? '/shopRecordPage/shoppages/index/index?type=a&index=0' : '' }}" wx:for="123"
+        <navigator hover-class="none" url="{{ index == 0 ? '/shopOrderPage/shoppages/order/order?type=0&for='+ (agents ? 'shop':'user') : index == 1  ? '/shopRecordPage/shoppages/index/index?type=a&index=0' : '' }}" wx:for="123"
               hidden="{{ index == 2 && !agents }}"
               class="son-item son-item2 tac f24 br8"
               wx:key="*12">
-          <view class="c19618F f28 fw7">{{ today ? index == 0 ? info.today_order_count : index == 1 ? info.today_profit : info.today_turnover : index == 0 ? info.order_count : index == 1 ? info.profit : info.turnover }}</view>
+          <view class="c19618F f28 fw7">{{ today ? index == 0 ? info.today_order_count : index == 1 ? info.today_profit : info.today_turnover : index == 0 ? info.order_count : index == 1 ? info.profit || 0 : info.turnover || 0 }}</view>
           <view class="tac">
             <text class="{{ index < 2 ? 'arrow' : '' }} c2B7EB1">{{ index == 0 ? '订单' : index == 1 ? '收益(元)' : '营业额' }}</text>
           </view>
@@ -92,10 +92,10 @@
   </view>
 </form>
 <view class="zw"></view>
-<view class="mask" wx:if="{{ showImage }}">
-  <view class="mask-in">
+<view class="mask" wx:if="{{ showImage }}" catchtap="showImage">
+  <view catchtap="saveImage" class="mask-in">
     <image style="width: 600rpx;" mode="widthFix" src="{{ erweima }}"></image>
-    <view catchtap="saveImage" class="tac f30 c444 lh88">保存</view>
+    <view class="tac f30 c444 lh88">保存</view>
   </view>
 </view>
 <!--<my-back></my-back>-->

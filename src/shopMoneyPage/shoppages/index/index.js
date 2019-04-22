@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    state: app.gs('shopInfoAll').rule.state,
     startText: [
       '零',
       '一',
@@ -17,7 +18,7 @@ Page({
       '六',
       '七'
     ],
-    img: app.data.testImg
+    img: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/publicy/qrcode_for_gh_66d80c7d342c_258.jpg'
   },
   showOutMoney () {
     this.setData({
@@ -99,7 +100,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad () {
-
+    let that = this
+    app.cloud().getMoney()
+      .then(res => {
+        that.setData({
+          privice: res.privice
+        })
+      })
     // this.shopMoneyRuler()
     // TODO: onLoad
   },

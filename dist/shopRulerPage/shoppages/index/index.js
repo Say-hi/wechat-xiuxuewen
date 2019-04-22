@@ -9,9 +9,21 @@ Page({
    * 页面的初始数据
    */
   data: {},
-  tabChoose: function tabChoose(e) {
-    this.setData({
-      tabIndex: e.currentTarget.dataset.type
+  getRuler: function getRuler() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().ruleexplain,
+      data: {},
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData({
+            ruler: res.data.data.ruler
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
     });
   },
   onShareAppMessage: function onShareAppMessage() {
@@ -34,7 +46,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function onLoad(options) {
-
+    this.getRuler();
     // TODO: onLoad
   },
 
@@ -70,16 +82,13 @@ Page({
     // TODO: onUnload
   },
   onReachBottom: function onReachBottom() {
-    if (this.data.more > 0) this.getList();else app.setToast(this, { content: '没有更多内容啦' });
+    i;
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function onPullDownRefresh() {
-    this.data.page = 0;
-    this.data.list = [];
-    this.getList();
     // TODO: onPullDownRefresh
   }
 });

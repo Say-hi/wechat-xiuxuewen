@@ -6,12 +6,22 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
-
-  },
-  tabChoose (e) {
-    this.setData({
-      tabIndex: e.currentTarget.dataset.type
+  data: {},
+  getRuler () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().ruleexplain,
+      data: {},
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            ruler: res.data.data.ruler
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
     })
   },
   onShareAppMessage () {
@@ -33,7 +43,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-
+    this.getRuler()
     // TODO: onLoad
   },
 
@@ -65,16 +75,12 @@ Page({
     // TODO: onUnload
   },
   onReachBottom () {
-    if (this.data.more > 0) this.getList()
-    else app.setToast(this, {content: '没有更多内容啦'})
+    i
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh () {
-    this.data.page = 0
-    this.data.list = []
-    this.getList()
     // TODO: onPullDownRefresh
   }
 })

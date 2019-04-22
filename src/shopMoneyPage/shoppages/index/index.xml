@@ -1,16 +1,16 @@
 <form>
 <view class="p20 lv-{{ agents ? 'agents' : userInfo.star ? userInfo.star : 3 }}">
-  <view class="pr user-img-area br18">
+  <view wx:if="{{ privice == 'need' }}" class="pr user-img-area br18">
     <image class="pa user-bg-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/user_lv/lv{{ agents ? 'agents' : userInfo.star ? userInfo.star : 3 }}.png"></image>
     <view class="pa user-info p30">
-      <view class="f32 fw7 user-lv">{{ agents ? '代理商' : startText[userInfo.star || 3] + '星用户' }}</view>
+      <view  class="f32 fw7 user-lv">{{ state != 1 ? agents ? '代理商' : startText[userInfo.star || 3] + '星用户' : '' }}</view>
       <view class="user-money">
         <view class="f28 cfff">
           <view class="f58 fw7">{{ info.recharge || '0.00' }}</view>
           <view>{{ agents ? '我的现金余额' : '我的支票' }}</view>
         </view>
         <navigator hover-class="none" url="/shopChargePage/shoppages/index/index?money={{ info.recharge || '0.00' }}&agents={{ agents ? 1 : 0 }}" class="f28 cfff user-btn fw7">
-          {{ agents ? '立刻充值' : '充值升级' }}
+          {{ state != 1 ? agents ? '立刻充值' : '充值升级' : '预充值' }}
         </navigator>
       </view>
     </view>

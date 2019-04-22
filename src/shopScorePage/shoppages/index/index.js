@@ -9,12 +9,41 @@ Page({
   data: {
     tabArr: ['积分记录', '支票记录'],
     tabIndex: 0,
+    list: [],
     page: 0
   },
+  getscore () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl()[that.data.tabIndex < 1 ? 'userscore': 'userrecharge'],
+      data: {
+        uid: app.gs('userInfoAll').mall_is > 0 ? app.gs('shopInfoAll').id : app.gs('userInfoAll').id,
+        mid: app.gs('shopInfoAll').id,
+        page: ++that.data.page
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          for (let v of res.data.data.lists) {
+            v.create_time = app.momentFormat(v.create_time * 1000, 'YYYY-MM-DD HH:mm:ss')
+          }
+          that.setData({
+            list: that.data.list.concat(res.data.data.lists),
+            total: res.data.data.total,
+            more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   tabChoose (e) {
+    this.data.page = 0
+    this.data.list = []
     this.setData({
       tabIndex: e.currentTarget.dataset.type
-    })
+    }, this.getscore)
   },
   onShareAppMessage () {
     if (!app.gs('shopInfo').mid) {
@@ -38,7 +67,7 @@ Page({
     // TODO: onLoad
     this.setData({
       tabIndex: options.t
-    })
+    }, this.getscore)
   },
 
   /**

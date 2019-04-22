@@ -33,5 +33,19 @@ module.exports = {
         }
       })
     })
+  },
+  getMoney () {
+    return new Promise((resolve, reject) => {
+      wx.cloud.callFunction({
+        name: 'getMoney',
+        data: {},
+        success (res) {
+          resolve(res.result)
+        },
+        fail (err) {
+          reject(err)
+        }
+      })
+    })
   }
 }
