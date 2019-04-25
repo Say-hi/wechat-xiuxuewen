@@ -1,5 +1,7 @@
 'use strict';
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 // 获取全局应用程序实例对象
 var app = getApp();
 
@@ -9,12 +11,41 @@ Page({
    * 页面的初始数据
    */
   data: {
+    star: [3, 5, 6, 7],
     page: 0,
-    starArr: ['三星用户', '五星用户', '六星用户', '七星用户'],
+    starArr: [
+    // '一星用户',
+    // '二星用户',
+    '三星用户',
+    // '四星用户',
+    '五星用户', '六星用户', '七星用户'],
+    starArr2: ["星级设定", '一星用户', '二星用户', '三星用户', '四星用户', '五星用户', '六星用户', '七星用户'],
     list: []
   },
   call: function call(e) {
     app.call(e.currentTarget.dataset.phone.toString());
+  },
+  star: function star(index, _star) {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().shopstar,
+      data: {
+        uid: that.data.list[index].id,
+        mid: app.gs('shopInfoAll').id,
+        star: _star
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData(_defineProperty({}, 'list[' + index + '].star', _star));
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
+  setStar: function setStar(e) {
+    this.star(e.currentTarget.dataset.index, this.data.star[e.detail.value]);
   },
   search: function search(e) {
     this.data.page = 0;
@@ -43,8 +74,8 @@ Page({
     app.wxrequest({
       url: app.getUrl().shopTeam,
       data: {
-        // mid: app.gs('shopInfoAll').id,
-        mid: 10000,
+        mid: app.gs('shopInfoAll').id,
+        // mid: 10000,
         page: ++that.data.page,
         uid: that.data.type === 'user' ? app.gs('userInfoAll').id : 0,
         name: that.data.searchText || ''

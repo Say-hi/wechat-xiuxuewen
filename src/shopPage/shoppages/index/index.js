@@ -228,7 +228,7 @@ Page({
   shopBinding (out) {
     if (out) return
     let that = this
-    if(!app.gs('shopInfo').mid) return
+    if (!app.gs('shopInfo').mid) return
     app.wxrequest({
       url: app.getUrl().shopBinding,
       data: {

@@ -74,9 +74,7 @@ Page({
   onUnload () {
     // TODO: onUnload
   },
-  onReachBottom () {
-    i
-  },
+  onReachBottom () {},
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */

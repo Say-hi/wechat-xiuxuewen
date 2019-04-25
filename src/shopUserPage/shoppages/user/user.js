@@ -54,6 +54,7 @@ Page({
     app.wxrequest({
       url: app.getUrl().shopUserInfo,
       data: {
+        // uid: 10000
         uid: app.gs('userInfoAll').id
       },
       success (res) {

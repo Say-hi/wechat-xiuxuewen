@@ -7,8 +7,8 @@
   <view class="f28 mt20 ">我的收益</view>
 
   <view class="tar">
-    <!--<button form-type="submit" catchtap="moneyOperation" data-type="change" class="get-btn f26 c9b735e">提现</button>-->
-    <button form-type="submit" catchtap="showOutMoney" data-type="change" class="get-btn f26 c9b735e">提现</button>
+    <button form-type="submit" catchtap="moneyOperation" data-type="change" class="get-btn f26 c9b735e">提现</button>
+    <!--<button form-type="submit" catchtap="showOutMoney" data-type="change" class="get-btn f26 c9b735e">提现</button>-->
   </view>
 </view>
 <view class="p20">

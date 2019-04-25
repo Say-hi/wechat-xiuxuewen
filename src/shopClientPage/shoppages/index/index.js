@@ -7,12 +7,55 @@ Page({
    * 页面的初始数据
    */
   data: {
+    star: [3, 5, 6, 7],
     page: 0,
-    starArr: ['三星用户', '五星用户', '六星用户', '七星用户'],
+    starArr: [
+      // '一星用户',
+      // '二星用户',
+      '三星用户',
+      // '四星用户',
+      '五星用户',
+      '六星用户',
+      '七星用户'
+    ],
+    starArr2: [
+      "星级设定",
+      '一星用户',
+      '二星用户',
+      '三星用户',
+      '四星用户',
+      '五星用户',
+      '六星用户',
+      '七星用户'
+    ],
     list: []
   },
   call (e) {
     app.call(e.currentTarget.dataset.phone.toString())
+  },
+  star (index, star) {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().shopstar,
+      data: {
+        uid: that.data.list[index].id,
+        mid: app.gs('shopInfoAll').id,
+        star
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            [`list[${index}].star`]: star
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+  setStar (e) {
+    this.star(e.currentTarget.dataset.index, this.data.star[e.detail.value])
   },
   search (e) {
     this.data.page = 0
@@ -41,8 +84,8 @@ Page({
     app.wxrequest({
       url: app.getUrl().shopTeam,
       data: {
-        // mid: app.gs('shopInfoAll').id,
-        mid: 10000,
+        mid: app.gs('shopInfoAll').id,
+        // mid: 10000,
         page: ++that.data.page,
         uid: that.data.type === 'user' ? app.gs('userInfoAll').id : 0,
         name: that.data.searchText || ''

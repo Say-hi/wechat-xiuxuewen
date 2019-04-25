@@ -117,6 +117,7 @@ var serviceUrl = {
   rechargePay: shopBaseDomain + '/recharge/pay', // 视频列表
   userscore: shopBaseDomain + '/user/score', // 视频列表
   userrecharge: shopBaseDomain + '/user/recharge', // 视频列表
+  shopstar: shopBaseDomain + '/shop/star', // 视频列表
   ruleexplain: shopBaseDomain + '/rule/explain', // 视频列表
   // 公众号接口
   profitDetail: webBaseDomain + '/user/profit-detail'

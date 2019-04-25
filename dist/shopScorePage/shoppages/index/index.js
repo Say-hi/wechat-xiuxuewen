@@ -21,6 +21,8 @@ Page({
       data: {
         uid: app.gs('userInfoAll').mall_is > 0 ? app.gs('shopInfoAll').id : app.gs('userInfoAll').id,
         mid: app.gs('shopInfoAll').id,
+        // uid: 10014,
+        // mid: 10000,
         page: ++that.data.page
       },
       success: function success(res) {
@@ -90,7 +92,11 @@ Page({
    */
   onLoad: function onLoad(options) {
     // TODO: onLoad
+    if (options.text) {
+      app.setBar(options.text);
+    }
     this.setData({
+      options: options,
       tabIndex: options.t
     }, this.getscore);
   },
