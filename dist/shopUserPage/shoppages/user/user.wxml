@@ -16,8 +16,8 @@
           <view class="ul-left lv3">{{ agents ? '代理商' : 'LV.'+ (info.star ? info.star : 3)}}</view>
           <view wx:if="{{ !agents }}" class="tac ul-center c000 pr">
             <!--<view class="pa ulc-text1 c999">100/10000</view>-->
-            <view class="ulc-prcent pa" style="width: {{ info.score ? info.score / info.next_star_score * 100 : 100 }}%; "></view>
-            <view class="pa ulc-text ">{{ info.score || 0 }}/{{ info.next_star_score || 0 }}</view>
+            <view class="ulc-prcent pa" style="width: {{ info.score_total ? info.score_total / info.next_star_score * 100 : 100 }}%; "></view>
+            <view class="pa ulc-text ">{{ info.score_total || 0 }}/{{ info.next_star_score || 0 }}</view>
           </view>
           <navigator hover-class="none" url="/shopRulerPage/shoppages/index/index" wx:if="{{ !agents }}">
             如何升级？
@@ -82,11 +82,13 @@
     <view class="user-bottom f28 fw7 mt20 c19618F">
       <navigator url="/shopMoneyPage/shoppages/index/index" class="ub-item arrow br8 bgfff tal ">资金管理</navigator>
       <navigator url="/shopOrderPage/shoppages/order/order?type=0&for=user" class="ub-item arrow br8 bgfff tal ">销售订单</navigator>
+      <navigator url="/shopOrderPage/shoppages/order/order?type=0&for=user&ping=ping" class="ub-item arrow br8 bgfff tal ">拼团订单</navigator>
       <view class="zw20"></view>
-      <navigator url="/shopClientPage/shoppages/index/index?type=user" class="ub-item arrow br8 bgfff tal ">我的代理</navigator>
+      <navigator wx:if="{{ !agents }}" url="/shopClientPage/shoppages/index/index?type=user" class="ub-item arrow br8 bgfff tal ">我的代理</navigator>
       <navigator wx:if="{{ agents }}" url="/shopClientPage/shoppages/index/index?type=agents" class="ub-item arrow br8 bgfff tal">店铺代理</navigator>
-      <view wx:if="{{ agents }}" class="zw20"></view>
+      <!-- <view wx:if="{{ agents }}" class="zw20"></view> -->
       <navigator wx:if="{{ agents }}" url="/releasePage/pageseleven/set/set?type=shop" class="ub-item arrow br8 bgfff tal ">店铺设置</navigator>
+      <view wx:if="{{ agents }}" class="zw20"></view> 
       <navigator url="/shopNotePage/shoppages/index/index" class="ub-item arrow br8 bgfff tal ">消息通知</navigator>
     </view>
   </view>

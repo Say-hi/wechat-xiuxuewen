@@ -1,9 +1,14 @@
 <form report-submit="{{true}}" bindsubmit="upFormId">
-  <view wx:if="{{ tabIndex >= 1 }}" class="f28 c666 tab bgfff bt1">
+  <view wx:if="{{ tabIndex >= 1 && !ping}}" class="f28 c666 tab bgfff bt1">
     <view catchtap="tabChoose" data-index="1" class="tac flex1 {{ tabIndex == 1 ? 'active' : '' }}">全部</view>
     <view catchtap="tabChoose" data-index="2" class="tac flex1 {{ tabIndex == 2 ? 'active' : '' }}">售完下架</view>
   </view>
-  <view class="search bgcfff">
+  <view wx:if="{{ tabIndex >= 1 && ping }}" class="f28 c666 tab bgfff bt1">
+    <view catchtap="tabChoose" data-index="1" class="tac flex1 {{ tabIndex == 1 ? 'active' : '' }}">全部</view>
+    <view catchtap="tabChoose" data-index="2" class="tac flex1 {{ tabIndex == 2 ? 'active' : '' }}">正在进行</view>
+    <view catchtap="tabChoose" data-index="3" class="tac flex1 {{ tabIndex == 3 ? 'active' : '' }}">已经结束</view>
+  </view>
+  <view wx:if="{{ !ping }}" class="search bgcfff">
     <view class="s-wrap">
       <view class="iconfont f32 icon-sousuo c999"></view>
       <input confirm-type="search"
@@ -16,7 +21,7 @@
     </view>
     <view catchtap="search" class="f28 fw7 c444 cancel">搜索</view>
   </view>
-  <view class="f26 p30 c666 bt1 bgfff">商品默认按序号降序排序，序号相同按发布时间排序</view>
+  <view wx:if="{{ !ping }}" class="f26 p30 c666 bt1 bgfff">商品默认按序号降序排序，序号相同按发布时间排序</view>
   <view class="p20">
     <block wx:for="{{ list }}"
            wx:key="*07">
@@ -46,7 +51,7 @@
           <button catchtap="shopO" data-index="{{ index }}" data-type="del" open-type="submit">删除</button>
           <button catchtap="shopO" data-index="{{ index }}" data-type="down" wx:if="{{ tabIndex == 0 }}">下架</button>
           <button catchtap="goEdit" data-index="{{ index }}">编辑</button>
-          <button catchtap="shopO" data-index="{{ index }}" data-type="up" wx:if="{{ tabIndex == 1 }}">上架</button>
+          <button catchtap="shopO" data-index="{{ index }}" data-type="up" wx:if="{{ tabIndex == 1 && !ping }}">上架</button>
         </view>
       </navigator>
     </block>
@@ -62,7 +67,7 @@
     <view wx:if="{{ !del }}" class="s-r">
       <button form-type="submit" catchtap="shopO" data-type="del" data-index="-1" class="f28 cfff del">删除</button>
       <button form-type="submit" wx:if="{{ tabIndex == 0 }}" catchtap="shopO" data-type="down" data-index="-1" class="f28 cfff">下架</button>
-      <button form-type="submit" wx:if="{{ tabIndex == 1 }}" catchtap="shopO" data-type="up" data-index="-1" class="f28 cfff">上架</button>
+      <button form-type="submit" wx:if="{{ tabIndex == 1 && !ping }}" catchtap="shopO" data-type="up" data-index="-1" class="f28 cfff">上架</button>
     </view>
   </view>
 </form>

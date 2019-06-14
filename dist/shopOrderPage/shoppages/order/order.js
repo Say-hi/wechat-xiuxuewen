@@ -253,6 +253,11 @@ Page({
       };
     }
   },
+  cancelping: function cancelping() {
+    this.setData({
+      cancelPing: !this.data.cancelPing
+    });
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -260,6 +265,7 @@ Page({
   onLoad: function onLoad(options) {
     this.setData({
       options: options,
+      ping: options.ping,
       tabIndex: options.type
     }, this.getList);
     // TODO: onLoad

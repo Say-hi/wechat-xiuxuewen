@@ -20,7 +20,7 @@ Page({
   },
   goEdit (e) {
     wx.navigateTo({
-      url: this.data.list[e.currentTarget.dataset.index].parent_id * 1 === 0 ? `/releasePage/pageseleven/index/index?id=${this.data.list[e.currentTarget.dataset.index].id}` : `/shopEditPage/shoppages/index/index?id=${this.data.list[e.currentTarget.dataset.index].id}&type=edit`
+      url: !this.data.ping ? this.data.list[e.currentTarget.dataset.index].parent_id * 1 === 0 ? `/releasePage/pageseleven/index/index?id=${this.data.list[e.currentTarget.dataset.index].id}` : `/shopEditPage/shoppages/index/index?id=${this.data.list[e.currentTarget.dataset.index].id}&type=edit` : `/releasePage/pageseleven/index/index?ping=ping&id=${this.data.list[e.currentTarget.dataset.index].id}`
     })
   },
   tabChoose (e) {
@@ -157,9 +157,9 @@ Page({
     })
   },
   setBar () {
-    if (this.data.tabIndex === 0) app.setBar('出售中的商品')
-    else if (this.data.tabIndex === 1) app.setBar('仓库中的商品')
-    else if (this.data.tabIndex === 2) app.setBar('库存紧张的商品')
+    if (this.data.tabIndex === 0) app.setBar(!this.data.ping ? '出售中的商品' : '全部')
+    else if (this.data.tabIndex === 1) app.setBar(!this.data.ping ? '仓库中的商品' : '正在进行')
+    else if (this.data.tabIndex === 2) app.setBar(!this.data.ping ? '库存紧张的商品' : '已经结束')
     this.getGoods()
   },
   /**
@@ -167,7 +167,8 @@ Page({
    */
   onLoad (options) {
     this.setData({
-      tabIndex: options.type * 1
+      tabIndex: options.type * 1,
+      ping: options.ping
     }, this.setBar)
 
     // TODO: onLoad

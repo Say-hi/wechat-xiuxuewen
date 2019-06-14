@@ -7,8 +7,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    discount_name: app.gs('shopInfoAll').rule.state_name,
-    discount_value: app.gs('shopInfoAll').rule.discount
+    user_zhipiao: false,
+    discount_name: app.gs('shopInfoAll').rule.state_name || '无折扣',
+    discount_value: app.gs('shopInfoAll').rule.discount || 1
+  },
+  choosezhipiao () {
+    let that = this
+    this.setData({
+      user_zhipiao: !this.data.user_zhipiao
+    }, function () {
+      if (that.data.user_zhipiao) {
+        that.setData({
+          finish_pay: that.data.finish_pay - that.data.recharge <= 0 ? '0.00' : (that.data.finish_pay - that.data.recharge).toFixed(2)
+        })
+      } else {
+        that.setData({
+          finish_pay: (that.data.AllPay * 1 + that.data.maxFreight * 1).toFixed(2)
+        })
+      }
+    })
   },
   // 选择地址
   chooseAddress () {
@@ -98,7 +115,7 @@ Page({
         {
           name: that.data.addressInfo.userName,
           phone: that.data.addressInfo.telNumber,
-          recharge: that.data.recharge || 0,
+          recharge: that.data.user_zhipiao ? that.data.recharge < (that.data.AllPay * 1 + that.data.maxFreight * 1) ? that.data.recharge : (that.data.AllPay * 1 + that.data.maxFreight * 1).toFixed(2) : 0,
           address: `${that.data.addressInfo.provinceName}${that.data.addressInfo.cityName}${that.data.addressInfo.countyName}${that.data.addressInfo.detailInfo}`,
           mid: app.gs('shopInfoAll').id,
           uid: app.gs('userInfoAll').id,
@@ -130,18 +147,25 @@ Page({
               complete () { wx.hideLoading() }
             })
           }
-          app.wxpay2(res.data.data.msg)
-            .then(() => {
-              that.setData({
-                need_pay: true
-              })
-              wx.removeStorageSync('buyInfo')
+          if (res.data.data.pay_way * 1 === 2) {
+            that.setData({
+              need_pay: true
             })
-            .catch(() => {
-              wx.showToast({
-                title: '支付失败'
+            wx.removeStorageSync('buyInfo')
+          } else {
+            app.wxpay2(res.data.data.msg)
+              .then(() => {
+                that.setData({
+                  need_pay: true
+                })
+                wx.removeStorageSync('buyInfo')
               })
-            })
+              .catch(() => {
+                wx.showToast({
+                  title: '支付失败'
+                })
+              })
+          }
         } else {
           app.setToast(that, {content: res.data.desc})
         }
@@ -155,36 +179,91 @@ Page({
     if (!this.data.addressInfo) return app.setToast(this, {content: '请选择您的收货地址'})
     this.shoPayDirect()
   },
+
+  shopInfo () {
+    return new Promise((resolve, reject) => {
+      let that = this
+      app.wxrequest({
+        url: app.getUrl().shopInfo,
+        data: {
+          mid: app.gs('shopInfo').mid || 10000
+        },
+        success (res) {
+          wx.hideLoading()
+          if (res.data.status === 200) {
+            that.getUser()
+            app.su('shopInfoAll', res.data.data)
+            that.setData({
+              discount_value: res.data.data.rule.discount || 1
+            })
+            resolve()
+          } else {
+            app.setToast(that, {content: res.data.desc})
+          }
+        }
+      })
+    })
+  },
+  getUser () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().shopUserInfo,
+      data: {
+        // uid: 10000
+        uid: app.gs('userInfoAll').id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          app.su('userInfoAll', res.data.data)
+          that.setData({
+            recharge: res.data.data.recharge || 0,
+            agents: res.data.data.mall_is > 0
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    let allCount = 0
-    let Allmoney = 0
-    let maxFreight = 0
-    this.data.type = options.type
-    if (options.type === 'car') {
-      for (let v of app.gs('buyInfo')) {
-        allCount += v.count * 1
-        Allmoney += v.count * v.price
-        maxFreight = maxFreight > v.freight ? maxFreight : v.freight
-      }
-    } else {
-      for (let v of app.gs('buyInfo')) {
-        allCount += v.count
-        Allmoney += v.count * v.sku.price
-        maxFreight = maxFreight > v.freight ? maxFreight : v.freight
-      }
-    }
-    this.setData({
-      info: app.gs('buyInfo'),
-      allCount,
-      // Allmoney: (Allmoney * (this.data.type === 'now' ? this.data.discount_value : 1)).toFixed(2),
-      Allmoney: Allmoney.toFixed(2),
-      AllPay: (Allmoney * this.data.discount_value).toFixed(2),
-      maxFreight: maxFreight > 0 ? maxFreight : app.gs('shopInfoAll').rule.low_total_fee > Allmoney ? app.gs('shopInfoAll').rule.logistic_fee : maxFreight,
-      addressInfo: app.gs('addressInfo') || null
-    })
+    let that = this
+    this.shopInfo()
+      .then(() => {
+        let allCount = 0
+        let Allmoney = 0
+        let maxFreight = 0
+        that.data.type = options.type
+        if (options.type === 'car') {
+          for (let v of app.gs('buyInfo')) {
+            allCount += v.count * 1
+            Allmoney += v.count * v.price
+            maxFreight = maxFreight > v.freight ? maxFreight : v.freight
+          }
+        } else {
+          for (let v of app.gs('buyInfo')) {
+            allCount += v.count
+            Allmoney += v.count * v.sku.price
+            maxFreight = maxFreight > v.freight ? maxFreight : v.freight
+          }
+        }
+        that.setData({
+          info: app.gs('buyInfo'),
+          allCount,
+          // Allmoney: (Allmoney * (this.data.type === 'now' ? this.data.discount_value : 1)).toFixed(2),
+          Allmoney: Allmoney.toFixed(2),
+          AllPay: (Allmoney * that.data.discount_value).toFixed(2),
+          maxFreight: maxFreight > 0 ? maxFreight : app.gs('shopInfoAll').rule.low_total_fee > Allmoney ? app.gs('shopInfoAll').rule.logistic_fee : maxFreight,
+          addressInfo: app.gs('addressInfo') || null
+        }, function () {
+          that.setData({
+            finish_pay: (that.data.AllPay * 1 + that.data.maxFreight * 1).toFixed(2)
+          })
+        })
+      })
     // TODO: onLoad
   },
 

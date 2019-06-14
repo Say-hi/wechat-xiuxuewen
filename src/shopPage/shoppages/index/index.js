@@ -24,7 +24,7 @@ Page({
         wx.stopPullDownRefresh()
         if (res.data.status === 200) {
           that.setData({
-            list: res.data.data.lists
+            list: res.data.data.lists || []
           }, that.getCategory)
         } else {
           app.setToast(that, {content: res.data.desc})
@@ -180,6 +180,7 @@ Page({
       url: app.getUrl().shopUserInfo,
       data: {
         uid: app.gs('userInfoAll').id
+        // uid: 10000
       },
       success (res) {
         wx.hideLoading()

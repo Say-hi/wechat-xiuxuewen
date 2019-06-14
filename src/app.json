@@ -97,6 +97,7 @@
       "pages": [
         "pageseleven/set/set", // 商城用户设置
         "pageseleven/index/index", // 商城发布产品
+        "pageseleven/back/back", // 拼团退款
         "pageseleven/release/release" // 我的收藏&我的预约
       ]
     },
@@ -264,6 +265,21 @@
       "pages": [
         "shoppages/index/index" // 用户充值
       ]
+    },
+    {
+      "root": "shopMenuPage", // 拖拽菜单
+      "name": "menu",
+      "pages": [
+        "shoppages/index/index" // 拖拽菜单
+      ]
+    },
+    {
+      "root": "pingPage", // 拼团列表
+      "name": "pingindex",
+      "pages": [
+        "pingpages/index/index", // 拼团列表
+        "pingpages/money/index" // 钱款去向
+      ]
     }
   ],
   "preloadRule": {
@@ -370,6 +386,7 @@
     "my-navigator-tab": "/components/my-navigator-tab/my-navigator-tab",
     "canvasdrawer": "/components/canvasdrawer/canvasdrawer",
     "my-back": "/components/my-back/back",
+    "my-ng": "/components/my-ng/ng",
     "my-top-tab": "/components/my-top-tab/my-top-tab"
   },
 //  "tabBar": {

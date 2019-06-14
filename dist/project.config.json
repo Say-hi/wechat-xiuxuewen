@@ -11,10 +11,17 @@
 		"newFeature": true,
 		"autoAudits": false,
 		"uglifyFileName": false,
-		"checkInvalidKey": true
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.3",
+	"libVersion": "2.7.0",
 	"appid": "wxb1f5224c98168afc",
 	"projectname": "%E7%BB%A3%E5%AD%A6%E9%97%AE",
 	"cloudfunctionTemplateRoot": "",
@@ -22,8 +29,6 @@
 		"hidedInDevtools": []
 	},
 	"scripts": {},
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -41,7 +46,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 65,
 			"list": [
 				{
 					"id": 0,
@@ -234,7 +239,7 @@
 					"id": 31,
 					"name": "商城",
 					"pathName": "shopPage/shoppages/index/index",
-					"query": "mid=10000&user=10026",
+					"query": "id=427&type=ping",
 					"scene": null
 				},
 				{
@@ -245,10 +250,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 33,
 					"name": "商品详情",
 					"pathName": "shopListPage/shoplistpages/detail/detail",
-					"query": "",
+					"query": "id=427&ping=ping",
 					"scene": null
 				},
 				{
@@ -403,6 +408,75 @@
 					"name": "收益明细",
 					"pathName": "shopRecordPage/shoppages/index/index",
 					"query": "type=a&index=1",
+					"scene": null
+				},
+				{
+					"id": 56,
+					"name": "拖拽菜单",
+					"pathName": "shopMenuPage/shoppages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "拖拽菜单2",
+					"pathName": "shopMenuPage/shoppages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "问答",
+					"pathName": "shopListPage/shoplistpages/detail/detail",
+					"query": "id=198",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "123123123123",
+					"pathName": "shopListPage/shoplistpages/submit/submit",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "拼团列表页",
+					"pathName": "pingPage/pingpages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布拼单",
+					"pathName": "releasePage/pageseleven/index/index",
+					"query": "ping=ping",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "拼团订单",
+					"pathName": "shopOrderPage/shoppages/order/order",
+					"query": "type=0&for=user&ping=ping",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "拼团退款",
+					"pathName": "releasePage/pageseleven/back/back",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "钱款去向",
+					"pathName": "pingPage/pingpages/money/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商品中心",
+					"pathName": "shopCenterPage/shoppages/index/index",
 					"scene": null
 				}
 			]

@@ -63,6 +63,7 @@
       "pages": [
         "pageseleven/set/set",
         "pageseleven/index/index",
+        "pageseleven/back/back",
         "pageseleven/release/release"
       ]
     },
@@ -230,6 +231,21 @@
       "pages": [
         "shoppages/index/index"
       ]
+    },
+    {
+      "root": "shopMenuPage",
+      "name": "menu",
+      "pages": [
+        "shoppages/index/index"
+      ]
+    },
+    {
+      "root": "pingPage",
+      "name": "pingindex",
+      "pages": [
+        "pingpages/index/index",
+        "pingpages/money/index"
+      ]
     }
   ],
   "preloadRule": {
@@ -318,6 +334,7 @@
     "my-navigator-tab": "/components/my-navigator-tab/my-navigator-tab",
     "canvasdrawer": "/components/canvasdrawer/canvasdrawer",
     "my-back": "/components/my-back/back",
+    "my-ng": "/components/my-ng/ng",
     "my-top-tab": "/components/my-top-tab/my-top-tab"
   },
   "permission": {

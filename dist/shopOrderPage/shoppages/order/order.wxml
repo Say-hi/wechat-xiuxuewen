@@ -4,7 +4,7 @@
           catchtap="tabChoose"
           data-index="{{ index }}"
           class="f26 c666 flex1 tac tr5 {{ tabIndex == index ? 'active fw7' : '' }}"
-          wx:key="*94">{{ item.t }}</view>
+          wx:key="*94">{{ index == 1 && ping ? '待分享' : item.t }}</view>
   </view>
   <view class="p20 mt70">
     <block wx:for="{{ list }}"
@@ -41,7 +41,7 @@
             <!--<text>x{{ iitem.count }}</text>-->
           <!--</view>-->
         <!--</view>-->
-        <view class="p10 bd1 total f26">
+        <view wx:if="{{ !ping }}" class="p10 bd1 total f26">
           <view>
             <text class="c393636 mr20">共计{{ item.all_count }}件商品</text>
             <text class="c393636 mr20">物流费:{{ item.logistic_fee }}</text>
@@ -49,12 +49,18 @@
           </view>
           <!--<text class="cff5975 fw7">赚¥3.00</text>-->
         </view>
-        <view class="tar f26 fw7 cff5975 p10">
-          实际需付款{{ item.total_fee }}元
+        <view class="for-ping">
+          <view class="ping-user">
+            <image wx:for="123" wx:key="*this" style="transform: translateX({{ index * -10 }}rpx);" mode="aspectFill" src="https://c.jiangwenqiang.com/api/logo.jpg"></image>
+          </view>
+          <view class="tar f26 fw7 cff5975 p10">
+            实际需付款{{ item.total_fee }}元
+          </view>
         </view>
+
         <!--<view wx:if="{{ discount_name.length >= 1 && options.for == 'user' }}" class="f22 cff5975 tar mt10">{{ discount_name  }}</view>-->
-        <view class="f26 order-bottom p10">
-          <text class="c444 fw7" data-index="{{ index }}" catchtap="copy" data-type="name">买家：{{ item.name }}</text>
+        <view wx:if="{{ !ping }}" class="f26 order-bottom p10">
+          <text  class="c444 fw7" data-index="{{ index }}" catchtap="copy" data-type="name">买家：{{ item.name }}</text>
           <view class="ob-r flex1">
             <button catchtap="change" data-index="{{ index }}" wx:if="{{ (item.status == -1 || item.status == -2) && options.for == 'user' }}" class="confirm f26 cfff cancel">取消订单</button>
             <button catchtap="payAgain" data-index="{{ index }}" wx:if="{{ item.status == -1 && item.self && options.for == 'user' }}" class="confirm f26 cfff">立刻付款</button>
@@ -66,6 +72,28 @@
             <button catchtap="fahuo" data-index="{{ index }}" wx:if="{{ item.status == 1 && options.for == 'shop' }}" class="confirm f26 cfff">点击发货</button>
           </view>
         </view>
+
+        <!--拼团订单状态对应  ssss-->
+        <view wx:if="{{ ping }}" class="f26 order-bottom p10">
+          <view class="ob-r flex1">
+            <navigator url="/releasePage/pageseleven/back/back?id=12" class="confirm f26 cfff cancel">申请退款</navigator>
+            <button catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">催发货</button>
+            <button catchtap="cancelping" class="confirm f26 cfff cancel">取消订单</button>
+            <button catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">邀请好友拼单</button>
+            <navigator url="/releasePage/pageseleven/back/back?id=12" class="confirm f26 cfff cancel">售后详情</navigator>
+            <navigator url="/pingPage/pingpages/money/index?id={{ item.id }}" catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">钱款去向</navigator>
+            <button catchtap="payAgain" data-index="{{ index }}"  class="confirm f26 cfff">再次购买</button>
+            <button catchtap="showExpress"
+                    data-index="{{ index }}"
+                    wx:if="{{ item.status == 2 }}"
+                    class="confirm f26 cfff cancel">查看物流</button>
+            <button catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff">确认收货</button>
+          </view>
+        </view>
+        <!--拼团订单状态对应  eeee-->
+
+
+
         <view wx:if="{{ options.for == 'shop' }}" class="f26 c444" data-index="{{ index }}" catchtap="copy" data-type="address">收货地址: {{ item.address }}</view>
         <view wx:if="{{ options.for == 'shop' }}" class="f26 c444" data-index="{{ index }}" catchtap="copy" data-type="phone">联系电话: {{ item.phone }}</view>
       </view>
@@ -93,6 +121,15 @@
 </form>
 </view>
 <my-express prop-obj="{{ expressObj }}"></my-express>
+
+<view wx:if='{{ cancelPing }}' class="mask cancel-mask">
+  <view class="bgfff tac f32 br18 mask-in">
+      <view class="mt20">暂时无法取消拼单</view>
+      <view class="f25 mt20">发起拼单24小时后，若未拼单成功将</view>
+      <view class="p200">取消订单并退款哦</view>
+    <view catchtap="cancelping" class="mt20 cff362c f34 p200 confirm-btn bt1">我知道了</view>
+  </view>
+</view>
 <!--错误弹窗-->
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

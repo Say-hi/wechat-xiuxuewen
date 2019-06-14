@@ -1,21 +1,21 @@
 <form report-submit="{{true}}" bindsubmit="upFormId">
 <view class="p20">
-  <view class="bgfff br8 p30 shop-info">
-    <image src="{{ noshop ? userInfo.avatar_url : info.avatar }}"
-           class="br img"
-           mode="aspectFill" ></image>
-    <view class="c444 f34 fw7 flex1 pl20">{{ info.name || '还没有进入过店铺' }}</view>
-    <navigator wx:if="{{ userInfo.mall_is == 1 }}" class="tocenter"  url="/shopCenterPage/shoppages/index/index">
-      <image src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/menu/20190227155126120351489.png"></image>
-      <text class="f22 mt10">商品中心</text>
-    </navigator>
-    <button wx:if="{{ !systemVersion }}" catchtap="showShare" class="jwqfont jwq-erweima c999 ml10"></button>
-    <button wx:else catchtap="showShare" class="c999 ml10">
-      <image style="width: 70rpx;height: 70rpx;"
-             src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/icon/erweima.png"></image>
-    </button>
-  </view>
-  <view class="swiper-area br8 mt20">
+  <view>
+    <view class="bgfff br8 p30 shop-info">
+      <image src="{{ noshop ? userInfo.avatar_url : info.avatar }}"
+             class="br img"
+             mode="aspectFill" ></image>
+      <view class="c444 f34 fw7 flex1 pl20">{{ info.name || '还没有进入过店铺' }}</view>
+      <navigator wx:if="{{ userInfo.mall_is == 1 }}" class="tocenter"  url="/shopCenterPage/shoppages/index/index">
+        <image src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/menu/20190227155126120351489.png"></image>
+        <text class="f22 mt10">商品中心</text>
+      </navigator>
+      <button wx:if="{{ !systemVersion }}" catchtap="showShare" class="jwqfont jwq-erweima c999 ml10"></button>
+      <button wx:else catchtap="showShare" class="c999 ml10">
+        <image style="width: 70rpx;height: 70rpx;"
+               src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/icon/erweima.png"></image>
+      </button>
+    </view>
     <view wx:if="{{ !noshop }}" class="search bgcfff">
       <view class="s-wrap">
         <view class="iconfont f32 icon-sousuo c999"></view>
@@ -23,6 +23,8 @@
       </view>
       <view catchtap="search" open-type="navigateBack" class="f28 fw7 c444 cancel">搜索</view>
     </view>
+  </view>
+  <view class="swiper-area mt20">
     <swiper class="godds-swiper bgfff"
             circular="1"
             wx:if="{{ info.ad.length }}"
@@ -34,6 +36,9 @@
       </swiper-item>
     </swiper>
   </view>
+  <navigator url="/pingPage/pingpages/index/index" class="ping-area">
+    <image mode="aspectFill" src="https://c.jiangwenqiang.com/api/logo.jpg"></image>
+  </navigator>
   <!--视频区域-->
   <view wx:if="{{ list.length >= 1 }}" class="container bgfff br8 new p30">
     <navigator hover-class="none" url="/shopVideoPage/shopvideopages/video/video" class="c-top">
@@ -41,7 +46,7 @@
       <view class="c-t-r f26 c444 ">查看更多</view>
     </navigator>
   </view>
-  <view class="br8 scroll-c bgfff">
+  <view wx:if="{{ list.length >= 1 }}" class="br8 scroll-c bgfff">
     <scroll-view scroll-x="{{true}}" class="new-wrap">
       <view class="new-wrap-container">
         <view class="c-w-item bb"
@@ -62,6 +67,7 @@
       </view>
     </scroll-view>
   </view>
+
 <!--商品列表-->
   <view class="container bgfff br8 new p30">
     <navigator wx:if="{{ !noshop }}" hover-class="none"
@@ -136,6 +142,7 @@
     <view class="mask-cancel iconfont icon-cuowu"></view>
   </view>
 </view>
+<!-- <navigator url="/shopMenuPage/shoppages/index/index">去拖拽菜单</navigator> -->
 
 <view wx:if="{{ userInfo && (userInfo.nickname == '游客' || !userInfo.phone) }}" class="mask loginmm">
   <image class="login-bg" mode="aspectFill" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/login-bg.png"></image>

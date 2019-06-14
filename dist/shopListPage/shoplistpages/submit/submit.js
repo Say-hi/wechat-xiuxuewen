@@ -9,9 +9,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-    discount_name: app.gs('shopInfoAll').rule.state_name,
-    discount_value: app.gs('shopInfoAll').rule.discount
+    user_zhipiao: false,
+    discount_name: app.gs('shopInfoAll').rule.state_name || '无折扣',
+    discount_value: app.gs('shopInfoAll').rule.discount || 1
   },
+  choosezhipiao: function choosezhipiao() {
+    var that = this;
+    this.setData({
+      user_zhipiao: !this.data.user_zhipiao
+    }, function () {
+      if (that.data.user_zhipiao) {
+        that.setData({
+          finish_pay: that.data.finish_pay - that.data.recharge <= 0 ? '0.00' : (that.data.finish_pay - that.data.recharge).toFixed(2)
+        });
+      } else {
+        that.setData({
+          finish_pay: (that.data.AllPay * 1 + that.data.maxFreight * 1).toFixed(2)
+        });
+      }
+    });
+  },
+
   // 选择地址
   chooseAddress: function chooseAddress() {
     if (this.data.lostTime) return;
@@ -123,7 +141,7 @@ Page({
       } : Object.assign({
         name: that.data.addressInfo.userName,
         phone: that.data.addressInfo.telNumber,
-        recharge: that.data.recharge || 0,
+        recharge: that.data.user_zhipiao ? that.data.recharge < that.data.AllPay * 1 + that.data.maxFreight * 1 ? that.data.recharge : (that.data.AllPay * 1 + that.data.maxFreight * 1).toFixed(2) : 0,
         address: '' + that.data.addressInfo.provinceName + that.data.addressInfo.cityName + that.data.addressInfo.countyName + that.data.addressInfo.detailInfo,
         mid: app.gs('shopInfoAll').id,
         uid: app.gs('userInfoAll').id,
@@ -178,16 +196,23 @@ Page({
               }
             });
           }
-          app.wxpay2(res.data.data.msg).then(function () {
+          if (res.data.data.pay_way * 1 === 2) {
             that.setData({
               need_pay: true
             });
             wx.removeStorageSync('buyInfo');
-          }).catch(function () {
-            wx.showToast({
-              title: '支付失败'
+          } else {
+            app.wxpay2(res.data.data.msg).then(function () {
+              that.setData({
+                need_pay: true
+              });
+              wx.removeStorageSync('buyInfo');
+            }).catch(function () {
+              wx.showToast({
+                title: '支付失败'
+              });
             });
-          });
+          }
         } else {
           app.setToast(that, { content: res.data.desc });
         }
@@ -201,78 +226,133 @@ Page({
     if (!this.data.addressInfo) return app.setToast(this, { content: '请选择您的收货地址' });
     this.shoPayDirect();
   },
+  shopInfo: function shopInfo() {
+    var _this = this;
+
+    return new Promise(function (resolve, reject) {
+      var that = _this;
+      app.wxrequest({
+        url: app.getUrl().shopInfo,
+        data: {
+          mid: app.gs('shopInfo').mid || 10000
+        },
+        success: function success(res) {
+          wx.hideLoading();
+          if (res.data.status === 200) {
+            that.getUser();
+            app.su('shopInfoAll', res.data.data);
+            that.setData({
+              discount_value: res.data.data.rule.discount || 1
+            });
+            resolve();
+          } else {
+            app.setToast(that, { content: res.data.desc });
+          }
+        }
+      });
+    });
+  },
+  getUser: function getUser() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().shopUserInfo,
+      data: {
+        // uid: 10000
+        uid: app.gs('userInfoAll').id
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          app.su('userInfoAll', res.data.data);
+          that.setData({
+            recharge: res.data.data.recharge || 0,
+            agents: res.data.data.mall_is > 0
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function onLoad(options) {
-    var allCount = 0;
-    var Allmoney = 0;
-    var maxFreight = 0;
-    this.data.type = options.type;
-    if (options.type === 'car') {
-      var _iteratorNormalCompletion3 = true;
-      var _didIteratorError3 = false;
-      var _iteratorError3 = undefined;
+    var that = this;
+    this.shopInfo().then(function () {
+      var allCount = 0;
+      var Allmoney = 0;
+      var maxFreight = 0;
+      that.data.type = options.type;
+      if (options.type === 'car') {
+        var _iteratorNormalCompletion3 = true;
+        var _didIteratorError3 = false;
+        var _iteratorError3 = undefined;
 
-      try {
-        for (var _iterator3 = app.gs('buyInfo')[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-          var v = _step3.value;
-
-          allCount += v.count * 1;
-          Allmoney += v.count * v.price;
-          maxFreight = maxFreight > v.freight ? maxFreight : v.freight;
-        }
-      } catch (err) {
-        _didIteratorError3 = true;
-        _iteratorError3 = err;
-      } finally {
         try {
-          if (!_iteratorNormalCompletion3 && _iterator3.return) {
-            _iterator3.return();
+          for (var _iterator3 = app.gs('buyInfo')[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+            var v = _step3.value;
+
+            allCount += v.count * 1;
+            Allmoney += v.count * v.price;
+            maxFreight = maxFreight > v.freight ? maxFreight : v.freight;
           }
+        } catch (err) {
+          _didIteratorError3 = true;
+          _iteratorError3 = err;
         } finally {
-          if (_didIteratorError3) {
-            throw _iteratorError3;
+          try {
+            if (!_iteratorNormalCompletion3 && _iterator3.return) {
+              _iterator3.return();
+            }
+          } finally {
+            if (_didIteratorError3) {
+              throw _iteratorError3;
+            }
+          }
+        }
+      } else {
+        var _iteratorNormalCompletion4 = true;
+        var _didIteratorError4 = false;
+        var _iteratorError4 = undefined;
+
+        try {
+          for (var _iterator4 = app.gs('buyInfo')[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+            var _v2 = _step4.value;
+
+            allCount += _v2.count;
+            Allmoney += _v2.count * _v2.sku.price;
+            maxFreight = maxFreight > _v2.freight ? maxFreight : _v2.freight;
+          }
+        } catch (err) {
+          _didIteratorError4 = true;
+          _iteratorError4 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion4 && _iterator4.return) {
+              _iterator4.return();
+            }
+          } finally {
+            if (_didIteratorError4) {
+              throw _iteratorError4;
+            }
           }
         }
       }
-    } else {
-      var _iteratorNormalCompletion4 = true;
-      var _didIteratorError4 = false;
-      var _iteratorError4 = undefined;
-
-      try {
-        for (var _iterator4 = app.gs('buyInfo')[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-          var _v2 = _step4.value;
-
-          allCount += _v2.count;
-          Allmoney += _v2.count * _v2.sku.price;
-          maxFreight = maxFreight > _v2.freight ? maxFreight : _v2.freight;
-        }
-      } catch (err) {
-        _didIteratorError4 = true;
-        _iteratorError4 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion4 && _iterator4.return) {
-            _iterator4.return();
-          }
-        } finally {
-          if (_didIteratorError4) {
-            throw _iteratorError4;
-          }
-        }
-      }
-    }
-    this.setData({
-      info: app.gs('buyInfo'),
-      allCount: allCount,
-      // Allmoney: (Allmoney * (this.data.type === 'now' ? this.data.discount_value : 1)).toFixed(2),
-      Allmoney: Allmoney.toFixed(2),
-      AllPay: (Allmoney * this.data.discount_value).toFixed(2),
-      maxFreight: maxFreight > 0 ? maxFreight : app.gs('shopInfoAll').rule.low_total_fee > Allmoney ? app.gs('shopInfoAll').rule.logistic_fee : maxFreight,
-      addressInfo: app.gs('addressInfo') || null
+      that.setData({
+        info: app.gs('buyInfo'),
+        allCount: allCount,
+        // Allmoney: (Allmoney * (this.data.type === 'now' ? this.data.discount_value : 1)).toFixed(2),
+        Allmoney: Allmoney.toFixed(2),
+        AllPay: (Allmoney * that.data.discount_value).toFixed(2),
+        maxFreight: maxFreight > 0 ? maxFreight : app.gs('shopInfoAll').rule.low_total_fee > Allmoney ? app.gs('shopInfoAll').rule.logistic_fee : maxFreight,
+        addressInfo: app.gs('addressInfo') || null
+      }, function () {
+        that.setData({
+          finish_pay: (that.data.AllPay * 1 + that.data.maxFreight * 1).toFixed(2)
+        });
+      });
     });
     // TODO: onLoad
   },

@@ -147,10 +147,18 @@
         <view class="tips br8 tac">￥</view>
         <input placeholder="0.00" bindblur="inputValue" data-type="express" value="{{ info.freight }}" type="digit"/>
       </view>
-      <view class="p30 mt20 br8 bgfff f26 c3a3a3a sale">
+      <view wx:if="{{ !ping }}" class="p30 mt20 br8 bgfff f26 c3a3a3a sale">
         <text class="fw7">开售时间</text>
         <text catchtap="chooseSale" class="iconfont f26 c3a3a3a p030 {{ info.is_up == 1 ? 'icon-gouxuan' : 'icon-wxz' }}"> 立刻上架</text>
         <text catchtap="chooseSale" class="iconfont f26 c3a3a3a p030 {{ info.is_up != 1 ? 'icon-gouxuan' : 'icon-wxz' }}"> 放入仓库</text>
+      </view>
+      <view wx:if="{{ ping }}" class="p30 mt20 br8 bgfff f26 c3a3a3a sale ping-time">
+        <text class="fw7">开始时间</text>
+        <picker mode="date">2019-06-13</picker>
+        <picker mode="time">12:00</picker>
+        <text class="fw7">结束时间</text>
+        <picker mode="date">2019-06-14</picker>
+        <picker mode="time">12:00</picker>
       </view>
       <view catchtap="CTT" class="release-bottom bgfff">
         <button class="f34 cfff">下一步</button>

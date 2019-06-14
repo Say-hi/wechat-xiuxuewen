@@ -185,6 +185,10 @@ button {
   border-radius: 18rpx;
 }
 
+.br20 {
+  border-radius: 20rpx;
+}
+
 .bb {
   box-sizing: border-box;
 }
@@ -241,6 +245,9 @@ button {
   border: 2rpx solid #999;
   border-color: #999 #999 transparent transparent;
   transform: translate(0, -50%) rotate(45deg);
+}
+.df {
+  display: flex;
 }
 
 .clearfix:after {
@@ -349,6 +356,21 @@ button {
       color: #ff6501;
     }
   }
+  .mask-btn-wrap {
+    display: flex;
+    border-top: 1rpx solid #eee;
+    align-items: center;
+    line-height: 80rpx;
+    .mask-btn {
+      flex: 1;
+      font-weight: 700;
+      border-right: 1rpx solid #eee;
+    }
+    .mask-btn:nth-child(2) {
+      border-right: none;
+      color: #09bb07;
+    }
+  }
 }
 .user-mask {
   background: #ccc !important;
@@ -417,21 +439,6 @@ button {
       margin: 20rpx 0;
       width: 500rpx;
       padding: 10rpx;
-    }
-    .mask-btn-wrap {
-      display: flex;
-      border-top: 1rpx solid #eee;
-      align-items: center;
-      line-height: 80rpx;
-      .mask-btn {
-        flex: 1;
-        font-weight: 700;
-        border-right: 1rpx solid #eee;
-      }
-      .mask-btn:nth-child(2) {
-        border-right: none;
-        color: #09bb07;
-      }
     }
   }
 }

@@ -1,18 +1,34 @@
 // 获取全局应用程序实例对象
 const app = getApp()
 console.log(app.data.all_Screen)
+let startX = 0
 // 创建页面实例对象
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    ngshow: 1,
+    enable_progress_gesture: true,
     systemVersion: app.data.systemVersion,
     num: 1,
     labelIndex: 0,
     all_Screen: app.data.all_screen,
     discount_name: app.gs('shopInfoAll').discount_name,
     discount_value: app.gs('shopInfoAll').discount_value
+  },
+  videotouchstart (e) {
+    console.log(e)
+    startX = e.changedTouches[0].clientX
+  },
+  videotouchend (e) {
+    console.log(e)
+    if (startX - e.changedTouches[0].clientX >= 30) {
+      console.log(1)
+      this.setData({
+        current: 1
+      })
+    }
   },
   showImg (e) {
     wx.previewImage({
@@ -63,7 +79,18 @@ Page({
       url: '../submit/submit?type=now'
     })
   },
+  sptChange () {
+    this.setData({
+      showPingTeam: !this.data.showPingTeam
+    })
+  },
   buy (e) {
+    if (this.data.ping) {
+      this.setData({
+        ngshow: ++this.data.ngshow
+      })
+      return
+    }
     this.data.addCar = e.currentTarget.dataset.type === 'car'
     this.setData({
       buyMask: !this.data.buyMask
@@ -152,7 +179,8 @@ Page({
    */
   onLoad (options) {
     this.setData({
-      options
+      options,
+      ping: options.ping === 'ping'
     })
     this.shopProduct(options.id)
     // TODO: onLoad

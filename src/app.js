@@ -6,6 +6,7 @@ const MenuButtonBounding = wx.getMenuButtonBoundingClientRect()
 const HEIGHT_TOP = MenuButtonBounding.bottom - statusBarHeight
 const Moment = require('./utils/moment-min')
 const cloud = require('./utils/cloud')
+console.log(wx.getSystemInfoSync())
 Moment.updateLocale('en', {
   relativeTime : {
     future: '%s',
@@ -25,7 +26,7 @@ Moment.updateLocale('en', {
 })
 App({
   data: {
-    systemVersion: wx.getSystemInfoSync().system.split('.')[0].indexOf('9') >= 0,
+    systemVersion: wx.getSystemInfoSync().system.split('.')[0].indexOf('9') >= 0 && wx.getSystemInfoSync().model.indexOf('iPhone') >= 0,
     all_screen: (wx.getSystemInfoSync().model).indexOf('X') >= 0,
     TOP_CENTER: (MenuButtonBounding.right - 66),
     searchText: null,
@@ -500,7 +501,10 @@ App({
       show: true,
       bgc: '#fff',
       color: '#000',
-      content: '服务器开小差啦~~'
+      content: '服务器出错，请稍后重试'
+    }
+    if (toast && !toast.content) {
+      toast.content = '服务器出错，请稍后重试'
     }
     Object.assign(defaultToast, toast)
     that.setData({

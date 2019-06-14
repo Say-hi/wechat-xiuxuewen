@@ -1,7 +1,9 @@
 <form>
   <swiper class="goods-swiper" current="{{ current }}">
     <swiper-item wx:if="{{ info.video_url && info.video_url.length > 5 }}">
-      <video autoplay="1" style="width: 100%; height: 100%;" object-fit="cover" src="{{ info.video_url }}"></video>
+      <!--<video catchtouchstart="videotouchstart" catchtouchend="videotouchend" enable-progress-gesture="{{ enable_progress_gesture }}" autoplay="1" style="width: 100%; height: 100%;" object-fit="cover" src="{{ info.video_url }}">-->
+      <video autoplay="1" style="width: 100%; height: 100%;" object-fit="contain" src="{{ info.video_url }}">
+      </video>
     </swiper-item>
     <swiper-item wx:for="{{ info.sku[labelIndex].img }}" wx:key="*112">
       <image mode="aspectFill" src="{{ item }}"></image>
@@ -10,7 +12,7 @@
       <image mode="aspectFill" src="{{ item }}"></image>
     </swiper-item>
   </swiper>
-  <button open-type="share"
+  <button wx:if="{{ !ping }}" open-type="share"
           hover-class="none"
           class="p30 goods-title tal">
     <view class="f34 c3a3a3a fw7">{{ info.title }}</view>
@@ -22,13 +24,51 @@
       <view class="f28 fw7 cff5975">分享赚</view>
     </view>
   </button>
-  <view class="goods-count f26 c3a3a3a p030">
+  <view wx:if="{{ !ping }}" class="goods-count f26 c3a3a3a p030">
     <view>运费 ¥{{ info.freight }}</view>
     <view>库存 {{ info.stock }}</view>
     <view>销量 {{ info.count_sale }}</view>
   </view>
-  <view class="f34 c444 p30">商品详情</view>
-  <view>{{ info.detail_text }}</view>
+
+  <!--拼团内容sss-->
+  <view wx:if="{{ ping }}" class="ping-title">
+    <view class="p2030 ping-t-w">
+      <view class="ping-t-t cfff df">
+        <view><text class="f45">￥</text><text class="f58">109</text><text class="f53">.</text><text class="f53">90</text></view>
+        <view class="f23 ping-people">
+          <text class="pp-n">2</text>
+          <text class="pp-t">人拼</text>
+        </view>
+        <view class="f30 flex1 tar">已拼4.7万件</view>
+      </view>
+      <view class="text-t f28">￥169.90</view>
+    </view>
+    <view class="f34 c3e3a39 pttt fw7">{{ info.title }}</view>
+  </view>
+
+  <view wx:if="{{ ping }}" class="pb20">
+      <view class="arrow">
+        <view class="f30 c3e3a39">直接参与可快速成团</view>
+        <view class="f24 c828282">查看更多</view>
+      </view>
+    <block wx:for="123" wx:key="*this">
+      <view class="ping-team df">
+        <image mode="aspectFill" class="br" src="https://c.jiangwenqiang.com/api/logo.jpg"></image>
+        <view class="pteam-phone f31 c000">138****8697</view>
+        <view class="df pteam-time f30 c000 tar flex1">
+          <view>还差1人成团</view>
+          <view class="f28 c828282">距结束09:42:46 </view>
+        </view>
+        <view catchtap="sptChange" data-index="{{ index }}" class="f30 cfff pteam-btn">立即拼单</view>
+      </view>
+    </block>
+  </view>
+
+
+  <!--拼团内容eee-->
+
+  <view wx:if="{{ !ping }}" class="f34 c444 p30">商品详情</view>
+  <view style="white-space:pre-wrap;">{{ info.detail_text }}</view>
   <image wx:for="{{ info.detail }}"
          wx:key="*12"
          lazy-load="1"
@@ -37,18 +77,30 @@
          mode="widthFix"
          class="detail-img"
          src="{{ item }}"></image>
-  <view class="zw90"></view>
+  <view class="{{ ping ? 'zw120' : 'zw90' }}"></view>
   <view wx:if="{{ all_Screen }}" class="zw40"></view>
-  <view wx:if="{{ !options.type }}" class="bottom-tab {{ all_Screen ? 'all-screen' : '' }}">
+  <view wx:if="{{ !options.type }}" class="bottom-tab {{ ping ? 'bottom-tab-ping' : '' }} {{ all_Screen ? 'all-screen' : '' }}">
     <navigator url="/shopPage/shoppages/index/index"
                hover-stop-propagation="{{true}}"
                hover-class="none"
-               class="{{ systemVersion ? '' : 'jwqfont' }} jwq-dianpu"
+               class="{{ systemVersion ? '' : 'jwqfont' }} jwq-dianpu f22 {{ ping ? 'ff3b5b' : '' }}"
                open-type="reLaunch">
       <image wx:if="{{ systemVersion }}" style='width: 40rpx; height: 40rpx;display:inline-block;' src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/icon/shop.png"></image>
+      {{ ping ? '商城' : '' }}
     </navigator>
-    <view catchtap="buy" data-type="car" class="addcar flex1 tac c444 f34 fw7">加入购物车</view>
-    <view catchtap="buy" data-type="buy" class="buynow flex1 tac cfff f34 fw7">立刻购买</view>
+    <view wx:if="{{ !ping }}" catchtap="buy" data-type="car" class="addcar flex1 tac c444 f34 fw7">加入购物车</view>
+    <view wx:if="{{ !ping }}" catchtap="buy" data-type="buy" class="buynow flex1 tac cfff f34 fw7">立刻购买</view>
+
+    <view wx:if="{{ ping }}" class="br20 f30 ping-btn cfff df flex11">
+      <view catchtap="buy" data-type="car" class="tac ping-btn-single flex11">
+        <view>￥28.91</view>
+        <view>单独购买</view>
+      </view>
+      <view catchtap="buy" data-type="car" class="tac ping-btn-team flex11">
+        <view>￥10.91</view>
+        <view>发起拼单</view>
+      </view>
+    </view>
   </view>
   <!--商品规格选择-->
   <view class="goods-mask {{ buyMask ? '' : 'noshow' }}"
@@ -118,6 +170,33 @@
     </view>
   </view>
 </form>
+
+<!--拼单 ssssss-->
+<view wx:if="{{ showPingTeam }}" class="mask">
+  <view class="spt-in tac br18 p30 bgfff">
+    <view catchtap="sptChange" class="iconfont icon-cuowu"></view>
+    <view class="f32 c3e3a39">参与asdf的拼单</view>
+    <view class="f24 mt20">仅差<text class="cff362c">1人</text>，快呼唤小伙伴参加吧！</view>
+    <view class="spt-user mt20">
+      <view class="user-item pr">
+        <view class="pa cfff f27 team-leader keep">团长</view>
+        <image class="br" mode="aspectFil" src="https://c.jiangwenqiang.com/api/logo.jpg"></image>
+      </view>
+      <view class="user-item">
+        <image class="br" mode="aspectFil" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/ping/ping3.png"></image>
+      </view>
+    </view>
+    <view class="spt-other">参与拼单</view>
+  </view>
+</view>
+<!--拼单 eeeeee-->
+
+
+
+
+
+
+<my-ng prop-show="{{ ngshow }}"></my-ng>
 <!--错误弹窗-->
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

@@ -19,10 +19,36 @@ Page({
    * 页面的初始数据
    */
   data: {
+    discountList: [
+      {
+        value: 85,
+        t: '8.5折'
+      },
+      {
+        value: 80,
+        t: '8折'
+      },
+      {
+        value: 75,
+        t: '7.5折'
+      },
+      {
+        value: 70,
+        t: '7折'
+      }
+    ],
     upImgArr: [],
     upImgArrProgress: []
   },
+  choosenormaldiscount (e) {
+    this.setData({
+      discount: this.data.discountList[e.currentTarget.dataset.index].value
+    })
+  },
   inputValue (e) {
+    if (e.currentTarget.dataset.type === 'discount') {
+      e.detail.value = e.detail.value <= 100 ? e.detail.value : 100
+    }
     this.setData({
       [e.currentTarget.dataset.type]: e.detail.value
     })
@@ -45,7 +71,10 @@ Page({
         mid: app.gs('shopInfoAll').id || 10001,
         name: that.data.username,
         ad: temp.join(','),
-        avatar: that.data.avatar
+        avatar: that.data.avatar,
+        discount: (that.data.discount / 100).toFixed(2) || 1,
+        low_total_fee: that.data.low_total_fee || 100,
+        logistic_fee: that.data.logistic_fee || 12
         // logistic_fee: that.data.mini,
         // low_total_fee: that.data.express
       },
@@ -226,7 +255,10 @@ Page({
     this.setData({
       options,
       avatar: app.gs('shopInfoAll').avatar,
-      username: options.type === 'user' ? app.gs('userInfoAll').mall_rname : app.gs('shopInfoAll').name
+      username: options.type === 'user' ? app.gs('userInfoAll').mall_rname : app.gs('shopInfoAll').name,
+      discount: (app.gs('shopInfoAll').rule.discount * 100).toFixed(0) || 100, // 折扣
+      low_total_fee: app.gs('shopInfoAll').rule.low_total_fee || 1, // 满多少包邮
+      logistic_fee: app.gs('shopInfoAll').rule.logistic_fee || 1 // 邮费
     })
     if (options.type !== 'user') {
       let upImgArr = []
