@@ -10,6 +10,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    in_area: true,
+    buy_type: 'normal',
     ngshow: 1,
     enable_progress_gesture: true,
     systemVersion: app.data.systemVersion,
@@ -19,19 +21,19 @@ Page({
     discount_name: app.gs('shopInfoAll').discount_name,
     discount_value: app.gs('shopInfoAll').discount_value
   },
-  videotouchstart: function videotouchstart(e) {
-    console.log(e);
-    startX = e.changedTouches[0].clientX;
-  },
-  videotouchend: function videotouchend(e) {
-    console.log(e);
-    if (startX - e.changedTouches[0].clientX >= 30) {
-      console.log(1);
-      this.setData({
-        current: 1
-      });
-    }
-  },
+  // videotouchstart (e) {
+  //   console.log(e)
+  //   startX = e.changedTouches[0].clientX
+  // },
+  // videotouchend (e) {
+  //   console.log(e)
+  //   if (startX - e.changedTouches[0].clientX >= 30) {
+  //     console.log(1)
+  //     this.setData({
+  //       current: 1
+  //     })
+  //   }
+  // },
   showImg: function showImg(e) {
     wx.previewImage({
       urls: this.data.info.detail,
@@ -41,6 +43,7 @@ Page({
   goSubmit: function goSubmit() {
     if (this.data.num > this.data.info.sku[this.data.labelIndex].stock) return app.setToast(this, { content: '该产品已无库存' });
     if (this.data.addCar) {
+      // 添加到购物车
       var that = this;
       return app.wxrequest({
         url: app.getUrl().shopCartAdd,
@@ -73,17 +76,25 @@ Page({
         label = _data$info.label,
         sku = _data$info.sku,
         freight = _data$info.freight,
-        id = _data$info.id;
+        id = _data$info.id,
+        _data$info$people = _data$info.people,
+        people = _data$info$people === undefined ? 2 : _data$info$people; // 直接购买
 
-    app.su('buyInfo', [{
+    app.su('buyInfo', [{ // 产品信息缓存
       id: id,
       img: img,
       title: title,
       label: label,
       freight: freight,
+      people: people,
       sku: sku[this.data.labelIndex],
       count: this.data.num
     }]);
+    if (this.data.ping && this.data.buy_type === 'ping') {
+      return wx.redirectTo({
+        url: '../submit/submit?type=now&ping=ping'
+      });
+    }
     wx.redirectTo({
       url: '../submit/submit?type=now'
     });
@@ -95,8 +106,22 @@ Page({
   },
   buy: function buy(e) {
     if (this.data.ping) {
-      this.setData({
-        ngshow: ++this.data.ngshow
+      // 拼团检查是否在区域内合法
+      if (!this.data.in_area) {
+        // 购买非法
+        return this.setData({
+          ngshow: ++this.data.ngshow
+        });
+      }
+      if (e.currentTarget.dataset.type === 'ping') {
+        // 发起拼团
+        this.data.buy_type = 'ping';
+      } else {
+        // 拼团直接购买
+        this.data.buy_type = 'normal';
+      }
+      this.setData({ // 规则选择
+        buyMask: !this.data.buyMask
       });
       return;
     }
@@ -210,11 +235,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function onLoad(options) {
+    console.log('options', options);
+    if (options.scene) {
+      // 通过分享进入拼团
+      var scene = decodeURIComponent(options.scene).split(',');
+      options.ping = scene[0]; // 拼团标识
+      options.id = scene[1]; // 拼团产品id
+      options.from = scene[2]; // 拼团发起人id
+    }
     this.setData({
       options: options,
       ping: options.ping === 'ping'
     });
     this.shopProduct(options.id);
+    console.log('route', this.route);
     // TODO: onLoad
   },
 

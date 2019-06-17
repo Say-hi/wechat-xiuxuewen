@@ -29,6 +29,8 @@
 		"hidedInDevtools": []
 	},
 	"scripts": {},
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -46,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 65,
+			"current": 66,
 			"list": [
 				{
 					"id": 0,
@@ -477,7 +479,15 @@
 					"id": -1,
 					"name": "商品中心",
 					"pathName": "shopCenterPage/shoppages/index/index",
+					"query": "",
 					"scene": null
+				},
+				{
+					"id": 66,
+					"name": "拼团产品分享进入",
+					"pathName": "shopListPage/shoplistpages/detail/detail",
+					"query": "scene=ping,472,1",
+					"scene": 1012
 				}
 			]
 		}

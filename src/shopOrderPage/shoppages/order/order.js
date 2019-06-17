@@ -167,6 +167,12 @@ Page({
       }
     })
   },
+  shareChange (e) {
+    this.data.share_index = e.currentTarget.dataset.index
+    this.setData({
+      showShare: !this.data.showShare
+    })
+  },
   payAgain (e) {
     let that = this
     app.wxrequest({
@@ -204,7 +210,19 @@ Page({
       }
     })
   },
+  getMyShareCode () {
+    wx.previewImage({
+      urls:['https://c.jiangwenqiang.com/api/logo.jpg']
+    })
+  },
   onShareAppMessage () {
+    if (this.data.ping && this.data.share_index >= 0) {
+      return {
+        title: '快来和我一起参团享好物吧',
+        path: `/shopListPage/shoplistpages/detail/detail?id=${this.data.list[this.data.share_index].list[0].id}&ping=ping&from=${app.gs('userInfoAll').id}`,
+        imageUrl: this.data.list[this.data.share_index].list[0].img
+      }
+    }
     if (!app.gs('shopInfo').mid) {
       return {
         title: app.gs('shareText').t || '绣学问，真纹绣',

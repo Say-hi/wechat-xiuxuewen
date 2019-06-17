@@ -60,7 +60,8 @@
       </view>
     </view>
 
-    <view wx:if="{{ !agents && !ping }}" class="zhipiao p20">
+    <!--<view wx:if="{{ !agents && !ping }}" class="zhipiao p20">-->
+    <view wx:if="{{ !agents }}" class="zhipiao p20">
       <view class="bgfff p30 br8 zhipiao-area c444 f28">
         <view>支票</view>
         <view class="ml10 flex1">
@@ -90,15 +91,15 @@
   <!--<view class="ping-success mt20 p30 bgfff tac">-->
   <view wx:if="{{ need_pay && ping }}" class="ping-success mt20 p30 bgfff tac">
     <view class="bgfff psg-wrap df">
-      <image class="ping-s-goods" mode="aspectFill" src="https://c.jiangwenqiang.com/api/logo.jpg"></image>
+      <image class="ping-s-goods" mode="aspectFill" src="{{ info[0].img }}"></image>
       <view class="psg-text">
-        <view class="tal">asdfadfasdf</view>
+        <view class="tal">{{ info[0].title }}</view>
         <view class="psgt-b df">
-          <view class="f24 cff362c psgt-num iconfont icon-tuandui">2人团</view>
+          <view class="f24 cff362c psgt-num iconfont icon-tuandui">{{ info[0].people }}人团</view>
           <view class="f50 cff362c">
             <text class="f24">￥</text>
-            <text>155 </text>
-            <text class="text-t f28 c828282">￥321</text>
+            <text>{{ info[0].sku.price }} </text>
+            <text class="text-t f28 c828282">￥{{ info[0].sku.price }}</text>
           </view>
         </view>
       </view>
@@ -107,17 +108,17 @@
     <view class="spt-user mt20">
       <view class="user-item pr">
         <view class="pa cfff f27 team-leader keep">团长</view>
-        <image class="br" mode="aspectFil" src="https://c.jiangwenqiang.com/api/logo.jpg"></image>
+        <image class="br" mode="aspectFil" src="{{ user_info_img }}"></image>
       </view>
       <view class="user-item">
         <image class="br" mode="aspectFil" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/ping/ping3.png"></image>
       </view>
     </view>
     <view class="f24 c3e3a39 mt20">仅差<text class="cff362c">1人</text>，快呼唤小伙伴参加吧！</view>
-    <view class="f24 c828282 ps-time mt20">-- 剩余 <text>23</text><text>时</text><text>12</text><text>分</text><text>30</text><text>秒</text> 结束 --</view>
+    <view class="f24 c828282 ps-time mt20">-- 剩余 <text>{{ info[0].h }}</text><text>时</text><text>{{ info[0].m }}</text><text>分</text><text>{{ info[0].s }}</text><text>秒</text> 结束 --</view>
     <view class="ps-invite-w">
-      <view class="ps-invite f28 cfff">邀请好友参团</view>
-      <view class="ps-invite f28 cfff">邀请图参团</view>
+      <button open-type="share" class="ps-invite f28 cfff">邀请好友参团</button>
+      <view catchtap="getMyShareCode" class="ps-invite f28 cfff">我的参团码</view>
     </view>
     <navigator url="/shopPage/shoppages/index/index" open-type="reLaunch" class='backpage f28 cff362c tac'>查看其他商品</navigator>
   </view>

@@ -16,7 +16,7 @@
 </view>
 
 <view class="p30">
-  <navigator url="/shopListPage/shoplistpages/detail/detail?id=472&ping=ping" class="br20 bgfff p20 df  {{ index <= 0 ? '' : 'mt30' }}" wx:for="123" wx:key="this">
+  <navigator url="/shopListPage/shoplistpages/detail/detail?id=832&ping=ping" class="br20 bgfff p20 df  {{ index <= 0 ? '' : 'mt30' }}" wx:for="123" wx:key="this">
     <image class="ping-goods-img" mode="aspectFill" src="https://c.jiangwenqiang.com/api/logo.jpg"></image>
     <view class="pl20 ping-goods-right df flex1">
       <view class="f30 c3e3a39">撒旦法师打发斯蒂芬</view>

@@ -1,17 +1,85 @@
 'use strict';
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 // 获取全局应用程序实例对象
 var app = getApp();
-
+var timer = null;
 // 创建页面实例对象
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    user_info_img: app.gs('userInfoAll').avatar_url,
     user_zhipiao: false,
     discount_name: app.gs('shopInfoAll').rule.state_name || '无折扣',
     discount_value: app.gs('shopInfoAll').rule.discount || 1
+  },
+  // 秒杀逻辑
+  setKill: function setKill() {
+    var that = this;
+    if (timer) clearInterval(timer);
+    function kill() {
+      var shutDown = 0;
+      // console.log(that.data.killArr)
+      if (!that.data.info) return;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = that.data.info.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var _step$value = _slicedToArray(_step.value, 1),
+              i = _step$value[0];
+
+          var nowData = new Date().getTime(); // 毫秒数
+          // console.log('startTime', new Date(that.data.killArr[i].startTime))
+          // let startTime = that.data.list[i].start_time * 1000
+          var endTime = that.data.info[i].end_time;
+          // console.log(nowData, startTime, endTime)
+          if (nowData < endTime) {
+            // 进行中
+            that.data.info[i].status = 1;
+            that.data.info[i].h = Math.floor((endTime - nowData) / 3600000);
+            that.data.info[i].m = Math.floor((endTime - nowData) % 3600000 / 60000);
+            that.data.info[i].s = Math.floor((endTime - nowData) % 60000 / 1000);
+          } else {
+            // 已结束
+            if (that.data.info[i].status === 2) {
+              ++shutDown;
+              continue;
+            }
+            that.data.info[i].status = 2;
+            that.data.info[i].h = '已';
+            that.data.info[i].m = '结';
+            that.data.info[i].s = '束';
+          }
+          that.setData({
+            info: that.data.info
+          });
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      if (shutDown === that.data.info.length) clearInterval(timer);
+    }
+    kill();
+    timer = setInterval(function () {
+      kill();
+    }, 1000);
   },
   choosezhipiao: function choosezhipiao() {
     var that = this;
@@ -80,7 +148,19 @@ Page({
       url: '/shopPage/shoppages/index/index'
     });
   },
+  getMyShareCode: function getMyShareCode() {
+    wx.previewImage({
+      urls: ['https://c.jiangwenqiang.com/api/logo.jpg']
+    });
+  },
   onShareAppMessage: function onShareAppMessage() {
+    if (this.data.ping) {
+      return {
+        title: '快来和我一起参团享好物吧',
+        path: '/shopListPage/shoplistpages/detail/detail?id=' + this.data.info[0].id + '&ping=ping&from=' + app.gs('userInfoAll').id,
+        imageUrl: this.data.info[0].img
+      };
+    }
     if (!app.gs('shopInfo').mid) {
       return {
         title: app.gs('shareText').t || '绣学问，真纹绣',
@@ -101,13 +181,13 @@ Page({
     var that = this;
     var carts = [];
     if (this.data.type === 'car') {
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
 
       try {
-        for (var _iterator = this.data.info[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var v = _step.value;
+        for (var _iterator2 = this.data.info[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var v = _step2.value;
 
           carts.push({
             pid: v.pid,
@@ -117,16 +197,16 @@ Page({
           });
         }
       } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
       } finally {
         try {
-          if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
+          if (!_iteratorNormalCompletion2 && _iterator2.return) {
+            _iterator2.return();
           }
         } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
+          if (_didIteratorError2) {
+            throw _iteratorError2;
           }
         }
       }
@@ -160,27 +240,27 @@ Page({
           that.data.payid = res.data.data.oid;
           if (that.data.type === 'car') {
             var del = [];
-            var _iteratorNormalCompletion2 = true;
-            var _didIteratorError2 = false;
-            var _iteratorError2 = undefined;
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
 
             try {
-              for (var _iterator2 = that.data.info[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                var _v = _step2.value;
+              for (var _iterator3 = that.data.info[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                var _v = _step3.value;
 
                 del.push({ id: _v.id });
               }
             } catch (err) {
-              _didIteratorError2 = true;
-              _iteratorError2 = err;
+              _didIteratorError3 = true;
+              _iteratorError3 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                  _iterator2.return();
+                if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                  _iterator3.return();
                 }
               } finally {
-                if (_didIteratorError2) {
-                  throw _iteratorError2;
+                if (_didIteratorError3) {
+                  throw _iteratorError3;
                 }
               }
             }
@@ -200,6 +280,9 @@ Page({
             that.setData({
               need_pay: true
             });
+            that.data.info[0].end_time = new Date().getTime() + 86400000;
+            if (that.data.ping) that.setKill();
+            console.log(that.data.info[0]);
             wx.removeStorageSync('buyInfo');
           } else {
             app.wxpay2(res.data.data.msg).then(function () {
@@ -280,50 +363,26 @@ Page({
    */
   onLoad: function onLoad(options) {
     var that = this;
+    this.setData({
+      ping: options.ping === 'ping'
+    });
     this.shopInfo().then(function () {
       var allCount = 0;
       var Allmoney = 0;
       var maxFreight = 0;
       that.data.type = options.type;
       if (options.type === 'car') {
-        var _iteratorNormalCompletion3 = true;
-        var _didIteratorError3 = false;
-        var _iteratorError3 = undefined;
-
-        try {
-          for (var _iterator3 = app.gs('buyInfo')[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-            var v = _step3.value;
-
-            allCount += v.count * 1;
-            Allmoney += v.count * v.price;
-            maxFreight = maxFreight > v.freight ? maxFreight : v.freight;
-          }
-        } catch (err) {
-          _didIteratorError3 = true;
-          _iteratorError3 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion3 && _iterator3.return) {
-              _iterator3.return();
-            }
-          } finally {
-            if (_didIteratorError3) {
-              throw _iteratorError3;
-            }
-          }
-        }
-      } else {
         var _iteratorNormalCompletion4 = true;
         var _didIteratorError4 = false;
         var _iteratorError4 = undefined;
 
         try {
           for (var _iterator4 = app.gs('buyInfo')[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-            var _v2 = _step4.value;
+            var v = _step4.value;
 
-            allCount += _v2.count;
-            Allmoney += _v2.count * _v2.sku.price;
-            maxFreight = maxFreight > _v2.freight ? maxFreight : _v2.freight;
+            allCount += v.count * 1;
+            Allmoney += v.count * v.price;
+            maxFreight = maxFreight > v.freight ? maxFreight : v.freight;
           }
         } catch (err) {
           _didIteratorError4 = true;
@@ -336,6 +395,33 @@ Page({
           } finally {
             if (_didIteratorError4) {
               throw _iteratorError4;
+            }
+          }
+        }
+      } else {
+        var _iteratorNormalCompletion5 = true;
+        var _didIteratorError5 = false;
+        var _iteratorError5 = undefined;
+
+        try {
+          for (var _iterator5 = app.gs('buyInfo')[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+            var _v2 = _step5.value;
+
+            allCount += _v2.count;
+            Allmoney += _v2.count * _v2.sku.price;
+            maxFreight = maxFreight > _v2.freight ? maxFreight : _v2.freight;
+          }
+        } catch (err) {
+          _didIteratorError5 = true;
+          _iteratorError5 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion5 && _iterator5.return) {
+              _iterator5.return();
+            }
+          } finally {
+            if (_didIteratorError5) {
+              throw _iteratorError5;
             }
           }
         }
@@ -387,6 +473,7 @@ Page({
    */
   onUnload: function onUnload() {
     wx.removeStorageSync('buyInfo');
+    if (timer) clearInterval(timer);
     // TODO: onUnload
   },
 

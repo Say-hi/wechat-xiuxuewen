@@ -1,15 +1,56 @@
 // 获取全局应用程序实例对象
 const app = getApp()
-
+let timer = null
 // 创建页面实例对象
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    user_info_img: app.gs('userInfoAll').avatar_url,
     user_zhipiao: false,
     discount_name: app.gs('shopInfoAll').rule.state_name || '无折扣',
     discount_value: app.gs('shopInfoAll').rule.discount || 1
+  },
+  // 秒杀逻辑
+  setKill () {
+    let that = this
+    if (timer) clearInterval(timer)
+    function kill () {
+      let shutDown = 0
+      // console.log(that.data.killArr)
+      if (!that.data.info) return
+      for (let [i] of that.data.info.entries()) {
+        let nowData = new Date().getTime() // 毫秒数
+        // console.log('startTime', new Date(that.data.killArr[i].startTime))
+        // let startTime = that.data.list[i].start_time * 1000
+        let endTime = that.data.info[i].end_time
+        // console.log(nowData, startTime, endTime)
+        if (nowData < endTime) { // 进行中
+          that.data.info[i].status = 1
+          that.data.info[i].h = Math.floor((endTime - nowData) / 3600000)
+          that.data.info[i].m = Math.floor((endTime - nowData) % 3600000 / 60000)
+          that.data.info[i].s = Math.floor((endTime - nowData) % 60000 / 1000)
+        } else { // 已结束
+          if (that.data.info[i].status === 2) {
+            ++shutDown
+            continue
+          }
+          that.data.info[i].status = 2
+          that.data.info[i].h = '已'
+          that.data.info[i].m = '结'
+          that.data.info[i].s = '束'
+        }
+        that.setData({
+          info: that.data.info
+        })
+      }
+      if (shutDown === that.data.info.length) clearInterval(timer)
+    }
+    kill()
+    timer = setInterval(() => {
+      kill()
+    }, 1000)
   },
   choosezhipiao () {
     let that = this
@@ -75,7 +116,19 @@ Page({
       url: '/shopPage/shoppages/index/index'
     })
   },
+  getMyShareCode () {
+    wx.previewImage({
+      urls:['https://c.jiangwenqiang.com/api/logo.jpg']
+    })
+  },
   onShareAppMessage () {
+    if (this.data.ping) {
+      return {
+        title: '快来和我一起参团享好物吧',
+        path: `/shopListPage/shoplistpages/detail/detail?id=${this.data.info[0].id}&ping=ping&from=${app.gs('userInfoAll').id}`,
+        imageUrl: this.data.info[0].img
+      }
+    }
     if (!app.gs('shopInfo').mid) {
       return {
         title: app.gs('shareText').t || '绣学问，真纹绣',
@@ -151,6 +204,9 @@ Page({
             that.setData({
               need_pay: true
             })
+            that.data.info[0].end_time = new Date().getTime() + 86400000
+            if (that.data.ping ) that.setKill()
+            console.log(that.data.info[0])
             wx.removeStorageSync('buyInfo')
           } else {
             app.wxpay2(res.data.data.msg)
@@ -231,6 +287,9 @@ Page({
    */
   onLoad (options) {
     let that = this
+    this.setData({
+      ping: options.ping === 'ping'
+    })
     this.shopInfo()
       .then(() => {
         let allCount = 0
@@ -293,6 +352,7 @@ Page({
    */
   onUnload () {
     wx.removeStorageSync('buyInfo')
+    if (timer) clearInterval(timer)
     // TODO: onUnload
   },
 

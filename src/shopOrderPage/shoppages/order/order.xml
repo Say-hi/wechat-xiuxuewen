@@ -79,7 +79,8 @@
             <navigator url="/releasePage/pageseleven/back/back?id=12" class="confirm f26 cfff cancel">申请退款</navigator>
             <button catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">催发货</button>
             <button catchtap="cancelping" class="confirm f26 cfff cancel">取消订单</button>
-            <button catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">邀请好友拼单</button>
+            <button catchtap="shareChange" data-index="{{ index }}"  class="confirm f26 cfff cancel">邀请好友拼单</button>
+            <button catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">查看物流</button>
             <navigator url="/releasePage/pageseleven/back/back?id=12" class="confirm f26 cfff cancel">售后详情</navigator>
             <navigator url="/pingPage/pingpages/money/index?id={{ item.id }}" catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">钱款去向</navigator>
             <button catchtap="payAgain" data-index="{{ index }}"  class="confirm f26 cfff">再次购买</button>
@@ -128,6 +129,13 @@
       <view class="f25 mt20">发起拼单24小时后，若未拼单成功将</view>
       <view class="p200">取消订单并退款哦</view>
     <view catchtap="cancelping" class="mt20 cff362c f34 p200 confirm-btn bt1">我知道了</view>
+  </view>
+</view>
+<view class="mask" wx:if="{{ showShare }}">
+  <view class="mask-in br18 p30 share-btn">
+    <button open-type="share" class="btn cfff">分享给好友</button>
+    <veiw catchtap="getMyShareCode" class="btn cff3b5b">参团二维码</veiw>
+    <view catchtap="shareChange" class="iconfont icon-cuowu"></view>
   </view>
 </view>
 <!--错误弹窗-->

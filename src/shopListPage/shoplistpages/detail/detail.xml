@@ -92,11 +92,11 @@
     <view wx:if="{{ !ping }}" catchtap="buy" data-type="buy" class="buynow flex1 tac cfff f34 fw7">立刻购买</view>
 
     <view wx:if="{{ ping }}" class="br20 f30 ping-btn cfff df flex11">
-      <view catchtap="buy" data-type="car" class="tac ping-btn-single flex11">
+      <view catchtap="buy" data-type="buy" class="tac ping-btn-single flex11">
         <view>￥28.91</view>
         <view>单独购买</view>
       </view>
-      <view catchtap="buy" data-type="car" class="tac ping-btn-team flex11">
+      <view catchtap="buy" data-type="ping" class="tac ping-btn-team flex11">
         <view>￥10.91</view>
         <view>发起拼单</view>
       </view>
