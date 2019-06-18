@@ -34,14 +34,14 @@
   <view wx:if="{{ ping }}" class="ping-title">
     <view class="p2030 ping-t-w">
       <view class="ping-t-t cfff df">
-        <view><text class="f45">￥</text><text class="f58">109</text><text class="f53">.</text><text class="f53">90</text></view>
+        <view><text class="f45">￥</text><text class="f58">{{ info.pin_show_price[0] }}</text><text class="f53">.</text><text class="f53">{{ info.pin_show_price[1] || '00' }}</text></view>
         <view class="f23 ping-people">
-          <text class="pp-n">2</text>
+          <text class="pp-n">{{ info.group_num || '未知' }}</text>
           <text class="pp-t">人拼</text>
         </view>
-        <view class="f30 flex1 tar">已拼4.7万件</view>
+        <view class="f30 flex1 tar">已拼{{ info.count_sale }}件</view>
       </view>
-      <view class="text-t f28">￥169.90</view>
+      <view class="text-t f28">￥{{ info.sku[0].alone_price }}</view>
     </view>
     <view class="f34 c3e3a39 pttt fw7">{{ info.title }}</view>
   </view>
@@ -93,11 +93,11 @@
 
     <view wx:if="{{ ping }}" class="br20 f30 ping-btn cfff df flex11">
       <view catchtap="buy" data-type="buy" class="tac ping-btn-single flex11">
-        <view>￥28.91</view>
+        <view>￥{{ info.sku[labelIndex].alone_price }}</view>
         <view>单独购买</view>
       </view>
       <view catchtap="buy" data-type="ping" class="tac ping-btn-team flex11">
-        <view>￥10.91</view>
+        <view>￥{{ info.sku[labelIndex].assemble_price }}</view>
         <view>发起拼单</view>
       </view>
     </view>
@@ -117,7 +117,7 @@
           <view class="cff5975 f34">
             <!--<text>¥{{ info.sku[labelIndex].discount }}</text>-->
             <!--<text wx:if="{{ discount_name.length >= 1 }}" class="c999 text-t f22 pl20">¥{{ info.sku[labelIndex].price }}</text>-->
-            <text>¥{{ info.sku[labelIndex].price }}</text>
+            <text>¥{{ info.sku[labelIndex][ping ? buy_type === 'ping' ? 'assemble_price' : 'alone_price' : 'price'] }}</text>
           </view>
           <view>库存：{{ info.sku[labelIndex].stock }}</view>
           <view wx:if="{{ info.label != '-1' }}">请选择：{{ info.label }}</view>

@@ -212,7 +212,7 @@ Page({
   },
   getMyShareCode () {
     wx.previewImage({
-      urls:['https://c.jiangwenqiang.com/api/logo.jpg']
+      urls: ['https://c.jiangwenqiang.com/api/logo.jpg']
     })
   },
   onShareAppMessage () {

@@ -8,7 +8,10 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+    list: [],
+    page: 0
+  },
   inputValue: function inputValue(e) {
     this.data.searchText = e.detail.value;
   },
@@ -40,6 +43,58 @@ Page({
       }
     });
   },
+  getList: function getList() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().pinlist,
+      // url: app.getUrl().shopProductList,
+      data: {
+        mid: app.gs('shopInfoAll').id,
+        page: ++that.data.page
+      },
+      success: function success(res) {
+        if (that.data.page === 1) wx.stopPullDownRefresh();
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          var _iteratorNormalCompletion = true;
+          var _didIteratorError = false;
+          var _iteratorError = undefined;
+
+          try {
+            for (var _iterator = res.data.data.lists[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+              var v = _step.value;
+
+              v.price = v.price.split('.');
+              // v.price = v.old_price.split('.')
+            }
+          } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+              }
+            } finally {
+              if (_didIteratorError) {
+                throw _iteratorError;
+              }
+            }
+          }
+
+          that.setData({
+            list: that.data.list.concat(res.data.data.lists),
+            more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
+  onReachBottom: function onReachBottom() {
+    if (this.data.more > 0) this.getList();else app.setToast(this, { content: '没有更多内容啦' });
+  },
   onShareAppMessage: function onShareAppMessage() {
     var that = this;
     if (!app.gs('shopInfo').mid) {
@@ -60,7 +115,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function onLoad(options) {},
+  onLoad: function onLoad(options) {
+    this.getList();
+  },
 
 
   /**
@@ -99,5 +156,9 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function onPullDownRefresh() {}
+  onPullDownRefresh: function onPullDownRefresh() {
+    this.data.list = [];
+    this.data.page = 0;
+    this.getList();
+  }
 });

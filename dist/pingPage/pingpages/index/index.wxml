@@ -16,14 +16,14 @@
 </view>
 
 <view class="p30">
-  <navigator url="/shopListPage/shoplistpages/detail/detail?id=832&ping=ping" class="br20 bgfff p20 df  {{ index <= 0 ? '' : 'mt30' }}" wx:for="123" wx:key="this">
-    <image class="ping-goods-img" mode="aspectFill" src="https://c.jiangwenqiang.com/api/logo.jpg"></image>
+  <navigator url="/shopListPage/shoplistpages/detail/detail?id={{ item.id }}&ping=ping" class="br20 bgfff p20 df  {{ index <= 0 ? '' : 'mt30' }}" wx:for="{{ list }}" wx:key="*this">
+    <image show-menu-by-longpress="true" lazy-load="true" class="ping-goods-img" mode="aspectFill" src="{{ item.img }}"></image>
     <view class="pl20 ping-goods-right df flex1">
-      <view class="f30 c3e3a39">撒旦法师打发斯蒂芬</view>
+      <view class="f30 c3e3a39">{{ item.title }}</view>
       <view>
-        <view class="f23 c959595">已拼1000件</view>
+        <view class="f23 c959595">已拼{{ item.count_sale }}件</view>
         <view class="ping-btn df">
-          <view class="f43 cff362c"><text class="f33">￥</text>10911<text>.</text><text class="f30">99</text></view>
+          <view class="f43 cff362c"><text class="f33">￥</text>{{ item.price[0] }}<text>.</text><text class="f30">{{  item.price[1] || '00'}}</text></view>
           <view class="ping-btns f24 cfff keep">立即拼团</view>
         </view>
       </view>

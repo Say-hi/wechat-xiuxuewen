@@ -118,7 +118,7 @@ Page({
   },
   getMyShareCode () {
     wx.previewImage({
-      urls:['https://c.jiangwenqiang.com/api/logo.jpg']
+      urls: ['https://c.jiangwenqiang.com/api/logo.jpg']
     })
   },
   onShareAppMessage () {
@@ -205,7 +205,7 @@ Page({
               need_pay: true
             })
             that.data.info[0].end_time = new Date().getTime() + 86400000
-            if (that.data.ping ) that.setKill()
+            if (that.data.ping) that.setKill()
             console.log(that.data.info[0])
             wx.removeStorageSync('buyInfo')
           } else {

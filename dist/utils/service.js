@@ -119,6 +119,9 @@ var serviceUrl = {
   userrecharge: shopBaseDomain + '/user/recharge', // 视频列表
   shopstar: shopBaseDomain + '/shop/star', // 视频列表
   ruleexplain: shopBaseDomain + '/rule/explain', // 视频列表
+  // 拼团
+  pinlist: shopBaseDomain + '/assemble/list', // 拼团列表页
+  pindetail: shopBaseDomain + '/assemble/detail', // 拼团详情页
   // 公众号接口
   profitDetail: webBaseDomain + '/user/profit-detail'
 

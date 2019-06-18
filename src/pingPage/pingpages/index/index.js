@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    list: [],
+    page: 0
   },
   inputValue (e) {
     this.data.searchText = e.detail.value
@@ -40,6 +42,38 @@ Page({
       }
     })
   },
+
+  getList () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().pinlist,
+      // url: app.getUrl().shopProductList,
+      data: {
+        mid: app.gs('shopInfoAll').id,
+        page: ++that.data.page
+      },
+      success (res) {
+        if (that.data.page === 1) wx.stopPullDownRefresh()
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          for (let v of res.data.data.lists) {
+            v.price = v.price.split('.')
+            // v.price = v.old_price.split('.')
+          }
+          that.setData({
+            list: that.data.list.concat(res.data.data.lists),
+            more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+  onReachBottom () {
+    if (this.data.more > 0) this.getList()
+    else app.setToast(this, {content: '没有更多内容啦'})
+  },
   onShareAppMessage () {
     let that = this
     if (!app.gs('shopInfo').mid) {
@@ -60,7 +94,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-
+    this.getList()
   },
 
   /**
@@ -97,5 +131,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh () {
+    this.data.list = []
+    this.data.page = 0
+    this.getList()
   }
 })

@@ -2,6 +2,7 @@
 const app = getApp()
 console.log(app.data.all_Screen)
 let startX = 0
+// ping_status 0 未开始 1 进行中 -1结束
 // 创建页面实例对象
 Page({
   /**
@@ -39,6 +40,11 @@ Page({
     })
   },
   goSubmit () {
+    if (this.data.ping) { // 拼团检测
+      if (this.data.info.ping_status === 0) return app.setToast(this, {content: '拼团活动还没有开始'})
+      if (this.data.info.ping_status === -1) return app.setToast(this, {content: '拼团活动已结束'})
+      if (this.data.buy_type === 'ping' && this.data.num >= this.data.info.limited) return app.setToast(this, {content: `每人限购${this.data.info.limited}件`})
+    }
     if (this.data.num > this.data.info.sku[this.data.labelIndex].stock) return app.setToast(this, {content: '该产品已无库存'})
     if (this.data.addCar) { // 添加到购物车
       let that = this
@@ -76,7 +82,7 @@ Page({
       freight,
       people,
       sku: sku[this.data.labelIndex],
-      count: this.data.num,
+      count: this.data.num
     }])
     if (this.data.ping && this.data.buy_type === 'ping') {
       return wx.redirectTo({
@@ -120,6 +126,11 @@ Page({
   numOperation (e) {
     let type = e.currentTarget.dataset.type
     if (type === 'add') {
+      if (this.data.ping) {
+        if (this.data.info.ping_status === 0) return app.setToast(this, {content: '拼团活动还没有开始'})
+        if (this.data.info.ping_status === -1) return app.setToast(this, {content: '拼团活动已结束'})
+        if (this.data.buy_type === 'ping' && this.data.num >= this.data.info.limited) return app.setToast(this, {content: `每人限购${this.data.info.limited}件`})
+      }
       if (this.data.num >= this.data.info.sku[this.data.labelIndex].stock) return app.setToast(this, {content: '已达库存上限'})
       this.setData({
         num: ++this.data.num
@@ -140,20 +151,28 @@ Page({
   shopProduct (pid) {
     let that = this
     app.wxrequest({
-      url: app.getUrl().shopProduct,
+      url: app.getUrl()[that.data.ping ? 'pindetail' : 'shopProduct'],
+      // url: app.getUrl()[that.data.ping ? 'shopProduct' : 'shopProduct'],
       data: {
         pid
       },
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
+          if (that.data.ping) res.data.data.ping_status = new Date().getTime() < res.data.data.start_time * 1000 ? 0 : new Date().getTime() < res.data.data.end_time ? 1 : -1
           res.data.data.imgs = res.data.data.imgs ? res.data.data.imgs.split(',') : []
           res.data.data.detail = res.data.data.detail ? res.data.data.detail.split(',') : []
           app.setBar(res.data.data.title)
           res.data.data['stock'] = 0
-          for (let v of res.data.data.sku) {
-            v['discount'] = (v.price * that.data.discount_value).toFixed(2)
-            res.data.data['stock'] += v.stock * 1
+          if (!that.data.ping) {
+            for (let v of res.data.data.sku) {
+              v['discount'] = (v.price * that.data.discount_value).toFixed(2)
+              res.data.data['stock'] += v.stock * 1
+            }
+          } else {
+            res.data.data.pin_show_price = res.data.data.sku[0].assemble_price.split(',')
+            res.data.data.count_sale = res.data.data.count_sale >= 10000 ? Math.floor(res.data.data.count_sale / 1000).toFixed(2) + '万' : res.data.data.count_sale
+            // res.data.data.pin_show_price = [0, 1]
           }
           let sku = res.data.data.sku
           sku.map((v, i) => {
