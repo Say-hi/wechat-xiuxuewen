@@ -51,12 +51,12 @@
         <view class="f30 c3e3a39">直接参与可快速成团</view>
         <view class="f24 c828282">查看更多</view>
       </view>
-    <block wx:for="123" wx:key="*this">
+    <block wx:for="{{ list }}" wx:key="*this">
       <view class="ping-team df">
-        <image mode="aspectFill" class="br" src="https://c.jiangwenqiang.com/api/logo.jpg"></image>
-        <view class="pteam-phone f31 c000">138****8697</view>
+        <image mode="aspectFill" class="br" src="{{ item.avatar_url }}"></image>
+        <view class="pteam-phone f31 c000">{{ item.phone }}</view>
         <view class="df pteam-time f30 c000 tar flex1">
-          <view>还差1人成团</view>
+          <view>还差{{ info.group_num - item.count_times }}人成团</view>
           <view class="f28 c828282">距结束09:42:46 </view>
         </view>
         <view catchtap="sptChange" data-index="{{ index }}" class="f30 cfff pteam-btn">立即拼单</view>

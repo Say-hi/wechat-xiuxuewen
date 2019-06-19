@@ -120,6 +120,7 @@ const serviceUrl = {
   // 拼团
   pinlist: shopBaseDomain + '/assemble/list',  // 拼团列表页
   pindetail: shopBaseDomain + '/assemble/detail',  // 拼团详情页
+  pinteam: shopBaseDomain + '/assemble/detail',  // 正在拼团的用户信息列表
   // 公众号接口
   profitDetail: webBaseDomain + '/user/profit-detail'
 

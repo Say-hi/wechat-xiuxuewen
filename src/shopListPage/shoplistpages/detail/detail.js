@@ -12,9 +12,11 @@ Page({
     in_area: true,
     buy_type: 'normal',
     ngshow: 1,
+    list: [],
     enable_progress_gesture: true,
     systemVersion: app.data.systemVersion,
     num: 1,
+    page: 0,
     labelIndex: 0,
     all_Screen: app.data.all_screen,
     discount_name: app.gs('shopInfoAll').discount_name,
@@ -82,11 +84,12 @@ Page({
       freight,
       people,
       sku: sku[this.data.labelIndex],
-      count: this.data.num
+      count: this.data.num,
+      end_time: this.data.info.effective_time
     }])
     if (this.data.ping && this.data.buy_type === 'ping') {
       return wx.redirectTo({
-        url: '../submit/submit?type=now&ping=ping'
+        url: `../submit/submit?type=now&ping=ping`
       })
     }
     wx.redirectTo({
@@ -210,6 +213,27 @@ Page({
         path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}&user=${app.gs('userInfoAll').id}`
       }
     }
+  },
+  getPingTeam () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().pinteam,
+      data: {
+        pid: that.data.info.id,
+        page: ++that.data.page
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            list: that.data.list.concat(res.data.data.lists),
+            more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
