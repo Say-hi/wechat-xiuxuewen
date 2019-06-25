@@ -121,6 +121,8 @@ const serviceUrl = {
   pinlist: shopBaseDomain + '/assemble/list',  // 拼团列表页
   pindetail: shopBaseDomain + '/assemble/detail',  // 拼团详情页
   pinteam: shopBaseDomain + '/assemble/detail',  // 正在拼团的用户信息列表
+  pinrelease: shopBaseDomain + '/shops/release',  // 发布拼团商品
+  refund: shopBaseDomain + '/assemble/refund',  // 拼团退款
   // 公众号接口
   profitDetail: webBaseDomain + '/user/profit-detail'
 

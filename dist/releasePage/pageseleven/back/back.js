@@ -47,6 +47,13 @@ Page({
     upImgArr: [],
     upImgArrProgress: []
   },
+  refund: function refund() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().refund,
+      data: {}
+    });
+  },
   pickerChange: function pickerChange(e) {
     console.log(e);
     this.setData(_defineProperty({}, '' + e.currentTarget.dataset.type, e.detail.value));

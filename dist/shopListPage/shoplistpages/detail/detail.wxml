@@ -12,7 +12,8 @@
       <image mode="aspectFill" src="{{ item }}"></image>
     </swiper-item>
   </swiper>
-  <button wx:if="{{ !ping }}" open-type="share"
+  <button wx:if="{{ !ping }}"
+          open-type="share"
           hover-class="none"
           class="p30 goods-title tal">
     <view class="f34 c3a3a3a fw7">{{ info.title }}</view>

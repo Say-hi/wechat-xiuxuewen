@@ -50,6 +50,15 @@ Page({
     upImgArr: [],
     upImgArrProgress: []
   },
+  refund () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().refund,
+      data: {
+
+      }
+    })
+  },
   pickerChange (e) {
     console.log(e)
     this.setData({
