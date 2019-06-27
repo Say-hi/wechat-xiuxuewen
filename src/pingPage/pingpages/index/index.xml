@@ -29,6 +29,7 @@
       </view>
     </view>
   </navigator>
+  <view class="tac f28 c999" wx:if="{{ !list.length }}">店铺还没有相关拼团产品，感谢你的关注</view>
 </view>
 
 <!--<view class="zw"></view>-->

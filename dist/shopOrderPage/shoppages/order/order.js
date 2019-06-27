@@ -281,10 +281,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function onLoad(options) {
+    if (options.for === 'shop' && options.ping) {
+      this.data.tabNav.push({
+        t: '退款中',
+        i: 4
+      });
+    }
     this.setData({
       options: options,
       ping: options.ping,
-      tabIndex: options.type
+      tabIndex: options.type,
+      tabNav: this.data.tabNav
     }, this.getList);
     // TODO: onLoad
   },

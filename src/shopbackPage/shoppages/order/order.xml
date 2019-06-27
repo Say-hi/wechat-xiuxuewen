@@ -1,0 +1,40 @@
+<view>
+  <view class="bgfff mt20 p20">
+    <view class="f34 c595757 tac ">收到买家仅退款申请，请尽快处理</view>
+    <view class="back-btn df f34 c3e3a39 mt20">
+      <view class="br8 bb-confirm cfff">同意买家退款</view>
+      <view catchtap="changeShow" data-type="cancel" class="br8 bb-cancel">拒绝退款</view>
+    </view>
+  </view>
+  <view class="mt20 bgfff">
+    <view class="df p20 pl42 bd1 apply-time f34 c3e3a39">
+      <text>买家</text>
+      <text class="f26">2019-06-25  12:24:51</text>
+    </view>
+    <view class="f34 c595757 pl42 p20 bd1">发起了退款申请，等待商家处理</view>
+    <view class="f34 c595757 pl42 p20 bd1">期望结果　　<text class="c3e3a39">我要退款（无需退货）</text></view>
+    <view class="f34 c595757 pl42 p20">申请原因　　<text class="c3e3a39">多拍、错拍、不想要</text></view>
+  </view>
+  <view class="f34 bgfff mt20 c595757 pl42 p20 bd1">退款金额　　<text class="c3e3a39">¥109.9</text></view>
+</view>
+<view wx:if="{{ refuseMask }}" class="mask">
+  <view class="refuse">
+    <textarea class="bgfff" placeholder='拒绝理由'></textarea>
+    <view class="refuse-btn df bgfff mt20 p20">
+      <view catchtap="changeShow" data-type="confirm" class="tac f34 cfff p20 br8">确定</view>
+      <view catchtap="changeShow" data-type="cancel" class="tac f34 c3e3a39 p20 br8 ml20">取消</view>
+    </view>
+  </view>
+</view>
+
+
+<view wx:if="{{ confirmRefuse }}" class="tac mt20 p30 mask confirm-refuse">
+  <icon type="success" size="100"></icon>
+  <view class="f34 fw7 c3e3a39 mt20">买家通过申请，退款中</view>
+  <view class="f24 c595757 tal p30">系统会在1-2天内提交微信支付处理，微信审核完成后1-3
+    个工作日内自动原路退款至买家的付款方式。</view>
+</view>
+
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

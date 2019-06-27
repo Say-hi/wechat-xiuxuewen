@@ -27,7 +27,7 @@
           <view class="goods-list br8 p20 f28 c666"
                 wx:key="*45"
                 wx:for="{{ info }}">
-            <image src="{{ item.img }}"
+            <image src="{{ ping ? item.sku.img[0] : item.img }}"
                    class="br8"
                    mode="aspectFit"></image>
             <view class="flex1">

@@ -2,6 +2,7 @@
 const app = getApp()
 console.log(app.data.all_Screen)
 let startX = 0
+let timer = null
 // ping_status 0 未开始 1 进行中 -1结束
 // 创建页面实例对象
 Page({
@@ -45,7 +46,7 @@ Page({
     if (this.data.ping) { // 拼团检测
       if (this.data.info.ping_status === 0) return app.setToast(this, {content: '拼团活动还没有开始'})
       if (this.data.info.ping_status === -1) return app.setToast(this, {content: '拼团活动已结束'})
-      if (this.data.buy_type === 'ping' && this.data.num >= this.data.info.limited) return app.setToast(this, {content: `每人限购${this.data.info.limited}件`})
+      if (this.data.buy_type === 'ping' && this.data.num > this.data.info.limited) return app.setToast(this, {content: `每人限购${this.data.info.limited}件`})
     }
     if (this.data.num > this.data.info.sku[this.data.labelIndex].stock) return app.setToast(this, {content: '该产品已无库存'})
     if (this.data.addCar) { // 添加到购物车
@@ -96,8 +97,9 @@ Page({
       url: '../submit/submit?type=now'
     })
   },
-  sptChange () {
+  sptChange (e) {
     this.setData({
+      showPingIndex: e.currentTarget.dataset.index,
       showPingTeam: !this.data.showPingTeam
     })
   },
@@ -109,9 +111,13 @@ Page({
         })
       }
       if (e.currentTarget.dataset.type === 'ping') { // 发起拼团
-        this.data.buy_type = 'ping'
+        this.setData({
+          buy_type: 'ping'
+        })
       } else {  // 拼团直接购买
-        this.data.buy_type = 'normal'
+        this.setData({
+          buy_type: 'normal'
+        })
       }
       this.setData({ // 规则选择
         buyMask: !this.data.buyMask
@@ -162,7 +168,9 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
-          if (that.data.ping) res.data.data.ping_status = new Date().getTime() < res.data.data.start_time * 1000 ? 0 : new Date().getTime() < res.data.data.end_time ? 1 : -1
+          if (that.data.ping) {
+            res.data.data.ping_status = new Date().getTime() < res.data.data.start_time * 1000 ? 0 : new Date().getTime() < res.data.data.end_time * 1000 ? 1 : -1
+          }
           res.data.data.imgs = res.data.data.imgs ? res.data.data.imgs.split(',') : []
           res.data.data.detail = res.data.data.detail ? res.data.data.detail.split(',') : []
           app.setBar(res.data.data.title)
@@ -173,9 +181,8 @@ Page({
               res.data.data['stock'] += v.stock * 1
             }
           } else {
-            res.data.data.pin_show_price = res.data.data.sku[0].assemble_price.split(',')
+            res.data.data.pin_show_price = res.data.data.sku[0].assemble_price.split('.')
             res.data.data.count_sale = res.data.data.count_sale >= 10000 ? Math.floor(res.data.data.count_sale / 1000).toFixed(2) + '万' : res.data.data.count_sale
-            // res.data.data.pin_show_price = [0, 1]
           }
           let sku = res.data.data.sku
           sku.map((v, i) => {
@@ -193,6 +200,9 @@ Page({
           that.setData({
             info: res.data.data
           })
+          if (that.data.ping) {
+            that.getPingTeam()
+          }
         } else {
           app.setToast(that, {content: res.data.desc})
         }
@@ -214,6 +224,46 @@ Page({
       }
     }
   },
+  // 秒杀逻辑
+  setKill () {
+    let that = this
+    if (timer) clearInterval(timer)
+    function kill () {
+      let shutDown = 0
+      // console.log(that.data.killArr)
+      if (!that.data.list) return
+      for (let [i, v] of that.data.list.entries()) {
+        let nowData = new Date().getTime() // 毫秒数
+        // console.log('startTime', new Date(that.data.killArr[i].startTime))
+        // let startTime = that.data.list[i].start_time * 1000
+        let endTime = that.data.list[i].end_time
+        // console.log(nowData, startTime, endTime)
+        if (nowData < endTime) { // 进行中
+          that.data.list[i].status = 1
+          that.data.list[i].h = Math.floor((endTime - nowData) / 3600000)
+          that.data.list[i].m = Math.floor((endTime - nowData) % 3600000 / 60000)
+          that.data.list[i].s = Math.floor((endTime - nowData) % 60000 / 1000)
+        } else { // 已结束
+          if (that.data.list[i].status === 2) {
+            ++shutDown
+            continue
+          }
+          that.data.list[i].status = 2
+          that.data.list[i].h = '已'
+          that.data.list[i].m = '结'
+          that.data.list[i].s = '束'
+        }
+        that.setData({
+          list: that.data.list
+        })
+      }
+      if (shutDown === that.data.info.length) clearInterval(timer)
+    }
+    kill()
+    timer = setInterval(() => {
+      kill()
+    }, 1000)
+  },
   getPingTeam () {
     let that = this
     app.wxrequest({
@@ -225,10 +275,28 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
+          let tempList = []
+          for (let v of res.data.data.lists) {
+            let teamTemp = {
+              user: []
+            }
+            let groupL = {}
+            for (let s of v) {
+              if (s.mode_id <= 1) { // 团长
+                teamTemp['group_id'] = s.group_id
+                teamTemp['end_time'] = (s.create_time + that.data.info.effective_time) * 1000
+                groupL = s
+              } else {
+                teamTemp.user.push(s)
+              }
+            }
+            teamTemp.user.unshift(groupL)
+            tempList.push(teamTemp)
+          }
           that.setData({
-            list: that.data.list.concat(res.data.data.lists),
+            list: that.data.list.concat(tempList),
             more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
-          })
+          }, that.setKill())
         } else {
           app.setToast(that, {content: res.data.desc})
         }
@@ -239,7 +307,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    console.log('options', options)
+    // console.log('options', options)
     if (options.scene) { // 通过分享进入拼团
       let scene = decodeURIComponent(options.scene).split(',')
       options.ping = scene[0] // 拼团标识
@@ -251,7 +319,7 @@ Page({
       ping: options.ping === 'ping'
     })
     this.shopProduct(options.id)
-    console.log('route', this.route)
+    // console.log('route', this.route)
     // TODO: onLoad
   },
 

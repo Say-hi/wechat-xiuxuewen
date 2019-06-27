@@ -14,9 +14,12 @@ Page({
     today: true
   },
   showImage () {
-    this.setData({
-      showImage: !this.data.showImage
+    wx.navigateTo({
+      url: `/webviewPage/shoppages/index/index?agents=${(this.data.agents || this.data.info.roles * 1 === 1) ? 1 : 2}&uid=${this.data.info.id}`
     })
+    // this.setData({
+    //   showImage: !this.data.showImage
+    // })
   },
   saveImage () {
     let that = this

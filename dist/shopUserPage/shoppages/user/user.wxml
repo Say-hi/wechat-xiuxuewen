@@ -80,14 +80,18 @@
       </view>
     </view>
     <view class="user-bottom f28 fw7 mt20 c19618F">
+      <view wx:if="{{ agents || info.roles == 1 }}" catchtap="showImage" class="ub-item arrow br8 bgfff tal ">提现审核</view>
       <navigator url="/shopMoneyPage/shoppages/index/index" class="ub-item arrow br8 bgfff tal ">资金管理</navigator>
+      <view wx:if="{{ agents }}" class="zw20"></view>
       <navigator url="/shopOrderPage/shoppages/order/order?type=0&for=user" class="ub-item arrow br8 bgfff tal ">销售订单</navigator>
       <navigator url="/shopOrderPage/shoppages/order/order?type=0&for=user&ping=ping" class="ub-item arrow br8 bgfff tal ">拼团订单</navigator>
+      <navigator wx:if="{{ agents }}" url="/shopOrderPage/shoppages/order/order?type=0&for=shop&ping=ping" class="ub-item arrow br8 bgfff tal ">店铺拼团订单</navigator>
       <view class="zw20"></view>
       <navigator wx:if="{{ !agents }}" url="/shopClientPage/shoppages/index/index?type=user" class="ub-item arrow br8 bgfff tal ">我的代理</navigator>
       <navigator wx:if="{{ agents }}" url="/shopClientPage/shoppages/index/index?type=agents" class="ub-item arrow br8 bgfff tal">店铺代理</navigator>
-      <!-- <view wx:if="{{ agents }}" class="zw20"></view> -->
       <navigator wx:if="{{ agents }}" url="/releasePage/pageseleven/set/set?type=shop" class="ub-item arrow br8 bgfff tal ">店铺设置</navigator>
+      <!-- <view wx:if="{{ agents }}" class="zw20"></view> -->
+      <navigator wx:if="{{ agents }}" url="/adminsetPage/shoppages/index/index" class="ub-item arrow br8 bgfff tal ">管理员设置</navigator>
       <view wx:if="{{ agents }}" class="zw20"></view> 
       <navigator url="/shopNotePage/shoppages/index/index" class="ub-item arrow br8 bgfff tal ">消息通知</navigator>
     </view>

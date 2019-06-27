@@ -280,6 +280,27 @@
         "pingpages/index/index", // 拼团列表
         "pingpages/money/index" // 钱款去向
       ]
+    },
+    {
+      "root": "webviewPage", // webview
+      "name": "webview",
+      "pages": [
+        "shoppages/index/index" // 公众号提现
+      ]
+    },
+    {
+      "root": "shopbackPage", // 退货相关界面
+      "name": "shopback",
+      "pages": [
+        "shoppages/order/order"
+      ]
+    },
+    {
+      "root": "adminsetPage", // 管理员管理
+      "name": "adminset",
+      "pages": [
+        "shoppages/index/index"
+      ]
     }
   ],
   "preloadRule": {

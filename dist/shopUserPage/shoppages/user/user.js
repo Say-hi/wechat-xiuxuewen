@@ -16,9 +16,12 @@ Page({
     today: true
   },
   showImage: function showImage() {
-    this.setData({
-      showImage: !this.data.showImage
+    wx.navigateTo({
+      url: '/webviewPage/shoppages/index/index?agents=' + (this.data.agents || this.data.info.roles * 1 === 1 ? 1 : 2) + '&uid=' + this.data.info.id
     });
+    // this.setData({
+    //   showImage: !this.data.showImage
+    // })
   },
   saveImage: function saveImage() {
     var that = this;

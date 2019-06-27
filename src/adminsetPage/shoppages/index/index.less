@@ -1,0 +1,34 @@
+.pl42 {
+  padding-left: 42rpx;
+}
+.df {
+  align-items: center;
+  height: 80rpx;
+  overflow: hidden;
+  text {
+    text-align: justify;
+    //text-align-last: justify;
+    width: 150rpx;
+    display: inline-block;
+    transform: translateY(25%);
+    &:after{
+      content: '';
+      display: inline-block;
+      width: 100%;
+    }
+  }
+}
+
+.bottom-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text {
+    background-color: #ff362c;
+    padding: 10rpx 30rpx;
+    border-radius: 8rpx;
+    &:nth-child(2) {
+      background: #bfbfbf;
+    }
+  }
+}

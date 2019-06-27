@@ -33,15 +33,19 @@ Page({
     }],
     backTypeIndex: 0,
     backReason: [{
-      t: '收货地址填错了'
+      t: '多拍、错拍、不想要'
     }, {
-      t: '忘记支付密码／余额不足'
+      t: '不喜欢、效果不好'
     }, {
-      t: '无法正常支付'
+      t: '货物与描述不符'
     }, {
-      t: '不想购买'
+      t: '质量问题'
     }, {
-      t: '其他原因'
+      t: '收到商品少件、破损与污渍'
+    }, {
+      t: '卖家发错货'
+    }, {
+      t: '假冒品牌'
     }],
     backReasonIndex: 0,
     upImgArr: [],
@@ -51,8 +55,31 @@ Page({
     var that = this;
     app.wxrequest({
       url: app.getUrl().refund,
-      data: {}
+      data: {
+        uid: that.data.options.uid,
+        openid: that.data.options.openid,
+        mid: that.data.options.mid,
+        oid: that.data.options.oid,
+        amount: that.data.options.amount || 0,
+        out_trade_no: that.data.options.out_trade_no,
+        types: that.data.backTypeIndex * 1 + 1,
+        reason: that.data.backReason[that.data.backReasonIndex].t,
+        explain: that.data.content || '顾客未填写说明'
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData({
+            apply: true
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
     });
+  },
+  inputValue: function inputValue(e) {
+    app.inputValue(e, this);
   },
   pickerChange: function pickerChange(e) {
     console.log(e);
@@ -215,7 +242,8 @@ Page({
    */
   onLoad: function onLoad(options) {
     this.setData({
-      ping: options.ping
+      options: options,
+      apply: options.apply * 1 === 1
     });
     // TODO: onLoad
   },

@@ -302,6 +302,13 @@ Page({
             Allmoney += v.count * v.price
             maxFreight = maxFreight > v.freight ? maxFreight : v.freight
           }
+        } else if (options.ping) {
+          for (let v of app.gs('buyInfo')) {
+            v.sku.price = v.sku.assemble_price
+            allCount += v.count
+            Allmoney += v.count * v.sku.price
+            maxFreight = maxFreight > v.freight ? maxFreight : v.freight
+          }
         } else {
           for (let v of app.gs('buyInfo')) {
             allCount += v.count

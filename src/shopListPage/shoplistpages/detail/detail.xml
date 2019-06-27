@@ -54,11 +54,11 @@
       </view>
     <block wx:for="{{ list }}" wx:key="*this">
       <view class="ping-team df">
-        <image mode="aspectFill" class="br" src="{{ item.avatar_url }}"></image>
-        <view class="pteam-phone f31 c000">{{ item.phone }}</view>
+        <image mode="aspectFill" class="br" src="{{ item.user[0].avatar_url }}"></image>
+        <view class="pteam-phone f31 c000">{{ item.user[0].phone }}</view>
         <view class="df pteam-time f30 c000 tar flex1">
-          <view>还差{{ info.group_num - item.count_times }}人成团</view>
-          <view class="f28 c828282">距结束09:42:46 </view>
+          <view>还差{{ info.group_num - item.user.length }}人成团</view>
+          <view class="f28 c828282">距结束{{ item.h }}:{{ item.m }}:{{ item.s }} </view>
         </view>
         <view catchtap="sptChange" data-index="{{ index }}" class="f30 cfff pteam-btn">立即拼单</view>
       </view>
@@ -118,7 +118,7 @@
           <view class="cff5975 f34">
             <!--<text>¥{{ info.sku[labelIndex].discount }}</text>-->
             <!--<text wx:if="{{ discount_name.length >= 1 }}" class="c999 text-t f22 pl20">¥{{ info.sku[labelIndex].price }}</text>-->
-            <text>¥{{ info.sku[labelIndex][ping ? buy_type === 'ping' ? 'assemble_price' : 'alone_price' : 'price'] }}</text>
+            <text>¥{{ info.sku[labelIndex][ping ? buy_type == 'ping' ? 'assemble_price' : 'alone_price' : 'price'] }}</text>
           </view>
           <view>库存：{{ info.sku[labelIndex].stock }}</view>
           <view wx:if="{{ info.label != '-1' }}">请选择：{{ info.label }}</view>
@@ -176,15 +176,15 @@
 <view wx:if="{{ showPingTeam }}" class="mask">
   <view class="spt-in tac br18 p30 bgfff">
     <view catchtap="sptChange" class="iconfont icon-cuowu"></view>
-    <view class="f32 c3e3a39">参与asdf的拼单</view>
-    <view class="f24 mt20">仅差<text class="cff362c">1人</text>，快呼唤小伙伴参加吧！</view>
+    <view class="f32 c3e3a39">参与{{ list[showPingIndex].user[0].nickname }}的拼单</view>
+    <view class="f24 mt20">仅差<text class="cff362c">{{ info.group_num - list[showPingIndex].user.length }}人</text>，快呼唤小伙伴参加吧！</view>
     <view class="spt-user mt20">
       <view class="user-item pr">
         <view class="pa cfff f27 team-leader keep">团长</view>
-        <image class="br" mode="aspectFil" src="https://c.jiangwenqiang.com/api/logo.jpg"></image>
+        <image class="br" mode="aspectFil" src="{{ list[showPingIndex].user[0].avatar_url}}"></image>
       </view>
-      <view class="user-item">
-        <image class="br" mode="aspectFil" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/ping/ping3.png"></image>
+      <view wx:for="{{ list[showPingIndex].user }}" class="user-item">
+        <image wx:if="{{ index >= 1 }}" class="br" mode="aspectFil" src="{{ item.avatar_url }}"></image>
       </view>
     </view>
     <view class="spt-other">参与拼单</view>

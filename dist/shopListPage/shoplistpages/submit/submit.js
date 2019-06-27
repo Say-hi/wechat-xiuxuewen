@@ -398,7 +398,7 @@ Page({
             }
           }
         }
-      } else {
+      } else if (options.ping) {
         var _iteratorNormalCompletion5 = true;
         var _didIteratorError5 = false;
         var _iteratorError5 = undefined;
@@ -407,6 +407,7 @@ Page({
           for (var _iterator5 = app.gs('buyInfo')[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
             var _v2 = _step5.value;
 
+            _v2.sku.price = _v2.sku.assemble_price;
             allCount += _v2.count;
             Allmoney += _v2.count * _v2.sku.price;
             maxFreight = maxFreight > _v2.freight ? maxFreight : _v2.freight;
@@ -422,6 +423,33 @@ Page({
           } finally {
             if (_didIteratorError5) {
               throw _iteratorError5;
+            }
+          }
+        }
+      } else {
+        var _iteratorNormalCompletion6 = true;
+        var _didIteratorError6 = false;
+        var _iteratorError6 = undefined;
+
+        try {
+          for (var _iterator6 = app.gs('buyInfo')[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+            var _v3 = _step6.value;
+
+            allCount += _v3.count;
+            Allmoney += _v3.count * _v3.sku.price;
+            maxFreight = maxFreight > _v3.freight ? maxFreight : _v3.freight;
+          }
+        } catch (err) {
+          _didIteratorError6 = true;
+          _iteratorError6 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion6 && _iterator6.return) {
+              _iterator6.return();
+            }
+          } finally {
+            if (_didIteratorError6) {
+              throw _iteratorError6;
             }
           }
         }

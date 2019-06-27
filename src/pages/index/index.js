@@ -98,7 +98,8 @@ Page({
     app.wxrequest({
       url: app.getUrl().course,
       data: {
-        page: 1
+        page: 1,
+        style: 2
       },
       success (res) {
         wx.hideLoading()

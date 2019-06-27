@@ -55,7 +55,11 @@
     }
   }
 }
-
+.s-switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .arrow::after {
   width: 16rpx;
   height: 16rpx;
@@ -124,6 +128,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    flex-wrap: wrap;
     &.nomore {
       justify-content: space-between;
     }

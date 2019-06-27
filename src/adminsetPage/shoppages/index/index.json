@@ -1,0 +1,5 @@
+// Window configuration
+{
+  "navigationBarTitleText": "管理员管理",
+  "enablePullDownRefresh": false
+}

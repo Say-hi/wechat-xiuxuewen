@@ -37,6 +37,10 @@ Page({
       }]
     },
     topIndex: 0,
+    start_year: new Date().getFullYear() + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate(),
+    start_time: '00:00',
+    end_year: new Date().getFullYear() + '/' + (new Date().getMonth() + 1) + '/' + new Date().getDate(),
+    end_time: '23:00',
     labelIndex: 0,
     sizeIndex: 0,
     addItemIndex: -3, // -1 增加规格子项，-2增加规格 -3隐藏 >=0 修改
@@ -422,7 +426,7 @@ Page({
   shopProduct: function shopProduct(pid) {
     var that = this;
     app.wxrequest({
-      url: app.getUrl().shopProduct,
+      url: app.getUrl()[that.data.ping ? 'pindetail' : 'shopProduct'],
       data: {
         pid: pid
       },
@@ -595,6 +599,16 @@ Page({
             sizeArr: that.data.sizeArr,
             sizeMore: res.data.data.label * 1 !== -1
           });
+          if (that.data.ping) {
+            var ps = res.data.data.start_time * 1000;
+            var pe = res.data.data.end_time * 1000;
+            that.setData({
+              start_year: new Date(ps).getFullYear() + '/' + (new Date(ps).getMonth() + 1) + '/' + new Date(ps).getDate(),
+              start_time: new Date(ps).getHours() + ':' + new Date(ps).getMinutes(),
+              end_year: new Date(pe).getFullYear() + '/' + (new Date(pe).getMonth() + 1) + '/' + new Date(pe).getDate(),
+              end_time: new Date(pe).getHours() + ':' + new Date(pe).getMinutes()
+            });
+          }
         } else {
           app.setToast(that, { content: res.data.desc });
         }
@@ -606,19 +620,34 @@ Page({
       this.setData(_defineProperty({}, 'info.title', e.detail.value));
     } else if (e.currentTarget.dataset.type === 'express') {
       this.setData(_defineProperty({}, 'info.freight', (e.detail.value * 1).toFixed(2)));
-    } else {
-      if (e.currentTarget.dataset.type === 'stock') {
-        this.setData(_defineProperty({}, 'info.sku[' + e.currentTarget.dataset.index + '].stock', e.detail.value));
-      } else {
-        this.setData(_defineProperty({}, 'info.sku[' + e.currentTarget.dataset.index + '].price', (e.detail.value * 1).toFixed(2)));
-      }
+    } else if (e.currentTarget.dataset.type === 'stock') {
+      this.setData(_defineProperty({}, 'info.sku[' + e.currentTarget.dataset.index + '].stock', e.detail.value));
+    } else if (e.currentTarget.dataset.type === 'price') {
+      this.setData(_defineProperty({}, 'info.sku[' + e.currentTarget.dataset.index + '].' + (this.data.ping ? 'alone_price' : 'price'), (e.detail.value * 1).toFixed(2)));
+    } else if (e.currentTarget.dataset.type === 'assemble_price') {
+      this.setData(_defineProperty({}, 'info.sku[' + e.currentTarget.dataset.index + '].assemble_price', (e.detail.value * 1).toFixed(2)));
+    } else if (e.currentTarget.dataset.type === 'group_num') {
+      this.setData(_defineProperty({}, 'info.group_num', e.detail.value > 2 ? e.detail.value : 2));
+    } else if (e.currentTarget.dataset.type === 'count_sale') {
+      this.setData(_defineProperty({}, 'info.count_sale', Math.floor(e.detail.value)));
+    } else if (e.currentTarget.dataset.type === 'limited') {
+      this.setData(_defineProperty({}, 'info.limited', e.detail.value > 0 ? e.detail.value : 1));
+    } else if (e.currentTarget.dataset.type === 'effective_time') {
+      this.setData(_defineProperty({}, 'info.effective_time', e.detail.value > 3600 ? e.detail.value : 3600));
     }
+  },
+  switchChange: function switchChange(e) {
+    this.setData(_defineProperty({}, 'info.sub', e.detail.value ? 1 : -1));
   },
   upGoods: function upGoods() {
     var that = this;
     var imgs = [];
     var detail = [];
     var info = this.data.info;
+    if (this.data.ping) {
+      // 拼团产品校验
+      if (new Date(this.data.start_year + ' ' + this.data.start_time).getTime() > new Date(this.data.end_year + ' ' + this.data.end_time).getTime()) return app.setToast(this, { content: '结束时间应大于开始时间' });
+    }
     if (!info.title || info.title.length <= 0) return app.setToast(this, { content: '请输入产品标题' });
     if (this.data.upImgArr2.length <= 0) return app.setToast(this, { content: '最少上传一张商品图' });
     var _iteratorNormalCompletion9 = true;
@@ -687,11 +716,29 @@ Page({
       SKUS[index].img = temp.join(',');
     });
     app.wxrequest({
-      url: app.getUrl()[that.data.info.id ? 'shopEdit' : 'shopRelease'],
-      data: Object.assign({
+      url: app.getUrl()[that.data.ping ? that.data.info.id ? 'pinedit' : 'pinrelease' : that.data.info.id ? 'shopEdit' : 'shopRelease'],
+      data: Object.assign(that.data.ping ? {
         mid: app.gs('shopInfoAll').id,
         cid: that.data.goodslabel[that.data.labelIndex].id,
-        parent_id: 0,
+        title: info.title,
+        img: that.data.upImgArr2[0].real,
+        imgs: imgs.join(','),
+        old_price: info.sku[0].alone_price,
+        freight: info.freight,
+        label: that.data.sizeMore ? that.data.sizeArr[that.data.sizeIndex].name : -1,
+        sku: JSON.stringify(SKUS),
+        detail: detail.join(','),
+        detail_text: info.detail_text || '',
+        group_num: info.group_num || 2,
+        start_time: Math.floor(new Date(that.data.start_year + ' ' + that.data.start_time).getTime() / 1000),
+        end_time: Math.floor(new Date(that.data.end_year + ' ' + that.data.end_time).getTime() / 1000),
+        effective_time: info.effective_time,
+        limited: info.limited,
+        sub: info.sub,
+        count_sale: info.count_sale
+      } : {
+        mid: app.gs('shopInfoAll').id,
+        cid: that.data.goodslabel[that.data.labelIndex].id,
         title: info.title,
         img: that.data.upImgArr2[0].real,
         imgs: imgs.join(','),
@@ -701,8 +748,9 @@ Page({
         label: that.data.sizeMore ? that.data.sizeArr[that.data.sizeIndex].name : -1,
         sku: JSON.stringify(SKUS),
         detail: detail.join(','),
+        parent_id: 0,
         detail_text: info.detail_text || ''
-      }, that.data.info.id ? { pid: that.data.info.id } : {}),
+      }, info.id ? { pid: info.id } : {}),
       success: function success(res2) {
         wx.hideLoading();
         if (res2.data.status === 200) {
@@ -731,13 +779,40 @@ Page({
       };
     }
   },
+  timechoose: function timechoose(e) {
+    this.setData(_defineProperty({}, e.currentTarget.dataset.type, e.detail.value.replace(/-/g, '/')));
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function onLoad(options) {
     this.setData({
-      ping: options.ping
+      ping: options.ping,
+      info: options.ping ? {
+        freight: 0.00,
+        is_up: -1,
+        sub: -1,
+        effective_time: 3600,
+        limited: 1,
+        count_sale: 0,
+        sku: [{
+          value: '默认',
+          alone_price: 0.01,
+          assemble_price: 0.01,
+          stock: 1,
+          img: []
+        }]
+      } : {
+        freight: 0.00,
+        is_up: -1,
+        sku: [{
+          value: '默认',
+          price: 0.01,
+          stock: 1,
+          img: []
+        }]
+      }
     });
     this.getCategory(options);
     // TODO: onLoad

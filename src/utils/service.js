@@ -120,11 +120,15 @@ const serviceUrl = {
   // 拼团
   pinlist: shopBaseDomain + '/assemble/list',  // 拼团列表页
   pindetail: shopBaseDomain + '/assemble/detail',  // 拼团详情页
-  pinteam: shopBaseDomain + '/assemble/detail',  // 正在拼团的用户信息列表
+  pinteam: shopBaseDomain + '/assemble/group',  // 正在拼团的用户信息列表
   pinrelease: shopBaseDomain + '/shops/release',  // 发布拼团商品
   refund: shopBaseDomain + '/assemble/refund',  // 拼团退款
+  pinshoporder: shopBaseDomain + '/shops/orders',  // 商家订单查看
+  pinedit: shopBaseDomain + '/shops/edit',  // 拼团商品二次编辑
   // 公众号接口
-  profitDetail: webBaseDomain + '/user/profit-detail'
+  profitDetail: webBaseDomain + '/user/profit-detail',
+  finance: webBaseDomain + '/shop/finance', // 查看财务信息
+  setfinance: webBaseDomain + '/shop/set-finance' // 设置财务账号
 
 }
 module.exports = serviceUrl

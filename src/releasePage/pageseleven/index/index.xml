@@ -9,6 +9,26 @@
         <text>商品标题</text>
         <input bindblur="inputValue" placeholder="输入商品标题" data-type="title" value="{{ info.title || '' }}" class="p10 mt20 br8 pl20"/>
       </view>
+      <view wx:if="{{ ping }}" class="mt20 bgfff br8 p30 f28 c444 s-title">
+        <text>拼团人数</text>
+        <input disabled bindblur="inputValue" type="number" placeholder="输入拼团人数" data-type="group_num" value="{{ info.group_num || '2(暂不支持修改)' }}" class="p10 mt20 br8 pl20"/>
+      </view>
+      <view wx:if="{{ ping }}" class="mt20 bgfff br8 p30 f28 c444 s-title">
+        <text>购买人数</text>
+        <input bindblur="inputValue" type="number" placeholder="输入购买人数" data-type="count_sale" value="{{ info.count_sale || '0' }}" class="p10 mt20 br8 pl20"/>
+      </view>
+      <view wx:if="{{ ping }}" class="mt20 bgfff br8 p30 f28 c444 s-title">
+      <text>团员购买数量限制</text>
+      <input bindblur="inputValue" type="number" placeholder="输入团员购买数量限制" data-type="limited" value="{{ info.limited || '1' }}" class="p10 mt20 br8 pl20"/>
+    </view>
+      <view wx:if="{{ ping }}" class="mt20 bgfff br8 p30 f28 c444 s-title">
+        <text>拼团成功后有效时间(秒)</text>
+        <input bindblur="inputValue" type="number" placeholder="输入拼团成功后有效时间" data-type="effective_time" value="{{ info.effective_time || '3600' }}" class="p10 mt20 br8 pl20"/>
+      </view>
+      <view wx:if="{{ ping }}" class="mt20 bgfff br8 p30 f28 c444 s-title s-switch">
+        <text>是否参与分佣</text>
+        <switch checked="{{ info.sub > 0 }}" bindchange="switchChange"></switch>
+      </view>
       <view class="mt20 bgfff br8 p30 f28 c444 s-title">
         <text>商品图</text>
         <view class="s-tt" hidden="{{ upImgArr2.length >= 9 }}" catchtap="upImg2">+点击上传图片</view>
@@ -68,14 +88,17 @@
             <text>{{ item.value || '' }}</text>
             <view class="sis-set-out ml20">
               <view class="sis-set ml20">
-                <text>价格 </text>
-                <input type="digit" bindblur="inputValue" data-type="price" data-index="{{ index }}" class="ml20" value="{{ item.price }}" />
+                <text>{{ ping ? '单价' : '价格' }} </text>
+                <input type="digit" bindblur="inputValue" data-type="price" data-index="{{ index }}" class="ml20" value="{{ item[ping ? 'alone_price' : 'price'] }}" />
+              </view>
+              <view wx:if="{{ ping }}" class="sis-set ml20">
+                <text>拼团价 </text>
+                <input type="digit" bindblur="inputValue" data-type="assemble_price" data-index="{{ index }}" class="ml20" value="{{ item.assemble_price  }}" />
               </view>
               <view class="sis-set ml20">
                 <text>库存 </text>
                 <input type="number" bindblur="inputValue" data-type="stock" data-index="{{ index }}" class="ml20" value="{{ item.stock }}" />
               </view>
-
             </view>
           </view>
 
@@ -109,8 +132,12 @@
             <view class="sis-set-out nomore ml20">
               <view class="sis-set-out">
                 <view class="sis-set ml20">
-                  <text>价格 </text>
-                  <input type="digit" bindblur="inputValue" data-type="price" data-index="0" class="ml20" value="{{ info.sku[0].price }}" />
+                  <text>{{ ping ? '单价' : '价格' }} </text>
+                  <input type="digit" bindblur="inputValue" data-type="price" data-index="0" class="ml20" value="{{ info.sku[0][ping ? 'alone_price' : 'price'] }}" />
+                </view>
+                <view wx:if="{{ ping }}" class="sis-set ml20">
+                  <text>拼团价 </text>
+                  <input type="digit" bindblur="inputValue" data-type="assemble_price" data-index="0" class="ml20" value="{{ info.sku[0].assemble_price }}" />
                 </view>
                 <view class="sis-set ml20">
                   <text>库存 </text>
@@ -154,11 +181,11 @@
       </view>
       <view wx:if="{{ ping }}" class="p30 mt20 br8 bgfff f26 c3a3a3a sale ping-time">
         <text class="fw7">开始时间</text>
-        <picker mode="date">2019-06-13</picker>
-        <picker mode="time">12:00</picker>
+        <picker bindchange="timechoose" start="{{ start_year }}" data-type="start_year" mode="date">{{ start_year }}</picker>
+        <picker bindchange="timechoose" data-type="start_time" mode="time">{{ start_time }}</picker>
         <text class="fw7">结束时间</text>
-        <picker mode="date">2019-06-14</picker>
-        <picker mode="time">12:00</picker>
+        <picker bindchange="timechoose" start="{{ start_year }}" data-type="end_year" mode="date">{{ end_year }}</picker>
+        <picker bindchange="timechoose" data-type="end_time" mode="time">{{ end_time }}</picker>
       </view>
       <view catchtap="CTT" class="release-bottom bgfff">
         <button class="f34 cfff">下一步</button>

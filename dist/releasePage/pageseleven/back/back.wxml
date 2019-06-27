@@ -11,12 +11,12 @@
 
   <view class="back-money bgfff mt20 f34">
     <text class="c595757">退款金额</text>
-    <text>￥109.1</text>
+    <text>￥{{ options.money || '0.00' }}</text>
   </view>
 
   <view class="bgfff mt20 back-money f34 c3e3a39">
     <view>申请说明</view>
-    <textarea class="mt20"></textarea>
+    <textarea value="{{ content }}" placeholder="请填写你的申请说明" bindinput="inputValue" data-type="content" class="mt20"></textarea>
 
 
     <view class="up-img p20">
@@ -44,8 +44,7 @@
   <view class="apply f34 cfff tac lh80">提交申请</view>
 </view>
 
-
-<view class="tac bgfff mt20 p30">
+<view wx:else class="tac bgfff mt20 p30">
   <icon type="success" size="100"></icon>
   <view class="f34 fw7 c3e3a39 mt20">商家通过申请，退款中</view>
   <view class="f24 c595757 tal p30">系统会在1-2天内提交微信支付处理，微信审核完成后1-3

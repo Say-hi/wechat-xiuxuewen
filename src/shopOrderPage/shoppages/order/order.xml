@@ -4,7 +4,7 @@
           catchtap="tabChoose"
           data-index="{{ index }}"
           class="f26 c666 flex1 tac tr5 {{ tabIndex == index ? 'active fw7' : '' }}"
-          wx:key="*94">{{ index == 1 && ping ? '待分享' : item.t }}</view>
+          wx:key="*94">{{ index == 1 && ping ? options.for == 'shop' ? '拼团中' : '待分享' : item.t }}</view>
   </view>
   <view class="p20 mt70">
     <block wx:for="{{ list }}"
@@ -49,7 +49,7 @@
           </view>
           <!--<text class="cff5975 fw7">赚¥3.00</text>-->
         </view>
-        <view class="for-ping">
+        <view wx:if="{{ ping }}" class="for-ping">
           <view class="ping-user">
             <image wx:for="123" wx:key="*this" style="transform: translateX({{ index * -10 }}rpx);" mode="aspectFill" src="https://c.jiangwenqiang.com/api/logo.jpg"></image>
           </view>
@@ -76,7 +76,7 @@
         <!--拼团订单状态对应  ssss-->
         <view wx:if="{{ ping }}" class="f26 order-bottom p10">
           <view class="ob-r flex1">
-            <navigator url="/releasePage/pageseleven/back/back?id=12" class="confirm f26 cfff cancel">申请退款</navigator>
+            <navigator url="/releasePage/pageseleven/back/back?oid={{ item.id }}&mid={{ item.mid }}&uid={{ item.uid }}&openid={{ item.openid }}&out_trade_no={{ item.out_trade_no }}&amount={{ item.amount }}&apply=1" class="confirm f26 cfff cancel">申请退款</navigator>
             <button catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">催发货</button>
             <button catchtap="cancelping" class="confirm f26 cfff cancel">取消订单</button>
             <button catchtap="shareChange" data-index="{{ index }}"  class="confirm f26 cfff cancel">邀请好友拼单</button>
