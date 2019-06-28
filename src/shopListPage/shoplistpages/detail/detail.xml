@@ -47,7 +47,7 @@
     <view class="f34 c3e3a39 pttt fw7">{{ info.title }}</view>
   </view>
 
-  <view wx:if="{{ ping }}" class="pb20">
+  <view wx:if="{{ ping && list.length }}" class="pb20">
       <view class="arrow">
         <view class="f30 c3e3a39">直接参与可快速成团</view>
         <view class="f24 c828282">查看更多</view>
@@ -187,13 +187,20 @@
         <image wx:if="{{ index >= 1 }}" class="br" mode="aspectFil" src="{{ item.avatar_url }}"></image>
       </view>
     </view>
-    <view class="spt-other">参与拼单</view>
+    <view catchtap="buy" data-type="join" class="spt-other">参与拼单</view>
   </view>
 </view>
 <!--拼单 eeeeee-->
 
 
-
+<!--<view wx:if="{{ loginCheck }}" class="mask loginmm">-->
+  <!--<image class="login-bg" mode="aspectFill" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/login-bg.png"></image>-->
+  <!--<view class="login-text cfff f28 keep tac">授权登录小程序开启更多精彩！</view>-->
+  <!--&lt;!&ndash;<button open-type="getUserInfo" bindgetuserinfo="login" class="login-btn {{ userInfo.nickname != '游客' ? 'active' : '' }}">{{ userInfo.nickname != '游客' ? '授权用户名已完成' : '授权用户名' }}</button>&ndash;&gt;-->
+  <!--<button open-type="getUserInfo" bindgetuserinfo="login" class="login-btn">授权用户名</button>-->
+  <!--&lt;!&ndash;<button open-type="getPhoneNumber" bindgetphonenumber="phone" class="login-btn login-btn-two {{ userInfo.phone.length > 6 ? 'active' : '' }}">{{ userInfo.phone.length > 6 ? '授权手机号已完成' : '授权手机号获取高质量服务' }}</button>&ndash;&gt;-->
+  <!--&lt;!&ndash;<button catchtap="goNow" class="login-btn login-btn-three active">继续浏览</button>&ndash;&gt;-->
+<!--</view>-->
 
 
 

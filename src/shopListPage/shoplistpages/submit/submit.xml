@@ -27,7 +27,7 @@
           <view class="goods-list br8 p20 f28 c666"
                 wx:key="*45"
                 wx:for="{{ info }}">
-            <image src="{{ ping ? item.sku.img[0] : item.img }}"
+            <image src="{{ item.img || item.sku.img[0] }}"
                    class="br8"
                    mode="aspectFit"></image>
             <view class="flex1">
@@ -61,7 +61,7 @@
     </view>
 
     <!--<view wx:if="{{ !agents && !ping }}" class="zhipiao p20">-->
-    <view wx:if="{{ !agents }}" class="zhipiao p20">
+    <view wx:if="{{ !agents && !ping }}" class="zhipiao p20">
       <view class="bgfff p30 br8 zhipiao-area c444 f28">
         <view>支票</view>
         <view class="ml10 flex1">
@@ -86,10 +86,16 @@
       <button open-type="submit" catchtap="gohome">返回商城首页</button>
     </view>
   </view>
-
+  <view wx:if="{{ need_pay && ping && modeId == 2 }}" class="p20 pay-success">
+    <view class="bgfff br8">
+      <image src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/pay_success.png"></image>
+      <view class="c444 fw7">支付成功！</view>
+      <button open-type="submit" catchtap="gohome">返回商城首页</button>
+    </view>
+  </view>
   <!--拼单支付成功显示界面 ssss-->
   <!--<view class="ping-success mt20 p30 bgfff tac">-->
-  <view wx:if="{{ need_pay && ping }}" class="ping-success mt20 p30 bgfff tac">
+  <view wx:if="{{ need_pay && ping && modeId != 2 }}" class="ping-success mt20 p30 bgfff tac">
     <view class="bgfff psg-wrap df">
       <image class="ping-s-goods" mode="aspectFill" src="{{ info[0].img }}"></image>
       <view class="psg-text">
@@ -98,25 +104,25 @@
           <view class="f24 cff362c psgt-num iconfont icon-tuandui">{{ info[0].people }}人团</view>
           <view class="f50 cff362c">
             <text class="f24">￥</text>
-            <text>{{ info[0].sku.price }} </text>
-            <text class="text-t f28 c828282">￥{{ info[0].sku.price }}</text>
+            <text>{{ info[0].sku.assemble_price }} </text>
+            <text class="text-t f28 c828282">￥{{ info[0].sku.alone_price }}</text>
           </view>
         </view>
       </view>
     </view>
-    <view class="f24 c3e3a39 tac mt20">拼住人气太高，拼单成功</view>
+    <view wx:if="{{ info[0].people - info[0].group.length <= 0 }}" class="f24 c3e3a39 tac mt20">拼主人气太高，拼单成功</view>
     <view class="spt-user mt20">
-      <view class="user-item pr">
-        <view class="pa cfff f27 team-leader keep">团长</view>
+      <view wx:for="{{ info[0].group }}" wx:key="*this" class="user-item {{ index >= 1 ? '' : 'pr' }}">
+        <view wx:if="{{ index >= 1 }}" class="pa cfff f27 team-leader keep">团长</view>
         <image class="br" mode="aspectFil" src="{{ user_info_img }}"></image>
       </view>
-      <view class="user-item">
+      <view wx:if="{{ info[0].people - info[0].group.length >= 1 }}" class="user-item">
         <image class="br" mode="aspectFil" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/ping/ping3.png"></image>
       </view>
     </view>
-    <view class="f24 c3e3a39 mt20">仅差<text class="cff362c">1人</text>，快呼唤小伙伴参加吧！</view>
-    <view class="f24 c828282 ps-time mt20">-- 剩余 <text>{{ info[0].h }}</text><text>时</text><text>{{ info[0].m }}</text><text>分</text><text>{{ info[0].s }}</text><text>秒</text> 结束 --</view>
-    <view class="ps-invite-w">
+    <view class="f24 c3e3a39 mt20">仅差<text class="cff362c">{{ info[0].people - info[0].group.length }}人</text>，快呼唤小伙伴参加吧！</view>
+    <view wx:if="{{ info[0].people - info[0].group.length >= 1 }}" class="f24 c828282 ps-time mt20">-- 剩余 <text>{{ info[0].h }}</text><text>时</text><text>{{ info[0].m }}</text><text>分</text><text>{{ info[0].s }}</text><text>秒</text> 结束 --</view>
+    <view wx:if="{{ info[0].people - info[0].group.length >= 1 }}" class="ps-invite-w">
       <button open-type="share" class="ps-invite f28 cfff">邀请好友参团</button>
       <view catchtap="getMyShareCode" class="ps-invite f28 cfff">我的参团码</view>
     </view>

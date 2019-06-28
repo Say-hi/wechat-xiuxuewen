@@ -18,6 +18,7 @@ Page({
   },
   // 秒杀逻辑
   setKill: function setKill() {
+    // 拼团支付完成后倒计时
     var that = this;
     if (timer) clearInterval(timer);
     function kill() {
@@ -33,17 +34,18 @@ Page({
           var _step$value = _slicedToArray(_step.value, 1),
               i = _step$value[0];
 
-          var nowData = new Date().getTime(); // 毫秒数
+          // let nowData = new Date().getTime() // 毫秒数
           // console.log('startTime', new Date(that.data.killArr[i].startTime))
           // let startTime = that.data.list[i].start_time * 1000
-          var endTime = that.data.info[i].end_time;
+          // let endTime = that.data.info[i].end_time * 1000 + base_time
           // console.log(nowData, startTime, endTime)
-          if (nowData < endTime) {
+          that.data.info[i].effective_time = that.data.info[i].effective_time - 1;
+          if (that.data.info[i].effective_time > 0) {
             // 进行中
             that.data.info[i].status = 1;
-            that.data.info[i].h = Math.floor((endTime - nowData) / 3600000);
-            that.data.info[i].m = Math.floor((endTime - nowData) % 3600000 / 60000);
-            that.data.info[i].s = Math.floor((endTime - nowData) % 60000 / 1000);
+            that.data.info[i].h = Math.floor(that.data.info[i].effective_time * 1000 / 3600000);
+            that.data.info[i].m = Math.floor(that.data.info[i].effective_time * 1000 % 3600000 / 60000);
+            that.data.info[i].s = Math.floor(that.data.info[i].effective_time * 1000 % 60000 / 1000);
           } else {
             // 已结束
             if (that.data.info[i].status === 2) {
@@ -178,6 +180,11 @@ Page({
 
   // 立即付款
   shoPayDirect: function shoPayDirect() {
+    // this.setData({
+    //   need_pay: true
+    // })
+    // this.setKill()
+    // return
     var that = this;
     var carts = [];
     if (this.data.type === 'car') {
@@ -212,8 +219,21 @@ Page({
       }
     }
     app.wxrequest({
-      url: app.getUrl()[that.data.payid ? 'shopPayAgain' : that.data.type === 'car' ? 'shoPayCart' : 'shoPayDirect'],
-      data: that.data.payid ? {
+      url: app.getUrl()[that.data.ping ? 'pingdirect' : that.data.payid ? 'shopPayAgain' : that.data.type === 'car' ? 'shoPayCart' : 'shoPayDirect'],
+      data: that.data.ping ? {
+        name: that.data.addressInfo.userName,
+        phone: that.data.addressInfo.telNumber,
+        address: '' + that.data.addressInfo.provinceName + that.data.addressInfo.cityName + that.data.addressInfo.countyName + that.data.addressInfo.detailInfo,
+        mid: app.gs('shopInfoAll').id, // 需要修改
+        pid: that.data.info[0].id,
+        uid: app.gs('userInfoAll').id,
+        openid: app.gs('userInfoAll').openid,
+        sku_id: that.data.info[0].sku.id,
+        count: that.data.info[0].count,
+        value: that.data.info[0].sku.value,
+        mode_id: that.data.modeId,
+        group_id: that.data.modeId === 3 ? that.data.info[0].group[0].group_id : ''
+      } : that.data.payid ? {
         oid: that.data.payid,
         mid: app.gs('shopInfoAll').id,
         uid: app.gs('userInfoAll').id,
@@ -280,9 +300,9 @@ Page({
             that.setData({
               need_pay: true
             });
-            that.data.info[0].end_time = new Date().getTime() + 86400000;
-            if (that.data.ping) that.setKill();
-            console.log(that.data.info[0]);
+            // that.data.info[0].end_time = new Date().getTime() + 86400000
+            if (that.data.ping && that.data.modeId !== 2 && that.data.info[0].people - that.data.info[0].group.length >= 1) that.setKill();
+            // console.log(that.data.info[0])
             wx.removeStorageSync('buyInfo');
           } else {
             app.wxpay2(res.data.data.msg).then(function () {
@@ -364,7 +384,8 @@ Page({
   onLoad: function onLoad(options) {
     var that = this;
     this.setData({
-      ping: options.ping === 'ping'
+      ping: options.ping === 'ping',
+      modeId: Math.floor(options.mode_id) || 0
     });
     this.shopInfo().then(function () {
       var allCount = 0;

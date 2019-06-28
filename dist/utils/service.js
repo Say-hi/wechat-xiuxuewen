@@ -126,6 +126,8 @@ var serviceUrl = {
   pinrelease: shopBaseDomain + '/shops/release', // 发布拼团商品
   refund: shopBaseDomain + '/assemble/refund', // 拼团退款
   pinshoporder: shopBaseDomain + '/shops/orders', // 商家订单查看
+  pinglaunch: shopBaseDomain + '/assemble/launch', // 拼团分享进入
+  pingdirect: shopBaseDomain + '/payment/direct', // 拼团支付
   pinedit: shopBaseDomain + '/shops/edit', // 拼团商品二次编辑
   // 公众号接口
   profitDetail: webBaseDomain + '/user/profit-detail',

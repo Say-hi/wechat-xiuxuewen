@@ -10,10 +10,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    mode_id: 1,
     in_area: true,
     buy_type: 'normal',
     ngshow: 1,
     list: [],
+    group: [],
     enable_progress_gesture: true,
     systemVersion: app.data.systemVersion,
     num: 1,
@@ -76,21 +78,32 @@ Page({
         }
       })
     }
-    let { img, title, label, sku, freight, id, people = 2 } = this.data.info // 直接购买
+    let { img, title, label, sku, freight, id, mid } = this.data.info // 直接购买
     app.su('buyInfo', [{  // 产品信息缓存
       id,
       img,
       title,
       label,
       freight,
-      people,
+      people: this.data.info.group_num || 2,
+      mid,
       sku: sku[this.data.labelIndex],
       count: this.data.num,
-      end_time: this.data.info.effective_time
+      effective_time: this.data.info.effective_time,
+      end_time: this.data.info.end_time,
+      group: this.data.group.concat({
+        img: app.gs('userInfoAll').avatar_url
+      })
     }])
-    if (this.data.ping && this.data.buy_type === 'ping') {
+    // if (this.data.ping && this.data.buy_type === 'ping') {
+    if (this.data.ping) {
+      if (this.data.options.user) {
+        return wx.navigateTo({
+          url: `../submit/submit?type=now&ping=ping&mode_id=${this.data.buy_type === 'ping' ? 1 : this.data.buy_type === 'join' ? 3 : 2}`
+        })
+      }
       return wx.redirectTo({
-        url: `../submit/submit?type=now&ping=ping`
+        url: `../submit/submit?type=now&ping=ping&mode_id=${this.data.buy_type === 'ping' ? 1 : this.data.buy_type === 'join' ? 3 : 2}`
       })
     }
     wx.redirectTo({
@@ -113,6 +126,10 @@ Page({
       if (e.currentTarget.dataset.type === 'ping') { // 发起拼团
         this.setData({
           buy_type: 'ping'
+        })
+      } else if (e.currentTarget.dataset.type === 'join') {
+        this.setData({
+          buy_type: 'join'
         })
       } else {  // 拼团直接购买
         this.setData({
@@ -303,24 +320,162 @@ Page({
       }
     })
   },
+  // 获取拼团信息
+  getpinglaunch (oid, mid) {
+    return this.shopProduct(5)
+    // let that = this
+    // app.wxrequest({
+    //   url: app.getUrl().pinglaunch,
+    //   data: {
+    //     oid,
+    //     uid: app.gs('userInfoAll').id,
+    //     mid
+    //   },
+    //   success (res) {
+    //     wx.hideLoading()
+    //     if (res.data.status === 200) {
+    //       if (!that.data.info.id) {
+    //         that.shopProduct(res.data.data.id)
+    //         that.setData({
+    //           group: res.data.data.group
+    //         })
+    //       }
+    //     } else {
+    //       app.setToast(that, {content: res.data.desc})
+    //     }
+    //   }
+    // })
+  },
+
+  // 授权相关
+  getUser (out) {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().shopUserInfo,
+      data: {
+        uid: app.gs('userInfoAll').id
+        // uid: 10000
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          // if (res.data.data.mall_id <= 10000 && app.gs('shopInfo').mid > 10000 && app.gs('shopInfo').user) that.shopBinding()
+          that.shopBinding(out)
+          // if (!that.data.userInfo || that.data.userInfo.nickname !== '未登录用户请在【用户中心】进行登录') {
+          //   // that.setData({
+          //   //   userInfo: res.data.data
+          //   // })
+          //   if (res.data.data.nickname === '游客' || !res.data.data.phone || res.data.data.phone.length < 6) return
+          // }
+          // if (res.data.data.mall_is * 1 === 1) {
+          //   app.su('shopInfo', {mid: res.data.data.id})
+          //   // that.setData({
+          //   //   noshop: false
+          //   // }, that.getVideo)
+          // } else if (res.data.data.mall_id) {
+          //   app.su('shopInfo', {mid: res.data.data.mall_id})
+          //   // that.setData({
+          //   //   noshop: false
+          //   // }, that.getVideo)
+          // } else {
+          //   // that.setData({
+          //   //   noshop: !app.gs('shopInfo').mid
+          //   // }, that.getVideo)
+          // }
+        } else {
+          if (res.data.desc === '发生错误,联系管理员') {
+            wx.removeStorageSync('userInfoAll')
+            app.wxlogin()
+          } else {
+            app.setToast(that, {content: res.data.desc})
+          }
+        }
+      }
+    })
+  },
+  // 店铺绑定
+  shopBinding (out) {
+    if (out) return
+    let that = this
+    if (!app.gs('shopInfo').mid) return
+    app.wxrequest({
+      url: app.getUrl().shopBinding,
+      data: {
+        mid: app.gs('shopInfo').mid,
+        sid: app.gs('shopInfo').user,
+        uid: app.gs('userInfoAll').id
+      },
+      complete () {
+        that.getUser(1)
+        wx.hideLoading()
+      }
+    })
+  },
+  // 获取店铺信息
+  shopInfo () {
+    let that = this
+    if (this.data.noshop) return
+    app.wxrequest({
+      url: app.getUrl().shopInfo,
+      data: {
+        mid: app.gs('shopInfo').mid || 10000
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          if (res.data.data.status < 0) {
+            app.setToast(that, {content: '该店因违规被封闭，即将跳转回官方店铺'})
+            setTimeout(() => {
+              return wx.reLaunch({
+                url: '/shopPage/shoppages/index/index'
+              })
+            }, 1500)
+          }
+          app.su('shopInfoAll', res.data.data)
+          that.getpinglaunch(that.data.options.oid, that.data.options.mid)
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+  login () {
+    app.wxlogin()
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    // console.log('options', options)
-    if (options.scene) { // 通过分享进入拼团
+    console.log('options', options)
+    // 通过分享进入拼团
+    if (options.scene || options.share) {
+      let that = this
+      if (!app.gs() || !app.gs('userInfoAll')) return app.wxlogin() // 处理第一次进入的情况
       let scene = decodeURIComponent(options.scene).split(',')
-      options.ping = scene[0] // 拼团标识
-      options.id = scene[1] // 拼团产品id
-      options.from = scene[2] // 拼团发起人id
+      if (options.share) scene = options.share
+      options.oid = scene[0] // 拼团订单id
+      options.mid = scene[1] // 商家id
+      options.user = scene[2] // 分享者id
+      options.ping = 'ping' // 拼团标识
+      app.su('shopInfo', {mid: options.mid, user: options.user})
+      this.setData({
+        options,
+        ping: options.ping === 'ping'
+      }, function () {
+        // 分享过来的团先查询后插入拼团列表第一位
+        if (!app.gs('shopInfoAll')) {
+          that.shopInfo()
+        } else {
+          that.getpinglaunch(that.data.options.oid, that.data.options.mid)
+        }
+      })
+    } else {
+      this.setData({
+        options,
+        ping: options.ping === 'ping'
+      })
+      this.shopProduct(options.id)
     }
-    this.setData({
-      options,
-      ping: options.ping === 'ping'
-    })
-    this.shopProduct(options.id)
-    // console.log('route', this.route)
-    // TODO: onLoad
   },
 
   /**
