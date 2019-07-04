@@ -56,8 +56,8 @@ Page({
     app.wxrequest({
       url: app.getUrl().refund,
       data: {
-        uid: that.data.options.uid,
-        openid: that.data.options.openid,
+        uid: app.gs('userInfoAll').id,
+        openid: app.gs('userInfoAll').openid,
         mid: that.data.options.mid,
         oid: that.data.options.oid,
         amount: that.data.options.amount || 0,
@@ -82,7 +82,7 @@ Page({
     app.inputValue(e, this);
   },
   pickerChange: function pickerChange(e) {
-    console.log(e);
+    // console.log(e)
     this.setData(_defineProperty({}, '' + e.currentTarget.dataset.type, e.detail.value));
   },
   wxUploadImg: function wxUploadImg() {

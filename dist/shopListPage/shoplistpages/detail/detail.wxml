@@ -8,7 +8,7 @@
     <swiper-item wx:for="{{ info.sku[labelIndex].img }}" wx:key="*112">
       <image mode="aspectFill" src="{{ item }}"></image>
     </swiper-item>
-    <swiper-item wx:for="{{ info.imgs.length >= 1 ? info.imgs : [info.img] }}" wx:key="*112">
+    <swiper-item wx:for="{{ info.imgs.length >= 1 ? info.imgs : [info.img] }}" wx:key="*113">
       <image mode="aspectFill" src="{{ item }}"></image>
     </swiper-item>
   </swiper>
@@ -47,12 +47,12 @@
     <view class="f34 c3e3a39 pttt fw7">{{ info.title }}</view>
   </view>
 
-  <view wx:if="{{ ping && list.length }}" class="pb20">
+  <view wx:if="{{ ping && group.length }}" class="pb20">
       <view class="arrow">
         <view class="f30 c3e3a39">直接参与可快速成团</view>
-        <view class="f24 c828282">查看更多</view>
+        <view catchtap="showMorePing" class="f24 c828282">查看更多</view>
       </view>
-    <block wx:for="{{ list }}" wx:key="*this">
+    <block wx:for="{{ group }}" wx:key="*thiss">
       <view class="ping-team df">
         <image mode="aspectFill" class="br" src="{{ item.user[0].avatar_url }}"></image>
         <view class="pteam-phone f31 c000">{{ item.user[0].phone }}</view>
@@ -60,7 +60,8 @@
           <view>还差{{ info.group_num - item.user.length }}人成团</view>
           <view class="f28 c828282">距结束{{ item.h }}:{{ item.m }}:{{ item.s }} </view>
         </view>
-        <view catchtap="sptChange" data-index="{{ index }}" class="f30 cfff pteam-btn">立即拼单</view>
+        <view wx:if="{{ item.status == 1 }}" catchtap="sptChange" data-type="open" data-index="{{ index }}" class="f30 cfff pteam-btn">立即拼单</view>
+        <view wx:else class="f30 cfff pteam-btn">拼单结束</view>
       </view>
     </block>
   </view>
@@ -71,7 +72,7 @@
   <view wx:if="{{ !ping }}" class="f34 c444 p30">商品详情</view>
   <view style="white-space:pre-wrap;">{{ info.detail_text }}</view>
   <image wx:for="{{ info.detail }}"
-         wx:key="*12"
+         wx:key="*12123"
          lazy-load="1"
          data-index="{{ index }}"
          catchtap="showImg"
@@ -175,23 +176,25 @@
 <!--拼单 ssssss-->
 <view wx:if="{{ showPingTeam }}" class="mask">
   <view class="spt-in tac br18 p30 bgfff">
-    <view catchtap="sptChange" class="iconfont icon-cuowu"></view>
-    <view class="f32 c3e3a39">参与{{ list[showPingIndex].user[0].nickname }}的拼单</view>
-    <view class="f24 mt20">仅差<text class="cff362c">{{ info.group_num - list[showPingIndex].user.length }}人</text>，快呼唤小伙伴参加吧！</view>
+    <view catchtap="sptChange" data-type="close" class="iconfont icon-cuowu"></view>
+    <view class="f32 c3e3a39">参与{{ group[showPingIndex].user[0].nickname }}的拼单</view>
+    <view class="f24 mt20">仅差<text class="cff362c">{{ info.group_num - group[showPingIndex].user.length }}人</text>，快呼唤小伙伴参加吧！</view>
     <view class="spt-user mt20">
       <view class="user-item pr">
         <view class="pa cfff f27 team-leader keep">团长</view>
-        <image class="br" mode="aspectFil" src="{{ list[showPingIndex].user[0].avatar_url}}"></image>
+        <image class="br" mode="aspectFil" src="{{ group[showPingIndex].user[0].avatar_url}}"></image>
       </view>
-      <view wx:for="{{ list[showPingIndex].user }}" class="user-item">
+      <view wx:for="{{ group[showPingIndex].user }}" wx:if="{{ index < 2 }}" wx:key="*26" class="user-item">
         <image wx:if="{{ index >= 1 }}" class="br" mode="aspectFil" src="{{ item.avatar_url }}"></image>
+      </view>
+      <view class="user-item">
+        <image class="br" mode="aspectFil" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/ping/ping3.png"></image>
       </view>
     </view>
     <view catchtap="buy" data-type="join" class="spt-other">参与拼单</view>
   </view>
 </view>
 <!--拼单 eeeeee-->
-
 
 <!--<view wx:if="{{ loginCheck }}" class="mask loginmm">-->
   <!--<image class="login-bg" mode="aspectFill" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/login-bg.png"></image>-->

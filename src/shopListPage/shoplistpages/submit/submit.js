@@ -9,8 +9,8 @@ Page({
   data: {
     user_info_img: app.gs('userInfoAll').avatar_url,
     user_zhipiao: false,
-    discount_name: app.gs('shopInfoAll').rule.state_name || '无折扣',
-    discount_value: app.gs('shopInfoAll').rule.discount || 1
+    discount_name: app.gs('shopInfoAll') ? app.gs('shopInfoAll').rule.state_name || '无折扣' : '无折扣',
+    discount_value: app.gs('shopInfoAll') ? app.gs('shopInfoAll').rule.discount || 1 : 1
   },
   // 秒杀逻辑
   setKill () { // 拼团支付完成后倒计时
@@ -123,10 +123,10 @@ Page({
     })
   },
   onShareAppMessage () {
-    if (this.data.ping) {
+    if (this.data.ping && this.data.payid) {
       return {
         title: '快来和我一起参团享好物吧',
-        path: `/shopListPage/shoplistpages/detail/detail?id=${this.data.info[0].id}&ping=ping&from=${app.gs('userInfoAll').id}`,
+        path: `/shopListPage/shoplistpages/detail/detail?share=${this.data.payid},${this.data.info[0].mid},${app.gs('userInfoAll').id}`,
         imageUrl: this.data.info[0].img
       }
     }
@@ -177,7 +177,7 @@ Page({
         count: that.data.info[0].count,
         value: that.data.info[0].sku.value,
         mode_id: that.data.modeId,
-        group_id: that.data.modeId === 3 ? that.data.info[0].group[0].group_id : ''
+        group_id: that.data.modeId === 3 ? that.data.info[0].groupInfo.id : ''
       } : that.data.payid ? {
         oid: that.data.payid,
         mid: app.gs('shopInfoAll').id,
@@ -224,7 +224,7 @@ Page({
               need_pay: true
             })
             // that.data.info[0].end_time = new Date().getTime() + 86400000
-            if (that.data.ping && that.data.modeId !== 2 && that.data.info[0].people - that.data.info[0].group.length >= 1) that.setKill()
+            if (that.data.ping && that.data.modeId !== 2 && that.data.info[0].people - that.data.info[0].groupInfo.p.length >= 1) that.setKill()
             // console.log(that.data.info[0])
             wx.removeStorageSync('buyInfo')
           } else {
@@ -342,7 +342,7 @@ Page({
           // Allmoney: (Allmoney * (this.data.type === 'now' ? this.data.discount_value : 1)).toFixed(2),
           Allmoney: Allmoney.toFixed(2),
           AllPay: (Allmoney * that.data.discount_value).toFixed(2),
-          maxFreight: maxFreight > 0 ? maxFreight : app.gs('shopInfoAll').rule.low_total_fee > Allmoney ? app.gs('shopInfoAll').rule.logistic_fee : maxFreight,
+          maxFreight: options.ping ? maxFreight : maxFreight > 0 ? maxFreight : app.gs('shopInfoAll').rule.low_total_fee > Allmoney ? app.gs('shopInfoAll').rule.logistic_fee : maxFreight,
           addressInfo: app.gs('addressInfo') || null
         }, function () {
           that.setData({

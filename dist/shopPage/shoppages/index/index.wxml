@@ -36,9 +36,9 @@
       </swiper-item>
     </swiper>
   </view>
-  <navigator url="/pingPage/pingpages/index/index" class="ping-area">
-    <image mode="aspectFill" src="https://c.jiangwenqiang.com/api/logo.jpg"></image>
-  </navigator>
+  <!--<navigator url="/pingPage/pingpages/index/index" class="ping-area">-->
+    <!--<image mode="aspectFill" src="https://c.jiangwenqiang.com/api/logo.jpg"></image>-->
+  <!--</navigator>-->
   <!--视频区域-->
   <view wx:if="{{ list.length >= 1 }}" class="container bgfff br8 new p30">
     <navigator hover-class="none" url="/shopVideoPage/shopvideopages/video/video" class="c-top">

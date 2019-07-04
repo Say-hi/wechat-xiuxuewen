@@ -7,6 +7,7 @@ var app = getApp();
 console.log(app.data.all_Screen);
 var startX = 0;
 var timer = null;
+var timer2 = null;
 // ping_status 0 未开始 1 进行中 -1结束
 // 创建页面实例对象
 Page({
@@ -51,9 +52,13 @@ Page({
   goSubmit: function goSubmit() {
     if (this.data.ping) {
       // 拼团检测
-      if (this.data.info.ping_status === 0) return app.setToast(this, { content: '拼团活动还没有开始' });
-      if (this.data.info.ping_status === -1) return app.setToast(this, { content: '拼团活动已结束' });
-      if (this.data.buy_type === 'ping' && this.data.num > this.data.info.limited) return app.setToast(this, { content: '\u6BCF\u4EBA\u9650\u8D2D' + this.data.info.limited + '\u4EF6' });
+      if (this.data.mode_id * 1 === 1) {
+        if (this.data.info.ping_status === 0) return app.setToast(this, { content: '拼团活动还没有开始' });
+        if (this.data.info.ping_status === -1) return app.setToast(this, { content: '拼团活动已结束' });
+      } else {
+        if (this.data.group[this.data.showPingIndex].status > 1 || this.data.group[this.data.showPingIndex].user.length >= this.data.info.group_num) return app.setToast(this, { content: '此拼团已结束，请选择其他拼团' });
+      }
+      if ((this.data.buy_type === 'ping' || this.data.buy_type === 'join') && this.data.num > this.data.info.limited) return app.setToast(this, { content: '\u6BCF\u4EBA\u9650\u8D2D' + this.data.info.limited + '\u4EF6' });
     }
     if (this.data.num > this.data.info.sku[this.data.labelIndex].stock) return app.setToast(this, { content: '该产品已无库存' });
     if (this.data.addCar) {
@@ -105,9 +110,19 @@ Page({
       count: this.data.num,
       effective_time: this.data.info.effective_time,
       end_time: this.data.info.end_time,
-      group: this.data.group.concat({
-        img: app.gs('userInfoAll').avatar_url
-      })
+      groupInfo: this.data.showPingIndex >= 0 ? {
+        p: this.data.group[this.data.showPingIndex].user.concat({
+          avatar_url: app.gs('userInfoAll').avatar_url
+        }),
+        id: this.data.group[this.data.showPingIndex].group_id,
+        end_time: this.data.group[this.data.showPingIndex].end_time
+      } : {
+        p: [{
+          avatar_url: app.gs('userInfoAll').avatar_url
+        }],
+        id: null,
+        end_time: this.data.info.end_time
+      }
     }]);
     // if (this.data.ping && this.data.buy_type === 'ping') {
     if (this.data.ping) {
@@ -125,10 +140,17 @@ Page({
     });
   },
   sptChange: function sptChange(e) {
-    this.setData({
-      showPingIndex: e.currentTarget.dataset.index,
-      showPingTeam: !this.data.showPingTeam
-    });
+    if (e.currentTarget.dataset.type === 'close') {
+      this.setData({
+        showPingTeam: !this.data.showPingTeam
+      });
+    } else {
+      if (this.data.group[e.currentTarget.dataset.index].status > 1 || this.data.group[e.currentTarget.dataset.index].user.length >= this.data.info.group_num) return app.setToast(this, { content: '此拼团已结束，请选择其他拼团' });
+      this.setData({
+        showPingIndex: e.currentTarget.dataset.index,
+        showPingTeam: !this.data.showPingTeam
+      });
+    }
   },
   buy: function buy(e) {
     if (this.data.ping) {
@@ -145,6 +167,7 @@ Page({
           buy_type: 'ping'
         });
       } else if (e.currentTarget.dataset.type === 'join') {
+        if (this.data.group[this.data.showPingIndex].status > 1 || this.data.group[this.data.showPingIndex].user.length >= this.data.info.group_num) return app.setToast(this, { content: '此拼团已结束，请选择其他拼团' });
         this.setData({
           buy_type: 'join'
         });
@@ -171,9 +194,15 @@ Page({
     var type = e.currentTarget.dataset.type;
     if (type === 'add') {
       if (this.data.ping) {
-        if (this.data.info.ping_status === 0) return app.setToast(this, { content: '拼团活动还没有开始' });
-        if (this.data.info.ping_status === -1) return app.setToast(this, { content: '拼团活动已结束' });
-        if (this.data.buy_type === 'ping' && this.data.num >= this.data.info.limited) return app.setToast(this, { content: '\u6BCF\u4EBA\u9650\u8D2D' + this.data.info.limited + '\u4EF6' });
+        if (this.data.mode_id * 1 === 1) {
+          if (this.data.info.ping_status === 0) return app.setToast(this, { content: '拼团活动还没有开始' });
+          if (this.data.info.ping_status === -1) return app.setToast(this, { content: '拼团活动已结束' });
+        } else {
+          if (this.data.group[this.data.showPingIndex].status > 1) return app.setToast(this, { content: '此拼团已结束，请选择其他拼团' });
+        }
+        // if (this.data.info.ping_status === 0) return app.setToast(this, {content: '拼团活动还没有开始'})
+        // if (this.data.info.ping_status === -1) return app.setToast(this, {content: '拼团活动已结束'})
+        if ((this.data.buy_type === 'ping' || this.data.buy_type === 'join') && this.data.num >= this.data.info.limited) return app.setToast(this, { content: '\u6BCF\u4EBA\u9650\u8D2D' + this.data.info.limited + '\u4EF6' });
       }
       if (this.data.num >= this.data.info.sku[this.data.labelIndex].stock) return app.setToast(this, { content: '已达库存上限' });
       this.setData({
@@ -258,6 +287,7 @@ Page({
           });
           if (that.data.ping) {
             that.getPingTeam();
+            that.setInfoKill();
           }
         } else {
           app.setToast(that, { content: res.data.desc });
@@ -280,6 +310,13 @@ Page({
       };
     }
   },
+  setInfoKill: function setInfoKill() {
+    var that = this;
+    if (timer2) clearInterval(timer2);
+    timer2 = setInterval(function () {
+      that.data.info.ping_status = new Date().getTime() < that.data.info.start_time * 1000 ? 0 : new Date().getTime() < that.data.info.end_time * 1000 ? 1 : -1;
+    }, 1000);
+  },
 
   // 秒杀逻辑
   setKill: function setKill() {
@@ -288,13 +325,13 @@ Page({
     function kill() {
       var shutDown = 0;
       // console.log(that.data.killArr)
-      if (!that.data.list) return;
+      if (!that.data.group) return;
       var _iteratorNormalCompletion2 = true;
       var _didIteratorError2 = false;
       var _iteratorError2 = undefined;
 
       try {
-        for (var _iterator2 = that.data.list.entries()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        for (var _iterator2 = that.data.group.entries()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
           var _step2$value = _slicedToArray(_step2.value, 2),
               i = _step2$value[0],
               v = _step2$value[1];
@@ -302,27 +339,28 @@ Page({
           var nowData = new Date().getTime(); // 毫秒数
           // console.log('startTime', new Date(that.data.killArr[i].startTime))
           // let startTime = that.data.list[i].start_time * 1000
-          var endTime = that.data.list[i].end_time;
+          var endTime = that.data.group[i].end_time;
+          // console.log(endTime)
           // console.log(nowData, startTime, endTime)
           if (nowData < endTime) {
             // 进行中
-            that.data.list[i].status = 1;
-            that.data.list[i].h = Math.floor((endTime - nowData) / 3600000);
-            that.data.list[i].m = Math.floor((endTime - nowData) % 3600000 / 60000);
-            that.data.list[i].s = Math.floor((endTime - nowData) % 60000 / 1000);
+            that.data.group[i].status = 1;
+            that.data.group[i].h = Math.floor((endTime - nowData) / 3600000);
+            that.data.group[i].m = Math.floor((endTime - nowData) % 3600000 / 60000);
+            that.data.group[i].s = Math.floor((endTime - nowData) % 60000 / 1000);
           } else {
             // 已结束
-            if (that.data.list[i].status === 2) {
+            if (that.data.group[i].status === 2) {
               ++shutDown;
               continue;
             }
-            that.data.list[i].status = 2;
-            that.data.list[i].h = '已';
-            that.data.list[i].m = '结';
-            that.data.list[i].s = '束';
+            that.data.group[i].status = 2;
+            that.data.group[i].h = '已';
+            that.data.group[i].m = '结';
+            that.data.group[i].s = '束';
           }
           that.setData({
-            list: that.data.list
+            group: that.data.group
           });
         }
       } catch (err) {
@@ -340,7 +378,7 @@ Page({
         }
       }
 
-      if (shutDown === that.data.info.length) clearInterval(timer);
+      if (shutDown === that.data.group.length) clearInterval(timer);
     }
     kill();
     timer = setInterval(function () {
@@ -379,10 +417,11 @@ Page({
                 for (var _iterator4 = v[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
                   var s = _step4.value;
 
+                  s.phone = s.phone.substr(0, 3) + '*' + s.phone.substr(7);
                   if (s.mode_id <= 1) {
                     // 团长
                     teamTemp['group_id'] = s.group_id;
-                    teamTemp['end_time'] = (s.create_time + that.data.info.effective_time) * 1000;
+                    teamTemp['end_time'] = (s.create_time * 1 + that.data.info.effective_time * 1) * 1000;
                     groupL = s;
                   } else {
                     teamTemp.user.push(s);
@@ -422,7 +461,7 @@ Page({
           }
 
           that.setData({
-            list: that.data.list.concat(tempList),
+            group: that.data.group.concat(tempList),
             more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
           }, that.setKill());
         } else {
@@ -431,32 +470,72 @@ Page({
       }
     });
   },
+  showMorePing: function showMorePing() {
+    if (this.data.more > 0) this.getPingTeam();else app.setToast(this, { content: '没有更多拼团啦' });
+  },
 
-  // 获取拼团信息
+  // 获取单独拼团信息
   getpinglaunch: function getpinglaunch(oid, mid) {
-    return this.shopProduct(5);
-    // let that = this
-    // app.wxrequest({
-    //   url: app.getUrl().pinglaunch,
-    //   data: {
-    //     oid,
-    //     uid: app.gs('userInfoAll').id,
-    //     mid
-    //   },
-    //   success (res) {
-    //     wx.hideLoading()
-    //     if (res.data.status === 200) {
-    //       if (!that.data.info.id) {
-    //         that.shopProduct(res.data.data.id)
-    //         that.setData({
-    //           group: res.data.data.group
-    //         })
-    //       }
-    //     } else {
-    //       app.setToast(that, {content: res.data.desc})
-    //     }
-    //   }
-    // })
+    // return this.shopProduct(5)
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().pinglaunch,
+      data: {
+        oid: oid,
+        uid: app.gs('userInfoAll').id,
+        mid: mid
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          var teamTemp = {
+            user: []
+          };
+          var groupL = {};
+          var _iteratorNormalCompletion5 = true;
+          var _didIteratorError5 = false;
+          var _iteratorError5 = undefined;
+
+          try {
+            for (var _iterator5 = res.data.data.group[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+              var s = _step5.value;
+
+              s.phone = 'Ta向你分享的拼团';
+              if (s.mode_id <= 1) {
+                // 团长
+                teamTemp['group_id'] = s.group_id;
+                teamTemp['end_time'] = (s.create_time * 1 + res.data.data.product.effective_time * 1) * 1000;
+                groupL = s;
+              } else {
+                teamTemp.user.push(s);
+              }
+            }
+          } catch (err) {
+            _didIteratorError5 = true;
+            _iteratorError5 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                _iterator5.return();
+              }
+            } finally {
+              if (_didIteratorError5) {
+                throw _iteratorError5;
+              }
+            }
+          }
+
+          teamTemp.user.unshift(groupL);
+          that.setData({
+            group: that.data.group.concat(teamTemp)
+          }, function () {
+            that.shopProduct(res.data.data.product.id);
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
   },
 
 
@@ -568,7 +647,7 @@ Page({
       var that = this;
       if (!app.gs() || !app.gs('userInfoAll')) return app.wxlogin(); // 处理第一次进入的情况
       var scene = decodeURIComponent(options.scene).split(',');
-      if (options.share) scene = options.share;
+      if (options.share) scene = options.share.split(',');
       options.oid = scene[0]; // 拼团订单id
       options.mid = scene[1]; // 商家id
       options.user = scene[2]; // 分享者id
@@ -623,6 +702,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function onUnload() {
+    if (timer) clearInterval(timer);
+    if (timer2) clearInterval(timer2);
     // TODO: onUnload
   },
 

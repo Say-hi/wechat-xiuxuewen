@@ -110,19 +110,19 @@
         </view>
       </view>
     </view>
-    <view wx:if="{{ info[0].people - info[0].group.length <= 0 }}" class="f24 c3e3a39 tac mt20">拼主人气太高，拼单成功</view>
+    <view wx:if="{{ info[0].people - info[0].groupInfo.p.length <= 0 }}" class="f24 c3e3a39 tac mt20">拼主人气太高，拼单成功</view>
     <view class="spt-user mt20">
-      <view wx:for="{{ info[0].group }}" wx:key="*this" class="user-item {{ index >= 1 ? '' : 'pr' }}">
-        <view wx:if="{{ index >= 1 }}" class="pa cfff f27 team-leader keep">团长</view>
-        <image class="br" mode="aspectFil" src="{{ user_info_img }}"></image>
+      <view wx:for="{{ info[0].groupInfo.p }}" wx:key="*this" class="user-item {{ index >= 1 ? '' : 'pr' }}">
+        <view wx:if="{{ index < 1 }}" class="pa cfff f27 team-leader keep">团长</view>
+        <image class="br" mode="aspectFil" src="{{ item.avatar_url }}"></image>
       </view>
-      <view wx:if="{{ info[0].people - info[0].group.length >= 1 }}" class="user-item">
+      <view wx:if="{{ info[0].people - info[0].groupInfo.p.length >= 1 }}" class="user-item">
         <image class="br" mode="aspectFil" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/ping/ping3.png"></image>
       </view>
     </view>
-    <view class="f24 c3e3a39 mt20">仅差<text class="cff362c">{{ info[0].people - info[0].group.length }}人</text>，快呼唤小伙伴参加吧！</view>
-    <view wx:if="{{ info[0].people - info[0].group.length >= 1 }}" class="f24 c828282 ps-time mt20">-- 剩余 <text>{{ info[0].h }}</text><text>时</text><text>{{ info[0].m }}</text><text>分</text><text>{{ info[0].s }}</text><text>秒</text> 结束 --</view>
-    <view wx:if="{{ info[0].people - info[0].group.length >= 1 }}" class="ps-invite-w">
+    <view wx:if="{{ info[0].people - info[0].groupInfo.p.length >= 1 }}" class="f24 c3e3a39 mt20">仅差<text class="cff362c">{{ info[0].people - info[0].groupInfo.p.length }}人</text>，快呼唤小伙伴参加吧！</view>
+    <view wx:if="{{ info[0].people - info[0].groupInfo.p.length >= 1 }}" class="f24 c828282 ps-time mt20">-- 剩余 <text>{{ info[0].h }}</text><text>时</text><text>{{ info[0].m }}</text><text>分</text><text>{{ info[0].s }}</text><text>秒</text> 结束 --</view>
+    <view wx:if="{{ info[0].people - info[0].groupInfo.p.length >= 1 }}" class="ps-invite-w">
       <button open-type="share" class="ps-invite f28 cfff">邀请好友参团</button>
       <view catchtap="getMyShareCode" class="ps-invite f28 cfff">我的参团码</view>
     </view>

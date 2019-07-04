@@ -14,9 +14,33 @@ Page({
     today: true
   },
   showImage () {
-    wx.navigateTo({
-      url: `/webviewPage/shoppages/index/index?agents=${(this.data.agents || this.data.info.roles * 1 === 1) ? 1 : 2}&uid=${this.data.info.id}`
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().skip,
+      data: {
+        mid: app.gs('shopInfoAll').id,
+        // mid: 10000,
+        uid: that.data.info.id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          if (res.data.data.appid === 'wxb1f5224c98168afc ') {
+            wx.navigateTo({
+              url: `/webviewPage/shoppages/index/index?agents=${(that.data.agents || that.data.info.roles * 1 === 1) ? 1 : 2}&uid=${that.data.info.id}`
+            })
+          } else {
+            wx.navigateToMiniProgram({
+              appId: res.data.data.appid,
+              path: `${res.data.data.path}?appid=${res.data.data.appid}&mid=${res.data.data.mid}&uid=${res.data.data.uid}`
+            })
+          }
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
     })
+
     // this.setData({
     //   showImage: !this.data.showImage
     // })

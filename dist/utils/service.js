@@ -129,6 +129,9 @@ var serviceUrl = {
   pinglaunch: shopBaseDomain + '/assemble/launch', // 拼团分享进入
   pingdirect: shopBaseDomain + '/payment/direct', // 拼团支付
   pinedit: shopBaseDomain + '/shops/edit', // 拼团商品二次编辑
+  skip: shopBaseDomain + '/user/skip', // 红包跳转
+  pinuserorder: shopBaseDomain + '/users/orders', // 拼团用户订单
+  pingrefund: shopBaseDomain + '/shops/refund', // 商家确认退款
   // 公众号接口
   profitDetail: webBaseDomain + '/user/profit-detail',
   finance: webBaseDomain + '/shop/finance', // 查看财务信息

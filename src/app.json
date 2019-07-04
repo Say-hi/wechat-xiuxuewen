@@ -344,7 +344,8 @@
         "video",
         "center",
         "user",
-        "pictureShare"
+        "pictureShare",
+        "pingindex"
       ]
     },
     "shopUserPage/shoppages/user/user": {
@@ -445,6 +446,9 @@
     "request": 10000,
     "downloadFile": 10000
   },
+  "navigateToMiniProgramAppIdList": [
+    "wxd5a3fb6958597360"
+  ],
   // Debug log to console
   "debug": false
 }

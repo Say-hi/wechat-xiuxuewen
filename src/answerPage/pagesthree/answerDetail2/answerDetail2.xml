@@ -1,76 +1,76 @@
-<view class="bgfff br18 p30">
-  <view class="f26 fw7 c999 user-info">
-    <image lazy-load="{{true}}" class="br" src="{{ info.avatar_url }}"></image>
-    <view class="{{ info.is_teach == 1 ? 'teacher-tag' : '' }}">{{ info.nickname }}</view>
-    <view class="flex1 tar f28 c999">
-      <text catchtap="collectO" class="iconfont f28 c999 {{ !!collect ? 'icon-xinheart118 cff3b5b' : 'icon-shoucang' }}"> {{ info.collect_count }}　</text>
-      <button open-type="share" class="iconfont icon-fenxiang f30 c999"></button>
-    </view>
-  </view>
+<!--<view class="bgfff br18 p30">-->
+  <!--<view class="f26 fw7 c999 user-info">-->
+    <!--<image lazy-load="{{true}}" class="br" src="{{ info.avatar_url }}"></image>-->
+    <!--<view class="{{ info.is_teach == 1 ? 'teacher-tag' : '' }}">{{ info.nickname }}</view>-->
+    <!--<view class="flex1 tar f28 c999">-->
+      <!--<text catchtap="collectO" class="iconfont f28 c999 {{ !!collect ? 'icon-xinheart118 cff3b5b' : 'icon-shoucang' }}"> {{ info.collect_count }}　</text>-->
+      <!--<button open-type="share" class="iconfont icon-fenxiang f30 c999"></button>-->
+    <!--</view>-->
+  <!--</view>-->
 
-  <view class="f36 c3a3a3a fw7 mt20">{{ info.context }}</view>
+  <!--<view class="f36 c3a3a3a fw7 mt20">{{ info.context }}</view>-->
 
-  <view class="answer-img mt10">
-    <image lazy-load="{{true}}"
-           wx:for="{{ info.images }}"
-           wx:key="*21"
-           data-index="{{ index }}"
-           catchtap="showImg"
-           mode="aspectFill"
-           src="{{ item }}"></image>
-  </view>
+  <!--<view class="answer-img mt10">-->
+    <!--<image lazy-load="{{true}}"-->
+           <!--wx:for="{{ info.images }}"-->
+           <!--wx:key="*21"-->
+           <!--data-index="{{ index }}"-->
+           <!--catchtap="showImg"-->
+           <!--mode="aspectFill"-->
+           <!--src="{{ item }}"></image>-->
+  <!--</view>-->
 
-  <view class="f20 mt20 c666 info-time">
-    <view>{{ info.create_time }}</view>
-    <view style="display: flex;">
-      <navigator url="/feedbackPage/pagesfour/feedback/feedback?userid={{ info.user_id }}&id={{ options.id }}&title={{ info.context }}&style=2" class="iconfont icon-tousujubao p20"></navigator>
-      <view catchtap="replyOperation" data-name="题主" data-id="{{ info.user_id }}" data-cindex="0.5" class="iconfont icon-pinglun p20"></view>
-    </view>
-  </view>
+  <!--<view class="f20 mt20 c666 info-time">-->
+    <!--<view>{{ info.create_time }}</view>-->
+    <!--<view style="display: flex;">-->
+      <!--<navigator url="/feedbackPage/pagesfour/feedback/feedback?userid={{ info.user_id }}&id={{ options.id }}&title={{ info.context }}&style=2" class="iconfont icon-tousujubao p20"></navigator>-->
+      <!--<view catchtap="replyOperation" data-name="题主" data-id="{{ info.user_id }}" data-cindex="0.5" class="iconfont icon-pinglun p20"></view>-->
+    <!--</view>-->
+  <!--</view>-->
 
-  <view hidden="{{ commentArr.length <= 0 ? rIndex < 0 : false}}"
-        class="reply pr  br20 f26 c393636 p30">
-    <view catchtap="replyOperation"
-          data-type="other"
-          class="mt10 f26 answer-reply-item"
-          data-cindex="{{ index }}"
-          data-name="{{ nItem.reply_nickname }}"
-          data-id="{{ nItem.user_id }}"
-          data-teach="{{ nItem.reply_is_teach }}"
-          wx:for='{{ commentArr }}'
-          wx:for-item="nItem"
-          wx:key="*908">
-      <text class="reply-name fw7">
-        <text class="{{ nItem.reply_is_teach == 1 ? 'teacher-tag' : '' }}">{{ nItem.reply_nickname }}</text>
-      </text>
-      <text wx:if="{{ nItem.receiver_user_id > 0 }}">
-        <text>回复</text>
-        <text class="reply-name fw7">
-          <text class="{{ nItem.answer_nickname ? nItem.answer_is_teach == 1 ? 'teacher-tag' :  '' : '' }}">{{ nItem.answer_nickname || '题主'}}</text>
-        </text>
-      </text>
-      <text>：{{ nItem.comment }}</text>
-    </view>
-    <view wx:if="{{ rIndex >= 0 }}"
-          class="reply-input-area">
-      <view>
-        回复<text class="main-text-color {{ answer_is_teach == 1 ? 'teacher-tag' : '' }}">{{ replyName }}</text>:
-      </view>
-      <input cursor-spacing="40"
-             focus="{{ replyFocus }}"
-             confirm-type="send"
-             bindconfirm="replyConfirm"
-             bindblur="replyBlur"
-             placeholder="请输入内容" />
-    </view>
-    <view wx:if="{{ more == 1 }}"
-          catchtap="getMoreNext"
-          class="tac f24 c999 mt10">查看更多回答</view>
-  </view>
-</view>
+  <!--<view hidden="{{ commentArr.length <= 0 ? rIndex < 0 : false}}"-->
+        <!--class="reply pr  br20 f26 c393636 p30">-->
+    <!--<view catchtap="replyOperation"-->
+          <!--data-type="other"-->
+          <!--class="mt10 f26 answer-reply-item"-->
+          <!--data-cindex="{{ index }}"-->
+          <!--data-name="{{ nItem.reply_nickname }}"-->
+          <!--data-id="{{ nItem.user_id }}"-->
+          <!--data-teach="{{ nItem.reply_is_teach }}"-->
+          <!--wx:for='{{ commentArr }}'-->
+          <!--wx:for-item="nItem"-->
+          <!--wx:key="*908">-->
+      <!--<text class="reply-name fw7">-->
+        <!--<text class="{{ nItem.reply_is_teach == 1 ? 'teacher-tag' : '' }}">{{ nItem.reply_nickname }}</text>-->
+      <!--</text>-->
+      <!--<text wx:if="{{ nItem.receiver_user_id > 0 }}">-->
+        <!--<text>回复</text>-->
+        <!--<text class="reply-name fw7">-->
+          <!--<text class="{{ nItem.answer_nickname ? nItem.answer_is_teach == 1 ? 'teacher-tag' :  '' : '' }}">{{ nItem.answer_nickname || '题主'}}</text>-->
+        <!--</text>-->
+      <!--</text>-->
+      <!--<text>：{{ nItem.comment }}</text>-->
+    <!--</view>-->
+    <!--<view wx:if="{{ rIndex >= 0 }}"-->
+          <!--class="reply-input-area">-->
+      <!--<view>-->
+        <!--回复<text class="main-text-color {{ answer_is_teach == 1 ? 'teacher-tag' : '' }}">{{ replyName }}</text>:-->
+      <!--</view>-->
+      <!--<input cursor-spacing="40"-->
+             <!--focus="{{ replyFocus }}"-->
+             <!--confirm-type="send"-->
+             <!--bindconfirm="replyConfirm"-->
+             <!--bindblur="replyBlur"-->
+             <!--placeholder="请输入内容" />-->
+    <!--</view>-->
+    <!--<view wx:if="{{ more == 1 }}"-->
+          <!--catchtap="getMoreNext"-->
+          <!--class="tac f24 c999 mt10">查看更多回答</view>-->
+  <!--</view>-->
+<!--</view>-->
 
-        <!--错误弹窗-->
-<import src="/template/template"></import>
-<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+        <!--&lt;!&ndash;错误弹窗&ndash;&gt;-->
+<!--<import src="/template/template"></import>-->
+<!--<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>-->
 
-<my-back></my-back>
+<!--<my-back></my-back>-->

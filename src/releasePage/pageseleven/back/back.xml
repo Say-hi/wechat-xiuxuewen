@@ -11,7 +11,7 @@
 
   <view class="back-money bgfff mt20 f34">
     <text class="c595757">退款金额</text>
-    <text>￥{{ options.money || '0.00' }}</text>
+    <text>￥{{ options.amount || '0.00' }}</text>
   </view>
 
   <view class="bgfff mt20 back-money f34 c3e3a39">
@@ -41,7 +41,7 @@
     <!--<image src=""></image>-->
   </view>
 
-  <view class="apply f34 cfff tac lh80">提交申请</view>
+  <view catchtap="refund" class="apply f34 cfff tac lh80">提交申请</view>
 </view>
 
 <view wx:else class="tac bgfff mt20 p30">

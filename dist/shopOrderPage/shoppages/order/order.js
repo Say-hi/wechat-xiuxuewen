@@ -37,7 +37,7 @@ Page({
     var that = this;
     wx.setClipboardData({
       data: that.data.list[e.currentTarget.dataset.index][e.currentTarget.dataset.type],
-      success: function success(res) {
+      success: function success() {
         wx.showToast({
           title: '复制成功'
         });
@@ -62,8 +62,13 @@ Page({
   getList: function getList() {
     var that = this;
     app.wxrequest({
-      url: app.getUrl().shopUserOrders,
-      data: {
+      url: app.getUrl()[that.data.ping ? that.data.options.for === 'user' ? 'pinuserorder' : 'pinshoporder' : 'shopUserOrders'],
+      data: that.data.ping ? {
+        mid: that.data.options.for === 'user' ? 0 : app.gs('shopInfoAll').id,
+        uid: that.data.options.for === 'user' ? app.gs('userInfoAll').id : app.gs('shopInfoAll').id,
+        state: that.data.tabNav[that.data.tabIndex].i,
+        page: ++that.data.page
+      } : {
         uid: that.data.options.for === 'user' ? app.gs('userInfoAll').id : 0,
         // uid: that.data.options.for === 'user' ? 2 : 0,
         status: that.data.tabNav[that.data.tabIndex].i,
@@ -73,59 +78,86 @@ Page({
       success: function success(res) {
         wx.hideLoading();
         if (res.data.status === 200) {
-          var id = app.gs('userInfoAll').id * 1;
-          // let id = 2
-          var _iteratorNormalCompletion = true;
-          var _didIteratorError = false;
-          var _iteratorError = undefined;
+          if (that.data.ping) {
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
 
-          try {
-            for (var _iterator = res.data.data.lists[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-              var v = _step.value;
+            try {
+              for (var _iterator = res.data.data.lists[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var v = _step.value;
 
-              v.create_time = app.momentFormat(v.create_time * 1000, 'MM月DD日 HH:mm');
-              v['self'] = v.uid * 1 === id;
-              v['all_count'] = 0;
-              var _iteratorNormalCompletion2 = true;
-              var _didIteratorError2 = false;
-              var _iteratorError2 = undefined;
-
+                // v.status = v.status * 1 === 11 ? 1 : v.status
+                v.create_time = app.momentFormat(v.create_time * 1000, 'MM月DD日 HH:mm');
+              }
+            } catch (err) {
+              _didIteratorError = true;
+              _iteratorError = err;
+            } finally {
               try {
-                for (var _iterator2 = v.list[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                  var s = _step2.value;
-
-                  v['all_count'] += s.count * 1;
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                  _iterator.return();
                 }
-              } catch (err) {
-                _didIteratorError2 = true;
-                _iteratorError2 = err;
               } finally {
-                try {
-                  if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                    _iterator2.return();
-                  }
-                } finally {
-                  if (_didIteratorError2) {
-                    throw _iteratorError2;
-                  }
+                if (_didIteratorError) {
+                  throw _iteratorError;
                 }
               }
             }
-          } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-          } finally {
+          } else {
+            var id = app.gs('userInfoAll').id * 1;
+            // let id = 2
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
             try {
-              if (!_iteratorNormalCompletion && _iterator.return) {
-                _iterator.return();
+              for (var _iterator2 = res.data.data.lists[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                var _v = _step2.value;
+
+                _v.create_time = app.momentFormat(_v.create_time * 1000, 'MM月DD日 HH:mm');
+                _v['self'] = _v.uid * 1 === id;
+                _v['all_count'] = 0;
+                var _iteratorNormalCompletion3 = true;
+                var _didIteratorError3 = false;
+                var _iteratorError3 = undefined;
+
+                try {
+                  for (var _iterator3 = _v.list[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    var s = _step3.value;
+
+                    _v['all_count'] += s.count * 1;
+                  }
+                } catch (err) {
+                  _didIteratorError3 = true;
+                  _iteratorError3 = err;
+                } finally {
+                  try {
+                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                      _iterator3.return();
+                    }
+                  } finally {
+                    if (_didIteratorError3) {
+                      throw _iteratorError3;
+                    }
+                  }
+                }
               }
+            } catch (err) {
+              _didIteratorError2 = true;
+              _iteratorError2 = err;
             } finally {
-              if (_didIteratorError) {
-                throw _iteratorError;
+              try {
+                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                  _iterator2.return();
+                }
+              } finally {
+                if (_didIteratorError2) {
+                  throw _iteratorError2;
+                }
               }
             }
           }
-
           that.setData({
             list: that.data.list.concat(res.data.data.lists),
             more: res.data.data.pre_page > res.data.data.lists.length ? 0 : 1
@@ -136,6 +168,9 @@ Page({
       }
     });
   },
+  cui: function cui() {
+    app.setToast(this, { content: '无相关服务提供' });
+  },
   change: function change(e) {
     var that = this;
     var state = that.data.list[e.currentTarget.dataset.index].status < 0 && that.data.options.for === 'user' ? 4 : that.data.list[e.currentTarget.dataset.index].status * 1 === 2 ? 3 : '';
@@ -143,7 +178,7 @@ Page({
       url: app.getUrl().shopUserOperate,
       data: {
         oid: that.data.list[e.currentTarget.dataset.index].id,
-        uid: that.data.list[e.currentTarget.dataset.index].uid,
+        uid: that.data.list[e.currentTarget.dataset.index].uid || app.gs('userInfoAll').id,
         mid: that.data.list[e.currentTarget.dataset.index].mid,
         state: state
       },
@@ -253,8 +288,8 @@ Page({
     if (this.data.ping && this.data.share_index >= 0) {
       return {
         title: '快来和我一起参团享好物吧',
-        path: '/shopListPage/shoplistpages/detail/detail?id=' + this.data.list[this.data.share_index].list[0].id + '&ping=ping&from=' + app.gs('userInfoAll').id,
-        imageUrl: this.data.list[this.data.share_index].list[0].img
+        path: '/shopListPage/shoplistpages/detail/detail?share=' + this.data.list[this.data.share_index].id + ',' + this.data.list[this.data.share_index].mid + ',' + app.gs('userInfoAll').id + ',',
+        imageUrl: this.data.list[this.data.share_index].img
       };
     }
     if (!app.gs('shopInfo').mid) {
@@ -281,11 +316,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function onLoad(options) {
-    if (options.for === 'shop' && options.ping) {
-      this.data.tabNav.push({
-        t: '退款中',
+    if (options.ping) {
+      // this.data.tabNav.push({
+      //   t: '退款中',
+      //   i: 4
+      // })
+      this.data.tabNav = [{
+        t: '全部',
+        i: 1
+      }, {
+        t: '拼团中',
+        i: 6
+      }, {
+        t: '待发货',
+        i: 2
+      }, {
+        t: '待收货',
+        i: 3
+      }, {
+        t: '已完成',
         i: 4
-      });
+      }, {
+        t: '退款中',
+        i: 5
+      }];
     }
     this.setData({
       options: options,

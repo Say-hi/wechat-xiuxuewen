@@ -13,10 +13,12 @@
       <view class="p20 bgfff br8 f26 c666 mt10">
         <view class="order-num">
           <text>订单编号：{{ item.out_trade_no }}</text>
-          <text class="cf7546f fw7">{{ item.status == -1 ? '等待买家付款' : item.status == 1 ? '等待商家发货' : item.status == 2 ? '待确认收货' : item.status == 3 ? '交易已完成' : '订单已失效' }}</text>
+          <text class="cf7546f fw7">{{ item.status == -1 ? '等待买家付款' : item.status == 1 ?  '等待商家发货' : item.status == 2 ? '待确认收货' : item.status == 3 ? '交易已完成' : item.status == -2 ? '退款中' : item.status == -3 ? '退款完成' : item.status == 11 ? item.group < 1 ? '已成团' : '还差' + item.group + '人成团' : '订单已失效' }}</text>
         </view>
-        <navigator url="/shopListPage/shoplistpages/detail/detail?id={{ item.id }}" wx:for="{{ item.list }}"
-              wx:key
+        <navigator wx:if="{{ !ping }}"
+                   url="/shopListPage/shoplistpages/detail/detail?id={{ item.id }}"
+                   wx:for="{{ item.list }}"
+                   wx:key
               class="p20 br8 order-goods f26 c666 mt10">
           <image src="{{ item.img }}"
                  mode="aspectFit"
@@ -27,6 +29,20 @@
           </view>
           <view class="og-r tar">
             <view class="fw7">¥{{ item.price || '未知' }}</view>
+            <view>X{{ item.count }}</view>
+          </view>
+        </navigator>
+        <navigator wx:if="{{ ping }}"  url="/shopListPage/shoplistpages/detail/detail?id={{ item.pid }}&ping=ping"
+                   class="p20 br8 order-goods f26 c666 mt10">
+          <image src="{{ item.img }}"
+                 mode="aspectFit"
+                 class="br8 mr20"></image>
+          <view class="mr20 flex1 df">
+            <text>{{ item.title || '暂无名称' }}</text>
+            <!--<text>规格:{{ item.value <= 0 ? '默认': item.value }}</text>-->
+          </view>
+          <view class="og-r tar">
+            <view class="fw7">¥{{ item.price || item.old_price || '未知' }}</view>
             <view>X{{ item.count }}</view>
           </view>
         </navigator>
@@ -51,7 +67,8 @@
         </view>
         <view wx:if="{{ ping }}" class="for-ping">
           <view class="ping-user">
-            <image wx:for="123" wx:key="*this" style="transform: translateX({{ index * -10 }}rpx);" mode="aspectFill" src="https://c.jiangwenqiang.com/api/logo.jpg"></image>
+            <!--<image wx:for="123" wx:key="*this" style="transform: translateX({{ index * -10 }}rpx);" mode="aspectFill" src="{{ item.avatar_url }}"></image>-->
+            <image mode="aspectFill" src="{{ item.avatar_url }}"></image>
           </view>
           <view class="tar f26 fw7 cff5975 p10">
             实际需付款{{ item.total_fee }}元
@@ -76,25 +93,27 @@
         <!--拼团订单状态对应  ssss-->
         <view wx:if="{{ ping }}" class="f26 order-bottom p10">
           <view class="ob-r flex1">
-            <navigator url="/releasePage/pageseleven/back/back?oid={{ item.id }}&mid={{ item.mid }}&uid={{ item.uid }}&openid={{ item.openid }}&out_trade_no={{ item.out_trade_no }}&amount={{ item.amount }}&apply=1" class="confirm f26 cfff cancel">申请退款</navigator>
-            <button catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">催发货</button>
-            <button catchtap="cancelping" class="confirm f26 cfff cancel">取消订单</button>
-            <button catchtap="shareChange" data-index="{{ index }}"  class="confirm f26 cfff cancel">邀请好友拼单</button>
-            <button catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">查看物流</button>
-            <navigator url="/releasePage/pageseleven/back/back?id=12" class="confirm f26 cfff cancel">售后详情</navigator>
-            <navigator url="/pingPage/pingpages/money/index?id={{ item.id }}" catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">钱款去向</navigator>
-            <button catchtap="payAgain" data-index="{{ index }}"  class="confirm f26 cfff">再次购买</button>
+            <navigator wx:if="{{ options.for == 'user' && item.status == 1 }}" url="/releasePage/pageseleven/back/back?oid={{ item.id }}&mid={{ item.mid }}&out_trade_no={{ item.out_trade_no }}&amount={{ item.total_fee }}&apply={{ item.status }}" class="confirm f26 cfff cancel">申请退款</navigator>
+            <navigator wx:if="{{ options.for == 'shop' && item.status == -2 }}" url="/shopbackPage/shoppages/order/order?oid={{ item.id }}&mid={{ item.mid }}&apply={{ item.status }}&amount={{ item.total_fee }}" class="confirm f26 cfff cancel">退款审核</navigator>
+            <button wx:if="{{ options.for == 'user' && item.status == 1 }}"  catchtap="cui" data-index="{{ index }}"  class="confirm f26 cfff cancel">催发货</button>
+            <button wx:if="{{ item.status == -1 }}" catchtap="cancelping" class="confirm f26 cfff cancel">取消订单</button>
+            <button wx:if="{{ (options.for == 'user' && item.status == 1 && item.group > 0) || (item.status == 11 && item.group > 0) }}" catchtap="shareChange" data-index="{{ index }}"  class="confirm f26 cfff cancel">邀请好友拼单</button>
+            <!--<button wx:if="{{ item.status == 2 || item.status == 3 }}" catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">查看物流</button>-->
+            <navigator wx:if="{{ options.for == 'user' && (item.status == -3 || item.status == -2) }}" url="/releasePage/pageseleven/back/back?id=12" class="confirm f26 cfff cancel">售后详情</navigator>
+            <navigator wx:if="{{ item.status == -3 }}" url="/pingPage/pingpages/money/index?id={{ item.id }}" catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">钱款去向</navigator>
+            <navigator url="/shopListPage/shoplistpages/detail/detail?id={{ item.pid }}&ping=ping" wx:if="{{ options.for == 'user' && (item.status == 3 || item.status == -3) }}" class="confirm f26 cfff">再次购买</navigator>
+            <button catchtap="fahuo" data-index="{{ index }}" wx:if="{{ item.status == 1 && options.for == 'shop' }}" class="confirm f26 cfff">点击发货</button>
             <button catchtap="showExpress"
                     data-index="{{ index }}"
-                    wx:if="{{ item.status == 2 }}"
+                    wx:if="{{ item.status == 2 || item.status == 3 }}"
                     class="confirm f26 cfff cancel">查看物流</button>
-            <button catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff">确认收货</button>
+            <button wx:if="{{ options.for == 'user' && item.status == 2 }}" catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff">确认收货</button>
           </view>
         </view>
         <!--拼团订单状态对应  eeee-->
 
 
-
+        <view wx:if="{{ options.for == 'shop' }}" class="f26 c444" data-index="{{ index }}" catchtap="copy" data-type="name">收货地址: {{ item.name }}</view>
         <view wx:if="{{ options.for == 'shop' }}" class="f26 c444" data-index="{{ index }}" catchtap="copy" data-type="address">收货地址: {{ item.address }}</view>
         <view wx:if="{{ options.for == 'shop' }}" class="f26 c444" data-index="{{ index }}" catchtap="copy" data-type="phone">联系电话: {{ item.phone }}</view>
       </view>

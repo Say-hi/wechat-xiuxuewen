@@ -39,7 +39,7 @@ Page({
     let that = this
     wx.setClipboardData({
       data: that.data.list[e.currentTarget.dataset.index][e.currentTarget.dataset.type],
-      success (res) {
+      success () {
         wx.showToast({
           title: '复制成功'
         })
@@ -64,8 +64,13 @@ Page({
   getList () {
     let that = this
     app.wxrequest({
-      url: app.getUrl().shopUserOrders,
-      data: {
+      url: app.getUrl()[that.data.ping ? that.data.options.for === 'user' ? 'pinuserorder' : 'pinshoporder' : 'shopUserOrders'],
+      data: that.data.ping ? {
+        mid: that.data.options.for === 'user' ? 0 : app.gs('shopInfoAll').id,
+        uid: that.data.options.for === 'user' ? app.gs('userInfoAll').id : app.gs('shopInfoAll').id,
+        state: that.data.tabNav[that.data.tabIndex].i,
+        page: ++that.data.page
+      } : {
         uid: that.data.options.for === 'user' ? app.gs('userInfoAll').id : 0,
         // uid: that.data.options.for === 'user' ? 2 : 0,
         status: that.data.tabNav[that.data.tabIndex].i,
@@ -75,14 +80,21 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
-          let id = app.gs('userInfoAll').id * 1
-          // let id = 2
-          for (let v of res.data.data.lists) {
-            v.create_time = app.momentFormat(v.create_time * 1000, 'MM月DD日 HH:mm')
-            v['self'] = v.uid * 1 === id
-            v['all_count'] = 0
-            for (let s of v.list) {
-              v['all_count'] += s.count * 1
+          if (that.data.ping) {
+            for (let v of res.data.data.lists) {
+              // v.status = v.status * 1 === 11 ? 1 : v.status
+              v.create_time = app.momentFormat(v.create_time * 1000, 'MM月DD日 HH:mm')
+            }
+          } else {
+            let id = app.gs('userInfoAll').id * 1
+            // let id = 2
+            for (let v of res.data.data.lists) {
+              v.create_time = app.momentFormat(v.create_time * 1000, 'MM月DD日 HH:mm')
+              v['self'] = v.uid * 1 === id
+              v['all_count'] = 0
+              for (let s of v.list) {
+                v['all_count'] += s.count * 1
+              }
             }
           }
           that.setData({
@@ -95,6 +107,9 @@ Page({
       }
     })
   },
+  cui () {
+    app.setToast(this, {content: '无相关服务提供'})
+  },
   change (e) {
     let that = this
     let state = (that.data.list[e.currentTarget.dataset.index].status < 0 && that.data.options.for === 'user') ? 4 : that.data.list[e.currentTarget.dataset.index].status * 1 === 2 ? 3 : ''
@@ -102,7 +117,7 @@ Page({
       url: app.getUrl().shopUserOperate,
       data: {
         oid: that.data.list[e.currentTarget.dataset.index].id,
-        uid: that.data.list[e.currentTarget.dataset.index].uid,
+        uid: that.data.list[e.currentTarget.dataset.index].uid || app.gs('userInfoAll').id,
         mid: that.data.list[e.currentTarget.dataset.index].mid,
         state
       },
@@ -219,8 +234,8 @@ Page({
     if (this.data.ping && this.data.share_index >= 0) {
       return {
         title: '快来和我一起参团享好物吧',
-        path: `/shopListPage/shoplistpages/detail/detail?id=${this.data.list[this.data.share_index].list[0].id}&ping=ping&from=${app.gs('userInfoAll').id}`,
-        imageUrl: this.data.list[this.data.share_index].list[0].img
+        path: `/shopListPage/shoplistpages/detail/detail?share=${this.data.list[this.data.share_index].id},${this.data.list[this.data.share_index].mid},${app.gs('userInfoAll').id},`,
+        imageUrl: this.data.list[this.data.share_index].img
       }
     }
     if (!app.gs('shopInfo').mid) {
@@ -246,11 +261,37 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    if (options.for === 'shop' && options.ping) {
-      this.data.tabNav.push({
-        t: '退款中',
-        i: 4
-      })
+    if (options.ping) {
+      // this.data.tabNav.push({
+      //   t: '退款中',
+      //   i: 4
+      // })
+      this.data.tabNav = [
+        {
+          t: '全部',
+          i: 1
+        },
+        {
+          t: '拼团中',
+          i: 6
+        },
+        {
+          t: '待发货',
+          i: 2
+        },
+        {
+          t: '待收货',
+          i: 3
+        },
+        {
+          t: '已完成',
+          i: 4
+        },
+        {
+          t: '退款中',
+          i: 5
+        }
+      ]
     }
     this.setData({
       options,
