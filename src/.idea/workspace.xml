@@ -24,16 +24,86 @@
       <file leaf-file-name="order.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shopOrderPage/shoppages/order/order.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="238" column="7" lean-forward="true" selection-start-line="238" selection-start-column="7" selection-end-line="238" selection-end-column="7" />
+            <state relative-caret-position="380">
+              <caret line="124" column="24" lean-forward="true" selection-start-line="124" selection-start-column="24" selection-end-line="124" selection-end-column="24" />
               <folding>
                 <element signature="e#249#495#0" expanded="false" />
-                <element signature="e#4141#4268#0" expanded="false" />
-                <element signature="e#4284#5354#0" expanded="false" />
-                <element signature="e#5374#5501#0" expanded="false" />
-                <element signature="e#5518#6582#0" expanded="false" />
-                <element signature="e#6604#6695#0" expanded="false" />
+                <element signature="e#526#758#0" expanded="false" />
+                <element signature="e#778#994#0" expanded="false" />
+                <element signature="e#1012#1150#0" expanded="false" />
+                <element signature="e#1165#2992#0" expanded="false" />
+                <element signature="e#3003#3053#0" expanded="false" />
+                <element signature="e#4176#4303#0" expanded="false" />
+                <element signature="e#5409#5536#0" expanded="false" />
+                <element signature="e#5553#6617#0" expanded="false" />
+                <element signature="e#6639#7149#0" expanded="false" />
+                <element signature="e#7174#7993#0" expanded="false" />
+                <element signature="e#8011#8082#0" expanded="false" />
+                <element signature="e#8135#8783#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="submit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shopListPage/shoplistpages/submit/submit.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="588">
+              <caret line="37" column="20" lean-forward="true" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+              <folding>
+                <element signature="e#1964#2425#0" expanded="false" />
+                <element signature="e#2456#3074#0" expanded="false" />
+                <element signature="e#3103#3372#0" expanded="false" />
+                <element signature="e#3386#3461#0" expanded="false" />
+                <element signature="e#3973#4715#0" expanded="false" />
+                <element signature="e#4745#8685#0" expanded="false" />
+                <element signature="e#4912#5098#0" expanded="false" />
+                <element signature="e#7227#7627#0" expanded="false" />
+                <element signature="e#8702#8727#0" expanded="false" />
+                <element signature="e#8869#9483#0" expanded="false" />
+                <element signature="e#9498#10029#0" expanded="false" />
+                <element signature="e#10082#11865#0" expanded="false" />
+                <element signature="e#10405#10624#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detail.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shopListPage/shoplistpages/detail/detail.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="290">
+              <caret line="56" column="69" lean-forward="true" selection-start-line="56" selection-start-column="69" selection-end-line="56" selection-end-column="69" />
+              <folding>
+                <element signature="n#scroll-view#0;n#view#0;n#view#8;n#form#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="back.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/releasePage/pageseleven/back/back.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="77" column="24" lean-forward="false" selection-start-line="77" selection-start-column="24" selection-end-line="77" selection-end-column="24" />
+              <folding>
+                <element signature="e#491#575#0" expanded="false" />
+                <element signature="e#615#887#0" expanded="false" />
+                <element signature="e#1815#1926#0" expanded="false" />
+                <element signature="e#1955#4085#0" expanded="false" />
+                <element signature="e#4106#5138#0" expanded="false" />
+                <element signature="e#5163#5623#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="back.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/releasePage/pageseleven/back/back.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="967">
+              <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -41,55 +111,15 @@
       <file leaf-file-name="order.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shopOrderPage/shoppages/order/order.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="96" column="188" lean-forward="false" selection-start-line="96" selection-start-column="182" selection-end-line="96" selection-end-column="188" />
+            <state relative-caret-position="334">
+              <caret line="102" column="202" lean-forward="true" selection-start-line="102" selection-start-column="202" selection-end-line="102" selection-end-column="202" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="service.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="131" column="12" lean-forward="false" selection-start-line="131" selection-start-column="2" selection-end-line="131" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pingPage/pingpages/money/index.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-756">
-              <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="back.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/releasePage/pageseleven/back/back.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="48" column="54" lean-forward="true" selection-start-line="48" selection-start-column="54" selection-end-line="48" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="order.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shopbackPage/shoppages/order/order.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="32" column="54" lean-forward="true" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="order.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shopOrderPage/shoppages/order/order.less">
+      <file leaf-file-name="order.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shopOrderPage/shoppages/order/order.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -98,31 +128,53 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="order.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="service.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/service.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="133" column="12" lean-forward="false" selection-start-line="133" selection-start-column="2" selection-end-line="133" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detail.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shopListPage/shoplistpages/detail/detail.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="259">
+              <caret line="353" column="22" lean-forward="true" selection-start-line="353" selection-start-column="22" selection-end-line="353" selection-end-column="22" />
+              <folding>
+                <element signature="e#904#1041#0" expanded="false" />
+                <element signature="e#1057#4095#0" expanded="false" />
+                <element signature="e#1893#2634#0" expanded="false" />
+                <element signature="e#3075#3348#0" expanded="false" />
+                <element signature="e#3364#3456#0" expanded="false" />
+                <element signature="e#3620#4025#0" expanded="false" />
+                <element signature="e#4044#4090#0" expanded="false" />
+                <element signature="e#4113#4609#0" expanded="false" />
+                <element signature="e#4621#5553#0" expanded="false" />
+                <element signature="e#5566#5587#0" expanded="false" />
+                <element signature="e#5608#6791#0" expanded="false" />
+                <element signature="e#6808#6905#0" expanded="false" />
+                <element signature="e#6927#8854#0" expanded="false" />
+                <element signature="e#8879#9339#0" expanded="false" />
+                <element signature="e#9358#9627#0" expanded="false" />
+                <element signature="e#12794#12896#0" expanded="false" />
+                <element signature="e#12939#14000#0" expanded="false" />
+                <element signature="e#14029#15607#0" expanded="false" />
+                <element signature="e#15639#16001#0" expanded="false" />
+                <element signature="e#16029#16791#0" expanded="false" />
+                <element signature="e#16804#16827#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="order.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shopbackPage/shoppages/order/order.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="24" column="34" lean-forward="false" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shopUserPage/shoppages/user/user.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="89" column="120" lean-forward="true" selection-start-line="89" selection-start-column="120" selection-end-line="89" selection-end-column="120" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="answer.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/answerPage/pagesthree/answer/answer.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="33" column="43" lean-forward="true" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
+            <state relative-caret-position="-440">
+              <caret line="25" column="25" lean-forward="true" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -139,13 +191,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>login</find>
-      <find>group</find>
-      <find>goNow</find>
-      <find>onu</find>
-      <find>shopInfo</find>
-      <find>mask-t</find>
-      <find>goods-mask</find>
       <find>join</find>
       <find>onshare</find>
       <find>list</find>
@@ -157,7 +202,6 @@
       <find>查看物流</find>
       <find>tabChoose</find>
       <find>/shops/orders</find>
-      <find>showImage</find>
       <find>shoppages/index/index</find>
       <find>loginm</find>
       <find>ping</find>
@@ -169,6 +213,14 @@
       <find>催</find>
       <find>shareChange</find>
       <find>买家通过</find>
+      <find>showImage</find>
+      <find>我的</find>
+      <find>setKill</find>
+      <find>查看</find>
+      <find>参团</find>
+      <find>shopExpress</find>
+      <find>邀请好友拼单</find>
+      <find>getMyShareCode</find>
     </findStrings>
     <replaceStrings>
       <replace>&lt;image lazy-load=&quot;{{true}}&quot;</replace>
@@ -246,23 +298,23 @@
         <option value="$PROJECT_DIR$/common/common.less" />
         <option value="$PROJECT_DIR$/shopListPage/shoplistpages/detail/detail.less" />
         <option value="$PROJECT_DIR$/shopListPage/shoplistpages/submit/submit.xml" />
-        <option value="$PROJECT_DIR$/shopListPage/shoplistpages/submit/submit.js" />
-        <option value="$PROJECT_DIR$/shopUserPage/shoppages/user/user.js" />
         <option value="$PROJECT_DIR$/app.json" />
-        <option value="$PROJECT_DIR$/releasePage/pageseleven/back/back.js" />
-        <option value="$PROJECT_DIR$/releasePage/pageseleven/back/back.xml" />
-        <option value="$PROJECT_DIR$/shopListPage/shoplistpages/detail/detail.js" />
-        <option value="$PROJECT_DIR$/shopListPage/shoplistpages/detail/detail.xml" />
-        <option value="$PROJECT_DIR$/shopOrderPage/shoppages/order/order.js" />
-        <option value="$PROJECT_DIR$/shopPage/shoppages/index/index.xml" />
-        <option value="$PROJECT_DIR$/shopCenterPage/shoppages/index/index.xml" />
         <option value="$PROJECT_DIR$/answerPage/pagesthree/answerDetail2/answerDetail2.xml" />
         <option value="$PROJECT_DIR$/answerPage/pagesthree/answer/answer.xml" />
-        <option value="$PROJECT_DIR$/utils/service.js" />
-        <option value="$PROJECT_DIR$/shopUserPage/shoppages/user/user.xml" />
-        <option value="$PROJECT_DIR$/shopOrderPage/shoppages/order/order.xml" />
         <option value="$PROJECT_DIR$/shopbackPage/shoppages/order/order.xml" />
         <option value="$PROJECT_DIR$/shopbackPage/shoppages/order/order.js" />
+        <option value="$PROJECT_DIR$/shopUserPage/shoppages/user/user.js" />
+        <option value="$PROJECT_DIR$/shopPage/shoppages/index/index.xml" />
+        <option value="$PROJECT_DIR$/shopUserPage/shoppages/user/user.xml" />
+        <option value="$PROJECT_DIR$/shopCenterPage/shoppages/index/index.xml" />
+        <option value="$PROJECT_DIR$/shopListPage/shoplistpages/submit/submit.js" />
+        <option value="$PROJECT_DIR$/shopListPage/shoplistpages/detail/detail.xml" />
+        <option value="$PROJECT_DIR$/shopListPage/shoplistpages/detail/detail.js" />
+        <option value="$PROJECT_DIR$/utils/service.js" />
+        <option value="$PROJECT_DIR$/shopOrderPage/shoppages/order/order.js" />
+        <option value="$PROJECT_DIR$/shopOrderPage/shoppages/order/order.xml" />
+        <option value="$PROJECT_DIR$/releasePage/pageseleven/back/back.js" />
+        <option value="$PROJECT_DIR$/releasePage/pageseleven/back/back.xml" />
       </list>
     </option>
   </component>
@@ -273,10 +325,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="535" />
-    <option name="y" value="39" />
+    <option name="x" value="496" />
+    <option name="y" value="71" />
     <option name="width" value="1940" />
-    <option name="height" value="980" />
+    <option name="height" value="1024" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -304,6 +356,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webviewPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shoppages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="index" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -397,6 +471,94 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="shopListPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shoplistpages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="submit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shopListPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shoplistpages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="list" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shopListPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shoplistpages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="detail" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shopCenterPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shoppages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="index" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="shopbackPage" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -406,6 +568,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="order" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="releasePage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pageseleven" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="releasePage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pageseleven" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="back" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -636,25 +838,25 @@
       <workItem from="1560840033375" duration="26718000" />
       <workItem from="1561001928339" duration="8773000" />
       <workItem from="1561427037958" duration="114635000" />
-      <workItem from="1562133828317" duration="18956000" />
+      <workItem from="1562133828317" duration="34886000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1721038000" />
+    <option name="totallyTimeSpent" value="1736968000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="535" y="39" width="1940" height="980" extended-state="0" />
+    <frame x="496" y="71" width="1940" height="1024" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10304942" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.106203996" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27355278" sideWeight="0.5021142" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32821724" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18536009" sideWeight="0.49788582" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21773289" sideWeight="0.49788582" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -673,19 +875,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pages/index/index.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shopCenterPage/shoppages/index/index.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -715,6 +909,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="21" lean-forward="false" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -774,13 +969,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="18" column="74" lean-forward="false" selection-start-line="18" selection-start-column="74" selection-end-line="18" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webviewPage/shoppages/index/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -866,38 +1054,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shopListPage/shoplistpages/submit/submit.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1738">
-          <caret line="119" column="127" lean-forward="true" selection-start-line="119" selection-start-column="127" selection-end-line="119" selection-end-column="127" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shopListPage/shoplistpages/submit/submit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-730">
-          <caret line="98" column="4" lean-forward="true" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="4" />
-          <folding>
-            <element signature="e#402#1943#0" expanded="false" />
-            <element signature="e#1964#2425#0" expanded="false" />
-            <element signature="e#2456#3074#0" expanded="false" />
-            <element signature="e#3103#3372#0" expanded="false" />
-            <element signature="e#3386#3461#0" expanded="false" />
-            <element signature="e#3483#3574#0" expanded="false" />
-            <element signature="e#3599#4341#0" expanded="false" />
-            <element signature="e#4371#8162#0" expanded="false" />
-            <element signature="e#4538#4724#0" expanded="false" />
-            <element signature="e#6853#7253#0" expanded="false" />
-            <element signature="e#8179#8204#0" expanded="false" />
-            <element signature="e#8346#8960#0" expanded="false" />
-            <element signature="e#8975#9506#0" expanded="false" />
-            <element signature="e#9882#10101#0" expanded="false" />
-            <marker date="1561968613387" expanded="false" signature="9559:11342" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shopPage/shoppages/index/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5126">
@@ -907,14 +1063,6 @@
             <element signature="e#6750#6819#0" expanded="false" />
             <element signature="e#6833#7395#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shopOrderPage/shoppages/order/order.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -945,22 +1093,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="449" column="23" lean-forward="false" selection-start-line="449" selection-start-column="23" selection-end-line="449" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shopUserPage/shoppages/user/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="31" column="18" lean-forward="true" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pingPage/pingpages/index/index.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
@@ -969,82 +1101,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/releasePage/pageseleven/back/back.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="71" column="47" lean-forward="true" selection-start-line="71" selection-start-column="47" selection-end-line="71" selection-end-column="47" />
-          <folding>
-            <element signature="e#491#575#0" expanded="false" />
-            <element signature="e#615#887#0" expanded="false" />
-            <element signature="e#1814#1925#0" expanded="false" />
-            <element signature="e#1954#4084#0" expanded="false" />
-            <element signature="e#4105#5137#0" expanded="false" />
-            <element signature="e#5162#5622#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shopCenterPage/shoppages/index/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shopListPage/shoplistpages/detail/detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="132" column="45" lean-forward="true" selection-start-line="132" selection-start-column="45" selection-end-line="132" selection-end-column="45" />
-          <folding>
-            <element signature="e#904#1041#0" expanded="false" />
-            <element signature="e#1057#4095#0" expanded="false" />
-            <element signature="e#1893#2634#0" expanded="false" />
-            <element signature="e#3075#3348#0" expanded="false" />
-            <element signature="e#3364#3456#0" expanded="false" />
-            <element signature="e#3620#4025#0" expanded="false" />
-            <element signature="e#4044#4090#0" expanded="false" />
-            <element signature="e#4621#5553#0" expanded="false" />
-            <element signature="e#5566#5587#0" expanded="false" />
-            <element signature="e#5608#6791#0" expanded="false" />
-            <element signature="e#6808#6905#0" expanded="false" />
-            <element signature="e#6927#8854#0" expanded="false" />
-            <element signature="e#8879#9339#0" expanded="false" />
-            <element signature="e#9358#9627#0" expanded="false" />
-            <element signature="e#9652#11039#0" expanded="false" />
-            <element signature="e#11058#12263#0" expanded="false" />
-            <element signature="e#12283#12385#0" expanded="false" />
-            <element signature="e#12428#13489#0" expanded="false" />
-            <element signature="e#13518#15096#0" expanded="false" />
-            <element signature="e#15128#15490#0" expanded="false" />
-            <element signature="e#15518#16280#0" expanded="false" />
-            <element signature="e#16293#16316#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shopListPage/shoplistpages/detail/detail.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="62" column="146" lean-forward="true" selection-start-line="62" selection-start-column="146" selection-end-line="62" selection-end-column="146" />
-          <folding>
-            <element signature="n#scroll-view#0;n#view#0;n#view#8;n#form#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shopCenterPage/shoppages/index/index.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="15" lean-forward="false" selection-start-line="15" selection-start-column="15" selection-end-line="18" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shopPage/shoppages/index/index.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="38" column="21" lean-forward="false" selection-start-line="38" selection-start-column="21" selection-end-line="40" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -1081,45 +1141,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shopUserPage/shoppages/user/user.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="89" column="120" lean-forward="true" selection-start-line="89" selection-start-column="120" selection-end-line="89" selection-end-column="120" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/releasePage/pageseleven/back/back.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="48" column="54" lean-forward="true" selection-start-line="48" selection-start-column="54" selection-end-line="48" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="131" column="12" lean-forward="false" selection-start-line="131" selection-start-column="2" selection-end-line="131" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shopOrderPage/shoppages/order/order.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="238" column="7" lean-forward="true" selection-start-line="238" selection-start-column="7" selection-end-line="238" selection-end-column="7" />
-          <folding>
-            <element signature="e#249#495#0" expanded="false" />
-            <element signature="e#4141#4268#0" expanded="false" />
-            <element signature="e#4284#5354#0" expanded="false" />
-            <element signature="e#5374#5501#0" expanded="false" />
-            <element signature="e#5518#6582#0" expanded="false" />
-            <element signature="e#6604#6695#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shopOrderPage/shoppages/order/order.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1128,26 +1149,213 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shopOrderPage/shoppages/order/order.xml">
+    <entry file="file://$PROJECT_DIR$/webviewPage/shoppages/index/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="96" column="188" lean-forward="false" selection-start-line="96" selection-start-column="182" selection-end-line="96" selection-end-column="188" />
+        <state relative-caret-position="858">
+          <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1268">
+          <caret line="447" column="4" lean-forward="true" selection-start-line="447" selection-start-column="4" selection-end-line="447" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopUserPage/shoppages/user/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="44" column="9" lean-forward="true" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopPage/shoppages/index/index.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="38" column="17" lean-forward="false" selection-start-line="38" selection-start-column="17" selection-end-line="40" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopUserPage/shoppages/user/user.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="86" column="38" lean-forward="false" selection-start-line="86" selection-start-column="38" selection-end-line="87" selection-end-column="162" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/shopbackPage/shoppages/order/order.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
+        <state relative-caret-position="792">
           <caret line="32" column="54" lean-forward="true" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/shopCenterPage/shoppages/index/index.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="11" lean-forward="false" selection-start-line="15" selection-start-column="11" selection-end-line="18" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopListPage/shoplistpages/submit/submit.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="126" column="36" lean-forward="false" selection-start-line="126" selection-start-column="22" selection-end-line="126" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopListPage/shoplistpages/list/list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2082">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopListPage/shoplistpages/submit/submit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="37" column="20" lean-forward="true" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+          <folding>
+            <element signature="e#1964#2425#0" expanded="false" />
+            <element signature="e#2456#3074#0" expanded="false" />
+            <element signature="e#3103#3372#0" expanded="false" />
+            <element signature="e#3386#3461#0" expanded="false" />
+            <element signature="e#3973#4715#0" expanded="false" />
+            <element signature="e#4745#8685#0" expanded="false" />
+            <element signature="e#4912#5098#0" expanded="false" />
+            <element signature="e#7227#7627#0" expanded="false" />
+            <element signature="e#8702#8727#0" expanded="false" />
+            <element signature="e#8869#9483#0" expanded="false" />
+            <element signature="e#9498#10029#0" expanded="false" />
+            <element signature="e#10082#11865#0" expanded="false" />
+            <element signature="e#10405#10624#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopListPage/shoplistpages/detail/detail.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="56" column="69" lean-forward="true" selection-start-line="56" selection-start-column="69" selection-end-line="56" selection-end-column="69" />
+          <folding>
+            <element signature="n#scroll-view#0;n#view#0;n#view#8;n#form#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopListPage/shoplistpages/detail/detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="353" column="22" lean-forward="true" selection-start-line="353" selection-start-column="22" selection-end-line="353" selection-end-column="22" />
+          <folding>
+            <element signature="e#904#1041#0" expanded="false" />
+            <element signature="e#1057#4095#0" expanded="false" />
+            <element signature="e#1893#2634#0" expanded="false" />
+            <element signature="e#3075#3348#0" expanded="false" />
+            <element signature="e#3364#3456#0" expanded="false" />
+            <element signature="e#3620#4025#0" expanded="false" />
+            <element signature="e#4044#4090#0" expanded="false" />
+            <element signature="e#4113#4609#0" expanded="false" />
+            <element signature="e#4621#5553#0" expanded="false" />
+            <element signature="e#5566#5587#0" expanded="false" />
+            <element signature="e#5608#6791#0" expanded="false" />
+            <element signature="e#6808#6905#0" expanded="false" />
+            <element signature="e#6927#8854#0" expanded="false" />
+            <element signature="e#8879#9339#0" expanded="false" />
+            <element signature="e#9358#9627#0" expanded="false" />
+            <element signature="e#12794#12896#0" expanded="false" />
+            <element signature="e#12939#14000#0" expanded="false" />
+            <element signature="e#14029#15607#0" expanded="false" />
+            <element signature="e#15639#16001#0" expanded="false" />
+            <element signature="e#16029#16791#0" expanded="false" />
+            <element signature="e#16804#16827#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="133" column="12" lean-forward="false" selection-start-line="133" selection-start-column="2" selection-end-line="133" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopOrderPage/shoppages/order/order.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="102" column="202" lean-forward="true" selection-start-line="102" selection-start-column="202" selection-end-line="102" selection-end-column="202" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopOrderPage/shoppages/order/order.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopOrderPage/shoppages/order/order.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="124" column="24" lean-forward="true" selection-start-line="124" selection-start-column="24" selection-end-line="124" selection-end-column="24" />
+          <folding>
+            <element signature="e#249#495#0" expanded="false" />
+            <element signature="e#526#758#0" expanded="false" />
+            <element signature="e#778#994#0" expanded="false" />
+            <element signature="e#1012#1150#0" expanded="false" />
+            <element signature="e#1165#2992#0" expanded="false" />
+            <element signature="e#3003#3053#0" expanded="false" />
+            <element signature="e#4176#4303#0" expanded="false" />
+            <element signature="e#5409#5536#0" expanded="false" />
+            <element signature="e#5553#6617#0" expanded="false" />
+            <element signature="e#6639#7149#0" expanded="false" />
+            <element signature="e#7174#7993#0" expanded="false" />
+            <element signature="e#8011#8082#0" expanded="false" />
+            <element signature="e#8135#8783#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/shopbackPage/shoppages/order/order.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="24" column="34" lean-forward="false" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+        <state relative-caret-position="-440">
+          <caret line="25" column="25" lean-forward="true" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/releasePage/pageseleven/back/back.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="77" column="24" lean-forward="false" selection-start-line="77" selection-start-column="24" selection-end-line="77" selection-end-column="24" />
+          <folding>
+            <element signature="e#491#575#0" expanded="false" />
+            <element signature="e#615#887#0" expanded="false" />
+            <element signature="e#1815#1926#0" expanded="false" />
+            <element signature="e#1955#4085#0" expanded="false" />
+            <element signature="e#4106#5138#0" expanded="false" />
+            <element signature="e#5163#5623#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/releasePage/pageseleven/back/back.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="967">
+          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding />
         </state>
       </provider>

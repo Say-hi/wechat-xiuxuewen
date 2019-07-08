@@ -75,7 +75,7 @@ Page({
         wx.hideLoading()
         if (res.data.status === 200) {
           that.setData({
-            apply: true
+            apply: false
           })
         } else {
           app.setToast(that, {content: res.data.desc})

@@ -342,7 +342,16 @@ Page({
           var endTime = that.data.group[i].end_time;
           // console.log(endTime)
           // console.log(nowData, startTime, endTime)
-          if (nowData < endTime) {
+          if (that.data.info.group_num <= v.user.length) {
+            if (that.data.group[i].status === 2) {
+              ++shutDown;
+              continue;
+            }
+            that.data.group[i].status = 2;
+            that.data.group[i].h = '已';
+            that.data.group[i].m = '结';
+            that.data.group[i].s = '束';
+          } else if (nowData < endTime) {
             // 进行中
             that.data.group[i].status = 1;
             that.data.group[i].h = Math.floor((endTime - nowData) / 3600000);
@@ -396,6 +405,13 @@ Page({
       success: function success(res) {
         wx.hideLoading();
         if (res.data.status === 200) {
+          if (that.data.options.oid) {
+            that.setData({
+              group: that.data.group,
+              more: 1
+            }, that.setKill());
+            return;
+          }
           var tempList = [];
           var _iteratorNormalCompletion3 = true;
           var _didIteratorError3 = false;
@@ -417,7 +433,7 @@ Page({
                 for (var _iterator4 = v[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
                   var s = _step4.value;
 
-                  s.phone = s.phone.substr(0, 3) + '*' + s.phone.substr(7);
+                  s.phone = s.phone.substr(0, 3) + '****' + s.phone.substr(7);
                   if (s.mode_id <= 1) {
                     // 团长
                     teamTemp['group_id'] = s.group_id;

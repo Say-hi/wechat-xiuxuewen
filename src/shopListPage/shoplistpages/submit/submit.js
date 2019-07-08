@@ -118,8 +118,24 @@ Page({
     })
   },
   getMyShareCode () {
-    wx.previewImage({
-      urls: ['https://c.jiangwenqiang.com/api/logo.jpg']
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().pinqrcode,
+      data: {
+        mid: that.data.info[0].mid,
+        oid: that.data.payid,
+        uid: app.gs('userInfoAll').id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          wx.previewImage({
+            urls: [res.data.data]
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
     })
   },
   onShareAppMessage () {
@@ -230,6 +246,7 @@ Page({
           } else {
             app.wxpay2(res.data.data.msg)
               .then(() => {
+                if (that.data.ping && that.data.modeId !== 2 && that.data.info[0].people - that.data.info[0].groupInfo.p.length >= 1) that.setKill()
                 that.setData({
                   need_pay: true
                 })

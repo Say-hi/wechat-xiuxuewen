@@ -295,7 +295,16 @@ Page({
         let endTime = that.data.group[i].end_time
         // console.log(endTime)
         // console.log(nowData, startTime, endTime)
-        if (nowData < endTime) { // 进行中
+        if (that.data.info.group_num <= v.user.length) {
+          if (that.data.group[i].status === 2) {
+            ++shutDown
+            continue
+          }
+          that.data.group[i].status = 2
+          that.data.group[i].h = '已'
+          that.data.group[i].m = '结'
+          that.data.group[i].s = '束'
+        } else if (nowData < endTime) { // 进行中
           that.data.group[i].status = 1
           that.data.group[i].h = Math.floor((endTime - nowData) / 3600000)
           that.data.group[i].m = Math.floor((endTime - nowData) % 3600000 / 60000)
@@ -332,6 +341,13 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
+          if (that.data.options.oid) {
+            that.setData({
+              group: that.data.group,
+              more: 1
+            }, that.setKill())
+            return
+          }
           let tempList = []
           for (let v of res.data.data.lists) {
             let teamTemp = {
@@ -339,7 +355,7 @@ Page({
             }
             let groupL = {}
             for (let s of v) {
-              s.phone = s.phone.substr(0, 3) + '*' + s.phone.substr(7)
+              s.phone = s.phone.substr(0, 3) + '****' + s.phone.substr(7)
               if (s.mode_id <= 1) { // 团长
                 teamTemp['group_id'] = s.group_id
                 teamTemp['end_time'] = (s.create_time * 1 + that.data.info.effective_time * 1) * 1000

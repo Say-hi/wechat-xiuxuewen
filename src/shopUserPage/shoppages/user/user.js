@@ -13,6 +13,11 @@ Page({
     erweima: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/publicy/qrcode_for_gh_66d80c7d342c_258.jpg',
     today: true
   },
+  showImage2 () {
+    wx.navigateTo({
+      url: `/webviewPage/shoppages/index/index?agents=${(this.data.agents || this.data.info.roles * 1 === 1) ? 1 : 2}&uid=${this.data.info.id}`
+    })
+  },
   showImage () {
     let that = this
     app.wxrequest({
@@ -25,7 +30,7 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
-          if (res.data.data.appid === 'wxb1f5224c98168afc ') {
+          if (res.data.data.appid === 'wxb1f5224c98168afc') {
             wx.navigateTo({
               url: `/webviewPage/shoppages/index/index?agents=${(that.data.agents || that.data.info.roles * 1 === 1) ? 1 : 2}&uid=${that.data.info.id}`
             })

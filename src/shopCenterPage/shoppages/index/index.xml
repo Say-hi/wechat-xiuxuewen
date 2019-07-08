@@ -13,10 +13,10 @@
     <navigator url='/releasePage/pageseleven/index/index' class="r-item">发布新的商品</navigator>
     <!--<view class="r-item">编辑运费模板</view>-->
   </view>
-  <!--<view class="f28 c444 fw7 release mt20">-->
-    <!--<navigator url='/releasePage/pageseleven/index/index?ping=ping' class="r-items">发布拼单商品</navigator>-->
-    <!--<navigator url='/shopGoodsPage/shoppages/index/index?type=1&ping=ping' class="r-items">拼单中的商品</navigator>-->
-  <!--</view>-->
+  <view class="f28 c444 fw7 release mt20">
+    <navigator url='/releasePage/pageseleven/index/index?ping=ping' class="r-items">发布拼单商品</navigator>
+    <navigator url='/shopGoodsPage/shoppages/index/index?type=1&ping=ping' class="r-items">拼单中的商品</navigator>
+  </view>
   <swiper class="mt20 br8 godds-swiper bgfff"
           wx:if="{{ ad.length > 0 }}"
           circular="1"

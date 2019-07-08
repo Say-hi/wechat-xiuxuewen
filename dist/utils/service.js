@@ -132,6 +132,8 @@ var serviceUrl = {
   skip: shopBaseDomain + '/user/skip', // 红包跳转
   pinuserorder: shopBaseDomain + '/users/orders', // 拼团用户订单
   pingrefund: shopBaseDomain + '/shops/refund', // 商家确认退款
+  pinqrcode: shopBaseDomain + '/assemble/qrcode', // 获取拼单二维码
+  pinoperate: shopBaseDomain + '/users/operate', // 修改订单状态
   // 公众号接口
   profitDetail: webBaseDomain + '/user/profit-detail',
   finance: webBaseDomain + '/shop/finance', // 查看财务信息

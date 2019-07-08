@@ -50,14 +50,14 @@
   <view wx:if="{{ ping && group.length }}" class="pb20">
       <view class="arrow">
         <view class="f30 c3e3a39">直接参与可快速成团</view>
-        <view catchtap="showMorePing" class="f24 c828282">查看更多</view>
+        <view wx:if="{{ !options.oid }}" catchtap="showMorePing" class="f24 c828282">查看更多</view>
       </view>
     <block wx:for="{{ group }}" wx:key="*thiss">
       <view class="ping-team df">
         <image mode="aspectFill" class="br" src="{{ item.user[0].avatar_url }}"></image>
         <view class="pteam-phone f31 c000">{{ item.user[0].phone }}</view>
         <view class="df pteam-time f30 c000 tar flex1">
-          <view>还差{{ info.group_num - item.user.length }}人成团</view>
+          <view wx:if="{{ info.group_num - item.user.length >= 1 }}">还差{{ info.group_num - item.user.length }}人成团</view>
           <view class="f28 c828282">距结束{{ item.h }}:{{ item.m }}:{{ item.s }} </view>
         </view>
         <view wx:if="{{ item.status == 1 }}" catchtap="sptChange" data-type="open" data-index="{{ index }}" class="f30 cfff pteam-btn">立即拼单</view>

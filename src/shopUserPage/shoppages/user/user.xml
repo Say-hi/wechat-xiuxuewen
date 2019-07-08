@@ -80,7 +80,7 @@
       </view>
     </view>
     <view class="user-bottom f28 fw7 mt20 c19618F">
-      <view wx:if="{{ agents || info.roles == 1 }}" catchtap="showImage" class="ub-item arrow br8 bgfff tal ">提现审核</view>
+      <view wx:if="{{ agents || info.roles == 1 }}" catchtap="showImage2" class="ub-item arrow br8 bgfff tal ">提现审核</view>
       <navigator url="/shopMoneyPage/shoppages/index/index" class="ub-item arrow br8 bgfff tal ">资金管理</navigator>
       <view wx:if="{{ agents }}" class="zw20"></view>
       <navigator url="/shopOrderPage/shoppages/order/order?type=0&for=user" class="ub-item arrow br8 bgfff tal ">销售订单</navigator>

@@ -97,7 +97,7 @@
             <navigator wx:if="{{ options.for == 'shop' && item.status == -2 }}" url="/shopbackPage/shoppages/order/order?oid={{ item.id }}&mid={{ item.mid }}&apply={{ item.status }}&amount={{ item.total_fee }}" class="confirm f26 cfff cancel">退款审核</navigator>
             <button wx:if="{{ options.for == 'user' && item.status == 1 }}"  catchtap="cui" data-index="{{ index }}"  class="confirm f26 cfff cancel">催发货</button>
             <button wx:if="{{ item.status == -1 }}" catchtap="cancelping" class="confirm f26 cfff cancel">取消订单</button>
-            <button wx:if="{{ (options.for == 'user' && item.status == 1 && item.group > 0) || (item.status == 11 && item.group > 0) }}" catchtap="shareChange" data-index="{{ index }}"  class="confirm f26 cfff cancel">邀请好友拼单</button>
+            <button wx:if="{{ (options.for == 'user' && item.status == 1 && item.group > 0) || (options.for == 'user' && item.status == 11 && item.group > 0) }}" catchtap="shareChange" data-index="{{ index }}"  class="confirm f26 cfff cancel">邀请好友拼单</button>
             <!--<button wx:if="{{ item.status == 2 || item.status == 3 }}" catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">查看物流</button>-->
             <navigator wx:if="{{ options.for == 'user' && (item.status == -3 || item.status == -2) }}" url="/releasePage/pageseleven/back/back?id=12" class="confirm f26 cfff cancel">售后详情</navigator>
             <navigator wx:if="{{ item.status == -3 }}" url="/pingPage/pingpages/money/index?id={{ item.id }}" catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">钱款去向</navigator>

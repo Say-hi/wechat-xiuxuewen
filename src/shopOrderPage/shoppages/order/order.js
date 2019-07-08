@@ -114,7 +114,7 @@ Page({
     let that = this
     let state = (that.data.list[e.currentTarget.dataset.index].status < 0 && that.data.options.for === 'user') ? 4 : that.data.list[e.currentTarget.dataset.index].status * 1 === 2 ? 3 : ''
     app.wxrequest({
-      url: app.getUrl().shopUserOperate,
+      url: app.getUrl()[that.data.ping ? 'pinoperate' : 'shopUserOperate'],
       data: {
         oid: that.data.list[e.currentTarget.dataset.index].id,
         uid: that.data.list[e.currentTarget.dataset.index].uid || app.gs('userInfoAll').id,
@@ -226,8 +226,24 @@ Page({
     })
   },
   getMyShareCode () {
-    wx.previewImage({
-      urls: ['https://c.jiangwenqiang.com/api/logo.jpg']
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().pinqrcode,
+      data: {
+        mid: that.data.list[that.data.share_index].mid,
+        oid: that.data.list[that.data.share_index].id,
+        uid: app.gs('userInfoAll').id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          wx.previewImage({
+            urls: [res.data.data]
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
     })
   },
   onShareAppMessage () {
