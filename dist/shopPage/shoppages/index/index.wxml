@@ -37,7 +37,7 @@
     </swiper>
   </view>
   <navigator url="/pingPage/pingpages/index/index" class="ping-area">
-    <image mode="aspectFill" src="https://c.jiangwenqiang.com/api/logo.jpg"></image>
+    <image mode="aspectFill" src="{{ pic }}"></image>
   </navigator>
   <!--视频区域-->
   <view wx:if="{{ list.length >= 1 }}" class="container bgfff br8 new p30">
@@ -115,10 +115,11 @@
       <button open-type="share"
               hover-class="none"
               catchtap="noUse"
+              data-index="{{ index }}"
               class="goods-bottom">
         <!--<view class="cff3b5b f26">赚¥{{ item.level_one }}</view>-->
         <view class="f38 c444 fw7">¥{{ item.old_price }}</view>
-        <view class="f28 fw7 cff5975">分享赚</view>
+        <view class="f28 fw7 cff5975">分享</view>
       </button>
     </view>
   </navigator>
@@ -143,7 +144,13 @@
   </view>
 </view>
 <!-- <navigator url="/shopMenuPage/shoppages/index/index">去拖拽菜单</navigator> -->
-
+        <!-- 产品分享进入 -->
+<view class='product_in' wx:if="{{ productMask }}">
+  <navigator class="p_i_nav f28 keep p20 tac " url='/shopListPage/shoplistpages/detail/detail?id={{ pid }}'>
+    您的好友向您分享了一个好产品，点击来了解吧
+  </navigator>
+  <view class="p_i_nav no_need f28 keep p20 tac" catchtap="close">暂时不需要</view>
+</view>
 <view wx:if="{{ userInfo && (userInfo.nickname == '游客' || !userInfo.phone) }}" class="mask loginmm">
   <image class="login-bg" mode="aspectFill" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/login-bg.png"></image>
   <view class="login-text cfff f28 keep tac">授权登录小程序开启更多精彩！</view>

@@ -48,7 +48,7 @@ Page({
   upFormId (e) {
     app.upFormId(e)
   },
-  onShareAppMessage () {
+  onShareAppMessage (e) {
     if (!app.gs('shopInfo').mid) {
       return {
         title: app.gs('shareText').t || '绣学问，真纹绣',
@@ -59,7 +59,7 @@ Page({
       return {
         title: `向您推荐店铺【${app.gs('shopInfoAll').name}】`,
         imageUrl: `${app.gs('shopInfoAll').avatar || ''}`,
-        path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}&user=${app.gs('userInfoAll').id}`
+        path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}&user=${app.gs('userInfoAll').id}&pid=${e.target.dataset.index > -1 ? this.data.list[e.target.dataset.index].id : -1}`
       }
     }
   },

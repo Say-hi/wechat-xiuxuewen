@@ -46,7 +46,7 @@
 
 <view wx:if="{{ !apply }}" class="tac bgfff mt20 p30">
   <icon type="success" size="100"></icon>
-  <view class="f34 fw7 c3e3a39 mt20">商家审核申请中</view>
+  <view class="f34 fw7 c3e3a39 mt20">商家审核申请中，请注意微信通知</view>
   <view class="f24 c595757 tal p30">系统会在1-2天内提交微信支付处理，微信审核完成后1-3
     个工作日内自动原路退款至您的付款方式。若超时未收到
     退款，请联系客服核实。</view>

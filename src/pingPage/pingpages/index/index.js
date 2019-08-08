@@ -13,7 +13,22 @@ Page({
   inputValue (e) {
     this.data.searchText = e.detail.value
   },
-
+  getPinPic () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().pinenter,
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            pic: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
   search () {
     let that = this
     if (!this.data.searchText || this.data.searchText.length <= 0) return app.setToast(this, {content: '请输入搜索的内容'})
@@ -95,6 +110,7 @@ Page({
    */
   onLoad (options) {
     this.getList()
+    this.getPinPic()
   },
 
   /**

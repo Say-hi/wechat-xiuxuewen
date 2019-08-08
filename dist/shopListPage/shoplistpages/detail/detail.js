@@ -63,15 +63,15 @@ Page({
     if (this.data.num > this.data.info.sku[this.data.labelIndex].stock) return app.setToast(this, { content: '该产品已无库存' });
     if (this.data.addCar) {
       // 添加到购物车
-      var that = this;
+      var _that = this;
       return app.wxrequest({
         url: app.getUrl().shopCartAdd,
         data: Object.assign({
           uid: app.gs('userInfoAll').id,
-          mid: that.data.info.mid,
-          count: that.data.num,
-          sku_id: that.data.info.sku[that.data.labelIndex].id,
-          pid: that.data.info.id
+          mid: _that.data.info.mid,
+          count: _that.data.num,
+          sku_id: _that.data.info.sku[_that.data.labelIndex].id,
+          pid: _that.data.info.id
         }),
         success: function success(res) {
           wx.hideLoading();
@@ -79,12 +79,12 @@ Page({
             wx.showToast({
               title: '添加成功'
             });
-            that.setData({
+            _that.setData({
               num: 1,
-              buyMask: that.data.info.label * 1 !== -1
+              buyMask: _that.data.info.label * 1 !== -1
             });
           } else {
-            app.setToast(that, { content: res.data.desc });
+            app.setToast(_that, { content: res.data.desc });
           }
         }
       });
@@ -306,7 +306,7 @@ Page({
       return {
         title: '\u5411\u60A8\u63A8\u8350\u5E97\u94FA\u3010' + app.gs('shopInfoAll').name + '\u3011',
         imageUrl: '' + (app.gs('shopInfoAll').avatar || ''),
-        path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id + '&user=' + app.gs('userInfoAll').id
+        path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id + '&user=' + app.gs('userInfoAll').id + '&pid=' + that.data.info.id
       };
     }
   },
@@ -660,7 +660,7 @@ Page({
     console.log('options', options);
     // 通过分享进入拼团
     if (options.scene || options.share) {
-      var that = this;
+      var _that2 = this;
       if (!app.gs() || !app.gs('userInfoAll')) return app.wxlogin(); // 处理第一次进入的情况
       var scene = decodeURIComponent(options.scene).split(',');
       if (options.share) scene = options.share.split(',');
@@ -675,9 +675,9 @@ Page({
       }, function () {
         // 分享过来的团先查询后插入拼团列表第一位
         if (!app.gs('shopInfoAll')) {
-          that.shopInfo();
+          _that2.shopInfo();
         } else {
-          that.getpinglaunch(that.data.options.oid, that.data.options.mid);
+          _that2.getpinglaunch(_that2.data.options.oid, _that2.data.options.mid);
         }
       });
     } else {

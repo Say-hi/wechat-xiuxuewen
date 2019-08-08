@@ -21,7 +21,7 @@ Page({
       url: app.getUrl().pingrefund,
       data: {
         oid: that.data.options.oid,
-        mid: that.data.options.mid,
+        mid: that.data.options.mid || app.gs('shopInfoAll').id,
         uid: that.data.options.uid,
         is_refuse: e.currentTarget.dataset.refuse === 'agree' ? 1 : -1
       },
@@ -37,7 +37,34 @@ Page({
             agree: e.currentTarget.dataset.refuse === 'agree'
           });
         } else {
+          app.setToast(that, { content: res.data.desc || '服务器出错啦~~' });
+        }
+      }
+    });
+  },
+  getDetail: function getDetail() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().pinorefund,
+      data: {
+        oid: that.data.options.oid,
+        uid: that.data.options.uid,
+        mid: app.gs('shopInfoAll').id,
+        out_trade_no: that.data.options.out_trade_no
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData({
+            info: res.data.data,
+            confirmRefuse: res.data.data.status * 1 !== 1,
+            agree: res.data.data.status * 1 === 2
+          });
+        } else {
           app.setToast(that, { content: res.data.desc });
+          setTimeout(function () {
+            wx.navigateBack();
+          }, 1000);
         }
       }
     });
@@ -49,7 +76,7 @@ Page({
   onLoad: function onLoad(options) {
     this.setData({
       options: options
-    });
+    }, this.getDetail);
     // TODO: onLoad
   },
 

@@ -62,6 +62,12 @@ Page({
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
+          if (app.gs('getInPid') > 0) {
+            that.setData({
+              productMask: true,
+              pid: app.gs('getInPid')
+            }, app.su('getInPid', -1))
+          }
           that.setData({
             goods: res.data.data.lists
           })
@@ -158,7 +164,7 @@ Page({
       playIndex: e.currentTarget.dataset.index
     })
   },
-  onShareAppMessage () {
+  onShareAppMessage (e) {
     let that = this
     if (!app.gs('shopInfo').mid) {
       return {
@@ -170,7 +176,7 @@ Page({
       return {
         title: `向您推荐店铺【${that.data.info.name}】`,
         imageUrl: `${that.data.info.avatar || ''}`,
-        path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}&user=${app.gs('userInfoAll').id}`
+        path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}&user=${app.gs('userInfoAll').id}&pid=${e.target.dataset.index > -1 ? that.data.goods[e.target.dataset.index].id : -1}`
       }
     }
   },
@@ -281,15 +287,44 @@ Page({
       ['userInfo.phone']: 18888888888
     }, this.getVideo)
   },
+  getPinPic () {
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().pinenter,
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            pic: res.data.data
+          })
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+  close () {
+    this.setData({
+      productMask: false
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
+    this.getPinPic()
     if (options.scene) {
       let scene = decodeURIComponent(options.scene).split('&')
       app.su('shopInfo', {mid: scene[0].split('=')[1], user: scene[1].split('=')[1]})
     } else {
       app.su('shopInfo', options)
+    }
+    try {
+      if (options.pid >= 0) {
+        app.su('getInPid', options.pid)
+      }
+    } catch (err) {
+      console.log(err)
     }
     if (!app.gs() || !app.gs('userInfoAll')) return app.wxlogin()
     this.getUser()

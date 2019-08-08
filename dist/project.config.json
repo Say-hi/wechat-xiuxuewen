@@ -7,8 +7,8 @@
 		"urlCheck": true,
 		"es6": false,
 		"enhance": false,
-		"postcss": true,
-		"minified": true,
+		"postcss": false,
+		"minified": false,
 		"newFeature": true,
 		"autoAudits": false,
 		"uglifyFileName": false,
@@ -47,7 +47,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 31,
 			"list": [
 				{
 					"id": 0,
@@ -240,7 +240,7 @@
 					"id": 31,
 					"name": "商城",
 					"pathName": "shopPage/shoppages/index/index",
-					"query": "",
+					"query": "mid=1000&user=11598&pid=472",
 					"scene": null
 				},
 				{

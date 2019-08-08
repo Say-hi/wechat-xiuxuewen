@@ -132,6 +132,11 @@ const serviceUrl = {
   pingrefund: shopBaseDomain + '/shops/refund',  // 商家确认退款
   pinqrcode: shopBaseDomain + '/assemble/qrcode',  // 获取拼单二维码
   pinoperate: shopBaseDomain + '/users/operate',  // 修改订单状态
+  pinorefund: shopBaseDomain + '/shops/refund-detail',  // 查询退款申请
+  pinenter: shopBaseDomain + '/assemble/enter',  // 图片
+  shopsExpress: shopBaseDomain + '/shops/express', // 商城订单发货
+  pinagentslist: shopBaseDomain + '/shops/assemble-list', // 商家商品列表
+  pindeal: shopBaseDomain + '/shops/deal', // 拼团删除产品
   // 公众号接口
   profitDetail: webBaseDomain + '/user/profit-detail',
   finance: webBaseDomain + '/shop/finance', // 查看财务信息

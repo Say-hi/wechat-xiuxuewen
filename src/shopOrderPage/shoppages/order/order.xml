@@ -94,13 +94,13 @@
         <view wx:if="{{ ping }}" class="f26 order-bottom p10">
           <view class="ob-r flex1">
             <navigator wx:if="{{ options.for == 'user' && item.status == 1 }}" url="/releasePage/pageseleven/back/back?oid={{ item.id }}&mid={{ item.mid }}&out_trade_no={{ item.out_trade_no }}&amount={{ item.total_fee }}&apply={{ item.status }}" class="confirm f26 cfff cancel">申请退款</navigator>
-            <navigator wx:if="{{ options.for == 'shop' && item.status == -2 }}" url="/shopbackPage/shoppages/order/order?oid={{ item.id }}&mid={{ item.mid }}&apply={{ item.status }}&amount={{ item.total_fee }}" class="confirm f26 cfff cancel">退款审核</navigator>
+            <navigator wx:if="{{ options.for == 'shop' && item.status == -2 }}" url="/shopbackPage/shoppages/order/order?oid={{ item.id }}&uid={{ item.uid }}&apply={{ item.status }}&out_trade_no={{ item.out_trade_no }}" class="confirm f26 cfff cancel">退款审核</navigator>
             <button wx:if="{{ options.for == 'user' && item.status == 1 }}"  catchtap="cui" data-index="{{ index }}"  class="confirm f26 cfff cancel">催发货</button>
-            <button wx:if="{{ item.status == -1 }}" catchtap="cancelping" class="confirm f26 cfff cancel">取消订单</button>
+            <button wx:if="{{ item.status == -1 && options == 'user'}}" catchtap="cancelping" class="confirm f26 cfff cancel">取消订单</button>
             <button wx:if="{{ (options.for == 'user' && item.status == 1 && item.group > 0) || (options.for == 'user' && item.status == 11 && item.group > 0) }}" catchtap="shareChange" data-index="{{ index }}"  class="confirm f26 cfff cancel">邀请好友拼单</button>
             <!--<button wx:if="{{ item.status == 2 || item.status == 3 }}" catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">查看物流</button>-->
             <navigator wx:if="{{ options.for == 'user' && (item.status == -3 || item.status == -2) }}" url="/releasePage/pageseleven/back/back?id=12" class="confirm f26 cfff cancel">售后详情</navigator>
-            <navigator wx:if="{{ item.status == -3 }}" url="/pingPage/pingpages/money/index?id={{ item.id }}" catchtap="change" data-index="{{ index }}"  class="confirm f26 cfff cancel">钱款去向</navigator>
+            <view wx:if="{{ item.status == -3 }}" url="/pingPage/pingpages/money/index?id={{ item.id }}" catchtap="modal" data-index="{{ index }}"  class="confirm f26 cfff cancel">钱款去向</view>
             <navigator url="/shopListPage/shoplistpages/detail/detail?id={{ item.pid }}&ping=ping" wx:if="{{ options.for == 'user' && (item.status == 3 || item.status == -3) }}" class="confirm f26 cfff">再次购买</navigator>
             <button catchtap="fahuo" data-index="{{ index }}" wx:if="{{ item.status == 1 && options.for == 'shop' }}" class="confirm f26 cfff">点击发货</button>
             <button catchtap="showExpress"

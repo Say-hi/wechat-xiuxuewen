@@ -32,11 +32,12 @@
       <!--<view class="f38 c444 fw7 mt20">¥{{ item.old_price }}</view>-->
       <button open-type="share"
               catchtap="noUse"
+              data-index="{{ index }}"
               hover-class="none"
               class="goods-bottom">
         <!--<view class="cff3b5b f26">赚¥{{ item.level_one }}</view>-->
         <view class="f38 c444 fw7">¥{{ item.old_price }}</view>
-        <view class="f28 fw7 cff5975">分享赚</view>
+        <view class="f28 fw7 cff5975">分享</view>
       </button>
     </view>
   </navigator>

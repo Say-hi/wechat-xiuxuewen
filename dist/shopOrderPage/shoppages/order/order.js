@@ -33,6 +33,9 @@ Page({
     }],
     list: []
   },
+  modal: function modal() {
+    app.setToast(this, { content: '功能开发中，尚未开放' });
+  },
   copy: function copy(e) {
     var that = this;
     wx.setClipboardData({
@@ -210,7 +213,7 @@ Page({
     if (e.detail.value.name.length < 1) return app.setToast(this, { content: '请输入物流公司' });
     if (e.detail.value.num.length < 1) return app.setToast(this, { content: '请输入物流单号' });
     app.wxrequest({
-      url: app.getUrl().shopExpress,
+      url: app.getUrl()[that.data.ping ? 'shopsExpress' : 'shopExpress'],
       data: {
         oid: that.data.list[that.data.fahuoIndex].id,
         mid: app.gs('shopInfoAll').id,

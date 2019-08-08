@@ -66,6 +66,12 @@ Page({
       success: function success(res) {
         wx.hideLoading();
         if (res.data.status === 200) {
+          if (app.gs('getInPid') > 0) {
+            that.setData({
+              productMask: true,
+              pid: app.gs('getInPid')
+            }, app.su('getInPid', -1));
+          }
           that.setData({
             goods: res.data.data.lists
           });
@@ -162,7 +168,7 @@ Page({
       playIndex: e.currentTarget.dataset.index
     });
   },
-  onShareAppMessage: function onShareAppMessage() {
+  onShareAppMessage: function onShareAppMessage(e) {
     var that = this;
     if (!app.gs('shopInfo').mid) {
       return {
@@ -174,7 +180,7 @@ Page({
       return {
         title: '\u5411\u60A8\u63A8\u8350\u5E97\u94FA\u3010' + that.data.info.name + '\u3011',
         imageUrl: '' + (that.data.info.avatar || ''),
-        path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id + '&user=' + app.gs('userInfoAll').id
+        path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id + '&user=' + app.gs('userInfoAll').id + '&pid=' + (e.target.dataset.index > -1 ? that.data.goods[e.target.dataset.index].id : -1)
       };
     }
   },
@@ -284,16 +290,45 @@ Page({
 
     this.setData((_setData = {}, _defineProperty(_setData, 'userInfo.nickname', '未登录用户请在【我的】进行登录'), _defineProperty(_setData, 'userInfo.phone', 18888888888), _setData), this.getVideo);
   },
+  getPinPic: function getPinPic() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().pinenter,
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData({
+            pic: res.data.data
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
+  close: function close() {
+    this.setData({
+      productMask: false
+    });
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function onLoad(options) {
+    this.getPinPic();
     if (options.scene) {
       var scene = decodeURIComponent(options.scene).split('&');
       app.su('shopInfo', { mid: scene[0].split('=')[1], user: scene[1].split('=')[1] });
     } else {
       app.su('shopInfo', options);
+    }
+    try {
+      if (options.pid >= 0) {
+        app.su('getInPid', options.pid);
+      }
+    } catch (err) {
+      console.log(err);
     }
     if (!app.gs() || !app.gs('userInfoAll')) return app.wxlogin();
     this.getUser();

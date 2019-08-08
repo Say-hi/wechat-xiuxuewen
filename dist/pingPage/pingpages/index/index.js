@@ -15,6 +15,22 @@ Page({
   inputValue: function inputValue(e) {
     this.data.searchText = e.detail.value;
   },
+  getPinPic: function getPinPic() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().pinenter,
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData({
+            pic: res.data.data
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
   search: function search() {
     var that = this;
     if (!this.data.searchText || this.data.searchText.length <= 0) return app.setToast(this, { content: '请输入搜索的内容' });
@@ -117,6 +133,7 @@ Page({
    */
   onLoad: function onLoad(options) {
     this.getList();
+    this.getPinPic();
   },
 
 

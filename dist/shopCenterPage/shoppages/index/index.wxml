@@ -5,7 +5,7 @@
                wx:for="123"
                wx:key="*23"
                url="/shopGoodsPage/shoppages/index/index?type={{ index }}">
-      <view>{{ index == 0 ? topInfo.is_up : index == 1 ? topInfo.is_down : topInfo.low_stock }}</view>
+      <view>{{ index == 0 ? topInfo.is_up || 0 : index == 1 ? topInfo.is_down || 0 : topInfo.low_stock || 0 }}</view>
       <view>{{ index <= 0 ? '出售中的商品' : index == 1 ? '仓库中的商品' : '库存紧张的商品' }}</view>
     </navigator>
   </view>

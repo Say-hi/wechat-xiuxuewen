@@ -358,7 +358,7 @@ Page({
           allCount,
           // Allmoney: (Allmoney * (this.data.type === 'now' ? this.data.discount_value : 1)).toFixed(2),
           Allmoney: Allmoney.toFixed(2),
-          AllPay: (Allmoney * that.data.discount_value).toFixed(2),
+          AllPay: (Allmoney * (options.ping ? 1 : that.data.discount_value)).toFixed(2),
           maxFreight: options.ping ? maxFreight : maxFreight > 0 ? maxFreight : app.gs('shopInfoAll').rule.low_total_fee > Allmoney ? app.gs('shopInfoAll').rule.logistic_fee : maxFreight,
           addressInfo: app.gs('addressInfo') || null
         }, function () {

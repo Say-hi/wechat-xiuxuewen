@@ -80,7 +80,7 @@ Page({
       }
     }
     app.wxrequest({
-      url: app.getUrl().shopDeal,
+      url: app.getUrl()[that.data.ping ? 'pindeal' : 'shopDeal'],
       data: {
         mid: app.gs('shopInfoAll').id,
         products: JSON.stringify(products),
@@ -128,8 +128,12 @@ Page({
   getGoods () {
     let that = this
     app.wxrequest({
-      url: app.getUrl().shopSale,
-      data: {
+      url: app.getUrl()[that.data.ping ? 'pinagentslist' : 'shopSale'],
+      data: that.data.ping ? {
+        mid: app.gs('shopInfoAll').id,
+        state: this.data.tabIndex,
+        page: ++that.data.page
+      } : {
         mid: app.gs('shopInfoAll').id,
         state: this.data.tabIndex * 1 + 1,
         page: ++that.data.page,
@@ -158,8 +162,9 @@ Page({
   },
   setBar () {
     if (this.data.tabIndex === 0) app.setBar(!this.data.ping ? '出售中的商品' : '全部')
-    else if (this.data.tabIndex === 1) app.setBar(!this.data.ping ? '仓库中的商品' : '正在进行')
-    else if (this.data.tabIndex === 2) app.setBar(!this.data.ping ? '库存紧张的商品' : '已经结束')
+    else if (this.data.tabIndex === 1) app.setBar(!this.data.ping ? '仓库中的商品' : '全部')
+    else if (this.data.tabIndex === 2) app.setBar(!this.data.ping ? '库存紧张的商品' : '正在进行')
+    else if (this.data.tabIndex === 4) app.setBar(!this.data.ping ? '库存紧张的商品' : '已经结束')
     this.getGoods()
   },
   /**

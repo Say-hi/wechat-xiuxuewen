@@ -22,7 +22,7 @@
         <view class="cff5975 f48 fw7">¥{{ info.old_price }}</view>
         <!--<view class="f26 c666 ml10">赚¥{{ info.level_one }}</view>-->
       </view>
-      <view class="f28 fw7 cff5975">分享赚</view>
+      <view class="f28 fw7 cff5975">分享</view>
     </view>
   </button>
   <view wx:if="{{ !ping }}" class="goods-count f26 c3a3a3a p030">
