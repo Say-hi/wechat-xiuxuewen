@@ -15,7 +15,8 @@
     <view class="f34 c595757 pl42 p20 bd1">期望结果　　<text class="c3e3a39">{{ info.types }}</text></view>
     <view class="f34 c595757 pl42 p20">申请原因　　<text class="c3e3a39">{{ info.reason }}</text></view>
   </view>
-  <view class="f34 bgfff mt20 c595757 pl42 p20 bd1">退款金额　　<text class="c3e3a39">¥{{ info.amount }}</text></view>
+  <view wx:if="{{ options.ping > 0 }}" class="f34 bgfff mt20 c595757 pl42 p20 bd1">退款金额　　<text class="c3e3a39">¥{{ info.amount }}</text></view>
+  <view wx:if="{{ options.ping < 0 }}" class="f34 bgfff mt20 c595757 pl42 p20 bd1">退款金额　　<input type="digit" bindblur="inputMoney" class="c3e3a39" value="{{ info.amount }}" /></view>
 </view>
 <view wx:if="{{ refuseMask }}" class="mask">
   <view class="refuse">

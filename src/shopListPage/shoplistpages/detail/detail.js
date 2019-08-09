@@ -210,9 +210,10 @@ Page({
     app.wxrequest({
       url: app.getUrl()[that.data.ping ? 'pindetail' : 'shopProduct'],
       // url: app.getUrl()[that.data.ping ? 'shopProduct' : 'shopProduct'],
-      data: {
-        pid
-      },
+      data: Object.assign({pid}, that.data.ping ? {} : {
+        uid: app.gs('userInfoAll').id,
+        mid: app.gs('shopInfoAll').id
+      }),
       success (res) {
         wx.hideLoading()
         if (res.data.status === 200) {
@@ -269,7 +270,7 @@ Page({
       return {
         title: `向您推荐店铺【${app.gs('shopInfoAll').name}】`,
         imageUrl: `${app.gs('shopInfoAll').avatar || ''}`,
-        path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}&user=${app.gs('userInfoAll').id}&pid=${that.data.info.id}`
+        path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}&user=${app.gs('userInfoAll').id}&pid=${this.data.info.id}`
       }
     }
   },

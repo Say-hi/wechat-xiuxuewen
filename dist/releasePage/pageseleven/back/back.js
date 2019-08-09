@@ -54,7 +54,7 @@ Page({
   refund: function refund() {
     var that = this;
     app.wxrequest({
-      url: app.getUrl().refund,
+      url: app.getUrl()[that.data.options.ping > 0 ? 'refund' : 'refundGoods'],
       data: {
         uid: app.gs('userInfoAll').id,
         openid: app.gs('userInfoAll').openid,

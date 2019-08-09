@@ -117,6 +117,9 @@ const serviceUrl = {
   userrecharge: shopBaseDomain + '/user/recharge', // 视频列表
   shopstar: shopBaseDomain + '/shop/star', // 视频列表
   ruleexplain: shopBaseDomain + '/rule/explain', // 视频列表
+  refundGoods: shopBaseDomain + '/user/refund', // 退款申请
+  goodsrefund: shopBaseDomain + '/shop/refund-detail', // 查询退款申请
+  confirmrefund: shopBaseDomain + '/shop/refund', // 商家确认退款
   // 拼团
   pinlist: shopBaseDomain + '/assemble/list',  // 拼团列表页
   pindetail: shopBaseDomain + '/assemble/detail',  // 拼团详情页

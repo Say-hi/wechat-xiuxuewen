@@ -18,13 +18,15 @@ Page({
   refuse: function refuse(e) {
     var that = this;
     app.wxrequest({
-      url: app.getUrl().pingrefund,
-      data: {
+      url: app.getUrl()[that.data.options.ping < 0 ? 'confirmrefund' : 'pingrefund'],
+      data: Object.assign({
         oid: that.data.options.oid,
         mid: that.data.options.mid || app.gs('shopInfoAll').id,
         uid: that.data.options.uid,
         is_refuse: e.currentTarget.dataset.refuse === 'agree' ? 1 : -1
-      },
+      }, that.data.options.ping < 0 ? {
+        amount: that.data.info.amount
+      } : {}),
       success: function success(res) {
         wx.hideLoading();
         // that.setData({
@@ -42,14 +44,20 @@ Page({
       }
     });
   },
+  inputMoney: function inputMoney(e) {
+    this.setData({
+      'info.amount': e.detail.value ? e.detail.value > this.data.amountTemp ? this.data.amountTemp : (e.detail.value * 1).toFixed(2) : '1.00'
+    });
+  },
   getDetail: function getDetail() {
     var that = this;
     app.wxrequest({
-      url: app.getUrl().pinorefund,
+      url: app.getUrl()[that.data.options.ping < 0 ? 'goodsrefund' : 'pinorefund'],
       data: {
         oid: that.data.options.oid,
         uid: that.data.options.uid,
         mid: app.gs('shopInfoAll').id,
+        // mid: 10000,
         out_trade_no: that.data.options.out_trade_no
       },
       success: function success(res) {
@@ -57,14 +65,15 @@ Page({
         if (res.data.status === 200) {
           that.setData({
             info: res.data.data,
+            amountTemp: res.data.data.amount,
             confirmRefuse: res.data.data.status * 1 !== 1,
             agree: res.data.data.status * 1 === 2
           });
         } else {
           app.setToast(that, { content: res.data.desc });
-          setTimeout(function () {
-            wx.navigateBack();
-          }, 1000);
+          // setTimeout(() => {
+          //   wx.navigateBack()
+          // }, 1000)
         }
       }
     });

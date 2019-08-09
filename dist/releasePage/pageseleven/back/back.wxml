@@ -33,9 +33,9 @@
                     percent="{{ upImgArrProgress[index] || 0 }}"></progress>
         </view>
       </view>
-      <view wx:if="{{ upImgArr.length < 9 }}" catchtap="wxUploadImg" class="up-btn br20 bb">
-        <image src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/upload.jpg"></image>
-      </view>
+      <!--<view wx:if="{{ upImgArr.length < 9 }}" catchtap="wxUploadImg" class="up-btn br20 bb">-->
+        <!--<image src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/upload.jpg"></image>-->
+      <!--</view>-->
     </view>
     <!--<image class="up-img" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/upload.jpg"></image>-->
     <!--<image src=""></image>-->

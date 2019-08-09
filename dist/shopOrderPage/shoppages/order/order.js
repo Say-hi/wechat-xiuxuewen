@@ -30,6 +30,9 @@ Page({
     }, {
       t: '已完成',
       i: 3
+    }, {
+      t: '退款中',
+      i: 5
     }],
     list: []
   },
@@ -77,6 +80,7 @@ Page({
         status: that.data.tabNav[that.data.tabIndex].i,
         page: ++that.data.page,
         mid: that.data.options.for === 'user' ? 0 : app.gs('shopInfoAll').id
+        // mid: 10000
       },
       success: function success(res) {
         wx.hideLoading();
@@ -362,7 +366,7 @@ Page({
     }
     this.setData({
       options: options,
-      ping: options.ping,
+      ping: options.ping || false,
       tabIndex: options.type,
       tabNav: this.data.tabNav
     }, this.getList);
