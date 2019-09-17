@@ -301,6 +301,14 @@
       "pages": [
         "shoppages/index/index"
       ]
+    },
+    {
+      "root": "sucaiPage", // 素材列表
+      "name": "sucai",
+      "pages": [
+        "sucai/sucai",
+        "scDetail/scDetail"
+      ]
     }
   ],
   "preloadRule": {

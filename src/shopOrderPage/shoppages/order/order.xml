@@ -61,7 +61,7 @@
           <view>
             <text class="c393636 mr20">共计{{ item.all_count }}件商品</text>
             <text class="c393636 mr20">物流费:{{ item.logistic_fee }}</text>
-            <text class="c393636">合计：{{ item.amount }}元</text>
+            <text class="c393636">合计：{{ item.total_fee }}元</text> <!-- 2019.08.12 修改amount为total_fee -->
           </view>
           <!--<text class="cff5975 fw7">赚¥3.00</text>-->
         </view>

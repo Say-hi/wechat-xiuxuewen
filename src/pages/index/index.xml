@@ -79,6 +79,10 @@
 <button open-type="getPhoneNumber" bindgetphonenumber="phone" class="login-btn login-btn-two {{ userInfo.phone.length > 6 ? 'active' : '' }}">{{ userInfo.phone.length > 6 ? '授权手机号已完成' : '授权手机号获取高质量服务' }}</button>
 <button catchtap="goNow" class="login-btn login-btn-three active">继续浏览</button>
 </view>
+
+<view wx:if="{{ lvShow }}" class="mask p30 tac" bindtap="checkLvShow">
+  <image style="display:inline-block;" mode="widthFix" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/no_del_img/lv{{ lvStar }}.jpg"></image>
+</view>
 <!--<view class="zw"></view>-->
 <my-add></my-add>
 <!--<my-login></my-login>-->

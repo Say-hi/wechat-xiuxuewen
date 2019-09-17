@@ -130,11 +130,12 @@ Page({
         uid: app.gs('userInfoAll').id
       },
       success (res) {
+        app.su('userInfoAll', Object.assign(app.gs('userInfoAll'), {star: res.data.data.star}))
         wx.hideLoading()
         if (res.data.status === 200) {
           that.setData({
             userInfo: res.data.data
-          })
+          }, that.checkLvShow)
         }
       }
     })
@@ -170,6 +171,25 @@ Page({
     this.setData({
       ['userInfo.nickname']: '未登录用户',
       ['userInfo.phone']: 18888888888
+    })
+  },
+  checkLvShow (e) {
+    if (e) {
+      this.setData({
+        lvShow: false
+      })
+      app.su('beforeShow', app.gs('userInfoAll').star || 5)
+      return
+    }
+    let that = this
+    this.setData({
+      lvShow: app.gs('beforeShow') * 1 !== app.gs('userInfoAll').star * 1
+    }, function () {
+      if (that.data.lvShow) {
+        that.setData({
+          lvStar: app.gs('userInfoAll').star || 5
+        })
+      }
     })
   },
   /**

@@ -1,0 +1,13 @@
+// Window configuration
+// https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#window
+{
+  // 类型：HexColor；默认值：#000000
+  // 导航栏背景颜色，如"#000000"
+  "navigationBarTitleText": "每日发圈",
+  "disableScroll": true,
+  // 类型：HexColor；默认值：#ffffff
+  // 类型：Boolean；默认值：false
+  // 是否开启下拉刷新，详见页面相关事件处理函数。
+  // https://mp.weixin.qq.com/debug/wxadoc/dev/framework/app-service/page.html?t=1476197491005#页面相关事件处理函数
+  "enablePullDownRefresh": false
+}

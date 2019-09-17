@@ -16,6 +16,11 @@ Page({
     img: app.data.testImg
   },
   chooseLabel: function chooseLabel(e) {
+    if (this.data.goodslabel[e.currentTarget.dataset.index].id * 1 === 9) {
+      return wx.navigateTo({
+        url: '/sucaiPage/sucai/sucai'
+      });
+    }
     this.data.page = 0;
     this.data.list = [];
     this.setData({
@@ -50,6 +55,33 @@ Page({
   upFormId: function upFormId(e) {
     app.upFormId(e);
   },
+  getQrcode: function getQrcode(e) {
+    if (e.currentTarget.dataset.index < 0) {
+      this.setData({
+        qrimg: null
+      });
+      return;
+    }
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().qrcode,
+      data: {
+        pid: that.data.list[e.target.dataset.index].id,
+        uid: app.gs('userInfoAll').id,
+        mid: app.gs('shopInfoAll').id
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData({
+            qrimg: res.data.data
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
   onShareAppMessage: function onShareAppMessage(e) {
     if (!app.gs('shopInfo').mid) {
       return {
@@ -59,9 +91,9 @@ Page({
       };
     } else {
       return {
-        title: '\u5411\u60A8\u63A8\u8350\u5E97\u94FA\u3010' + app.gs('shopInfoAll').name + '\u3011',
-        imageUrl: '' + (app.gs('shopInfoAll').avatar || ''),
-        path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id + '&user=' + app.gs('userInfoAll').id + '&pid=' + (e.target.dataset.index > -1 ? this.data.list[e.target.dataset.index].id : -1)
+        title: '' + (e.from !== 'menu' ? e.target.dataset.index > -1 ? '【好物推荐】' + this.data.list[e.target.dataset.index].title : '向您推荐店铺【' + app.gs('shopInfoAll').name + '】' : '向您推荐店铺【' + app.gs('shopInfoAll').name + '】'),
+        imageUrl: '' + (e.from !== 'menu' ? e.target.dataset.index > -1 ? this.data.list[e.target.dataset.index].img : app.gs('shopInfoAll').avatar || '' : app.gs('shopInfoAll').avatar || ''),
+        path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id + '&user=' + app.gs('userInfoAll').id + '&pid=' + (e.from !== 'menu' ? e.target.dataset.index > -1 ? this.data.list[e.target.dataset.index].id : -1 : -1)
       };
     }
   },

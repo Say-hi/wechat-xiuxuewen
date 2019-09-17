@@ -11,6 +11,7 @@ Page({
   data: {
     imgDomain: app.data.baseDomain,
     painting: {},
+    sid: '',
     color: '#0094ff',
     shareImage: ''
   },
@@ -56,6 +57,64 @@ Page({
       }
     });
   },
+  eventDraw2: function eventDraw2(e) {
+    wx.showLoading({
+      title: '定制海报中',
+      mask: true
+    });
+    var that = this;
+    var views = [{
+      type: 'image',
+      url: 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/no_del_img/detailshare.png',
+      top: 0,
+      left: 0,
+      width: 375,
+      height: 603
+    }, {
+      type: 'image',
+      url: app.data.shareimgurl,
+      top: 120,
+      left: 36,
+      width: 300,
+      height: 220
+    }, {
+      type: 'text',
+      content: app.data.sharename,
+      breakWord: true,
+      MaxLineNumber: 2,
+      fontSize: 20,
+      lineHeight: 20,
+      top: 360,
+      left: 40,
+      width: 120,
+      color: 'black'
+    }, {
+      type: 'text',
+      content: '售价：' + app.data.sharemoney,
+      breakWord: true,
+      MaxLineNumber: 2,
+      top: 420,
+      left: 40,
+      width: 120,
+      color: 'black'
+    }, {
+      type: 'image',
+      url: '' + that.data.qrCode,
+      top: 358,
+      left: 198,
+      width: 130,
+      height: 130
+    }];
+
+    this.setData({
+      painting: {
+        width: 375,
+        height: 603,
+        clear: true,
+        views: views
+      }
+    });
+  },
   eventGetImage: function eventGetImage(event) {
     wx.hideLoading();
     var tempFilePath = event.detail.tempFilePath;
@@ -80,6 +139,27 @@ Page({
           }, that.eventDraw);
         } else {
           app.setToast(that, { content: res.data.msg });
+        }
+      }
+    });
+  },
+  getQrcode2: function getQrcode2() {
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().qrcode,
+      data: {
+        pid: that.data.sid,
+        uid: app.gs('userInfoAll').id,
+        mid: app.gs('shopInfoAll').id
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData({
+            qrCode: res.data.data
+          }, that.eventDraw2);
+        } else {
+          app.setToast(that, { content: res.data.desc });
         }
       }
     });
@@ -116,11 +196,17 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function onLoad() {
-    app.setBar(app.gs('shopInfoAll').name);
-    this.setData({
-      info: app.gs('userInfoAll')
-    }, this.getQrCode);
+  onLoad: function onLoad(options) {
+    if (options.id) {
+      app.setBar('产品分享');
+      this.data.sid = options.id;
+      this.getQrcode2();
+    } else {
+      app.setBar(app.gs('shopInfoAll').name);
+      this.setData({
+        info: app.gs('userInfoAll')
+      }, this.getQrCode);
+    }
     // TODO: onLoad
   },
 

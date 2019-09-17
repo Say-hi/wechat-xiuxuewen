@@ -4,6 +4,7 @@
 const baseDomain = 'https://teach.idwenshi.com/teaching/public/index.php'
 const shopBaseDomain = 'https://teach.idwenshi.com/teach/teach/web/index.php'
 const webBaseDomain = 'https://teach.idwenshi.com/teach/api/web/index.php'
+const baseDomain2 = 'https://mask.idwenshi.com/masks/frontend/web/index.php'
 // let baseDomain = 'https://www.1688rm.com'
 const serviceUrl = {
   style: baseDomain + '/home/page', // 不填默认为1, 1表示中间菜单,2表示底部菜单,3表示广告图
@@ -140,10 +141,16 @@ const serviceUrl = {
   shopsExpress: shopBaseDomain + '/shops/express', // 商城订单发货
   pinagentslist: shopBaseDomain + '/shops/assemble-list', // 商家商品列表
   pindeal: shopBaseDomain + '/shops/deal', // 拼团删除产品
+  qrcode: shopBaseDomain + '/product/qrcode', // 二维码
   // 公众号接口
   profitDetail: webBaseDomain + '/user/profit-detail',
   finance: webBaseDomain + '/shop/finance', // 查看财务信息
-  setfinance: webBaseDomain + '/shop/set-finance' // 设置财务账号
+  setfinance: webBaseDomain + '/shop/set-finance', // 设置财务账号
+  // 素材相关接口
+  scMenu: shopBaseDomain + '/material/menu',
+  scList: shopBaseDomain + '/material/list',
+  scAdd: shopBaseDomain + '/material/count',
+  scDetail: shopBaseDomain + '/material/detail'
 
 }
 module.exports = serviceUrl

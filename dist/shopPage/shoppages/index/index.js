@@ -84,7 +84,7 @@ Page({
   chooseLabel: function chooseLabel(e) {
     if (this.data.goodslabel[e.currentTarget.dataset.index].name !== '搜索') {
       return wx.navigateTo({
-        url: '/shopListPage/shoplistpages/list/list?index=' + e.currentTarget.dataset.index
+        url: this.data.goodslabel[e.currentTarget.dataset.index].id * 1 === 9 ? '/sucaiPage/sucai/sucai' : '/shopListPage/shoplistpages/list/list?index=' + e.currentTarget.dataset.index
       });
     }
     this.setData({
@@ -168,6 +168,33 @@ Page({
       playIndex: e.currentTarget.dataset.index
     });
   },
+  getQrcode: function getQrcode(e) {
+    if (e.currentTarget.dataset.index < 0) {
+      this.setData({
+        qrimg: null
+      });
+      return;
+    }
+    var that = this;
+    app.wxrequest({
+      url: app.getUrl().qrcode,
+      data: {
+        pid: that.data.goods[e.target.dataset.index].id,
+        uid: app.gs('userInfoAll').id,
+        mid: app.gs('shopInfoAll').id
+      },
+      success: function success(res) {
+        wx.hideLoading();
+        if (res.data.status === 200) {
+          that.setData({
+            qrimg: res.data.data
+          });
+        } else {
+          app.setToast(that, { content: res.data.desc });
+        }
+      }
+    });
+  },
   onShareAppMessage: function onShareAppMessage(e) {
     var that = this;
     if (!app.gs('shopInfo').mid) {
@@ -178,9 +205,9 @@ Page({
       };
     } else {
       return {
-        title: '\u5411\u60A8\u63A8\u8350\u5E97\u94FA\u3010' + that.data.info.name + '\u3011',
-        imageUrl: '' + (that.data.info.avatar || ''),
-        path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id + '&user=' + app.gs('userInfoAll').id + '&pid=' + (e.target.dataset.index > -1 ? that.data.goods[e.target.dataset.index].id : -1)
+        title: '' + (e.from !== 'menu' ? e.target.dataset.index > -1 ? '【好物推荐】' + that.data.goods[e.target.dataset.index].title : '向您推荐店铺【' + that.data.info.name + '】' : '向您推荐店铺【' + that.data.info.name + '】'),
+        imageUrl: '' + (e.from !== 'menu' ? e.target.dataset.index > -1 ? that.data.goods[e.target.dataset.index].img : that.data.info.avatar || '' : that.data.info.avatar || ''),
+        path: '/shopPage/shoppages/index/index?mid=' + app.gs('shopInfoAll').id + '&user=' + app.gs('userInfoAll').id + '&pid=' + (e.from !== 'menu' ? e.target.dataset.index > -1 ? that.data.goods[e.target.dataset.index].id : -1 : -1)
       };
     }
   },
@@ -195,6 +222,7 @@ Page({
       success: function success(res) {
         wx.hideLoading();
         if (res.data.status === 200) {
+          app.su('userInfoAll', Object.assign(app.gs('userInfoAll'), { star: res.data.data.star }));
           // if (res.data.data.mall_id <= 10000 && app.gs('shopInfo').mid > 10000 && app.gs('shopInfo').user) that.shopBinding()
           that.shopBinding(out);
           if (!that.data.userInfo || that.data.userInfo.nickname !== '未登录用户请在【用户中心】进行登录') {
@@ -218,6 +246,7 @@ Page({
               noshop: !app.gs('shopInfo').mid
             }, that.getVideo);
           }
+          that.checkLvShow();
         } else {
           if (res.data.desc === '发生错误,联系管理员') {
             wx.removeStorageSync('userInfoAll');
@@ -311,15 +340,36 @@ Page({
       productMask: false
     });
   },
+  checkLvShow: function checkLvShow(e) {
+    if (e) {
+      this.setData({
+        lvShow: false
+      });
+      app.su('beforeShow', app.gs('userInfoAll').star || 5);
+      return;
+    }
+    var that = this;
+    this.setData({
+      lvShow: app.gs('beforeShow') * 1 !== app.gs('userInfoAll').star * 1
+    }, function () {
+      if (that.data.lvShow) {
+        that.setData({
+          lvStar: app.gs('userInfoAll').star || 5
+        });
+      }
+    });
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function onLoad(options) {
     this.getPinPic();
+    console.log('options', options);
     if (options.scene) {
       var scene = decodeURIComponent(options.scene).split('&');
       app.su('shopInfo', { mid: scene[0].split('=')[1], user: scene[1].split('=')[1] });
+      options.pid = scene[2] ? scene[2].split('=')[1] : -1;
     } else {
       app.su('shopInfo', options);
     }

@@ -26,6 +26,9 @@ Moment.updateLocale('en', {
 })
 App({
   data: {
+    shareimgurl: '',
+    sharemoney: '',
+    sharename: '',
     systemVersion: wx.getSystemInfoSync().system.split('.')[0].indexOf('9') >= 0 && wx.getSystemInfoSync().model.indexOf('iPhone') >= 0,
     all_screen: (wx.getSystemInfoSync().model).indexOf('X') >= 0,
     TOP_CENTER: (MenuButtonBounding.right - 66),
@@ -288,7 +291,7 @@ App({
                 province: data.userInfo.province
               },
               success (session) {
-                console.log('session', session)
+                // console.log('session', session)
                 wx.hideLoading()
                 wx.setStorageSync('key', session.data.data.openid)
                 that.wxrequest({

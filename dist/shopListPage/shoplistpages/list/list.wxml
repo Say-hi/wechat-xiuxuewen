@@ -30,7 +30,7 @@
     <view class="flex1 flex-between">
       <view class="f30 c444">{{ item.title }}</view>
       <!--<view class="f38 c444 fw7 mt20">¥{{ item.old_price }}</view>-->
-      <button open-type="share"
+      <button wx:if="{{ item.cid != 9 }}" open-type="share"
               catchtap="noUse"
               data-index="{{ index }}"
               hover-class="none"
@@ -39,11 +39,16 @@
         <view class="f38 c444 fw7">¥{{ item.old_price }}</view>
         <view class="f28 fw7 cff5975">分享</view>
       </button>
+      <view class="f24 cff5975 tar fw7 p200" catchtap="getQrcode" data-index="{{ index }}">图片分享</view>
     </view>
   </navigator>
 </view>
 </form>
-
+<view wx:if="{{ qrimg }}" class="mask p30 tac" style="background: #eee !important;">
+<image show-menu-by-longpress="1" style="display: inline-block;" mode="widthFix" src="{{ qrimg }}"></image>
+<view class="f24 c999 mt20">长按图片可以保存分享</view>
+<view catchtap="getQrcode" data-index="-1" style="padding: 10rpx 30rpx;border: 2rpx solid #333;display: inline-block; mini-width: 200rpx;" class="f30 tac c333 br20 mt30">关闭</view>
+</view>
 <!--错误弹窗-->
 <import src="/template/template"></import>
 <template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

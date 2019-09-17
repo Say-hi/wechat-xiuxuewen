@@ -93,6 +93,7 @@ Page({
         wx.hideLoading()
         if (res.data.status === 200) {
           app.su('userInfoAll', res.data.data)
+          that.checkLvShow()
           that.setData({
             info: res.data.data,
             agents: res.data.data.mall_is > 0
@@ -147,6 +148,25 @@ Page({
   },
   getUserInfoBtn (res) {
     if (res.detail.iv) app.wxlogin()
+  },
+  checkLvShow (e) {
+    if (e) {
+      this.setData({
+        lvShow: false
+      })
+      app.su('beforeShow', app.gs('userInfoAll').star || 5)
+      return
+    }
+    let that = this
+    this.setData({
+      lvShow: app.gs('beforeShow') * 1 !== app.gs('userInfoAll').star * 1
+    }, function () {
+      if (that.data.lvShow) {
+        that.setData({
+          lvStar: app.gs('userInfoAll').star || 5
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载

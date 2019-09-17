@@ -77,6 +77,7 @@ page {
   background-color: rgba(0,0,0,0.5);
   transition: all 0.5s;
   position: fixed;
+
   top: 0;
   left: 0;
   width: 100%;
@@ -369,5 +370,24 @@ page {
   }
   &.active {
     background-color: #F9A3B1 !important;
+  }
+}
+
+.mask-bottom-share {
+  background-color: #fff;
+  width: 100%;
+  border-radius: 30rpx;
+  position: absolute;
+  bottom: -30rpx;
+  left: 0;
+  padding: 30rpx 0;
+  .bottom-share {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  image {
+    width: 150rpx;
+    height: 150rpx;
   }
 }

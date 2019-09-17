@@ -95,6 +95,7 @@ Page({
         wx.hideLoading();
         if (res.data.status === 200) {
           app.su('userInfoAll', res.data.data);
+          that.checkLvShow();
           that.setData({
             info: res.data.data,
             agents: res.data.data.mall_is > 0
@@ -149,6 +150,25 @@ Page({
   },
   getUserInfoBtn: function getUserInfoBtn(res) {
     if (res.detail.iv) app.wxlogin();
+  },
+  checkLvShow: function checkLvShow(e) {
+    if (e) {
+      this.setData({
+        lvShow: false
+      });
+      app.su('beforeShow', app.gs('userInfoAll').star || 5);
+      return;
+    }
+    var that = this;
+    this.setData({
+      lvShow: app.gs('beforeShow') * 1 !== app.gs('userInfoAll').star * 1
+    }, function () {
+      if (that.data.lvShow) {
+        that.setData({
+          lvStar: app.gs('userInfoAll').star || 5
+        });
+      }
+    });
   },
 
   /**

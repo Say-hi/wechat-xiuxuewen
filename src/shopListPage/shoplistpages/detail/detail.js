@@ -247,12 +247,64 @@ Page({
             }
           })
           that.setData({
-            info: res.data.data
+            info: res.data.data,
+            sharePic: res.data.data.cid * 1 === 9
           })
           if (that.data.ping) {
             that.getPingTeam()
             that.setInfoKill()
           }
+        } else {
+          app.setToast(that, {content: res.data.desc})
+        }
+      }
+    })
+  },
+  copyText () {
+    wx.setClipboardData({
+      data: this.data.info.detail_text,
+      success () {
+        wx.showToast({
+          title: '文字已复制'
+        })
+      }
+    })
+  },
+  sbshare () {
+    this.setData({
+      sbShare: !this.data.sbShare
+    })
+  },
+  gopicshare () {
+    this.sbshare()
+    app.data.shareimgurl = this.data.info.img
+    app.data.sharemoney = this.data.info.old_price
+    app.data.sharename = this.data.info.title
+    wx.navigateTo({
+      url: `/sharePicturePage/shoppages/index/carShare?id=${this.data.info.id}`
+    })
+  },
+  getQrcode (e) {
+    if (e.currentTarget.dataset.index < 0) {
+      this.setData({
+        qrimg: null
+      })
+      return
+    }
+    let that = this
+    app.wxrequest({
+      url: app.getUrl().qrcode,
+      data: {
+        pid: that.data.info.id,
+        uid: app.gs('userInfoAll').id,
+        mid: app.gs('shopInfoAll').id
+      },
+      success (res) {
+        wx.hideLoading()
+        if (res.data.status === 200) {
+          that.setData({
+            qrimg: res.data.data
+          })
         } else {
           app.setToast(that, {content: res.data.desc})
         }
@@ -268,8 +320,8 @@ Page({
       }
     } else {
       return {
-        title: `向您推荐店铺【${app.gs('shopInfoAll').name}】`,
-        imageUrl: `${app.gs('shopInfoAll').avatar || ''}`,
+        title: `【好物推荐】${this.data.info.title}`,
+        imageUrl: `${this.data.info.img}`,
         path: `/shopPage/shoppages/index/index?mid=${app.gs('shopInfoAll').id}&user=${app.gs('userInfoAll').id}&pid=${this.data.info.id}`
       }
     }
@@ -518,6 +570,7 @@ Page({
   login () {
     app.wxlogin()
   },
+
   /**
    * 生命周期函数--监听页面加载
    */

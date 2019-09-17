@@ -25,8 +25,8 @@ Page({
         uid: that.data.options.uid,
         is_refuse: e.currentTarget.dataset.refuse === 'agree' ? 1 : -1
       }, that.data.options.ping < 0 ? {
-          amount: that.data.info.amount
-      }:{}),
+        amount: that.data.info.amount
+      } : {}),
       success (res) {
         wx.hideLoading()
         // that.setData({

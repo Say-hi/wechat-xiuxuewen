@@ -1,0 +1,6 @@
+// Window configuration
+// https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#window
+{
+  "enablePullDownRefresh": false,
+  "disableScroll": true
+}

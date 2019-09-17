@@ -121,6 +121,7 @@
         <view class="f38 c444 fw7">¥{{ item.old_price }}</view>
         <view class="f28 fw7 cff5975">分享</view>
       </button>
+      <view class="f24 cff5975 tar fw7 p200" catchtap="getQrcode" data-index="{{ index }}">图片分享</view>
     </view>
   </navigator>
 </view>
@@ -149,7 +150,7 @@
   <navigator class="p_i_nav f28 keep p20 tac " url='/shopListPage/shoplistpages/detail/detail?id={{ pid }}'>
     您的好友向您分享了一个好产品，点击来了解吧
   </navigator>
-  <view class="p_i_nav no_need f28 keep p20 tac" catchtap="close">暂时不需要</view>
+  <navigator url="/pages/index/index" open-type="redirect" class="p_i_nav no_need f28 keep p20 tac" catchtap="close">进入首页</navigator>
 </view>
 <view wx:if="{{ userInfo && (userInfo.nickname == '游客' || !userInfo.phone) }}" class="mask loginmm">
   <image class="login-bg" mode="aspectFill" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/login-bg.png"></image>
@@ -157,6 +158,16 @@
   <button open-type="getUserInfo" bindgetuserinfo="login" class="login-btn {{ userInfo.nickname != '游客' ? 'active' : '' }}">{{ userInfo.nickname != '游客' ? '授权用户名已完成' : '授权用户名' }}</button>
   <button open-type="getPhoneNumber" bindgetphonenumber="phone" class="login-btn login-btn-two {{ userInfo.phone.length > 6 ? 'active' : '' }}">{{ userInfo.phone.length > 6 ? '授权手机号已完成' : '授权手机号获取高质量服务' }}</button>
   <button catchtap="goNow" class="login-btn login-btn-three active">继续浏览</button>
+</view>
+<view wx:if="{{ lvShow }}" class="mask p30 tac" bindtap="checkLvShow">
+<image style="display:inline-block;" mode="widthFix" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/no_del_img/lv{{ lvStar }}.jpg"></image>
+</view>
+
+
+<view wx:if="{{ qrimg }}" class="mask p30 tac" style="background: #eee !important;">
+  <image show-menu-by-longpress="1" style="display: inline-block;" mode="widthFix" src="{{ qrimg }}"></image>
+  <view class="f24 c999 mt20">长按图片可以保存分享</view>
+  <view catchtap="getQrcode" data-index="-1" style="padding: 10rpx 30rpx;border: 2rpx solid #333;display: inline-block; mini-width: 200rpx;" class="f30 tac c333 br20 mt30">关闭</view>
 </view>
 
 <view class="zw"></view>
