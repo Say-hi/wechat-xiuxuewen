@@ -1,0 +1,10 @@
+<view class="top-tab">
+  <view style="height: {{ statusBarHeight }}px;"></view>
+  <view style="height: {{ HEIGHT }}px;" class="pr">
+    <view class="top-tab-left">
+      <view class="t-t-btn" catchtap="_back">用户端</view>
+    </view>
+    <view class="top-tab-title">标题</view>
+  </view>
+</view>
+<view style="height: {{ statusBarHeight + HEIGHT }}px;"></view>

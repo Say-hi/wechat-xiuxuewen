@@ -33,7 +33,7 @@
     <view>库存 {{ info.stock }}</view>
     <view>销量 {{ info.count_sale }}</view>
   </view>
-
+<view class="goods-count f26 c3a3a3a bd1 p030" style="background:#fff;">订单满{{ baoyou }}元部分地区包邮</view>
   <!--拼团内容sss-->
   <view wx:if="{{ ping }}" class="ping-title">
     <view class="p2030 ping-t-w">

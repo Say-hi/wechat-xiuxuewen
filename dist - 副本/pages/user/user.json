@@ -1,0 +1,1 @@
+{"usingComponents":{"my-add":"../../components/my-add/add","my-tip":"../../components/my-tip/my-tip","my-login":"../../components/my-login/my-login","my-navigator-tab":"../../components/my-navigator-tab/my-navigator-tab"},"navigationBarTitleText":"我的","disableScroll":true,"enablePullDownRefresh":false}

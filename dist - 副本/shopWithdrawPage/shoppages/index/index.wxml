@@ -1,0 +1,39 @@
+<form report-submit="{{true}}" bindsubmit="upFormId">
+<view class="p20">
+  <view class="bgfff br8 f28 c444">
+    <view class="bd1 p30 df">
+      <text class="fw7">提现方式</text>
+      <text>微信钱包</text>
+    </view>
+    <view class="p30">可提现收益：{{ profit || 0 }}</view>
+  </view>
+  <view class="bgfff p30 br8 f28 c444 df mt20">
+    <text class="mr20">提现积分</text>
+    <input class="flex1 tal"
+           bindinput="inputValue"
+           value="{{ outMoney }}"
+           type="number"
+           placeholder="请输入提现收益"/>
+  </view>
+  <view catchtap="showScroll" class="f26 cff5975 tar p2010">提现说明</view>
+  <button hover-class="none"
+          form-type="submit"
+          catchtap="shopUserCash"
+          class="f28 mt20 withdraw-btn cfff fw7">立刻提现</button>
+  <button hover-class="none"
+          catchtap="back"
+          form-type="submit"
+          class="f28 mt30 withdraw-btn c444 fw7">取消</button>
+</view>
+</form>
+<view class="mask {{ showS ? 'big' : 'small' }}" catchtap="showScroll">
+  <view catchtap="showScroll" class="icon-cuowu tac iconfont cfff mt20"></view>
+  <scroll-view catchtap="noUp" class="mask-scroll" scroll-y style="height: 80%; width: 80%; border-radius: 18rpx; background: #fff; padding: 20rpx;">
+    <view class="f30 c333 fw7 tac">提现说明</view>
+    <import src="/wxParse/wxParse"></import>
+    <template is="wxParse" data="{{ wxParseData: ruler.nodes }}"></template>
+  </scroll-view>
+</view>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

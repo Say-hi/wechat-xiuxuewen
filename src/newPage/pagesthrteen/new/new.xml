@@ -11,11 +11,11 @@
         <view wx:for="{{ growUp }}" wx:key="*978" catchtap="lvChoose" data-index="{{ index }}" class="lv-{{ index * 1 + 1 }} {{ lvIndex == index ? 'active bg-img-bling' : '' }}">{{ item.lv }}</view>
       </view>
       <view class="f34 c3a3a3a fw7 tac mt30">{{ growUp[lvIndex].title }}</view>
-      <view class="p30" style="padding-top: 20rpx;">
-        <view class="video-wrap bgfff br18 p10">
-          <video autoplay="{{ autoplay }}" class="br18" objectFit="cover" src="{{ growUp[lvIndex].video_url }}"></video>
-        </view>
-      </view>
+<!--      <view class="p30" style="padding-top: 20rpx;">-->
+<!--        <view class="video-wrap bgfff br18 p10">-->
+<!--          <video autoplay="{{ autoplay }}" class="br18" objectFit="cover" src="{{ growUp[lvIndex].video_url }}"></video>-->
+<!--        </view>-->
+<!--      </view>-->
       <view catchtap="chooseTab" data-index="1" class="f28 lh60 fw7 tac iconfont icon-jiantouarrowheads3 cf46677">点击翻页</view>
     </view>
   </swiper-item>

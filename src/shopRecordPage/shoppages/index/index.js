@@ -65,6 +65,7 @@ Page({
       url: app.getUrl()[that.data.type === 'withdraw' ? 'shopUserRecord' : 'shopUserInDetail'],
       data: {
         uid: app.gs('userInfoAll').id,
+        // uid: 10343,
         page: ++this.data.page
       },
       success (res) {
@@ -105,6 +106,7 @@ Page({
       url: app.getUrl().profitDetail,
       data: {
         uid: app.gs('userInfoAll').id,
+        // uid: 10343,
         where: that.data.tabIndex * 1 + 1,
         out_trade_no: that.data.inputtext || '',
         time_start: that.data.tabIndex * 1 !== 1 ? needtime ? new Date(that.data.star_date).getTime() / 1000 : '' : '',

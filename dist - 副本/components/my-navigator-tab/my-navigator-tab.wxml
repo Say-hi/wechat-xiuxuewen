@@ -1,0 +1,18 @@
+<form report-submit="{{true}}" bindsubmit="upFormId">
+<view class="{{ all_Screen ? 'zw-all' : 'zw' }}"></view>
+<view class="tab-wrap tab-wrap2 bt1 bottom-operation {{ all_Screen ? 'all-screen' : '' }}">
+    <navigator open-type="reLaunch"
+               catchtap="_goUrl"
+               data-index="{{ index }}"
+               url="{{ item.active ? '': item.url }}"
+               wx:for="{{ navData }}"
+               wx:key="*5"
+               hover-class="none"
+               class="tab-item f24 c333">
+        <button hover-class="none" form-type="submit" class="form-button">
+            <image class="images" lazy-load="{{true}}" mode="widthFix" src="{{ item.active ? item.select_icon : item.icon  }}"></image>
+            <view class="f24 c333 {{ item.active ? 'active' : '' }}">{{ item.title }}</view>
+        </button>
+    </navigator>
+</view>
+</form>

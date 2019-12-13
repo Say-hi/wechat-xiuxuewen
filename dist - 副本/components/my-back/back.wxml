@@ -1,0 +1,1 @@
+<navigator open-type="reLaunch" url="/pages/index/index" class="bgfff goback c444 f28 {{ move ? 'move' : 'moveother' }}">返回</navigator>

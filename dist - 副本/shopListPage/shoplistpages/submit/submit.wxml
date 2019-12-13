@@ -1,0 +1,135 @@
+<from report-submit="{{true}}" bindsubmit="upFormId">
+  <view wx:if="{{ !need_pay }}">
+    <view class="p20" style="padding-bottom: 0;">
+      <view class="br18 bgfff goods p30 pr">
+        <view catchtap="chooseAddress"
+              class="address pr">
+          <image lazy-load="{{true}}"
+                 mode="widthFix"
+                 src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/add_address1.png"></image>
+          <view wx:if="{{ addressInfo }}"
+                class="address-s f26 c3a3a3a">
+            <view class="a-s-t">
+              <text class="iconfont icon-dizhi f26">收货人: {{ addressInfo.userName }}</text>
+              <text class="f26">{{ addressInfo.telNumber }}</text>
+            </view>
+            <view class="ell2">
+              收货地址: {{ addressInfo.provinceName }}{{ addressInfo.cityName }}{{ addressInfo.countyName }}{{ addressInfo.detailInfo }}
+            </view>
+          </view>
+          <view wx:if="{{ needSetting }}"
+                class="open-setting">
+            <button catchtap="openSetting">开启授权</button>
+          </view>
+        </view>
+        <scroll-view scroll-y
+                     style="max-height: 420rpx;">
+          <view class="goods-list br8 p20 f28 c666"
+                wx:key="*45"
+                wx:for="{{ info }}">
+            <image src="{{ item.img || item.sku.img[0] }}"
+                   class="br8"
+                   mode="aspectFit"></image>
+            <view class="flex1">
+              <view>{{ item.title }}</view>
+              <veiw wx:if="{{ item.label != -1 }}">{{ item.label }}:{{ item.sku ? item.sku.value : item.value  }}</veiw>
+            </view>
+            <view class="ml10">X{{ item.count }}</view>
+          </view>
+        </scroll-view>
+        <view class="p20 f28 c444 bd1">
+          <view>共计<text class="fw7">{{ allCount }}件</text>商品</view>
+
+          <view class="money mt30">
+            <text>商品总价</text>
+            <text>¥{{ Allmoney }}</text>
+          </view>
+
+          <view wx:if="{{ !ping }}" class="money cff5975">
+            <text>折后价</text>
+            <text>¥{{ AllPay }}</text>
+          </view>
+
+          <view class="money">
+            <text>运费</text>
+            <text>¥{{ maxFreight }}</text>
+          </view>
+        </view>
+        <view  class="f28 c444 fw7 tar mt10 cff5975">共计需要付款：￥{{ AllPay * 1 + maxFreight * 1 }}</view>
+        <!--<view  class="f28 c444 fw7 tar mt10"><text wx:if="{{ discount_name.length >= 1 }}">({{  discount_name }})</text>共计需要付款：￥{{ Allmoney * 1 + maxFreight * 1 }}</view>-->
+      </view>
+    </view>
+
+    <!--<view wx:if="{{ !agents && !ping }}" class="zhipiao p20">-->
+    <view wx:if="{{ !agents && !ping }}" class="zhipiao p20">
+      <view class="bgfff p30 br8 zhipiao-area c444 f28">
+        <view>支票</view>
+        <view class="ml10 flex1">
+          <view>共<text class="fw7">{{ recharge }}</text>支票，可用<text class="fw7">{{ recharge }}支票</text></view>
+          <veiw>抵<text class="fw7" style="color: #FF5975;">{{ recharge }}</text>元</veiw>
+        </view>
+        <view catchtap="choosezhipiao" style="color: {{ user_zhipiao ? '#FF5975' : '#444' }}; font-size: 46rpx;" class="iconfont {{ user_zhipiao ? 'icon-gouxuan' : 'icon-wxz' }}"></view>
+      </view>
+    </view>
+
+    <view class="submit bt1 f24 c444">
+      <text>共{{ allCount }}件，</text>
+      <!--<text class="f34 fw7">合计：¥{{ AllPay * 1 + maxFreight * 1 }}</text>-->
+      <text class="f34 fw7">合计：¥{{ finish_pay }}</text>
+      <button catchtap="submit" class="f34 cfff">提交订单</button>
+    </view>
+  </view>
+  <view wx:if="{{ need_pay && !ping }}" class="p20 pay-success">
+    <view class="bgfff br8">
+      <image src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/pay_success.png"></image>
+      <view class="c444 fw7">支付成功！</view>
+      <button open-type="submit" catchtap="gohome">返回商城首页</button>
+    </view>
+  </view>
+  <view wx:if="{{ need_pay && ping && modeId == 2 }}" class="p20 pay-success">
+    <view class="bgfff br8">
+      <image src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/pay_success.png"></image>
+      <view class="c444 fw7">支付成功！</view>
+      <button open-type="submit" catchtap="gohome">返回商城首页</button>
+    </view>
+  </view>
+  <!--拼单支付成功显示界面 ssss-->
+  <!--<view class="ping-success mt20 p30 bgfff tac">-->
+  <view wx:if="{{ need_pay && ping && modeId != 2 }}" class="ping-success mt20 p30 bgfff tac">
+    <view class="bgfff psg-wrap df">
+      <image class="ping-s-goods" mode="aspectFill" src="{{ info[0].img }}"></image>
+      <view class="psg-text">
+        <view class="tal">{{ info[0].title }}</view>
+        <view class="psgt-b df">
+          <view class="f24 cff362c psgt-num iconfont icon-tuandui">{{ info[0].people }}人团</view>
+          <view class="f50 cff362c">
+            <text class="f24">￥</text>
+            <text>{{ info[0].sku.assemble_price }} </text>
+            <text class="text-t f28 c828282">￥{{ info[0].sku.alone_price }}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{ info[0].people - info[0].groupInfo.p.length <= 0 }}" class="f24 c3e3a39 tac mt20">拼主人气太高，拼单成功</view>
+    <view class="spt-user mt20">
+      <view wx:for="{{ info[0].groupInfo.p }}" wx:key="*this" class="user-item {{ index >= 1 ? '' : 'pr' }}">
+        <view wx:if="{{ index < 1 }}" class="pa cfff f27 team-leader keep">团长</view>
+        <image class="br" mode="aspectFil" src="{{ item.avatar_url }}"></image>
+      </view>
+      <view wx:if="{{ info[0].people - info[0].groupInfo.p.length >= 1 }}" class="user-item">
+        <image class="br" mode="aspectFil" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/ping/ping3.png"></image>
+      </view>
+    </view>
+    <view wx:if="{{ info[0].people - info[0].groupInfo.p.length >= 1 }}" class="f24 c3e3a39 mt20">仅差<text class="cff362c">{{ info[0].people - info[0].groupInfo.p.length }}人</text>，快呼唤小伙伴参加吧！</view>
+    <view wx:if="{{ info[0].people - info[0].groupInfo.p.length >= 1 }}" class="f24 c828282 ps-time mt20">-- 剩余 <text>{{ info[0].h }}</text><text>时</text><text>{{ info[0].m }}</text><text>分</text><text>{{ info[0].s }}</text><text>秒</text> 结束 --</view>
+    <view wx:if="{{ info[0].people - info[0].groupInfo.p.length >= 1 }}" class="ps-invite-w">
+      <button open-type="share" class="ps-invite f28 cfff">邀请好友参团</button>
+      <view catchtap="getMyShareCode" class="ps-invite f28 cfff">我的参团码</view>
+    </view>
+    <navigator url="/shopPage/shoppages/index/index" open-type="reLaunch" class='backpage f28 cff362c tac'>查看其他商品</navigator>
+  </view>
+  <!--拼单支付成功显示界面 eeee-->
+</from>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

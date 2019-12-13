@@ -1,0 +1,47 @@
+<form report-submit="1" bindsubmit="search">
+<view class="p20">
+  <view class="search">
+    <view class="s-wrap">
+      <view class="iconfont f32 icon-sousuo c999"></view>
+      <input confirm-type="search"
+             bindconfirm="search"
+             cursor="30"
+             name="search"
+             placeholder-class="holder"
+             class="br15 f28"
+             placeholder="输入您要搜索的内容" />
+    </view>
+    <button form-type="submit"
+            hover-class="none"
+            class="f28 fw7 c444 cancel">搜索</button>
+  </view>
+  <view class="f24 c444 bgfff p2030 br8 mt1">分销商({{ total || 0 }}人)</view>
+  <view class="p20 bgfff br8 f24 c444 mt20"
+        wx:for="{{ list }}"
+        wx:key="*123">
+    <view class="df">
+      <text>注册时间：{{ item.mall_create_time || '未知' }}</text>
+      <picker bindchange="setStar" range="{{ starArr }}" wx:if="{{ type == 'agents' }}" data-index="{{ index }}"  class="f28" style="color:#FF3B5B;">{{ item.star > 0 ? starArr2[item.star] : '星级设定' }}</picker>
+    </view>
+    <view class="p30 client-item mt10">
+      <view>
+        <image class="br mr20" src="{{ item.avatar_url }}"></image>
+        <text class="f28">{{ item.mall_rname || item.nickname }}</text>
+      </view>
+      <view>
+        <text>订单总额：¥{{ item.mall_use || '0.00' }}</text>
+        <text>订单数量：{{ item.mall_order_count || 0 }}</text>
+      </view>
+      <view>
+        <text catchtap="call" data-phone="{{ item.mall_phone }}">联系电话：{{ item.mall_phone || '未填写' }}</text>
+        <text>客户人数：{{ item.mall_brother_count || 0 }}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+</form>
+
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

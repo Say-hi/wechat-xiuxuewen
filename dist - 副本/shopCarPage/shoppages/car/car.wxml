@@ -1,0 +1,82 @@
+<form>
+  <view class="f26 c666 edit bgfff bt1">
+    <text>共{{ list.length }}件宝贝</text>
+    <text catchtap="edit" class="{{ del ? 'cff5975' : '' }}">管理</text>
+  </view>
+  <view class="p20 mt90">
+    <view class="car-list bgfff p30 bt1"
+          wx:for="{{ list }}"
+          wx:key="*07">
+      <view catchtap="choose"
+            data-index="{{ index }}"
+            class="iconfont {{ item.choose ? 'icon-gouxuan' : 'icon-wxz' }}">
+        <image wx:if="{{ systemVersion }}" style="width: 30rpx; height:30rpx;display:inline-block;" src="{{ item.choose ? 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/icon/choose.png' : 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/icon/no_choose.png' }}"></image>
+      </view>
+      <image src="{{ item.img }}"
+             class="br8 mr20"
+             mode="aspectFit"></image>
+      <view class="f28 c444 c-l-r flex1">
+        <text>{{ item.title }}</text>
+        <view wx:if="{{ item.label != -1 }}">{{ item.label }}:{{ item.value }}</view>
+        <view class="f38 c444 clr-b mt20">
+          <text class="fw7">¥{{ item.price }}</text>
+          <view class="gmc-num">
+            <view catchtap="numOperation"
+                  data-index="{{ index }}"
+                  data-type="del"
+                  class="gmcn-del br8">-</view>
+            <view class="br8 gmcn-in"
+                  value="{{ item.count }}">{{ item.count }}</view>
+            <view catchtap="numOperation"
+                  data-index="{{ index }}"
+                  data-type="add"
+                  class="gmcn-add br8">+</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="car-list bgfff p30 has-change"
+          catchtap="delOne"
+          data-index="{{ index }}"
+          wx:for="{{ noMean }}"
+          wx:key="*07">
+      <view class="iconfont icon-cuowu"></view>
+      <image src="{{ item.img }}"
+             class="br8 mr20"
+             mode="aspectFill"></image>
+      <view class="f28 c444 c-l-r flex1">
+        <text>{{ item.title }}</text>
+        <view wx:if="{{ item.label != -1 }}">{{ item.label }}:{{ item.value }}</view>
+        <view class="f38 c444 clr-b mt20">
+          <text class="fw7">¥{{ item.price }}</text>
+          <view class="gmc-num">
+            <view class="br8 gmcn-in"
+                  value="{{ item.count }}">{{ item.count }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="zw"></view>
+  <view class="bgfff submit bt1 f24 c444 {{ all_screen ? 'all-screen' : '' }}">
+    <view catchtap="checkAll"
+          data-index="{{ selectAll }}"
+          class="iconfont {{ selectAll == -2 ? 'icon-gouxuan' : 'icon-wxz' }}">
+      <image wx:if="{{ systemVersion }}" style="width: 30rpx; height:30rpx;display:inline-block;" src="{{ selectAll == -2 ? 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/icon/choose.png' : 'https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/icon/no_choose.png' }}"></image>
+      全选</view>
+    <view wx:if="{{ !del }}" class="s-r">
+      <text>不含运费，</text>
+      <text class="f28 fw7">合计：¥{{ totalMoney }}</text>
+      <button catchtap="{{ totalCount > 0 ? 'submit' : '' }}" class="f28 cfff {{ totalCount == 0 ? 'bgceee' : '' }}">结算({{ totalCount }})</button>
+    </view>
+    <button catchtap="del" wx:else class="f28 del">删除</button>
+  </view>
+  <view wx:if="{{ list.length <= 0 }}" class="no-goods bt1">
+    您的购物车空空的哦，快去选购您喜爱的产品吧
+  </view>
+</form>
+<!--<view class="zw"></view>-->
+<my-navigator-tab></my-navigator-tab>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

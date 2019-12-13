@@ -1,0 +1,288 @@
+<view wx:if="{{ !entering }}" class="tab-top bgfff lh88 bt1 bd1">
+  <view wx:for="{{ videoTab }}"
+        wx:key="*72"
+        class="t-t-item tac fw7 f28 {{ showTop == index ? 'cff3a5a' : 'c9a9a9a' }}">
+    {{ item.t }}
+  </view>
+</view>
+
+<swiper current="{{ swiperIndex }}" bindchange="swiperChange">
+  <swiper-item class="s-i-1 p20 bb">
+    <view class="br18 bgfff goods p30 pr">
+
+      <view catchtap="chooseAddress" class="address pr">
+        <image lazy-load="{{true}}" mode="widthFix" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/add_address1.png"></image>
+        <view wx:if="{{ addressInfo }}" class="address-s f26 c3a3a3a">
+          <view class="a-s-t">
+            <text class="iconfont icon-dizhi f26">收货人: {{ addressInfo.userName }}</text>
+            <text class="f26">{{ addressInfo.telNumber }}</text>
+          </view>
+          <view class="ell2">
+            收货地址: {{ addressInfo.provinceName }}{{ addressInfo.cityName }}{{ addressInfo.countyName }}{{ addressInfo.detailInfo }}
+          </view>
+        </view>
+        <view wx:if="{{ needSetting }}" class="open-setting">
+          <button catchtap="openSetting">开启授权</button>
+        </view>
+      </view>
+
+     <view class="c666 order-info br18 p30">
+       <view class="goods-info f28 ">
+         <text wx:if="{{ !entering }}" class="fw7">价值{{ options.price * 1 }}元学习大礼包</text>
+         <text wx:else class="fw7">{{ options.name }}</text>
+         <text>总计：1份</text>
+       </view>
+
+       <view class="goods-info f28 mt30">
+         <text>商品总价</text>
+         <text class="f34 fw7 cff3b5b">¥{{ options.price }}</text>
+       </view>
+
+       <view class="goods-info f28">
+         <text>运费</text>
+         <text>{{ options.freight > 0 ? options.freight : '免邮' }}</text>
+       </view>
+     </view>
+
+      <view class="user-input f34 cff3a5a tac goods-btn">
+        <view catchtap="nextTick" data-index="1" class="flex1 cfff">提交订单</view>
+      </view>
+    </view>
+  </swiper-item>
+  <swiper-item class="s-i-1 p20 bb">
+    <view class="br18 bgfff goods p30 pr">
+
+      <view class="tac pay-img">
+        <image mode="widthFix" lazy-load="{{true}}" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/apply_time.png"></image>
+      </view>
+      <view class="success">支付成功</view>
+      <view class="user-input pay-success-btn f34 cff3a5a tac goods-btn">
+        <view wx:if="{{ !entering }}" catchtap="nextTick" data-index="2" class="flex1 cfff">立即预约到店时间</view>
+        <navigator wx:else url="/storePage/pagesstore/index/index" open-type="redirect" class="flex1 cfff">专属教室查看</navigator>
+      </view>
+    </view>
+  </swiper-item>
+  <swiper-item class="s-i-1 p20 bb">
+    <!--<view class="">-->
+      <view class="br18 goods bgfff p30">
+
+        <view class="f34 c444 fw7 mt12">
+          预约资料填写
+        </view>
+        <view class="mt14 f28 c444">
+          根据您的个人情况，老师提前替你定制专属课程
+        </view>
+
+        <view class="zw100"></view>
+
+        <view class="name-gender">
+          <view class="user-input-2 mr15">
+            <view class="f28 c444 fw7 u-i-2-t">姓名</view>
+            <input class="f28 mt10"
+                   bindinput="inputValue"
+                   placeholder="请输入你的名字"
+                   placeholder-class="c666"
+                   data-type="name" />
+          </view>
+
+          <view class="user-input-2 ml15">
+            <view class="f28 c444 fw7 u-i-2-t">性别</view>
+            <input catchtap="showBottomScorll"
+                   data-type="gender"
+                   disabled
+                   class="f28 mt10 iconfont icon-daosanjiao"
+                   value="{{ genderText }}" />
+          </view>
+        </view>
+
+        <view class="user-input-2 mt30">
+          <view class="f28 c444 fw7 u-i-2-t">手机号</view>
+          <input class="f28 mt10"
+                 type="number"
+                 maxlength="11"
+                 bindinput="inputValue"
+                 placeholder="请输入你的手机号"
+                 placeholder-class="c666"
+                 data-type="phone" />
+        </view>
+
+        <view class="f28 c444 fw7 mt30 p030">到店时间</view>
+        <view class="user-input iconfont icon-daosanjiao">
+          <picker
+                  mode="date"
+                  value="{{ date }}"
+                  start="{{ date }}"
+                  end="{{ endDate }}"
+                  data-type="time"
+                  bindchange="userChoose"
+          >
+            <view class="f28 c8b8b8b fw7">{{date}}</view>
+          </picker>
+
+          <picker
+                  mode="selector"
+                  range="{{ amArr }}"
+                  value="{{ amIndex }}"
+                  data-type="am"
+                  class="ml30 flex1"
+                  bindchange="userChoose"
+          >
+            <view class="f28 c8b8b8b fw7">{{ amArr[amIndex] }}</view>
+          </picker>
+        </view>
+
+        <view class="user-input user-time user-step f28 cff3a5a tac">
+          <view catchtap="nextTick" data-index="3" class="flex1">下一步</view>
+        </view>
+
+        <view class="circle">
+          <view class="cff3a5a">·</view>
+          <view class="cd8d8d8">·</view>
+          <view class="cd8d8d8">·</view>
+        </view>
+
+      </view>
+    <!--</view>-->
+  </swiper-item>
+  <swiper-item class="s-i-2 p20 bb">
+    <view class="br18 bgfff goods p30">
+
+      <view class="f34 c444 fw7 mt12">
+        预约资料填写
+      </view>
+      <view class="mt14 f28 c444">
+        根据您的个人情况，老师提前替你定制专属课程
+      </view>
+      <view class="zw100"></view>
+
+      <view class="user-input-2">
+        <view class="f28 c444 fw7 u-i-2-t">纹绣经验</view>
+        <input catchtap="showBottomScorll"
+               data-type="experience"
+               disabled
+               class="f28 mt10 iconfont icon-daosanjiao"
+               value="{{ experienceText || '零基础' }}" />
+      </view>
+
+      <view class="user-input-2 mt30">
+        <view class="f28 c444 fw7 u-i-2-t">有无跟师学？</view>
+        <input catchtap="showBottomScorll"
+               data-type="teacher"
+               disabled
+               class="f28 mt10 iconfont icon-daosanjiao"
+               value="{{ teacherText || '无师自通' }}" />
+      </view>
+
+      <view class="user-input-2 mt30">
+        <view class="f28 c444 fw7 u-i-2-t">工作过程中遇到哪些困惑？(多选)</view>
+        <input catchtap="showBottomScorll"
+               data-type="question"
+               disabled
+               class="f28 mt10 iconfont icon-daosanjiao"
+               value="{{ questionText || '发红，上色慢' }}" />
+      </view>
+
+      <view class="user-input user-time user-step f28 cff3a5a tac mt120">
+        <view catchtap="nextTick" data-index="4" class="flex1">下一步</view>
+      </view>
+
+      <view class="user-input user-time user-step back-step f28 cff3a5a tac mt120">
+        <view catchtap="nextTick" data-index="2" class="flex1">上一步</view>
+      </view>
+
+      <view class="circle">
+        <view class="cff3a5a">·</view>
+        <view class="cff3a5a">·</view>
+        <view class="cd8d8d8">·</view>
+      </view>
+
+    </view>
+  </swiper-item>
+  <swiper-item class="s-i-3 p20 bb">
+    <view class="br18 bgfff goods p30">
+      <view class="f34 c444 fw7 mt12">
+        预约资料填写
+      </view>
+      <view class="mt14 f28 c444">
+        根据您的个人情况，老师提前替你定制专属课程
+      </view>
+      <view class="zw100"></view>
+
+      <view class="user-input-2">
+        <view class="f28 c444 fw7 u-i-2-t">目前急需完善和提升个人哪个方面？(多选)</view>
+        <input catchtap="showBottomScorll"
+               data-type="person"
+               disabled
+               class="f28 mt10 iconfont icon-daosanjiao"
+               value="{{ personText || '技能，形象，并发症处理' }}" />
+      </view>
+
+      <view class="user-input-2 mt30">
+        <view class="f28 c444 fw7 u-i-2-t">目前使用的纹绣品牌？</view>
+        <input data-type="brand"
+               class="f28 mt10"
+               bindinput="inputValue"
+               placeholder="请输入你当前使用的纹绣品牌"/>
+      </view>
+
+      <view class="user-input user-time user-step f28 cff3a5a tac mt60">
+        <view catchtap="nextTick" data-index="5" class="flex1">完成</view>
+      </view>
+
+      <view class="user-input user-time user-step back-step f28 cff3a5a tac mt120">
+        <view catchtap="nextTick" data-index="3" class="flex1">上一步</view>
+      </view>
+
+      <view class="circle">
+        <view class="cff3a5a">·</view>
+        <view class="cff3a5a">·</view>
+        <view class="cff3a5a">·</view>
+      </view>
+
+    </view>
+  </swiper-item>
+  <swiper-item class="s-i-5 p20 bb">
+    <view class="br18 bgfff goods">
+      <view class="apply-finish tac">
+        <image lazy-load="{{true}}"
+               mode="widthFix"
+               src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/pay_success.png"></image>
+      </view>
+      <view class="c444 f48 fw7 tac success">
+        恭喜您预约成功！
+      </view>
+      <navigator url="/collectPage/pagesten/collect/collect?type=1&cur=1" class="user-input user-step user-all-finish user-time f28 cff3a5a tac mt60">
+        <view class="flex1">查看我的预约</view>
+      </navigator>
+    </view>
+  </swiper-item>
+</swiper>
+
+<view hidden="{{ !maskShow }}"
+      class="mask choose-mask">
+  <view class="c-m-in p30">
+    <view class="mask-in-top bd1">
+      <view catchtap="maskChange" class="p20 f28 c444">取消</view>
+      <view catchtap="maskConfirm" class="p20 f28 cff3b5b">确认</view>
+    </view>
+    <scroll-view scroll-y style="height: 600rpx;">
+      <view wx:for="{{ chooseArr }}"
+            catchtap="maskChoose"
+            data-index="{{ index }}"
+            class="p30 f28 bd1 c444 {{ (maskType == 'question' || maskType == 'person') ? item.choose ? 'cff3b5b' : '' : maskIndex == index ? 'cff3b5b' : '' }}"
+            wx:key="*3">
+        {{ (maskType == 'question' || maskType == 'person') ? item.t : item }}
+      </view>
+      <input focus="{{ maskType == 'teacher' && maskIndex == 1 }}"
+             wx:if="{{ maskType == 'teacher' && maskIndex == 1 }}"
+             bindinput="inputValue"
+             data-type="teacher"
+             class="f28 c444 p030"
+             placeholder="输入老师姓名" />
+    </scroll-view>
+  </view>
+</view>
+
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

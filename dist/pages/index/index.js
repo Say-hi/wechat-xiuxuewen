@@ -98,54 +98,63 @@ Page({
   },
   getCourse: function getCourse() {
     var that = this;
-    app.wxrequest({
-      url: app.getUrl().course,
-      data: {
-        page: 1,
-        style: 2
-      },
-      success: function success(res) {
-        wx.hideLoading();
-        if (res.data.status === 200) {
-          var list = [];
-          var _iteratorNormalCompletion = true;
-          var _didIteratorError = false;
-          var _iteratorError = undefined;
-
-          try {
-            for (var _iterator = res.data.data.lists[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-              var v = _step.value;
-
-              list.push({
-                id: v.id,
-                avatar: v.avatar,
-                image: v.image,
-                room_name: v.room_name,
-                title: v.title,
-                price: v.price > 0 ? v.price : '免费'
-              });
-            }
-          } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-          } finally {
-            try {
-              if (!_iteratorNormalCompletion && _iterator.return) {
-                _iterator.return();
-              }
-            } finally {
-              if (_didIteratorError) {
-                throw _iteratorError;
-              }
-            }
-          }
-
-          that.setData({
-            list: list
-          });
-        }
+    app.cloud().getMoney().then(function (res) {
+      that.setData({
+        privice: res.privice
+      });
+      if (res.privice === 'noneed') {
+        return
       }
+      app.wxrequest({
+        url: app.getUrl().course,
+        data: {
+          page: 1,
+          style: 2
+        },
+        success: function success(res) {
+          wx.hideLoading();
+          if (res.data.status === 200) {
+            var list = [];
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+              for (var _iterator = (res.data.data.lists || [])[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var v = _step.value;
+
+                list.push({
+                  id: v.id,
+                  avatar: v.avatar,
+                  image: v.image,
+                  room_name: v.room_name,
+                  title: v.title,
+                  price: v.price > 0 ? v.price : '免费'
+                });
+              }
+            } catch (err) {
+              _didIteratorError = true;
+              _iteratorError = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                  _iterator.return();
+                }
+              } finally {
+                if (_didIteratorError) {
+                  throw _iteratorError;
+                }
+              }
+            }
+
+            that.setData({
+              list: list
+            });
+          }
+        }
+      });
     });
+   
   },
   getUser: function getUser() {
     var that = this;
@@ -233,10 +242,20 @@ Page({
         app.getNavTab({
           style: 2,
           cb: function cb(res) {
-            that.setData({
+            app.cloud().getMoney().then(function (ress) {
+              if (ress.privice === 'noneed') {
+                res.data.data.splice(1, 1)
+              }
+              that.setData({
+                tabNav: res.data.data
+              });
+              that.getCourse();
+            }).catch(function (err) {
+              that.setData({
               tabNav: res.data.data
             });
             that.getCourse();
+            })
           }
         });
       }

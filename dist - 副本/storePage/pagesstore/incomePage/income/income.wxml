@@ -1,0 +1,62 @@
+<form report-submit="{{true}}" bindsubmit="upFormId">
+<view class="top-info ca3633e tac bt1 p30 pr">
+  <image class="incomebg pa"
+         mode="aspectFill"
+         src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/storeSide/income_bg.png"></image>
+  <view class="fw7 mt30 f54 ">{{ totalFee }}</view>
+  <view class="f28 mt20 ">我的收益</view>
+
+  <view class="tar">
+    <button form-type="submit" catchtap="moneyOperation" data-type="change" class="get-btn f26 c9b735e">提现</button>
+    <!--<button form-type="submit" catchtap="showOutMoney" data-type="change" class="get-btn f26 c9b735e">提现</button>-->
+  </view>
+</view>
+<view class="p20">
+  <view wx:if="{{ putMoney > 0 }}" style="margin-bottom: 20rpx;" class="f28 br18 bgfff c444 p20">
+    提现中的金额: {{ putMoney }}元
+  </view>
+  <view class="bgfff br18 c444">
+    <view class="f36 p30 bd1 fw7">收益明细</view>
+    <view class="p30 bd1"
+          wx:for="{{ lists }}"
+          wx:key="*77">
+      <view class="f30 c393636 df">
+        <text>{{ item.title }}</text>
+        <text class="fw7">{{ item.amount < 0 ? item.amount : '+' + item.amount }}元</text>
+      </view>
+      <view class="f28 c999 mt10">{{ item.create_time }}</view>
+    </view>
+    <view class="tac p20 f28 c999" wx:if="{{ !lists.length }}">还没有产生收益哦</view>
+  </view>
+</view>
+
+
+<view class="mask" hidden="{{ !getMoneyShow }}">
+  <view class="mask-in mask-money">
+    <!--<view class="mask-title tac f30 lh80">提现积分</view>-->
+    <view class="f28 mask-tixian-top">
+      <view class="fw7">提现方式</view>
+      <view>微信钱包</view>
+    </view>
+    <view class="f24 c999 p20">可提现金额: {{ totalFee }}</view>
+    <view class="f30 p20 input-area">
+      <view class="fw7">提现金额</view>
+      <input bindinput="outMoney" value="{{ userInputMoney }}" class='f30 c333' type="number" placeholder="请输入提现金额" />
+    </view>
+    <view class="mask-btns">
+      <view catchtap="moneyOperation" data-type="confirm">提现</view>
+      <view catchtap="moneyOperation" data-type="change">取消</view>
+    </view>
+  </view>
+</view>
+</form>
+<official-account></official-account>
+<import src="/wxParse/wxParse"></import>
+<view class="mask p30 bb" wx:if="{{ showMoney }}" catchtap="showOutMoney">
+<scroll-view scroll-y style="height: 500rpx;" class="money-tips">
+  <template is="wxParse" data="{{ wxParseData: ruler.nodes }}"></template>
+</scroll-view>
+</view>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

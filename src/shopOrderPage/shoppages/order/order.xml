@@ -77,7 +77,9 @@
 
         <!--<view wx:if="{{ discount_name.length >= 1 && options.for == 'user' }}" class="f22 cff5975 tar mt10">{{ discount_name  }}</view>-->
         <view wx:if="{{ !ping }}" class="f26 order-bottom p10">
-          <text  class="c444 fw7" data-index="{{ index }}" catchtap="copy" data-type="name">买家：{{ item.name }}</text>
+          <text  class="c444 fw7 keep" data-index="{{ index }}" catchtap="copy" data-type="name">收货人：{{ item.name }}</text>
+          <text  class="c444 fw7 keep" style="padding: 0 10rpx;" data-index="{{ index }}">用户真名：{{ item.real_name || '未知' }}</text>
+          <text  class="c444 fw7 keep" data-index="{{ index }}">用户昵称：{{ item.nickname }}</text>
           <view class="ob-r flex1">
             <button catchtap="change" data-index="{{ index }}" wx:if="{{ item.status == -1 && options.for == 'user' }}" class="confirm f26 cfff cancel">取消订单</button>
             <!--<button catchtap="change" data-index="{{ index }}" wx:if="{{ (item.status == -1 || item.status == -2) && options.for == 'user' }}" class="confirm f26 cfff cancel">取消订单</button>-->
@@ -116,7 +118,7 @@
         <!--拼团订单状态对应  eeee-->
 
 
-        <view wx:if="{{ options.for == 'shop' }}" class="f26 c444" data-index="{{ index }}" catchtap="copy" data-type="name">收货地址: {{ item.name }}</view>
+<!--        <view wx:if="{{ options.for == 'shop' }}" class="f26 c444" data-index="{{ index }}" catchtap="copy" data-type="name">收货地址: {{ item.name }}</view>-->
         <view wx:if="{{ options.for == 'shop' }}" class="f26 c444" data-index="{{ index }}" catchtap="copy" data-type="address">收货地址: {{ item.address }}</view>
         <view wx:if="{{ options.for == 'shop' }}" class="f26 c444" data-index="{{ index }}" catchtap="copy" data-type="phone">联系电话: {{ item.phone }}</view>
       </view>

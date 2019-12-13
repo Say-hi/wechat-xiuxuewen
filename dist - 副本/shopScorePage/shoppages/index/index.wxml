@@ -1,0 +1,27 @@
+<form>
+  <view class="p20">
+    <view wx:if="{{ !options.text }}" class="tab c999 f28 p10">
+      <view data-type="{{ index }}"
+            class="flex1 tac tr5 {{ tabIndex == index ? 'c2ca2f2 fw7' : '' }}"
+            catchtap="tabChoose"
+            wx:key
+            wx:for="{{ tabArr }}">{{ item }}</view>
+    </view>
+    <view wx:if="{{ !options.text }}" class="zw50"></view>
+    <view wx:for="{{ list }}"
+          wx:key
+          class="item p30 bgfff br8 mt20">
+      <view class="f28 c444 flex fw7">
+        <view class="need-left c999">{{ item.des || '充值' }}</view>
+        <view>{{ tabIndex == 1 ? item.recharge < 0 ? '-' : '+' : item.score < 0 ? '-' : '+' }}{{ tabIndex == 1 ? item.recharge : item.score }}{{ tabIndex == 1 ? '元':'分' }}</view>
+      </view>
+      <!--<view class="c999 f28 mt10">{{ item.des }}</view>-->
+      <view class="c999 f28">{{ item.create_time }}</view>
+    </view>
+    <view wx:if="{{ !list.length }}" class="tac f28 c999 p20">--- 暂无相关记录 ---</view>
+    <view wx:if="{{ list.length }}" class="tac f28 c999 p20">--- {{ more == 1 ? '上拉加载更多内容' : '别扯了，没有更多内容了' }} ---</view>
+  </view>
+</form>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

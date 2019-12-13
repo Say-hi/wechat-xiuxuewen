@@ -105,7 +105,7 @@ Page({
         wx.hideLoading()
         if (res.data.status === 200) {
           let list = []
-          for (let v of res.data.data.lists) {
+          for (let v of res.data.data.lists || []) {
             list.push({
               id: v.id,
               avatar: v.avatar,

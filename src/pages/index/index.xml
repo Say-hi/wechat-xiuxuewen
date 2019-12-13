@@ -45,8 +45,12 @@
     <navigator url="/newPage/pagesthrteen/new/new" class="f34 c666 tac br18 bgfff mt20 ladder bg-img-bling">
       <image mode="widthFix" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/grow.png"></image>
     </navigator>
-
-    <view class="container bgfff br20 new p30">
+  <block wx:if="{{ !list.length }}" wx:for="{{2}}" wx:key="*32">
+    <navigator url="/newPage/pagesthrteen/new/new" class="f34 c666 tac br18 bgfff mt20 ladder bg-img-bling">
+      <image mode="widthFix" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/image/admin/background/grow.png"></image>
+    </navigator>
+  </block>
+    <view wx:if="{{ list.length }}" class="container bgfff br20 new p30">
         <navigator hover-class="none" url="/coursePage/pageszero/course/course?type=1" class="c-top">
             <view class="c-t-l f36 c444 fw7">最新视频</view>
             <view class="c-t-r f24 c444 arrow">查看更多</view>

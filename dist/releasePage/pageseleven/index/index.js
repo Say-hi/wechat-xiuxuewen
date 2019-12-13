@@ -428,7 +428,9 @@ Page({
     app.wxrequest({
       url: app.getUrl()[that.data.ping ? 'pindetail' : 'shopProduct'],
       data: {
-        pid: pid
+        pid: pid,
+        uid: app.gs('userInfoAll').id,
+        mid: app.gs('shopInfoAll').id
       },
       success: function success(res) {
         wx.hideLoading();

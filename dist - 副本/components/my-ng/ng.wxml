@@ -1,0 +1,9 @@
+<view wx:if="{{ show == 1 }}" class="mask">
+  <view class="ng-mask-in tac br18 p30">
+    <view catchtap="_close" class="iconfont icon-cuowu"></view>
+    <view class="f32 cff362c">不好意思</view>
+    <view class="f24 c3e3a39 mt20">您所在区域不符合参与此活动</view>
+    <image class="ng-img" mode="widthFix" src="https://teach-1258261086.cos.ap-guangzhou.myqcloud.com/ping/ping2.png"></image>
+    <view catchtap="_back" class="ng-other">查看其他商品</view>
+  </view>
+</view>

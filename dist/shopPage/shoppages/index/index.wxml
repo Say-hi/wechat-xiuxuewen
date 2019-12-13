@@ -112,16 +112,18 @@
     <view class="flex1 flex-between">
       <view class="f30 c444">{{ item.title }}</view>
       <!--<view class="f38 c444 fw7 mt20">¥{{ item.old_price }}</view>-->
-      <button open-type="share"
-              hover-class="none"
-              catchtap="noUse"
-              data-index="{{ index }}"
-              class="goods-bottom">
+      <view class="goods-bottom">
         <!--<view class="cff3b5b f26">赚¥{{ item.level_one }}</view>-->
         <view class="f38 c444 fw7">¥{{ item.old_price }}</view>
-        <view class="f28 fw7 cff5975">分享</view>
-      </button>
-      <view class="f24 cff5975 tar fw7 p200" catchtap="getQrcode" data-index="{{ index }}">图片分享</view>
+        <button open-type="share"
+              hover-class="none"
+              catchtap="noUse"
+              data-index="{{ index }}" class="f28 fw7 cff5975">分享</button>
+      </view>
+      <view class="f24 cff5975 tar fw7 p200 df">
+      <view class='flex1'>  </view>
+      <view catchtap="getQrcode" data-index="{{ index }}">图片分享</view>
+      </view>
     </view>
   </navigator>
 </view>

@@ -1,0 +1,4 @@
+<!--<view class="out {{ show ? 'move' : '' }} {{ noshow ? 'noshow' : '' }}">-->
+  <!--<view class="add">点击添加到我的小程序，下次查看更方便</view>-->
+  <!--<view class="angle"></view>-->
+<!--</view>-->

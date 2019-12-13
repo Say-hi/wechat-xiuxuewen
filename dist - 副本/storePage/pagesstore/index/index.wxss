@@ -1,0 +1,1 @@
+.top-wrap{padding:30rpx 58rpx;display:flex;align-items:center;justify-content:space-between}.top-wrap image{width:120rpx;height:120rpx}.message{display:flex;align-items:center}.message .m-center{margin:0 20rpx}.jwqfont:before{margin-right:10rpx}.form-button{width:100%;display:flex;flex-direction:column;align-items:center}

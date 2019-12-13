@@ -1,0 +1,22 @@
+<view wx:if="{{ show }}" class="mask">
+    <view class="mask-in maskIn">
+        <image lazy-load="{{true}}" class="tip-img" src="{{ userInfo.avatar }}"></image>
+        <view class="user-name">{{ userInfo.username }}</view>
+        <view class="ds-t">
+            <text class="ds-tt">打赏脑籽</text>
+            <image lazy-load="{{true}}" mode="widthFix" class="tip-img2" src="{{ naozai }}"></image>
+        </view>
+        <view class="chooseTab">
+            <view catchtap="_choosePay" data-index="{{ index }}" class="{{ currentIndex == index ? 'active' : '' }}" wx:for="{{ numArr }}" wx:key="*12">{{ item }}<text>颗</text></view>
+        </view>
+        <form bindsubmit="_formSubmit">
+            <view class="inputMoney-wrap">
+                <input name="money" class="inputMoney" value="{{ userInputValue }}" type="number" placeholder="其他数额"/>
+            </view>
+            <view class="pay">
+                <button formType="submit">立即打赏</button>
+            </view>
+        </form>
+        <view catchtap="_closeT" class="close">×</view>
+    </view>
+</view>

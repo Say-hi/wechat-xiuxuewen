@@ -1,0 +1,15 @@
+<form>
+  <view class="p020">
+    <view wx:for="{{ ruler }}"
+          wx:key
+          class="p30 f28 c666 br8 bgfff mt20">
+      <view class="tac">
+        <view class="need-left c444 fw7">{{ item.t }}</view>
+      </view>
+      <view wx:for="{{ item.rulers }}" wx:key wx:for-item="next" wx:for-index="nexti" class="{{ nexti == 0 ? 'mt20' : '' }}">{{ nexti * 1 + 1 }}.{{ next }}</view>
+    </view>
+  </view>
+</form>
+<!--错误弹窗-->
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

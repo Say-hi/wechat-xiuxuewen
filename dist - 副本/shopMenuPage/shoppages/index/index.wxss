@@ -1,0 +1,1 @@
+.item,.wrap{width:100%}.item{height:40px;line-height:39px;box-sizing:border-box;border-bottom:1px solid #eee}.move-item{z-index:997;box-shadow:0 0 11px #999}.fix .mask-in{top:30%}

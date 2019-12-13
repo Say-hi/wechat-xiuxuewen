@@ -1,0 +1,116 @@
+<view class="top-tab bgfff">
+  <view wx:for="{{ ttArr }}" wx:key="*73" catchtap="choosetoptab" data-index="{{ index }}" class="t-t-i fw7 {{ cttIndex == index ? 'active' : '' }}">
+    <view class="title">{{ item }}</view>
+    <view style="background: {{ lists[giftIndex].color_start }};" class="title-bg {{ cttIndex == index ? 'bactive' : 'hidebbg' }}"></view>
+  </view>
+</view>
+<scroll-view class="outSize {{ cttIndex < 1 ? 'move-left-in' : 'move-left-out' }}" scroll-y="{{true}}">
+  <view style="height: 88rpx;"></view>
+  <view style="background: linear-gradient(90deg, {{ lists[giftIndex].color_start }}, {{ lists[giftIndex].color_end }});">
+    <image class="top-bg" src="{{ lists[giftIndex].poster }}"></image>
+    <!--礼包-->
+    <view class="p20 pr" style="margin-top: -90rpx;">
+      <view class="p30 br18 bgfff">
+        <view class="f34 c3a3a3a fw7 title-out">
+          <view class="title">选择礼包入驻平台</view>
+          <view style="background: {{ lists[giftIndex].color_start }};" class="title-bg bactive"></view>
+        </view>
+        <scroll-view class="content-scroll bb mt20" scroll-x>
+          <view class="content-scroll-in">
+            <view wx:for="{{ lists }}"
+                  wx:key="*901"
+                  catchtap="chooseGift"
+                  data-index="{{ index }}"
+                  class="gift-item br18 iconfont pr {{ giftIndex == index ? 'cff4e6b icon-gouxuan' : 'c666 icon-gouxuan1' }} ">
+              <image mode="aspectFill" src="{{ item.image }}"></image>
+              <view class="f24 tac p20">{{ item.title }}</view>
+            </view>
+          </view>
+        </scroll-view>
+        <view catchtap="openGift" class="f24 tac cff4e6b mt30 pr open-gift">查看礼包 <text class="arrow {{ open ? 'open' : '' }}"></text></view>
+        <view wx:for="{{ lists[giftIndex].products }}"
+              wx:for-item="iItem"
+              wx:key="*21"
+              class="gift-content {{ open ? 'show bd1 p200' : '' }}">
+          <image src="{{ iItem.image }}" class="br18" mode="aspectFill"></image>
+          <view class="pr g-c-r">
+            <view>{{ iItem.name }}</view>
+            <view class="tar">x{{ iItem.count }}</view>
+          </view>
+        </view>
+        <view class="bottom-btn mt30" hidden="{{ is_teacher < 0 }}">
+          <view wx:if="{{ is_teacher >= 1 }}" class="f34 b-t cfff fw7 lh88 tac">
+            您已入驻成为特约讲师
+          </view>
+          <navigator wx:if="{{ is_teacher < 1 && tech_count >= 1000 }}" url="/offlinePage/pagesnine/offlineApply/offlineApply?type=entering&name={{ lists[giftIndex].title }}&price={{ lists[giftIndex].price }}&id={{ lists[giftIndex].id }}" class="f34 b-t cfff fw7 lh88 tac">立刻开通 ¥{{ lists[giftIndex].price }}</navigator>
+          <button wx:if="{{ is_teacher < 1 && tech_count < 1000 }}" open-type="contact" class="f34 b-t cfff fw7 lh88 tac">前1000名免费开通</button>
+        </view>
+        <view catchtap="rulerChange" class="tac c444 f24 mt30">我已阅读并同意《绣学问平台入驻协议》</view>
+      </view>
+      <!--获得-->
+      <view class="p30 br18 bgfff mt20">
+        <view class="f34 c3a3a3a fw7 title-out">
+          <view class="title">入驻即可获得</view>
+          <view style="background: {{ lists[giftIndex].color_start }};" class="title-bg bactive"></view>
+        </view>
+        <view class="df">
+          <image mode="widthFix"
+                 wx:for="{{ lists[giftIndex].gain }}"
+                 wx:key="*123"
+                 lazy-load
+                 class="br18 get-img"
+                 src="{{ item.image }}"></image>
+        </view>
+      </view>
+      <!--权限-->
+      <view class="p30 br18 bgfff mt20">
+        <view class="f34 c3a3a3a fw7 title-out">
+          <view class="title">入驻门店专属权限</view>
+          <view style="background: {{ lists[giftIndex].color_start }};" class="title-bg bactive"></view>
+        </view>
+        <view class="p20">
+          <image wx:for="{{ lists[giftIndex].auth }}"
+                 wx:key="*133"
+                 mode="widthFix"
+                 style="width:100%;"
+                 lazy-load
+                 src="{{ item.image }}"></image>
+        </view>
+        <view class="bottom-btn kefu mt30">
+          <button open-type="contact" class="f34 b-t cff3b5b fw7 lh88 tac">联系客服</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<scroll-view class="outSize {{ cttIndex >= 1 ? 'move-right-in' : 'move-right-out' }}" scroll-y="{{true}}">
+  <view style="height: 88rpx;"></view>
+  <view style="background: linear-gradient(90deg, {{ lists[giftIndex].color_start }}, {{ lists[giftIndex].color_end }});">
+    <view class="p20 ">
+      <view class="p30 bgfff br18">
+        <view class="f34 c3a3a3a fw7 title-out">
+          <view class="title">驻店跟师学师范基地入驻权益享受</view>
+          <view style="background: {{ lists[giftIndex].color_start }};" class="title-bg bactive"></view>
+        </view>
+        <template is="wxParse" data="{{ wxParseData: quanyi.nodes }}"></template>
+        <view class="bottom-btn kefu mt30">
+          <button open-type="contact" class="f34 b-t cff3b5b fw7 lh88 tac">联系客服</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<view catchtap="rulerChange" class='ruler {{ rulerShow ? "" : "noshow" }}'>
+  <view class="ruler-wrap" catchtap="noup">
+    <scroll-view scroll-y="{{true}}" style="height: 100%;">
+      <template is="wxParse" data="{{ wxParseData: ruler.nodes }}"></template>
+    </scroll-view>
+  </view>
+</view>
+<my-back></my-back>
+<!--错误弹窗-->
+<import src="/wxParse/wxParse"></import>
+<import src="/template/template"></import>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>

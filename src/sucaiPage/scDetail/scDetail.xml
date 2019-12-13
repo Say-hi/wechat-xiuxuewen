@@ -1,8 +1,7 @@
 <scroll-view scroll-y="1"
              class="scroll-left"
              bindscrolltolower="getLeftList"
-             scroll-into-view="left{{ leftIndex - 5 >= 0 ? leftIndex - 1 : 0 }}"
-             scroll-with-animation="1">
+             scroll-into-view="left{{ leftIndex - 5 >= 0 ? leftIndex - 1 : 0 }}">
   <view catchtap="choose"
         data-index="{{ index }}"
         id="left{{ index }}"

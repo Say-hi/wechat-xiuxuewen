@@ -1,0 +1,43 @@
+<template name="showToast">
+    <view class="mask-t">
+        <view class="mask-toast" style="background: {{ bgc }};">
+            <view wx:if="{{ title }}" style="color: {{ color }};" class="tac mask-title">{{ title }}</view>
+            <image style="display: inline-block;" lazy-load="{{true}}" wx:if="{{ image }}" mode="aspectFill" class="mask-image" src="{{ image }}"></image>
+            <view class="mask-content" style="color: {{ color }};">{{ content }}</view>
+        </view>
+    </view>
+</template>
+
+<template name="getUserInfo">
+    <view class="mask-t user-mask">
+        <view class="mask-toast">
+            <button open-type="getUserInfo" bindgetuserinfo="MaskGetUserInfo">
+                <image lazy-load="{{true}}" mode="aspectFill" class="mask-image" src="../../images/jiong.png"></image>
+                <view>请您授权该小程序获取您的信息</view>
+            </button>
+        </view>
+    </view>
+</template>
+
+<template name="showGzh">
+    <view class="mask-t gzh">
+        <view class="mask-toast gzh-w">
+            <image lazy-load="{{true}}" wx:if="{{ image }}" mode="aspectFill" class="mask-image gzh-img" src="{{ image }}"></image>
+            <view wx:if="{{ name }}" class="mask-content tac c9">已复制“{{ name }}”，在微信搜索长按黏贴即可关注</view>
+            <view wx:if="{{ addname }}" class="mask-content tac c9">您已经成功加入{{ addname }}，快去跟群友打个招呼吧。</view>
+            <view catchtap="closeGzh" class="btn">
+                知道了
+            </view>
+        </view>
+    </view>
+</template>
+
+<template name="showGZH">
+    <view class="mask">
+        <view class="mask-in">
+            <view class="tac">{{ title }}</view>
+            <import src="../../wxParse/wxParse"></import>
+            <template is="wxParse" data="{{ wxParseData: notDel.nodes }}"></template>
+        </view>
+    </view>
+</template>

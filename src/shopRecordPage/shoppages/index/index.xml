@@ -40,7 +40,17 @@
         <text>{{ item.status == 1 ? '已到账收益' : item.status == 2 ? '待到账收益' : '' }}</text>
         <text>{{ item.create_time }}</text>
       </view>
-
+      <view wx:if="{{ item.user_name }}" class="f28 c999 df mt10">
+        <text>{{ item.user_name }}-{{ item.create_time }}</text>
+      </view>
+      <view wx:for="{{ item.goods }}" wx:key="*93" wx:for-item="iItem" style="display: flex; align-items: center; padding: 10rpx 0; font-size: 24rpx;">
+        <image lazy-load="1" style="width:100rpx;height:100rpx;" mode="aspectFill" src="{{ iItem.image || 'https://c.jiangwenqiang.com/api/logo.jpg' }}"></image>
+        <view style="display: flex; flex-direction: column; margin-left: 10rpx;">
+          <view class="f22 c333">{{ iItem.goods_name || '产品名称' }}</view>
+          <view>实付: {{ iItem.pay || 0 }}</view>
+          <view>数量: {{ iItem.count || 1 }}</view>
+        </view>
+      </view>
     </view>
 
     <view wx:if="{{ type == 'withdraw' }}"
