@@ -118,10 +118,12 @@ Page({
       url: that.data.options.type === 'search' ? app.getUrl().courseSearch : app.getUrl().course,
       data: that.data.options.type === 'search' ? {
         page: ++page,
-        title: that.data.searchText
+        title: that.data.searchText,
+        user_id: app.gs('userInfoAll').id || null
       } : {
         label: app.data.label[that.data.currentIndex].label,
-        page: ++page
+        page: ++page,
+        user_id: app.gs('userInfoAll').id || null
       },
       success: function success(res) {
         wx.hideLoading();

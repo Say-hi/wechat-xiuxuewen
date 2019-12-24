@@ -109,7 +109,8 @@ Page({
         url: app.getUrl().course,
         data: {
           page: 1,
-          style: 2
+          style: 2,
+          user_id: app.gs('userInfoAll').id || null
         },
         success: function success(res) {
           wx.hideLoading();
@@ -169,7 +170,10 @@ Page({
         if (res.data.status === 200) {
           that.setData({
             userInfo: res.data.data
-          }, that.checkLvShow);
+          }, function () {
+            that.checkLvShow() 
+            that.getCourse()
+          });
         }
       }
     });
