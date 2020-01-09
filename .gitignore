@@ -3,7 +3,7 @@ dit/*.map
 src/.idea
 # Dependency directories
 node_modules
-
+dist-copy
 # Optional npm cache directory
 .npm
 

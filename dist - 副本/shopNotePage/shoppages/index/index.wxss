@@ -1,1 +1,0 @@
-.tab{position:fixed;top:0;left:0;z-index:99;width:100%;display:flex;align-items:center;line-height:68rpx}.tab .active{color:#ff5975}.mt70{margin-top:50rpx}.title{justify-content:space-between}.goods-info,.title{display:flex;align-items:center}.goods-img{width:140rpx;height:140rpx}

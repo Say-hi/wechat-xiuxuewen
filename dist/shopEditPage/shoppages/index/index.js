@@ -50,7 +50,9 @@ Page({
     app.wxrequest({
       url: app.getUrl().shopProduct,
       data: {
-        pid: pid
+        mid: app.gs('shopInfoAll').id,
+        pid: pid,
+        uid: app.gs('userInfoAll').id
       },
       success: function success(res) {
         wx.hideLoading();
