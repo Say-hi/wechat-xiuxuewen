@@ -14,6 +14,18 @@
         "pageszero/courseDetail/courseDetail" // 课程详情
       ]
     },
+    {
+      "root": "liver", // 直播
+      "pages": [
+        "liverPage/index"
+      ],
+      "plugins": {
+        "live-player-plugin": {
+          "version": "1.0.0", // 填写该直播组件最新版本号，微信开发者工具调试时可获取最新版本号
+          "provider": "wx2b03c6e691cd7370" // 必须填该直播组件appid，该示例值即为直播组件appid
+        }
+      }
+    },
 //    {
 //      "root": "collagePage", // 拼团分包
 //      "name": "collage",

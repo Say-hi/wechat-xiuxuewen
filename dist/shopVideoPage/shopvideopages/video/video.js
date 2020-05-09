@@ -32,6 +32,9 @@ Page({
           });
         } else {
           app.setToast(that, { content: res.data.desc });
+          setTimeout(() => {
+            wx.navigateBack()
+          }, 1000);
         }
       }
     });

@@ -32,6 +32,9 @@ Page({
     this.setData({
       url: options.agents > 1 ? 'https://teach.idwenshi.com/publicy/xiuexuewen2/dist/pages/index.html?uid=' + options.uid + '&random=' + Math.random() : 'https://teach.idwenshi.com/publicy/xiuexuewen2/dist/pages/indexshop.html?uid=' + options.uid + '&random=' + Math.random()
     });
+    // this.setData({
+    //   url: 'https://teach.idwenshi.com/publicy/xiuexuewen2/dist/pages/indexshop.html?uid=' + options.uid + '&random=' + Math.random()
+    // })
     // TODO: onLoad
   },
 

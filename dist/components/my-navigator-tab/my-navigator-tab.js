@@ -32,6 +32,15 @@ Component({
     },
     _goUrl: function _goUrl(e) {
       app.data.bottomTabIndex = e.currentTarget.dataset.index;
+      var that = this
+      if (!that.data.navData[e.currentTarget.dataset.index].active) {
+        setTimeout(() => {
+          wx.reLaunch({
+            url: that.data.navData[e.currentTarget.dataset.index].url
+          })
+        }, 300);
+      }
+      
     },
     _getData: function _getData() {
       var that = this;

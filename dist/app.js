@@ -300,6 +300,12 @@ App({
   },
   upFormId: function upFormId(e) {
     var that = this;
+    wx.requestSubscribeMessage({
+      tmplIds: ['vy8vBmkrdxj7bi0MfKFARIvjpAjVXWrVi2-LA6e6iCM', 'a-XsNJag6v96ed8t5Hive5IFUoYgCjl_iNf_yPCfUlU','a8ZYQDLIRrEKMqa0cqraVwOyA58P3g0g1vthLyW6ZjY'],
+      success (res) {
+        console.log('XXXXXXXXXXXXX', res)
+      }
+    })
     this.wxrequest({
       url: that.getUrl().formid,
       data: {

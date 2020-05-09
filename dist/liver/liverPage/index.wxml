@@ -1,0 +1,13 @@
+<navigator class='list-item' wx:for='{{ lists }}' wx:key="item" url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{item.roomid}}">
+  <view style='position: relative;'>
+    <image class='cover-img' mode='widthFix' src='{{item.cover_img}}'></image>
+    <view class='anchor'>
+      <image class='anchor-img' src="{{ item.anchor_img }}"></image>
+      <view class='anchor-name'>{{ item.anchor_name }}</view>
+    </view>
+    <view class='satus'>{{ item.live_status == 101 ? '直播中' : item.live_status == 102 ? '未开始' : item.live_status == 103 ? '已结束' : item.live_status == 104 ? '禁播' : item.live_status == 105 ? '暂停中' : item.live_status == 106 ? '异常' : '过期'}}</view>
+  </view>
+  <view class='name'>{{ item.name }}</view>
+</navigator>
+
+<view wx:if="{{ lists.length <= 0 }}" style='font-size: 24rpx; color: #323232; text-align: center;'>暂无直播</view>

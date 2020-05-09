@@ -1,0 +1,35 @@
+.list-item {
+  padding: 20rpx;
+}
+.cover-img {
+  width: 100%;
+  border-radius: 10rpx;
+}
+.name {
+  font-size: 30rpx;
+  color: #323232;
+}
+.anchor {
+  position: absolute;
+  bottom: 20rpx;
+  left: 20rpx;
+  display: flex;
+  align-items: center;
+}
+.anchor-name {
+  color: #fff;
+  font-size: 24rpx;
+  margin-left: 20rpx;
+}
+.anchor-img {
+  border-radius: 50%;
+  width: 50rpx;
+  height: 50rpx;
+}
+.satus {
+  position: absolute;
+  bottom: 20rpx;
+  right: 20rpx;
+  color: #fff;
+  font-size: 30rpx;
+}

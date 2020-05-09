@@ -1,4 +1,4 @@
-<view class="top-tab bgfff">
+<!-- <view class="top-tab bgfff">
   <view wx:for="{{ ttArr }}" wx:key="*73" catchtap="choosetoptab" data-index="{{ index }}" class="t-t-i fw7 {{ cttIndex == index ? 'active' : '' }}">
     <view class="title">{{ item }}</view>
     <view style="background: {{ lists[giftIndex].color_start }};" class="title-bg {{ cttIndex == index ? 'bactive' : 'hidebbg' }}"></view>
@@ -8,7 +8,7 @@
   <view style="height: 88rpx;"></view>
   <view style="background: linear-gradient(90deg, {{ lists[giftIndex].color_start }}, {{ lists[giftIndex].color_end }});">
     <image class="top-bg" src="{{ lists[giftIndex].poster }}"></image>
-    <!--礼包-->
+    
     <view class="p20 pr" style="margin-top: -90rpx;">
       <view class="p30 br18 bgfff">
         <view class="f34 c3a3a3a fw7 title-out">
@@ -47,7 +47,7 @@
         </view>
         <view catchtap="rulerChange" class="tac c444 f24 mt30">我已阅读并同意《绣学问平台入驻协议》</view>
       </view>
-      <!--获得-->
+      
       <view class="p30 br18 bgfff mt20">
         <view class="f34 c3a3a3a fw7 title-out">
           <view class="title">入驻即可获得</view>
@@ -62,7 +62,7 @@
                  src="{{ item.image }}"></image>
         </view>
       </view>
-      <!--权限-->
+      
       <view class="p30 br18 bgfff mt20">
         <view class="f34 c3a3a3a fw7 title-out">
           <view class="title">入驻门店专属权限</view>
@@ -110,7 +110,7 @@
   </view>
 </view>
 <my-back></my-back>
-<!--错误弹窗-->
+
 <import src="/wxParse/wxParse"></import>
 <import src="/template/template"></import>
-<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template>
+<template wx:if="{{ toast.show }}" is="showToast" data="{{ ...toast }}"></template> -->
